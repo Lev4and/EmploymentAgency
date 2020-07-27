@@ -239,6 +239,7 @@
     </Compile>
     <Compile Include="Services\PageService.cs" />
     <Compile Include="ViewModels\Locators\ViewModelLocator.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -296,6 +297,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\Pages\Main.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="Views\Styles\Default.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

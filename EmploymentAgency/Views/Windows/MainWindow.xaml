@@ -3,11 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:mdt="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:EmploymentAgency.Views.Windows"
         xmlns:vm="clr-namespace:EmploymentAgency.ViewModels"
         mc:Ignorable="d"
+        Style="{Binding Source={StaticResource Default}}"
         DataContext="{Binding MainWindowViewModel, Source={StaticResource ViewModelLocator}}"
-        Title="MainWindow" Height="450" Width="800" Icon="/EmploymentAgency;component/Resources/Images/Icons/Icon.ico">
+        Title="Агентство трудоустройства" Height="450" Width="800" Icon="/EmploymentAgency;component/Resources/Images/Icons/Icon.ico">
     <Grid>
         <Frame Content="{Binding PageSource}" NavigationUIVisibility="Hidden"/>
     </Grid>
