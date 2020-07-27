@@ -1,0 +1,2770 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Applicant">
+          <Key>
+            <PropertyRef Name="IdApplicant" />
+          </Key>
+          <Property Name="IdApplicant" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Surname" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Patronymic" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IdGender" Type="int" Nullable="false" />
+          <Property Name="Photo" Type="varbinary(max)" />
+          <Property Name="DateOfBirth" Type="date" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="18" Nullable="false" />
+          <Property Name="IsEmployed" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="IdCity" />
+          </Key>
+          <Property Name="IdCity" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdCountry" Type="int" Nullable="false" />
+          <Property Name="CityName" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Contract">
+          <Key>
+            <PropertyRef Name="IdContract" />
+          </Key>
+          <Property Name="IdContract" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdRequest" Type="int" Nullable="false" />
+          <Property Name="IdVacancy" Type="int" Nullable="false" />
+          <Property Name="DateOfConclusion" Type="smalldatetime" Nullable="false" />
+          <Property Name="BreakDate" Type="smalldatetime" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="IdCountry" />
+          </Key>
+          <Property Name="IdCountry" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CountryName" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DrivingLicenseCategory">
+          <Key>
+            <PropertyRef Name="IdDrivingLicenseCategory" />
+          </Key>
+          <Property Name="IdDrivingLicenseCategory" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DrivingLicenseCategoryName" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Education">
+          <Key>
+            <PropertyRef Name="IdEducation" />
+          </Key>
+          <Property Name="IdEducation" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EducationName" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EducationalActivity">
+          <Key>
+            <PropertyRef Name="IdEducationalActivity" />
+          </Key>
+          <Property Name="IdEducationalActivity" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdApplicant" Type="int" Nullable="false" />
+          <Property Name="IdEducation" Type="int" Nullable="false" />
+          <Property Name="NameEducationalnstitution" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="StartDate" Type="date" Nullable="false" />
+          <Property Name="EndDate" Type="date" />
+        </EntityType>
+        <EntityType Name="Employer">
+          <Key>
+            <PropertyRef Name="IdEmployer" />
+          </Key>
+          <Property Name="IdEmployer" Type="int" Nullable="false" />
+          <Property Name="IdOrganization" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Surname" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Patronymic" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IdGender" Type="int" Nullable="false" />
+          <Property Name="Photo" Type="varbinary(max)" />
+          <Property Name="DateOfBirth" Type="date" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="18" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmploymentType">
+          <Key>
+            <PropertyRef Name="IdEmploymentType" />
+          </Key>
+          <Property Name="IdEmploymentType" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmploymentTypeName" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Experience">
+          <Key>
+            <PropertyRef Name="IdExperience" />
+          </Key>
+          <Property Name="IdExperience" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ExperienceName" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="IdGender" />
+          </Key>
+          <Property Name="IdGender" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GenderName" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Industry">
+          <Key>
+            <PropertyRef Name="IdIndustry" />
+          </Key>
+          <Property Name="IdIndustry" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IndustryName" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="KnowledgeLanguage">
+          <Key>
+            <PropertyRef Name="IdKnowledgeLanguage" />
+          </Key>
+          <Property Name="IdKnowledgeLanguage" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdApplicant" Type="int" Nullable="false" />
+          <Property Name="IdLanguage" Type="int" Nullable="false" />
+          <Property Name="IdLanguageProficiency" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LaborActivity">
+          <Key>
+            <PropertyRef Name="IdLaborActivity" />
+          </Key>
+          <Property Name="IdLaborActivity" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdApplicant" Type="int" Nullable="false" />
+          <Property Name="OrganizationName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="OrganizationAddress" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ProfessionName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Activity" Type="text" Nullable="false" />
+          <Property Name="StartDate" Type="date" Nullable="false" />
+          <Property Name="EndDate" Type="date" />
+        </EntityType>
+        <EntityType Name="Language">
+          <Key>
+            <PropertyRef Name="IdLanguage" />
+          </Key>
+          <Property Name="IdLanguage" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LanguageName" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LanguageProficiency">
+          <Key>
+            <PropertyRef Name="IdLanguageProficiency" />
+          </Key>
+          <Property Name="IdLanguageProficiency" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Designation" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="LanguageProficiencyName" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Manager">
+          <Key>
+            <PropertyRef Name="IdManager" />
+          </Key>
+          <Property Name="IdManager" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Surname" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Patronymic" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IdGender" Type="int" Nullable="false" />
+          <Property Name="Photo" Type="varbinary(max)" />
+          <Property Name="DateOfBirth" Type="date" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="18" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NecessarySkill">
+          <Key>
+            <PropertyRef Name="IdNecessarySkill" />
+          </Key>
+          <Property Name="IdNecessarySkill" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdVacancy" Type="int" Nullable="false" />
+          <Property Name="IdSkill" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Organization">
+          <Key>
+            <PropertyRef Name="IdOrganization" />
+          </Key>
+          <Property Name="IdOrganization" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdSubIndustry" Type="int" Nullable="false" />
+          <Property Name="OrganizationName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Photo" Type="varbinary(max)" Nullable="false" />
+          <Property Name="IdStreet" Type="int" Nullable="false" />
+          <Property Name="NameHouse" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="18" Nullable="false" />
+          <Property Name="DateOfRegistration" Type="smalldatetime" Nullable="false" />
+          <Property Name="ClosingDate" Type="smalldatetime" />
+        </EntityType>
+        <EntityType Name="PossessionDrivingLicenseCategory">
+          <Key>
+            <PropertyRef Name="IdPossessionDrivingLicenseCategory" />
+          </Key>
+          <Property Name="IdPossessionDrivingLicenseCategory" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdApplicant" Type="int" Nullable="false" />
+          <Property Name="IdDrivingLicenseCategory" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PossessionSkill">
+          <Key>
+            <PropertyRef Name="IdPossessionSkill" />
+          </Key>
+          <Property Name="IdPossessionSkill" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdApplicant" Type="int" Nullable="false" />
+          <Property Name="IdSkill" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PreferredEmploymentType">
+          <Key>
+            <PropertyRef Name="IdPreferredEmploymentType" />
+          </Key>
+          <Property Name="IdPreferredEmploymentType" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdRequest" Type="int" Nullable="false" />
+          <Property Name="IdEmploymentType" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PreferredSchedule">
+          <Key>
+            <PropertyRef Name="IdPreferredSchedule" />
+          </Key>
+          <Property Name="IdPreferredSchedule" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdRequest" Type="int" Nullable="false" />
+          <Property Name="IdSchedule" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Profession">
+          <Key>
+            <PropertyRef Name="IdProfession" />
+          </Key>
+          <Property Name="IdProfession" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdProfessionCategory" Type="int" Nullable="false" />
+          <Property Name="ProfessionName" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProfessionCategory">
+          <Key>
+            <PropertyRef Name="IdProfessionCategory" />
+          </Key>
+          <Property Name="IdProfessionCategory" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameProfessionCategory" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Request">
+          <Key>
+            <PropertyRef Name="IdRequest" />
+          </Key>
+          <Property Name="IdRequest" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdApplicant" Type="int" Nullable="false" />
+          <Property Name="IdProfession" Type="int" Nullable="false" />
+          <Property Name="IdExperience" Type="int" Nullable="false" />
+          <Property Name="AboutMe" Type="text" />
+          <Property Name="DateOfRegistration" Type="smalldatetime" Nullable="false" />
+          <Property Name="DateOfConsideration" Type="smalldatetime" />
+          <Property Name="IdRequestStatus" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RequestStatus">
+          <Key>
+            <PropertyRef Name="IdRequestStatus" />
+          </Key>
+          <Property Name="IdRequestStatus" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RequestStatusName" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="IdRole" />
+          </Key>
+          <Property Name="IdRole" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Schedule">
+          <Key>
+            <PropertyRef Name="IdSchedule" />
+          </Key>
+          <Property Name="IdSchedule" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ScheduleName" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Skill">
+          <Key>
+            <PropertyRef Name="IdSkill" />
+          </Key>
+          <Property Name="IdSkill" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SkillName" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Street">
+          <Key>
+            <PropertyRef Name="IdStreet" />
+          </Key>
+          <Property Name="IdStreet" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdCity" Type="int" Nullable="false" />
+          <Property Name="StreetName" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SubIndustry">
+          <Key>
+            <PropertyRef Name="IdSubIndustry" />
+          </Key>
+          <Property Name="IdSubIndustry" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdIndustry" Type="int" Nullable="false" />
+          <Property Name="NameSubIndustry" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SuitableVacancy">
+          <Key>
+            <PropertyRef Name="IdSuitableVacancy" />
+          </Key>
+          <Property Name="IdSuitableVacancy" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdManager" Type="int" Nullable="false" />
+          <Property Name="IdApplicant" Type="int" Nullable="false" />
+          <Property Name="IdVacancy" Type="int" Nullable="false" />
+          <Property Name="DiscoveryDate" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="IdUser" />
+          </Key>
+          <Property Name="IdUser" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdRole" Type="int" Nullable="false" />
+          <Property Name="Login" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DateOfRegistration" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Vacancy">
+          <Key>
+            <PropertyRef Name="IdVacancy" />
+          </Key>
+          <Property Name="IdVacancy" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdEmployer" Type="int" Nullable="false" />
+          <Property Name="IdProfession" Type="int" Nullable="false" />
+          <Property Name="IdEmploymentType" Type="int" Nullable="false" />
+          <Property Name="IdSchedule" Type="int" Nullable="false" />
+          <Property Name="IdExperience" Type="int" Nullable="false" />
+          <Property Name="Description" Type="text" />
+          <Property Name="Duties" Type="text" />
+          <Property Name="Requirements" Type="text" />
+          <Property Name="Terms" Type="text" />
+          <Property Name="Salary" Type="int" />
+          <Property Name="DateOfRegistration" Type="smalldatetime" Nullable="false" />
+          <Property Name="ClosingDate" Type="smalldatetime" />
+        </EntityType>
+        <Association Name="FK_Applicant_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Applicant" Type="Self.Applicant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="IdGender" />
+            </Principal>
+            <Dependent Role="Applicant">
+              <PropertyRef Name="IdGender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Applicant_User">
+          <End Role="User" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Applicant" Type="Self.Applicant" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Applicant">
+              <PropertyRef Name="IdApplicant" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_City_Country">
+          <End Role="Country" Type="Self.Country" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="City" Type="Self.City" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="IdCountry" />
+            </Principal>
+            <Dependent Role="City">
+              <PropertyRef Name="IdCountry" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contract_Request">
+          <End Role="Request" Type="Self.Request" Multiplicity="1" />
+          <End Role="Contract" Type="Self.Contract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Request">
+              <PropertyRef Name="IdRequest" />
+            </Principal>
+            <Dependent Role="Contract">
+              <PropertyRef Name="IdRequest" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contract_Vacancy">
+          <End Role="Vacancy" Type="Self.Vacancy" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Contract" Type="Self.Contract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vacancy">
+              <PropertyRef Name="IdVacancy" />
+            </Principal>
+            <Dependent Role="Contract">
+              <PropertyRef Name="IdVacancy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EducationalActivity_Applicant">
+          <End Role="Applicant" Type="Self.Applicant" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="EducationalActivity" Type="Self.EducationalActivity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Applicant">
+              <PropertyRef Name="IdApplicant" />
+            </Principal>
+            <Dependent Role="EducationalActivity">
+              <PropertyRef Name="IdApplicant" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EducationalActivity_Education">
+          <End Role="Education" Type="Self.Education" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="EducationalActivity" Type="Self.EducationalActivity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Education">
+              <PropertyRef Name="IdEducation" />
+            </Principal>
+            <Dependent Role="EducationalActivity">
+              <PropertyRef Name="IdEducation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employer_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Employer" Type="Self.Employer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="IdGender" />
+            </Principal>
+            <Dependent Role="Employer">
+              <PropertyRef Name="IdGender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employer_Organization">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Employer" Type="Self.Employer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="IdOrganization" />
+            </Principal>
+            <Dependent Role="Employer">
+              <PropertyRef Name="IdOrganization" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employer_User">
+          <End Role="User" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Employer" Type="Self.Employer" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Employer">
+              <PropertyRef Name="IdEmployer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KnowledgeLanguage_Applicant">
+          <End Role="Applicant" Type="Self.Applicant" Multiplicity="1" />
+          <End Role="KnowledgeLanguage" Type="Self.KnowledgeLanguage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Applicant">
+              <PropertyRef Name="IdApplicant" />
+            </Principal>
+            <Dependent Role="KnowledgeLanguage">
+              <PropertyRef Name="IdApplicant" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KnowledgeLanguage_Language">
+          <End Role="Language" Type="Self.Language" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="KnowledgeLanguage" Type="Self.KnowledgeLanguage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Language">
+              <PropertyRef Name="IdLanguage" />
+            </Principal>
+            <Dependent Role="KnowledgeLanguage">
+              <PropertyRef Name="IdLanguage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KnowledgeLanguage_LanguageProficiency">
+          <End Role="LanguageProficiency" Type="Self.LanguageProficiency" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="KnowledgeLanguage" Type="Self.KnowledgeLanguage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LanguageProficiency">
+              <PropertyRef Name="IdLanguageProficiency" />
+            </Principal>
+            <Dependent Role="KnowledgeLanguage">
+              <PropertyRef Name="IdLanguageProficiency" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LaborActivity_Applicant">
+          <End Role="Applicant" Type="Self.Applicant" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="LaborActivity" Type="Self.LaborActivity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Applicant">
+              <PropertyRef Name="IdApplicant" />
+            </Principal>
+            <Dependent Role="LaborActivity">
+              <PropertyRef Name="IdApplicant" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Manager_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Manager" Type="Self.Manager" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="IdGender" />
+            </Principal>
+            <Dependent Role="Manager">
+              <PropertyRef Name="IdGender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Manager_User">
+          <End Role="User" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Manager" Type="Self.Manager" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Manager">
+              <PropertyRef Name="IdManager" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NecessarySkill_Skill">
+          <End Role="Skill" Type="Self.Skill" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="NecessarySkill" Type="Self.NecessarySkill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skill">
+              <PropertyRef Name="IdSkill" />
+            </Principal>
+            <Dependent Role="NecessarySkill">
+              <PropertyRef Name="IdSkill" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NecessarySkill_Vacancy">
+          <End Role="Vacancy" Type="Self.Vacancy" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="NecessarySkill" Type="Self.NecessarySkill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vacancy">
+              <PropertyRef Name="IdVacancy" />
+            </Principal>
+            <Dependent Role="NecessarySkill">
+              <PropertyRef Name="IdVacancy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Organization_Street">
+          <End Role="Street" Type="Self.Street" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Organization" Type="Self.Organization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Street">
+              <PropertyRef Name="IdStreet" />
+            </Principal>
+            <Dependent Role="Organization">
+              <PropertyRef Name="IdStreet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Organization_SubIndustry">
+          <End Role="SubIndustry" Type="Self.SubIndustry" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Organization" Type="Self.Organization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubIndustry">
+              <PropertyRef Name="IdSubIndustry" />
+            </Principal>
+            <Dependent Role="Organization">
+              <PropertyRef Name="IdSubIndustry" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PossessionDrivingLicenseCategory_Applicant">
+          <End Role="Applicant" Type="Self.Applicant" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PossessionDrivingLicenseCategory" Type="Self.PossessionDrivingLicenseCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Applicant">
+              <PropertyRef Name="IdApplicant" />
+            </Principal>
+            <Dependent Role="PossessionDrivingLicenseCategory">
+              <PropertyRef Name="IdApplicant" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PossessionDrivingLicenseCategory_DrivingLicenseCategory">
+          <End Role="DrivingLicenseCategory" Type="Self.DrivingLicenseCategory" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PossessionDrivingLicenseCategory" Type="Self.PossessionDrivingLicenseCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DrivingLicenseCategory">
+              <PropertyRef Name="IdDrivingLicenseCategory" />
+            </Principal>
+            <Dependent Role="PossessionDrivingLicenseCategory">
+              <PropertyRef Name="IdDrivingLicenseCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PossessionSkill_Applicant">
+          <End Role="Applicant" Type="Self.Applicant" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PossessionSkill" Type="Self.PossessionSkill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Applicant">
+              <PropertyRef Name="IdApplicant" />
+            </Principal>
+            <Dependent Role="PossessionSkill">
+              <PropertyRef Name="IdApplicant" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PossessionSkill_Skill">
+          <End Role="Skill" Type="Self.Skill" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PossessionSkill" Type="Self.PossessionSkill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skill">
+              <PropertyRef Name="IdSkill" />
+            </Principal>
+            <Dependent Role="PossessionSkill">
+              <PropertyRef Name="IdSkill" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PreferredEmploymentType_EmploymentType">
+          <End Role="EmploymentType" Type="Self.EmploymentType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PreferredEmploymentType" Type="Self.PreferredEmploymentType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmploymentType">
+              <PropertyRef Name="IdEmploymentType" />
+            </Principal>
+            <Dependent Role="PreferredEmploymentType">
+              <PropertyRef Name="IdEmploymentType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PreferredEmploymentType_Request">
+          <End Role="Request" Type="Self.Request" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PreferredEmploymentType" Type="Self.PreferredEmploymentType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Request">
+              <PropertyRef Name="IdRequest" />
+            </Principal>
+            <Dependent Role="PreferredEmploymentType">
+              <PropertyRef Name="IdRequest" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PreferredSchedule_Request">
+          <End Role="Request" Type="Self.Request" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PreferredSchedule" Type="Self.PreferredSchedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Request">
+              <PropertyRef Name="IdRequest" />
+            </Principal>
+            <Dependent Role="PreferredSchedule">
+              <PropertyRef Name="IdRequest" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PreferredSchedule_Schedule">
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PreferredSchedule" Type="Self.PreferredSchedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Schedule">
+              <PropertyRef Name="IdSchedule" />
+            </Principal>
+            <Dependent Role="PreferredSchedule">
+              <PropertyRef Name="IdSchedule" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Profession_ProfessionCategory">
+          <End Role="ProfessionCategory" Type="Self.ProfessionCategory" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Profession" Type="Self.Profession" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProfessionCategory">
+              <PropertyRef Name="IdProfessionCategory" />
+            </Principal>
+            <Dependent Role="Profession">
+              <PropertyRef Name="IdProfessionCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Request_Applicant">
+          <End Role="Applicant" Type="Self.Applicant" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Applicant">
+              <PropertyRef Name="IdApplicant" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="IdApplicant" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Request_Experience">
+          <End Role="Experience" Type="Self.Experience" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Experience">
+              <PropertyRef Name="IdExperience" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="IdExperience" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Request_Profession1">
+          <End Role="Profession" Type="Self.Profession" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profession">
+              <PropertyRef Name="IdProfession" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="IdProfession" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Request_RequestStatus">
+          <End Role="RequestStatus" Type="Self.RequestStatus" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RequestStatus">
+              <PropertyRef Name="IdRequestStatus" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="IdRequestStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Street_City">
+          <End Role="City" Type="Self.City" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Street" Type="Self.Street" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="IdCity" />
+            </Principal>
+            <Dependent Role="Street">
+              <PropertyRef Name="IdCity" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubIndustry_Industry">
+          <End Role="Industry" Type="Self.Industry" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SubIndustry" Type="Self.SubIndustry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Industry">
+              <PropertyRef Name="IdIndustry" />
+            </Principal>
+            <Dependent Role="SubIndustry">
+              <PropertyRef Name="IdIndustry" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SuitableVacancy_Applicant">
+          <End Role="Applicant" Type="Self.Applicant" Multiplicity="1" />
+          <End Role="SuitableVacancy" Type="Self.SuitableVacancy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Applicant">
+              <PropertyRef Name="IdApplicant" />
+            </Principal>
+            <Dependent Role="SuitableVacancy">
+              <PropertyRef Name="IdApplicant" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SuitableVacancy_Manager">
+          <End Role="Manager" Type="Self.Manager" Multiplicity="1" />
+          <End Role="SuitableVacancy" Type="Self.SuitableVacancy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Manager">
+              <PropertyRef Name="IdManager" />
+            </Principal>
+            <Dependent Role="SuitableVacancy">
+              <PropertyRef Name="IdManager" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SuitableVacancy_Vacancy">
+          <End Role="Vacancy" Type="Self.Vacancy" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SuitableVacancy" Type="Self.SuitableVacancy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vacancy">
+              <PropertyRef Name="IdVacancy" />
+            </Principal>
+            <Dependent Role="SuitableVacancy">
+              <PropertyRef Name="IdVacancy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="IdRole" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="IdRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vacancy_Employer">
+          <End Role="Employer" Type="Self.Employer" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Vacancy" Type="Self.Vacancy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employer">
+              <PropertyRef Name="IdEmployer" />
+            </Principal>
+            <Dependent Role="Vacancy">
+              <PropertyRef Name="IdEmployer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vacancy_EmploymentType">
+          <End Role="EmploymentType" Type="Self.EmploymentType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Vacancy" Type="Self.Vacancy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmploymentType">
+              <PropertyRef Name="IdEmploymentType" />
+            </Principal>
+            <Dependent Role="Vacancy">
+              <PropertyRef Name="IdEmploymentType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vacancy_Experience">
+          <End Role="Experience" Type="Self.Experience" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Vacancy" Type="Self.Vacancy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Experience">
+              <PropertyRef Name="IdExperience" />
+            </Principal>
+            <Dependent Role="Vacancy">
+              <PropertyRef Name="IdExperience" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vacancy_Profession">
+          <End Role="Profession" Type="Self.Profession" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Vacancy" Type="Self.Vacancy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profession">
+              <PropertyRef Name="IdProfession" />
+            </Principal>
+            <Dependent Role="Vacancy">
+              <PropertyRef Name="IdProfession" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vacancy_Schedule">
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Vacancy" Type="Self.Vacancy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Schedule">
+              <PropertyRef Name="IdSchedule" />
+            </Principal>
+            <Dependent Role="Vacancy">
+              <PropertyRef Name="IdSchedule" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище ModelContainer">
+          <EntitySet Name="Applicant" EntityType="Self.Applicant" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Contract" EntityType="Self.Contract" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DrivingLicenseCategory" EntityType="Self.DrivingLicenseCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Education" EntityType="Self.Education" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EducationalActivity" EntityType="Self.EducationalActivity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employer" EntityType="Self.Employer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmploymentType" EntityType="Self.EmploymentType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Experience" EntityType="Self.Experience" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Industry" EntityType="Self.Industry" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KnowledgeLanguage" EntityType="Self.KnowledgeLanguage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LaborActivity" EntityType="Self.LaborActivity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Language" EntityType="Self.Language" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LanguageProficiency" EntityType="Self.LanguageProficiency" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Manager" EntityType="Self.Manager" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NecessarySkill" EntityType="Self.NecessarySkill" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Organization" EntityType="Self.Organization" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PossessionDrivingLicenseCategory" EntityType="Self.PossessionDrivingLicenseCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PossessionSkill" EntityType="Self.PossessionSkill" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PreferredEmploymentType" EntityType="Self.PreferredEmploymentType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PreferredSchedule" EntityType="Self.PreferredSchedule" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Profession" EntityType="Self.Profession" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProfessionCategory" EntityType="Self.ProfessionCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Request" EntityType="Self.Request" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RequestStatus" EntityType="Self.RequestStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Schedule" EntityType="Self.Schedule" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Skill" EntityType="Self.Skill" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Street" EntityType="Self.Street" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubIndustry" EntityType="Self.SubIndustry" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SuitableVacancy" EntityType="Self.SuitableVacancy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vacancy" EntityType="Self.Vacancy" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Applicant_Gender" Association="Self.FK_Applicant_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Applicant" EntitySet="Applicant" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Applicant_User" Association="Self.FK_Applicant_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Applicant" EntitySet="Applicant" />
+          </AssociationSet>
+          <AssociationSet Name="FK_City_Country" Association="Self.FK_City_Country">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="City" EntitySet="City" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contract_Request" Association="Self.FK_Contract_Request">
+            <End Role="Request" EntitySet="Request" />
+            <End Role="Contract" EntitySet="Contract" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contract_Vacancy" Association="Self.FK_Contract_Vacancy">
+            <End Role="Vacancy" EntitySet="Vacancy" />
+            <End Role="Contract" EntitySet="Contract" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EducationalActivity_Applicant" Association="Self.FK_EducationalActivity_Applicant">
+            <End Role="Applicant" EntitySet="Applicant" />
+            <End Role="EducationalActivity" EntitySet="EducationalActivity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EducationalActivity_Education" Association="Self.FK_EducationalActivity_Education">
+            <End Role="Education" EntitySet="Education" />
+            <End Role="EducationalActivity" EntitySet="EducationalActivity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employer_Gender" Association="Self.FK_Employer_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Employer" EntitySet="Employer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employer_Organization" Association="Self.FK_Employer_Organization">
+            <End Role="Organization" EntitySet="Organization" />
+            <End Role="Employer" EntitySet="Employer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employer_User" Association="Self.FK_Employer_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Employer" EntitySet="Employer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KnowledgeLanguage_Applicant" Association="Self.FK_KnowledgeLanguage_Applicant">
+            <End Role="Applicant" EntitySet="Applicant" />
+            <End Role="KnowledgeLanguage" EntitySet="KnowledgeLanguage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KnowledgeLanguage_Language" Association="Self.FK_KnowledgeLanguage_Language">
+            <End Role="Language" EntitySet="Language" />
+            <End Role="KnowledgeLanguage" EntitySet="KnowledgeLanguage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KnowledgeLanguage_LanguageProficiency" Association="Self.FK_KnowledgeLanguage_LanguageProficiency">
+            <End Role="LanguageProficiency" EntitySet="LanguageProficiency" />
+            <End Role="KnowledgeLanguage" EntitySet="KnowledgeLanguage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LaborActivity_Applicant" Association="Self.FK_LaborActivity_Applicant">
+            <End Role="Applicant" EntitySet="Applicant" />
+            <End Role="LaborActivity" EntitySet="LaborActivity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Manager_Gender" Association="Self.FK_Manager_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Manager" EntitySet="Manager" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Manager_User" Association="Self.FK_Manager_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Manager" EntitySet="Manager" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NecessarySkill_Skill" Association="Self.FK_NecessarySkill_Skill">
+            <End Role="Skill" EntitySet="Skill" />
+            <End Role="NecessarySkill" EntitySet="NecessarySkill" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NecessarySkill_Vacancy" Association="Self.FK_NecessarySkill_Vacancy">
+            <End Role="Vacancy" EntitySet="Vacancy" />
+            <End Role="NecessarySkill" EntitySet="NecessarySkill" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Organization_Street" Association="Self.FK_Organization_Street">
+            <End Role="Street" EntitySet="Street" />
+            <End Role="Organization" EntitySet="Organization" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Organization_SubIndustry" Association="Self.FK_Organization_SubIndustry">
+            <End Role="SubIndustry" EntitySet="SubIndustry" />
+            <End Role="Organization" EntitySet="Organization" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PossessionDrivingLicenseCategory_Applicant" Association="Self.FK_PossessionDrivingLicenseCategory_Applicant">
+            <End Role="Applicant" EntitySet="Applicant" />
+            <End Role="PossessionDrivingLicenseCategory" EntitySet="PossessionDrivingLicenseCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PossessionDrivingLicenseCategory_DrivingLicenseCategory" Association="Self.FK_PossessionDrivingLicenseCategory_DrivingLicenseCategory">
+            <End Role="DrivingLicenseCategory" EntitySet="DrivingLicenseCategory" />
+            <End Role="PossessionDrivingLicenseCategory" EntitySet="PossessionDrivingLicenseCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PossessionSkill_Applicant" Association="Self.FK_PossessionSkill_Applicant">
+            <End Role="Applicant" EntitySet="Applicant" />
+            <End Role="PossessionSkill" EntitySet="PossessionSkill" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PossessionSkill_Skill" Association="Self.FK_PossessionSkill_Skill">
+            <End Role="Skill" EntitySet="Skill" />
+            <End Role="PossessionSkill" EntitySet="PossessionSkill" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PreferredEmploymentType_EmploymentType" Association="Self.FK_PreferredEmploymentType_EmploymentType">
+            <End Role="EmploymentType" EntitySet="EmploymentType" />
+            <End Role="PreferredEmploymentType" EntitySet="PreferredEmploymentType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PreferredEmploymentType_Request" Association="Self.FK_PreferredEmploymentType_Request">
+            <End Role="Request" EntitySet="Request" />
+            <End Role="PreferredEmploymentType" EntitySet="PreferredEmploymentType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PreferredSchedule_Request" Association="Self.FK_PreferredSchedule_Request">
+            <End Role="Request" EntitySet="Request" />
+            <End Role="PreferredSchedule" EntitySet="PreferredSchedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PreferredSchedule_Schedule" Association="Self.FK_PreferredSchedule_Schedule">
+            <End Role="Schedule" EntitySet="Schedule" />
+            <End Role="PreferredSchedule" EntitySet="PreferredSchedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Profession_ProfessionCategory" Association="Self.FK_Profession_ProfessionCategory">
+            <End Role="ProfessionCategory" EntitySet="ProfessionCategory" />
+            <End Role="Profession" EntitySet="Profession" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_Applicant" Association="Self.FK_Request_Applicant">
+            <End Role="Applicant" EntitySet="Applicant" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_Experience" Association="Self.FK_Request_Experience">
+            <End Role="Experience" EntitySet="Experience" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_Profession1" Association="Self.FK_Request_Profession1">
+            <End Role="Profession" EntitySet="Profession" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_RequestStatus" Association="Self.FK_Request_RequestStatus">
+            <End Role="RequestStatus" EntitySet="RequestStatus" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Street_City" Association="Self.FK_Street_City">
+            <End Role="City" EntitySet="City" />
+            <End Role="Street" EntitySet="Street" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubIndustry_Industry" Association="Self.FK_SubIndustry_Industry">
+            <End Role="Industry" EntitySet="Industry" />
+            <End Role="SubIndustry" EntitySet="SubIndustry" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SuitableVacancy_Applicant" Association="Self.FK_SuitableVacancy_Applicant">
+            <End Role="Applicant" EntitySet="Applicant" />
+            <End Role="SuitableVacancy" EntitySet="SuitableVacancy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SuitableVacancy_Manager" Association="Self.FK_SuitableVacancy_Manager">
+            <End Role="Manager" EntitySet="Manager" />
+            <End Role="SuitableVacancy" EntitySet="SuitableVacancy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SuitableVacancy_Vacancy" Association="Self.FK_SuitableVacancy_Vacancy">
+            <End Role="Vacancy" EntitySet="Vacancy" />
+            <End Role="SuitableVacancy" EntitySet="SuitableVacancy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vacancy_Employer" Association="Self.FK_Vacancy_Employer">
+            <End Role="Employer" EntitySet="Employer" />
+            <End Role="Vacancy" EntitySet="Vacancy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vacancy_EmploymentType" Association="Self.FK_Vacancy_EmploymentType">
+            <End Role="EmploymentType" EntitySet="EmploymentType" />
+            <End Role="Vacancy" EntitySet="Vacancy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vacancy_Experience" Association="Self.FK_Vacancy_Experience">
+            <End Role="Experience" EntitySet="Experience" />
+            <End Role="Vacancy" EntitySet="Vacancy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vacancy_Profession" Association="Self.FK_Vacancy_Profession">
+            <End Role="Profession" EntitySet="Profession" />
+            <End Role="Vacancy" EntitySet="Vacancy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vacancy_Schedule" Association="Self.FK_Vacancy_Schedule">
+            <End Role="Schedule" EntitySet="Schedule" />
+            <End Role="Vacancy" EntitySet="Vacancy" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Applicant">
+          <Key>
+            <PropertyRef Name="IdApplicant" />
+          </Key>
+          <Property Name="IdApplicant" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Surname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Patronymic" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdGender" Type="Int32" Nullable="false" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="18" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsEmployed" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Gender" Relationship="Self.FK_Applicant_Gender" FromRole="Applicant" ToRole="Gender" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Applicant_User" FromRole="Applicant" ToRole="User" />
+          <NavigationProperty Name="EducationalActivity" Relationship="Self.FK_EducationalActivity_Applicant" FromRole="Applicant" ToRole="EducationalActivity" />
+          <NavigationProperty Name="KnowledgeLanguage" Relationship="Self.FK_KnowledgeLanguage_Applicant" FromRole="Applicant" ToRole="KnowledgeLanguage" />
+          <NavigationProperty Name="LaborActivity" Relationship="Self.FK_LaborActivity_Applicant" FromRole="Applicant" ToRole="LaborActivity" />
+          <NavigationProperty Name="PossessionDrivingLicenseCategory" Relationship="Self.FK_PossessionDrivingLicenseCategory_Applicant" FromRole="Applicant" ToRole="PossessionDrivingLicenseCategory" />
+          <NavigationProperty Name="PossessionSkill" Relationship="Self.FK_PossessionSkill_Applicant" FromRole="Applicant" ToRole="PossessionSkill" />
+          <NavigationProperty Name="Request" Relationship="Self.FK_Request_Applicant" FromRole="Applicant" ToRole="Request" />
+          <NavigationProperty Name="SuitableVacancy" Relationship="Self.FK_SuitableVacancy_Applicant" FromRole="Applicant" ToRole="SuitableVacancy" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="IdCity" />
+          </Key>
+          <Property Name="IdCity" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdCountry" Type="Int32" Nullable="false" />
+          <Property Name="CityName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Country" Relationship="Self.FK_City_Country" FromRole="City" ToRole="Country" />
+          <NavigationProperty Name="Street" Relationship="Self.FK_Street_City" FromRole="City" ToRole="Street" />
+        </EntityType>
+        <EntityType Name="Contract">
+          <Key>
+            <PropertyRef Name="IdContract" />
+          </Key>
+          <Property Name="IdContract" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdRequest" Type="Int32" Nullable="false" />
+          <Property Name="IdVacancy" Type="Int32" Nullable="false" />
+          <Property Name="DateOfConclusion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="BreakDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Request" Relationship="Self.FK_Contract_Request" FromRole="Contract" ToRole="Request" />
+          <NavigationProperty Name="Vacancy" Relationship="Self.FK_Contract_Vacancy" FromRole="Contract" ToRole="Vacancy" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="IdCountry" />
+          </Key>
+          <Property Name="IdCountry" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CountryName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="City" Relationship="Self.FK_City_Country" FromRole="Country" ToRole="City" />
+        </EntityType>
+        <EntityType Name="DrivingLicenseCategory">
+          <Key>
+            <PropertyRef Name="IdDrivingLicenseCategory" />
+          </Key>
+          <Property Name="IdDrivingLicenseCategory" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DrivingLicenseCategoryName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="PossessionDrivingLicenseCategory" Relationship="Self.FK_PossessionDrivingLicenseCategory_DrivingLicenseCategory" FromRole="DrivingLicenseCategory" ToRole="PossessionDrivingLicenseCategory" />
+        </EntityType>
+        <EntityType Name="Education">
+          <Key>
+            <PropertyRef Name="IdEducation" />
+          </Key>
+          <Property Name="IdEducation" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EducationName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="EducationalActivity" Relationship="Self.FK_EducationalActivity_Education" FromRole="Education" ToRole="EducationalActivity" />
+        </EntityType>
+        <EntityType Name="EducationalActivity">
+          <Key>
+            <PropertyRef Name="IdEducationalActivity" />
+          </Key>
+          <Property Name="IdEducationalActivity" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdApplicant" Type="Int32" Nullable="false" />
+          <Property Name="IdEducation" Type="Int32" Nullable="false" />
+          <Property Name="NameEducationalnstitution" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Applicant" Relationship="Self.FK_EducationalActivity_Applicant" FromRole="EducationalActivity" ToRole="Applicant" />
+          <NavigationProperty Name="Education" Relationship="Self.FK_EducationalActivity_Education" FromRole="EducationalActivity" ToRole="Education" />
+        </EntityType>
+        <EntityType Name="Employer">
+          <Key>
+            <PropertyRef Name="IdEmployer" />
+          </Key>
+          <Property Name="IdEmployer" Type="Int32" Nullable="false" />
+          <Property Name="IdOrganization" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Surname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Patronymic" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdGender" Type="Int32" Nullable="false" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="18" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Gender" Relationship="Self.FK_Employer_Gender" FromRole="Employer" ToRole="Gender" />
+          <NavigationProperty Name="Organization" Relationship="Self.FK_Employer_Organization" FromRole="Employer" ToRole="Organization" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Employer_User" FromRole="Employer" ToRole="User" />
+          <NavigationProperty Name="Vacancy" Relationship="Self.FK_Vacancy_Employer" FromRole="Employer" ToRole="Vacancy" />
+        </EntityType>
+        <EntityType Name="EmploymentType">
+          <Key>
+            <PropertyRef Name="IdEmploymentType" />
+          </Key>
+          <Property Name="IdEmploymentType" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmploymentTypeName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="PreferredEmploymentType" Relationship="Self.FK_PreferredEmploymentType_EmploymentType" FromRole="EmploymentType" ToRole="PreferredEmploymentType" />
+          <NavigationProperty Name="Vacancy" Relationship="Self.FK_Vacancy_EmploymentType" FromRole="EmploymentType" ToRole="Vacancy" />
+        </EntityType>
+        <EntityType Name="Experience">
+          <Key>
+            <PropertyRef Name="IdExperience" />
+          </Key>
+          <Property Name="IdExperience" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ExperienceName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Request" Relationship="Self.FK_Request_Experience" FromRole="Experience" ToRole="Request" />
+          <NavigationProperty Name="Vacancy" Relationship="Self.FK_Vacancy_Experience" FromRole="Experience" ToRole="Vacancy" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="IdGender" />
+          </Key>
+          <Property Name="IdGender" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GenderName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Applicant" Relationship="Self.FK_Applicant_Gender" FromRole="Gender" ToRole="Applicant" />
+          <NavigationProperty Name="Employer" Relationship="Self.FK_Employer_Gender" FromRole="Gender" ToRole="Employer" />
+          <NavigationProperty Name="Manager" Relationship="Self.FK_Manager_Gender" FromRole="Gender" ToRole="Manager" />
+        </EntityType>
+        <EntityType Name="Industry">
+          <Key>
+            <PropertyRef Name="IdIndustry" />
+          </Key>
+          <Property Name="IdIndustry" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IndustryName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="SubIndustry" Relationship="Self.FK_SubIndustry_Industry" FromRole="Industry" ToRole="SubIndustry" />
+        </EntityType>
+        <EntityType Name="KnowledgeLanguage">
+          <Key>
+            <PropertyRef Name="IdKnowledgeLanguage" />
+          </Key>
+          <Property Name="IdKnowledgeLanguage" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdApplicant" Type="Int32" Nullable="false" />
+          <Property Name="IdLanguage" Type="Int32" Nullable="false" />
+          <Property Name="IdLanguageProficiency" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Applicant" Relationship="Self.FK_KnowledgeLanguage_Applicant" FromRole="KnowledgeLanguage" ToRole="Applicant" />
+          <NavigationProperty Name="Language" Relationship="Self.FK_KnowledgeLanguage_Language" FromRole="KnowledgeLanguage" ToRole="Language" />
+          <NavigationProperty Name="LanguageProficiency" Relationship="Self.FK_KnowledgeLanguage_LanguageProficiency" FromRole="KnowledgeLanguage" ToRole="LanguageProficiency" />
+        </EntityType>
+        <EntityType Name="LaborActivity">
+          <Key>
+            <PropertyRef Name="IdLaborActivity" />
+          </Key>
+          <Property Name="IdLaborActivity" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdApplicant" Type="Int32" Nullable="false" />
+          <Property Name="OrganizationName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="OrganizationAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProfessionName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Activity" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Applicant" Relationship="Self.FK_LaborActivity_Applicant" FromRole="LaborActivity" ToRole="Applicant" />
+        </EntityType>
+        <EntityType Name="Language">
+          <Key>
+            <PropertyRef Name="IdLanguage" />
+          </Key>
+          <Property Name="IdLanguage" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LanguageName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="KnowledgeLanguage" Relationship="Self.FK_KnowledgeLanguage_Language" FromRole="Language" ToRole="KnowledgeLanguage" />
+        </EntityType>
+        <EntityType Name="LanguageProficiency">
+          <Key>
+            <PropertyRef Name="IdLanguageProficiency" />
+          </Key>
+          <Property Name="IdLanguageProficiency" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Designation" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LanguageProficiencyName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="KnowledgeLanguage" Relationship="Self.FK_KnowledgeLanguage_LanguageProficiency" FromRole="LanguageProficiency" ToRole="KnowledgeLanguage" />
+        </EntityType>
+        <EntityType Name="Manager">
+          <Key>
+            <PropertyRef Name="IdManager" />
+          </Key>
+          <Property Name="IdManager" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Surname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Patronymic" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdGender" Type="Int32" Nullable="false" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="18" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Gender" Relationship="Self.FK_Manager_Gender" FromRole="Manager" ToRole="Gender" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Manager_User" FromRole="Manager" ToRole="User" />
+          <NavigationProperty Name="SuitableVacancy" Relationship="Self.FK_SuitableVacancy_Manager" FromRole="Manager" ToRole="SuitableVacancy" />
+        </EntityType>
+        <EntityType Name="NecessarySkill">
+          <Key>
+            <PropertyRef Name="IdNecessarySkill" />
+          </Key>
+          <Property Name="IdNecessarySkill" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdVacancy" Type="Int32" Nullable="false" />
+          <Property Name="IdSkill" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Skill" Relationship="Self.FK_NecessarySkill_Skill" FromRole="NecessarySkill" ToRole="Skill" />
+          <NavigationProperty Name="Vacancy" Relationship="Self.FK_NecessarySkill_Vacancy" FromRole="NecessarySkill" ToRole="Vacancy" />
+        </EntityType>
+        <EntityType Name="Organization">
+          <Key>
+            <PropertyRef Name="IdOrganization" />
+          </Key>
+          <Property Name="IdOrganization" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdSubIndustry" Type="Int32" Nullable="false" />
+          <Property Name="OrganizationName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="IdStreet" Type="Int32" Nullable="false" />
+          <Property Name="NameHouse" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="18" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateOfRegistration" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ClosingDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Employer" Relationship="Self.FK_Employer_Organization" FromRole="Organization" ToRole="Employer" />
+          <NavigationProperty Name="Street" Relationship="Self.FK_Organization_Street" FromRole="Organization" ToRole="Street" />
+          <NavigationProperty Name="SubIndustry" Relationship="Self.FK_Organization_SubIndustry" FromRole="Organization" ToRole="SubIndustry" />
+        </EntityType>
+        <EntityType Name="PossessionDrivingLicenseCategory">
+          <Key>
+            <PropertyRef Name="IdPossessionDrivingLicenseCategory" />
+          </Key>
+          <Property Name="IdPossessionDrivingLicenseCategory" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdApplicant" Type="Int32" Nullable="false" />
+          <Property Name="IdDrivingLicenseCategory" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Applicant" Relationship="Self.FK_PossessionDrivingLicenseCategory_Applicant" FromRole="PossessionDrivingLicenseCategory" ToRole="Applicant" />
+          <NavigationProperty Name="DrivingLicenseCategory" Relationship="Self.FK_PossessionDrivingLicenseCategory_DrivingLicenseCategory" FromRole="PossessionDrivingLicenseCategory" ToRole="DrivingLicenseCategory" />
+        </EntityType>
+        <EntityType Name="PossessionSkill">
+          <Key>
+            <PropertyRef Name="IdPossessionSkill" />
+          </Key>
+          <Property Name="IdPossessionSkill" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdApplicant" Type="Int32" Nullable="false" />
+          <Property Name="IdSkill" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Applicant" Relationship="Self.FK_PossessionSkill_Applicant" FromRole="PossessionSkill" ToRole="Applicant" />
+          <NavigationProperty Name="Skill" Relationship="Self.FK_PossessionSkill_Skill" FromRole="PossessionSkill" ToRole="Skill" />
+        </EntityType>
+        <EntityType Name="PreferredEmploymentType">
+          <Key>
+            <PropertyRef Name="IdPreferredEmploymentType" />
+          </Key>
+          <Property Name="IdPreferredEmploymentType" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdRequest" Type="Int32" Nullable="false" />
+          <Property Name="IdEmploymentType" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="EmploymentType" Relationship="Self.FK_PreferredEmploymentType_EmploymentType" FromRole="PreferredEmploymentType" ToRole="EmploymentType" />
+          <NavigationProperty Name="Request" Relationship="Self.FK_PreferredEmploymentType_Request" FromRole="PreferredEmploymentType" ToRole="Request" />
+        </EntityType>
+        <EntityType Name="PreferredSchedule">
+          <Key>
+            <PropertyRef Name="IdPreferredSchedule" />
+          </Key>
+          <Property Name="IdPreferredSchedule" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdRequest" Type="Int32" Nullable="false" />
+          <Property Name="IdSchedule" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Request" Relationship="Self.FK_PreferredSchedule_Request" FromRole="PreferredSchedule" ToRole="Request" />
+          <NavigationProperty Name="Schedule" Relationship="Self.FK_PreferredSchedule_Schedule" FromRole="PreferredSchedule" ToRole="Schedule" />
+        </EntityType>
+        <EntityType Name="Profession">
+          <Key>
+            <PropertyRef Name="IdProfession" />
+          </Key>
+          <Property Name="IdProfession" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdProfessionCategory" Type="Int32" Nullable="false" />
+          <Property Name="ProfessionName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ProfessionCategory" Relationship="Self.FK_Profession_ProfessionCategory" FromRole="Profession" ToRole="ProfessionCategory" />
+          <NavigationProperty Name="Request" Relationship="Self.FK_Request_Profession1" FromRole="Profession" ToRole="Request" />
+          <NavigationProperty Name="Vacancy" Relationship="Self.FK_Vacancy_Profession" FromRole="Profession" ToRole="Vacancy" />
+        </EntityType>
+        <EntityType Name="ProfessionCategory">
+          <Key>
+            <PropertyRef Name="IdProfessionCategory" />
+          </Key>
+          <Property Name="IdProfessionCategory" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameProfessionCategory" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Profession" Relationship="Self.FK_Profession_ProfessionCategory" FromRole="ProfessionCategory" ToRole="Profession" />
+        </EntityType>
+        <EntityType Name="Request">
+          <Key>
+            <PropertyRef Name="IdRequest" />
+          </Key>
+          <Property Name="IdRequest" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdApplicant" Type="Int32" Nullable="false" />
+          <Property Name="IdProfession" Type="Int32" Nullable="false" />
+          <Property Name="IdExperience" Type="Int32" Nullable="false" />
+          <Property Name="AboutMe" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DateOfRegistration" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DateOfConsideration" Type="DateTime" Precision="0" />
+          <Property Name="IdRequestStatus" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Applicant" Relationship="Self.FK_Request_Applicant" FromRole="Request" ToRole="Applicant" />
+          <NavigationProperty Name="Contract" Relationship="Self.FK_Contract_Request" FromRole="Request" ToRole="Contract" />
+          <NavigationProperty Name="Experience" Relationship="Self.FK_Request_Experience" FromRole="Request" ToRole="Experience" />
+          <NavigationProperty Name="PreferredEmploymentType" Relationship="Self.FK_PreferredEmploymentType_Request" FromRole="Request" ToRole="PreferredEmploymentType" />
+          <NavigationProperty Name="PreferredSchedule" Relationship="Self.FK_PreferredSchedule_Request" FromRole="Request" ToRole="PreferredSchedule" />
+          <NavigationProperty Name="Profession" Relationship="Self.FK_Request_Profession1" FromRole="Request" ToRole="Profession" />
+          <NavigationProperty Name="RequestStatus" Relationship="Self.FK_Request_RequestStatus" FromRole="Request" ToRole="RequestStatus" />
+        </EntityType>
+        <EntityType Name="RequestStatus">
+          <Key>
+            <PropertyRef Name="IdRequestStatus" />
+          </Key>
+          <Property Name="IdRequestStatus" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RequestStatusName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Request" Relationship="Self.FK_Request_RequestStatus" FromRole="RequestStatus" ToRole="Request" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="IdRole" />
+          </Key>
+          <Property Name="IdRole" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK_User_Role" FromRole="Role" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Schedule">
+          <Key>
+            <PropertyRef Name="IdSchedule" />
+          </Key>
+          <Property Name="IdSchedule" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ScheduleName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="PreferredSchedule" Relationship="Self.FK_PreferredSchedule_Schedule" FromRole="Schedule" ToRole="PreferredSchedule" />
+          <NavigationProperty Name="Vacancy" Relationship="Self.FK_Vacancy_Schedule" FromRole="Schedule" ToRole="Vacancy" />
+        </EntityType>
+        <EntityType Name="Skill">
+          <Key>
+            <PropertyRef Name="IdSkill" />
+          </Key>
+          <Property Name="IdSkill" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SkillName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="NecessarySkill" Relationship="Self.FK_NecessarySkill_Skill" FromRole="Skill" ToRole="NecessarySkill" />
+          <NavigationProperty Name="PossessionSkill" Relationship="Self.FK_PossessionSkill_Skill" FromRole="Skill" ToRole="PossessionSkill" />
+        </EntityType>
+        <EntityType Name="Street">
+          <Key>
+            <PropertyRef Name="IdStreet" />
+          </Key>
+          <Property Name="IdStreet" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdCity" Type="Int32" Nullable="false" />
+          <Property Name="StreetName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="City" Relationship="Self.FK_Street_City" FromRole="Street" ToRole="City" />
+          <NavigationProperty Name="Organization" Relationship="Self.FK_Organization_Street" FromRole="Street" ToRole="Organization" />
+        </EntityType>
+        <EntityType Name="SubIndustry">
+          <Key>
+            <PropertyRef Name="IdSubIndustry" />
+          </Key>
+          <Property Name="IdSubIndustry" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdIndustry" Type="Int32" Nullable="false" />
+          <Property Name="NameSubIndustry" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Industry" Relationship="Self.FK_SubIndustry_Industry" FromRole="SubIndustry" ToRole="Industry" />
+          <NavigationProperty Name="Organization" Relationship="Self.FK_Organization_SubIndustry" FromRole="SubIndustry" ToRole="Organization" />
+        </EntityType>
+        <EntityType Name="SuitableVacancy">
+          <Key>
+            <PropertyRef Name="IdSuitableVacancy" />
+          </Key>
+          <Property Name="IdSuitableVacancy" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdManager" Type="Int32" Nullable="false" />
+          <Property Name="IdApplicant" Type="Int32" Nullable="false" />
+          <Property Name="IdVacancy" Type="Int32" Nullable="false" />
+          <Property Name="DiscoveryDate" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Applicant" Relationship="Self.FK_SuitableVacancy_Applicant" FromRole="SuitableVacancy" ToRole="Applicant" />
+          <NavigationProperty Name="Manager" Relationship="Self.FK_SuitableVacancy_Manager" FromRole="SuitableVacancy" ToRole="Manager" />
+          <NavigationProperty Name="Vacancy" Relationship="Self.FK_SuitableVacancy_Vacancy" FromRole="SuitableVacancy" ToRole="Vacancy" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="IdUser" />
+          </Key>
+          <Property Name="IdUser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdRole" Type="Int32" Nullable="false" />
+          <Property Name="Login" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateOfRegistration" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Applicant" Relationship="Self.FK_Applicant_User" FromRole="User" ToRole="Applicant" />
+          <NavigationProperty Name="Employer" Relationship="Self.FK_Employer_User" FromRole="User" ToRole="Employer" />
+          <NavigationProperty Name="Manager" Relationship="Self.FK_Manager_User" FromRole="User" ToRole="Manager" />
+          <NavigationProperty Name="Role" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
+        </EntityType>
+        <EntityType Name="Vacancy">
+          <Key>
+            <PropertyRef Name="IdVacancy" />
+          </Key>
+          <Property Name="IdVacancy" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdEmployer" Type="Int32" Nullable="false" />
+          <Property Name="IdProfession" Type="Int32" Nullable="false" />
+          <Property Name="IdEmploymentType" Type="Int32" Nullable="false" />
+          <Property Name="IdSchedule" Type="Int32" Nullable="false" />
+          <Property Name="IdExperience" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Duties" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Requirements" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Terms" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Salary" Type="Int32" />
+          <Property Name="DateOfRegistration" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ClosingDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Contract" Relationship="Self.FK_Contract_Vacancy" FromRole="Vacancy" ToRole="Contract" />
+          <NavigationProperty Name="Employer" Relationship="Self.FK_Vacancy_Employer" FromRole="Vacancy" ToRole="Employer" />
+          <NavigationProperty Name="EmploymentType" Relationship="Self.FK_Vacancy_EmploymentType" FromRole="Vacancy" ToRole="EmploymentType" />
+          <NavigationProperty Name="Experience" Relationship="Self.FK_Vacancy_Experience" FromRole="Vacancy" ToRole="Experience" />
+          <NavigationProperty Name="NecessarySkill" Relationship="Self.FK_NecessarySkill_Vacancy" FromRole="Vacancy" ToRole="NecessarySkill" />
+          <NavigationProperty Name="Profession" Relationship="Self.FK_Vacancy_Profession" FromRole="Vacancy" ToRole="Profession" />
+          <NavigationProperty Name="Schedule" Relationship="Self.FK_Vacancy_Schedule" FromRole="Vacancy" ToRole="Schedule" />
+          <NavigationProperty Name="SuitableVacancy" Relationship="Self.FK_SuitableVacancy_Vacancy" FromRole="Vacancy" ToRole="SuitableVacancy" />
+        </EntityType>
+        <Association Name="FK_Applicant_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Applicant" Type="Self.Applicant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="IdGender" />
+            </Principal>
+            <Dependent Role="Applicant">
+              <PropertyRef Name="IdGender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Applicant_User">
+          <End Role="User" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Applicant" Type="Self.Applicant" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Applicant">
+              <PropertyRef Name="IdApplicant" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EducationalActivity_Applicant">
+          <End Role="Applicant" Type="Self.Applicant" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="EducationalActivity" Type="Self.EducationalActivity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Applicant">
+              <PropertyRef Name="IdApplicant" />
+            </Principal>
+            <Dependent Role="EducationalActivity">
+              <PropertyRef Name="IdApplicant" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KnowledgeLanguage_Applicant">
+          <End Role="Applicant" Type="Self.Applicant" Multiplicity="1" />
+          <End Role="KnowledgeLanguage" Type="Self.KnowledgeLanguage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Applicant">
+              <PropertyRef Name="IdApplicant" />
+            </Principal>
+            <Dependent Role="KnowledgeLanguage">
+              <PropertyRef Name="IdApplicant" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LaborActivity_Applicant">
+          <End Role="Applicant" Type="Self.Applicant" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="LaborActivity" Type="Self.LaborActivity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Applicant">
+              <PropertyRef Name="IdApplicant" />
+            </Principal>
+            <Dependent Role="LaborActivity">
+              <PropertyRef Name="IdApplicant" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PossessionDrivingLicenseCategory_Applicant">
+          <End Role="Applicant" Type="Self.Applicant" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PossessionDrivingLicenseCategory" Type="Self.PossessionDrivingLicenseCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Applicant">
+              <PropertyRef Name="IdApplicant" />
+            </Principal>
+            <Dependent Role="PossessionDrivingLicenseCategory">
+              <PropertyRef Name="IdApplicant" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PossessionSkill_Applicant">
+          <End Role="Applicant" Type="Self.Applicant" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PossessionSkill" Type="Self.PossessionSkill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Applicant">
+              <PropertyRef Name="IdApplicant" />
+            </Principal>
+            <Dependent Role="PossessionSkill">
+              <PropertyRef Name="IdApplicant" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Request_Applicant">
+          <End Role="Applicant" Type="Self.Applicant" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Applicant">
+              <PropertyRef Name="IdApplicant" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="IdApplicant" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SuitableVacancy_Applicant">
+          <End Role="Applicant" Type="Self.Applicant" Multiplicity="1" />
+          <End Role="SuitableVacancy" Type="Self.SuitableVacancy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Applicant">
+              <PropertyRef Name="IdApplicant" />
+            </Principal>
+            <Dependent Role="SuitableVacancy">
+              <PropertyRef Name="IdApplicant" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_City_Country">
+          <End Role="Country" Type="Self.Country" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="City" Type="Self.City" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="IdCountry" />
+            </Principal>
+            <Dependent Role="City">
+              <PropertyRef Name="IdCountry" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Street_City">
+          <End Role="City" Type="Self.City" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Street" Type="Self.Street" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="IdCity" />
+            </Principal>
+            <Dependent Role="Street">
+              <PropertyRef Name="IdCity" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contract_Request">
+          <End Role="Request" Type="Self.Request" Multiplicity="1" />
+          <End Role="Contract" Type="Self.Contract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Request">
+              <PropertyRef Name="IdRequest" />
+            </Principal>
+            <Dependent Role="Contract">
+              <PropertyRef Name="IdRequest" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contract_Vacancy">
+          <End Role="Vacancy" Type="Self.Vacancy" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Contract" Type="Self.Contract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vacancy">
+              <PropertyRef Name="IdVacancy" />
+            </Principal>
+            <Dependent Role="Contract">
+              <PropertyRef Name="IdVacancy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PossessionDrivingLicenseCategory_DrivingLicenseCategory">
+          <End Role="DrivingLicenseCategory" Type="Self.DrivingLicenseCategory" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PossessionDrivingLicenseCategory" Type="Self.PossessionDrivingLicenseCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DrivingLicenseCategory">
+              <PropertyRef Name="IdDrivingLicenseCategory" />
+            </Principal>
+            <Dependent Role="PossessionDrivingLicenseCategory">
+              <PropertyRef Name="IdDrivingLicenseCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EducationalActivity_Education">
+          <End Role="Education" Type="Self.Education" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="EducationalActivity" Type="Self.EducationalActivity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Education">
+              <PropertyRef Name="IdEducation" />
+            </Principal>
+            <Dependent Role="EducationalActivity">
+              <PropertyRef Name="IdEducation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employer_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Employer" Type="Self.Employer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="IdGender" />
+            </Principal>
+            <Dependent Role="Employer">
+              <PropertyRef Name="IdGender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employer_Organization">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Employer" Type="Self.Employer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="IdOrganization" />
+            </Principal>
+            <Dependent Role="Employer">
+              <PropertyRef Name="IdOrganization" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employer_User">
+          <End Role="User" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Employer" Type="Self.Employer" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Employer">
+              <PropertyRef Name="IdEmployer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vacancy_Employer">
+          <End Role="Employer" Type="Self.Employer" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Vacancy" Type="Self.Vacancy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employer">
+              <PropertyRef Name="IdEmployer" />
+            </Principal>
+            <Dependent Role="Vacancy">
+              <PropertyRef Name="IdEmployer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PreferredEmploymentType_EmploymentType">
+          <End Role="EmploymentType" Type="Self.EmploymentType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PreferredEmploymentType" Type="Self.PreferredEmploymentType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmploymentType">
+              <PropertyRef Name="IdEmploymentType" />
+            </Principal>
+            <Dependent Role="PreferredEmploymentType">
+              <PropertyRef Name="IdEmploymentType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vacancy_EmploymentType">
+          <End Role="EmploymentType" Type="Self.EmploymentType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Vacancy" Type="Self.Vacancy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmploymentType">
+              <PropertyRef Name="IdEmploymentType" />
+            </Principal>
+            <Dependent Role="Vacancy">
+              <PropertyRef Name="IdEmploymentType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Request_Experience">
+          <End Role="Experience" Type="Self.Experience" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Experience">
+              <PropertyRef Name="IdExperience" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="IdExperience" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vacancy_Experience">
+          <End Role="Experience" Type="Self.Experience" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Vacancy" Type="Self.Vacancy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Experience">
+              <PropertyRef Name="IdExperience" />
+            </Principal>
+            <Dependent Role="Vacancy">
+              <PropertyRef Name="IdExperience" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Manager_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Manager" Type="Self.Manager" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="IdGender" />
+            </Principal>
+            <Dependent Role="Manager">
+              <PropertyRef Name="IdGender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubIndustry_Industry">
+          <End Role="Industry" Type="Self.Industry" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SubIndustry" Type="Self.SubIndustry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Industry">
+              <PropertyRef Name="IdIndustry" />
+            </Principal>
+            <Dependent Role="SubIndustry">
+              <PropertyRef Name="IdIndustry" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KnowledgeLanguage_Language">
+          <End Role="Language" Type="Self.Language" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="KnowledgeLanguage" Type="Self.KnowledgeLanguage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Language">
+              <PropertyRef Name="IdLanguage" />
+            </Principal>
+            <Dependent Role="KnowledgeLanguage">
+              <PropertyRef Name="IdLanguage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KnowledgeLanguage_LanguageProficiency">
+          <End Role="LanguageProficiency" Type="Self.LanguageProficiency" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="KnowledgeLanguage" Type="Self.KnowledgeLanguage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LanguageProficiency">
+              <PropertyRef Name="IdLanguageProficiency" />
+            </Principal>
+            <Dependent Role="KnowledgeLanguage">
+              <PropertyRef Name="IdLanguageProficiency" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Manager_User">
+          <End Role="User" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Manager" Type="Self.Manager" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Manager">
+              <PropertyRef Name="IdManager" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SuitableVacancy_Manager">
+          <End Role="Manager" Type="Self.Manager" Multiplicity="1" />
+          <End Role="SuitableVacancy" Type="Self.SuitableVacancy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Manager">
+              <PropertyRef Name="IdManager" />
+            </Principal>
+            <Dependent Role="SuitableVacancy">
+              <PropertyRef Name="IdManager" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NecessarySkill_Skill">
+          <End Role="Skill" Type="Self.Skill" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="NecessarySkill" Type="Self.NecessarySkill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skill">
+              <PropertyRef Name="IdSkill" />
+            </Principal>
+            <Dependent Role="NecessarySkill">
+              <PropertyRef Name="IdSkill" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NecessarySkill_Vacancy">
+          <End Role="Vacancy" Type="Self.Vacancy" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="NecessarySkill" Type="Self.NecessarySkill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vacancy">
+              <PropertyRef Name="IdVacancy" />
+            </Principal>
+            <Dependent Role="NecessarySkill">
+              <PropertyRef Name="IdVacancy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Organization_Street">
+          <End Role="Street" Type="Self.Street" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Organization" Type="Self.Organization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Street">
+              <PropertyRef Name="IdStreet" />
+            </Principal>
+            <Dependent Role="Organization">
+              <PropertyRef Name="IdStreet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Organization_SubIndustry">
+          <End Role="SubIndustry" Type="Self.SubIndustry" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Organization" Type="Self.Organization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubIndustry">
+              <PropertyRef Name="IdSubIndustry" />
+            </Principal>
+            <Dependent Role="Organization">
+              <PropertyRef Name="IdSubIndustry" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PossessionSkill_Skill">
+          <End Role="Skill" Type="Self.Skill" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PossessionSkill" Type="Self.PossessionSkill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skill">
+              <PropertyRef Name="IdSkill" />
+            </Principal>
+            <Dependent Role="PossessionSkill">
+              <PropertyRef Name="IdSkill" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PreferredEmploymentType_Request">
+          <End Role="Request" Type="Self.Request" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PreferredEmploymentType" Type="Self.PreferredEmploymentType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Request">
+              <PropertyRef Name="IdRequest" />
+            </Principal>
+            <Dependent Role="PreferredEmploymentType">
+              <PropertyRef Name="IdRequest" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PreferredSchedule_Request">
+          <End Role="Request" Type="Self.Request" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PreferredSchedule" Type="Self.PreferredSchedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Request">
+              <PropertyRef Name="IdRequest" />
+            </Principal>
+            <Dependent Role="PreferredSchedule">
+              <PropertyRef Name="IdRequest" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PreferredSchedule_Schedule">
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PreferredSchedule" Type="Self.PreferredSchedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Schedule">
+              <PropertyRef Name="IdSchedule" />
+            </Principal>
+            <Dependent Role="PreferredSchedule">
+              <PropertyRef Name="IdSchedule" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Profession_ProfessionCategory">
+          <End Role="ProfessionCategory" Type="Self.ProfessionCategory" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Profession" Type="Self.Profession" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProfessionCategory">
+              <PropertyRef Name="IdProfessionCategory" />
+            </Principal>
+            <Dependent Role="Profession">
+              <PropertyRef Name="IdProfessionCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Request_Profession1">
+          <End Role="Profession" Type="Self.Profession" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profession">
+              <PropertyRef Name="IdProfession" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="IdProfession" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vacancy_Profession">
+          <End Role="Profession" Type="Self.Profession" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Vacancy" Type="Self.Vacancy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profession">
+              <PropertyRef Name="IdProfession" />
+            </Principal>
+            <Dependent Role="Vacancy">
+              <PropertyRef Name="IdProfession" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Request_RequestStatus">
+          <End Role="RequestStatus" Type="Self.RequestStatus" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RequestStatus">
+              <PropertyRef Name="IdRequestStatus" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="IdRequestStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="IdRole" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="IdRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vacancy_Schedule">
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Vacancy" Type="Self.Vacancy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Schedule">
+              <PropertyRef Name="IdSchedule" />
+            </Principal>
+            <Dependent Role="Vacancy">
+              <PropertyRef Name="IdSchedule" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SuitableVacancy_Vacancy">
+          <End Role="Vacancy" Type="Self.Vacancy" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SuitableVacancy" Type="Self.SuitableVacancy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vacancy">
+              <PropertyRef Name="IdVacancy" />
+            </Principal>
+            <Dependent Role="SuitableVacancy">
+              <PropertyRef Name="IdVacancy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EmploymentAgencyContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Applicant" EntityType="Self.Applicant" />
+          <EntitySet Name="City" EntityType="Self.City" />
+          <EntitySet Name="Contract" EntityType="Self.Contract" />
+          <EntitySet Name="Country" EntityType="Self.Country" />
+          <EntitySet Name="DrivingLicenseCategory" EntityType="Self.DrivingLicenseCategory" />
+          <EntitySet Name="Education" EntityType="Self.Education" />
+          <EntitySet Name="EducationalActivity" EntityType="Self.EducationalActivity" />
+          <EntitySet Name="Employer" EntityType="Self.Employer" />
+          <EntitySet Name="EmploymentType" EntityType="Self.EmploymentType" />
+          <EntitySet Name="Experience" EntityType="Self.Experience" />
+          <EntitySet Name="Gender" EntityType="Self.Gender" />
+          <EntitySet Name="Industry" EntityType="Self.Industry" />
+          <EntitySet Name="KnowledgeLanguage" EntityType="Self.KnowledgeLanguage" />
+          <EntitySet Name="LaborActivity" EntityType="Self.LaborActivity" />
+          <EntitySet Name="Language" EntityType="Self.Language" />
+          <EntitySet Name="LanguageProficiency" EntityType="Self.LanguageProficiency" />
+          <EntitySet Name="Manager" EntityType="Self.Manager" />
+          <EntitySet Name="NecessarySkill" EntityType="Self.NecessarySkill" />
+          <EntitySet Name="Organization" EntityType="Self.Organization" />
+          <EntitySet Name="PossessionDrivingLicenseCategory" EntityType="Self.PossessionDrivingLicenseCategory" />
+          <EntitySet Name="PossessionSkill" EntityType="Self.PossessionSkill" />
+          <EntitySet Name="PreferredEmploymentType" EntityType="Self.PreferredEmploymentType" />
+          <EntitySet Name="PreferredSchedule" EntityType="Self.PreferredSchedule" />
+          <EntitySet Name="Profession" EntityType="Self.Profession" />
+          <EntitySet Name="ProfessionCategory" EntityType="Self.ProfessionCategory" />
+          <EntitySet Name="Request" EntityType="Self.Request" />
+          <EntitySet Name="RequestStatus" EntityType="Self.RequestStatus" />
+          <EntitySet Name="Role" EntityType="Self.Role" />
+          <EntitySet Name="Schedule" EntityType="Self.Schedule" />
+          <EntitySet Name="Skill" EntityType="Self.Skill" />
+          <EntitySet Name="Street" EntityType="Self.Street" />
+          <EntitySet Name="SubIndustry" EntityType="Self.SubIndustry" />
+          <EntitySet Name="SuitableVacancy" EntityType="Self.SuitableVacancy" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <EntitySet Name="Vacancy" EntityType="Self.Vacancy" />
+          <AssociationSet Name="FK_Applicant_Gender" Association="Self.FK_Applicant_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Applicant" EntitySet="Applicant" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Applicant_User" Association="Self.FK_Applicant_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Applicant" EntitySet="Applicant" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EducationalActivity_Applicant" Association="Self.FK_EducationalActivity_Applicant">
+            <End Role="Applicant" EntitySet="Applicant" />
+            <End Role="EducationalActivity" EntitySet="EducationalActivity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KnowledgeLanguage_Applicant" Association="Self.FK_KnowledgeLanguage_Applicant">
+            <End Role="Applicant" EntitySet="Applicant" />
+            <End Role="KnowledgeLanguage" EntitySet="KnowledgeLanguage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LaborActivity_Applicant" Association="Self.FK_LaborActivity_Applicant">
+            <End Role="Applicant" EntitySet="Applicant" />
+            <End Role="LaborActivity" EntitySet="LaborActivity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PossessionDrivingLicenseCategory_Applicant" Association="Self.FK_PossessionDrivingLicenseCategory_Applicant">
+            <End Role="Applicant" EntitySet="Applicant" />
+            <End Role="PossessionDrivingLicenseCategory" EntitySet="PossessionDrivingLicenseCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PossessionSkill_Applicant" Association="Self.FK_PossessionSkill_Applicant">
+            <End Role="Applicant" EntitySet="Applicant" />
+            <End Role="PossessionSkill" EntitySet="PossessionSkill" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_Applicant" Association="Self.FK_Request_Applicant">
+            <End Role="Applicant" EntitySet="Applicant" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SuitableVacancy_Applicant" Association="Self.FK_SuitableVacancy_Applicant">
+            <End Role="Applicant" EntitySet="Applicant" />
+            <End Role="SuitableVacancy" EntitySet="SuitableVacancy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_City_Country" Association="Self.FK_City_Country">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="City" EntitySet="City" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Street_City" Association="Self.FK_Street_City">
+            <End Role="City" EntitySet="City" />
+            <End Role="Street" EntitySet="Street" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contract_Request" Association="Self.FK_Contract_Request">
+            <End Role="Request" EntitySet="Request" />
+            <End Role="Contract" EntitySet="Contract" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contract_Vacancy" Association="Self.FK_Contract_Vacancy">
+            <End Role="Vacancy" EntitySet="Vacancy" />
+            <End Role="Contract" EntitySet="Contract" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PossessionDrivingLicenseCategory_DrivingLicenseCategory" Association="Self.FK_PossessionDrivingLicenseCategory_DrivingLicenseCategory">
+            <End Role="DrivingLicenseCategory" EntitySet="DrivingLicenseCategory" />
+            <End Role="PossessionDrivingLicenseCategory" EntitySet="PossessionDrivingLicenseCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EducationalActivity_Education" Association="Self.FK_EducationalActivity_Education">
+            <End Role="Education" EntitySet="Education" />
+            <End Role="EducationalActivity" EntitySet="EducationalActivity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employer_Gender" Association="Self.FK_Employer_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Employer" EntitySet="Employer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employer_Organization" Association="Self.FK_Employer_Organization">
+            <End Role="Organization" EntitySet="Organization" />
+            <End Role="Employer" EntitySet="Employer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employer_User" Association="Self.FK_Employer_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Employer" EntitySet="Employer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vacancy_Employer" Association="Self.FK_Vacancy_Employer">
+            <End Role="Employer" EntitySet="Employer" />
+            <End Role="Vacancy" EntitySet="Vacancy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PreferredEmploymentType_EmploymentType" Association="Self.FK_PreferredEmploymentType_EmploymentType">
+            <End Role="EmploymentType" EntitySet="EmploymentType" />
+            <End Role="PreferredEmploymentType" EntitySet="PreferredEmploymentType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vacancy_EmploymentType" Association="Self.FK_Vacancy_EmploymentType">
+            <End Role="EmploymentType" EntitySet="EmploymentType" />
+            <End Role="Vacancy" EntitySet="Vacancy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_Experience" Association="Self.FK_Request_Experience">
+            <End Role="Experience" EntitySet="Experience" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vacancy_Experience" Association="Self.FK_Vacancy_Experience">
+            <End Role="Experience" EntitySet="Experience" />
+            <End Role="Vacancy" EntitySet="Vacancy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Manager_Gender" Association="Self.FK_Manager_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Manager" EntitySet="Manager" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubIndustry_Industry" Association="Self.FK_SubIndustry_Industry">
+            <End Role="Industry" EntitySet="Industry" />
+            <End Role="SubIndustry" EntitySet="SubIndustry" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KnowledgeLanguage_Language" Association="Self.FK_KnowledgeLanguage_Language">
+            <End Role="Language" EntitySet="Language" />
+            <End Role="KnowledgeLanguage" EntitySet="KnowledgeLanguage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KnowledgeLanguage_LanguageProficiency" Association="Self.FK_KnowledgeLanguage_LanguageProficiency">
+            <End Role="LanguageProficiency" EntitySet="LanguageProficiency" />
+            <End Role="KnowledgeLanguage" EntitySet="KnowledgeLanguage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Manager_User" Association="Self.FK_Manager_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Manager" EntitySet="Manager" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SuitableVacancy_Manager" Association="Self.FK_SuitableVacancy_Manager">
+            <End Role="Manager" EntitySet="Manager" />
+            <End Role="SuitableVacancy" EntitySet="SuitableVacancy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NecessarySkill_Skill" Association="Self.FK_NecessarySkill_Skill">
+            <End Role="Skill" EntitySet="Skill" />
+            <End Role="NecessarySkill" EntitySet="NecessarySkill" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NecessarySkill_Vacancy" Association="Self.FK_NecessarySkill_Vacancy">
+            <End Role="Vacancy" EntitySet="Vacancy" />
+            <End Role="NecessarySkill" EntitySet="NecessarySkill" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Organization_Street" Association="Self.FK_Organization_Street">
+            <End Role="Street" EntitySet="Street" />
+            <End Role="Organization" EntitySet="Organization" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Organization_SubIndustry" Association="Self.FK_Organization_SubIndustry">
+            <End Role="SubIndustry" EntitySet="SubIndustry" />
+            <End Role="Organization" EntitySet="Organization" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PossessionSkill_Skill" Association="Self.FK_PossessionSkill_Skill">
+            <End Role="Skill" EntitySet="Skill" />
+            <End Role="PossessionSkill" EntitySet="PossessionSkill" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PreferredEmploymentType_Request" Association="Self.FK_PreferredEmploymentType_Request">
+            <End Role="Request" EntitySet="Request" />
+            <End Role="PreferredEmploymentType" EntitySet="PreferredEmploymentType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PreferredSchedule_Request" Association="Self.FK_PreferredSchedule_Request">
+            <End Role="Request" EntitySet="Request" />
+            <End Role="PreferredSchedule" EntitySet="PreferredSchedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PreferredSchedule_Schedule" Association="Self.FK_PreferredSchedule_Schedule">
+            <End Role="Schedule" EntitySet="Schedule" />
+            <End Role="PreferredSchedule" EntitySet="PreferredSchedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Profession_ProfessionCategory" Association="Self.FK_Profession_ProfessionCategory">
+            <End Role="ProfessionCategory" EntitySet="ProfessionCategory" />
+            <End Role="Profession" EntitySet="Profession" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_Profession1" Association="Self.FK_Request_Profession1">
+            <End Role="Profession" EntitySet="Profession" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vacancy_Profession" Association="Self.FK_Vacancy_Profession">
+            <End Role="Profession" EntitySet="Profession" />
+            <End Role="Vacancy" EntitySet="Vacancy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_RequestStatus" Association="Self.FK_Request_RequestStatus">
+            <End Role="RequestStatus" EntitySet="RequestStatus" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vacancy_Schedule" Association="Self.FK_Vacancy_Schedule">
+            <End Role="Schedule" EntitySet="Schedule" />
+            <End Role="Vacancy" EntitySet="Vacancy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SuitableVacancy_Vacancy" Association="Self.FK_SuitableVacancy_Vacancy">
+            <End Role="Vacancy" EntitySet="Vacancy" />
+            <End Role="SuitableVacancy" EntitySet="SuitableVacancy" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ModelContainer" CdmEntityContainer="EmploymentAgencyContext">
+          <EntitySetMapping Name="Applicant">
+            <EntityTypeMapping TypeName="Model.Applicant">
+              <MappingFragment StoreEntitySet="Applicant">
+                <ScalarProperty Name="IdApplicant" ColumnName="IdApplicant" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="IdGender" ColumnName="IdGender" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="IsEmployed" ColumnName="IsEmployed" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="City">
+            <EntityTypeMapping TypeName="Model.City">
+              <MappingFragment StoreEntitySet="City">
+                <ScalarProperty Name="IdCity" ColumnName="IdCity" />
+                <ScalarProperty Name="IdCountry" ColumnName="IdCountry" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contract">
+            <EntityTypeMapping TypeName="Model.Contract">
+              <MappingFragment StoreEntitySet="Contract">
+                <ScalarProperty Name="IdContract" ColumnName="IdContract" />
+                <ScalarProperty Name="IdRequest" ColumnName="IdRequest" />
+                <ScalarProperty Name="IdVacancy" ColumnName="IdVacancy" />
+                <ScalarProperty Name="DateOfConclusion" ColumnName="DateOfConclusion" />
+                <ScalarProperty Name="BreakDate" ColumnName="BreakDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Country">
+            <EntityTypeMapping TypeName="Model.Country">
+              <MappingFragment StoreEntitySet="Country">
+                <ScalarProperty Name="IdCountry" ColumnName="IdCountry" />
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DrivingLicenseCategory">
+            <EntityTypeMapping TypeName="Model.DrivingLicenseCategory">
+              <MappingFragment StoreEntitySet="DrivingLicenseCategory">
+                <ScalarProperty Name="IdDrivingLicenseCategory" ColumnName="IdDrivingLicenseCategory" />
+                <ScalarProperty Name="DrivingLicenseCategoryName" ColumnName="DrivingLicenseCategoryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Education">
+            <EntityTypeMapping TypeName="Model.Education">
+              <MappingFragment StoreEntitySet="Education">
+                <ScalarProperty Name="IdEducation" ColumnName="IdEducation" />
+                <ScalarProperty Name="EducationName" ColumnName="EducationName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EducationalActivity">
+            <EntityTypeMapping TypeName="Model.EducationalActivity">
+              <MappingFragment StoreEntitySet="EducationalActivity">
+                <ScalarProperty Name="IdEducationalActivity" ColumnName="IdEducationalActivity" />
+                <ScalarProperty Name="IdApplicant" ColumnName="IdApplicant" />
+                <ScalarProperty Name="IdEducation" ColumnName="IdEducation" />
+                <ScalarProperty Name="NameEducationalnstitution" ColumnName="NameEducationalnstitution" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employer">
+            <EntityTypeMapping TypeName="Model.Employer">
+              <MappingFragment StoreEntitySet="Employer">
+                <ScalarProperty Name="IdEmployer" ColumnName="IdEmployer" />
+                <ScalarProperty Name="IdOrganization" ColumnName="IdOrganization" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="IdGender" ColumnName="IdGender" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmploymentType">
+            <EntityTypeMapping TypeName="Model.EmploymentType">
+              <MappingFragment StoreEntitySet="EmploymentType">
+                <ScalarProperty Name="IdEmploymentType" ColumnName="IdEmploymentType" />
+                <ScalarProperty Name="EmploymentTypeName" ColumnName="EmploymentTypeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Experience">
+            <EntityTypeMapping TypeName="Model.Experience">
+              <MappingFragment StoreEntitySet="Experience">
+                <ScalarProperty Name="IdExperience" ColumnName="IdExperience" />
+                <ScalarProperty Name="ExperienceName" ColumnName="ExperienceName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gender">
+            <EntityTypeMapping TypeName="Model.Gender">
+              <MappingFragment StoreEntitySet="Gender">
+                <ScalarProperty Name="IdGender" ColumnName="IdGender" />
+                <ScalarProperty Name="GenderName" ColumnName="GenderName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Industry">
+            <EntityTypeMapping TypeName="Model.Industry">
+              <MappingFragment StoreEntitySet="Industry">
+                <ScalarProperty Name="IdIndustry" ColumnName="IdIndustry" />
+                <ScalarProperty Name="IndustryName" ColumnName="IndustryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KnowledgeLanguage">
+            <EntityTypeMapping TypeName="Model.KnowledgeLanguage">
+              <MappingFragment StoreEntitySet="KnowledgeLanguage">
+                <ScalarProperty Name="IdKnowledgeLanguage" ColumnName="IdKnowledgeLanguage" />
+                <ScalarProperty Name="IdApplicant" ColumnName="IdApplicant" />
+                <ScalarProperty Name="IdLanguage" ColumnName="IdLanguage" />
+                <ScalarProperty Name="IdLanguageProficiency" ColumnName="IdLanguageProficiency" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LaborActivity">
+            <EntityTypeMapping TypeName="Model.LaborActivity">
+              <MappingFragment StoreEntitySet="LaborActivity">
+                <ScalarProperty Name="IdLaborActivity" ColumnName="IdLaborActivity" />
+                <ScalarProperty Name="IdApplicant" ColumnName="IdApplicant" />
+                <ScalarProperty Name="OrganizationName" ColumnName="OrganizationName" />
+                <ScalarProperty Name="OrganizationAddress" ColumnName="OrganizationAddress" />
+                <ScalarProperty Name="ProfessionName" ColumnName="ProfessionName" />
+                <ScalarProperty Name="Activity" ColumnName="Activity" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Language">
+            <EntityTypeMapping TypeName="Model.Language">
+              <MappingFragment StoreEntitySet="Language">
+                <ScalarProperty Name="IdLanguage" ColumnName="IdLanguage" />
+                <ScalarProperty Name="LanguageName" ColumnName="LanguageName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LanguageProficiency">
+            <EntityTypeMapping TypeName="Model.LanguageProficiency">
+              <MappingFragment StoreEntitySet="LanguageProficiency">
+                <ScalarProperty Name="IdLanguageProficiency" ColumnName="IdLanguageProficiency" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+                <ScalarProperty Name="LanguageProficiencyName" ColumnName="LanguageProficiencyName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Manager">
+            <EntityTypeMapping TypeName="Model.Manager">
+              <MappingFragment StoreEntitySet="Manager">
+                <ScalarProperty Name="IdManager" ColumnName="IdManager" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="IdGender" ColumnName="IdGender" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NecessarySkill">
+            <EntityTypeMapping TypeName="Model.NecessarySkill">
+              <MappingFragment StoreEntitySet="NecessarySkill">
+                <ScalarProperty Name="IdNecessarySkill" ColumnName="IdNecessarySkill" />
+                <ScalarProperty Name="IdVacancy" ColumnName="IdVacancy" />
+                <ScalarProperty Name="IdSkill" ColumnName="IdSkill" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Organization">
+            <EntityTypeMapping TypeName="Model.Organization">
+              <MappingFragment StoreEntitySet="Organization">
+                <ScalarProperty Name="IdOrganization" ColumnName="IdOrganization" />
+                <ScalarProperty Name="IdSubIndustry" ColumnName="IdSubIndustry" />
+                <ScalarProperty Name="OrganizationName" ColumnName="OrganizationName" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="IdStreet" ColumnName="IdStreet" />
+                <ScalarProperty Name="NameHouse" ColumnName="NameHouse" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="DateOfRegistration" ColumnName="DateOfRegistration" />
+                <ScalarProperty Name="ClosingDate" ColumnName="ClosingDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PossessionDrivingLicenseCategory">
+            <EntityTypeMapping TypeName="Model.PossessionDrivingLicenseCategory">
+              <MappingFragment StoreEntitySet="PossessionDrivingLicenseCategory">
+                <ScalarProperty Name="IdPossessionDrivingLicenseCategory" ColumnName="IdPossessionDrivingLicenseCategory" />
+                <ScalarProperty Name="IdApplicant" ColumnName="IdApplicant" />
+                <ScalarProperty Name="IdDrivingLicenseCategory" ColumnName="IdDrivingLicenseCategory" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PossessionSkill">
+            <EntityTypeMapping TypeName="Model.PossessionSkill">
+              <MappingFragment StoreEntitySet="PossessionSkill">
+                <ScalarProperty Name="IdPossessionSkill" ColumnName="IdPossessionSkill" />
+                <ScalarProperty Name="IdApplicant" ColumnName="IdApplicant" />
+                <ScalarProperty Name="IdSkill" ColumnName="IdSkill" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PreferredEmploymentType">
+            <EntityTypeMapping TypeName="Model.PreferredEmploymentType">
+              <MappingFragment StoreEntitySet="PreferredEmploymentType">
+                <ScalarProperty Name="IdPreferredEmploymentType" ColumnName="IdPreferredEmploymentType" />
+                <ScalarProperty Name="IdRequest" ColumnName="IdRequest" />
+                <ScalarProperty Name="IdEmploymentType" ColumnName="IdEmploymentType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PreferredSchedule">
+            <EntityTypeMapping TypeName="Model.PreferredSchedule">
+              <MappingFragment StoreEntitySet="PreferredSchedule">
+                <ScalarProperty Name="IdPreferredSchedule" ColumnName="IdPreferredSchedule" />
+                <ScalarProperty Name="IdRequest" ColumnName="IdRequest" />
+                <ScalarProperty Name="IdSchedule" ColumnName="IdSchedule" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Profession">
+            <EntityTypeMapping TypeName="Model.Profession">
+              <MappingFragment StoreEntitySet="Profession">
+                <ScalarProperty Name="IdProfession" ColumnName="IdProfession" />
+                <ScalarProperty Name="IdProfessionCategory" ColumnName="IdProfessionCategory" />
+                <ScalarProperty Name="ProfessionName" ColumnName="ProfessionName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProfessionCategory">
+            <EntityTypeMapping TypeName="Model.ProfessionCategory">
+              <MappingFragment StoreEntitySet="ProfessionCategory">
+                <ScalarProperty Name="IdProfessionCategory" ColumnName="IdProfessionCategory" />
+                <ScalarProperty Name="NameProfessionCategory" ColumnName="NameProfessionCategory" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Request">
+            <EntityTypeMapping TypeName="Model.Request">
+              <MappingFragment StoreEntitySet="Request">
+                <ScalarProperty Name="IdRequest" ColumnName="IdRequest" />
+                <ScalarProperty Name="IdApplicant" ColumnName="IdApplicant" />
+                <ScalarProperty Name="IdProfession" ColumnName="IdProfession" />
+                <ScalarProperty Name="IdExperience" ColumnName="IdExperience" />
+                <ScalarProperty Name="AboutMe" ColumnName="AboutMe" />
+                <ScalarProperty Name="DateOfRegistration" ColumnName="DateOfRegistration" />
+                <ScalarProperty Name="DateOfConsideration" ColumnName="DateOfConsideration" />
+                <ScalarProperty Name="IdRequestStatus" ColumnName="IdRequestStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RequestStatus">
+            <EntityTypeMapping TypeName="Model.RequestStatus">
+              <MappingFragment StoreEntitySet="RequestStatus">
+                <ScalarProperty Name="IdRequestStatus" ColumnName="IdRequestStatus" />
+                <ScalarProperty Name="RequestStatusName" ColumnName="RequestStatusName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Role">
+            <EntityTypeMapping TypeName="Model.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="IdRole" ColumnName="IdRole" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Schedule">
+            <EntityTypeMapping TypeName="Model.Schedule">
+              <MappingFragment StoreEntitySet="Schedule">
+                <ScalarProperty Name="IdSchedule" ColumnName="IdSchedule" />
+                <ScalarProperty Name="ScheduleName" ColumnName="ScheduleName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Skill">
+            <EntityTypeMapping TypeName="Model.Skill">
+              <MappingFragment StoreEntitySet="Skill">
+                <ScalarProperty Name="IdSkill" ColumnName="IdSkill" />
+                <ScalarProperty Name="SkillName" ColumnName="SkillName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Street">
+            <EntityTypeMapping TypeName="Model.Street">
+              <MappingFragment StoreEntitySet="Street">
+                <ScalarProperty Name="IdStreet" ColumnName="IdStreet" />
+                <ScalarProperty Name="IdCity" ColumnName="IdCity" />
+                <ScalarProperty Name="StreetName" ColumnName="StreetName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubIndustry">
+            <EntityTypeMapping TypeName="Model.SubIndustry">
+              <MappingFragment StoreEntitySet="SubIndustry">
+                <ScalarProperty Name="IdSubIndustry" ColumnName="IdSubIndustry" />
+                <ScalarProperty Name="IdIndustry" ColumnName="IdIndustry" />
+                <ScalarProperty Name="NameSubIndustry" ColumnName="NameSubIndustry" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SuitableVacancy">
+            <EntityTypeMapping TypeName="Model.SuitableVacancy">
+              <MappingFragment StoreEntitySet="SuitableVacancy">
+                <ScalarProperty Name="IdSuitableVacancy" ColumnName="IdSuitableVacancy" />
+                <ScalarProperty Name="IdManager" ColumnName="IdManager" />
+                <ScalarProperty Name="IdApplicant" ColumnName="IdApplicant" />
+                <ScalarProperty Name="IdVacancy" ColumnName="IdVacancy" />
+                <ScalarProperty Name="DiscoveryDate" ColumnName="DiscoveryDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="Model.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="IdRole" ColumnName="IdRole" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="DateOfRegistration" ColumnName="DateOfRegistration" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vacancy">
+            <EntityTypeMapping TypeName="Model.Vacancy">
+              <MappingFragment StoreEntitySet="Vacancy">
+                <ScalarProperty Name="IdVacancy" ColumnName="IdVacancy" />
+                <ScalarProperty Name="IdEmployer" ColumnName="IdEmployer" />
+                <ScalarProperty Name="IdProfession" ColumnName="IdProfession" />
+                <ScalarProperty Name="IdEmploymentType" ColumnName="IdEmploymentType" />
+                <ScalarProperty Name="IdSchedule" ColumnName="IdSchedule" />
+                <ScalarProperty Name="IdExperience" ColumnName="IdExperience" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Duties" ColumnName="Duties" />
+                <ScalarProperty Name="Requirements" ColumnName="Requirements" />
+                <ScalarProperty Name="Terms" ColumnName="Terms" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="DateOfRegistration" ColumnName="DateOfRegistration" />
+                <ScalarProperty Name="ClosingDate" ColumnName="ClosingDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
