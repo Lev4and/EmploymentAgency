@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Applicant">
           <Key>
             <PropertyRef Name="IdApplicant" />
@@ -325,6 +325,22 @@
           <Property Name="Salary" Type="int" />
           <Property Name="DateOfRegistration" Type="smalldatetime" Nullable="false" />
           <Property Name="ClosingDate" Type="smalldatetime" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Employment agency.dbo.v_user" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="v_user">
+          <Key>
+            <PropertyRef Name="IdUser" />
+            <PropertyRef Name="RoleName" />
+            <PropertyRef Name="Login" />
+            <PropertyRef Name="Password" />
+            <PropertyRef Name="DateOfRegistration" />
+          </Key>
+          <Property Name="IdUser" Type="int" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Login" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DateOfRegistration" Type="smalldatetime" Nullable="false" />
         </EntityType>
         <Association Name="FK_Applicant_Gender">
           <End Role="Gender" Type="Self.Gender" Multiplicity="1">
@@ -970,6 +986,15 @@
           <EntitySet Name="SuitableVacancy" EntityType="Self.SuitableVacancy" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Vacancy" EntityType="Self.Vacancy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="v_user" EntityType="Self.v_user" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_user].[IdUser] AS [IdUser], 
+    [v_user].[RoleName] AS [RoleName], 
+    [v_user].[Login] AS [Login], 
+    [v_user].[Password] AS [Password], 
+    [v_user].[DateOfRegistration] AS [DateOfRegistration]
+    FROM [dbo].[v_user] AS [v_user]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_Applicant_Gender" Association="Self.FK_Applicant_Gender">
             <End Role="Gender" EntitySet="Gender" />
             <End Role="Applicant" EntitySet="Applicant" />
@@ -1147,8 +1172,7 @@
             <End Role="Vacancy" EntitySet="Vacancy" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -2381,7 +2405,22 @@
             <End Role="Vacancy" EntitySet="Vacancy" />
             <End Role="SuitableVacancy" EntitySet="SuitableVacancy" />
           </AssociationSet>
+          <EntitySet Name="v_user" EntityType="Model.v_user" />
         </EntityContainer>
+        <EntityType Name="v_user">
+          <Key>
+            <PropertyRef Name="IdUser" />
+            <PropertyRef Name="RoleName" />
+            <PropertyRef Name="Login" />
+            <PropertyRef Name="Password" />
+            <PropertyRef Name="DateOfRegistration" />
+          </Key>
+          <Property Name="IdUser" Type="Int32" Nullable="false" />
+          <Property Name="RoleName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Login" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateOfRegistration" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2741,6 +2780,17 @@
                 <ScalarProperty Name="Salary" ColumnName="Salary" />
                 <ScalarProperty Name="DateOfRegistration" ColumnName="DateOfRegistration" />
                 <ScalarProperty Name="ClosingDate" ColumnName="ClosingDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_user">
+            <EntityTypeMapping TypeName="Model.v_user">
+              <MappingFragment StoreEntitySet="v_user">
+                <ScalarProperty Name="DateOfRegistration" ColumnName="DateOfRegistration" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

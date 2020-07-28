@@ -11,12 +11,18 @@ namespace EmploymentAgency.ViewModels.Locators
 
         public MainViewModel MainViewModel => _provider.GetRequiredService<MainViewModel>();
 
+        public AuthorizationViewModel AuthorizationViewModel => _provider.GetRequiredService<AuthorizationViewModel>();
+
+        public SettingsViewModel SettingsViewModel => _provider.GetRequiredService<SettingsViewModel>();
+
         public static void Init()
         {
             var services = new ServiceCollection();
 
             services.AddTransient<MainWindowViewModel>();
             services.AddTransient<MainViewModel>();
+            services.AddTransient<AuthorizationViewModel>();
+            services.AddTransient<SettingsViewModel>();
 
             services.AddSingleton<PageService>();
 

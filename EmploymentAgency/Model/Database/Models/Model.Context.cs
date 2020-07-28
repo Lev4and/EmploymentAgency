@@ -19,6 +19,11 @@ namespace EmploymentAgency.Model.Database.Models
             : base("name=EmploymentAgencyContext")
         {
         }
+
+        public EmploymentAgencyContext(string nameOrConnectionString) : base(nameOrConnectionString)
+        {
+
+        }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -60,5 +65,6 @@ namespace EmploymentAgency.Model.Database.Models
         public virtual DbSet<SuitableVacancy> SuitableVacancy { get; set; }
         public virtual DbSet<User> User { get; set; }
         public virtual DbSet<Vacancy> Vacancy { get; set; }
+        public virtual DbSet<v_user> v_user { get; set; }
     }
 }

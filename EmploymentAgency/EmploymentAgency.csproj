@@ -83,6 +83,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -117,6 +118,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\Command.cs" />
+    <Compile Include="Converters\BoolToBackBool.cs" />
+    <Compile Include="Converters\TextToInt32.cs" />
+    <Compile Include="Converters\BoolToVisibility.cs" />
+    <Compile Include="Model\Configurations\ConfigurationDatabase.cs" />
+    <Compile Include="Model\Configurations\ConfigurationUser.cs" />
+    <Compile Include="Model\Database\Interactions\DataActions\IAccordanable.cs" />
+    <Compile Include="Model\Database\Interactions\DataActions\IAddable.cs" />
+    <Compile Include="Model\Database\Interactions\DataActions\IContainsable.cs" />
+    <Compile Include="Model\Database\Interactions\DataActions\IFunctionable.cs" />
+    <Compile Include="Model\Database\Interactions\DataActions\IGetable.cs" />
+    <Compile Include="Model\Database\Interactions\DataActions\IProcedurable.cs" />
+    <Compile Include="Model\Database\Interactions\DataActions\IRemovable.cs" />
+    <Compile Include="Model\Database\Interactions\DataActions\ISortable.cs" />
+    <Compile Include="Model\Database\Interactions\DataActions\IUpdatable.cs" />
+    <Compile Include="Model\Database\Interactions\IInteraction.cs" />
+    <Compile Include="Model\Database\Interactions\QueryExecutor.cs" />
     <Compile Include="Model\Database\Models\Applicant.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -237,7 +255,12 @@
     <Compile Include="Model\Database\Models\Vacancy.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Database\Models\v_user.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Logic\EFConnectionString.cs" />
     <Compile Include="Services\PageService.cs" />
+    <Compile Include="ViewModels\AuthorizationViewModel.cs" />
     <Compile Include="ViewModels\Locators\ViewModelLocator.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
@@ -245,8 +268,15 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ViewModels\SettingsViewModel.cs" />
+    <Compile Include="Views\Pages\Authorization.xaml.cs">
+      <DependentUpon>Authorization.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Pages\Main.xaml.cs">
       <DependentUpon>Main.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\Settings.xaml.cs">
+      <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -287,20 +317,28 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Converters\" />
-    <Folder Include="Model\Configurations\" />
-    <Folder Include="Model\Database\Interactions\DataActions\" />
-    <Folder Include="Model\Logic\" />
     <Folder Include="Resources\Images\Interface\" />
     <Folder Include="Resources\Images\Loading\" />
     <Folder Include="Views\UserControls\" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\Pages\Authorization.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Pages\Main.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
+    <Page Include="Views\Pages\Settings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Styles\Default.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Styles\Fonts.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

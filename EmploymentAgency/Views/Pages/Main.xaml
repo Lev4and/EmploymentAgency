@@ -27,17 +27,29 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0" 
                   Margin="5">
                 <Button Style="{StaticResource MaterialDesignRaisedDarkButton}"
                         Height="50"
                         mdt:ButtonAssist.CornerRadius="25"
-                        ToolTip="Авторизоваться">
-                    <TextBlock Text="Авторизоваться"/>
+                        ToolTip="Авторизация"
+                        Command="{Binding Path=Authorization}">
+                    <TextBlock Text="Авторизация"/>
                 </Button>
             </Grid>
             <Grid Grid.Row="1"
+                  Margin="5">
+                <Button Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                        Height="50"
+                        mdt:ButtonAssist.CornerRadius="25"
+                        ToolTip="Настройки"
+                        Command="{Binding Path=Settings}">
+                    <TextBlock Text="Настройки"/>
+                </Button>
+            </Grid>
+            <Grid Grid.Row="2"
                   Margin="5">
                 <Button Style="{StaticResource MaterialDesignRaisedDarkButton}"
                         Height="50"

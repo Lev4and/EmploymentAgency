@@ -1,5 +1,6 @@
 ﻿using DevExpress.Mvvm;
 using EmploymentAgency.Services;
+using EmploymentAgency.Views.Pages;
 using System.Windows;
 using System.Windows.Input;
 
@@ -13,6 +14,16 @@ namespace EmploymentAgency.ViewModels
         {
             _pageService = pageService;
         }
+
+        public ICommand Authorization => new DelegateCommand(() =>
+        {
+            _pageService.ChangePage(new Authorization());
+        });
+
+        public ICommand Settings => new DelegateCommand(() =>
+        {
+            _pageService.ChangePage(new Settings());
+        });
 
         public ICommand Exit => new DelegateCommand(() =>
         {
