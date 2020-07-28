@@ -30,7 +30,8 @@
                           Panel.ZIndex="1"
                           Width="40"
                           Height="40"
-                          Margin="5,5,0,5">
+                          Margin="5,5,0,5"
+                          ToolTip="Вернуться в главное окно">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="MouseDown">
                         <i:InvokeCommandAction Command="{Binding Path=Back}"/>
@@ -56,7 +57,8 @@
                     <mdt:PackIcon x:Name="iconAlarm"
                                   Kind="Alarm"
                                   Height="Auto"
-                                  Width="{Binding ElementName=iconAlarm, Path=Height}"/>
+                                  Width="{Binding ElementName=iconAlarm, Path=Height}"
+                                  ToolTip="Максимальное время выполнения запроса"/>
                 </Grid>
                 <Grid Grid.Column="1" Margin="5,0,0,0">
                     <TextBox Text="{Binding Path=CommandTimeout, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource textToInt32}}"
@@ -76,7 +78,8 @@
                     <mdt:PackIcon x:Name="iconServer"
                                   Kind="Server"
                                   Height="Auto"
-                                  Width="{Binding ElementName=iconServer, Path=Height}"/>
+                                  Width="{Binding ElementName=iconServer, Path=Height}"
+                                  ToolTip="Адрес сервера базы данных"/>
                 </Grid>
                 <Grid Grid.Column="1" Margin="5,0,0,0">
                     <TextBox x:Name="serverAddressTextBox"
@@ -98,7 +101,8 @@
                     <mdt:PackIcon x:Name="iconDatabase"
                                   Kind="Database"
                                   Height="Auto"
-                                  Width="{Binding ElementName=iconDatabase, Path=Height}"/>
+                                  Width="{Binding ElementName=iconDatabase, Path=Height}"
+                                  ToolTip="Название базы данных"/>
                 </Grid>
                 <Grid Grid.Column="1" Margin="5,0,0,0">
                     <TextBox x:Name="databaseNameTextBox"
