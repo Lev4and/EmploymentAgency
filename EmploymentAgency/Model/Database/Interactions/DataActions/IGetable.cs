@@ -2,6 +2,6 @@
 {
     public interface IGetable
     {
-
+        int GetIdRole(string roleName);
     }
 }

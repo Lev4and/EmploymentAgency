@@ -259,7 +259,12 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Logic\EFConnectionString.cs" />
+    <Compile Include="Model\Logic\Managers\PageManager.cs" />
+    <Compile Include="Model\Logic\Managers\PageManagers\Applicant.cs" />
+    <Compile Include="Model\Logic\Managers\PageManagers\Employer.cs" />
+    <Compile Include="Model\Logic\Managers\PageManagers\Manager.cs" />
     <Compile Include="Services\PageService.cs" />
+    <Compile Include="Services\WindowService.cs" />
     <Compile Include="ViewModels\AuthorizationViewModel.cs" />
     <Compile Include="ViewModels\Locators\ViewModelLocator.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
@@ -277,6 +282,9 @@
     </Compile>
     <Compile Include="Views\Pages\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\SupplementingInformationForManager.xaml.cs">
+      <DependentUpon>SupplementingInformationForManager.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -331,6 +339,10 @@
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
     <Page Include="Views\Pages\Settings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\SupplementingInformationForManager.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

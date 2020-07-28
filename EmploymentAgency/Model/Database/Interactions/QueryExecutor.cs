@@ -1,10 +1,8 @@
 ﻿using EmploymentAgency.Model.Configurations;
 using EmploymentAgency.Model.Database.Models;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
-using System.Windows.Documents;
 
 namespace EmploymentAgency.Model.Database.Interactions
 {
@@ -48,6 +46,11 @@ namespace EmploymentAgency.Model.Database.Interactions
             return user != null;
         }
 
+        public int GetIdRole(string roleName)
+        {
+            return _context.Role.Single(r => r.RoleName == roleName).IdRole;
+        }
+
         public bool NecessaryToSupplementTheInformation(int idUser)
         {
             var results = new List<bool>();
@@ -56,7 +59,7 @@ namespace EmploymentAgency.Model.Database.Interactions
             results.Add(ContainsEmployer(idUser));
             results.Add(ContainsManager(idUser));
 
-            return !results.Any(r => r == true);
+            return results.All(r => r == false);
         }
 
         private void SetCommandTimeout()

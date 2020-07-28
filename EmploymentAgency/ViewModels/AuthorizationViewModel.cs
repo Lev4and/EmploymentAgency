@@ -3,9 +3,11 @@ using EmploymentAgency.Commands;
 using EmploymentAgency.Model.Configurations;
 using EmploymentAgency.Model.Database.Interactions;
 using EmploymentAgency.Model.Database.Models;
+using EmploymentAgency.Model.Logic.Managers;
 using EmploymentAgency.Services;
 using EmploymentAgency.Views.Pages;
 using System;
+using System.Data.Entity.Core;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -72,16 +74,31 @@ namespace EmploymentAgency.ViewModels
                     {
                         RewriteConfiguration(user);
 
-                        MessageBox.Show("Успех");
+                        if (user.RoleName != "Администратор" && user.RoleName != "Владелец")
+                        {
+                            if (_executor.NecessaryToSupplementTheInformation(user.IdUser))
+                            {
+                                var pageManager = PageManager.GetPageManager(_executor.GetIdRole(user.RoleName));
+
+                                Application.Current.Dispatcher.Invoke(() =>
+                                {
+                                    _pageService.ChangePage(pageManager.GetPage());
+                                });
+                            }
+                        }
                     }
                     else
                     {
                         MessageBox.Show("Ошибка");
                     }
                 }
-                catch
+                catch (EntityException)
                 {
                     MessageBox.Show("Сервер базы данных отключен или указан неверный адрес сервера", "Ошибка");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Ошибка");
                 }
 
                 IsBackgroundTaskRunning = false;
