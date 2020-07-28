@@ -120,6 +120,9 @@
     </ApplicationDefinition>
     <Compile Include="Commands\Command.cs" />
     <Compile Include="Converters\BoolToBackBool.cs" />
+    <Compile Include="Converters\ArrayByteToBitmapImage.cs" />
+    <Compile Include="Converters\ArrayByteToImageSource.cs" />
+    <Compile Include="Converters\SelectedValueToNullableInt32.cs" />
     <Compile Include="Converters\TextToInt32.cs" />
     <Compile Include="Converters\BoolToVisibility.cs" />
     <Compile Include="Model\Configurations\ConfigurationDatabase.cs" />
@@ -274,6 +277,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ViewModels\SettingsViewModel.cs" />
+    <Compile Include="ViewModels\SupplementingInformationForManagerViewModel.cs" />
     <Compile Include="Views\Pages\Authorization.xaml.cs">
       <DependentUpon>Authorization.xaml</DependentUpon>
     </Compile>

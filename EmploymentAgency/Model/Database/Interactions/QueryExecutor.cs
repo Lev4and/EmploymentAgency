@@ -1,5 +1,6 @@
 ﻿using EmploymentAgency.Model.Configurations;
 using EmploymentAgency.Model.Database.Models;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
@@ -17,6 +18,29 @@ namespace EmploymentAgency.Model.Database.Interactions
             _context = new EmploymentAgencyContext(_config.ConnectionString);
 
             SetCommandTimeout();
+        }
+
+        public bool AddManager(int idUser, string name, string surname, string patronymic, int idGender, byte[] photo, DateTime dateOfBirth, string phoneNumber)
+        {
+            if(!ContainsManager(idUser))
+            {
+                _context.Manager.Add(new Manager
+                {
+                    IdManager = idUser,
+                    Name = name,
+                    Surname = surname,
+                    Patronymic = patronymic,
+                    IdGender = idGender,
+                    Photo = photo,
+                    DateOfBirth = dateOfBirth,
+                    PhoneNumber = phoneNumber
+                });
+                _context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
         }
 
         public bool ContainsApplicant(int idApplicant)
@@ -44,6 +68,11 @@ namespace EmploymentAgency.Model.Database.Interactions
             user = _context.v_user.SingleOrDefault(u => u.Login == login && u.Password == password);
 
             return user != null;
+        }
+
+        public List<Gender> GetGenders()
+        {
+            return _context.Gender.AsNoTracking().ToList();
         }
 
         public int GetIdRole(string roleName)

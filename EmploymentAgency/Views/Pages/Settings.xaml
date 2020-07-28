@@ -63,7 +63,7 @@
                 <Grid Grid.Column="1" Margin="5,0,0,0">
                     <TextBox Text="{Binding Path=CommandTimeout, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource textToInt32}}"
                              mdt:HintAssist.Hint="Время выполнения запроса (MAX)"
-                             mdt:HintAssist.HelperText="Максимальное время выполнения запроса должна быть более 0 секунд"
+                             mdt:HintAssist.HelperText="Максимальное время выполнения запроса должно быть более 0 секунд"
                              FontSize="20"
                              FontWeight="Medium"
                              VerticalContentAlignment="Center"/>
@@ -85,7 +85,7 @@
                     <TextBox x:Name="serverAddressTextBox"
                              Text="{Binding Path=ServerAddress, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                              mdt:HintAssist.Hint="Адрес сервера базы данных"
-                             mdt:HintAssist.HelperText="Адрес сервера должна быть длиной более 0 символов"
+                             mdt:HintAssist.HelperText="Адрес сервера должен быть длиной более 0 символов"
                              FontSize="20"
                              FontWeight="Medium"
                              ToolTip="{Binding ElementName=serverAddressTextBox, Path=Text}"
@@ -108,7 +108,7 @@
                     <TextBox x:Name="databaseNameTextBox"
                              Text="{Binding Path=DatabaseName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                              mdt:HintAssist.Hint="Название базы данных"
-                             mdt:HintAssist.HelperText="Название базы данных должна быть длиной более 0 символов"
+                             mdt:HintAssist.HelperText="Название базы данных должно быть длиной более 0 символов"
                              FontSize="20"
                              FontWeight="Medium"
                              ToolTip="{Binding ElementName=databaseNameTextBox, Path=Text}"
