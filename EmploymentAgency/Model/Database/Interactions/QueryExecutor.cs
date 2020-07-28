@@ -1,8 +1,10 @@
 ﻿using EmploymentAgency.Model.Configurations;
 using EmploymentAgency.Model.Database.Models;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
+using System.Windows.Documents;
 
 namespace EmploymentAgency.Model.Database.Interactions
 {
@@ -19,6 +21,21 @@ namespace EmploymentAgency.Model.Database.Interactions
             SetCommandTimeout();
         }
 
+        public bool ContainsApplicant(int idApplicant)
+        {
+            return _context.Applicant.SingleOrDefault(a => a.IdApplicant == idApplicant) != null;
+        }
+
+        public bool ContainsEmployer(int idEmployer)
+        {
+            return _context.Employer.SingleOrDefault(e => e.IdEmployer == idEmployer) != null;
+        }
+
+        public bool ContainsManager(int idManager)
+        {
+            return _context.Manager.SingleOrDefault(m => m.IdManager == idManager) != null;
+        }
+
         public bool CorrectDataUser(string login, string password)
         {
             return _context.User.SingleOrDefault(u => u.Login == login && u.Password == password) != null;
@@ -29,6 +46,17 @@ namespace EmploymentAgency.Model.Database.Interactions
             user = _context.v_user.SingleOrDefault(u => u.Login == login && u.Password == password);
 
             return user != null;
+        }
+
+        public bool NecessaryToSupplementTheInformation(int idUser)
+        {
+            var results = new List<bool>();
+
+            results.Add(ContainsApplicant(idUser));
+            results.Add(ContainsEmployer(idUser));
+            results.Add(ContainsManager(idUser));
+
+            return !results.Any(r => r == true);
         }
 
         private void SetCommandTimeout()

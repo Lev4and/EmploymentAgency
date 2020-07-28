@@ -2,6 +2,6 @@
 {
     public interface IFunctionable
     {
-
+        bool NecessaryToSupplementTheInformation(int idUser);
     }
 }
