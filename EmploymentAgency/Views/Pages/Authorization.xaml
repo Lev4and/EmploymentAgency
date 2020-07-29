@@ -10,7 +10,7 @@
       mc:Ignorable="d"
       DataContext="{Binding AuthorizationViewModel, Source={StaticResource ViewModelLocator}}"
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Authorization">
+      Title="Авторизация" WindowTitle="Агентство трудоустройства - Авторизация">
     <Page.Resources>
         <c:BoolToBackBool x:Key="boolToBackBool"/>
         <c:BoolToVisibility x:Key="boolToVisibility"/>

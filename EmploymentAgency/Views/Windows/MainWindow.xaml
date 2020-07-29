@@ -8,8 +8,6 @@
         xmlns:vm="clr-namespace:EmploymentAgency.ViewModels"
         mc:Ignorable="d"
         DataContext="{Binding MainWindowViewModel, Source={StaticResource ViewModelLocator}}"
+        Content="{Binding PageSource}"
         Title="Агентство трудоустройства" Height="450" Width="800" Icon="/EmploymentAgency;component/Resources/Images/Icons/Icon.ico">
-    <Grid>
-        <Frame Content="{Binding PageSource}" NavigationUIVisibility="Hidden"/>
-    </Grid>
 </Window>

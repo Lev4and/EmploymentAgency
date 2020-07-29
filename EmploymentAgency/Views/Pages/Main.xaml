@@ -9,7 +9,7 @@
       mc:Ignorable="d"
       DataContext="{Binding MainViewModel, Source={StaticResource ViewModelLocator}}"
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Main">
+      Title="Главное окно" WindowTitle="Агентство трудоустройства - Главное окно">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>

@@ -10,7 +10,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       DataContext="{Binding SupplementingInformationForManagerViewModel, Source={StaticResource ViewModelLocator}}"
-      Title="SupplementingInformationForManager">
+      Title="Дополнение информации для менеджера" WindowTitle="Агентство трудоустройства - Дополнение информации для менеджера">
     <Page.Resources>
         <c:ArrayByteToImageSource x:Key="arrayByteToImageSource"/>
         <c:SelectedValueToNullableInt32 x:Key="selectedValueToNullableInt32"/>

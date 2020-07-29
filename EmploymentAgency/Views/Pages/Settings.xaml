@@ -10,7 +10,7 @@
       mc:Ignorable="d"
       DataContext="{Binding SettingsViewModel, Source={StaticResource ViewModelLocator}}"
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Settings">
+      Title="Настройки" WindowTitle="Агентство трудоустройства - Настройки">
     <Page.Resources>
         <c:TextToInt32 x:Key="textToInt32"/>
     </Page.Resources>
