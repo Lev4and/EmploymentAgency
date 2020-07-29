@@ -9,5 +9,5 @@
         mc:Ignorable="d"
         DataContext="{Binding MainWindowViewModel, Source={StaticResource ViewModelLocator}}"
         Content="{Binding PageSource}"
-        Title="Агентство трудоустройства" Height="450" Width="800" Icon="/EmploymentAgency;component/Resources/Images/Icons/Icon.ico">
+        Title="Агентство трудоустройства" Height="465" Width="800" Icon="/EmploymentAgency;component/Resources/Images/Icons/Icon.ico">
 </Window>
