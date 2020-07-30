@@ -131,6 +131,23 @@ namespace EmploymentAgency.Model.Database.Interactions
             return false;
         }
 
+        public bool AddSkill(string skillName, byte[] photo)
+        {
+            if(!ContainsSkill(skillName))
+            {
+                _context.Skill.Add(new Skill
+                {
+                    SkillName = skillName,
+                    Photo = photo
+                });
+                _context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
+        }
+
         public bool ContainsApplicant(int idApplicant)
         {
             return _context.Applicant.SingleOrDefault(a => a.IdApplicant == idApplicant) != null;
@@ -154,6 +171,11 @@ namespace EmploymentAgency.Model.Database.Interactions
         public bool ContainsOrganization(string organizationName)
         {
             return _context.Organization.SingleOrDefault(o => o.OrganizationName == organizationName) != null;
+        }
+
+        public bool ContainsSkill(string skillName)
+        {
+            return _context.Skill.SingleOrDefault(s => s.SkillName == skillName) != null;
         }
 
         public bool CorrectDataUser(string login, string password)

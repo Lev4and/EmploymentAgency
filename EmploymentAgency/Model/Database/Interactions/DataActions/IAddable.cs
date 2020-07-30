@@ -14,5 +14,7 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
         bool AddOrganization(int idSubIndustry, string organizationName, byte[] photo);
 
         bool AddOrganization(int idSubIndustry, string organizationName, byte[] photo, out Organization organization);
+
+        bool AddSkill(string skillName, byte[] photo);
     }
 }
