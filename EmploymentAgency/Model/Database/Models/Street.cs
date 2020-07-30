@@ -17,7 +17,7 @@ namespace EmploymentAgency.Model.Database.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Street()
         {
-            this.Organization = new HashSet<Organization>();
+            this.Branch = new HashSet<Branch>();
         }
     
         public int IdStreet { get; set; }
@@ -26,6 +26,6 @@ namespace EmploymentAgency.Model.Database.Models
     
         public virtual City City { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Organization> Organization { get; set; }
+        public virtual ICollection<Branch> Branch { get; set; }
     }
 }

@@ -12,22 +12,23 @@ namespace EmploymentAgency.Model.Database.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Skill
+    public partial class Branch
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Skill()
+        public Branch()
         {
-            this.NecessarySkill = new HashSet<NecessarySkill>();
-            this.PossessionSkill = new HashSet<PossessionSkill>();
+            this.Employer = new HashSet<Employer>();
         }
     
-        public int IdSkill { get; set; }
-        public string SkillName { get; set; }
-        public byte[] Photo { get; set; }
+        public int IdBranch { get; set; }
+        public int IdOrganization { get; set; }
+        public int IdStreet { get; set; }
+        public string NameHouse { get; set; }
+        public string PhoneNumber { get; set; }
     
+        public virtual Organization Organization { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<NecessarySkill> NecessarySkill { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PossessionSkill> PossessionSkill { get; set; }
+        public virtual ICollection<Employer> Employer { get; set; }
+        public virtual Street Street { get; set; }
     }
 }

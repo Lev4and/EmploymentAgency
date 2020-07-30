@@ -21,7 +21,7 @@ namespace EmploymentAgency.Model.Database.Models
         }
     
         public int IdEmployer { get; set; }
-        public int IdOrganization { get; set; }
+        public int IdBranch { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Patronymic { get; set; }
@@ -30,8 +30,8 @@ namespace EmploymentAgency.Model.Database.Models
         public System.DateTime DateOfBirth { get; set; }
         public string PhoneNumber { get; set; }
     
+        public virtual Branch Branch { get; set; }
         public virtual Gender Gender { get; set; }
-        public virtual Organization Organization { get; set; }
         public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Vacancy> Vacancy { get; set; }

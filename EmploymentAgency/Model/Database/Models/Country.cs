@@ -22,6 +22,7 @@ namespace EmploymentAgency.Model.Database.Models
     
         public int IdCountry { get; set; }
         public string CountryName { get; set; }
+        public byte[] Flag { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<City> City { get; set; }

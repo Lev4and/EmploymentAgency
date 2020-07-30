@@ -17,6 +17,8 @@ namespace EmploymentAgency.ViewModels.Locators
 
         public SupplementingInformationForManagerViewModel SupplementingInformationForManagerViewModel => _provider.GetRequiredService<SupplementingInformationForManagerViewModel>();
 
+        public AddOrganizationViewModel AddOrganizationViewModel => _provider.GetRequiredService<AddOrganizationViewModel>();
+
         public static void Init()
         {
             var services = new ServiceCollection();
@@ -26,6 +28,7 @@ namespace EmploymentAgency.ViewModels.Locators
             services.AddTransient<AuthorizationViewModel>();
             services.AddTransient<SettingsViewModel>();
             services.AddTransient<SupplementingInformationForManagerViewModel>();
+            services.AddTransient<AddOrganizationViewModel>();
 
             services.AddSingleton<PageService>();
 

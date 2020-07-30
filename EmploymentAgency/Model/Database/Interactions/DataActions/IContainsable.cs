@@ -4,6 +4,8 @@
     {
         bool ContainsApplicant(int idApplicant);
 
+        bool ContainsBranch(int idOrganization, int idStreet, string nameHouse);
+
         bool ContainsEmployer(int idEmployer);
 
         bool ContainsManager(int idManager);

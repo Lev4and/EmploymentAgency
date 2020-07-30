@@ -7,6 +7,20 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
     {
         int GetIdRole(string roleName);
 
+        Organization GetOrganization(int idOrganization);
+
+        List<City> GetCities(int idCountry);
+
+        List<Country> GetCountries();
+
         List<Gender> GetGenders();
+
+        List<Industry> GetIndustries();
+
+        List<Street> GetStreets(int idCity);
+
+        List<SubIndustry> GetSubIndustries(int idIndustry);
+
+        List<v_organizationWithoutPhoto> GetOrganizationsWithoutPhoto();
     }
 }

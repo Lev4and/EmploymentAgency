@@ -2,6 +2,7 @@
 using EmploymentAgency.Model.Database.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 
@@ -18,6 +19,25 @@ namespace EmploymentAgency.Model.Database.Interactions
             _context = new EmploymentAgencyContext(_config.ConnectionString);
 
             SetCommandTimeout();
+        }
+
+        public bool AddBranch(int idOrganization, int idStreet, string nameHouse, string phoneNumber)
+        {
+            if(!ContainsBranch(idOrganization, idStreet, nameHouse))
+            {
+                _context.Branch.Add(new Branch
+                {
+                    IdOrganization = idOrganization,
+                    IdStreet = idStreet,
+                    NameHouse = nameHouse,
+                    PhoneNumber = phoneNumber
+                });
+                _context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
         }
 
         public bool AddManager(int idUser, string name, string surname, string patronymic, int idGender, byte[] photo, DateTime dateOfBirth, string phoneNumber)
@@ -43,7 +63,7 @@ namespace EmploymentAgency.Model.Database.Interactions
             return false;
         }
 
-        public bool AddOrganization(int idSubIndustry, string organizationName, byte[] photo, int idStreet, string nameHouse, string phoneNumber)
+        public bool AddOrganization(int idSubIndustry, string organizationName, byte[] photo)
         {
             if(!ContainsOrganization(organizationName))
             {
@@ -54,9 +74,29 @@ namespace EmploymentAgency.Model.Database.Interactions
                     IdSubIndustry = idSubIndustry,
                     OrganizationName = organizationName,
                     Photo = photo,
-                    IdStreet = idStreet,
-                    NameHouse = nameHouse,
-                    PhoneNumber = phoneNumber,
+                    DateOfRegistration = now
+                });
+                _context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool AddOrganization(int idSubIndustry, string organizationName, byte[] photo, out Organization organization)
+        {
+            organization = null;
+
+            if (!ContainsOrganization(organizationName))
+            {
+                DateTime now = DateTime.Now;
+
+                organization = _context.Organization.Add(new Organization
+                {
+                    IdSubIndustry = idSubIndustry,
+                    OrganizationName = organizationName,
+                    Photo = photo,
                     DateOfRegistration = now
                 });
                 _context.SaveChanges();
@@ -70,6 +110,11 @@ namespace EmploymentAgency.Model.Database.Interactions
         public bool ContainsApplicant(int idApplicant)
         {
             return _context.Applicant.SingleOrDefault(a => a.IdApplicant == idApplicant) != null;
+        }
+
+        public bool ContainsBranch(int idOrganization, int idStreet, string nameHouse)
+        {
+            return _context.Branch.SingleOrDefault(b => b.IdOrganization == idOrganization && b.IdStreet == idStreet && b.NameHouse == nameHouse) != null;
         }
 
         public bool ContainsEmployer(int idEmployer)
@@ -99,6 +144,16 @@ namespace EmploymentAgency.Model.Database.Interactions
             return user != null;
         }
 
+        public List<City> GetCities(int idCountry)
+        {
+            return _context.City.Where(c => c.IdCountry == idCountry).AsNoTracking().ToList();
+        }
+
+        public List<Country> GetCountries()
+        {
+            return _context.Country.AsNoTracking().ToList();
+        }
+
         public List<Gender> GetGenders()
         {
             return _context.Gender.AsNoTracking().ToList();
@@ -107,6 +162,31 @@ namespace EmploymentAgency.Model.Database.Interactions
         public int GetIdRole(string roleName)
         {
             return _context.Role.Single(r => r.RoleName == roleName).IdRole;
+        }
+
+        public List<Industry> GetIndustries()
+        {
+            return _context.Industry.AsNoTracking().ToList();
+        }
+
+        public Organization GetOrganization(int idOrganization)
+        {
+            return _context.Organization.Single(o => o.IdOrganization == idOrganization);
+        }
+
+        public List<v_organizationWithoutPhoto> GetOrganizationsWithoutPhoto()
+        {
+            return _context.v_organizationWithoutPhoto.AsNoTracking().ToList();
+        }
+
+        public List<Street> GetStreets(int idCity)
+        {
+            return _context.Street.Where(s => s.IdCity == idCity).AsNoTracking().ToList();
+        }
+
+        public List<SubIndustry> GetSubIndustries(int idIndustry)
+        {
+            return _context.SubIndustry.Where(s => s.IdIndustry == idIndustry).AsNoTracking().ToList();
         }
 
         public bool NecessaryToSupplementTheInformation(int idUser)

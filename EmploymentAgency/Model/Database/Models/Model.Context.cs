@@ -20,17 +20,18 @@ namespace EmploymentAgency.Model.Database.Models
         {
         }
 
-        public EmploymentAgencyContext(string nameOrConnectionString) : base(nameOrConnectionString)
+        public EmploymentAgencyContext(string nameOrConnectionString)
+            : base(nameOrConnectionString)
         {
-
         }
-    
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
     
         public virtual DbSet<Applicant> Applicant { get; set; }
+        public virtual DbSet<Branch> Branch { get; set; }
         public virtual DbSet<City> City { get; set; }
         public virtual DbSet<Contract> Contract { get; set; }
         public virtual DbSet<Country> Country { get; set; }
@@ -66,5 +67,6 @@ namespace EmploymentAgency.Model.Database.Models
         public virtual DbSet<User> User { get; set; }
         public virtual DbSet<Vacancy> Vacancy { get; set; }
         public virtual DbSet<v_user> v_user { get; set; }
+        public virtual DbSet<v_organizationWithoutPhoto> v_organizationWithoutPhoto { get; set; }
     }
 }

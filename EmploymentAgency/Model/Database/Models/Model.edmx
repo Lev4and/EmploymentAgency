@@ -19,6 +19,16 @@
           <Property Name="PhoneNumber" Type="nvarchar" MaxLength="18" Nullable="false" />
           <Property Name="IsEmployed" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="Branch">
+          <Key>
+            <PropertyRef Name="IdBranch" />
+          </Key>
+          <Property Name="IdBranch" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdOrganization" Type="int" Nullable="false" />
+          <Property Name="IdStreet" Type="int" Nullable="false" />
+          <Property Name="NameHouse" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="18" Nullable="false" />
+        </EntityType>
         <EntityType Name="City">
           <Key>
             <PropertyRef Name="IdCity" />
@@ -43,6 +53,7 @@
           </Key>
           <Property Name="IdCountry" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CountryName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Flag" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="DrivingLicenseCategory">
           <Key>
@@ -75,7 +86,7 @@
             <PropertyRef Name="IdEmployer" />
           </Key>
           <Property Name="IdEmployer" Type="int" Nullable="false" />
-          <Property Name="IdOrganization" Type="int" Nullable="false" />
+          <Property Name="IdBranch" Type="int" Nullable="false" />
           <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Surname" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Patronymic" Type="nvarchar(max)" Nullable="false" />
@@ -177,10 +188,7 @@
           <Property Name="IdOrganization" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdSubIndustry" Type="int" Nullable="false" />
           <Property Name="OrganizationName" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Photo" Type="varbinary(max)" Nullable="false" />
-          <Property Name="IdStreet" Type="int" Nullable="false" />
-          <Property Name="NameHouse" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="18" Nullable="false" />
+          <Property Name="Photo" Type="varbinary(max)" />
           <Property Name="DateOfRegistration" Type="smalldatetime" Nullable="false" />
           <Property Name="ClosingDate" Type="smalldatetime" />
         </EntityType>
@@ -271,6 +279,7 @@
           </Key>
           <Property Name="IdSkill" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SkillName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Photo" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Street">
           <Key>
@@ -327,6 +336,21 @@
           <Property Name="ClosingDate" Type="smalldatetime" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Employment agency.dbo.v_organizationWithoutPhoto" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="v_organizationWithoutPhoto">
+          <Key>
+            <PropertyRef Name="IdOrganization" />
+            <PropertyRef Name="IdSubIndustry" />
+            <PropertyRef Name="OrganizationName" />
+            <PropertyRef Name="DateOfRegistration" />
+          </Key>
+          <Property Name="IdOrganization" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdSubIndustry" Type="int" Nullable="false" />
+          <Property Name="OrganizationName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DateOfRegistration" Type="smalldatetime" Nullable="false" />
+          <Property Name="ClosingDate" Type="smalldatetime" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
 предупреждение 6002: В таблице или представлении "Employment agency.dbo.v_user" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
         <EntityType Name="v_user">
           <Key>
@@ -367,6 +391,34 @@
             </Principal>
             <Dependent Role="Applicant">
               <PropertyRef Name="IdApplicant" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Branch_Organization">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Branch" Type="Self.Branch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="IdOrganization" />
+            </Principal>
+            <Dependent Role="Branch">
+              <PropertyRef Name="IdOrganization" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Branch_Street">
+          <End Role="Street" Type="Self.Street" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Branch" Type="Self.Branch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Street">
+              <PropertyRef Name="IdStreet" />
+            </Principal>
+            <Dependent Role="Branch">
+              <PropertyRef Name="IdStreet" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -438,6 +490,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Employer_Branch">
+          <End Role="Branch" Type="Self.Branch" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Employer" Type="Self.Employer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="IdBranch" />
+            </Principal>
+            <Dependent Role="Employer">
+              <PropertyRef Name="IdBranch" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Employer_Gender">
           <End Role="Gender" Type="Self.Gender" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -449,20 +515,6 @@
             </Principal>
             <Dependent Role="Employer">
               <PropertyRef Name="IdGender" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Employer_Organization">
-          <End Role="Organization" Type="Self.Organization" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Employer" Type="Self.Employer" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Organization">
-              <PropertyRef Name="IdOrganization" />
-            </Principal>
-            <Dependent Role="Employer">
-              <PropertyRef Name="IdOrganization" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -587,20 +639,6 @@
             </Principal>
             <Dependent Role="NecessarySkill">
               <PropertyRef Name="IdVacancy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Organization_Street">
-          <End Role="Street" Type="Self.Street" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Organization" Type="Self.Organization" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Street">
-              <PropertyRef Name="IdStreet" />
-            </Principal>
-            <Dependent Role="Organization">
-              <PropertyRef Name="IdStreet" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -952,6 +990,7 @@
         </Association>
         <EntityContainer Name="Хранилище ModelContainer">
           <EntitySet Name="Applicant" EntityType="Self.Applicant" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Branch" EntityType="Self.Branch" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Contract" EntityType="Self.Contract" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
@@ -986,6 +1025,15 @@
           <EntitySet Name="SuitableVacancy" EntityType="Self.SuitableVacancy" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Vacancy" EntityType="Self.Vacancy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="v_organizationWithoutPhoto" EntityType="Self.v_organizationWithoutPhoto" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_organizationWithoutPhoto].[IdOrganization] AS [IdOrganization], 
+    [v_organizationWithoutPhoto].[IdSubIndustry] AS [IdSubIndustry], 
+    [v_organizationWithoutPhoto].[OrganizationName] AS [OrganizationName], 
+    [v_organizationWithoutPhoto].[DateOfRegistration] AS [DateOfRegistration], 
+    [v_organizationWithoutPhoto].[ClosingDate] AS [ClosingDate]
+    FROM [dbo].[v_organizationWithoutPhoto] AS [v_organizationWithoutPhoto]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="v_user" EntityType="Self.v_user" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [v_user].[IdUser] AS [IdUser], 
@@ -1002,6 +1050,14 @@
           <AssociationSet Name="FK_Applicant_User" Association="Self.FK_Applicant_User">
             <End Role="User" EntitySet="User" />
             <End Role="Applicant" EntitySet="Applicant" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Branch_Organization" Association="Self.FK_Branch_Organization">
+            <End Role="Organization" EntitySet="Organization" />
+            <End Role="Branch" EntitySet="Branch" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Branch_Street" Association="Self.FK_Branch_Street">
+            <End Role="Street" EntitySet="Street" />
+            <End Role="Branch" EntitySet="Branch" />
           </AssociationSet>
           <AssociationSet Name="FK_City_Country" Association="Self.FK_City_Country">
             <End Role="Country" EntitySet="Country" />
@@ -1023,12 +1079,12 @@
             <End Role="Education" EntitySet="Education" />
             <End Role="EducationalActivity" EntitySet="EducationalActivity" />
           </AssociationSet>
-          <AssociationSet Name="FK_Employer_Gender" Association="Self.FK_Employer_Gender">
-            <End Role="Gender" EntitySet="Gender" />
+          <AssociationSet Name="FK_Employer_Branch" Association="Self.FK_Employer_Branch">
+            <End Role="Branch" EntitySet="Branch" />
             <End Role="Employer" EntitySet="Employer" />
           </AssociationSet>
-          <AssociationSet Name="FK_Employer_Organization" Association="Self.FK_Employer_Organization">
-            <End Role="Organization" EntitySet="Organization" />
+          <AssociationSet Name="FK_Employer_Gender" Association="Self.FK_Employer_Gender">
+            <End Role="Gender" EntitySet="Gender" />
             <End Role="Employer" EntitySet="Employer" />
           </AssociationSet>
           <AssociationSet Name="FK_Employer_User" Association="Self.FK_Employer_User">
@@ -1066,10 +1122,6 @@
           <AssociationSet Name="FK_NecessarySkill_Vacancy" Association="Self.FK_NecessarySkill_Vacancy">
             <End Role="Vacancy" EntitySet="Vacancy" />
             <End Role="NecessarySkill" EntitySet="NecessarySkill" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Organization_Street" Association="Self.FK_Organization_Street">
-            <End Role="Street" EntitySet="Street" />
-            <End Role="Organization" EntitySet="Organization" />
           </AssociationSet>
           <AssociationSet Name="FK_Organization_SubIndustry" Association="Self.FK_Organization_SubIndustry">
             <End Role="SubIndustry" EntitySet="SubIndustry" />
@@ -1199,6 +1251,19 @@
           <NavigationProperty Name="Request" Relationship="Self.FK_Request_Applicant" FromRole="Applicant" ToRole="Request" />
           <NavigationProperty Name="SuitableVacancy" Relationship="Self.FK_SuitableVacancy_Applicant" FromRole="Applicant" ToRole="SuitableVacancy" />
         </EntityType>
+        <EntityType Name="Branch">
+          <Key>
+            <PropertyRef Name="IdBranch" />
+          </Key>
+          <Property Name="IdBranch" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdOrganization" Type="Int32" Nullable="false" />
+          <Property Name="IdStreet" Type="Int32" Nullable="false" />
+          <Property Name="NameHouse" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="18" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Organization" Relationship="Self.FK_Branch_Organization" FromRole="Branch" ToRole="Organization" />
+          <NavigationProperty Name="Employer" Relationship="Self.FK_Employer_Branch" FromRole="Branch" ToRole="Employer" />
+          <NavigationProperty Name="Street" Relationship="Model.FK_Branch_Street" FromRole="Branch" ToRole="Street" />
+        </EntityType>
         <EntityType Name="City">
           <Key>
             <PropertyRef Name="IdCity" />
@@ -1227,6 +1292,7 @@
           </Key>
           <Property Name="IdCountry" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CountryName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Flag" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="City" Relationship="Self.FK_City_Country" FromRole="Country" ToRole="City" />
         </EntityType>
         <EntityType Name="DrivingLicenseCategory">
@@ -1264,7 +1330,7 @@
             <PropertyRef Name="IdEmployer" />
           </Key>
           <Property Name="IdEmployer" Type="Int32" Nullable="false" />
-          <Property Name="IdOrganization" Type="Int32" Nullable="false" />
+          <Property Name="IdBranch" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Surname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Patronymic" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
@@ -1272,8 +1338,8 @@
           <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="PhoneNumber" Type="String" MaxLength="18" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Branch" Relationship="Self.FK_Employer_Branch" FromRole="Employer" ToRole="Branch" />
           <NavigationProperty Name="Gender" Relationship="Self.FK_Employer_Gender" FromRole="Employer" ToRole="Gender" />
-          <NavigationProperty Name="Organization" Relationship="Self.FK_Employer_Organization" FromRole="Employer" ToRole="Organization" />
           <NavigationProperty Name="User" Relationship="Self.FK_Employer_User" FromRole="Employer" ToRole="User" />
           <NavigationProperty Name="Vacancy" Relationship="Self.FK_Vacancy_Employer" FromRole="Employer" ToRole="Vacancy" />
         </EntityType>
@@ -1389,14 +1455,10 @@
           <Property Name="IdOrganization" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IdSubIndustry" Type="Int32" Nullable="false" />
           <Property Name="OrganizationName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
-          <Property Name="IdStreet" Type="Int32" Nullable="false" />
-          <Property Name="NameHouse" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="PhoneNumber" Type="String" MaxLength="18" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="DateOfRegistration" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="ClosingDate" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="Employer" Relationship="Self.FK_Employer_Organization" FromRole="Organization" ToRole="Employer" />
-          <NavigationProperty Name="Street" Relationship="Self.FK_Organization_Street" FromRole="Organization" ToRole="Street" />
+          <NavigationProperty Name="Branch" Relationship="Self.FK_Branch_Organization" FromRole="Organization" ToRole="Branch" />
           <NavigationProperty Name="SubIndustry" Relationship="Self.FK_Organization_SubIndustry" FromRole="Organization" ToRole="SubIndustry" />
         </EntityType>
         <EntityType Name="PossessionDrivingLicenseCategory">
@@ -1509,6 +1571,7 @@
           </Key>
           <Property Name="IdSkill" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SkillName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="NecessarySkill" Relationship="Self.FK_NecessarySkill_Skill" FromRole="Skill" ToRole="NecessarySkill" />
           <NavigationProperty Name="PossessionSkill" Relationship="Self.FK_PossessionSkill_Skill" FromRole="Skill" ToRole="PossessionSkill" />
         </EntityType>
@@ -1520,7 +1583,7 @@
           <Property Name="IdCity" Type="Int32" Nullable="false" />
           <Property Name="StreetName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="City" Relationship="Self.FK_Street_City" FromRole="Street" ToRole="City" />
-          <NavigationProperty Name="Organization" Relationship="Self.FK_Organization_Street" FromRole="Street" ToRole="Organization" />
+          <NavigationProperty Name="Branch" Relationship="Model.FK_Branch_Street" FromRole="Street" ToRole="Branch" />
         </EntityType>
         <EntityType Name="SubIndustry">
           <Key>
@@ -1584,6 +1647,20 @@
           <NavigationProperty Name="Profession" Relationship="Self.FK_Vacancy_Profession" FromRole="Vacancy" ToRole="Profession" />
           <NavigationProperty Name="Schedule" Relationship="Self.FK_Vacancy_Schedule" FromRole="Vacancy" ToRole="Schedule" />
           <NavigationProperty Name="SuitableVacancy" Relationship="Self.FK_SuitableVacancy_Vacancy" FromRole="Vacancy" ToRole="SuitableVacancy" />
+        </EntityType>
+        <EntityType Name="v_user">
+          <Key>
+            <PropertyRef Name="IdUser" />
+            <PropertyRef Name="RoleName" />
+            <PropertyRef Name="Login" />
+            <PropertyRef Name="Password" />
+            <PropertyRef Name="DateOfRegistration" />
+          </Key>
+          <Property Name="IdUser" Type="Int32" Nullable="false" />
+          <Property Name="RoleName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Login" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateOfRegistration" Type="DateTime" Nullable="false" Precision="0" />
         </EntityType>
         <Association Name="FK_Applicant_Gender">
           <End Role="Gender" Type="Self.Gender" Multiplicity="1">
@@ -1707,6 +1784,34 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Branch_Organization">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Branch" Type="Self.Branch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="IdOrganization" />
+            </Principal>
+            <Dependent Role="Branch">
+              <PropertyRef Name="IdOrganization" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employer_Branch">
+          <End Role="Branch" Type="Self.Branch" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Employer" Type="Self.Employer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="IdBranch" />
+            </Principal>
+            <Dependent Role="Employer">
+              <PropertyRef Name="IdBranch" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_City_Country">
           <End Role="Country" Type="Self.Country" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -1800,20 +1905,6 @@
             </Principal>
             <Dependent Role="Employer">
               <PropertyRef Name="IdGender" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Employer_Organization">
-          <End Role="Organization" Type="Self.Organization" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Employer" Type="Self.Employer" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Organization">
-              <PropertyRef Name="IdOrganization" />
-            </Principal>
-            <Dependent Role="Employer">
-              <PropertyRef Name="IdOrganization" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2011,20 +2102,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Organization_Street">
-          <End Role="Street" Type="Self.Street" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Organization" Type="Self.Organization" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Street">
-              <PropertyRef Name="IdStreet" />
-            </Principal>
-            <Dependent Role="Organization">
-              <PropertyRef Name="IdStreet" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Organization_SubIndustry">
           <End Role="SubIndustry" Type="Self.SubIndustry" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -2195,6 +2272,7 @@
         </Association>
         <EntityContainer Name="EmploymentAgencyContext" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Applicant" EntityType="Self.Applicant" />
+          <EntitySet Name="Branch" EntityType="Self.Branch" />
           <EntitySet Name="City" EntityType="Self.City" />
           <EntitySet Name="Contract" EntityType="Self.Contract" />
           <EntitySet Name="Country" EntityType="Self.Country" />
@@ -2229,6 +2307,7 @@
           <EntitySet Name="SuitableVacancy" EntityType="Self.SuitableVacancy" />
           <EntitySet Name="User" EntityType="Self.User" />
           <EntitySet Name="Vacancy" EntityType="Self.Vacancy" />
+          <EntitySet Name="v_user" EntityType="Self.v_user" />
           <AssociationSet Name="FK_Applicant_Gender" Association="Self.FK_Applicant_Gender">
             <End Role="Gender" EntitySet="Gender" />
             <End Role="Applicant" EntitySet="Applicant" />
@@ -2265,6 +2344,14 @@
             <End Role="Applicant" EntitySet="Applicant" />
             <End Role="SuitableVacancy" EntitySet="SuitableVacancy" />
           </AssociationSet>
+          <AssociationSet Name="FK_Branch_Organization" Association="Self.FK_Branch_Organization">
+            <End Role="Organization" EntitySet="Organization" />
+            <End Role="Branch" EntitySet="Branch" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employer_Branch" Association="Self.FK_Employer_Branch">
+            <End Role="Branch" EntitySet="Branch" />
+            <End Role="Employer" EntitySet="Employer" />
+          </AssociationSet>
           <AssociationSet Name="FK_City_Country" Association="Self.FK_City_Country">
             <End Role="Country" EntitySet="Country" />
             <End Role="City" EntitySet="City" />
@@ -2291,10 +2378,6 @@
           </AssociationSet>
           <AssociationSet Name="FK_Employer_Gender" Association="Self.FK_Employer_Gender">
             <End Role="Gender" EntitySet="Gender" />
-            <End Role="Employer" EntitySet="Employer" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Employer_Organization" Association="Self.FK_Employer_Organization">
-            <End Role="Organization" EntitySet="Organization" />
             <End Role="Employer" EntitySet="Employer" />
           </AssociationSet>
           <AssociationSet Name="FK_Employer_User" Association="Self.FK_Employer_User">
@@ -2353,10 +2436,6 @@
             <End Role="Vacancy" EntitySet="Vacancy" />
             <End Role="NecessarySkill" EntitySet="NecessarySkill" />
           </AssociationSet>
-          <AssociationSet Name="FK_Organization_Street" Association="Self.FK_Organization_Street">
-            <End Role="Street" EntitySet="Street" />
-            <End Role="Organization" EntitySet="Organization" />
-          </AssociationSet>
           <AssociationSet Name="FK_Organization_SubIndustry" Association="Self.FK_Organization_SubIndustry">
             <End Role="SubIndustry" EntitySet="SubIndustry" />
             <End Role="Organization" EntitySet="Organization" />
@@ -2405,21 +2484,38 @@
             <End Role="Vacancy" EntitySet="Vacancy" />
             <End Role="SuitableVacancy" EntitySet="SuitableVacancy" />
           </AssociationSet>
-          <EntitySet Name="v_user" EntityType="Model.v_user" />
+          <AssociationSet Name="FK_Branch_Street" Association="Model.FK_Branch_Street">
+            <End Role="Street" EntitySet="Street" />
+            <End Role="Branch" EntitySet="Branch" />
+          </AssociationSet>
+          <EntitySet Name="v_organizationWithoutPhoto" EntityType="Model.v_organizationWithoutPhoto" />
         </EntityContainer>
-        <EntityType Name="v_user">
+        <Association Name="FK_Branch_Street">
+          <End Type="Model.Street" Role="Street" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Model.Branch" Role="Branch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Street">
+              <PropertyRef Name="IdStreet" />
+            </Principal>
+            <Dependent Role="Branch">
+              <PropertyRef Name="IdStreet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="v_organizationWithoutPhoto">
           <Key>
-            <PropertyRef Name="IdUser" />
-            <PropertyRef Name="RoleName" />
-            <PropertyRef Name="Login" />
-            <PropertyRef Name="Password" />
+            <PropertyRef Name="IdOrganization" />
+            <PropertyRef Name="IdSubIndustry" />
+            <PropertyRef Name="OrganizationName" />
             <PropertyRef Name="DateOfRegistration" />
           </Key>
-          <Property Name="IdUser" Type="Int32" Nullable="false" />
-          <Property Name="RoleName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Login" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Password" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IdOrganization" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdSubIndustry" Type="Int32" Nullable="false" />
+          <Property Name="OrganizationName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="DateOfRegistration" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ClosingDate" Type="DateTime" Precision="0" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2439,6 +2535,17 @@
                 <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
                 <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
                 <ScalarProperty Name="IsEmployed" ColumnName="IsEmployed" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Branch">
+            <EntityTypeMapping TypeName="Model.Branch">
+              <MappingFragment StoreEntitySet="Branch">
+                <ScalarProperty Name="IdBranch" ColumnName="IdBranch" />
+                <ScalarProperty Name="IdOrganization" ColumnName="IdOrganization" />
+                <ScalarProperty Name="IdStreet" ColumnName="IdStreet" />
+                <ScalarProperty Name="NameHouse" ColumnName="NameHouse" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2467,6 +2574,7 @@
               <MappingFragment StoreEntitySet="Country">
                 <ScalarProperty Name="IdCountry" ColumnName="IdCountry" />
                 <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+                <ScalarProperty Name="Flag" ColumnName="Flag" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2503,7 +2611,7 @@
             <EntityTypeMapping TypeName="Model.Employer">
               <MappingFragment StoreEntitySet="Employer">
                 <ScalarProperty Name="IdEmployer" ColumnName="IdEmployer" />
-                <ScalarProperty Name="IdOrganization" ColumnName="IdOrganization" />
+                <ScalarProperty Name="IdBranch" ColumnName="IdBranch" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Surname" ColumnName="Surname" />
                 <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
@@ -2617,9 +2725,6 @@
                 <ScalarProperty Name="IdSubIndustry" ColumnName="IdSubIndustry" />
                 <ScalarProperty Name="OrganizationName" ColumnName="OrganizationName" />
                 <ScalarProperty Name="Photo" ColumnName="Photo" />
-                <ScalarProperty Name="IdStreet" ColumnName="IdStreet" />
-                <ScalarProperty Name="NameHouse" ColumnName="NameHouse" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
                 <ScalarProperty Name="DateOfRegistration" ColumnName="DateOfRegistration" />
                 <ScalarProperty Name="ClosingDate" ColumnName="ClosingDate" />
               </MappingFragment>
@@ -2721,6 +2826,7 @@
               <MappingFragment StoreEntitySet="Skill">
                 <ScalarProperty Name="IdSkill" ColumnName="IdSkill" />
                 <ScalarProperty Name="SkillName" ColumnName="SkillName" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2786,11 +2892,22 @@
           <EntitySetMapping Name="v_user">
             <EntityTypeMapping TypeName="Model.v_user">
               <MappingFragment StoreEntitySet="v_user">
-                <ScalarProperty Name="DateOfRegistration" ColumnName="DateOfRegistration" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Login" ColumnName="Login" />
-                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
                 <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="DateOfRegistration" ColumnName="DateOfRegistration" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_organizationWithoutPhoto">
+            <EntityTypeMapping TypeName="Model.v_organizationWithoutPhoto">
+              <MappingFragment StoreEntitySet="v_organizationWithoutPhoto">
+                <ScalarProperty Name="ClosingDate" ColumnName="ClosingDate" />
+                <ScalarProperty Name="DateOfRegistration" ColumnName="DateOfRegistration" />
+                <ScalarProperty Name="OrganizationName" ColumnName="OrganizationName" />
+                <ScalarProperty Name="IdSubIndustry" ColumnName="IdSubIndustry" />
+                <ScalarProperty Name="IdOrganization" ColumnName="IdOrganization" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
