@@ -40,6 +40,30 @@ namespace EmploymentAgency.Model.Database.Interactions
             return false;
         }
 
+        public bool AddEmployer(int idUser, int idBranch, string name, string surname, string patronymic, int idGender, byte[] photo, DateTime dateOfBirth, string phoneNumber)
+        {
+            if(!ContainsEmployer(idUser))
+            {
+                _context.Employer.Add(new Employer
+                {
+                    IdEmployer = idUser,
+                    IdBranch = idBranch,
+                    Name = name,
+                    Surname = surname,
+                    Patronymic = patronymic,
+                    IdGender = idGender,
+                    Photo = photo,
+                    DateOfBirth = dateOfBirth,
+                    PhoneNumber = phoneNumber
+                });
+                _context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
+        }
+
         public bool AddManager(int idUser, string name, string surname, string patronymic, int idGender, byte[] photo, DateTime dateOfBirth, string phoneNumber)
         {
             if(!ContainsManager(idUser))
@@ -142,6 +166,11 @@ namespace EmploymentAgency.Model.Database.Interactions
             user = _context.v_user.SingleOrDefault(u => u.Login == login && u.Password == password);
 
             return user != null;
+        }
+
+        public List<v_branchSimplifiedInformation> GetBranches(int idOrganization)
+        {
+            return _context.v_branchSimplifiedInformation.Where(b => b.IdOrganization == idOrganization).AsNoTracking().ToList();
         }
 
         public List<City> GetCities(int idCountry)

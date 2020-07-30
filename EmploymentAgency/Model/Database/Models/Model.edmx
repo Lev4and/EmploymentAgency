@@ -336,6 +336,18 @@
           <Property Name="ClosingDate" Type="smalldatetime" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Employment agency.dbo.v_branchSimplifiedInformation" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="v_branchSimplifiedInformation">
+          <Key>
+            <PropertyRef Name="IdBranch" />
+            <PropertyRef Name="IdOrganization" />
+            <PropertyRef Name="Address" />
+          </Key>
+          <Property Name="IdBranch" Type="int" Nullable="false" />
+          <Property Name="IdOrganization" Type="int" Nullable="false" />
+          <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
 предупреждение 6002: В таблице или представлении "Employment agency.dbo.v_organizationWithoutPhoto" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
         <EntityType Name="v_organizationWithoutPhoto">
           <Key>
@@ -1025,6 +1037,13 @@
           <EntitySet Name="SuitableVacancy" EntityType="Self.SuitableVacancy" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Vacancy" EntityType="Self.Vacancy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="v_branchSimplifiedInformation" EntityType="Self.v_branchSimplifiedInformation" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_branchSimplifiedInformation].[IdBranch] AS [IdBranch], 
+    [v_branchSimplifiedInformation].[IdOrganization] AS [IdOrganization], 
+    [v_branchSimplifiedInformation].[Address] AS [Address]
+    FROM [dbo].[v_branchSimplifiedInformation] AS [v_branchSimplifiedInformation]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="v_organizationWithoutPhoto" EntityType="Self.v_organizationWithoutPhoto" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [v_organizationWithoutPhoto].[IdOrganization] AS [IdOrganization], 
@@ -2489,6 +2508,7 @@
             <End Role="Branch" EntitySet="Branch" />
           </AssociationSet>
           <EntitySet Name="v_organizationWithoutPhoto" EntityType="Model.v_organizationWithoutPhoto" />
+          <EntitySet Name="v_branchSimplifiedInformation" EntityType="Model.v_branchSimplifiedInformation" />
         </EntityContainer>
         <Association Name="FK_Branch_Street">
           <End Type="Model.Street" Role="Street" Multiplicity="1">
@@ -2516,6 +2536,16 @@
           <Property Name="OrganizationName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="DateOfRegistration" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="ClosingDate" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="v_branchSimplifiedInformation">
+          <Key>
+            <PropertyRef Name="IdBranch" />
+            <PropertyRef Name="IdOrganization" />
+            <PropertyRef Name="Address" />
+          </Key>
+          <Property Name="IdBranch" Type="Int32" Nullable="false" />
+          <Property Name="IdOrganization" Type="Int32" Nullable="false" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2908,6 +2938,15 @@
                 <ScalarProperty Name="OrganizationName" ColumnName="OrganizationName" />
                 <ScalarProperty Name="IdSubIndustry" ColumnName="IdSubIndustry" />
                 <ScalarProperty Name="IdOrganization" ColumnName="IdOrganization" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_branchSimplifiedInformation">
+            <EntityTypeMapping TypeName="Model.v_branchSimplifiedInformation">
+              <MappingFragment StoreEntitySet="v_branchSimplifiedInformation">
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="IdOrganization" ColumnName="IdOrganization" />
+                <ScalarProperty Name="IdBranch" ColumnName="IdBranch" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

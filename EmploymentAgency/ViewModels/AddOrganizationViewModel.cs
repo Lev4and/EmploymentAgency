@@ -26,7 +26,6 @@ namespace EmploymentAgency.ViewModels
         private string _streetName;
         private string _organizationName;
 
-        private readonly PageService _pageService;
         private QueryExecutor _executor;
 
         public int? SelectedIdIndustry
@@ -252,9 +251,9 @@ namespace EmploymentAgency.ViewModels
 
         public ObservableCollection<v_organizationWithoutPhoto> DisplayedOrganizations { get; set; }
 
-        public AddOrganizationViewModel(PageService pageService)
+        public AddOrganizationViewModel()
         {
-            _pageService = pageService;
+
         }
 
         public ICommand Loaded => new DelegateCommand(() =>

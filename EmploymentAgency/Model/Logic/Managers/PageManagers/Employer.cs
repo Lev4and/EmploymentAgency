@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using EmploymentAgency.Views.Pages;
+using System.Windows.Controls;
 
 namespace EmploymentAgency.Model.Logic.Managers.PageManagers
 {
@@ -11,7 +12,7 @@ namespace EmploymentAgency.Model.Logic.Managers.PageManagers
 
         public override Page GetPage()
         {
-            throw new System.NotImplementedException();
+            return new SupplementingInformationForEmployer();
         }
     }
 }

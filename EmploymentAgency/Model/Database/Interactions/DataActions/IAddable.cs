@@ -7,6 +7,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
     {
         bool AddBranch(int idOrganization, int idStreet, string nameHouse, string phoneNumber);
 
+        bool AddEmployer(int idUser, int idBranch, string name, string surname, string patronymic, int idGender, byte[] photo, DateTime dateOfBirth, string phoneNumber);
+
         bool AddManager(int idUser, string name, string surname, string patronymic, int idGender, byte[] photo, DateTime dateOfBirth, string phoneNumber);
 
         bool AddOrganization(int idSubIndustry, string organizationName, byte[] photo);

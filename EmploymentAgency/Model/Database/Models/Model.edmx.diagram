@@ -88,6 +88,7 @@
         <AssociationConnector Association="Model.FK_SuitableVacancy_Vacancy" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_Branch_Street" />
         <EntityTypeShape EntityType="Model.v_organizationWithoutPhoto" Width="1.5" PointX="5.375" PointY="6.75" />
+        <EntityTypeShape EntityType="Model.v_branchSimplifiedInformation" Width="1.5" PointX="7.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
