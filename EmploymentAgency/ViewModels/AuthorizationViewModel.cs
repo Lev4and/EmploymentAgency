@@ -91,7 +91,7 @@ namespace EmploymentAgency.ViewModels
                         {
                             Application.Current.Dispatcher.Invoke(() =>
                             {
-                                WindowService.ShowWindow(new AddOrganization());
+                                WindowService.ShowWindow(new AddSkill());
                             });
                         }
                     }
