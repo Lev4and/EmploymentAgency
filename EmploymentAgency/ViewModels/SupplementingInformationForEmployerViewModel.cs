@@ -172,7 +172,8 @@ namespace EmploymentAgency.ViewModels
                  SelectedIdBranch != null &&
                  (Name != null ? Name.Length > 0 : false) &&
                  (Surname != null ? Surname.Length > 0 : false) &&
-                 (Patronymic != null ? Patronymic.Length > 0 : false));
+                 (Patronymic != null ? Patronymic.Length > 0 : false) &&
+                 (PhoneNumber != null ? PhoneNumber.Length > 0 : false));
 
         public ICommand AddPhoto => new DelegateCommand(() =>
         {

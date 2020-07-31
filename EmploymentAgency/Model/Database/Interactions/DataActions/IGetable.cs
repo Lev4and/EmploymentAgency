@@ -17,6 +17,12 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         List<Industry> GetIndustries();
 
+        List<Language> GetLanguages();
+
+        List<LanguageProficiency> GetLanguageProficiencies();
+
+        List<Skill> GetSkills();
+
         List<Street> GetStreets(int idCity);
 
         List<SubIndustry> GetSubIndustries(int idIndustry);

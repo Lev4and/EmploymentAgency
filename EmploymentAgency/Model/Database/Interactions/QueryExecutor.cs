@@ -21,6 +21,29 @@ namespace EmploymentAgency.Model.Database.Interactions
             SetCommandTimeout();
         }
 
+        public bool AddApplicant(int idUser, string name, string surname, string patronymic, int idGender, byte[] photo, DateTime dateOfBirth, string phoneNumber)
+        {
+            if(!ContainsApplicant(idUser))
+            {
+                _context.Applicant.Add(new Applicant
+                {
+                    IdApplicant = idUser,
+                    Name = name,
+                    Surname = surname,
+                    Patronymic = patronymic,
+                    IdGender = idGender,
+                    Photo = photo,
+                    DateOfBirth = dateOfBirth,
+                    PhoneNumber = phoneNumber,
+                    IsEmployed = false
+                });
+
+                return true;
+            }
+
+            return false;
+        }
+
         public bool AddBranch(int idOrganization, int idStreet, string nameHouse, string phoneNumber)
         {
             if(!ContainsBranch(idOrganization, idStreet, nameHouse))
@@ -220,6 +243,16 @@ namespace EmploymentAgency.Model.Database.Interactions
             return _context.Industry.AsNoTracking().ToList();
         }
 
+        public List<LanguageProficiency> GetLanguageProficiencies()
+        {
+            return _context.LanguageProficiency.AsNoTracking().ToList();
+        }
+
+        public List<Language> GetLanguages()
+        {
+            return _context.Language.AsNoTracking().ToList();
+        }
+
         public Organization GetOrganization(int idOrganization)
         {
             return _context.Organization.Single(o => o.IdOrganization == idOrganization);
@@ -228,6 +261,11 @@ namespace EmploymentAgency.Model.Database.Interactions
         public List<v_organizationWithoutPhoto> GetOrganizationsWithoutPhoto()
         {
             return _context.v_organizationWithoutPhoto.AsNoTracking().ToList();
+        }
+
+        public List<Skill> GetSkills()
+        {
+            return _context.Skill.AsNoTracking().ToList();
         }
 
         public List<Street> GetStreets(int idCity)

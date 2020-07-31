@@ -1,8 +1,0 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:mdt="http://materialdesigninxaml.net/winfx/xaml/themes">
-    <Style x:Key="Default" TargetType="Window">
-        <Setter Property="FontStyle" Value="{StaticResource ResourceKey=Main}"/>
-        <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}"/>
-    </Style>
-</ResourceDictionary>

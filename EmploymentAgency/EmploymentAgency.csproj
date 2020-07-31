@@ -122,6 +122,7 @@
     <Compile Include="Converters\BoolToBackBool.cs" />
     <Compile Include="Converters\ArrayByteToBitmapImage.cs" />
     <Compile Include="Converters\ArrayByteToImageSource.cs" />
+    <Compile Include="Converters\BoolToCollapsedVisibility.cs" />
     <Compile Include="Converters\SelectedValueToNullableInt32.cs" />
     <Compile Include="Converters\TextToInt32.cs" />
     <Compile Include="Converters\BoolToVisibility.cs" />
@@ -288,6 +289,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ViewModels\SettingsViewModel.cs" />
+    <Compile Include="ViewModels\SupplementingInformationForApplicantViewModel.cs" />
     <Compile Include="ViewModels\SupplementingInformationForEmployerViewModel.cs" />
     <Compile Include="ViewModels\SupplementingInformationForManagerViewModel.cs" />
     <Compile Include="Views\Pages\Authorization.xaml.cs">
@@ -299,11 +301,23 @@
     <Compile Include="Views\Pages\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Pages\SupplementingInformationForApplicant.xaml.cs">
+      <DependentUpon>SupplementingInformationForApplicant.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Pages\SupplementingInformationForEmployer.xaml.cs">
       <DependentUpon>SupplementingInformationForEmployer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\SupplementingInformationForManager.xaml.cs">
       <DependentUpon>SupplementingInformationForManager.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\BlockViewKnowledgeLanguage.xaml.cs">
+      <DependentUpon>BlockViewKnowledgeLanguage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\BlockViewKnowledgeLanguages.xaml.cs">
+      <DependentUpon>BlockViewKnowledgeLanguages.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\ExpanderWithCheckBoxes.xaml.cs">
+      <DependentUpon>ExpanderWithCheckBoxes.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Windows\AddOrganization.xaml.cs">
       <DependentUpon>AddOrganization.xaml</DependentUpon>
@@ -352,7 +366,6 @@
   <ItemGroup>
     <Folder Include="Resources\Images\Interface\" />
     <Folder Include="Resources\Images\Loading\" />
-    <Folder Include="Views\UserControls\" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\Pages\Authorization.xaml">
@@ -367,6 +380,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Pages\SupplementingInformationForApplicant.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Pages\SupplementingInformationForEmployer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -375,11 +392,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Styles\Default.xaml">
+    <Page Include="Views\UserControls\BlockViewKnowledgeLanguage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Styles\Fonts.xaml">
+    <Page Include="Views\UserControls\BlockViewKnowledgeLanguages.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\ExpanderWithCheckBoxes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

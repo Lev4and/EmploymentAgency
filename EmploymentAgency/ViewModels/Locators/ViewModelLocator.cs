@@ -23,6 +23,8 @@ namespace EmploymentAgency.ViewModels.Locators
 
         public AddSkillViewModel AddSkillViewModel => _provider.GetRequiredService<AddSkillViewModel>();
 
+        public SupplementingInformationForApplicantViewModel SupplementingInformationForApplicantViewModel => _provider.GetRequiredService<SupplementingInformationForApplicantViewModel>();
+
         public static void Init()
         {
             var services = new ServiceCollection();
@@ -35,6 +37,7 @@ namespace EmploymentAgency.ViewModels.Locators
             services.AddTransient<AddOrganizationViewModel>();
             services.AddTransient<SupplementingInformationForEmployerViewModel>();
             services.AddTransient<AddSkillViewModel>();
+            services.AddTransient<SupplementingInformationForApplicantViewModel>();
 
             services.AddSingleton<PageService>();
 

@@ -5,6 +5,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 {
     public interface IAddable
     {
+        bool AddApplicant(int idUser, string name, string surname, string patronymic, int idGender, byte[] photo, DateTime dateOfBirth, string phoneNumber);
+
         bool AddBranch(int idOrganization, int idStreet, string nameHouse, string phoneNumber);
 
         bool AddEmployer(int idUser, int idBranch, string name, string surname, string patronymic, int idGender, byte[] photo, DateTime dateOfBirth, string phoneNumber);

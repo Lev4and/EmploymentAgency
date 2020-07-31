@@ -1,0 +1,271 @@
+﻿<Page x:Class="EmploymentAgency.Views.Pages.SupplementingInformationForApplicant"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mdt="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+      xmlns:local="clr-namespace:EmploymentAgency.Views.Pages"
+      xmlns:uc="clr-namespace:EmploymentAgency.Views.UserControls"
+      xmlns:c="clr-namespace:EmploymentAgency.Converters"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      DataContext="{Binding SupplementingInformationForApplicantViewModel, Source={StaticResource ViewModelLocator}}"
+      Title="Дополнение информации для соискателя" WindowTitle="Агентство трудоустройства - Дополнение информации для соискателя">
+    <Page.Resources>
+        <c:ArrayByteToImageSource x:Key="arrayByteToImageSource"/>
+        <c:SelectedValueToNullableInt32 x:Key="selectedValueToNullableInt32"/>
+    </Page.Resources>
+    <Grid>
+        <i:Interaction.Triggers>
+            <i:EventTrigger EventName="Loaded">
+                <i:InvokeCommandAction Command="{Binding Path=Loaded}"/>
+            </i:EventTrigger>
+        </i:Interaction.Triggers>
+        <ScrollViewer VerticalScrollBarVisibility="Visible">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Row="0"
+              Grid.Column="0"
+              VerticalAlignment="Center"
+              HorizontalAlignment="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0" Height="50">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="220"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <mdt:PackIcon x:Name="iconCardAccountDetailName"
+                                          Kind="CardAccountDetailsOutline"
+                                          Height="Auto"
+                                          Width="{Binding ElementName=iconCardAccountDetailName, Path=Height}"
+                                          ToolTip="Имя"/>
+                        </Grid>
+                        <Grid Grid.Column="1" Margin="5,0,0,0">
+                            <TextBox x:Name="nameTextBox"
+                                     Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                     mdt:HintAssist.Hint="Имя"
+                                     mdt:HintAssist.HelperText="Имя должно быть длиной более 0 символов"
+                                     FontSize="20"
+                                     FontWeight="Medium"
+                                     ToolTip="{Binding ElementName=nameTextBox, Path=Text}"
+                                     VerticalContentAlignment="Center"/>
+                        </Grid>
+                    </Grid>
+                    <Grid Grid.Row="1" Height="50" Margin="0,20,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="220"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <mdt:PackIcon x:Name="iconCardAccountDetailSurname"
+                                          Kind="CardAccountDetailsOutline"
+                                          Height="Auto"
+                                          Width="{Binding ElementName=iconCardAccountDetailSurname, Path=Height}"
+                                          ToolTip="Фамилия"/>
+                        </Grid>
+                        <Grid Grid.Column="1" Margin="5,0,0,0">
+                            <TextBox x:Name="surnameTextBox"
+                                     Text="{Binding Path=Surname, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                     mdt:HintAssist.Hint="Фамилия"
+                                     mdt:HintAssist.HelperText="Фамилия должна быть длиной более 0 символов"
+                                     FontSize="20"
+                                     FontWeight="Medium"
+                                     ToolTip="{Binding ElementName=surnameTextBox, Path=Text}"
+                                     VerticalContentAlignment="Center"/>
+                        </Grid>
+                    </Grid>
+                    <Grid Grid.Row="2" Height="50" Margin="0,20,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="220"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <mdt:PackIcon x:Name="iconCardAccountDetailPatronymic"
+                                          Kind="CardAccountDetailsOutline"
+                                          Height="Auto"
+                                          Width="{Binding ElementName=iconCardAccountDetailPatronymic, Path=Height}"
+                                          ToolTip="Отчество"/>
+                        </Grid>
+                        <Grid Grid.Column="1" Margin="5,0,0,0">
+                            <TextBox x:Name="patronymicTextBox"
+                             Text="{Binding Path=Patronymic, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                             mdt:HintAssist.Hint="Отчество"
+                             mdt:HintAssist.HelperText="Отчество должно быть длиной более 0 символов"
+                             FontSize="20"
+                             FontWeight="Medium"
+                             ToolTip="{Binding ElementName=patronymicTextBox, Path=Text}"
+                             VerticalContentAlignment="Center"/>
+                        </Grid>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Row="0"
+              Grid.Column="1"
+              VerticalAlignment="Center"
+              HorizontalAlignment="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0" Height="50">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="220"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <mdt:PackIcon x:Name="iconGenderMaleFemale"
+                                          Kind="GenderMaleFemale"
+                                          Height="Auto"
+                                          Width="{Binding ElementName=iconGenderMaleFemale, Path=Height}"
+                                          ToolTip="Пол"/>
+                        </Grid>
+                        <Grid Grid.Column="1" Margin="5,0,0,0">
+                            <ComboBox mdt:HintAssist.Hint="Пол"
+                                      mdt:HintAssist.HelperText="Укажите пол"
+                                      ItemsSource="{Binding Path=Genders, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                      DisplayMemberPath="GenderName"
+                                      SelectedValuePath="IdGender"
+                                      SelectedValue="{Binding Path=SelectedIdGender, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource selectedValueToNullableInt32}}"
+                                      FontSize="20"
+                                      FontWeight="Medium"/>
+                        </Grid>
+                    </Grid>
+                    <Grid Grid.Row="1" Height="50" Margin="0,20,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="220"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <mdt:PackIcon x:Name="iconCalendarRange"
+                                          Kind="CalendarRange"
+                                          Height="Auto"
+                                          Width="{Binding ElementName=iconCalendarRange, Path=Height}"
+                                          ToolTip="Дата рождения"/>
+                        </Grid>
+                        <Grid Grid.Column="1" Margin="5,0,0,0">
+                            <DatePicker Name="dateOfBirthDatePicker"
+                                        mdt:HintAssist.Hint="Дата рождения"
+                                        mdt:HintAssist.HelperText="Укажите дату рождения"
+                                        DisplayDateStart="{Binding Path=MinValueDateOfBirth, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                        DisplayDateEnd="{Binding Path=MaxValueDateOfBirth, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                        SelectedDate="{Binding Path=DateOfBirth, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                        ToolTip="{Binding ElementName=dateOfBirthDatePicker, Path=SelectedDate}"
+                                        FontSize="20"
+                                        FontWeight="Medium"/>
+                        </Grid>
+                    </Grid>
+                    <Grid Grid.Row="2" Height="50" Margin="0,20,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="220"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <mdt:PackIcon x:Name="iconPhone"
+                                          Kind="Phone"
+                                          Height="Auto"
+                                          Width="{Binding ElementName=iconPhone, Path=Height}"
+                                          ToolTip="Номер телефона"/>
+                        </Grid>
+                        <Grid Grid.Column="1" Margin="5,0,0,0">
+                            <TextBox x:Name="phoneNumberTextBox"
+                                     Text="{Binding Path=PhoneNumber, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                     mdt:HintAssist.Hint="Номер телефона"
+                                     mdt:HintAssist.HelperText="Введите номер телефона"
+                                     FontSize="20"
+                                     FontWeight="Medium"
+                                     ToolTip="{Binding ElementName=phoneNumberTextBox, Path=Text}"
+                                     VerticalContentAlignment="Center"/>
+                        </Grid>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Row="0"
+                      Grid.Column="2"
+                      Width="185" 
+                      Height="185"
+                      VerticalAlignment="Center"
+                      HorizontalAlignment="Center">
+                    <Border Width="165"
+                            Height="165"
+                            VerticalAlignment="Top"
+                            HorizontalAlignment="Left"
+                            Margin="5,5,0,0"
+                            BorderBrush="Black"
+                            BorderThickness="1,1,1,1">
+                        <Grid>
+                            <Image Stretch="Uniform"
+                                   Source="{Binding Path=Photo, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource arrayByteToImageSource}}"
+                                   ToolTip="Фото"/>
+                        </Grid>
+                    </Border>
+                    <Grid VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="40">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <mdt:PackIcon x:Name="imageRemoveIcon"
+                                          Kind="ImageRemove"
+                                          Height="40"
+                                          Width="{Binding ElementName=imageRemoveIcon, Path=Height}"
+                                          Foreground="Red">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="MouseDown">
+                                        <i:InvokeCommandAction Command="{Binding Path=RemovePhoto}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </mdt:PackIcon>
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <mdt:PackIcon x:Name="imagePlusIcon"
+                                          Kind="ImagePlus"
+                                          Height="40"
+                                          Width="{Binding ElementName=imagePlusIcon, Path=Height}"
+                                          Foreground="Lime">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="MouseDown">
+                                        <i:InvokeCommandAction Command="{Binding Path=AddPhoto}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </mdt:PackIcon>
+                        </Grid>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Row="1"
+                      Grid.ColumnSpan="3"
+                      Margin="0,20,0,0">
+                </Grid>
+                <Grid Grid.Row="2"
+                      Grid.ColumnSpan="3">
+                    <Grid VerticalAlignment="Bottom" Margin="0,0,0,5">
+                        <mdt:Badged Badge="{mdt:PackIcon Kind=ContentSaveCog}"
+                                    HorizontalAlignment="Center"
+                                    Margin="0,20,0,0">
+                            <Button Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                                    Height="50"
+                                    mdt:ButtonAssist.CornerRadius="25"
+                                    ToolTip="Сохранить изменения"
+                                    Command="{Binding Path=AddInformation}">
+                                <TextBlock Text="Сохранить изменения"/>
+                            </Button>
+                        </mdt:Badged>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</Page>
