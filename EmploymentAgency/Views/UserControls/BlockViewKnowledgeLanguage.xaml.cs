@@ -1,5 +1,6 @@
 ﻿using DevExpress.Mvvm;
 using EmploymentAgency.Model.Database.Models;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;

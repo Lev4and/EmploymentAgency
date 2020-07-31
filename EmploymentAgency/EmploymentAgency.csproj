@@ -123,6 +123,7 @@
     <Compile Include="Converters\ArrayByteToBitmapImage.cs" />
     <Compile Include="Converters\ArrayByteToImageSource.cs" />
     <Compile Include="Converters\BoolToCollapsedVisibility.cs" />
+    <Compile Include="Converters\NullableDateTimeToText.cs" />
     <Compile Include="Converters\SelectedValueToNullableInt32.cs" />
     <Compile Include="Converters\TextToInt32.cs" />
     <Compile Include="Converters\BoolToVisibility.cs" />
@@ -310,6 +311,9 @@
     <Compile Include="Views\Pages\SupplementingInformationForManager.xaml.cs">
       <DependentUpon>SupplementingInformationForManager.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserControls\BlockViewEducationalActivity.xaml.cs">
+      <DependentUpon>BlockViewEducationalActivity.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\BlockViewKnowledgeLanguage.xaml.cs">
       <DependentUpon>BlockViewKnowledgeLanguage.xaml</DependentUpon>
     </Compile>
@@ -389,6 +393,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Pages\SupplementingInformationForManager.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\BlockViewEducationalActivity.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

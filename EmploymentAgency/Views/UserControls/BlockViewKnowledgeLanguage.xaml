@@ -9,7 +9,7 @@
              xmlns:c="clr-namespace:EmploymentAgency.Converters"
              mc:Ignorable="d" 
              x:Name="_this"
-             d:DesignHeight="50" d:DesignWidth="800" MaxHeight="50">
+             d:DesignHeight="50" d:DesignWidth="550" MinHeight="50" MinWidth="550" MaxHeight="50" MaxWidth="550">
     <UserControl.Resources>
         <c:BoolToCollapsedVisibility x:Key="boolToCollapsedVisibility"/>
     </UserControl.Resources>
@@ -18,18 +18,21 @@
                 BorderBrush="Black">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="250"/>
+                    <ColumnDefinition Width="250"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
                     <Border BorderThickness="0,0,1,0"
                             BorderBrush="Black">
                         <TextBlock Text="{Binding Path=LanguageName}"
-                                   FontSize="20"
+                                   FontSize="14"
                                    FontWeight="Medium"
                                    VerticalAlignment="Center"
                                    HorizontalAlignment="Center"
+                                   Margin="10,0,10,0"
+                                   TextAlignment="Center"
+                                   TextWrapping="Wrap"
                                    DataContext="{Binding ElementName=_this, Path=Language}"/>
                     </Border>
                 </Grid>
@@ -41,7 +44,7 @@
                     <Grid Grid.Column="0"
                           Margin="10,0,10,0">
                         <TextBlock Text="{Binding Path=Designation}"
-                                   FontSize="20"
+                                   FontSize="14"
                                    FontWeight="Medium"
                                    VerticalAlignment="Center"
                                    HorizontalAlignment="Center"
@@ -50,9 +53,10 @@
                     <Grid Grid.Column="1"
                           Margin="10,0,10,0">
                         <TextBlock Text="{Binding Path=LanguageProficiencyName}"
-                                   FontSize="20"
+                                   FontSize="14"
                                    FontWeight="Medium"
                                    VerticalAlignment="Center"
+                                   TextAlignment="Center"
                                    TextWrapping="Wrap"
                                    DataContext="{Binding ElementName=_this, Path=LanguageProficiency}"/>
                     </Grid>

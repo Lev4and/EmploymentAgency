@@ -103,13 +103,13 @@
                         </Grid>
                         <Grid Grid.Column="1" Margin="5,0,0,0">
                             <TextBox x:Name="patronymicTextBox"
-                             Text="{Binding Path=Patronymic, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                             mdt:HintAssist.Hint="Отчество"
-                             mdt:HintAssist.HelperText="Отчество должно быть длиной более 0 символов"
-                             FontSize="20"
-                             FontWeight="Medium"
-                             ToolTip="{Binding ElementName=patronymicTextBox, Path=Text}"
-                             VerticalContentAlignment="Center"/>
+                                     Text="{Binding Path=Patronymic, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                     mdt:HintAssist.Hint="Отчество"
+                                     mdt:HintAssist.HelperText="Отчество должно быть длиной более 0 символов"
+                                     FontSize="20"
+                                     FontWeight="Medium"
+                                     ToolTip="{Binding ElementName=patronymicTextBox, Path=Text}"
+                                     VerticalContentAlignment="Center"/>
                         </Grid>
                     </Grid>
                 </Grid>
