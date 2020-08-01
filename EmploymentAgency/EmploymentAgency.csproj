@@ -311,6 +311,9 @@
     <Compile Include="Views\Pages\SupplementingInformationForManager.xaml.cs">
       <DependentUpon>SupplementingInformationForManager.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserControls\BlockViewEducationalActivities.xaml.cs">
+      <DependentUpon>BlockViewEducationalActivities.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\BlockViewEducationalActivity.xaml.cs">
       <DependentUpon>BlockViewEducationalActivity.xaml</DependentUpon>
     </Compile>
@@ -393,6 +396,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Pages\SupplementingInformationForManager.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\BlockViewEducationalActivities.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

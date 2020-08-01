@@ -46,23 +46,33 @@ namespace EmploymentAgency.Views.UserControls
         public static readonly DependencyProperty LanguagesProperty =
             DependencyProperty.Register("Languages", typeof(ObservableCollection<Language>), typeof(BlockViewKnowledgeLanguages), new PropertyMetadata(null));
 
-        public ObservableCollection<Language> SelectedLanguages
+        //public ObservableCollection<Language> SelectedLanguages
+        //{
+        //    get { return (ObservableCollection<Language>)GetValue(SelectedLanguagesProperty); }
+        //    set { SetValue(SelectedLanguagesProperty, value); }
+        //}
+
+        //public static readonly DependencyProperty SelectedLanguagesProperty =
+        //    DependencyProperty.Register("SelectedLanguages", typeof(ObservableCollection<Language>), typeof(BlockViewKnowledgeLanguages), new PropertyMetadata(null));
+
+        //public ObservableCollection<LanguageProficiency> SelectedLanguageProficiencies
+        //{
+        //    get { return (ObservableCollection<LanguageProficiency>)GetValue(SelectedLanguageProficienciesProperty); }
+        //    set { SetValue(SelectedLanguageProficienciesProperty, value); }
+        //}
+
+        //public static readonly DependencyProperty SelectedLanguageProficienciesProperty =
+        //    DependencyProperty.Register("SelectedLanguageProficiencies", typeof(ObservableCollection<LanguageProficiency>), typeof(BlockViewKnowledgeLanguages), new PropertyMetadata(null));
+
+        public ObservableCollection<KnowledgeLanguage> SelectedKnowledgeLanguages
         {
-            get { return (ObservableCollection<Language>)GetValue(SelectedLanguagesProperty); }
-            set { SetValue(SelectedLanguagesProperty, value); }
+            get { return (ObservableCollection<KnowledgeLanguage>)GetValue(SelectedKnowledgeLanguagesProperty); }
+            set { SetValue(SelectedKnowledgeLanguagesProperty, value); }
         }
 
-        public static readonly DependencyProperty SelectedLanguagesProperty =
-            DependencyProperty.Register("SelectedLanguages", typeof(ObservableCollection<Language>), typeof(BlockViewKnowledgeLanguages), new PropertyMetadata(null));
+        public static readonly DependencyProperty SelectedKnowledgeLanguagesProperty =
+            DependencyProperty.Register("SelectedKnowledgeLanguages", typeof(ObservableCollection<KnowledgeLanguage>), typeof(BlockViewKnowledgeLanguages), new PropertyMetadata(null));
 
-        public ObservableCollection<LanguageProficiency> SelectedLanguageProficiencies
-        {
-            get { return (ObservableCollection<LanguageProficiency>)GetValue(SelectedLanguageProficienciesProperty); }
-            set { SetValue(SelectedLanguageProficienciesProperty, value); }
-        }
-
-        public static readonly DependencyProperty SelectedLanguageProficienciesProperty =
-            DependencyProperty.Register("SelectedLanguageProficiencies", typeof(ObservableCollection<LanguageProficiency>), typeof(BlockViewKnowledgeLanguages), new PropertyMetadata(null));
 
         public ObservableCollection<LanguageProficiency> LanguageProficiencies
         {
@@ -150,13 +160,21 @@ namespace EmploymentAgency.Views.UserControls
 
         private void UpdateListSelectedValues()
         {
-            SelectedLanguages = new ObservableCollection<Language>();
-            SelectedLanguageProficiencies = new ObservableCollection<LanguageProficiency>();
+            //SelectedLanguages = new ObservableCollection<Language>();
+            //SelectedLanguageProficiencies = new ObservableCollection<LanguageProficiency>();
+
+            SelectedKnowledgeLanguages = new ObservableCollection<KnowledgeLanguage>();
 
             Items.ForEach(i =>
             {
-                SelectedLanguages.Add(i.Language);
-                SelectedLanguageProficiencies.Add(i.LanguageProficiency);
+                //SelectedLanguages.Add(i.Language);
+                //SelectedLanguageProficiencies.Add(i.LanguageProficiency);
+
+                SelectedKnowledgeLanguages.Add(new KnowledgeLanguage
+                {
+                    IdLanguage = i.Language.IdLanguage,
+                    IdLanguageProficiency = i.LanguageProficiency.IdLanguageProficiency
+                });
             });
         }
     }

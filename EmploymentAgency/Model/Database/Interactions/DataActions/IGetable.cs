@@ -13,6 +13,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         List<Country> GetCountries();
 
+        List<Education> GetEducations();
+
         List<Gender> GetGenders();
 
         List<Industry> GetIndustries();

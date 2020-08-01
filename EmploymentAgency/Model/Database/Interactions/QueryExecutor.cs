@@ -228,6 +228,11 @@ namespace EmploymentAgency.Model.Database.Interactions
             return _context.Country.AsNoTracking().ToList();
         }
 
+        public List<Education> GetEducations()
+        {
+            return _context.Education.AsNoTracking().ToList();
+        }
+
         public List<Gender> GetGenders()
         {
             return _context.Gender.AsNoTracking().ToList();

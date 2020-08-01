@@ -19,8 +19,8 @@
                 BorderBrush="Black">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1.5*"/>
                     <ColumnDefinition Width="60"/>
                 </Grid.ColumnDefinitions>
@@ -48,7 +48,7 @@
                                 </Grid>
                                 <Grid Grid.Column="1"
                                       Margin="5,0,5,0">
-                                    <TextBlock Text="{Binding ElementName=_this, Path=BeginDate, UpdateSourceTrigger=PropertyChanged, Mode=OneTime, Converter={StaticResource nullableDateTimeToText}}"
+                                    <TextBlock Text="{Binding ElementName=_this, Path=BeginDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource nullableDateTimeToText}}"
                                                TextAlignment="Center"
                                                FontWeight="Medium"
                                                FontSize="20"
@@ -72,7 +72,7 @@
                                 </Grid>
                                 <Grid Grid.Column="1"
                                       Margin="5,0,5,0">
-                                    <TextBlock Text="{Binding ElementName=_this, Path=EndDate, UpdateSourceTrigger=PropertyChanged, Mode=OneWay, Converter={StaticResource nullableDateTimeToText}}"
+                                    <TextBlock Text="{Binding ElementName=_this, Path=EndDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource nullableDateTimeToText}}"
                                                TextAlignment="Center"
                                                FontWeight="Medium"
                                                FontSize="20"
@@ -121,7 +121,7 @@
                                     <RowDefinition/>
                                 </Grid.RowDefinitions>
                                 <Grid Grid.Row="0">
-                                    <TextBlock Text="Город"
+                                    <TextBlock Text="Город/Адрес/Сайт"
                                                TextAlignment="Center"
                                                FontWeight="Medium"
                                                FontSize="12"
