@@ -265,6 +265,25 @@ namespace EmploymentAgency.Model.Database.Interactions
             return false;
         }
 
+        public bool AddUser(int idRole, string login, string password)
+        {
+            if(!ContainsUser(login))
+            {
+                _context.User.Add(new User
+                {
+                    IdRole = idRole,
+                    Login = login,
+                    Password = password,
+                    DateOfRegistration = DateTime.Now
+                });
+                _context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
+        }
+
         public bool ContainsApplicant(int idApplicant)
         {
             return _context.Applicant.SingleOrDefault(a => a.IdApplicant == idApplicant) != null;
@@ -334,6 +353,11 @@ namespace EmploymentAgency.Model.Database.Interactions
         public bool ContainsSkill(string skillName)
         {
             return _context.Skill.SingleOrDefault(s => s.SkillName == skillName) != null;
+        }
+
+        public bool ContainsUser(string login)
+        {
+            return _context.User.SingleOrDefault(u => u.Login == login) != null;
         }
 
         public bool CorrectDataUser(string login, string password)
@@ -406,6 +430,11 @@ namespace EmploymentAgency.Model.Database.Interactions
         public List<v_organizationWithoutPhoto> GetOrganizationsWithoutPhoto()
         {
             return _context.v_organizationWithoutPhoto.AsNoTracking().ToList();
+        }
+
+        public List<Role> GetRoles()
+        {
+            return _context.Role.AsNoTracking().ToList();
         }
 
         public List<Skill> GetSkills()

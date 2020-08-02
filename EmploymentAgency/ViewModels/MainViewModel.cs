@@ -20,6 +20,11 @@ namespace EmploymentAgency.ViewModels
             _pageService.ChangePage(new Authorization());
         });
 
+        public ICommand Registration => new DelegateCommand(() =>
+        {
+            _pageService.ChangePage(new Registration());
+        });
+
         public ICommand Settings => new DelegateCommand(() =>
         {
             _pageService.ChangePage(new Settings());

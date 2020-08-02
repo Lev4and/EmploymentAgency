@@ -31,6 +31,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         List<SubIndustry> GetSubIndustries(int idIndustry);
 
+        List<Role> GetRoles();
+
         List<v_branchSimplifiedInformation> GetBranches(int idOrganization);
 
         List<v_organizationWithoutPhoto> GetOrganizationsWithoutPhoto();
