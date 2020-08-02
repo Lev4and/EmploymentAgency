@@ -17,14 +17,15 @@
         </i:Interaction.Triggers>
         <GroupBox Header="Знание языков"
                   FontWeight="Medium"
-                  FontSize="24">
+                  FontSize="24"
+                  BorderThickness="3">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
-                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="70"/>
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0" MaxHeight="300">
-                    <Border BorderThickness="1,1,1,1"
+                    <Border BorderThickness="3"
                             BorderBrush="Black">
                         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
                             <Grid x:Name="grid"
@@ -34,8 +35,8 @@
                         </ScrollViewer>
                     </Border>
                 </Grid>
-                <Grid Grid.Row="1">
-                    <Border BorderThickness="1,1,1,1"
+                <Grid Grid.Row="1" Margin="0,5,0,5">
+                    <Border BorderThickness="3"
                             BorderBrush="Black">
                         <Grid>
                             <Grid.ColumnDefinitions>

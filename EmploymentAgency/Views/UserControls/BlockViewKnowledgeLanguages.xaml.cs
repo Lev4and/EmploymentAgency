@@ -19,6 +19,15 @@ namespace EmploymentAgency.Views.UserControls
     {
         private QueryExecutor _executor;
 
+        public new bool IsLoaded
+        {
+            get { return (bool)GetValue(IsLoadedProperty); }
+            set { SetValue(IsLoadedProperty, value); }
+        }
+
+        public static readonly DependencyProperty IsLoadedProperty =
+            DependencyProperty.Register("IsLoaded", typeof(bool), typeof(BlockViewKnowledgeLanguages), new PropertyMetadata(false));
+
         public int? SelectedIdLanguage
         {
             get { return (int?)GetValue(SelectedIdLanguageProperty); }
@@ -65,6 +74,9 @@ namespace EmploymentAgency.Views.UserControls
                 {
                     if(current.SelectedKnowledgeLanguages.Count > current.Items.Count)
                     {
+                        if (current.IsLoaded == false)
+                            current.Loading();
+
                         current.GenerateItems();
                     }
                 }
@@ -93,17 +105,14 @@ namespace EmploymentAgency.Views.UserControls
         {
             InitializeComponent();
 
-            _executor = new QueryExecutor();
-
             Items = new ObservableCollection<BlockViewKnowledgeLanguage>();
-
-            Languages = CollectionConverter<Language>.ConvertToObservableCollection(_executor.GetLanguages());
-            LanguageProficiencies = CollectionConverter<LanguageProficiency>.ConvertToObservableCollection(_executor.GetLanguageProficiencies());
         }
 
         public new ICommand Loaded => new DelegateCommand(() =>
         {
+            Loading();
 
+            IsLoaded = true;
         });
 
         public ICommand Add => new DelegateCommand(() =>
@@ -133,6 +142,14 @@ namespace EmploymentAgency.Views.UserControls
                 UpdateListSelectedValues();
             }
         });
+
+        private void Loading()
+        {
+            _executor = new QueryExecutor();
+
+            Languages = CollectionConverter<Language>.ConvertToObservableCollection(_executor.GetLanguages());
+            LanguageProficiencies = CollectionConverter<LanguageProficiency>.ConvertToObservableCollection(_executor.GetLanguageProficiencies());
+        }
 
         private void GenerateItems()
         {

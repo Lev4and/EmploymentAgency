@@ -22,14 +22,15 @@
         </i:Interaction.Triggers>
         <GroupBox Header="Образовательная деятельность"
                   FontWeight="Medium"
-                  FontSize="24">
+                  FontSize="24"
+                  BorderThickness="3">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="3*"/>
                     <RowDefinition Height="2*"/>
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0" MaxHeight="300">
-                    <Border BorderThickness="1,1,1,1"
+                    <Border BorderThickness="3"
                             BorderBrush="Black">
                         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
                             <Grid x:Name="grid"
@@ -41,7 +42,7 @@
                 </Grid>
                 <Grid Grid.Row="1">
                     <Grid Margin="0,5,0,5">
-                        <Border BorderThickness="1,1,1,1"
+                        <Border BorderThickness="3"
                             BorderBrush="Black">
                             <Grid>
                                 <Grid.ColumnDefinitions>
