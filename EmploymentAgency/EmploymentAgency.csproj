@@ -289,6 +289,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ViewModels\MenuViewModel.cs" />
     <Compile Include="ViewModels\RegistrationViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\SupplementingInformationForApplicantViewModel.cs" />
@@ -299,6 +300,9 @@
     </Compile>
     <Compile Include="Views\Pages\Main.xaml.cs">
       <DependentUpon>Main.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\Menu.xaml.cs">
+      <DependentUpon>Menu.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\Registration.xaml.cs">
       <DependentUpon>Registration.xaml</DependentUpon>
@@ -392,6 +396,10 @@
     <Page Include="Views\Pages\Main.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="Views\Pages\Menu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Pages\Registration.xaml">
       <SubType>Designer</SubType>

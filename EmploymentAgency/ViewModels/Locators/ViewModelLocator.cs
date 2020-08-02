@@ -28,6 +28,8 @@ namespace EmploymentAgency.ViewModels.Locators
 
         public RegistrationViewModel RegistrationViewModel => _provider.GetRequiredService<RegistrationViewModel>();
 
+        public MenuViewModel MenuViewModel => _provider.GetRequiredService<MenuViewModel>(); 
+
         public static void Init()
         {
             var services = new ServiceCollection();
@@ -42,6 +44,7 @@ namespace EmploymentAgency.ViewModels.Locators
             services.AddTransient<AddSkillViewModel>();
             services.AddTransient<SupplementingInformationForApplicantViewModel>();
             services.AddTransient<RegistrationViewModel>();
+            services.AddTransient<MenuViewModel>();
 
             services.AddSingleton<PageService>();
 
