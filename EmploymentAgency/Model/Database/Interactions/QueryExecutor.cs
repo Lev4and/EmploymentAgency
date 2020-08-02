@@ -63,6 +63,27 @@ namespace EmploymentAgency.Model.Database.Interactions
             return false;
         }
 
+        public bool AddEducationalActivity(int idApplicant, int idEducation, string nameEducationalnstitution, string address, DateTime startDate, DateTime? endDate)
+        {
+            if(!ContainsEducationalActivity(idApplicant, idEducation, nameEducationalnstitution, address, startDate, endDate))
+            {
+                _context.EducationalActivity.Add(new EducationalActivity
+                {
+                    IdApplicant = idApplicant,
+                    IdEducation = idEducation,
+                    NameEducationalnstitution = nameEducationalnstitution,
+                    Address = address,
+                    StartDate = startDate,
+                    EndDate = endDate
+                });
+                _context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
+        }
+
         public bool AddEmployer(int idUser, int idBranch, string name, string surname, string patronymic, int idGender, byte[] photo, DateTime dateOfBirth, string phoneNumber)
         {
             if(!ContainsEmployer(idUser))
@@ -80,6 +101,45 @@ namespace EmploymentAgency.Model.Database.Interactions
                     PhoneNumber = phoneNumber
                 });
                 _context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool AddKnowledgeLanguage(int idApplicant, int idLanguage, int idLanguageProficiency)
+        {
+            if(!ContainsKnowledgeLanguage(idApplicant, idLanguage, idLanguageProficiency))
+            {
+                _context.KnowledgeLanguage.Add(new KnowledgeLanguage
+                {
+                    IdApplicant = idApplicant,
+                    IdLanguage = idLanguage,
+                    IdLanguageProficiency = idLanguageProficiency
+                });
+                _context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool AddLaborActivity(int idApplicant, string organizationName, string organizationAddress, string professionName, string activity, DateTime startDate, DateTime? endDate)
+        {
+            if(!ContainsLaborActivity(idApplicant, organizationName, organizationAddress, professionName, activity, startDate, endDate))
+            {
+                _context.LaborActivity.Add(new LaborActivity
+                {
+                    IdApplicant = idApplicant,
+                    OrganizationName = organizationName,
+                    OrganizationAddress = organizationAddress,
+                    ProfessionName = professionName,
+                    Activity = activity,
+                    StartDate = startDate,
+                    EndDate = endDate
+                });
 
                 return true;
             }
@@ -154,6 +214,40 @@ namespace EmploymentAgency.Model.Database.Interactions
             return false;
         }
 
+        public bool AddPossessionDrivingLicenseCategory(int idApplicant, int idDrivingLicenseCategory)
+        {
+            if(!ContainsPossessionDrivingLicenseCategory(idApplicant, idDrivingLicenseCategory))
+            {
+                _context.PossessionDrivingLicenseCategory.Add(new PossessionDrivingLicenseCategory
+                {
+                    IdApplicant = idApplicant,
+                    IdDrivingLicenseCategory = idDrivingLicenseCategory
+                });
+                _context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool AddPossessionSkill(int idApplicant, int idSkill)
+        {
+            if(!ContainsPossessionSkill(idApplicant, idSkill))
+            {
+                _context.PossessionSkill.Add(new PossessionSkill
+                {
+                    IdApplicant = idApplicant,
+                    IdSkill = idSkill
+                });
+                _context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
+        }
+
         public bool AddSkill(string skillName, byte[] photo)
         {
             if(!ContainsSkill(skillName))
@@ -181,9 +275,40 @@ namespace EmploymentAgency.Model.Database.Interactions
             return _context.Branch.SingleOrDefault(b => b.IdOrganization == idOrganization && b.IdStreet == idStreet && b.NameHouse == nameHouse) != null;
         }
 
+        public bool ContainsEducationalActivity(int idApplicant, int idEducation, string nameEducationalnstitution, string address, DateTime startDate, DateTime? endDate)
+        {
+            return _context.EducationalActivity.SingleOrDefault(e =>
+            e.IdApplicant == idApplicant && 
+            e.IdEducation == idEducation &&
+            e.NameEducationalnstitution == nameEducationalnstitution &&
+            e.Address == address &&
+            e.StartDate == startDate &&
+            e.EndDate == endDate) != null;
+        }
+
         public bool ContainsEmployer(int idEmployer)
         {
             return _context.Employer.SingleOrDefault(e => e.IdEmployer == idEmployer) != null;
+        }
+
+        public bool ContainsKnowledgeLanguage(int idApplicant, int idLanguage, int idLanguageProficiency)
+        {
+            return _context.KnowledgeLanguage.SingleOrDefault(k =>
+            k.IdApplicant == idApplicant &&
+            k.IdLanguage == idLanguage &&
+            k.IdLanguageProficiency == idLanguageProficiency) != null;
+        }
+
+        public bool ContainsLaborActivity(int idApplicant, string organizationName, string organizationAddress, string professionName, string activity, DateTime startDate, DateTime? endDate)
+        {
+            return _context.LaborActivity.SingleOrDefault(l =>
+            l.IdApplicant == idApplicant &&
+            l.OrganizationName == organizationName &&
+            l.OrganizationAddress == organizationAddress &&
+            l.ProfessionName == professionName &&
+            l.Activity.Contains(activity) &&
+            l.StartDate == startDate &&
+            l.EndDate == endDate) != null;
         }
 
         public bool ContainsManager(int idManager)
@@ -194,6 +319,16 @@ namespace EmploymentAgency.Model.Database.Interactions
         public bool ContainsOrganization(string organizationName)
         {
             return _context.Organization.SingleOrDefault(o => o.OrganizationName == organizationName) != null;
+        }
+
+        public bool ContainsPossessionDrivingLicenseCategory(int idApplicant, int idDrivingLicenseCategory)
+        {
+            return _context.PossessionDrivingLicenseCategory.SingleOrDefault(p => p.IdApplicant == idApplicant && p.IdDrivingLicenseCategory == idDrivingLicenseCategory) != null;
+        }
+
+        public bool ContainsPossessionSkill(int idApplicant, int idSkill)
+        {
+            return _context.PossessionSkill.SingleOrDefault(p => p.IdApplicant == idApplicant && p.IdSkill == idSkill) != null;
         }
 
         public bool ContainsSkill(string skillName)
@@ -226,6 +361,11 @@ namespace EmploymentAgency.Model.Database.Interactions
         public List<Country> GetCountries()
         {
             return _context.Country.AsNoTracking().ToList();
+        }
+
+        public List<DrivingLicenseCategory> GetDrivingLicenseCategories()
+        {
+            return _context.DrivingLicenseCategory.AsNoTracking().ToList();
         }
 
         public List<Education> GetEducations()

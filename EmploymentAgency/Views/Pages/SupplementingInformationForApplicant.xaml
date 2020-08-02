@@ -28,6 +28,10 @@
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
@@ -35,9 +39,9 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Row="0"
-              Grid.Column="0"
-              VerticalAlignment="Center"
-              HorizontalAlignment="Center">
+                      Grid.Column="0"
+                      VerticalAlignment="Center"
+                      HorizontalAlignment="Center">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition/>
@@ -114,9 +118,9 @@
                     </Grid>
                 </Grid>
                 <Grid Grid.Row="0"
-              Grid.Column="1"
-              VerticalAlignment="Center"
-              HorizontalAlignment="Center">
+                      Grid.Column="1"
+                      VerticalAlignment="Center"
+                      HorizontalAlignment="Center">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition/>
@@ -247,10 +251,43 @@
                 </Grid>
                 <Grid Grid.Row="1"
                       Grid.ColumnSpan="3"
-                      Margin="0,20,0,0">
-                    <uc:BlockViewEducationalActivities Margin="10"/>
+                      Margin="0,10,0,0">
+                    <uc:BlockViewLaborActivities Margin="10"
+                                                 SelectedLaborActivities="{Binding Path=SelectedLaborActivities, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                 </Grid>
                 <Grid Grid.Row="2"
+                      Grid.ColumnSpan="3"
+                      Margin="0,10,0,0">
+                    <uc:BlockViewEducationalActivities Margin="10"
+                                                       SelectedEducationActivities="{Binding Path=SelectedEducationActivities, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                </Grid>
+                <Grid Grid.Row="3"
+                      Grid.ColumnSpan="3"
+                      Margin="0,10,0,0">
+                    <uc:BlockViewKnowledgeLanguages Margin="10"
+                                                    SelectedKnowledgeLanguages="{Binding Path=SelectedKnowledgeLanguages, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                </Grid>
+                <Grid Grid.Row="4"
+                      Grid.ColumnSpan="3"
+                      Margin="0,10,0,0">
+                    <uc:ExpanderWithCheckBoxes Margin="10"
+                                               ElementHeader="Имеющиеся навыки"
+                                               Data="{Binding Path=Skills, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                               SelectedValuePath="IdSkill"
+                                               DisplayMemberPath="SkillName"
+                                               SelectedValues="{Binding Path=SelectedSkills, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                </Grid>
+                <Grid Grid.Row="5"
+                      Grid.ColumnSpan="3"
+                      Margin="0,10,0,0">
+                    <uc:ExpanderWithCheckBoxes Margin="10"
+                                               ElementHeader="Водительские права"
+                                               Data="{Binding Path=DrivingLicenseCategories, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                               SelectedValuePath="IdDrivingLicenseCategory"
+                                               DisplayMemberPath="DrivingLicenseCategoryName"
+                                               SelectedValues="{Binding Path=SelectedDrivingLicenseCategories, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                </Grid>
+                <Grid Grid.Row="6"
                       Grid.ColumnSpan="3">
                     <Grid VerticalAlignment="Bottom" Margin="0,0,0,5">
                         <mdt:Badged Badge="{mdt:PackIcon Kind=ContentSaveCog}"

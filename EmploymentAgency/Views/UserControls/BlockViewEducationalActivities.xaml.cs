@@ -27,7 +27,20 @@ namespace EmploymentAgency.Views.UserControls
         }
 
         public static readonly DependencyProperty IsPeriodEndedProperty =
-            DependencyProperty.Register("IsPeriodEnded", typeof(bool), typeof(BlockViewEducationalActivities), new PropertyMetadata(false));
+            DependencyProperty.Register("IsPeriodEnded", typeof(bool), typeof(BlockViewEducationalActivities), new PropertyMetadata(false, IsPeriodEnded_Changed));
+
+        private static void IsPeriodEnded_Changed(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var current = d as BlockViewEducationalActivities;
+
+            if(current != null)
+            {
+                if(current.IsPeriodEnded == false)
+                {
+                    current.EndDatePeriod = null;
+                }
+            }
+        }
 
         public int? SelectedIdEducation
         {
@@ -108,7 +121,23 @@ namespace EmploymentAgency.Views.UserControls
         }
 
         public static readonly DependencyProperty SelectedEducationActivitiesProperty =
-            DependencyProperty.Register("SelectedEducationActivities", typeof(ObservableCollection<EducationalActivity>), typeof(BlockViewEducationalActivities), new PropertyMetadata(null));
+            DependencyProperty.Register("SelectedEducationActivities", typeof(ObservableCollection<EducationalActivity>), typeof(BlockViewEducationalActivities), new PropertyMetadata(null, SelectedEducationActivities_Cahnged));
+
+        private static void SelectedEducationActivities_Cahnged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var current = d as BlockViewEducationalActivities;
+
+            if(current != null)
+            {
+                if(current.Items != null && current.SelectedEducationActivities != null)
+                {
+                    if(current.SelectedEducationActivities.Count > current.Items.Count)
+                    {
+                        current.GenerateItems();
+                    }
+                }
+            }
+        }
 
         public ObservableCollection<BlockViewEducationalActivity> Items
         {
@@ -122,20 +151,22 @@ namespace EmploymentAgency.Views.UserControls
         public BlockViewEducationalActivities()
         {
             InitializeComponent();
-        }
 
-        public new ICommand Loaded => new DelegateCommand(() =>
-        {
             _executor = new QueryExecutor();
 
             Items = new ObservableCollection<BlockViewEducationalActivity>();
 
             Educations = CollectionConverter<Education>.ConvertToObservableCollection(_executor.GetEducations());
+        }
+
+        public new ICommand Loaded => new DelegateCommand(() =>
+        {
+
         });
 
         public ICommand Add => new DelegateCommand(() =>
         {
-            if(Items.Any(i => i.BeginDate == BeginDatePeriod && i.EndDate == EndDatePeriod && i.NameEducationalnstitution == NameEducationalnstitution && i.Address == Address && i.Education.IdEducation == (int)SelectedIdEducation) == false)
+            if(Items.Any(i => i.BeginDate == BeginDatePeriod && i.EndDate == (IsPeriodEnded == true ? EndDatePeriod : null) && i.NameEducationalnstitution == NameEducationalnstitution && i.Address == Address && i.Education.IdEducation == (int)SelectedIdEducation) == false)
             {
                 RenderItem();
             }
@@ -143,7 +174,8 @@ namespace EmploymentAgency.Views.UserControls
             {
                 MessageBox.Show("Нельзя добавлять повторяющиеся значения");
             }    
-        }, () => SelectedIdEducation != null &&
+        }, () => (IsPeriodEnded == true ? (EndDatePeriod != null ? BeginDatePeriod <= EndDatePeriod : false) : true) &&
+                 SelectedIdEducation != null &&
                  (NameEducationalnstitution != null ? NameEducationalnstitution.Length > 0 : false) &&
                  (Address != null ? Address.Length > 0 : false));
 
@@ -163,6 +195,30 @@ namespace EmploymentAgency.Views.UserControls
             }
         });
 
+        private void GenerateItems()
+        {
+            SelectedEducationActivities.OrderByDescending(i => i.StartDate);
+
+            for(int i = 0; i < SelectedEducationActivities.Count; i++)
+            {
+                var item = new BlockViewEducationalActivity();
+                item.Education = SelectedEducationActivities[i].Education;
+                item.BeginDate = SelectedEducationActivities[i].StartDate;
+                item.EndDate = SelectedEducationActivities[i].EndDate;
+                item.NameEducationalnstitution = SelectedEducationActivities[i].NameEducationalnstitution;
+                item.Address = SelectedEducationActivities[i].Address;
+                item.VerticalAlignment = VerticalAlignment.Top;
+                item.MinWidth = grid.ActualWidth - 20;
+                item.MaxWidth = grid.ActualWidth - 20;
+                item.Width = grid.ActualWidth - 20;
+                item.Margin = new Thickness(10, 10 + (110 * i), 10, 0);
+                item.Remove = Remove;
+                grid.Children.Add(item);
+
+                Items.Add(item);
+            }
+        }
+
         private void RenderItem()
         {
             var item = new BlockViewEducationalActivity();
@@ -172,6 +228,9 @@ namespace EmploymentAgency.Views.UserControls
             item.NameEducationalnstitution = NameEducationalnstitution;
             item.Address = Address;
             item.VerticalAlignment = VerticalAlignment.Top;
+            item.MinWidth = grid.ActualWidth - 20;
+            item.MaxWidth = grid.ActualWidth - 20;
+            item.Width = grid.ActualWidth - 20;
             item.Margin = new Thickness(10, 10 + (110 * Items.Count), 10, 0);
             item.Remove = Remove;
             grid.Children.Add(item);
@@ -179,6 +238,7 @@ namespace EmploymentAgency.Views.UserControls
             Items.Add(item);
 
             UpdateListSelectedValues();
+            MoveElements();
         }
 
         private void MoveElements()
@@ -193,6 +253,7 @@ namespace EmploymentAgency.Views.UserControls
         {
             SelectedEducationActivities = new ObservableCollection<EducationalActivity>();
 
+            Items = Items.OrderByDescending(i => i.BeginDate).ToObservableCollection();
             Items.ForEach(i =>
             {
                 SelectedEducationActivities.Add(new EducationalActivity

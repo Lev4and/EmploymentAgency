@@ -46,24 +46,6 @@ namespace EmploymentAgency.Views.UserControls
         public static readonly DependencyProperty LanguagesProperty =
             DependencyProperty.Register("Languages", typeof(ObservableCollection<Language>), typeof(BlockViewKnowledgeLanguages), new PropertyMetadata(null));
 
-        //public ObservableCollection<Language> SelectedLanguages
-        //{
-        //    get { return (ObservableCollection<Language>)GetValue(SelectedLanguagesProperty); }
-        //    set { SetValue(SelectedLanguagesProperty, value); }
-        //}
-
-        //public static readonly DependencyProperty SelectedLanguagesProperty =
-        //    DependencyProperty.Register("SelectedLanguages", typeof(ObservableCollection<Language>), typeof(BlockViewKnowledgeLanguages), new PropertyMetadata(null));
-
-        //public ObservableCollection<LanguageProficiency> SelectedLanguageProficiencies
-        //{
-        //    get { return (ObservableCollection<LanguageProficiency>)GetValue(SelectedLanguageProficienciesProperty); }
-        //    set { SetValue(SelectedLanguageProficienciesProperty, value); }
-        //}
-
-        //public static readonly DependencyProperty SelectedLanguageProficienciesProperty =
-        //    DependencyProperty.Register("SelectedLanguageProficiencies", typeof(ObservableCollection<LanguageProficiency>), typeof(BlockViewKnowledgeLanguages), new PropertyMetadata(null));
-
         public ObservableCollection<KnowledgeLanguage> SelectedKnowledgeLanguages
         {
             get { return (ObservableCollection<KnowledgeLanguage>)GetValue(SelectedKnowledgeLanguagesProperty); }
@@ -71,8 +53,23 @@ namespace EmploymentAgency.Views.UserControls
         }
 
         public static readonly DependencyProperty SelectedKnowledgeLanguagesProperty =
-            DependencyProperty.Register("SelectedKnowledgeLanguages", typeof(ObservableCollection<KnowledgeLanguage>), typeof(BlockViewKnowledgeLanguages), new PropertyMetadata(null));
+            DependencyProperty.Register("SelectedKnowledgeLanguages", typeof(ObservableCollection<KnowledgeLanguage>), typeof(BlockViewKnowledgeLanguages), new PropertyMetadata(null, SelectedKnowledgeLanguages_Changed));
 
+        private static void SelectedKnowledgeLanguages_Changed(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var current = d as BlockViewKnowledgeLanguages;
+
+            if(current != null)
+            {
+                if(current.Items != null && current.SelectedKnowledgeLanguages != null)
+                {
+                    if(current.SelectedKnowledgeLanguages.Count > current.Items.Count)
+                    {
+                        current.GenerateItems();
+                    }
+                }
+            }
+        }
 
         public ObservableCollection<LanguageProficiency> LanguageProficiencies
         {
@@ -95,16 +92,18 @@ namespace EmploymentAgency.Views.UserControls
         public BlockViewKnowledgeLanguages()
         {
             InitializeComponent();
-        }
 
-        public new ICommand Loaded => new DelegateCommand(() =>
-        {
             _executor = new QueryExecutor();
 
             Items = new ObservableCollection<BlockViewKnowledgeLanguage>();
 
             Languages = CollectionConverter<Language>.ConvertToObservableCollection(_executor.GetLanguages());
             LanguageProficiencies = CollectionConverter<LanguageProficiency>.ConvertToObservableCollection(_executor.GetLanguageProficiencies());
+        }
+
+        public new ICommand Loaded => new DelegateCommand(() =>
+        {
+
         });
 
         public ICommand Add => new DelegateCommand(() =>
@@ -135,12 +134,34 @@ namespace EmploymentAgency.Views.UserControls
             }
         });
 
+        private void GenerateItems()
+        {
+            for(int i = 0; i < SelectedKnowledgeLanguages.Count; i++)
+            {
+                var item = new BlockViewKnowledgeLanguage();
+                item.Language = Languages.Single(l => l.IdLanguage == (int)SelectedKnowledgeLanguages[i].IdLanguage);
+                item.LanguageProficiency = LanguageProficiencies.Single(l => l.IdLanguageProficiency == (int)SelectedKnowledgeLanguages[i].IdLanguageProficiency);
+                item.VerticalAlignment = VerticalAlignment.Top;
+                item.MinWidth = grid.ActualWidth - 20;
+                item.MaxWidth = grid.ActualWidth - 20;
+                item.Width = grid.ActualWidth - 20;
+                item.Margin = new Thickness(10, 10 + (60 * i), 10, 0);
+                item.Remove = Remove;
+                grid.Children.Add(item);
+
+                Items.Add(item);
+            }
+        }
+
         private void RenderItem()
         {
             var item = new BlockViewKnowledgeLanguage();
             item.Language = Languages.Single(l => l.IdLanguage == (int)SelectedIdLanguage);
             item.LanguageProficiency = LanguageProficiencies.Single(l => l.IdLanguageProficiency == (int)SelectedIdLanguageProficiency);
             item.VerticalAlignment = VerticalAlignment.Top;
+            item.MinWidth = grid.ActualWidth - 20;
+            item.MaxWidth = grid.ActualWidth - 20;
+            item.Width = grid.ActualWidth - 20;
             item.Margin = new Thickness(10, 10 + (60 * Items.Count), 10, 0);
             item.Remove = Remove;
             grid.Children.Add(item);
@@ -160,16 +181,10 @@ namespace EmploymentAgency.Views.UserControls
 
         private void UpdateListSelectedValues()
         {
-            //SelectedLanguages = new ObservableCollection<Language>();
-            //SelectedLanguageProficiencies = new ObservableCollection<LanguageProficiency>();
-
             SelectedKnowledgeLanguages = new ObservableCollection<KnowledgeLanguage>();
 
             Items.ForEach(i =>
             {
-                //SelectedLanguages.Add(i.Language);
-                //SelectedLanguageProficiencies.Add(i.LanguageProficiency);
-
                 SelectedKnowledgeLanguages.Add(new KnowledgeLanguage
                 {
                     IdLanguage = i.Language.IdLanguage,

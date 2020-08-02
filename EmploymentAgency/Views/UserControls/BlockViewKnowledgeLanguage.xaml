@@ -9,7 +9,7 @@
              xmlns:c="clr-namespace:EmploymentAgency.Converters"
              mc:Ignorable="d" 
              x:Name="_this"
-             d:DesignHeight="50" d:DesignWidth="550" MinHeight="50" MinWidth="700" MaxHeight="50" MaxWidth="700">
+             d:DesignHeight="50" d:DesignWidth="550" MinHeight="50" MaxHeight="50">
     <UserControl.Resources>
         <c:BoolToCollapsedVisibility x:Key="boolToCollapsedVisibility"/>
     </UserControl.Resources>

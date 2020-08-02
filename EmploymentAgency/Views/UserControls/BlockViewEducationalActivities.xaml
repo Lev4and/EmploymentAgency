@@ -34,7 +34,7 @@
                         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
                             <Grid x:Name="grid"
                                   VerticalAlignment="Top">
-
+                                
                             </Grid>
                         </ScrollViewer>
                     </Border>
@@ -77,7 +77,7 @@
                                                         mdt:HintAssist.Hint="Дата начала"
                                                         mdt:HintAssist.HelperText="Укажите дату начала периода"
                                                         DisplayDateStart="{Binding ElementName=_this, Path=MinDatePeriod, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                                        DisplayDateEnd="{Binding ElementName=_this, Path=MaxDatePeriod, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                                        DisplayDateEnd="{Binding ElementName=endDatePeriodDatePicker, Path=SelectedDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                                         SelectedDate="{Binding ElementName=_this, Path=BeginDatePeriod, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                                         ToolTip="{Binding ElementName=beginDatePeriodDatePicker, Path=SelectedDate}"
                                                         FontSize="12"
@@ -104,7 +104,7 @@
                                                         Name="endDatePeriodDatePicker"
                                                         mdt:HintAssist.Hint="Дата окончания"
                                                         mdt:HintAssist.HelperText="Укажите дату окончания периода"
-                                                        DisplayDateStart="{Binding ElementName=_this, Path=MinDatePeriod, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                                        DisplayDateStart="{Binding ElementName=beginDatePeriodDatePicker, Path=SelectedDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                                         DisplayDateEnd="{Binding ElementName=_this, Path=MaxDatePeriod, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                                         SelectedDate="{Binding ElementName=_this, Path=EndDatePeriod, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                                         ToolTip="{Binding ElementName=endDatePeriodDatePicker, Path=SelectedDate}"

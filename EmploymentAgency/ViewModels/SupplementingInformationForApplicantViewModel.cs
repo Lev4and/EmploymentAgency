@@ -42,6 +42,16 @@ namespace EmploymentAgency.ViewModels
 
         public ObservableCollection<object> Skills { get; set; }
 
+        public ObservableCollection<object> SelectedDrivingLicenseCategories { get; set; }
+
+        public ObservableCollection<object> DrivingLicenseCategories { get; set; }
+
+        public ObservableCollection<KnowledgeLanguage> SelectedKnowledgeLanguages { get; set; }
+
+        public ObservableCollection<EducationalActivity> SelectedEducationActivities { get; set; }
+
+        public ObservableCollection<LaborActivity> SelectedLaborActivities { get; set; }
+
         public SupplementingInformationForApplicantViewModel(PageService pageService)
         {
             _pageService = pageService;
@@ -66,14 +76,24 @@ namespace EmploymentAgency.ViewModels
 
             DateOfBirth = MaxValueDateOfBirth;
 
+            SelectedSkills = new ObservableCollection<object>();
+            SelectedDrivingLicenseCategories = new ObservableCollection<object>();
+
             Genders = CollectionConverter<Gender>.ConvertToObservableCollection(_executor.GetGenders());
             Skills = CollectionConverter<object>.ConvertToObservableCollection(CollectionConverter<Skill>.ConvertToObjectList(_executor.GetSkills()));
+            DrivingLicenseCategories = CollectionConverter<object>.ConvertToObservableCollection(CollectionConverter<DrivingLicenseCategory>.ConvertToObjectList(_executor.GetDrivingLicenseCategories()));
         });
 
         public ICommand AddInformation => new DelegateCommand(() =>
         {
             if (_executor.AddApplicant(_config.IdUser, Name, Surname, Patronymic, (int)SelectedIdGender, Photo, DateOfBirth, PhoneNumber))
             {
+                AddPossessionSkill();
+                AddPossessionDrivingLicenseCategory();
+                AddEducationalActivity();
+                AddKnowledgeLanguage();
+                AddLaborActivity();
+
                 MessageBox.Show("Успешное добавление информации");
             }
             else
@@ -103,5 +123,45 @@ namespace EmploymentAgency.ViewModels
         {
             Photo = null;
         }, () => Photo != null);
+
+        private void AddPossessionSkill()
+        {
+            for(int i = 0; i < SelectedSkills.Count; i++)
+            {
+                _executor.AddPossessionSkill(_config.IdUser, Convert.ToInt32(SelectedSkills[i]));
+            }
+        }
+
+        private void AddPossessionDrivingLicenseCategory()
+        {
+            for(int i = 0; i < SelectedDrivingLicenseCategories.Count; i++)
+            {
+                _executor.AddPossessionDrivingLicenseCategory(_config.IdUser, Convert.ToInt32(SelectedDrivingLicenseCategories[i]));
+            }
+        }
+
+        private void AddEducationalActivity()
+        {
+            for(int i = 0; i < SelectedEducationActivities.Count; i++)
+            {
+                _executor.AddEducationalActivity(_config.IdUser, SelectedEducationActivities[i].IdEducation, SelectedEducationActivities[i].NameEducationalnstitution, SelectedEducationActivities[i].Address, SelectedEducationActivities[i].StartDate, SelectedEducationActivities[i].EndDate);
+            }
+        }
+
+        private void AddKnowledgeLanguage()
+        {
+            for(int i = 0; i < SelectedKnowledgeLanguages.Count; i++)
+            {
+                _executor.AddKnowledgeLanguage(_config.IdUser, SelectedKnowledgeLanguages[i].IdLanguage, SelectedKnowledgeLanguages[i].IdLanguageProficiency);
+            }
+        }
+
+        private void AddLaborActivity()
+        {
+            for(int i = 0; i < SelectedLaborActivities.Count; i++)
+            {
+                _executor.AddLaborActivity(_config.IdUser, SelectedLaborActivities[i].OrganizationName, SelectedLaborActivities[i].OrganizationAddress, SelectedLaborActivities[i].ProfessionName, SelectedLaborActivities[i].Activity, SelectedLaborActivities[i].StartDate, SelectedLaborActivities[i].EndDate);
+            }
+        }
     }
 }

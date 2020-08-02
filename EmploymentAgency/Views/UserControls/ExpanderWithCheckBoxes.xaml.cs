@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
@@ -50,7 +51,23 @@ namespace EmploymentAgency.Views.UserControls
         }
 
         public static readonly DependencyProperty SelectedValuesProperty =
-            DependencyProperty.Register("SelectedValues", typeof(ObservableCollection<object>), typeof(ExpanderWithCheckBoxes), new PropertyMetadata(null));
+            DependencyProperty.Register("SelectedValues", typeof(ObservableCollection<object>), typeof(ExpanderWithCheckBoxes), new PropertyMetadata(null, SelectedValues_Changed));
+
+        private static void SelectedValues_Changed(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var current = d as ExpanderWithCheckBoxes;
+
+            if(current != null)
+            {
+                if(current.Items != null && current.SelectedValues != null)
+                {
+                    if(current.SelectedValues.Count > current.Items.Count)
+                    {
+
+                    }
+                }
+            }
+        }
 
         public string SelectedValuePath
         {
@@ -84,6 +101,22 @@ namespace EmploymentAgency.Views.UserControls
             InitializeComponent();
 
             Items = new List<CheckBox>();
+
+            SelectedValues = new ObservableCollection<object>();
+        }
+
+        private bool ContainsValue(object obj)
+        {
+            foreach(var value in SelectedValues)
+            {
+                var rightValue = value.GetType().GetProperty(SelectedValuePath).GetValue(value).ToString();
+                var leftValue = obj.GetType().GetProperty(SelectedValuePath).GetValue(obj).ToString();
+
+                if (rightValue == leftValue)
+                    return true;
+            }
+
+            return false;
         }
 
         private void GenerateItems()
@@ -96,7 +129,8 @@ namespace EmploymentAgency.Views.UserControls
                 checkBox.VerticalAlignment = VerticalAlignment.Top;
                 checkBox.HorizontalAlignment = HorizontalAlignment.Left;
                 checkBox.Margin = new Thickness(10, 10 + (i * 30), 0, 0);
-                checkBox.IsChecked = false;
+                //checkBox.IsChecked = SelectedValues.Contains(Data[i].GetType().GetProperty(SelectedValuePath).GetValue(Data[i]));
+                checkBox.IsChecked = ContainsValue(Data[i]);
                 checkBox.Name = $"_{Data[i].GetType().GetProperty(SelectedValuePath).GetValue(Data[i])}";
                 checkBox.Content = Data[i].GetType().GetProperty(DisplayMemberPath).GetValue(Data[i]);
                 checkBox.Checked += Item_Checked;
