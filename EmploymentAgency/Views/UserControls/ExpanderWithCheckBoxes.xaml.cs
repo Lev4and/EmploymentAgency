@@ -11,6 +11,12 @@ namespace EmploymentAgency.Views.UserControls
     /// </summary>
     public partial class ExpanderWithCheckBoxes : UserControl
     {
+        public int RatioTriggeringScroll { get; set; }
+
+        public int StartupToOutput { get; set; }
+
+        public int MuchToOutput { get; set; }
+
         public ObservableCollection<object> Data
         {
             get { return (ObservableCollection<object>)GetValue(DataProperty); }
@@ -84,6 +90,10 @@ namespace EmploymentAgency.Views.UserControls
         {
             InitializeComponent();
 
+            RatioTriggeringScroll = 80;
+            StartupToOutput = 15;
+            MuchToOutput = 5;
+
             Items = new List<CheckBoxForExpander>();
 
             SelectedValues = new ObservableCollection<object>();
@@ -99,7 +109,7 @@ namespace EmploymentAgency.Views.UserControls
         {
             Items.Clear();
 
-            for (int i = 0; i < Data.Count; i++)
+            for (int i = 0; i < (Data.Count > StartupToOutput ? StartupToOutput : Data.Count); i++)
             {
                 var checkBox = new CheckBoxForExpander();
                 checkBox.VerticalAlignment = VerticalAlignment.Top;
@@ -151,10 +161,42 @@ namespace EmploymentAgency.Views.UserControls
                 grid.Children.Clear();
         }
 
+        private void RenderContorl(UIElement control)
+        {
+            grid.Children.Add(control);
+        }
+
         private void RenderContorls()
         {
             foreach (var item in Items)
                 grid.Children.Add(item);
+        }
+
+        private void ScrollViewer_ScrollChanged(object sender, ScrollChangedEventArgs e)
+        {
+            if ((int)(e.VerticalOffset / (e.ExtentHeight - e.ViewportHeight) * 100) >= RatioTriggeringScroll)
+            {
+                if (Items.Count < Data.Count)
+                {
+                    int itemsCount = Items.Count;
+
+                    for (int i = itemsCount; i < (itemsCount + MuchToOutput < Data.Count ? itemsCount + MuchToOutput : Data.Count); i++)
+                    {
+                        var checkBox = new CheckBoxForExpander();
+                        checkBox.VerticalAlignment = VerticalAlignment.Top;
+                        checkBox.HorizontalAlignment = HorizontalAlignment.Left;
+                        checkBox.Margin = new Thickness(10, 10 + (i * 30), 0, 0);
+                        checkBox.IsChecked = ContainsValue(Data[i]);
+                        checkBox.Data = Data[i];
+                        checkBox.DisplayMemberPath = DisplayMemberPath;
+                        checkBox.SelectedValuePath = SelectedValuePath;
+                        checkBox.CheckedChanged += CheckBox_CheckedChanged;
+                        Items.Add(checkBox);
+
+                        RenderContorl(checkBox);
+                    }
+                }
+            }
         }
     }
 }

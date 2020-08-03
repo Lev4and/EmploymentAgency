@@ -62,12 +62,14 @@ namespace EmploymentAgency.ViewModels
                 if (_selectedIdCountry != null)
                 {
                     UpdateCities();
+                    UpdateDisplayedCities();
 
                     Streets = null;
                 }
                 else
                 {
                     Cities = null;
+                    DisplayedCities = null;
                 }
             }
         }
@@ -196,6 +198,11 @@ namespace EmploymentAgency.ViewModels
                         StreetName = "";
                     }
                 }
+
+                if (Countries != null)
+                {
+                    UpdateDisplayedCountries();
+                }
             }
         }
 
@@ -215,6 +222,11 @@ namespace EmploymentAgency.ViewModels
 
                         StreetName = "";
                     }
+                }
+
+                if (Cities != null)
+                {
+                    UpdateDisplayedCities();
                 }
             }
         }
@@ -251,7 +263,11 @@ namespace EmploymentAgency.ViewModels
 
         public ObservableCollection<Country> Countries { get; set; }
 
+        public ObservableCollection<Country> DisplayedCountries { get; set; }
+
         public ObservableCollection<City> Cities { get; set; }
+
+        public ObservableCollection<City> DisplayedCities { get; set; }
 
         public ObservableCollection<v_organizationWithoutPhoto> Organizations { get; set; }
 
@@ -280,7 +296,6 @@ namespace EmploymentAgency.ViewModels
             IndustryName = "";
             NameSubIndustry = "";
             OrganizationName = "";
-            CountryName = "";
             CityName = "";
             NameHouse = "";
             PhoneNumber = "";
@@ -293,6 +308,8 @@ namespace EmploymentAgency.ViewModels
 
             Industries = new ObservableCollection<Industry>(_executor.GetIndustries());
             Countries = new ObservableCollection<Country>(_executor.GetCountries());
+
+            CountryName = "";
 
             UpdateOrganizations();
             UpdateDisplayedOrganizations();
@@ -373,6 +390,16 @@ namespace EmploymentAgency.ViewModels
         private void UpdateOrganizations()
         {
             Organizations = new ObservableCollection<v_organizationWithoutPhoto>(_executor.GetOrganizationsWithoutPhoto());
+        }
+
+        private void UpdateDisplayedCountries()
+        {
+            DisplayedCountries = new ObservableCollection<Country>(Countries.Where(c => c.CountryName.ToLower().StartsWith(CountryName.ToLower())).Take(100).ToList());
+        }
+
+        private void UpdateDisplayedCities()
+        {
+            DisplayedCities = new ObservableCollection<City>(Cities.Where(c => c.CityName.ToLower().StartsWith(CityName.ToLower())).Take(100).ToList());
         }
 
         private void UpdateDisplayedStreets()

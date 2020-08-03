@@ -19,7 +19,7 @@
                            FontSize="20"
                            FontWeight="Medium"/>
             </Expander.Header>
-            <ScrollViewer HorizontalScrollBarVisibility="Visible">
+            <ScrollViewer HorizontalScrollBarVisibility="Visible" ScrollChanged="ScrollViewer_ScrollChanged">
                 <Grid Name="grid" Background="#FFE5E5E5"/>
             </ScrollViewer>
         </Expander>
