@@ -45,9 +45,9 @@
                 <Button Style="{StaticResource MaterialDesignRaisedDarkButton}"
                         Height="50"
                         mdt:ButtonAssist.CornerRadius="25"
-                        ToolTip="Настройки"
-                        Command="{Binding Path=Settings}">
-                    <TextBlock Text="Настройки"/>
+                        ToolTip="Регистрация"
+                        Command="{Binding Path=Registration}">
+                    <TextBlock Text="Регистрация"/>
                 </Button>
             </Grid>
             <Grid Grid.Row="2"
@@ -55,9 +55,9 @@
                 <Button Style="{StaticResource MaterialDesignRaisedDarkButton}"
                         Height="50"
                         mdt:ButtonAssist.CornerRadius="25"
-                        ToolTip="Регистрация"
-                        Command="{Binding Path=Registration}">
-                    <TextBlock Text="Регистрация"/>
+                        ToolTip="Настройки"
+                        Command="{Binding Path=Settings}">
+                    <TextBlock Text="Настройки"/>
                 </Button>
             </Grid>
             <Grid Grid.Row="3"
