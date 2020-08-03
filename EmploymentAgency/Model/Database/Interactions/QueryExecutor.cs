@@ -21,7 +21,7 @@ namespace EmploymentAgency.Model.Database.Interactions
             SetCommandTimeout();
         }
 
-        public bool AddApplicant(int idUser, string name, string surname, string patronymic, int idGender, byte[] photo, DateTime dateOfBirth, string phoneNumber)
+        public bool AddApplicant(int idUser, string name, string surname, string patronymic, int idGender, byte[] photo, DateTime dateOfBirth, string phoneNumber, int idStreet, string nameHouse, string apartment)
         {
             if(!ContainsApplicant(idUser))
             {
@@ -35,6 +35,9 @@ namespace EmploymentAgency.Model.Database.Interactions
                     Photo = photo,
                     DateOfBirth = dateOfBirth,
                     PhoneNumber = phoneNumber,
+                    IdStreet = idStreet,
+                    NameHouse = nameHouse,
+                    Apartment = apartment,
                     IsEmployed = false
                 });
 
