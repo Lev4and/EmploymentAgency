@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Хранилище Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Applicant">
           <Key>
             <PropertyRef Name="IdApplicant" />
@@ -17,6 +17,9 @@
           <Property Name="Photo" Type="varbinary(max)" />
           <Property Name="DateOfBirth" Type="date" Nullable="false" />
           <Property Name="PhoneNumber" Type="nvarchar" MaxLength="18" Nullable="false" />
+          <Property Name="IdStreet" Type="int" Nullable="false" />
+          <Property Name="NameHouse" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Apartment" Type="nvarchar(max)" />
           <Property Name="IsEmployed" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Branch">
@@ -392,6 +395,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Applicant_Street">
+          <End Role="Street" Type="Self.Street" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Applicant" Type="Self.Applicant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Street">
+              <PropertyRef Name="IdStreet" />
+            </Principal>
+            <Dependent Role="Applicant">
+              <PropertyRef Name="IdStreet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Applicant_User">
           <End Role="User" Type="Self.User" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -545,7 +562,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_KnowledgeLanguage_Applicant">
-          <End Role="Applicant" Type="Self.Applicant" Multiplicity="1" />
+          <End Role="Applicant" Type="Self.Applicant" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="KnowledgeLanguage" Type="Self.KnowledgeLanguage" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Applicant">
@@ -1066,6 +1085,10 @@
             <End Role="Gender" EntitySet="Gender" />
             <End Role="Applicant" EntitySet="Applicant" />
           </AssociationSet>
+          <AssociationSet Name="FK_Applicant_Street" Association="Self.FK_Applicant_Street">
+            <End Role="Street" EntitySet="Street" />
+            <End Role="Applicant" EntitySet="Applicant" />
+          </AssociationSet>
           <AssociationSet Name="FK_Applicant_User" Association="Self.FK_Applicant_User">
             <End Role="User" EntitySet="User" />
             <End Role="Applicant" EntitySet="Applicant" />
@@ -1243,7 +1266,8 @@
             <End Role="Vacancy" EntitySet="Vacancy" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1259,8 +1283,12 @@
           <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="PhoneNumber" Type="String" MaxLength="18" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdStreet" Type="Int32" Nullable="false" />
+          <Property Name="NameHouse" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Apartment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="IsEmployed" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Gender" Relationship="Self.FK_Applicant_Gender" FromRole="Applicant" ToRole="Gender" />
+          <NavigationProperty Name="Street" Relationship="Self.FK_Applicant_Street" FromRole="Applicant" ToRole="Street" />
           <NavigationProperty Name="User" Relationship="Self.FK_Applicant_User" FromRole="Applicant" ToRole="User" />
           <NavigationProperty Name="EducationalActivity" Relationship="Self.FK_EducationalActivity_Applicant" FromRole="Applicant" ToRole="EducationalActivity" />
           <NavigationProperty Name="KnowledgeLanguage" Relationship="Self.FK_KnowledgeLanguage_Applicant" FromRole="Applicant" ToRole="KnowledgeLanguage" />
@@ -1280,8 +1308,8 @@
           <Property Name="NameHouse" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="PhoneNumber" Type="String" MaxLength="18" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Organization" Relationship="Self.FK_Branch_Organization" FromRole="Branch" ToRole="Organization" />
+          <NavigationProperty Name="Street" Relationship="Self.FK_Branch_Street" FromRole="Branch" ToRole="Street" />
           <NavigationProperty Name="Employer" Relationship="Self.FK_Employer_Branch" FromRole="Branch" ToRole="Employer" />
-          <NavigationProperty Name="Street" Relationship="Model.FK_Branch_Street" FromRole="Branch" ToRole="Street" />
         </EntityType>
         <EntityType Name="City">
           <Key>
@@ -1601,8 +1629,9 @@
           <Property Name="IdStreet" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IdCity" Type="Int32" Nullable="false" />
           <Property Name="StreetName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Applicant" Relationship="Self.FK_Applicant_Street" FromRole="Street" ToRole="Applicant" />
+          <NavigationProperty Name="Branch" Relationship="Self.FK_Branch_Street" FromRole="Street" ToRole="Branch" />
           <NavigationProperty Name="City" Relationship="Self.FK_Street_City" FromRole="Street" ToRole="City" />
-          <NavigationProperty Name="Branch" Relationship="Model.FK_Branch_Street" FromRole="Street" ToRole="Branch" />
         </EntityType>
         <EntityType Name="SubIndustry">
           <Key>
@@ -1667,6 +1696,29 @@
           <NavigationProperty Name="Schedule" Relationship="Self.FK_Vacancy_Schedule" FromRole="Vacancy" ToRole="Schedule" />
           <NavigationProperty Name="SuitableVacancy" Relationship="Self.FK_SuitableVacancy_Vacancy" FromRole="Vacancy" ToRole="SuitableVacancy" />
         </EntityType>
+        <EntityType Name="v_branchSimplifiedInformation">
+          <Key>
+            <PropertyRef Name="IdBranch" />
+            <PropertyRef Name="IdOrganization" />
+            <PropertyRef Name="Address" />
+          </Key>
+          <Property Name="IdBranch" Type="Int32" Nullable="false" />
+          <Property Name="IdOrganization" Type="Int32" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="v_organizationWithoutPhoto">
+          <Key>
+            <PropertyRef Name="IdOrganization" />
+            <PropertyRef Name="IdSubIndustry" />
+            <PropertyRef Name="OrganizationName" />
+            <PropertyRef Name="DateOfRegistration" />
+          </Key>
+          <Property Name="IdOrganization" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdSubIndustry" Type="Int32" Nullable="false" />
+          <Property Name="OrganizationName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateOfRegistration" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ClosingDate" Type="DateTime" Precision="0" />
+        </EntityType>
         <EntityType Name="v_user">
           <Key>
             <PropertyRef Name="IdUser" />
@@ -1692,6 +1744,20 @@
             </Principal>
             <Dependent Role="Applicant">
               <PropertyRef Name="IdGender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Applicant_Street">
+          <End Role="Street" Type="Self.Street" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Applicant" Type="Self.Applicant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Street">
+              <PropertyRef Name="IdStreet" />
+            </Principal>
+            <Dependent Role="Applicant">
+              <PropertyRef Name="IdStreet" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1724,7 +1790,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_KnowledgeLanguage_Applicant">
-          <End Role="Applicant" Type="Self.Applicant" Multiplicity="1" />
+          <End Role="Applicant" Type="Self.Applicant" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="KnowledgeLanguage" Type="Self.KnowledgeLanguage" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Applicant">
@@ -1814,6 +1882,20 @@
             </Principal>
             <Dependent Role="Branch">
               <PropertyRef Name="IdOrganization" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Branch_Street">
+          <End Role="Street" Type="Self.Street" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Branch" Type="Self.Branch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Street">
+              <PropertyRef Name="IdStreet" />
+            </Principal>
+            <Dependent Role="Branch">
+              <PropertyRef Name="IdStreet" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2326,9 +2408,15 @@
           <EntitySet Name="SuitableVacancy" EntityType="Self.SuitableVacancy" />
           <EntitySet Name="User" EntityType="Self.User" />
           <EntitySet Name="Vacancy" EntityType="Self.Vacancy" />
+          <EntitySet Name="v_branchSimplifiedInformation" EntityType="Self.v_branchSimplifiedInformation" />
+          <EntitySet Name="v_organizationWithoutPhoto" EntityType="Self.v_organizationWithoutPhoto" />
           <EntitySet Name="v_user" EntityType="Self.v_user" />
           <AssociationSet Name="FK_Applicant_Gender" Association="Self.FK_Applicant_Gender">
             <End Role="Gender" EntitySet="Gender" />
+            <End Role="Applicant" EntitySet="Applicant" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Applicant_Street" Association="Self.FK_Applicant_Street">
+            <End Role="Street" EntitySet="Street" />
             <End Role="Applicant" EntitySet="Applicant" />
           </AssociationSet>
           <AssociationSet Name="FK_Applicant_User" Association="Self.FK_Applicant_User">
@@ -2365,6 +2453,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_Branch_Organization" Association="Self.FK_Branch_Organization">
             <End Role="Organization" EntitySet="Organization" />
+            <End Role="Branch" EntitySet="Branch" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Branch_Street" Association="Self.FK_Branch_Street">
+            <End Role="Street" EntitySet="Street" />
             <End Role="Branch" EntitySet="Branch" />
           </AssociationSet>
           <AssociationSet Name="FK_Employer_Branch" Association="Self.FK_Employer_Branch">
@@ -2503,50 +2595,7 @@
             <End Role="Vacancy" EntitySet="Vacancy" />
             <End Role="SuitableVacancy" EntitySet="SuitableVacancy" />
           </AssociationSet>
-          <AssociationSet Name="FK_Branch_Street" Association="Model.FK_Branch_Street">
-            <End Role="Street" EntitySet="Street" />
-            <End Role="Branch" EntitySet="Branch" />
-          </AssociationSet>
-          <EntitySet Name="v_organizationWithoutPhoto" EntityType="Model.v_organizationWithoutPhoto" />
-          <EntitySet Name="v_branchSimplifiedInformation" EntityType="Model.v_branchSimplifiedInformation" />
         </EntityContainer>
-        <Association Name="FK_Branch_Street">
-          <End Type="Model.Street" Role="Street" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="Model.Branch" Role="Branch" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Street">
-              <PropertyRef Name="IdStreet" />
-            </Principal>
-            <Dependent Role="Branch">
-              <PropertyRef Name="IdStreet" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="v_organizationWithoutPhoto">
-          <Key>
-            <PropertyRef Name="IdOrganization" />
-            <PropertyRef Name="IdSubIndustry" />
-            <PropertyRef Name="OrganizationName" />
-            <PropertyRef Name="DateOfRegistration" />
-          </Key>
-          <Property Name="IdOrganization" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IdSubIndustry" Type="Int32" Nullable="false" />
-          <Property Name="OrganizationName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="DateOfRegistration" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="ClosingDate" Type="DateTime" Precision="0" />
-        </EntityType>
-        <EntityType Name="v_branchSimplifiedInformation">
-          <Key>
-            <PropertyRef Name="IdBranch" />
-            <PropertyRef Name="IdOrganization" />
-            <PropertyRef Name="Address" />
-          </Key>
-          <Property Name="IdBranch" Type="Int32" Nullable="false" />
-          <Property Name="IdOrganization" Type="Int32" Nullable="false" />
-          <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2564,6 +2613,9 @@
                 <ScalarProperty Name="Photo" ColumnName="Photo" />
                 <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
                 <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="IdStreet" ColumnName="IdStreet" />
+                <ScalarProperty Name="NameHouse" ColumnName="NameHouse" />
+                <ScalarProperty Name="Apartment" ColumnName="Apartment" />
                 <ScalarProperty Name="IsEmployed" ColumnName="IsEmployed" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -2919,6 +2971,26 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="v_branchSimplifiedInformation">
+            <EntityTypeMapping TypeName="Model.v_branchSimplifiedInformation">
+              <MappingFragment StoreEntitySet="v_branchSimplifiedInformation">
+                <ScalarProperty Name="IdBranch" ColumnName="IdBranch" />
+                <ScalarProperty Name="IdOrganization" ColumnName="IdOrganization" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_organizationWithoutPhoto">
+            <EntityTypeMapping TypeName="Model.v_organizationWithoutPhoto">
+              <MappingFragment StoreEntitySet="v_organizationWithoutPhoto">
+                <ScalarProperty Name="IdOrganization" ColumnName="IdOrganization" />
+                <ScalarProperty Name="IdSubIndustry" ColumnName="IdSubIndustry" />
+                <ScalarProperty Name="OrganizationName" ColumnName="OrganizationName" />
+                <ScalarProperty Name="DateOfRegistration" ColumnName="DateOfRegistration" />
+                <ScalarProperty Name="ClosingDate" ColumnName="ClosingDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="v_user">
             <EntityTypeMapping TypeName="Model.v_user">
               <MappingFragment StoreEntitySet="v_user">
@@ -2927,26 +2999,6 @@
                 <ScalarProperty Name="Login" ColumnName="Login" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="DateOfRegistration" ColumnName="DateOfRegistration" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="v_organizationWithoutPhoto">
-            <EntityTypeMapping TypeName="Model.v_organizationWithoutPhoto">
-              <MappingFragment StoreEntitySet="v_organizationWithoutPhoto">
-                <ScalarProperty Name="ClosingDate" ColumnName="ClosingDate" />
-                <ScalarProperty Name="DateOfRegistration" ColumnName="DateOfRegistration" />
-                <ScalarProperty Name="OrganizationName" ColumnName="OrganizationName" />
-                <ScalarProperty Name="IdSubIndustry" ColumnName="IdSubIndustry" />
-                <ScalarProperty Name="IdOrganization" ColumnName="IdOrganization" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="v_branchSimplifiedInformation">
-            <EntityTypeMapping TypeName="Model.v_branchSimplifiedInformation">
-              <MappingFragment StoreEntitySet="v_branchSimplifiedInformation">
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="IdOrganization" ColumnName="IdOrganization" />
-                <ScalarProperty Name="IdBranch" ColumnName="IdBranch" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -66,8 +66,8 @@ namespace EmploymentAgency.Model.Database.Models
         public virtual DbSet<SuitableVacancy> SuitableVacancy { get; set; }
         public virtual DbSet<User> User { get; set; }
         public virtual DbSet<Vacancy> Vacancy { get; set; }
-        public virtual DbSet<v_user> v_user { get; set; }
-        public virtual DbSet<v_organizationWithoutPhoto> v_organizationWithoutPhoto { get; set; }
         public virtual DbSet<v_branchSimplifiedInformation> v_branchSimplifiedInformation { get; set; }
+        public virtual DbSet<v_organizationWithoutPhoto> v_organizationWithoutPhoto { get; set; }
+        public virtual DbSet<v_user> v_user { get; set; }
     }
 }

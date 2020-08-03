@@ -4,27 +4,27 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="1758c146d9814a05b3a4448d24b642b3" Name="Diagram1">
-        <EntityTypeShape EntityType="Model.Applicant" Width="1.5" PointX="3" PointY="18.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Branch" Width="1.5" PointX="3.75" PointY="30.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.City" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+      <Diagram DiagramId="afa9110115004d90a4974167aa4de57b" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.Applicant" Width="1.5" PointX="3" PointY="18.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Branch" Width="1.5" PointX="3.75" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.City" Width="1.5" PointX="1.5" PointY="25.875" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.Contract" Width="1.5" PointX="16.5" PointY="19.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Country" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.DrivingLicenseCategory" Width="1.5" PointX="6" PointY="13" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Education" Width="1.5" PointX="6" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Country" Width="1.5" PointX="1.5" PointY="29" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.DrivingLicenseCategory" Width="1.5" PointX="6" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Education" Width="1.5" PointX="6" PointY="30" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.EducationalActivity" Width="1.5" PointX="8.25" PointY="19.5" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.Employer" Width="1.5" PointX="6" PointY="19.125" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.EmploymentType" Width="1.5" PointX="12" PointY="14.25" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.Experience" Width="1.5" PointX="12" PointY="10.875" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.Gender" Width="1.5" PointX="0.75" PointY="19.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Industry" Width="1.5" PointX="1.5" PointY="24" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Industry" Width="1.5" PointX="1.5" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.KnowledgeLanguage" Width="1.5" PointX="5.25" PointY="15.625" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.LaborActivity" Width="1.5" PointX="5.25" PointY="26.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Language" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.LanguageProficiency" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Language" Width="1.5" PointX="3" PointY="31.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.LanguageProficiency" Width="1.5" PointX="3" PointY="34.125" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.Manager" Width="1.5" PointX="3" PointY="14.25" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.NecessarySkill" Width="1.5" PointX="19.5" PointY="19.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Organization" Width="1.5" PointX="1.5" PointY="30.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Organization" Width="1.5" PointX="1.5" PointY="7.625" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.PossessionDrivingLicenseCategory" Width="1.5" PointX="8.25" PointY="15.875" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.PossessionSkill" Width="1.5" PointX="8.25" PointY="23.875" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.PreferredEmploymentType" Width="1.5" PointX="16.5" PointY="16.875" IsExpanded="true" />
@@ -32,17 +32,20 @@
         <EntityTypeShape EntityType="Model.Profession" Width="1.5" PointX="12" PointY="27.375" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.ProfessionCategory" Width="1.5" PointX="9.75" PointY="27.625" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.Request" Width="1.5" PointX="11.25" PointY="18.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.RequestStatus" Width="1.5" PointX="9" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.RequestStatus" Width="1.5" PointX="9" PointY="13" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.Role" Width="1.5" PointX="1.5" PointY="11" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.Schedule" Width="1.5" PointX="12" PointY="24.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Skill" Width="1.5" PointX="6" PointY="29.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Street" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.SubIndustry" Width="1.5" PointX="1.5" PointY="26.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.SuitableVacancy" Width="1.5" PointX="8.25" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Skill" Width="1.5" PointX="6" PointY="32.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Street" Width="1.5" PointX="0.75" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.SubIndustry" Width="1.5" PointX="1.5" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.SuitableVacancy" Width="1.5" PointX="5.25" PointY="11.625" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.User" Width="1.5" PointX="0.75" PointY="14.5" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.Vacancy" Width="1.5" PointX="14.25" PointY="18.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.v_user" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.v_branchSimplifiedInformation" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.v_organizationWithoutPhoto" Width="1.5" PointX="3.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.v_user" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
         <AssociationConnector Association="Model.FK_Applicant_Gender" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Applicant_Street" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_Applicant_User" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_EducationalActivity_Applicant" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_KnowledgeLanguage_Applicant" ManuallyRouted="false" />
@@ -52,6 +55,7 @@
         <AssociationConnector Association="Model.FK_Request_Applicant" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_SuitableVacancy_Applicant" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_Branch_Organization" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Branch_Street" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_Employer_Branch" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_City_Country" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_Street_City" ManuallyRouted="false" />
@@ -86,9 +90,6 @@
         <AssociationConnector Association="Model.FK_User_Role" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_Vacancy_Schedule" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_SuitableVacancy_Vacancy" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.FK_Branch_Street" />
-        <EntityTypeShape EntityType="Model.v_organizationWithoutPhoto" Width="1.5" PointX="5.375" PointY="6.75" />
-        <EntityTypeShape EntityType="Model.v_branchSimplifiedInformation" Width="1.5" PointX="7.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

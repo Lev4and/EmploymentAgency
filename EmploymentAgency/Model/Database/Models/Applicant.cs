@@ -34,9 +34,13 @@ namespace EmploymentAgency.Model.Database.Models
         public byte[] Photo { get; set; }
         public System.DateTime DateOfBirth { get; set; }
         public string PhoneNumber { get; set; }
+        public int IdStreet { get; set; }
+        public string NameHouse { get; set; }
+        public string Apartment { get; set; }
         public bool IsEmployed { get; set; }
     
         public virtual Gender Gender { get; set; }
+        public virtual Street Street { get; set; }
         public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EducationalActivity> EducationalActivity { get; set; }

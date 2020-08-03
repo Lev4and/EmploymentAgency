@@ -27,8 +27,8 @@ namespace EmploymentAgency.Model.Database.Models
         public string PhoneNumber { get; set; }
     
         public virtual Organization Organization { get; set; }
+        public virtual Street Street { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Employer> Employer { get; set; }
-        public virtual Street Street { get; set; }
     }
 }
