@@ -337,6 +337,9 @@
     <Compile Include="Views\UserControls\BlockViewLaborActivity.xaml.cs">
       <DependentUpon>BlockViewLaborActivity.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserControls\CheckBoxForExpander.xaml.cs">
+      <DependentUpon>CheckBoxForExpander.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\ExpanderWithCheckBoxes.xaml.cs">
       <DependentUpon>ExpanderWithCheckBoxes.xaml</DependentUpon>
     </Compile>
@@ -385,6 +388,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Events\" />
     <Folder Include="Resources\Images\Interface\" />
     <Folder Include="Resources\Images\Loading\" />
   </ItemGroup>
@@ -442,6 +446,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\BlockViewLaborActivity.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\CheckBoxForExpander.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

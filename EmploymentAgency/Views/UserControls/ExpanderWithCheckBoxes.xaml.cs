@@ -1,6 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -35,14 +35,14 @@ namespace EmploymentAgency.Views.UserControls
             }
         }
 
-        public List<CheckBox> Items
+        public List<CheckBoxForExpander> Items
         {
-            get { return (List<CheckBox>)GetValue(ItemsProperty); }
+            get { return (List<CheckBoxForExpander>)GetValue(ItemsProperty); }
             set { SetValue(ItemsProperty, value); }
         }
 
         public static readonly DependencyProperty ItemsProperty =
-            DependencyProperty.Register("Items", typeof(List<CheckBox>), typeof(ExpanderWithCheckBoxes), new PropertyMetadata(null));
+            DependencyProperty.Register("Items", typeof(List<CheckBoxForExpander>), typeof(ExpanderWithCheckBoxes), new PropertyMetadata(null));
 
         public ObservableCollection<object> SelectedValues
         {
@@ -51,23 +51,7 @@ namespace EmploymentAgency.Views.UserControls
         }
 
         public static readonly DependencyProperty SelectedValuesProperty =
-            DependencyProperty.Register("SelectedValues", typeof(ObservableCollection<object>), typeof(ExpanderWithCheckBoxes), new PropertyMetadata(null, SelectedValues_Changed));
-
-        private static void SelectedValues_Changed(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var current = d as ExpanderWithCheckBoxes;
-
-            if(current != null)
-            {
-                if(current.Items != null && current.SelectedValues != null)
-                {
-                    if(current.SelectedValues.Count > current.Items.Count)
-                    {
-
-                    }
-                }
-            }
-        }
+            DependencyProperty.Register("SelectedValues", typeof(ObservableCollection<object>), typeof(ExpanderWithCheckBoxes), new PropertyMetadata(null));
 
         public string SelectedValuePath
         {
@@ -100,23 +84,15 @@ namespace EmploymentAgency.Views.UserControls
         {
             InitializeComponent();
 
-            Items = new List<CheckBox>();
+            Items = new List<CheckBoxForExpander>();
 
             SelectedValues = new ObservableCollection<object>();
         }
 
         private bool ContainsValue(object obj)
         {
-            foreach(var value in SelectedValues)
-            {
-                var rightValue = value.GetType().GetProperty(SelectedValuePath).GetValue(value).ToString();
-                var leftValue = obj.GetType().GetProperty(SelectedValuePath).GetValue(obj).ToString();
-
-                if (rightValue == leftValue)
-                    return true;
-            }
-
-            return false;
+            return SelectedValues.SingleOrDefault(o =>
+            o.GetType().GetProperty(SelectedValuePath).GetValue(o).ToString() == obj.GetType().GetProperty(SelectedValuePath).GetValue(obj).ToString()) != null;
         }
 
         private void GenerateItems()
@@ -125,18 +101,48 @@ namespace EmploymentAgency.Views.UserControls
 
             for (int i = 0; i < Data.Count; i++)
             {
-                var checkBox = new CheckBox();
+                var checkBox = new CheckBoxForExpander();
                 checkBox.VerticalAlignment = VerticalAlignment.Top;
                 checkBox.HorizontalAlignment = HorizontalAlignment.Left;
                 checkBox.Margin = new Thickness(10, 10 + (i * 30), 0, 0);
-                //checkBox.IsChecked = SelectedValues.Contains(Data[i].GetType().GetProperty(SelectedValuePath).GetValue(Data[i]));
                 checkBox.IsChecked = ContainsValue(Data[i]);
-                checkBox.Name = $"_{Data[i].GetType().GetProperty(SelectedValuePath).GetValue(Data[i])}";
-                checkBox.Content = Data[i].GetType().GetProperty(DisplayMemberPath).GetValue(Data[i]);
-                checkBox.Checked += Item_Checked;
-                checkBox.Unchecked += Item_Unchecked;
+                checkBox.Data = Data[i];
+                checkBox.DisplayMemberPath = DisplayMemberPath;
+                checkBox.SelectedValuePath = SelectedValuePath;
+                checkBox.CheckedChanged += CheckBox_CheckedChanged;
                 Items.Add(checkBox);
             }
+        }
+
+        private void CheckBox_CheckedChanged(object sender, System.EventArgs e)
+        {
+            var item = sender as CheckBoxForExpander;
+
+            if(item.IsChecked)
+                AddSelectedValue(item.SelectedValue);
+            else
+                RemoveSelectedValue(item.SelectedValue);
+        }
+
+        private void AddSelectedValue(object selectedValue)
+        {
+            if (SelectedValues != null)
+            {
+                if (!SelectedValues.Contains(selectedValue))
+                    SelectedValues.Add(selectedValue);
+            }
+            else
+            {
+                SelectedValues = new ObservableCollection<object>();
+
+                if (!SelectedValues.Contains(selectedValue))
+                    SelectedValues.Add(selectedValue);
+            }
+        }
+
+        private void RemoveSelectedValue(object selectedValue)
+        {
+            SelectedValues.Remove(selectedValue);
         }
 
         private void RemoveContorls()
@@ -149,27 +155,6 @@ namespace EmploymentAgency.Views.UserControls
         {
             foreach (var item in Items)
                 grid.Children.Add(item);
-        }
-
-        private void Item_Checked(object sender, RoutedEventArgs e)
-        {
-            if (SelectedValues != null)
-            {
-                if (!SelectedValues.Contains((sender as CheckBox).Name.ToString().Substring(1)))
-                    SelectedValues.Add((sender as CheckBox).Name.ToString().Substring(1));
-            }
-            else
-            {
-                SelectedValues = new ObservableCollection<object>();
-
-                if (!SelectedValues.Contains((sender as CheckBox).Name.ToString().Substring(1)))
-                    SelectedValues.Add((sender as CheckBox).Name.ToString().Substring(1));
-            }
-        }
-
-        private void Item_Unchecked(object sender, RoutedEventArgs e)
-        {
-            SelectedValues.Remove((sender as CheckBox).Name.ToString().Substring(1));
         }
     }
 }
