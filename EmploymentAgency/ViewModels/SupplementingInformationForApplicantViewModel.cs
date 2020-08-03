@@ -220,9 +220,9 @@ namespace EmploymentAgency.ViewModels
             SelectedKnowledgeLanguages = new ObservableCollection<KnowledgeLanguage>();
             SelectedLaborActivities = new ObservableCollection<LaborActivity>();
 
-            Genders = CollectionConverter<Gender>.ConvertToObservableCollection(_executor.GetGenders());
-            Skills = CollectionConverter<object>.ConvertToObservableCollection(CollectionConverter<Skill>.ConvertToObjectList(_executor.GetSkills()));
-            DrivingLicenseCategories = CollectionConverter<object>.ConvertToObservableCollection(CollectionConverter<DrivingLicenseCategory>.ConvertToObjectList(_executor.GetDrivingLicenseCategories()));
+            Genders = new ObservableCollection<Gender>(_executor.GetGenders());
+            Skills = new ObservableCollection<object>(_executor.GetSkills());
+            DrivingLicenseCategories = new ObservableCollection<object>(_executor.GetDrivingLicenseCategories());
             Countries = new ObservableCollection<Country>(_executor.GetCountries());
         });
 
@@ -270,17 +270,17 @@ namespace EmploymentAgency.ViewModels
 
         private void UpdateCities()
         {
-            Cities = CollectionConverter<City>.ConvertToObservableCollection(_executor.GetCities((int)SelectedIdCountry));
+            Cities = new ObservableCollection<City>(_executor.GetCities((int)SelectedIdCountry));
         }
 
         private void UpdateStreets()
         {
-            Streets = CollectionConverter<Street>.ConvertToObservableCollection(_executor.GetStreets((int)SelectedIdCity));
+            Streets = new ObservableCollection<Street>(_executor.GetStreets((int)SelectedIdCity));
         }
 
         private void UpdateDisplayedStreets()
         {
-            DisplayedStreets = CollectionConverter<Street>.ConvertToObservableCollection(Streets.Where(s => s.StreetName.ToLower().StartsWith(StreetName.ToLower())).Take(100).ToList());
+            DisplayedStreets = new ObservableCollection<Street>(Streets.Where(s => s.StreetName.ToLower().StartsWith(StreetName.ToLower())).Take(100).ToList());
         }
 
         private void AddPossessionSkill()

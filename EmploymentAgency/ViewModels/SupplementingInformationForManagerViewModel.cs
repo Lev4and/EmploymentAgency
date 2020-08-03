@@ -62,7 +62,7 @@ namespace EmploymentAgency.ViewModels
 
             DateOfBirth = MaxValueDateOfBirth;
 
-            Genders = CollectionConverter<Gender>.ConvertToObservableCollection(_executor.GetGenders());
+            Genders = new ObservableCollection<Gender>(_executor.GetGenders());
         });
 
         public ICommand AddInformation => new DelegateCommand(() =>

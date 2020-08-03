@@ -151,8 +151,8 @@ namespace EmploymentAgency.ViewModels
 
             DateOfBirth = MaxValueDateOfBirth;
 
-            Genders = CollectionConverter<Gender>.ConvertToObservableCollection(_executor.GetGenders());
-            Organizations = CollectionConverter<v_organizationWithoutPhoto>.ConvertToObservableCollection(_executor.GetOrganizationsWithoutPhoto());
+            Genders = new ObservableCollection<Gender>(_executor.GetGenders());
+            Organizations = new ObservableCollection<v_organizationWithoutPhoto>(_executor.GetOrganizationsWithoutPhoto());
 
             UpdateDisplayedOrganizations();
         });
@@ -195,17 +195,17 @@ namespace EmploymentAgency.ViewModels
 
         private void UpdateBranches()
         {
-            Branches = CollectionConverter<v_branchSimplifiedInformation>.ConvertToObservableCollection(_executor.GetBranches((int)SelectedIdOrganization).ToList());
+            Branches = new ObservableCollection<v_branchSimplifiedInformation>(_executor.GetBranches((int)SelectedIdOrganization).ToList());
         }
 
         private void UpdateDisplayedBranches()
         {
-            DisplayedBranches = CollectionConverter<v_branchSimplifiedInformation>.ConvertToObservableCollection(Branches.Where(b => b.Address.ToLower().StartsWith(Address.ToLower())).Take(100).ToList());
+            DisplayedBranches = new ObservableCollection<v_branchSimplifiedInformation>(Branches.Where(b => b.Address.ToLower().StartsWith(Address.ToLower())).Take(100).ToList());
         }
 
         private void UpdateDisplayedOrganizations()
         {
-            DisplayedOrganizations = CollectionConverter<v_organizationWithoutPhoto>.ConvertToObservableCollection(Organizations.Where(o => o.OrganizationName.ToLower().StartsWith(OrganizationName.ToLower())).Take(100).ToList());
+            DisplayedOrganizations = new ObservableCollection<v_organizationWithoutPhoto>(Organizations.Where(o => o.OrganizationName.ToLower().StartsWith(OrganizationName.ToLower())).Take(100).ToList());
         }
     }
 }

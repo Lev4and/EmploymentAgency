@@ -183,7 +183,6 @@ namespace EmploymentAgency.Views.UserControls
                 Items.Remove(item);
 
                 MoveElements();
-
                 UpdateListSelectedValues();
             }
         });

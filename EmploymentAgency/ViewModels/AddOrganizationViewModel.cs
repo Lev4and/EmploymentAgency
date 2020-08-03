@@ -2,7 +2,6 @@
 using DevExpress.Mvvm;
 using EmploymentAgency.Model.Database.Interactions;
 using EmploymentAgency.Model.Database.Models;
-using EmploymentAgency.Services;
 using Microsoft.Win32;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -292,8 +291,8 @@ namespace EmploymentAgency.ViewModels
             Cities = new ObservableCollection<City>();
             Streets = new ObservableCollection<Street>();
 
-            Industries = CollectionConverter<Industry>.ConvertToObservableCollection(_executor.GetIndustries());
-            Countries = CollectionConverter<Country>.ConvertToObservableCollection(_executor.GetCountries());
+            Industries = new ObservableCollection<Industry>(_executor.GetIndustries());
+            Countries = new ObservableCollection<Country>(_executor.GetCountries());
 
             UpdateOrganizations();
             UpdateDisplayedOrganizations();
@@ -358,34 +357,34 @@ namespace EmploymentAgency.ViewModels
 
         private void UpdateCities()
         {
-            Cities = CollectionConverter<City>.ConvertToObservableCollection(_executor.GetCities((int)SelectedIdCountry));
+            Cities = new ObservableCollection<City>(_executor.GetCities((int)SelectedIdCountry));
         }
 
         private void UpdateStreets()
         {
-            Streets = CollectionConverter<Street>.ConvertToObservableCollection(_executor.GetStreets((int)SelectedIdCity));
+            Streets = new ObservableCollection<Street>(_executor.GetStreets((int)SelectedIdCity));
         }
 
         private void UpdateSubIndustries()
         {
-            SubIndustries = CollectionConverter<SubIndustry>.ConvertToObservableCollection(_executor.GetSubIndustries((int)SelectedIdIndustry));
+            SubIndustries = new ObservableCollection<SubIndustry>(_executor.GetSubIndustries((int)SelectedIdIndustry));
         }
 
         private void UpdateOrganizations()
         {
-            Organizations = CollectionConverter<v_organizationWithoutPhoto>.ConvertToObservableCollection(_executor.GetOrganizationsWithoutPhoto());
+            Organizations = new ObservableCollection<v_organizationWithoutPhoto>(_executor.GetOrganizationsWithoutPhoto());
         }
 
         private void UpdateDisplayedStreets()
         {
-            DisplayedStreets = CollectionConverter<Street>.ConvertToObservableCollection(Streets.Where(s => s.StreetName.ToLower().StartsWith(StreetName.ToLower())).Take(100).ToList());
+            DisplayedStreets = new ObservableCollection<Street>(Streets.Where(s => s.StreetName.ToLower().StartsWith(StreetName.ToLower())).Take(100).ToList());
         }
 
         private void UpdateDisplayedOrganizations()
         {
-            DisplayedOrganizations = CollectionConverter<v_organizationWithoutPhoto>.ConvertToObservableCollection(Organizations.Where(o =>
-                                                                                                                  (OrganizationName.Length > 0 ? o.OrganizationName.ToLower().StartsWith(OrganizationName.ToLower()) : true) &&
-                                                                                                                  (SelectedIdSubIndustry != null ? o.IdSubIndustry == (int)SelectedIdSubIndustry : false)).Take(100).ToList());
+            DisplayedOrganizations = new ObservableCollection<v_organizationWithoutPhoto>(Organizations.Where(o =>
+                                                                                                             (OrganizationName.Length > 0 ? o.OrganizationName.ToLower().StartsWith(OrganizationName.ToLower()) : true) &&
+                                                                                                             (SelectedIdSubIndustry != null ? o.IdSubIndustry == (int)SelectedIdSubIndustry : false)).Take(100).ToList());
         }
     }
 }

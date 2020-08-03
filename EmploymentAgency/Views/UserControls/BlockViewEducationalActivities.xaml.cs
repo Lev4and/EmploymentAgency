@@ -1,5 +1,4 @@
-﻿using Converters;
-using DevExpress.Mvvm;
+﻿using DevExpress.Mvvm;
 using DevExpress.Mvvm.Native;
 using EmploymentAgency.Commands;
 using EmploymentAgency.Model.Database.Interactions;
@@ -209,7 +208,7 @@ namespace EmploymentAgency.Views.UserControls
         {
             _executor = new QueryExecutor();
 
-            Educations = CollectionConverter<Education>.ConvertToObservableCollection(_executor.GetEducations());
+            Educations = new ObservableCollection<Education>(_executor.GetEducations());
         }
 
         private void GenerateItems()

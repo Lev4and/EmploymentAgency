@@ -6,7 +6,6 @@ using EmploymentAgency.Model.Database.Models;
 using EmploymentAgency.Model.Logic.Managers;
 using EmploymentAgency.Services;
 using EmploymentAgency.Views.Pages;
-using EmploymentAgency.Views.Windows;
 using System;
 using System.Data.Entity.Core;
 using System.Threading.Tasks;
@@ -81,19 +80,16 @@ namespace EmploymentAgency.ViewModels
                             {
                                 var pageManager = PageManager.GetPageManager(_executor.GetIdRole(user.RoleName));
 
-                                Application.Current.Dispatcher.Invoke(() =>
-                                {
-                                    _pageService.ChangePage(pageManager.GetPage());
-                                });
+                                Invoke(() => _pageService.ChangePage(pageManager.GetPage()));
                             }
                             else
                             {
-                                InvokeChangePage(() => _pageService.ChangePage(new EmploymentAgency.Views.Pages.Menu()));
+                                Invoke(() => _pageService.ChangePage(new EmploymentAgency.Views.Pages.Menu()));
                             }
                         }
                         else
                         {
-                            InvokeChangePage(() => _pageService.ChangePage(new EmploymentAgency.Views.Pages.Menu()));
+                            Invoke(() => _pageService.ChangePage(new EmploymentAgency.Views.Pages.Menu()));
                         }
                     }
                     else
@@ -114,7 +110,7 @@ namespace EmploymentAgency.ViewModels
             });
         }
 
-        private void InvokeChangePage(Action action)
+        private void Invoke(Action action)
         {
             Application.Current.Dispatcher.Invoke(action);
         }

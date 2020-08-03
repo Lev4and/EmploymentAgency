@@ -1,5 +1,4 @@
-﻿using Converters;
-using DevExpress.Mvvm;
+﻿using DevExpress.Mvvm;
 using DevExpress.Mvvm.Native;
 using EmploymentAgency.Commands;
 using EmploymentAgency.Model.Database.Interactions;
@@ -138,7 +137,6 @@ namespace EmploymentAgency.Views.UserControls
                 Items.Remove(item);
 
                 MoveElements();
-
                 UpdateListSelectedValues();
             }
         });
@@ -147,8 +145,8 @@ namespace EmploymentAgency.Views.UserControls
         {
             _executor = new QueryExecutor();
 
-            Languages = CollectionConverter<Language>.ConvertToObservableCollection(_executor.GetLanguages());
-            LanguageProficiencies = CollectionConverter<LanguageProficiency>.ConvertToObservableCollection(_executor.GetLanguageProficiencies());
+            Languages = new ObservableCollection<Language>(_executor.GetLanguages());
+            LanguageProficiencies =  new ObservableCollection<LanguageProficiency>(_executor.GetLanguageProficiencies());
         }
 
         private void GenerateItems()
