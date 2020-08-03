@@ -6,6 +6,7 @@ using EmploymentAgency.Model.Database.Models;
 using EmploymentAgency.Model.Logic.Managers;
 using EmploymentAgency.Services;
 using EmploymentAgency.Views.Pages;
+using EmploymentAgency.Views.Windows;
 using System;
 using System.Data.Entity.Core;
 using System.Threading.Tasks;

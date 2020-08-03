@@ -37,6 +37,8 @@ namespace EmploymentAgency.ViewModels
 
                 if (_selectedIdIndustry != null)
                     UpdateSubIndustries();
+                else
+                    SubIndustries = null;
             }
         }
 
@@ -63,7 +65,11 @@ namespace EmploymentAgency.ViewModels
                     UpdateCities();
 
                     Streets = null;
-                }    
+                }
+                else
+                {
+                    Cities = null;
+                }
             }
         }
 
@@ -78,6 +84,11 @@ namespace EmploymentAgency.ViewModels
                 {
                     UpdateStreets();
                     UpdateDisplayedStreets();
+                }
+                else
+                {
+                    Streets = null;
+                    DisplayedStreets = null;
                 }
             }
         }
