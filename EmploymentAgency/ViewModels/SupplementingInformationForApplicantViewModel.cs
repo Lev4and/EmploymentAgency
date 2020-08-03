@@ -7,6 +7,7 @@ using EmploymentAgency.Services;
 using Microsoft.Win32;
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 
@@ -14,11 +15,60 @@ namespace EmploymentAgency.ViewModels
 {
     public class SupplementingInformationForApplicantViewModel : BindableBase
     {
+        private int? _selectedIdCountry;
+        private int? _selectedIdCity;
+
+        private string _countryName;
+        private string _cityName;
+        private string _streetName;
+
         private readonly PageService _pageService;
         private ConfigurationUser _config;
         private QueryExecutor _executor;
 
         public int? SelectedIdGender { get; set; }
+
+        public int? SelectedIdCountry
+        {
+            get { return _selectedIdCountry; }
+            set
+            {
+                _selectedIdCountry = value;
+
+                if (_selectedIdCountry != null)
+                {
+                    UpdateCities();
+
+                    Streets = null;
+                }
+                else
+                {
+                    Cities = null;
+                }
+            }
+        }
+
+        public int? SelectedIdCity
+        {
+            get { return _selectedIdCity; }
+            set
+            {
+                _selectedIdCity = value;
+
+                if (_selectedIdCity != null)
+                {
+                    UpdateStreets();
+                    UpdateDisplayedStreets();
+                }
+                else
+                {
+                    Streets = null;
+                    DisplayedStreets = null;
+                }
+            }
+        }
+
+        public int? SelectedIdStreet { get; set; }
 
         public string Name { get; set; }
 
@@ -27,6 +77,76 @@ namespace EmploymentAgency.ViewModels
         public string Patronymic { get; set; }
 
         public string PhoneNumber { get; set; }
+
+        public string CountryName
+        {
+            get { return _countryName; }
+            set
+            {
+                _countryName = value;
+
+                if (_countryName != null)
+                {
+                    if (_countryName.Length == 0)
+                    {
+                        SelectedIdCountry = null;
+                        SelectedIdCity = null;
+                        SelectedIdStreet = null;
+
+                        CityName = "";
+                        StreetName = "";
+                    }
+                }
+            }
+        }
+
+        public string CityName
+        {
+            get { return _cityName; }
+            set
+            {
+                _cityName = value;
+
+                if (_cityName != null)
+                {
+                    if (_cityName.Length == 0)
+                    {
+                        SelectedIdCity = null;
+                        SelectedIdStreet = null;
+
+                        StreetName = "";
+                    }
+                }
+            }
+        }
+
+        public string StreetName
+        {
+            get { return _streetName; }
+            set
+            {
+                _streetName = value;
+
+                if (_streetName != null)
+                {
+                    if (_streetName.Length == 0)
+                    {
+                        SelectedIdStreet = null;
+
+                        StreetName = "";
+                    }
+                }
+
+                if (Streets != null)
+                {
+                    UpdateDisplayedStreets();
+                }
+            }
+        }
+
+        public string NameHouse { get; set; }
+
+        public string Apartment { get; set; }
 
         public byte[] Photo { get; set; }
 
@@ -52,6 +172,14 @@ namespace EmploymentAgency.ViewModels
 
         public ObservableCollection<LaborActivity> SelectedLaborActivities { get; set; }
 
+        public ObservableCollection<Country> Countries { get; set; }
+
+        public ObservableCollection<City> Cities { get; set; }
+
+        public ObservableCollection<Street> Streets { get; set; }
+
+        public ObservableCollection<Street> DisplayedStreets { get; set; }
+
         public SupplementingInformationForApplicantViewModel(PageService pageService)
         {
             _pageService = pageService;
@@ -63,11 +191,18 @@ namespace EmploymentAgency.ViewModels
             _executor = new QueryExecutor();
 
             SelectedIdGender = null;
+            SelectedIdCountry = null;
+            SelectedIdCity = null;
+            SelectedIdStreet = null;
 
             Name = "";
             Surname = "";
             Patronymic = "";
             PhoneNumber = "";
+            CountryName = "";
+            CityName = "";
+            NameHouse = "";
+            Apartment = "";
 
             Photo = null;
 
@@ -76,17 +211,24 @@ namespace EmploymentAgency.ViewModels
 
             DateOfBirth = MaxValueDateOfBirth;
 
+            Cities = new ObservableCollection<City>();
+            Streets = new ObservableCollection<Street>();
+
             SelectedSkills = new ObservableCollection<object>();
             SelectedDrivingLicenseCategories = new ObservableCollection<object>();
+            SelectedEducationActivities = new ObservableCollection<EducationalActivity>();
+            SelectedKnowledgeLanguages = new ObservableCollection<KnowledgeLanguage>();
+            SelectedLaborActivities = new ObservableCollection<LaborActivity>();
 
             Genders = CollectionConverter<Gender>.ConvertToObservableCollection(_executor.GetGenders());
             Skills = CollectionConverter<object>.ConvertToObservableCollection(CollectionConverter<Skill>.ConvertToObjectList(_executor.GetSkills()));
             DrivingLicenseCategories = CollectionConverter<object>.ConvertToObservableCollection(CollectionConverter<DrivingLicenseCategory>.ConvertToObjectList(_executor.GetDrivingLicenseCategories()));
+            Countries = new ObservableCollection<Country>(_executor.GetCountries());
         });
 
         public ICommand AddInformation => new DelegateCommand(() =>
         {
-            if (_executor.AddApplicant(_config.IdUser, Name, Surname, Patronymic, (int)SelectedIdGender, Photo, DateOfBirth, PhoneNumber))
+            if (_executor.AddApplicant(_config.IdUser, Name, Surname, Patronymic, (int)SelectedIdGender, Photo, DateOfBirth, PhoneNumber, (int)SelectedIdStreet, NameHouse, Apartment))
             {
                 AddPossessionSkill();
                 AddPossessionDrivingLicenseCategory();
@@ -101,10 +243,12 @@ namespace EmploymentAgency.ViewModels
                 MessageBox.Show("Информация о данном пользователе уже существует");
             }
         }, () => SelectedIdGender != null &&
+                 SelectedIdStreet != null &&
                  (Name != null ? Name.Length > 0 : false) &&
                  (Surname != null ? Surname.Length > 0 : false) &&
                  (Patronymic != null ? Patronymic.Length > 0 : false) &&
-                 (PhoneNumber != null ? PhoneNumber.Length > 0 : false));
+                 (PhoneNumber != null ? PhoneNumber.Length > 0 : false) &&
+                 (NameHouse != null ? NameHouse.Length > 0 : false));
 
         public ICommand AddPhoto => new DelegateCommand(() =>
         {
@@ -123,6 +267,21 @@ namespace EmploymentAgency.ViewModels
         {
             Photo = null;
         }, () => Photo != null);
+
+        private void UpdateCities()
+        {
+            Cities = CollectionConverter<City>.ConvertToObservableCollection(_executor.GetCities((int)SelectedIdCountry));
+        }
+
+        private void UpdateStreets()
+        {
+            Streets = CollectionConverter<Street>.ConvertToObservableCollection(_executor.GetStreets((int)SelectedIdCity));
+        }
+
+        private void UpdateDisplayedStreets()
+        {
+            DisplayedStreets = CollectionConverter<Street>.ConvertToObservableCollection(Streets.Where(s => s.StreetName.ToLower().StartsWith(StreetName.ToLower())).Take(100).ToList());
+        }
 
         private void AddPossessionSkill()
         {
