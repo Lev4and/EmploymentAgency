@@ -5,6 +5,7 @@ using EmploymentAgency.Model.Database.Models;
 using EmploymentAgency.Services;
 using EmploymentAgency.Views.Pages;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -41,7 +42,8 @@ namespace EmploymentAgency.ViewModels
             Password = "";
             RepeatPassword = "";
 
-            Roles = new ObservableCollection<Role>(_executor.GetRoles());
+            Roles = new ObservableCollection<Role>(_executor.GetRoles().Where(r => 
+            r.RoleName != "Администратор" && r.RoleName != "Менеджер" && r.RoleName != "Владелец"));
         });
 
         public ICommand PasswordChanged => new Command((obj) =>
