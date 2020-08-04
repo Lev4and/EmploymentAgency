@@ -310,6 +310,7 @@
     <Compile Include="ViewModels\OrganizationsViewModel.cs" />
     <Compile Include="ViewModels\RegistrationViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
+    <Compile Include="ViewModels\SkillsViewModel.cs" />
     <Compile Include="ViewModels\StreetsViewModel.cs" />
     <Compile Include="ViewModels\SupplementingInformationForApplicantViewModel.cs" />
     <Compile Include="ViewModels\SupplementingInformationForEmployerViewModel.cs" />
@@ -340,6 +341,9 @@
     </Compile>
     <Compile Include="Views\Pages\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\Skills.xaml.cs">
+      <DependentUpon>Skills.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\Streets.xaml.cs">
       <DependentUpon>Streets.xaml</DependentUpon>
@@ -394,6 +398,12 @@
     </Compile>
     <Compile Include="Views\UserControls\BlockViewOrganizations.xaml.cs">
       <DependentUpon>BlockViewOrganizations.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\BlockViewSkill.xaml.cs">
+      <DependentUpon>BlockViewSkill.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\BlockViewSkills.xaml.cs">
+      <DependentUpon>BlockViewSkills.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\BlockViewStreet.xaml.cs">
       <DependentUpon>BlockViewStreet.xaml</DependentUpon>
@@ -493,6 +503,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Pages\Skills.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Pages\Streets.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -562,6 +576,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\BlockViewOrganizations.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\BlockViewSkill.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\BlockViewSkills.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

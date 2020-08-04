@@ -29,6 +29,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         List<Skill> GetSkills();
 
+        List<Skill> GetSkills(string skillName);
+
         List<Street> GetStreets(int idCity);
 
         List<SubIndustry> GetSubIndustries(int idIndustry);

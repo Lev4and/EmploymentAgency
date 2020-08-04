@@ -483,6 +483,12 @@ namespace EmploymentAgency.Model.Database.Interactions
             return _context.Skill.AsNoTracking().ToList();
         }
 
+        public List<Skill> GetSkills(string skillName)
+        {
+            return _context.Skill.Where(s =>
+            (skillName.Length > 0 ? s.SkillName.ToLower().StartsWith(skillName.ToLower()) : true)).AsNoTracking().ToList();
+        }
+
         public List<Street> GetStreets(int idCity)
         {
             return _context.Street.Where(s => s.IdCity == idCity).AsNoTracking().ToList();
