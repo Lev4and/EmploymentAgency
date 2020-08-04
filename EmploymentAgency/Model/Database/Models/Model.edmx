@@ -382,6 +382,21 @@
           <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Employment agency.dbo.v_city" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="v_city">
+          <Key>
+            <PropertyRef Name="IdCity" />
+            <PropertyRef Name="IdCountry" />
+            <PropertyRef Name="CountryName" />
+            <PropertyRef Name="CityName" />
+          </Key>
+          <Property Name="IdCity" Type="int" Nullable="false" />
+          <Property Name="IdCountry" Type="int" Nullable="false" />
+          <Property Name="CountryName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Flag" Type="varbinary(max)" />
+          <Property Name="CityName" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
 предупреждение 6002: В таблице или представлении "Employment agency.dbo.v_organization" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
         <EntityType Name="v_organization">
           <Key>
@@ -1135,6 +1150,15 @@
     [v_branchSimplifiedInformation].[IdOrganization] AS [IdOrganization], 
     [v_branchSimplifiedInformation].[Address] AS [Address]
     FROM [dbo].[v_branchSimplifiedInformation] AS [v_branchSimplifiedInformation]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="v_city" EntityType="Self.v_city" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_city].[IdCity] AS [IdCity], 
+    [v_city].[IdCountry] AS [IdCountry], 
+    [v_city].[CountryName] AS [CountryName], 
+    [v_city].[Flag] AS [Flag], 
+    [v_city].[CityName] AS [CityName]
+    FROM [dbo].[v_city] AS [v_city]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="v_organization" EntityType="Self.v_organization" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -2686,6 +2710,7 @@
           </AssociationSet>
           <EntitySet Name="v_organization" EntityType="Model.v_organization" />
           <EntitySet Name="v_branch" EntityType="Model.v_branch" />
+          <EntitySet Name="v_city" EntityType="Model.v_city" />
         </EntityContainer>
         <EntityType Name="v_organization">
           <Key>
@@ -2736,6 +2761,19 @@
           <Property Name="IdCountry" Type="Int32" Nullable="false" />
           <Property Name="IdCity" Type="Int32" Nullable="false" />
           <Property Name="IdStreet" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="v_city">
+          <Key>
+            <PropertyRef Name="IdCity" />
+            <PropertyRef Name="IdCountry" />
+            <PropertyRef Name="CityName" />
+            <PropertyRef Name="CountryName" />
+          </Key>
+          <Property Name="IdCity" Type="Int32" Nullable="false" />
+          <Property Name="IdCountry" Type="Int32" Nullable="false" />
+          <Property Name="Flag" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="CityName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CountryName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -3176,6 +3214,17 @@
                 <ScalarProperty Name="OrganizationName" ColumnName="OrganizationName" />
                 <ScalarProperty Name="IdOrganization" ColumnName="IdOrganization" />
                 <ScalarProperty Name="IdBranch" ColumnName="IdBranch" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_city">
+            <EntityTypeMapping TypeName="Model.v_city">
+              <MappingFragment StoreEntitySet="v_city">
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="Flag" ColumnName="Flag" />
+                <ScalarProperty Name="IdCountry" ColumnName="IdCountry" />
+                <ScalarProperty Name="IdCity" ColumnName="IdCity" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

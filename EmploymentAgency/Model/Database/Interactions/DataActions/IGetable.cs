@@ -39,6 +39,10 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         List<v_branchSimplifiedInformation> GetBranches(int idOrganization);
 
+        List<v_city> GetCities();
+
+        List<v_city> GetCities(int idCountry, string cityName);
+
         List<v_organization> GetOrganizations(int idIndustry, int idSubIndustry, string organizationName);
 
         List<v_organizationWithoutPhoto> GetOrganizationsWithoutPhoto();

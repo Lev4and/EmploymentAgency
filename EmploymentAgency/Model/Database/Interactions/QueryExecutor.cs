@@ -397,6 +397,18 @@ namespace EmploymentAgency.Model.Database.Interactions
             return _context.City.Where(c => c.IdCountry == idCountry).AsNoTracking().ToList();
         }
 
+        public List<v_city> GetCities()
+        {
+            return _context.v_city.AsNoTracking().ToList();
+        }
+
+        public List<v_city> GetCities(int idCountry, string cityName)
+        {
+            return _context.v_city.Where(c =>
+            (idCountry != -1 ? c.IdCountry == idCountry : true) &&
+            (cityName.Length > 0 ? c.CityName.ToLower().StartsWith(cityName.ToLower()) : true)).AsNoTracking().ToList();
+        }
+
         public List<Country> GetCountries()
         {
             return _context.Country.AsNoTracking().ToList();

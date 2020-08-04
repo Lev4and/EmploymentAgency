@@ -270,6 +270,9 @@
     <Compile Include="Model\Database\Models\v_branchSimplifiedInformation.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Database\Models\v_city.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\Database\Models\v_organization.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -291,6 +294,7 @@
     <Compile Include="ViewModels\AddSkillViewModel.cs" />
     <Compile Include="ViewModels\AuthorizationViewModel.cs" />
     <Compile Include="ViewModels\BranchesViewModel.cs" />
+    <Compile Include="ViewModels\CitiesViewModel.cs" />
     <Compile Include="ViewModels\CountriesViewModel.cs" />
     <Compile Include="ViewModels\Locators\ViewModelLocator.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
@@ -311,6 +315,9 @@
     </Compile>
     <Compile Include="Views\Pages\Branches.xaml.cs">
       <DependentUpon>Branches.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\Cities.xaml.cs">
+      <DependentUpon>Cities.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\Countries.xaml.cs">
       <DependentUpon>Countries.xaml</DependentUpon>
@@ -344,6 +351,12 @@
     </Compile>
     <Compile Include="Views\UserControls\BlockViewBranches.xaml.cs">
       <DependentUpon>BlockViewBranches.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\BlockViewCities.xaml.cs">
+      <DependentUpon>BlockViewCities.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\BlockViewCity.xaml.cs">
+      <DependentUpon>BlockViewCity.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\BlockViewCountries.xaml.cs">
       <DependentUpon>BlockViewCountries.xaml</DependentUpon>
@@ -439,6 +452,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Pages\Cities.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Pages\Countries.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -480,6 +497,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\BlockViewBranches.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\BlockViewCities.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\BlockViewCity.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
