@@ -264,6 +264,9 @@
     <Compile Include="Model\Database\Models\Vacancy.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Database\Models\v_branch.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\Database\Models\v_branchSimplifiedInformation.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -287,6 +290,7 @@
     <Compile Include="ViewModels\AddOrganizationViewModel.cs" />
     <Compile Include="ViewModels\AddSkillViewModel.cs" />
     <Compile Include="ViewModels\AuthorizationViewModel.cs" />
+    <Compile Include="ViewModels\BranchesViewModel.cs" />
     <Compile Include="ViewModels\Locators\ViewModelLocator.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
@@ -303,6 +307,9 @@
     <Compile Include="ViewModels\SupplementingInformationForManagerViewModel.cs" />
     <Compile Include="Views\Pages\Authorization.xaml.cs">
       <DependentUpon>Authorization.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\Branches.xaml.cs">
+      <DependentUpon>Branches.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\Main.xaml.cs">
       <DependentUpon>Main.xaml</DependentUpon>
@@ -327,6 +334,12 @@
     </Compile>
     <Compile Include="Views\Pages\SupplementingInformationForManager.xaml.cs">
       <DependentUpon>SupplementingInformationForManager.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\BlockViewBranch.xaml.cs">
+      <DependentUpon>BlockViewBranch.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\BlockViewBranches.xaml.cs">
+      <DependentUpon>BlockViewBranches.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\BlockViewEducationalActivities.xaml.cs">
       <DependentUpon>BlockViewEducationalActivities.xaml</DependentUpon>
@@ -412,6 +425,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Pages\Branches.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Pages\Main.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
@@ -441,6 +458,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Pages\SupplementingInformationForManager.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\BlockViewBranch.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\BlockViewBranches.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

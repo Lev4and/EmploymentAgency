@@ -2,21 +2,19 @@
 using DevExpress.Mvvm;
 using EmploymentAgency.Model.Database.Interactions;
 using EmploymentAgency.Model.Database.Models;
-using Microsoft.Win32;
+using EmploymentAgency.Services;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Windows;
 using System.Windows.Input;
 
 namespace EmploymentAgency.ViewModels
 {
-    public class AddOrganizationViewModel : BindableBase
+    public class BranchesViewModel : BindableBase
     {
         private int? _selectedIdIndustry;
         private int? _selectedIdSubIndustry;
         private int? _selectedIdCountry;
         private int? _selectedIdCity;
-        private int? _selectedIdOrganization;
 
         private string _industryName;
         private string _nameSubIndustry;
@@ -25,7 +23,10 @@ namespace EmploymentAgency.ViewModels
         private string _streetName;
         private string _organizationName;
 
+        private readonly PageService _pageService;
         private QueryExecutor _executor;
+
+        public int? SelectedIdBranch { get; set; }
 
         public int? SelectedIdIndustry
         {
@@ -96,41 +97,7 @@ namespace EmploymentAgency.ViewModels
 
         public int? SelectedIdStreet { get; set; }
 
-        public int? SelectedIdOrganization
-        {
-            get { return _selectedIdOrganization; }
-            set
-            {
-                _selectedIdOrganization = value;
-
-                if (_selectedIdOrganization != null)
-                    Photo = _executor.GetOrganization((int)_selectedIdOrganization).Photo;
-                else
-                    Photo = null;
-            }
-        }
-
-        public string OrganizationName
-        {
-            get { return _organizationName; }
-            set
-            {
-                _organizationName = value;
-
-                if(_organizationName != null)
-                {
-                    if (_organizationName.Length == 0)
-                        Photo = null;
-                }
-
-                if(Organizations != null)
-                    UpdateDisplayedOrganizations();
-            }
-        }
-
-        public string NameHouse { get; set; }
-
-        public string PhoneNumber { get; set; }
+        public int? SelectedIdOrganization { get; set; }
 
         public string IndustryName
         {
@@ -139,7 +106,7 @@ namespace EmploymentAgency.ViewModels
             {
                 _industryName = value;
 
-                if(_industryName != null)
+                if (_industryName != null)
                 {
                     if (_industryName.Length == 0)
                     {
@@ -150,8 +117,6 @@ namespace EmploymentAgency.ViewModels
                         IndustryName = "";
                         NameSubIndustry = "";
                         OrganizationName = "";
-
-                        Photo = null;
                     }
                 }
             }
@@ -164,7 +129,7 @@ namespace EmploymentAgency.ViewModels
             {
                 _nameSubIndustry = value;
 
-                if(_nameSubIndustry != null)
+                if (_nameSubIndustry != null)
                 {
                     if (_nameSubIndustry.Length == 0)
                     {
@@ -172,8 +137,6 @@ namespace EmploymentAgency.ViewModels
                         SelectedIdOrganization = null;
 
                         OrganizationName = "";
-
-                        Photo = null;
                     }
                 }
             }
@@ -186,7 +149,7 @@ namespace EmploymentAgency.ViewModels
             {
                 _countryName = value;
 
-                if(_countryName != null)
+                if (_countryName != null)
                 {
                     if (_countryName.Length == 0)
                     {
@@ -213,7 +176,7 @@ namespace EmploymentAgency.ViewModels
             {
                 _cityName = value;
 
-                if(_cityName != null)
+                if (_cityName != null)
                 {
                     if (_cityName.Length == 0)
                     {
@@ -238,7 +201,7 @@ namespace EmploymentAgency.ViewModels
             {
                 _streetName = value;
 
-                if(_streetName != null)
+                if (_streetName != null)
                 {
                     if (_streetName.Length == 0)
                     {
@@ -248,14 +211,26 @@ namespace EmploymentAgency.ViewModels
                     }
                 }
 
-                if(Streets != null)
+                if (Streets != null)
                 {
                     UpdateDisplayedStreets();
                 }
             }
         }
 
-        public byte[] Photo { get; set; }
+        public string OrganizationName
+        {
+            get { return _organizationName; }
+            set
+            {
+                _organizationName = value;
+
+                if (Organizations != null)
+                    UpdateDisplayedOrganizations();
+            }
+        }
+
+        public ObservableCollection<object> Branches { get; set; }
 
         public ObservableCollection<Industry> Industries { get; set; }
 
@@ -269,23 +244,43 @@ namespace EmploymentAgency.ViewModels
 
         public ObservableCollection<City> DisplayedCities { get; set; }
 
-        public ObservableCollection<v_organizationWithoutPhoto> Organizations { get; set; }
-
         public ObservableCollection<Street> Streets { get; set; }
 
         public ObservableCollection<Street> DisplayedStreets { get; set; }
 
         public ObservableCollection<v_organizationWithoutPhoto> DisplayedOrganizations { get; set; }
 
-        public AddOrganizationViewModel()
-        {
+        public ObservableCollection<v_organizationWithoutPhoto> Organizations { get; set; }
 
+        public BranchesViewModel(PageService pageService)
+        {
+            _pageService = pageService;
         }
 
         public ICommand Loaded => new DelegateCommand(() =>
         {
             _executor = new QueryExecutor();
 
+            ResetToDefault();
+        });
+
+        public ICommand ToFind => new DelegateCommand(() =>
+        {
+            Find();
+        });
+
+        public ICommand ResetFilters => new DelegateCommand(() =>
+        {
+            ResetToDefault();
+        }, () => (OrganizationName != null ? OrganizationName.Length > 0 : false));
+
+        public ICommand Back => new DelegateCommand(() =>
+        {
+            _pageService.ChangePage(new EmploymentAgency.Views.Pages.Menu());
+        });
+
+        private void ResetToDefault()
+        {
             SelectedIdIndustry = null;
             SelectedIdSubIndustry = null;
             SelectedIdOrganization = null;
@@ -297,80 +292,32 @@ namespace EmploymentAgency.ViewModels
             NameSubIndustry = "";
             OrganizationName = "";
             CityName = "";
-            NameHouse = "";
-            PhoneNumber = "";
 
-            Photo = null;
+            Industries = new ObservableCollection<Industry>(_executor.GetIndustries());
+            Countries = new ObservableCollection<Country>(_executor.GetCountries());
 
             SubIndustries = new ObservableCollection<SubIndustry>();
             Cities = new ObservableCollection<City>();
             Streets = new ObservableCollection<Street>();
 
-            Industries = new ObservableCollection<Industry>(_executor.GetIndustries());
-            Countries = new ObservableCollection<Country>(_executor.GetCountries());
-
             CountryName = "";
 
             UpdateOrganizations();
             UpdateDisplayedOrganizations();
-        });
 
-        public ICommand Add => new DelegateCommand(() =>
+            Find();
+        }
+
+        private void Find()
         {
-            if(SelectedIdOrganization != null)
-            {
-                if(_executor.AddBranch((int)SelectedIdOrganization, (int)SelectedIdStreet, NameHouse, PhoneNumber))
-                {
-                    MessageBox.Show("Успешное добавление");
-
-                    UpdateDisplayedOrganizations();
-                }
-                else
-                {
-                    MessageBox.Show("Организация с таким данными уже существует");
-                }
-            }
-            else
-            {
-                Organization organization = null;
-
-                if(_executor.AddOrganization((int)SelectedIdSubIndustry, OrganizationName, Photo, out organization))
-                {
-                    _executor.AddBranch(organization.IdOrganization, (int)SelectedIdStreet, NameHouse, PhoneNumber);
-
-                    MessageBox.Show("Успешное добавление");
-
-                    UpdateOrganizations();
-                    UpdateDisplayedOrganizations();
-                }
-                else
-                {
-                    MessageBox.Show("Организация с таким данными уже существует");
-                }
-            }
-        }, () => SelectedIdSubIndustry != null &&
-                 SelectedIdStreet != null &&
-                 (OrganizationName != null ? OrganizationName.Length > 0 : false) &&
-                 (NameHouse != null ? NameHouse.Length > 0 : false) &&
-                 (PhoneNumber != null ? PhoneNumber.Length > 0 : false));
-
-        public ICommand AddPhoto => new DelegateCommand(() =>
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-
-            openFileDialog.Filter = "Файлы изображений (*.bmp, *.jpg, *.jpeg, *.png, *webp)|*.bmp;*.jpg;*.jpeg;*.png;*.webp";
-            openFileDialog.ShowDialog();
-
-            if (openFileDialog.FileName != "")
-            {
-                Photo = FileConverter.GetBytesFromFile(openFileDialog.FileName);
-            }
-        }, () => Photo == null);
-
-        public ICommand RemovePhoto => new DelegateCommand(() =>
-        {
-            Photo = null;
-        }, () => Photo != null);
+            Branches = new ObservableCollection<object>(CollectionConverter<v_branch>.ConvertToObjectList(_executor.GetBranches(
+                (SelectedIdIndustry != null ? (int)SelectedIdIndustry : -1),
+                (SelectedIdSubIndustry != null ? (int)SelectedIdSubIndustry : -1),
+                (SelectedIdCountry != null ? (int)SelectedIdCountry : -1),
+                (SelectedIdCity != null ? (int)SelectedIdCity : -1),
+                (SelectedIdStreet != null ? (int)SelectedIdStreet : -1),
+                (SelectedIdOrganization != null ? (int)SelectedIdOrganization : -1))));
+        }
 
         private void UpdateCities()
         {

@@ -26,12 +26,7 @@ namespace EmploymentAgency.Views.UserControls
 
             if(current != null)
             {
-                if(current.CheckedChanged != null)
-                {
-                    EventArgs eventArgs = new EventArgs();
-
-                    current.CheckedChanged(current, eventArgs);
-                }
+                current.CheckedChanged?.Invoke(current, new EventArgs());
             }
         }
 

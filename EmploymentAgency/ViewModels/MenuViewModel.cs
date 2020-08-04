@@ -23,6 +23,11 @@ namespace EmploymentAgency.ViewModels
             _pageService.ChangePage(new Organizations());
         });
 
+        public ICommand Branches => new DelegateCommand(() =>
+        {
+            _pageService.ChangePage(new Branches());
+        });
+
         public ICommand Exit => new DelegateCommand(() =>
         {
             Application.Current.Shutdown();

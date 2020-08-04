@@ -54,9 +54,9 @@ namespace EmploymentAgency.ViewModels
         {
             _executor = new QueryExecutor();
 
-            ResetToDefault();
-
             Industries = new ObservableCollection<object>(CollectionConverter<Industry>.ConvertToObjectList(_executor.GetIndustries()));
+
+            ResetToDefault();
         });
 
         public ICommand ToFind => new DelegateCommand(() =>

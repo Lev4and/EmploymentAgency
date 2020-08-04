@@ -7,18 +7,18 @@ using System.Windows.Media;
 namespace EmploymentAgency.Views.UserControls
 {
     /// <summary>
-    /// Логика взаимодействия для BlockViewOrganization.xaml
+    /// Логика взаимодействия для BlockViewBranch.xaml
     /// </summary>
-    public partial class BlockViewOrganization : UserControl
+    public partial class BlockViewBranch : UserControl
     {
-        public object Organization
+        public object Branch
         {
-            get { return (object)GetValue(OrganizationProperty); }
-            set { SetValue(OrganizationProperty, value); }
+            get { return (object)GetValue(BranchProperty); }
+            set { SetValue(BranchProperty, value); }
         }
 
-        public static readonly DependencyProperty OrganizationProperty =
-            DependencyProperty.Register("Organization", typeof(object), typeof(BlockViewOrganization), new PropertyMetadata(null));
+        public static readonly DependencyProperty BranchProperty =
+            DependencyProperty.Register("Branch", typeof(object), typeof(BlockViewBranch), new PropertyMetadata(null));
 
         public new SolidColorBrush Background
         {
@@ -27,13 +27,13 @@ namespace EmploymentAgency.Views.UserControls
         }
 
         public static readonly new DependencyProperty BackgroundProperty =
-            DependencyProperty.Register("Background", typeof(SolidColorBrush), typeof(BlockViewOrganization), new PropertyMetadata(new SolidColorBrush(Colors.Transparent)));
+            DependencyProperty.Register("Background", typeof(SolidColorBrush), typeof(BlockViewBranch), new PropertyMetadata(new SolidColorBrush(Colors.Transparent)));
 
         public event SelectedValueHandler SelectedValueChanged;
 
         public delegate void SelectedValueHandler(object sender, EventArgs e);
 
-        public BlockViewOrganization()
+        public BlockViewBranch()
         {
             InitializeComponent();
         }

@@ -339,6 +339,37 @@
           <Property Name="ClosingDate" Type="smalldatetime" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Employment agency.dbo.v_branch" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="v_branch">
+          <Key>
+            <PropertyRef Name="IdBranch" />
+            <PropertyRef Name="IdOrganization" />
+            <PropertyRef Name="OrganizationName" />
+            <PropertyRef Name="IdIndustry" />
+            <PropertyRef Name="IndustryName" />
+            <PropertyRef Name="IdSubIndustry" />
+            <PropertyRef Name="NameSubIndustry" />
+            <PropertyRef Name="IdCountry" />
+            <PropertyRef Name="IdCity" />
+            <PropertyRef Name="IdStreet" />
+            <PropertyRef Name="Address" />
+            <PropertyRef Name="PhoneNumber" />
+          </Key>
+          <Property Name="IdBranch" Type="int" Nullable="false" />
+          <Property Name="IdOrganization" Type="int" Nullable="false" />
+          <Property Name="OrganizationName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Photo" Type="varbinary(max)" />
+          <Property Name="IdIndustry" Type="int" Nullable="false" />
+          <Property Name="IndustryName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="IdSubIndustry" Type="int" Nullable="false" />
+          <Property Name="NameSubIndustry" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="IdCountry" Type="int" Nullable="false" />
+          <Property Name="IdCity" Type="int" Nullable="false" />
+          <Property Name="IdStreet" Type="int" Nullable="false" />
+          <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="18" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
 предупреждение 6002: В таблице или представлении "Employment agency.dbo.v_branchSimplifiedInformation" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
         <EntityType Name="v_branchSimplifiedInformation">
           <Key>
@@ -1079,6 +1110,23 @@
           <EntitySet Name="SuitableVacancy" EntityType="Self.SuitableVacancy" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Vacancy" EntityType="Self.Vacancy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="v_branch" EntityType="Self.v_branch" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_branch].[IdBranch] AS [IdBranch], 
+    [v_branch].[IdOrganization] AS [IdOrganization], 
+    [v_branch].[OrganizationName] AS [OrganizationName], 
+    [v_branch].[Photo] AS [Photo], 
+    [v_branch].[IdIndustry] AS [IdIndustry], 
+    [v_branch].[IndustryName] AS [IndustryName], 
+    [v_branch].[IdSubIndustry] AS [IdSubIndustry], 
+    [v_branch].[NameSubIndustry] AS [NameSubIndustry], 
+    [v_branch].[IdCountry] AS [IdCountry], 
+    [v_branch].[IdCity] AS [IdCity], 
+    [v_branch].[IdStreet] AS [IdStreet], 
+    [v_branch].[Address] AS [Address], 
+    [v_branch].[PhoneNumber] AS [PhoneNumber]
+    FROM [dbo].[v_branch] AS [v_branch]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="v_branchSimplifiedInformation" EntityType="Self.v_branchSimplifiedInformation" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [v_branchSimplifiedInformation].[IdBranch] AS [IdBranch], 
@@ -2632,6 +2680,7 @@
             <End Role="SuitableVacancy" EntitySet="SuitableVacancy" />
           </AssociationSet>
           <EntitySet Name="v_organization" EntityType="Model.v_organization" />
+          <EntitySet Name="v_branch" EntityType="Model.v_branch" />
         </EntityContainer>
         <EntityType Name="v_organization">
           <Key>
@@ -2653,6 +2702,35 @@
           <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="DateOfRegistration" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="ClosingDate" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="v_branch">
+          <Key>
+            <PropertyRef Name="IdBranch" />
+            <PropertyRef Name="IdOrganization" />
+            <PropertyRef Name="OrganizationName" />
+            <PropertyRef Name="IdIndustry" />
+            <PropertyRef Name="IndustryName" />
+            <PropertyRef Name="IdSubIndustry" />
+            <PropertyRef Name="NameSubIndustry" />
+            <PropertyRef Name="Address" />
+            <PropertyRef Name="PhoneNumber" />
+            <PropertyRef Name="IdCountry" />
+            <PropertyRef Name="IdCity" />
+            <PropertyRef Name="IdStreet" />
+          </Key>
+          <Property Name="IdBranch" Type="Int32" Nullable="false" />
+          <Property Name="IdOrganization" Type="Int32" Nullable="false" />
+          <Property Name="OrganizationName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="IdIndustry" Type="Int32" Nullable="false" />
+          <Property Name="IndustryName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IdSubIndustry" Type="Int32" Nullable="false" />
+          <Property Name="NameSubIndustry" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="18" FixedLength="false" Unicode="true" />
+          <Property Name="IdCountry" Type="Int32" Nullable="false" />
+          <Property Name="IdCity" Type="Int32" Nullable="false" />
+          <Property Name="IdStreet" Type="Int32" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -3073,6 +3151,25 @@
                 <ScalarProperty Name="IndustryName" ColumnName="IndustryName" />
                 <ScalarProperty Name="IdIndustry" ColumnName="IdIndustry" />
                 <ScalarProperty Name="IdOrganization" ColumnName="IdOrganization" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_branch">
+            <EntityTypeMapping TypeName="Model.v_branch">
+              <MappingFragment StoreEntitySet="v_branch">
+                <ScalarProperty Name="IdStreet" ColumnName="IdStreet" />
+                <ScalarProperty Name="IdCity" ColumnName="IdCity" />
+                <ScalarProperty Name="IdCountry" ColumnName="IdCountry" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="NameSubIndustry" ColumnName="NameSubIndustry" />
+                <ScalarProperty Name="IdSubIndustry" ColumnName="IdSubIndustry" />
+                <ScalarProperty Name="IndustryName" ColumnName="IndustryName" />
+                <ScalarProperty Name="IdIndustry" ColumnName="IdIndustry" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="OrganizationName" ColumnName="OrganizationName" />
+                <ScalarProperty Name="IdOrganization" ColumnName="IdOrganization" />
+                <ScalarProperty Name="IdBranch" ColumnName="IdBranch" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

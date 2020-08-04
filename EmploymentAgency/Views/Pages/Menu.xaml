@@ -16,6 +16,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0"
                   Margin="5">
@@ -28,6 +29,16 @@
                 </Button>
             </Grid>
             <Grid Grid.Row="1"
+                  Margin="5">
+                <Button Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                        Height="50"
+                        mdt:ButtonAssist.CornerRadius="25"
+                        ToolTip="Филиалы организаций"
+                        Command="{Binding Path=Branches}">
+                    <TextBlock Text="Филиалы организаций"/>
+                </Button>
+            </Grid>
+            <Grid Grid.Row="2"
                   Margin="5">
                 <Button Style="{StaticResource MaterialDesignRaisedDarkButton}"
                         Height="50"
