@@ -2,13 +2,41 @@
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mdt="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:local="clr-namespace:EmploymentAgency.Views.Pages"
-      mc:Ignorable="d" 
+      mc:Ignorable="d"
+      DataContext="{Binding MenuViewModel, Source={StaticResource ViewModelLocator}}"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Меню" WindowTitle="Агентство трудоустройства - Меню">
-
     <Grid>
-        
+        <Grid VerticalAlignment="Center"
+              HorizontalAlignment="Center" 
+              Height="Auto">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0"
+                  Margin="5">
+                <Button Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                        Height="50"
+                        mdt:ButtonAssist.CornerRadius="25"
+                        ToolTip="Организации"
+                        Command="{Binding Path=Organizations}">
+                    <TextBlock Text="Организации"/>
+                </Button>
+            </Grid>
+            <Grid Grid.Row="1"
+                  Margin="5">
+                <Button Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                        Height="50"
+                        mdt:ButtonAssist.CornerRadius="25"
+                        ToolTip="Выход"
+                        Command="{Binding Path=Exit}">
+                    <TextBlock Text="Выход"/>
+                </Button>
+            </Grid>
+        </Grid>
     </Grid>
 </Page>

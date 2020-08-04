@@ -90,6 +90,7 @@
         <AssociationConnector Association="Model.FK_User_Role" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_Vacancy_Schedule" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_SuitableVacancy_Vacancy" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Model.v_organization" Width="1.5" PointX="6.375" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

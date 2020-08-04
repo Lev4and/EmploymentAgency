@@ -1,5 +1,6 @@
 ﻿using EmploymentAgency.Model.Configurations;
 using EmploymentAgency.Model.Database.Models;
+using EmploymentAgency.Model.Logic;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -428,6 +429,19 @@ namespace EmploymentAgency.Model.Database.Interactions
         public Organization GetOrganization(int idOrganization)
         {
             return _context.Organization.Single(o => o.IdOrganization == idOrganization);
+        }
+
+        public List<v_organization> GetOrganizations()
+        {
+            return _context.v_organization.AsNoTracking().ToList();
+        }
+
+        public List<v_organization> GetOrganizations(int idIndustry, int idSubIndustry, string organizationName)
+        {
+            return _context.v_organization.Where(o =>
+            (idIndustry != -1 ? o.IdIndustry == idIndustry : true) &&
+            (idSubIndustry != -1 ? o.IdSubIndustry == idSubIndustry : true) &&
+            (organizationName.Length > 0 ? o.OrganizationName.ToLower().StartsWith(organizationName.ToLower()) : true)).AsNoTracking().ToList();
         }
 
         public List<v_organizationWithoutPhoto> GetOrganizationsWithoutPhoto()

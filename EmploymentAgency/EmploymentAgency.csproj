@@ -69,8 +69,8 @@
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.1.1\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Expression.Blend.Sdk.WPF.1.0.1\lib\net45\Microsoft.Expression.Interactions.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Extensions.DependencyInjection, Version=3.1.6.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.3.1.6\lib\net461\Microsoft.Extensions.DependencyInjection.dll</HintPath>
@@ -123,6 +123,7 @@
     <Compile Include="Converters\ArrayByteToBitmapImage.cs" />
     <Compile Include="Converters\ArrayByteToImageSource.cs" />
     <Compile Include="Converters\BoolToCollapsedVisibility.cs" />
+    <Compile Include="Converters\DateTimeToDateConverter.cs" />
     <Compile Include="Converters\NullableDateTimeToText.cs" />
     <Compile Include="Converters\SelectedValueToNullableInt32.cs" />
     <Compile Include="Converters\TextToInt32.cs" />
@@ -266,6 +267,9 @@
     <Compile Include="Model\Database\Models\v_branchSimplifiedInformation.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Database\Models\v_organization.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\Database\Models\v_organizationWithoutPhoto.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -277,6 +281,7 @@
     <Compile Include="Model\Logic\Managers\PageManagers\Applicant.cs" />
     <Compile Include="Model\Logic\Managers\PageManagers\Employer.cs" />
     <Compile Include="Model\Logic\Managers\PageManagers\Manager.cs" />
+    <Compile Include="Model\Logic\Range.cs" />
     <Compile Include="Services\PageService.cs" />
     <Compile Include="Services\WindowService.cs" />
     <Compile Include="ViewModels\AddOrganizationViewModel.cs" />
@@ -290,6 +295,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ViewModels\MenuViewModel.cs" />
+    <Compile Include="ViewModels\OrganizationsViewModel.cs" />
     <Compile Include="ViewModels\RegistrationViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\SupplementingInformationForApplicantViewModel.cs" />
@@ -303,6 +309,9 @@
     </Compile>
     <Compile Include="Views\Pages\Menu.xaml.cs">
       <DependentUpon>Menu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\Organizations.xaml.cs">
+      <DependentUpon>Organizations.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\Registration.xaml.cs">
       <DependentUpon>Registration.xaml</DependentUpon>
@@ -336,6 +345,12 @@
     </Compile>
     <Compile Include="Views\UserControls\BlockViewLaborActivity.xaml.cs">
       <DependentUpon>BlockViewLaborActivity.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\BlockViewOrganization.xaml.cs">
+      <DependentUpon>BlockViewOrganization.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\BlockViewOrganizations.xaml.cs">
+      <DependentUpon>BlockViewOrganizations.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\CheckBoxForExpander.xaml.cs">
       <DependentUpon>CheckBoxForExpander.xaml</DependentUpon>
@@ -405,6 +420,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Pages\Organizations.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Pages\Registration.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -446,6 +465,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\BlockViewLaborActivity.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\BlockViewOrganization.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\BlockViewOrganizations.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Applicant">
           <Key>
             <PropertyRef Name="IdApplicant" />
@@ -349,6 +349,29 @@
           <Property Name="IdBranch" Type="int" Nullable="false" />
           <Property Name="IdOrganization" Type="int" Nullable="false" />
           <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Employment agency.dbo.v_organization" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="v_organization">
+          <Key>
+            <PropertyRef Name="IdOrganization" />
+            <PropertyRef Name="IdIndustry" />
+            <PropertyRef Name="IndustryName" />
+            <PropertyRef Name="IdSubIndustry" />
+            <PropertyRef Name="NameSubIndustry" />
+            <PropertyRef Name="OrganizationName" />
+            <PropertyRef Name="DateOfRegistration" />
+          </Key>
+          <Property Name="IdOrganization" Type="int" Nullable="false" />
+          <Property Name="IdIndustry" Type="int" Nullable="false" />
+          <Property Name="IndustryName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="IdSubIndustry" Type="int" Nullable="false" />
+          <Property Name="NameSubIndustry" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="OrganizationName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CountBranches" Type="int" />
+          <Property Name="Photo" Type="varbinary(max)" />
+          <Property Name="DateOfRegistration" Type="smalldatetime" Nullable="false" />
+          <Property Name="ClosingDate" Type="smalldatetime" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
 предупреждение 6002: В таблице или представлении "Employment agency.dbo.v_organizationWithoutPhoto" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
@@ -1063,6 +1086,20 @@
     [v_branchSimplifiedInformation].[Address] AS [Address]
     FROM [dbo].[v_branchSimplifiedInformation] AS [v_branchSimplifiedInformation]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="v_organization" EntityType="Self.v_organization" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_organization].[IdOrganization] AS [IdOrganization], 
+    [v_organization].[IdIndustry] AS [IdIndustry], 
+    [v_organization].[IndustryName] AS [IndustryName], 
+    [v_organization].[IdSubIndustry] AS [IdSubIndustry], 
+    [v_organization].[NameSubIndustry] AS [NameSubIndustry], 
+    [v_organization].[OrganizationName] AS [OrganizationName], 
+    [v_organization].[CountBranches] AS [CountBranches], 
+    [v_organization].[Photo] AS [Photo], 
+    [v_organization].[DateOfRegistration] AS [DateOfRegistration], 
+    [v_organization].[ClosingDate] AS [ClosingDate]
+    FROM [dbo].[v_organization] AS [v_organization]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="v_organizationWithoutPhoto" EntityType="Self.v_organizationWithoutPhoto" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [v_organizationWithoutPhoto].[IdOrganization] AS [IdOrganization], 
@@ -1266,8 +1303,7 @@
             <End Role="Vacancy" EntitySet="Vacancy" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -2595,7 +2631,29 @@
             <End Role="Vacancy" EntitySet="Vacancy" />
             <End Role="SuitableVacancy" EntitySet="SuitableVacancy" />
           </AssociationSet>
+          <EntitySet Name="v_organization" EntityType="Model.v_organization" />
         </EntityContainer>
+        <EntityType Name="v_organization">
+          <Key>
+            <PropertyRef Name="IdOrganization" />
+            <PropertyRef Name="IdIndustry" />
+            <PropertyRef Name="IndustryName" />
+            <PropertyRef Name="IdSubIndustry" />
+            <PropertyRef Name="NameSubIndustry" />
+            <PropertyRef Name="OrganizationName" />
+            <PropertyRef Name="DateOfRegistration" />
+          </Key>
+          <Property Name="IdOrganization" Type="Int32" Nullable="false" />
+          <Property Name="IdIndustry" Type="Int32" Nullable="false" />
+          <Property Name="IndustryName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IdSubIndustry" Type="Int32" Nullable="false" />
+          <Property Name="NameSubIndustry" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="OrganizationName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CountBranches" Type="Int32" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="DateOfRegistration" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ClosingDate" Type="DateTime" Precision="0" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2999,6 +3057,22 @@
                 <ScalarProperty Name="Login" ColumnName="Login" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="DateOfRegistration" ColumnName="DateOfRegistration" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_organization">
+            <EntityTypeMapping TypeName="Model.v_organization">
+              <MappingFragment StoreEntitySet="v_organization">
+                <ScalarProperty Name="ClosingDate" ColumnName="ClosingDate" />
+                <ScalarProperty Name="DateOfRegistration" ColumnName="DateOfRegistration" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="CountBranches" ColumnName="CountBranches" />
+                <ScalarProperty Name="OrganizationName" ColumnName="OrganizationName" />
+                <ScalarProperty Name="NameSubIndustry" ColumnName="NameSubIndustry" />
+                <ScalarProperty Name="IdSubIndustry" ColumnName="IdSubIndustry" />
+                <ScalarProperty Name="IndustryName" ColumnName="IndustryName" />
+                <ScalarProperty Name="IdIndustry" ColumnName="IdIndustry" />
+                <ScalarProperty Name="IdOrganization" ColumnName="IdOrganization" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

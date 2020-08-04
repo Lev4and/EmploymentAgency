@@ -1,5 +1,4 @@
-﻿using DevExpress.Mvvm.UI.Native;
-using EmploymentAgency.Services;
+﻿using EmploymentAgency.Services;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace EmploymentAgency.ViewModels.Locators
@@ -28,7 +27,9 @@ namespace EmploymentAgency.ViewModels.Locators
 
         public RegistrationViewModel RegistrationViewModel => _provider.GetRequiredService<RegistrationViewModel>();
 
-        public MenuViewModel MenuViewModel => _provider.GetRequiredService<MenuViewModel>(); 
+        public MenuViewModel MenuViewModel => _provider.GetRequiredService<MenuViewModel>();
+
+        public OrganizationsViewModel OrganizationsViewModel => _provider.GetRequiredService<OrganizationsViewModel>();
 
         public static void Init()
         {
@@ -45,6 +46,7 @@ namespace EmploymentAgency.ViewModels.Locators
             services.AddTransient<SupplementingInformationForApplicantViewModel>();
             services.AddTransient<RegistrationViewModel>();
             services.AddTransient<MenuViewModel>();
+            services.AddTransient<OrganizationsViewModel>();
 
             services.AddSingleton<PageService>();
 
