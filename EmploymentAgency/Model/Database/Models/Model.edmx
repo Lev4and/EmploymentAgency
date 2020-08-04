@@ -409,11 +409,13 @@
         <EntityType Name="v_organizationWithoutPhoto">
           <Key>
             <PropertyRef Name="IdOrganization" />
+            <PropertyRef Name="IdIndustry" />
             <PropertyRef Name="IdSubIndustry" />
             <PropertyRef Name="OrganizationName" />
             <PropertyRef Name="DateOfRegistration" />
           </Key>
-          <Property Name="IdOrganization" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdOrganization" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdIndustry" Type="int" Nullable="false" />
           <Property Name="IdSubIndustry" Type="int" Nullable="false" />
           <Property Name="OrganizationName" Type="nvarchar(max)" Nullable="false" />
           <Property Name="DateOfRegistration" Type="smalldatetime" Nullable="false" />
@@ -1151,6 +1153,7 @@
           <EntitySet Name="v_organizationWithoutPhoto" EntityType="Self.v_organizationWithoutPhoto" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [v_organizationWithoutPhoto].[IdOrganization] AS [IdOrganization], 
+    [v_organizationWithoutPhoto].[IdIndustry] AS [IdIndustry], 
     [v_organizationWithoutPhoto].[IdSubIndustry] AS [IdSubIndustry], 
     [v_organizationWithoutPhoto].[OrganizationName] AS [OrganizationName], 
     [v_organizationWithoutPhoto].[DateOfRegistration] AS [DateOfRegistration], 
@@ -1796,12 +1799,14 @@
             <PropertyRef Name="IdSubIndustry" />
             <PropertyRef Name="OrganizationName" />
             <PropertyRef Name="DateOfRegistration" />
+            <PropertyRef Name="IdIndustry" />
           </Key>
           <Property Name="IdOrganization" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IdSubIndustry" Type="Int32" Nullable="false" />
           <Property Name="OrganizationName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DateOfRegistration" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="ClosingDate" Type="DateTime" Precision="0" />
+          <Property Name="IdIndustry" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="v_user">
           <Key>
@@ -3119,6 +3124,7 @@
           <EntitySetMapping Name="v_organizationWithoutPhoto">
             <EntityTypeMapping TypeName="Model.v_organizationWithoutPhoto">
               <MappingFragment StoreEntitySet="v_organizationWithoutPhoto">
+                <ScalarProperty Name="IdIndustry" ColumnName="IdIndustry" />
                 <ScalarProperty Name="IdOrganization" ColumnName="IdOrganization" />
                 <ScalarProperty Name="IdSubIndustry" ColumnName="IdSubIndustry" />
                 <ScalarProperty Name="OrganizationName" ColumnName="OrganizationName" />

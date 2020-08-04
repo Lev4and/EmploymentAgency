@@ -39,6 +39,8 @@ namespace EmploymentAgency.ViewModels
                     UpdateSubIndustries();
                 else
                     SubIndustries = null;
+
+                UpdateDisplayedOrganizations();
             }
         }
 
@@ -358,6 +360,7 @@ namespace EmploymentAgency.ViewModels
         {
             DisplayedOrganizations = new ObservableCollection<v_organizationWithoutPhoto>(Organizations.Where(o =>
                                                                                                              (OrganizationName.Length > 0 ? o.OrganizationName.ToLower().StartsWith(OrganizationName.ToLower()) : true) &&
+                                                                                                             (SelectedIdIndustry != null ? o.IdIndustry == (int)SelectedIdIndustry : true) &&
                                                                                                              (SelectedIdSubIndustry != null ? o.IdSubIndustry == (int)SelectedIdSubIndustry : true)).Take(100).ToList());
         }
     }

@@ -19,5 +19,6 @@ namespace EmploymentAgency.Model.Database.Models
         public string OrganizationName { get; set; }
         public System.DateTime DateOfRegistration { get; set; }
         public Nullable<System.DateTime> ClosingDate { get; set; }
+        public int IdIndustry { get; set; }
     }
 }
