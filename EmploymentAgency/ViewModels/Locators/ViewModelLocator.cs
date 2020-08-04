@@ -33,6 +33,8 @@ namespace EmploymentAgency.ViewModels.Locators
 
         public BranchesViewModel BranchesViewModel => _provider.GetRequiredService<BranchesViewModel>();
 
+        public CountriesViewModel CountriesViewModel => _provider.GetRequiredService<CountriesViewModel>();
+
         public static void Init()
         {
             var services = new ServiceCollection();
@@ -50,6 +52,7 @@ namespace EmploymentAgency.ViewModels.Locators
             services.AddTransient<MenuViewModel>();
             services.AddTransient<OrganizationsViewModel>();
             services.AddTransient<BranchesViewModel>();
+            services.AddTransient<CountriesViewModel>();
 
             services.AddSingleton<PageService>();
 

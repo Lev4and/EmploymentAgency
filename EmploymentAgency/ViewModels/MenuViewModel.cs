@@ -18,6 +18,11 @@ namespace EmploymentAgency.ViewModels
             _config = ConfigurationUser.GetConfiguration();
         }
 
+        public ICommand Countries => new DelegateCommand(() =>
+        {
+            _pageService.ChangePage(new Countries());
+        });
+
         public ICommand Organizations => new DelegateCommand(() =>
         {
             _pageService.ChangePage(new Organizations());

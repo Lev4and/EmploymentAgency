@@ -263,6 +263,9 @@ namespace EmploymentAgency.ViewModels
         {
             _executor = new QueryExecutor();
 
+            Industries = new ObservableCollection<Industry>(_executor.GetIndustries());
+            Countries = new ObservableCollection<Country>(_executor.GetCountries());
+
             ResetToDefault();
         });
 
@@ -294,9 +297,6 @@ namespace EmploymentAgency.ViewModels
             NameSubIndustry = "";
             OrganizationName = "";
             CityName = "";
-
-            Industries = new ObservableCollection<Industry>(_executor.GetIndustries());
-            Countries = new ObservableCollection<Country>(_executor.GetCountries());
 
             SubIndustries = new ObservableCollection<SubIndustry>();
             Cities = new ObservableCollection<City>();

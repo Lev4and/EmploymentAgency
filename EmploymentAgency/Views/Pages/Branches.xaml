@@ -266,6 +266,7 @@
               Grid.Column="1"
               Margin="5">
             <uc:BlockViewBranches SelectedValuePath="IdBranch"
+                                  SelectedValue="{Binding Path=SelectedIdBranch, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                   Data="{Binding Path=Branches, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
         </Grid>
     </Grid>

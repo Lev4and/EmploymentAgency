@@ -291,6 +291,7 @@
     <Compile Include="ViewModels\AddSkillViewModel.cs" />
     <Compile Include="ViewModels\AuthorizationViewModel.cs" />
     <Compile Include="ViewModels\BranchesViewModel.cs" />
+    <Compile Include="ViewModels\CountriesViewModel.cs" />
     <Compile Include="ViewModels\Locators\ViewModelLocator.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
@@ -310,6 +311,9 @@
     </Compile>
     <Compile Include="Views\Pages\Branches.xaml.cs">
       <DependentUpon>Branches.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\Countries.xaml.cs">
+      <DependentUpon>Countries.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\Main.xaml.cs">
       <DependentUpon>Main.xaml</DependentUpon>
@@ -340,6 +344,12 @@
     </Compile>
     <Compile Include="Views\UserControls\BlockViewBranches.xaml.cs">
       <DependentUpon>BlockViewBranches.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\BlockViewCountries.xaml.cs">
+      <DependentUpon>BlockViewCountries.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\BlockViewCountry.xaml.cs">
+      <DependentUpon>BlockViewCountry.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\BlockViewEducationalActivities.xaml.cs">
       <DependentUpon>BlockViewEducationalActivities.xaml</DependentUpon>
@@ -429,6 +439,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Pages\Countries.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Pages\Main.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
@@ -466,6 +480,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\BlockViewBranches.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\BlockViewCountries.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\BlockViewCountry.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

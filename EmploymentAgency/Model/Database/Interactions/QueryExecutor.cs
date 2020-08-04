@@ -402,6 +402,12 @@ namespace EmploymentAgency.Model.Database.Interactions
             return _context.Country.AsNoTracking().ToList();
         }
 
+        public List<Country> GetCountries(string countryName)
+        {
+            return _context.Country.Where(c =>
+            (countryName.Length > 0 ? c.CountryName.ToLower().StartsWith(countryName.ToLower()) : true)).AsNoTracking().ToList();
+        }
+
         public List<DrivingLicenseCategory> GetDrivingLicenseCategories()
         {
             return _context.DrivingLicenseCategory.AsNoTracking().ToList();

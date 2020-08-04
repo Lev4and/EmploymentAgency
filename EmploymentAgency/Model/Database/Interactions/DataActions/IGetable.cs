@@ -13,6 +13,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         List<Country> GetCountries();
 
+        List<Country> GetCountries(string countryName);
+
         List<DrivingLicenseCategory> GetDrivingLicenseCategories();
 
         List<Education> GetEducations();

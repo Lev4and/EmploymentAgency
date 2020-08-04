@@ -17,8 +17,19 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0"
+                  Margin="5">
+                <Button Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                        Height="50"
+                        mdt:ButtonAssist.CornerRadius="25"
+                        ToolTip="Страны"
+                        Command="{Binding Path=Countries}">
+                    <TextBlock Text="Страны"/>
+                </Button>
+            </Grid>
+            <Grid Grid.Row="1"
                   Margin="5">
                 <Button Style="{StaticResource MaterialDesignRaisedDarkButton}"
                         Height="50"
@@ -28,7 +39,7 @@
                     <TextBlock Text="Организации"/>
                 </Button>
             </Grid>
-            <Grid Grid.Row="1"
+            <Grid Grid.Row="2"
                   Margin="5">
                 <Button Style="{StaticResource MaterialDesignRaisedDarkButton}"
                         Height="50"
@@ -38,7 +49,7 @@
                     <TextBlock Text="Филиалы организаций"/>
                 </Button>
             </Grid>
-            <Grid Grid.Row="2"
+            <Grid Grid.Row="3"
                   Margin="5">
                 <Button Style="{StaticResource MaterialDesignRaisedDarkButton}"
                         Height="50"

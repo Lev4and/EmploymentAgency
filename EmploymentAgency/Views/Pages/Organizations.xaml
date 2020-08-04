@@ -155,6 +155,7 @@
               Grid.Column="1"
               Margin="5">
             <uc:BlockViewOrganizations SelectedValuePath="IdOrganization"
+                                       SelectedValue="{Binding Path=SelectedIdOrganization, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                        Data="{Binding Path=Organizations, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
         </Grid>
     </Grid>
