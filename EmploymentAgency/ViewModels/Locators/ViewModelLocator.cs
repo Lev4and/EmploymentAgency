@@ -37,6 +37,8 @@ namespace EmploymentAgency.ViewModels.Locators
 
         public CitiesViewModel CitiesViewModel => _provider.GetRequiredService<CitiesViewModel>();
 
+        public StreetsViewModel StreetsViewModel => _provider.GetRequiredService<StreetsViewModel>();
+
         public static void Init()
         {
             var services = new ServiceCollection();
@@ -56,6 +58,7 @@ namespace EmploymentAgency.ViewModels.Locators
             services.AddTransient<BranchesViewModel>();
             services.AddTransient<CountriesViewModel>();
             services.AddTransient<CitiesViewModel>();
+            services.AddTransient<StreetsViewModel>();
 
             services.AddSingleton<PageService>();
 

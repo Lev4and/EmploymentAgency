@@ -19,6 +19,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0"
                   Margin="5">
@@ -45,12 +46,22 @@
                 <Button Style="{StaticResource MaterialDesignRaisedDarkButton}"
                         Height="50"
                         mdt:ButtonAssist.CornerRadius="25"
+                        ToolTip="Улицы"
+                        Command="{Binding Path=Streets}">
+                    <TextBlock Text="Улицы"/>
+                </Button>
+            </Grid>
+            <Grid Grid.Row="3"
+                  Margin="5">
+                <Button Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                        Height="50"
+                        mdt:ButtonAssist.CornerRadius="25"
                         ToolTip="Организации"
                         Command="{Binding Path=Organizations}">
                     <TextBlock Text="Организации"/>
                 </Button>
             </Grid>
-            <Grid Grid.Row="3"
+            <Grid Grid.Row="4"
                   Margin="5">
                 <Button Style="{StaticResource MaterialDesignRaisedDarkButton}"
                         Height="50"
@@ -60,7 +71,7 @@
                     <TextBlock Text="Филиалы организаций"/>
                 </Button>
             </Grid>
-            <Grid Grid.Row="4"
+            <Grid Grid.Row="5"
                   Margin="5">
                 <Button Style="{StaticResource MaterialDesignRaisedDarkButton}"
                         Height="50"

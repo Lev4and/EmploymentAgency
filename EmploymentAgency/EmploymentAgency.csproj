@@ -279,6 +279,9 @@
     <Compile Include="Model\Database\Models\v_organizationWithoutPhoto.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Database\Models\v_street.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\Database\Models\v_user.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -307,6 +310,7 @@
     <Compile Include="ViewModels\OrganizationsViewModel.cs" />
     <Compile Include="ViewModels\RegistrationViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
+    <Compile Include="ViewModels\StreetsViewModel.cs" />
     <Compile Include="ViewModels\SupplementingInformationForApplicantViewModel.cs" />
     <Compile Include="ViewModels\SupplementingInformationForEmployerViewModel.cs" />
     <Compile Include="ViewModels\SupplementingInformationForManagerViewModel.cs" />
@@ -336,6 +340,9 @@
     </Compile>
     <Compile Include="Views\Pages\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\Streets.xaml.cs">
+      <DependentUpon>Streets.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\SupplementingInformationForApplicant.xaml.cs">
       <DependentUpon>SupplementingInformationForApplicant.xaml</DependentUpon>
@@ -387,6 +394,12 @@
     </Compile>
     <Compile Include="Views\UserControls\BlockViewOrganizations.xaml.cs">
       <DependentUpon>BlockViewOrganizations.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\BlockViewStreet.xaml.cs">
+      <DependentUpon>BlockViewStreet.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\BlockViewStreets.xaml.cs">
+      <DependentUpon>BlockViewStreets.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\CheckBoxForExpander.xaml.cs">
       <DependentUpon>CheckBoxForExpander.xaml</DependentUpon>
@@ -480,6 +493,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Pages\Streets.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Pages\SupplementingInformationForApplicant.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -545,6 +562,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\BlockViewOrganizations.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\BlockViewStreet.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\BlockViewStreets.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

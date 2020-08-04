@@ -488,6 +488,19 @@ namespace EmploymentAgency.Model.Database.Interactions
             return _context.Street.Where(s => s.IdCity == idCity).AsNoTracking().ToList();
         }
 
+        public List<v_street> GetStreets()
+        {
+            return _context.v_street.AsNoTracking().ToList();
+        }
+
+        public List<v_street> GetStreets(int idCountry, int idCity, string streetName)
+        {
+            return _context.v_street.Where(s =>
+            (idCountry != -1 ? s.IdCountry == idCountry : true) &&
+            (idCity != -1 ? s.IdCity == idCity : true) &&
+            (streetName.Length > 0 ? s.StreetName.ToLower().StartsWith(streetName.ToLower()) : true)).AsNoTracking().ToList();
+        }
+
         public List<SubIndustry> GetSubIndustries(int idIndustry)
         {
             return _context.SubIndustry.Where(s => s.IdIndustry == idIndustry).AsNoTracking().ToList();

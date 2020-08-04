@@ -28,6 +28,11 @@ namespace EmploymentAgency.ViewModels
             _pageService.ChangePage(new Cities());
         });
 
+        public ICommand Streets => new DelegateCommand(() =>
+        {
+            _pageService.ChangePage(new Streets());
+        });
+
         public ICommand Organizations => new DelegateCommand(() =>
         {
             _pageService.ChangePage(new Organizations());

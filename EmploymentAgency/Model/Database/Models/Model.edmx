@@ -437,6 +437,25 @@
           <Property Name="ClosingDate" Type="smalldatetime" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Employment agency.dbo.v_street" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="v_street">
+          <Key>
+            <PropertyRef Name="IdStreet" />
+            <PropertyRef Name="IdCountry" />
+            <PropertyRef Name="CountryName" />
+            <PropertyRef Name="IdCity" />
+            <PropertyRef Name="CityName" />
+            <PropertyRef Name="StreetName" />
+          </Key>
+          <Property Name="IdStreet" Type="int" Nullable="false" />
+          <Property Name="IdCountry" Type="int" Nullable="false" />
+          <Property Name="Flag" Type="varbinary(max)" />
+          <Property Name="CountryName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IdCity" Type="int" Nullable="false" />
+          <Property Name="CityName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="StreetName" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
 предупреждение 6002: В таблице или представлении "Employment agency.dbo.v_user" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
         <EntityType Name="v_user">
           <Key>
@@ -1183,6 +1202,17 @@
     [v_organizationWithoutPhoto].[DateOfRegistration] AS [DateOfRegistration], 
     [v_organizationWithoutPhoto].[ClosingDate] AS [ClosingDate]
     FROM [dbo].[v_organizationWithoutPhoto] AS [v_organizationWithoutPhoto]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="v_street" EntityType="Self.v_street" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_street].[IdStreet] AS [IdStreet], 
+    [v_street].[IdCountry] AS [IdCountry], 
+    [v_street].[Flag] AS [Flag], 
+    [v_street].[CountryName] AS [CountryName], 
+    [v_street].[IdCity] AS [IdCity], 
+    [v_street].[CityName] AS [CityName], 
+    [v_street].[StreetName] AS [StreetName]
+    FROM [dbo].[v_street] AS [v_street]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="v_user" EntityType="Self.v_user" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -2711,6 +2741,7 @@
           <EntitySet Name="v_organization" EntityType="Model.v_organization" />
           <EntitySet Name="v_branch" EntityType="Model.v_branch" />
           <EntitySet Name="v_city" EntityType="Model.v_city" />
+          <EntitySet Name="v_street" EntityType="Model.v_street" />
         </EntityContainer>
         <EntityType Name="v_organization">
           <Key>
@@ -2774,6 +2805,23 @@
           <Property Name="Flag" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="CityName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="CountryName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="v_street">
+          <Key>
+            <PropertyRef Name="IdStreet" />
+            <PropertyRef Name="IdCountry" />
+            <PropertyRef Name="CountryName" />
+            <PropertyRef Name="IdCity" />
+            <PropertyRef Name="CityName" />
+            <PropertyRef Name="StreetName" />
+          </Key>
+          <Property Name="IdStreet" Type="Int32" Nullable="false" />
+          <Property Name="IdCountry" Type="Int32" Nullable="false" />
+          <Property Name="Flag" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="CountryName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IdCity" Type="Int32" Nullable="false" />
+          <Property Name="CityName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="StreetName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -3225,6 +3273,19 @@
                 <ScalarProperty Name="Flag" ColumnName="Flag" />
                 <ScalarProperty Name="IdCountry" ColumnName="IdCountry" />
                 <ScalarProperty Name="IdCity" ColumnName="IdCity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_street">
+            <EntityTypeMapping TypeName="Model.v_street">
+              <MappingFragment StoreEntitySet="v_street">
+                <ScalarProperty Name="StreetName" ColumnName="StreetName" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="IdCity" ColumnName="IdCity" />
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+                <ScalarProperty Name="Flag" ColumnName="Flag" />
+                <ScalarProperty Name="IdCountry" ColumnName="IdCountry" />
+                <ScalarProperty Name="IdStreet" ColumnName="IdStreet" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
