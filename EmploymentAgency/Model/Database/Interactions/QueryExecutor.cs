@@ -436,6 +436,12 @@ namespace EmploymentAgency.Model.Database.Interactions
             return _context.Education.AsNoTracking().ToList();
         }
 
+        public List<Education> GetEducations(string educationName)
+        {
+            return _context.Education.Where(e =>
+            (educationName.Length > 0 ? e.EducationName.ToLower().StartsWith(educationName.ToLower()) : true)).AsNoTracking().ToList();
+        }
+
         public List<Gender> GetGenders()
         {
             return _context.Gender.AsNoTracking().ToList();

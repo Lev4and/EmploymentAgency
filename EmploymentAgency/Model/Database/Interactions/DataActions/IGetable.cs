@@ -21,6 +21,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         List<Education> GetEducations();
 
+        List<Education> GetEducations(string educationName);
+
         List<Gender> GetGenders();
 
         List<Industry> GetIndustries();

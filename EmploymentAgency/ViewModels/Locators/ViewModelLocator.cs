@@ -43,6 +43,8 @@ namespace EmploymentAgency.ViewModels.Locators
 
         public DrivingLicenseCategoriesViewModel DrivingLicenseCategoriesViewModel => _provider.GetRequiredService<DrivingLicenseCategoriesViewModel>();
 
+        public EducationsViewModel EducationsViewModel => _provider.GetRequiredService<EducationsViewModel>();
+
         public static void Init()
         {
             var services = new ServiceCollection();
@@ -65,6 +67,7 @@ namespace EmploymentAgency.ViewModels.Locators
             services.AddTransient<StreetsViewModel>();
             services.AddTransient<SkillsViewModel>();
             services.AddTransient<DrivingLicenseCategoriesViewModel>();
+            services.AddTransient<EducationsViewModel>();
 
             services.AddSingleton<PageService>();
 
