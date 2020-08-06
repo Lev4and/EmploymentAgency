@@ -25,6 +25,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         List<EmploymentType> GetEmploymentTypes(string employmentTypeName);
 
+        List<Experience> GetExperiences(string experienceName);
+
         List<Gender> GetGenders();
 
         List<Industry> GetIndustries();

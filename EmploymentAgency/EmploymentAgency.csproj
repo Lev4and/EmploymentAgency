@@ -302,6 +302,7 @@
     <Compile Include="ViewModels\DrivingLicenseCategoriesViewModel.cs" />
     <Compile Include="ViewModels\EducationsViewModel.cs" />
     <Compile Include="ViewModels\EmploymentTypesViewModel.cs" />
+    <Compile Include="ViewModels\ExperiencesViewModel.cs" />
     <Compile Include="ViewModels\Locators\ViewModelLocator.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
@@ -338,6 +339,9 @@
     </Compile>
     <Compile Include="Views\Pages\EmploymentTypes.xaml.cs">
       <DependentUpon>EmploymentTypes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\Experiences.xaml.cs">
+      <DependentUpon>Experiences.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\Main.xaml.cs">
       <DependentUpon>Main.xaml</DependentUpon>
@@ -504,6 +508,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Pages\EmploymentTypes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\Experiences.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

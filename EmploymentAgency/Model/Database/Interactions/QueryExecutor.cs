@@ -445,7 +445,13 @@ namespace EmploymentAgency.Model.Database.Interactions
         public List<EmploymentType> GetEmploymentTypes(string employmentTypeName)
         {
             return _context.EmploymentType.Where(e =>
-            (employmentTypeName.Length > 0 ? e.EmploymentTypeName.ToLower().StartsWith(employmentTypeName) : true)).AsNoTracking().ToList();
+            (employmentTypeName.Length > 0 ? e.EmploymentTypeName.ToLower().StartsWith(employmentTypeName.ToLower()) : true)).AsNoTracking().ToList();
+        }
+
+        public List<Experience> GetExperiences(string experienceName)
+        {
+            return _context.Experience.Where(e =>
+            (experienceName.Length > 0 ? e.ExperienceName.ToLower().StartsWith(experienceName.ToLower()) : true)).AsNoTracking().ToList();
         }
 
         public List<Gender> GetGenders()

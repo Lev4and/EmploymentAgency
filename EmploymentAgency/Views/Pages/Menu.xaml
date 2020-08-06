@@ -24,6 +24,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0"
                   Margin="5">
@@ -100,12 +101,22 @@
                 <Button Style="{StaticResource MaterialDesignRaisedDarkButton}"
                         Height="50"
                         mdt:ButtonAssist.CornerRadius="25"
+                        ToolTip="Опыт"
+                        Command="{Binding Path=Experiences}">
+                    <TextBlock Text="Опыт"/>
+                </Button>
+            </Grid>
+            <Grid Grid.Row="8"
+                  Margin="5">
+                <Button Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                        Height="50"
+                        mdt:ButtonAssist.CornerRadius="25"
                         ToolTip="Организации"
                         Command="{Binding Path=Organizations}">
                     <TextBlock Text="Организации"/>
                 </Button>
             </Grid>
-            <Grid Grid.Row="8"
+            <Grid Grid.Row="9"
                   Margin="5">
                 <Button Style="{StaticResource MaterialDesignRaisedDarkButton}"
                         Height="50"
@@ -115,7 +126,7 @@
                     <TextBlock Text="Филиалы организаций"/>
                 </Button>
             </Grid>
-            <Grid Grid.Row="9"
+            <Grid Grid.Row="10"
                   Margin="5">
                 <Button Style="{StaticResource MaterialDesignRaisedDarkButton}"
                         Height="50"

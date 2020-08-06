@@ -8,7 +8,7 @@ namespace EmploymentAgency.ViewModels.Locators
         private static ServiceProvider _provider;
 
         public MainWindowViewModel MainWindowViewModel => _provider.GetRequiredService<MainWindowViewModel>();
-
+        
         public MainViewModel MainViewModel => _provider.GetRequiredService<MainViewModel>();
 
         public AuthorizationViewModel AuthorizationViewModel => _provider.GetRequiredService<AuthorizationViewModel>();
@@ -47,6 +47,8 @@ namespace EmploymentAgency.ViewModels.Locators
 
         public EmploymentTypesViewModel EmploymentTypesViewModel => _provider.GetRequiredService<EmploymentTypesViewModel>();
 
+        public ExperiencesViewModel ExperiencesViewModel => _provider.GetRequiredService<ExperiencesViewModel>();
+
         public static void Init()
         {
             var services = new ServiceCollection();
@@ -71,6 +73,7 @@ namespace EmploymentAgency.ViewModels.Locators
             services.AddTransient<DrivingLicenseCategoriesViewModel>();
             services.AddTransient<EducationsViewModel>();
             services.AddTransient<EmploymentTypesViewModel>();
+            services.AddTransient<ExperiencesViewModel>();
 
             services.AddSingleton<PageService>();
 

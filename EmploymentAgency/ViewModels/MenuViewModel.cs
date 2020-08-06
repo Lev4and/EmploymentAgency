@@ -53,6 +53,11 @@ namespace EmploymentAgency.ViewModels
             _pageService.ChangePage(new EmploymentTypes());
         });
 
+        public ICommand Experiences => new DelegateCommand(() =>
+        {
+            _pageService.ChangePage(new Experiences());
+        });
+
         public ICommand Organizations => new DelegateCommand(() =>
         {
             _pageService.ChangePage(new Organizations());
