@@ -425,6 +425,12 @@ namespace EmploymentAgency.Model.Database.Interactions
             return _context.DrivingLicenseCategory.AsNoTracking().ToList();
         }
 
+        public List<DrivingLicenseCategory> GetDrivingLicenseCategories(string drivingLicenseCategoryName)
+        {
+            return _context.DrivingLicenseCategory.Where(d =>
+            (drivingLicenseCategoryName.Length > 0 ? d.DrivingLicenseCategoryName.ToLower().StartsWith(drivingLicenseCategoryName.ToLower()) : true)).AsNoTracking().ToList();
+        }
+
         public List<Education> GetEducations()
         {
             return _context.Education.AsNoTracking().ToList();

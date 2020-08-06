@@ -17,6 +17,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         List<DrivingLicenseCategory> GetDrivingLicenseCategories();
 
+        List<DrivingLicenseCategory> GetDrivingLicenseCategories(string drivingLicenseCategoryName);
+
         List<Education> GetEducations();
 
         List<Gender> GetGenders();

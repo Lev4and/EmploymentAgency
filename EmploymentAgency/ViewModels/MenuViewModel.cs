@@ -38,6 +38,11 @@ namespace EmploymentAgency.ViewModels
             _pageService.ChangePage(new Skills());
         });
 
+        public ICommand DrivingLicenseCategories => new DelegateCommand(() =>
+        {
+            _pageService.ChangePage(new DrivingLicenseCategories());
+        });
+
         public ICommand Organizations => new DelegateCommand(() =>
         {
             _pageService.ChangePage(new Organizations());
