@@ -479,6 +479,12 @@ namespace EmploymentAgency.Model.Database.Interactions
             return _context.Language.AsNoTracking().ToList();
         }
 
+        public List<Language> GetLanguages(string languageName)
+        {
+            return _context.Language.Where(l =>
+            (languageName.Length > 0 ? l.LanguageName.ToLower().StartsWith(languageName.ToLower()) : true)).AsNoTracking().ToList();
+        }
+
         public Organization GetOrganization(int idOrganization)
         {
             return _context.Organization.Single(o => o.IdOrganization == idOrganization);
