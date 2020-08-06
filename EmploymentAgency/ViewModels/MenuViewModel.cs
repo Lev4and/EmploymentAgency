@@ -48,6 +48,11 @@ namespace EmploymentAgency.ViewModels
             _pageService.ChangePage(new Educations());
         });
 
+        public ICommand EmploymentTypes => new DelegateCommand(() =>
+        {
+            _pageService.ChangePage(new EmploymentTypes());
+        });
+
         public ICommand Organizations => new DelegateCommand(() =>
         {
             _pageService.ChangePage(new Organizations());

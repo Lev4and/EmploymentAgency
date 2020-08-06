@@ -45,6 +45,8 @@ namespace EmploymentAgency.ViewModels.Locators
 
         public EducationsViewModel EducationsViewModel => _provider.GetRequiredService<EducationsViewModel>();
 
+        public EmploymentTypesViewModel EmploymentTypesViewModel => _provider.GetRequiredService<EmploymentTypesViewModel>();
+
         public static void Init()
         {
             var services = new ServiceCollection();
@@ -68,6 +70,7 @@ namespace EmploymentAgency.ViewModels.Locators
             services.AddTransient<SkillsViewModel>();
             services.AddTransient<DrivingLicenseCategoriesViewModel>();
             services.AddTransient<EducationsViewModel>();
+            services.AddTransient<EmploymentTypesViewModel>();
 
             services.AddSingleton<PageService>();
 

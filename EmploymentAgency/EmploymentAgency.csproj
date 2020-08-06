@@ -301,6 +301,7 @@
     <Compile Include="ViewModels\CountriesViewModel.cs" />
     <Compile Include="ViewModels\DrivingLicenseCategoriesViewModel.cs" />
     <Compile Include="ViewModels\EducationsViewModel.cs" />
+    <Compile Include="ViewModels\EmploymentTypesViewModel.cs" />
     <Compile Include="ViewModels\Locators\ViewModelLocator.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
@@ -334,6 +335,9 @@
     </Compile>
     <Compile Include="Views\Pages\Educations.xaml.cs">
       <DependentUpon>Educations.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\EmploymentTypes.xaml.cs">
+      <DependentUpon>EmploymentTypes.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\Main.xaml.cs">
       <DependentUpon>Main.xaml</DependentUpon>
@@ -496,6 +500,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Pages\Educations.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\EmploymentTypes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
