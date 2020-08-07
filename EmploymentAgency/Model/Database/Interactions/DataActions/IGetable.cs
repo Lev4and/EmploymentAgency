@@ -33,6 +33,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         List<Industry> GetIndustries();
 
+        List<Industry> GetIndustries(string industryName);
+
         List<Language> GetLanguages();
 
         List<Language> GetLanguages(string languageName);

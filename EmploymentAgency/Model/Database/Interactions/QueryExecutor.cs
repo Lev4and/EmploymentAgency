@@ -475,6 +475,12 @@ namespace EmploymentAgency.Model.Database.Interactions
             return _context.Industry.AsNoTracking().ToList();
         }
 
+        public List<Industry> GetIndustries(string industryName)
+        {
+            return _context.Industry.Where(i =>
+            (industryName.Length > 0 ? i.IndustryName.ToLower().StartsWith(industryName.ToLower()) : true)).AsNoTracking().ToList();
+        }
+
         public List<LanguageProficiency> GetLanguageProficiencies()
         {
             return _context.LanguageProficiency.AsNoTracking().ToList();

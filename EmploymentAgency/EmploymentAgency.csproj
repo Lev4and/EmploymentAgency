@@ -305,6 +305,7 @@
     <Compile Include="ViewModels\EmploymentTypesViewModel.cs" />
     <Compile Include="ViewModels\ExperiencesViewModel.cs" />
     <Compile Include="ViewModels\GendersViewModel.cs" />
+    <Compile Include="ViewModels\IndustriesViewModel.cs" />
     <Compile Include="ViewModels\LanguageProficienciesViewModel.cs" />
     <Compile Include="ViewModels\LanguagesViewModel.cs" />
     <Compile Include="ViewModels\Locators\ViewModelLocator.cs" />
@@ -350,6 +351,9 @@
     </Compile>
     <Compile Include="Views\Pages\Genders.xaml.cs">
       <DependentUpon>Genders.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\Industries.xaml.cs">
+      <DependentUpon>Industries.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\LanguageProficiencies.xaml.cs">
       <DependentUpon>LanguageProficiencies.xaml</DependentUpon>
@@ -533,6 +537,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Pages\Genders.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\Industries.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
