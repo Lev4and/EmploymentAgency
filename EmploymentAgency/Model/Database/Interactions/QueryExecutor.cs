@@ -556,6 +556,12 @@ namespace EmploymentAgency.Model.Database.Interactions
             (roleName.Length > 0 ? r.RoleName.ToLower().StartsWith(roleName.ToLower()) : true)).AsNoTracking().ToList();
         }
 
+        public List<Schedule> GetSchedules(string scheduleName)
+        {
+            return _context.Schedule.Where(s =>
+            (scheduleName.Length > 0 ? s.ScheduleName.ToLower().StartsWith(scheduleName.ToLower()) : true)).AsNoTracking().ToList();
+        }
+
         public List<Skill> GetSkills()
         {
             return _context.Skill.AsNoTracking().ToList();

@@ -90,6 +90,7 @@
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
                                     </Grid.RowDefinitions>
                                     <Grid Grid.Row="0">
                                         <mdt:PackIcon Kind="City"
@@ -216,7 +217,7 @@
                                                       Height="15"
                                                       Margin="10 16"
                                                       Foreground="White"/>
-                                        <ListBoxItem Content="Опыт"
+                                        <ListBoxItem Content="Опыт работы"
                                                      Padding="37 14"
                                                      FontSize="15"
                                                      Foreground="White">
@@ -415,6 +416,23 @@
                                         </ListBoxItem>
                                     </Grid>
                                     <Grid Grid.Row="19">
+                                        <mdt:PackIcon Kind="ProgressClock"
+                                                      Width="15"
+                                                      Height="15"
+                                                      Margin="10 16"
+                                                      Foreground="White"/>
+                                        <ListBoxItem Content="График работы"
+                                                     Padding="37 14"
+                                                     FontSize="15"
+                                                     Foreground="White">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="MouseDoubleClick">
+                                                    <i:InvokeCommandAction Command="{Binding Path=Schedules}"/>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </ListBoxItem>
+                                    </Grid>
+                                    <Grid Grid.Row="20">
                                         <mdt:PackIcon Kind="ExitRun"
                                                       Width="15"
                                                       Height="15"

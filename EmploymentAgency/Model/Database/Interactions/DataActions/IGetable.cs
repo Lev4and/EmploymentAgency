@@ -43,6 +43,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         List<LanguageProficiency> GetLanguageProficiencies(string languageProficiencyName);
 
+        List<Schedule> GetSchedules(string scheduleName);
+
         List<Skill> GetSkills();
 
         List<Skill> GetSkills(string skillName);
