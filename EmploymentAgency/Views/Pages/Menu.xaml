@@ -192,7 +192,7 @@
                                                       Height="15"
                                                       Margin="10 16"
                                                       Foreground="White"/>
-                                        <ListBoxItem Content="Тип занятости"
+                                        <ListBoxItem Content="Типы занятости"
                                                      Padding="37 14"
                                                      FontSize="15"
                                                      Foreground="White">

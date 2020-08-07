@@ -2,7 +2,6 @@
 using DevExpress.Mvvm;
 using EmploymentAgency.Model.Database.Interactions;
 using EmploymentAgency.Model.Database.Models;
-using EmploymentAgency.Services;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 
@@ -12,7 +11,6 @@ namespace EmploymentAgency.ViewModels
     {
         private int? _selectedIdIndustry;
 
-        private readonly PageService _pageService;
         private QueryExecutor _executor;
 
         public int? SelectedIdOrganization { get; set; }
@@ -45,9 +43,9 @@ namespace EmploymentAgency.ViewModels
 
         public ObservableCollection<object> Organizations { get; set; }
 
-        public OrganizationsViewModel(PageService pageService)
+        public OrganizationsViewModel()
         {
-            _pageService = pageService;
+
         }
 
         public ICommand Loaded => new DelegateCommand(() =>
@@ -68,11 +66,6 @@ namespace EmploymentAgency.ViewModels
         {
             ResetToDefault();
         }, () => SelectedIdIndustry != null || SelectedIdSubIndustry != null || (OrganizationName != null ? OrganizationName.Length > 0 : false));
-
-        public ICommand Back => new DelegateCommand(() =>
-        {
-            _pageService.ChangePage(new EmploymentAgency.Views.Pages.Menu());
-        });
 
         private void ResetToDefault()
         {

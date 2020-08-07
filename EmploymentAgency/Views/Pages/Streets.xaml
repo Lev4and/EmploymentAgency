@@ -30,22 +30,6 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0"
-              Grid.Column="0"
-              Margin="5">
-            <mdt:PackIcon x:Name="iconArrowLeftCircle"
-                          Kind="ArrowLeftCircle"
-                          Panel.ZIndex="1"
-                          Height="Auto"
-                          Width="{Binding ElementName=iconArrowLeftCircle, Path=Height}"
-                          ToolTip="Назад">
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="MouseDown">
-                        <i:InvokeCommandAction Command="{Binding Path=Back}"/>
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
-            </mdt:PackIcon>
-        </Grid>
-        <Grid Grid.Row="0"
               Grid.Column="1"
               Margin="5">
             <Grid.ColumnDefinitions>

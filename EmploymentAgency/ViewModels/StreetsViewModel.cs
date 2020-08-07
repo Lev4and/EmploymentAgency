@@ -2,7 +2,6 @@
 using DevExpress.Mvvm;
 using EmploymentAgency.Model.Database.Interactions;
 using EmploymentAgency.Model.Database.Models;
-using EmploymentAgency.Services;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
@@ -16,7 +15,6 @@ namespace EmploymentAgency.ViewModels
         private string _countryName;
         private string _cityName;
 
-        private readonly PageService _pageService;
         private QueryExecutor _executor;
 
         public int? SelectedIdCountry
@@ -101,9 +99,9 @@ namespace EmploymentAgency.ViewModels
 
         public ObservableCollection<object> Streets { get; set; }
 
-        public StreetsViewModel(PageService pageService)
+        public StreetsViewModel()
         {
-            _pageService = pageService;
+
         }
 
         public ICommand Loaded => new DelegateCommand(() =>
@@ -119,11 +117,6 @@ namespace EmploymentAgency.ViewModels
         public ICommand ToFind => new DelegateCommand(() =>
         {
             Find();
-        });
-
-        public ICommand Back => new DelegateCommand(() =>
-        {
-            _pageService.ChangePage(new EmploymentAgency.Views.Pages.Menu());
         });
 
         public ICommand ResetFilters => new DelegateCommand(() =>

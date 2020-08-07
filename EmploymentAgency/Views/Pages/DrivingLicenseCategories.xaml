@@ -20,32 +20,11 @@
                 <i:InvokeCommandAction Command="{Binding Path=Loaded}"/>
             </i:EventTrigger>
         </i:Interaction.Triggers>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0"
-              Grid.Column="0"
-              Margin="5">
-            <mdt:PackIcon x:Name="iconArrowLeftCircle"
-                          Kind="ArrowLeftCircle"
-                          Panel.ZIndex="1"
-                          Height="Auto"
-                          Width="{Binding ElementName=iconArrowLeftCircle, Path=Height}"
-                          ToolTip="Назад">
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="MouseDown">
-                        <i:InvokeCommandAction Command="{Binding Path=Back}"/>
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
-            </mdt:PackIcon>
-        </Grid>
-        <Grid Grid.Row="0"
-              Grid.Column="1"
               Margin="5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
@@ -75,7 +54,6 @@
             </Grid>
         </Grid>
         <Grid Grid.Row="1"
-              Grid.ColumnSpan="2"
               Margin="5">
             <DataGrid AutoGenerateColumns="False"
                       ItemsSource="{Binding Path=DrivingLicenseCategories}"
