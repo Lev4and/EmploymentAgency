@@ -456,6 +456,20 @@
           <Property Name="StreetName" Type="nvarchar" MaxLength="255" Nullable="false" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Employment agency.dbo.v_subIndustry" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="v_subIndustry">
+          <Key>
+            <PropertyRef Name="IdSubIndustry" />
+            <PropertyRef Name="IdIndustry" />
+            <PropertyRef Name="IndustryName" />
+            <PropertyRef Name="NameSubIndustry" />
+          </Key>
+          <Property Name="IdSubIndustry" Type="int" Nullable="false" />
+          <Property Name="IdIndustry" Type="int" Nullable="false" />
+          <Property Name="IndustryName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="NameSubIndustry" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
 предупреждение 6002: В таблице или представлении "Employment agency.dbo.v_user" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
         <EntityType Name="v_user">
           <Key>
@@ -1213,6 +1227,14 @@
     [v_street].[CityName] AS [CityName], 
     [v_street].[StreetName] AS [StreetName]
     FROM [dbo].[v_street] AS [v_street]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="v_subIndustry" EntityType="Self.v_subIndustry" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_subIndustry].[IdSubIndustry] AS [IdSubIndustry], 
+    [v_subIndustry].[IdIndustry] AS [IdIndustry], 
+    [v_subIndustry].[IndustryName] AS [IndustryName], 
+    [v_subIndustry].[NameSubIndustry] AS [NameSubIndustry]
+    FROM [dbo].[v_subIndustry] AS [v_subIndustry]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="v_user" EntityType="Self.v_user" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -2742,6 +2764,7 @@
           <EntitySet Name="v_branch" EntityType="Model.v_branch" />
           <EntitySet Name="v_city" EntityType="Model.v_city" />
           <EntitySet Name="v_street" EntityType="Model.v_street" />
+          <EntitySet Name="v_subIndustry" EntityType="Model.v_subIndustry" />
         </EntityContainer>
         <EntityType Name="v_organization">
           <Key>
@@ -2822,6 +2845,18 @@
           <Property Name="IdCity" Type="Int32" Nullable="false" />
           <Property Name="CityName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="StreetName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="v_subIndustry">
+          <Key>
+            <PropertyRef Name="IdSubIndustry" />
+            <PropertyRef Name="IdIndustry" />
+            <PropertyRef Name="IndustryName" />
+            <PropertyRef Name="NameSubIndustry" />
+          </Key>
+          <Property Name="IdSubIndustry" Type="Int32" Nullable="false" />
+          <Property Name="IdIndustry" Type="Int32" Nullable="false" />
+          <Property Name="IndustryName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="NameSubIndustry" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -3286,6 +3321,16 @@
                 <ScalarProperty Name="Flag" ColumnName="Flag" />
                 <ScalarProperty Name="IdCountry" ColumnName="IdCountry" />
                 <ScalarProperty Name="IdStreet" ColumnName="IdStreet" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_subIndustry">
+            <EntityTypeMapping TypeName="Model.v_subIndustry">
+              <MappingFragment StoreEntitySet="v_subIndustry">
+                <ScalarProperty Name="NameSubIndustry" ColumnName="NameSubIndustry" />
+                <ScalarProperty Name="IndustryName" ColumnName="IndustryName" />
+                <ScalarProperty Name="IdIndustry" ColumnName="IdIndustry" />
+                <ScalarProperty Name="IdSubIndustry" ColumnName="IdSubIndustry" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

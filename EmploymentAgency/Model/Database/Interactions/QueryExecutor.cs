@@ -566,6 +566,13 @@ namespace EmploymentAgency.Model.Database.Interactions
             return _context.SubIndustry.Where(s => s.IdIndustry == idIndustry).AsNoTracking().ToList();
         }
 
+        public List<v_subIndustry> GetSubIndustries(int idIndustry, string nameSubIndustry)
+        {
+            return _context.v_subIndustry.Where(s =>
+            (idIndustry != -1 ? s.IdIndustry == idIndustry : true) &&
+            (nameSubIndustry.Length > 0 ? s.NameSubIndustry.ToLower().StartsWith(nameSubIndustry.ToLower()) : true)).AsNoTracking().ToList();
+        }
+
         public bool NecessaryToSupplementTheInformation(int idUser)
         {
             var results = new List<bool>();

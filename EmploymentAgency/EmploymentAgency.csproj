@@ -282,6 +282,9 @@
     <Compile Include="Model\Database\Models\v_street.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Database\Models\v_subIndustry.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\Database\Models\v_user.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -322,6 +325,7 @@
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\SkillsViewModel.cs" />
     <Compile Include="ViewModels\StreetsViewModel.cs" />
+    <Compile Include="ViewModels\SubIndustriesViewModel.cs" />
     <Compile Include="ViewModels\SupplementingInformationForApplicantViewModel.cs" />
     <Compile Include="ViewModels\SupplementingInformationForEmployerViewModel.cs" />
     <Compile Include="ViewModels\SupplementingInformationForManagerViewModel.cs" />
@@ -384,6 +388,9 @@
     </Compile>
     <Compile Include="Views\Pages\Streets.xaml.cs">
       <DependentUpon>Streets.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\SubIndustries.xaml.cs">
+      <DependentUpon>SubIndustries.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\SupplementingInformationForApplicant.xaml.cs">
       <DependentUpon>SupplementingInformationForApplicant.xaml</DependentUpon>
@@ -581,6 +588,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Pages\Streets.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\SubIndustries.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

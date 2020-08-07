@@ -67,6 +67,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         List<v_street> GetStreets(int idCountry, int idCity, string streetName);
 
+        List<v_subIndustry> GetSubIndustries(int idIndustry, string nameSubIndustry);
+
         List<v_organization> GetOrganizations(int idIndustry, int idSubIndustry, string organizationName);
 
         List<v_organizationWithoutPhoto> GetOrganizationsWithoutPhoto();
