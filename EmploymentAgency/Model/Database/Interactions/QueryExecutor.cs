@@ -539,6 +539,12 @@ namespace EmploymentAgency.Model.Database.Interactions
             (professionName.Length > 0 ? p.ProfessionName.ToLower().StartsWith(professionName.ToLower()) : true)).AsNoTracking().ToList();
         }
 
+        public List<RequestStatus> GetRequestStatuses(string requestStatusName)
+        {
+            return _context.RequestStatus.Where(r =>
+            (requestStatusName.Length > 0 ? r.RequestStatusName.ToLower().StartsWith(requestStatusName.ToLower()) : true)).AsNoTracking().ToList();
+        }
+
         public List<Role> GetRoles()
         {
             return _context.Role.AsNoTracking().ToList();

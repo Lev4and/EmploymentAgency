@@ -326,6 +326,7 @@
     <Compile Include="ViewModels\ProfessionCategoriesViewModel.cs" />
     <Compile Include="ViewModels\ProfessionsViewModel.cs" />
     <Compile Include="ViewModels\RegistrationViewModel.cs" />
+    <Compile Include="ViewModels\RequestStatusesViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\SkillsViewModel.cs" />
     <Compile Include="ViewModels\StreetsViewModel.cs" />
@@ -386,6 +387,9 @@
     </Compile>
     <Compile Include="Views\Pages\Registration.xaml.cs">
       <DependentUpon>Registration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\RequestStatuses.xaml.cs">
+      <DependentUpon>RequestStatuses.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
@@ -587,6 +591,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Pages\Registration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\RequestStatuses.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -55,6 +55,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         List<ProfessionCategory> GetProfessionCategories(string nameProfessionCategory);
 
+        List<RequestStatus> GetRequestStatuses(string requestStatusName);
+
         List<Role> GetRoles();
 
         List<v_branch> GetBranches(int idIndustry, int idSubIndustry, int idCountry, int idCity, int idStreet, int idOrganization); 
