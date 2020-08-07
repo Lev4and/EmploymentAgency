@@ -459,6 +459,12 @@ namespace EmploymentAgency.Model.Database.Interactions
             return _context.Gender.AsNoTracking().ToList();
         }
 
+        public List<Gender> GetGenders(string genderName)
+        {
+            return _context.Gender.Where(g =>
+            (genderName.Length > 0 ? g.GenderName.ToLower().StartsWith(genderName.ToLower()) : true)).AsNoTracking().ToList();
+        }
+
         public int GetIdRole(string roleName)
         {
             return _context.Role.Single(r => r.RoleName == roleName).IdRole;

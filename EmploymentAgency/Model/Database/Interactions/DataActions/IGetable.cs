@@ -29,6 +29,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         List<Gender> GetGenders();
 
+        List<Gender> GetGenders(string genderName);
+
         List<Industry> GetIndustries();
 
         List<Language> GetLanguages();
