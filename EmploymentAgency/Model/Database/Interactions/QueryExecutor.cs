@@ -603,6 +603,13 @@ namespace EmploymentAgency.Model.Database.Interactions
             (nameSubIndustry.Length > 0 ? s.NameSubIndustry.ToLower().StartsWith(nameSubIndustry.ToLower()) : true)).AsNoTracking().ToList();
         }
 
+        public List<v_user> GetUsers(int idRole, string login)
+        {
+            return _context.v_user.Where(u =>
+            (idRole != -1 ? u.IdRole == idRole : true) &&
+            (login.Length > 0 ? u.Login.ToLower().StartsWith(login.ToLower()) : true)).AsNoTracking().ToList();
+        }
+
         public bool NecessaryToSupplementTheInformation(int idUser)
         {
             var results = new List<bool>();

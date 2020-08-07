@@ -130,6 +130,11 @@ namespace EmploymentAgency.ViewModels
             _menuPageService.ChangePage(new Schedules());
         });
 
+        public ICommand Users => new DelegateCommand(() =>
+        {
+            _menuPageService.ChangePage(new Users());
+        });
+
         public ICommand Exit => new DelegateCommand(() =>
         {
             Application.Current.Shutdown();

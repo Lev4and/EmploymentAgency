@@ -82,5 +82,7 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
         List<v_organization> GetOrganizations(int idIndustry, int idSubIndustry, string organizationName);
 
         List<v_organizationWithoutPhoto> GetOrganizationsWithoutPhoto();
+
+        List<v_user> GetUsers(int idRole, string login);
     }
 }

@@ -124,6 +124,7 @@
     <Compile Include="Converters\ArrayByteToImageSource.cs" />
     <Compile Include="Converters\BoolToCollapsedVisibility.cs" />
     <Compile Include="Converters\DateTimeToDateConverter.cs" />
+    <Compile Include="Converters\DateTimeToStringDateTimeConverter.cs" />
     <Compile Include="Converters\NullableDateTimeToText.cs" />
     <Compile Include="Converters\SelectedValueToNullableInt32.cs" />
     <Compile Include="Converters\TextToInt32.cs" />
@@ -336,6 +337,7 @@
     <Compile Include="ViewModels\SupplementingInformationForApplicantViewModel.cs" />
     <Compile Include="ViewModels\SupplementingInformationForEmployerViewModel.cs" />
     <Compile Include="ViewModels\SupplementingInformationForManagerViewModel.cs" />
+    <Compile Include="ViewModels\UsersViewModel.cs" />
     <Compile Include="Views\Pages\Authorization.xaml.cs">
       <DependentUpon>Authorization.xaml</DependentUpon>
     </Compile>
@@ -419,6 +421,9 @@
     </Compile>
     <Compile Include="Views\Pages\SupplementingInformationForManager.xaml.cs">
       <DependentUpon>SupplementingInformationForManager.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\Users.xaml.cs">
+      <DependentUpon>Users.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\BlockViewBranch.xaml.cs">
       <DependentUpon>BlockViewBranch.xaml</DependentUpon>
@@ -639,6 +644,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Pages\SupplementingInformationForManager.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\Users.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

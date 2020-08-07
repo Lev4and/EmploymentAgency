@@ -69,6 +69,8 @@ namespace EmploymentAgency.ViewModels.Locators
 
         public SchedulesViewModel SchedulesViewModel => _provider.GetRequiredService<SchedulesViewModel>();
 
+        public UsersViewModel UsersViewModel => _provider.GetRequiredService<UsersViewModel>();
+
         public static void Init()
         {
             var services = new ServiceCollection();
@@ -104,6 +106,7 @@ namespace EmploymentAgency.ViewModels.Locators
             services.AddTransient<RequestStatusesViewModel>();
             services.AddTransient<RolesViewModel>();
             services.AddTransient<SchedulesViewModel>();
+            services.AddTransient<UsersViewModel>();
 
             services.AddSingleton<PageService>();
             services.AddSingleton<MenuPageService>();
