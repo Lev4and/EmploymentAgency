@@ -474,6 +474,12 @@ namespace EmploymentAgency.Model.Database.Interactions
             return _context.LanguageProficiency.AsNoTracking().ToList();
         }
 
+        public List<LanguageProficiency> GetLanguageProficiencies(string languageProficiencyName)
+        {
+            return _context.LanguageProficiency.Where(l =>
+            (languageProficiencyName.Length > 0 ? l.LanguageProficiencyName.ToLower().StartsWith(languageProficiencyName.ToLower()) : true)).AsNoTracking().ToList();
+        }
+
         public List<Language> GetLanguages()
         {
             return _context.Language.AsNoTracking().ToList();

@@ -75,6 +75,11 @@ namespace EmploymentAgency.ViewModels
             _menuPageService.ChangePage(new Languages());
         });
 
+        public ICommand LanguageProficiencies => new DelegateCommand(() =>
+        {
+            _menuPageService.ChangePage(new LanguageProficiencies());
+        });
+
         public ICommand ProfessionCategories => new DelegateCommand(() =>
         {
             _menuPageService.ChangePage(new ProfessionCategories());
