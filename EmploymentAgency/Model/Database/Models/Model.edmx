@@ -488,12 +488,14 @@
         <EntityType Name="v_user">
           <Key>
             <PropertyRef Name="IdUser" />
+            <PropertyRef Name="IdRole" />
             <PropertyRef Name="RoleName" />
             <PropertyRef Name="Login" />
             <PropertyRef Name="Password" />
             <PropertyRef Name="DateOfRegistration" />
           </Key>
           <Property Name="IdUser" Type="int" Nullable="false" />
+          <Property Name="IdRole" Type="int" Nullable="false" />
           <Property Name="RoleName" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="Login" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
@@ -1261,6 +1263,7 @@
           <EntitySet Name="v_user" EntityType="Self.v_user" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [v_user].[IdUser] AS [IdUser], 
+    [v_user].[IdRole] AS [IdRole], 
     [v_user].[RoleName] AS [RoleName], 
     [v_user].[Login] AS [Login], 
     [v_user].[Password] AS [Password], 
@@ -1913,12 +1916,14 @@
             <PropertyRef Name="Login" />
             <PropertyRef Name="Password" />
             <PropertyRef Name="DateOfRegistration" />
+            <PropertyRef Name="IdRole" />
           </Key>
           <Property Name="IdUser" Type="Int32" Nullable="false" />
           <Property Name="RoleName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Login" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DateOfRegistration" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IdRole" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="FK_Applicant_Gender">
           <End Role="Gender" Type="Self.Gender" Multiplicity="1">
@@ -3292,6 +3297,7 @@
           <EntitySetMapping Name="v_user">
             <EntityTypeMapping TypeName="Model.v_user">
               <MappingFragment StoreEntitySet="v_user">
+                <ScalarProperty Name="IdRole" ColumnName="IdRole" />
                 <ScalarProperty Name="IdUser" ColumnName="IdUser" />
                 <ScalarProperty Name="RoleName" ColumnName="RoleName" />
                 <ScalarProperty Name="Login" ColumnName="Login" />

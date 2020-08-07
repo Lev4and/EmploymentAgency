@@ -19,5 +19,6 @@ namespace EmploymentAgency.Model.Database.Models
         public string Login { get; set; }
         public string Password { get; set; }
         public System.DateTime DateOfRegistration { get; set; }
+        public int IdRole { get; set; }
     }
 }
