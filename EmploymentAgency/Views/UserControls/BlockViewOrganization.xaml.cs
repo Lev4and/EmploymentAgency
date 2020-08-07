@@ -1,7 +1,4 @@
-﻿using System;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
+﻿using DevExpress.Mvvm;
 using System.Windows.Media;
 
 namespace EmploymentAgency.Views.UserControls
@@ -9,38 +6,22 @@ namespace EmploymentAgency.Views.UserControls
     /// <summary>
     /// Логика взаимодействия для BlockViewOrganization.xaml
     /// </summary>
-    public partial class BlockViewOrganization : UserControl
+    public partial class BlockViewOrganization : BlockViewItem
     {
-        public object Organization
-        {
-            get { return (object)GetValue(OrganizationProperty); }
-            set { SetValue(OrganizationProperty, value); }
-        }
-
-        public static readonly DependencyProperty OrganizationProperty =
-            DependencyProperty.Register("Organization", typeof(object), typeof(BlockViewOrganization), new PropertyMetadata(null));
-
-        public new SolidColorBrush Background
-        {
-            get { return (SolidColorBrush)GetValue(BackgroundProperty); }
-            set { SetValue(BackgroundProperty, value); }
-        }
-
-        public static readonly new DependencyProperty BackgroundProperty =
-            DependencyProperty.Register("Background", typeof(SolidColorBrush), typeof(BlockViewOrganization), new PropertyMetadata(new SolidColorBrush(Colors.Transparent)));
-
-        public event SelectedValueHandler SelectedValueChanged;
-
-        public delegate void SelectedValueHandler(object sender, EventArgs e);
-
         public BlockViewOrganization()
         {
             InitializeComponent();
-        }
 
-        private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            SelectedValueChanged?.Invoke(this, new EventArgs());
+            Select = new DelegateCommand(() =>
+            {
+                MonochromeBrush = new SolidColorBrush(Colors.Yellow);
+            }, () => IsCanSelect);
+
+
+            Deselect = new DelegateCommand(() =>
+            {
+                MonochromeBrush = new SolidColorBrush(Colors.Transparent);
+            }, () => IsCanSelect);
         }
     }
 }

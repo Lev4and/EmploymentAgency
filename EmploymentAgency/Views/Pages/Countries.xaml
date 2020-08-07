@@ -56,9 +56,10 @@
         </Grid>
         <Grid Grid.Row="1"
               Margin="5">
-            <uc:BlockViewCountries SelectedValuePath="IdCountry"
-                                   SelectedValue="{Binding Path=SelectedIdCountry, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                   Data="{Binding Path=Countries, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+            <uc:BlockViewItems TypeItem="BlockViewCountry"
+                               SelectedValuePath="IdCountry"
+                               SelectedValue="{Binding Path=SelectedIdCountry, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                               Data="{Binding Path=Countries, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
         </Grid>
     </Grid>
 </Page>

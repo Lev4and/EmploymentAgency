@@ -140,9 +140,10 @@
         <Grid Grid.Row="1"
               Grid.Column="1"
               Margin="5">
-            <uc:BlockViewStreets SelectedValuePath="IdStreet"
-                                 SelectedValue="{Binding Path=SelectedIdStreet, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                 Data="{Binding Path=Streets, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+            <uc:BlockViewItems TypeItem="BlockViewStreet"
+                               SelectedValuePath="IdStreet"
+                               SelectedValue="{Binding Path=SelectedIdStreet, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                               Data="{Binding Path=Streets, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
         </Grid>
     </Grid>
 </Page>

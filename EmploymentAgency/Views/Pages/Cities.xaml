@@ -114,9 +114,10 @@
         <Grid Grid.Row="1"
               Grid.Column="1"
               Margin="5">
-            <uc:BlockViewCities SelectedValuePath="IdCity"
-                                SelectedValue="{Binding Path=SelectedIdCity, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                Data="{Binding Path=Cities, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+            <uc:BlockViewItems TypeItem="BlockViewCity"
+                               SelectedValuePath="IdCity"
+                               SelectedValue="{Binding Path=SelectedIdCity, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                               Data="{Binding Path=Cities, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
         </Grid>
     </Grid>
 </Page>

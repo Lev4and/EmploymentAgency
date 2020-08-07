@@ -56,9 +56,10 @@
         </Grid>
         <Grid Grid.Row="1"
               Margin="5">
-            <uc:BlockViewSkills SelectedValuePath="IdSkill"
-                                   SelectedValue="{Binding Path=SelectedIdSkill, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                   Data="{Binding Path=Skills, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+            <uc:BlockViewItems TypeItem="BlockViewSkill"
+                               SelectedValuePath="IdSkill"
+                               SelectedValue="{Binding Path=SelectedIdSkill, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                               Data="{Binding Path=Skills, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
         </Grid>
     </Grid>
 </Page>

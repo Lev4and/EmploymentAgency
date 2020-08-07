@@ -425,20 +425,12 @@
     <Compile Include="Views\Pages\Users.xaml.cs">
       <DependentUpon>Users.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserControls\BlockViewItem.cs" />
     <Compile Include="Views\UserControls\BlockViewBranch.xaml.cs">
       <DependentUpon>BlockViewBranch.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\BlockViewBranches.xaml.cs">
-      <DependentUpon>BlockViewBranches.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UserControls\BlockViewCities.xaml.cs">
-      <DependentUpon>BlockViewCities.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\UserControls\BlockViewCity.xaml.cs">
       <DependentUpon>BlockViewCity.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UserControls\BlockViewCountries.xaml.cs">
-      <DependentUpon>BlockViewCountries.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\BlockViewCountry.xaml.cs">
       <DependentUpon>BlockViewCountry.xaml</DependentUpon>
@@ -448,6 +440,9 @@
     </Compile>
     <Compile Include="Views\UserControls\BlockViewEducationalActivity.xaml.cs">
       <DependentUpon>BlockViewEducationalActivity.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\BlockViewItems.xaml.cs">
+      <DependentUpon>BlockViewItems.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\BlockViewKnowledgeLanguage.xaml.cs">
       <DependentUpon>BlockViewKnowledgeLanguage.xaml</DependentUpon>
@@ -464,20 +459,11 @@
     <Compile Include="Views\UserControls\BlockViewOrganization.xaml.cs">
       <DependentUpon>BlockViewOrganization.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\BlockViewOrganizations.xaml.cs">
-      <DependentUpon>BlockViewOrganizations.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\UserControls\BlockViewSkill.xaml.cs">
       <DependentUpon>BlockViewSkill.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\BlockViewSkills.xaml.cs">
-      <DependentUpon>BlockViewSkills.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\UserControls\BlockViewStreet.xaml.cs">
       <DependentUpon>BlockViewStreet.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UserControls\BlockViewStreets.xaml.cs">
-      <DependentUpon>BlockViewStreets.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\CheckBoxForExpander.xaml.cs">
       <DependentUpon>CheckBoxForExpander.xaml</DependentUpon>
@@ -485,6 +471,7 @@
     <Compile Include="Views\UserControls\ExpanderWithCheckBoxes.xaml.cs">
       <DependentUpon>ExpanderWithCheckBoxes.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserControls\ISelectable.cs" />
     <Compile Include="Views\Windows\AddOrganization.xaml.cs">
       <DependentUpon>AddOrganization.xaml</DependentUpon>
     </Compile>
@@ -655,19 +642,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\UserControls\BlockViewBranches.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\UserControls\BlockViewCities.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\UserControls\BlockViewCity.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\UserControls\BlockViewCountries.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -680,6 +655,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\BlockViewEducationalActivity.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\BlockViewItems.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -703,23 +682,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\UserControls\BlockViewOrganizations.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\UserControls\BlockViewSkill.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\UserControls\BlockViewSkills.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\UserControls\BlockViewStreet.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\UserControls\BlockViewStreets.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
