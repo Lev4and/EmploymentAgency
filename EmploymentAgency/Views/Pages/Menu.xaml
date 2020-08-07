@@ -89,6 +89,7 @@
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
                                     </Grid.RowDefinitions>
                                     <Grid Grid.Row="0">
                                         <mdt:PackIcon Kind="City"
@@ -397,6 +398,23 @@
                                         </ListBoxItem>
                                     </Grid>
                                     <Grid Grid.Row="18">
+                                        <mdt:PackIcon Kind="BriefcaseAccount"
+                                                      Width="15"
+                                                      Height="15"
+                                                      Margin="10 16"
+                                                      Foreground="White"/>
+                                        <ListBoxItem Content="Должности"
+                                                     Padding="37 14"
+                                                     FontSize="15"
+                                                     Foreground="White">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="MouseDoubleClick">
+                                                    <i:InvokeCommandAction Command="{Binding Path=Roles}"/>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </ListBoxItem>
+                                    </Grid>
+                                    <Grid Grid.Row="19">
                                         <mdt:PackIcon Kind="ExitRun"
                                                       Width="15"
                                                       Height="15"

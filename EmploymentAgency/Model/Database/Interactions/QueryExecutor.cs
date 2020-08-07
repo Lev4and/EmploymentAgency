@@ -550,6 +550,12 @@ namespace EmploymentAgency.Model.Database.Interactions
             return _context.Role.AsNoTracking().ToList();
         }
 
+        public List<Role> GetRoles(string roleName)
+        {
+            return _context.Role.Where(r =>
+            (roleName.Length > 0 ? r.RoleName.ToLower().StartsWith(roleName.ToLower()) : true)).AsNoTracking().ToList();
+        }
+
         public List<Skill> GetSkills()
         {
             return _context.Skill.AsNoTracking().ToList();
