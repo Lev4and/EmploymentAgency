@@ -89,7 +89,7 @@
                                           DisplayMemberPath="RoleName"
                                           SelectedValuePath="IdRole"
                                           SelectedValue="{Binding Path=SelectedIdRole, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource selectedValueToNullableInt32}}"
-                                          FontSize="20"
+                                          FontSize="14"
                                           FontWeight="Medium"
                                           IsEditable="False"
                                           IsTextSearchEnabled="False"
@@ -122,10 +122,38 @@
                       SelectionMode="Single"
                       SelectionUnit="FullRow">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Должность" Binding="{Binding Path=RoleName}"/>
-                    <DataGridTextColumn Header="Логин" Binding="{Binding Path=Login}"/>
-                    <DataGridTextColumn Header="Пароль" Binding="{Binding Path=Password}"/>
-                    <DataGridTextColumn Header="Дата регистрации" Binding="{Binding Path=DateOfRegistration, Converter={StaticResource dateTimeToStringDateTimeConverter}}"/>
+                    <DataGridTextColumn Binding="{Binding Path=RoleName}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="Должность"
+                                       FontSize="16"
+                                       FontWeight="Bold"
+                                       Foreground="Black"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding Path=Login}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="Логин"
+                                       FontSize="16"
+                                       FontWeight="Bold"
+                                       Foreground="Black"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding Path=Password}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="Пароль"
+                                       FontSize="16"
+                                       FontWeight="Bold"
+                                       Foreground="Black"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding Path=DateOfRegistration, Converter={StaticResource dateTimeToStringDateTimeConverter}}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="Дата регистрации"
+                                       FontSize="16"
+                                       FontWeight="Bold"
+                                       Foreground="Black"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

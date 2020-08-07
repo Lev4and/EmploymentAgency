@@ -65,8 +65,22 @@
                       SelectionMode="Single"
                       SelectionUnit="FullRow">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Обозначение уровня знания языка" Binding="{Binding Path=Designation}"/>
-                    <DataGridTextColumn Header="Название уровня знания языка" Binding="{Binding Path=LanguageProficiencyName}"/>
+                    <DataGridTextColumn Binding="{Binding Path=Designation}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="Обозначение уровня знания языка"
+                                       FontSize="16"
+                                       FontWeight="Bold"
+                                       Foreground="Black"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding Path=LanguageProficiencyName}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="Название уровня знания языка"
+                                       FontSize="16"
+                                       FontWeight="Bold"
+                                       Foreground="Black"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

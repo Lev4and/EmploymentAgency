@@ -65,7 +65,14 @@
                       SelectionMode="Single"
                       SelectionUnit="FullRow">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Название вида образования" Binding="{Binding Path=EducationName}"/>
+                    <DataGridTextColumn Binding="{Binding Path=EducationName}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="Название вида образования"
+                                       FontSize="16"
+                                       FontWeight="Bold"
+                                       Foreground="Black"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

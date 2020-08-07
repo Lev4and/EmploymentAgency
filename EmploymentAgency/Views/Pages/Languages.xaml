@@ -65,7 +65,14 @@
                       SelectionMode="Single"
                       SelectionUnit="FullRow">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Название языка" Binding="{Binding Path=LanguageName}"/>
+                    <DataGridTextColumn Binding="{Binding Path=LanguageName}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="Название языка"
+                                       FontSize="16"
+                                       FontWeight="Bold"
+                                       Foreground="Black"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

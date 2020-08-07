@@ -65,7 +65,14 @@
                       SelectionMode="Single"
                       SelectionUnit="FullRow">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Название графика работы" Binding="{Binding Path=ScheduleName}"/>
+                    <DataGridTextColumn Binding="{Binding Path=ScheduleName}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="Название графика работы"
+                                       FontSize="16"
+                                       FontWeight="Bold"
+                                       Foreground="Black"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

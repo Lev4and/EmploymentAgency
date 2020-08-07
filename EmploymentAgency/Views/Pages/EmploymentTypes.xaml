@@ -65,7 +65,14 @@
                       SelectionMode="Single"
                       SelectionUnit="FullRow">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Название типа занятости" Binding="{Binding Path=EmploymentTypeName}"/>
+                    <DataGridTextColumn Binding="{Binding Path=EmploymentTypeName}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="Название типа занятости"
+                                       FontSize="16"
+                                       FontWeight="Bold"
+                                       Foreground="Black"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

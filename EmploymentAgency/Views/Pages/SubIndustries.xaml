@@ -88,7 +88,7 @@
                                           DisplayMemberPath="IndustryName"
                                           SelectedValuePath="IdIndustry"
                                           SelectedValue="{Binding Path=SelectedIdIndustry, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource selectedValueToNullableInt32}}"
-                                          FontSize="20"
+                                          FontSize="14"
                                           FontWeight="Medium"
                                           IsEditable="False"
                                           IsTextSearchEnabled="False"
@@ -121,8 +121,22 @@
                       SelectionMode="Single"
                       SelectionUnit="FullRow">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Название отрасли" Binding="{Binding Path=IndustryName}"/>
-                    <DataGridTextColumn Header="Название подотрасли" Binding="{Binding Path=NameSubIndustry}"/>
+                    <DataGridTextColumn Binding="{Binding Path=IndustryName}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="Название отрасли"
+                                       FontSize="16"
+                                       FontWeight="Bold"
+                                       Foreground="Black"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding Path=NameSubIndustry}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="Название подотрасли"
+                                       FontSize="16"
+                                       FontWeight="Bold"
+                                       Foreground="Black"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

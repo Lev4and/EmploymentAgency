@@ -65,7 +65,14 @@
                       SelectionMode="Single"
                       SelectionUnit="FullRow">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Название категории водительского права" Binding="{Binding Path=DrivingLicenseCategoryName}"/>
+                    <DataGridTextColumn Binding="{Binding Path=DrivingLicenseCategoryName}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="Название категории водительского права"
+                                       FontSize="16"
+                                       FontWeight="Bold"
+                                       Foreground="Black"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
