@@ -291,6 +291,7 @@
     <Compile Include="Model\Logic\Managers\PageManagers\Employer.cs" />
     <Compile Include="Model\Logic\Managers\PageManagers\Manager.cs" />
     <Compile Include="Model\Logic\Range.cs" />
+    <Compile Include="Services\MenuPageService.cs" />
     <Compile Include="Services\PageService.cs" />
     <Compile Include="Services\WindowService.cs" />
     <Compile Include="ViewModels\AddOrganizationViewModel.cs" />
@@ -313,6 +314,7 @@
     </Compile>
     <Compile Include="ViewModels\MenuViewModel.cs" />
     <Compile Include="ViewModels\OrganizationsViewModel.cs" />
+    <Compile Include="ViewModels\ProfessionCategoriesViewModel.cs" />
     <Compile Include="ViewModels\RegistrationViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\SkillsViewModel.cs" />
@@ -355,6 +357,9 @@
     </Compile>
     <Compile Include="Views\Pages\Organizations.xaml.cs">
       <DependentUpon>Organizations.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\ProfessionCategories.xaml.cs">
+      <DependentUpon>ProfessionCategories.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\Registration.xaml.cs">
       <DependentUpon>Registration.xaml</DependentUpon>
@@ -532,6 +537,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Pages\Organizations.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\ProfessionCategories.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

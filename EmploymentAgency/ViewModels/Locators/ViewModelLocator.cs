@@ -51,6 +51,8 @@ namespace EmploymentAgency.ViewModels.Locators
 
         public LanguagesViewModel LanguagesViewModel => _provider.GetRequiredService<LanguagesViewModel>();
 
+        public ProfessionCategoriesViewModel ProfessionCategoriesViewModel => _provider.GetRequiredService<ProfessionCategoriesViewModel>();
+
         public static void Init()
         {
             var services = new ServiceCollection();
@@ -77,8 +79,10 @@ namespace EmploymentAgency.ViewModels.Locators
             services.AddTransient<EmploymentTypesViewModel>();
             services.AddTransient<ExperiencesViewModel>();
             services.AddTransient<LanguagesViewModel>();
+            services.AddTransient<ProfessionCategoriesViewModel>();
 
             services.AddSingleton<PageService>();
+            services.AddSingleton<MenuPageService>();
 
             _provider = services.BuildServiceProvider();
 

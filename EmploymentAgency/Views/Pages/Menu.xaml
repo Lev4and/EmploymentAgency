@@ -4,149 +4,318 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mdt="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
       xmlns:local="clr-namespace:EmploymentAgency.Views.Pages"
       mc:Ignorable="d"
       DataContext="{Binding MenuViewModel, Source={StaticResource ViewModelLocator}}"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Меню" WindowTitle="Агентство трудоустройства - Меню">
     <Grid>
-        <Grid VerticalAlignment="Center"
-              HorizontalAlignment="Center" 
-              Height="Auto">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-            <Grid Grid.Row="0"
-                  Margin="5">
-                <Button Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                        Height="50"
-                        mdt:ButtonAssist.CornerRadius="25"
-                        ToolTip="Страны"
-                        Command="{Binding Path=Countries}">
-                    <TextBlock Text="Страны"/>
-                </Button>
+        <mdt:ColorZone Mode="PrimaryMid"
+                       Padding="16"
+                       Height="70">
+            <Grid>
+                <ToggleButton x:Name="IsLeftDrawerOpenToggleButton" 
+                              Style="{DynamicResource MaterialDesignHamburgerToggleButton}"
+                              IsChecked="{Binding Path=IsLeftDrawerOpen, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                              HorizontalAlignment="Left"
+                              Panel.ZIndex="1"/>
+                <TextBlock Text="Агентство трудоустройства"
+                           TextAlignment="Center"
+                           VerticalAlignment="Center"
+                           FontSize="22"
+                           FontWeight="Medium"
+                           Panel.ZIndex="0"/>
             </Grid>
-            <Grid Grid.Row="1"
-                  Margin="5">
-                <Button Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                        Height="50"
-                        mdt:ButtonAssist.CornerRadius="25"
-                        ToolTip="Города"
-                        Command="{Binding Path=Cities}">
-                    <TextBlock Text="Города"/>
-                </Button>
-            </Grid>
-            <Grid Grid.Row="2"
-                  Margin="5">
-                <Button Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                        Height="50"
-                        mdt:ButtonAssist.CornerRadius="25"
-                        ToolTip="Улицы"
-                        Command="{Binding Path=Streets}">
-                    <TextBlock Text="Улицы"/>
-                </Button>
-            </Grid>
-            <Grid Grid.Row="3"
-                  Margin="5">
-                <Button Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                        Height="50"
-                        mdt:ButtonAssist.CornerRadius="25"
-                        ToolTip="Навыки"
-                        Command="{Binding Path=Skills}">
-                    <TextBlock Text="Навыки"/>
-                </Button>
-            </Grid>
-            <Grid Grid.Row="4"
-                  Margin="5">
-                <Button Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                        Height="50"
-                        mdt:ButtonAssist.CornerRadius="25"
-                        ToolTip="Категории водительских прав"
-                        Command="{Binding Path=DrivingLicenseCategories}">
-                    <TextBlock Text="Категории водительских прав"/>
-                </Button>
-            </Grid>
-            <Grid Grid.Row="5"
-                  Margin="5">
-                <Button Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                        Height="50"
-                        mdt:ButtonAssist.CornerRadius="25"
-                        ToolTip="Виды образования"
-                        Command="{Binding Path=Educations}">
-                    <TextBlock Text="Виды образования"/>
-                </Button>
-            </Grid>
-            <Grid Grid.Row="6"
-                  Margin="5">
-                <Button Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                        Height="50"
-                        mdt:ButtonAssist.CornerRadius="25"
-                        ToolTip="Тип занятости"
-                        Command="{Binding Path=EmploymentTypes}">
-                    <TextBlock Text="Тип занятости"/>
-                </Button>
-            </Grid>
-            <Grid Grid.Row="7"
-                  Margin="5">
-                <Button Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                        Height="50"
-                        mdt:ButtonAssist.CornerRadius="25"
-                        ToolTip="Опыт"
-                        Command="{Binding Path=Experiences}">
-                    <TextBlock Text="Опыт"/>
-                </Button>
-            </Grid>
-            <Grid Grid.Row="8"
-                  Margin="5">
-                <Button Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                        Height="50"
-                        mdt:ButtonAssist.CornerRadius="25"
-                        ToolTip="Языки"
-                        Command="{Binding Path=Languages}">
-                    <TextBlock Text="Языки"/>
-                </Button>
-            </Grid>
-            <Grid Grid.Row="9"
-                  Margin="5">
-                <Button Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                        Height="50"
-                        mdt:ButtonAssist.CornerRadius="25"
-                        ToolTip="Организации"
-                        Command="{Binding Path=Organizations}">
-                    <TextBlock Text="Организации"/>
-                </Button>
-            </Grid>
-            <Grid Grid.Row="10"
-                  Margin="5">
-                <Button Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                        Height="50"
-                        mdt:ButtonAssist.CornerRadius="25"
-                        ToolTip="Филиалы организаций"
-                        Command="{Binding Path=Branches}">
-                    <TextBlock Text="Филиалы организаций"/>
-                </Button>
-            </Grid>
-            <Grid Grid.Row="11"
-                  Margin="5">
-                <Button Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                        Height="50"
-                        mdt:ButtonAssist.CornerRadius="25"
-                        ToolTip="Выход"
-                        Command="{Binding Path=Exit}">
-                    <TextBlock Text="Выход"/>
-                </Button>
-            </Grid>
-        </Grid>
+        </mdt:ColorZone>
+        <mdt:DialogHost Identifier="RootDialog"
+                        Panel.ZIndex="1"
+                        Width="Auto"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Left">
+            <mdt:DrawerHost Width="Auto" IsLeftDrawerOpen="{Binding ElementName=IsLeftDrawerOpenToggleButton, Path=IsChecked, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+                <mdt:DrawerHost.LeftDrawerContent>
+                    <DockPanel Width="Auto">
+                        <Grid HorizontalAlignment="Stretch" 
+                              Background="{StaticResource PrimaryHueMidBrush}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="70"/>
+                                <RowDefinition Height="70"/>
+                                <RowDefinition Height="326*"/>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0"
+                                  Background="GhostWhite">
+                                <ToggleButton IsChecked="{Binding Path=IsLeftDrawerOpen, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                              Style="{DynamicResource MaterialDesignActionToggleButton}">
+                                    <ToggleButton.Content>
+                                        <mdt:PackIcon Kind="Menu"/>
+                                    </ToggleButton.Content>
+                                    <mdt:ToggleButtonAssist.OnContent>
+                                        <mdt:PackIcon Kind="ArrowLeft" />
+                                    </mdt:ToggleButtonAssist.OnContent>
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="Unchecked">
+                                            <i:InvokeCommandAction Command="{Binding Path=OnUnchecked}"/>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </ToggleButton>
+                            </Grid>
+                            <Grid Grid.Row="1" 
+                                  Background="GhostWhite">
+                                <Image Source="/EmploymentAgency;component/Resources/Images/Icons/Icon.ico"/>
+                            </Grid>
+                            <ScrollViewer HorizontalAlignment="Stretch"
+                                          HorizontalScrollBarVisibility="Disabled"
+                                          VerticalScrollBarVisibility="Auto" 
+                                          Grid.Row="2">
+                                <Grid Margin="10">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid Grid.Row="0">
+                                        <mdt:PackIcon Kind="City"
+                                                      Width="15"
+                                                      Height="15"
+                                                      Margin="10 16"
+                                                      Foreground="White"/>
+                                        <ListBoxItem Content="Страны"
+                                                     Padding="37 14"
+                                                     FontSize="15"
+                                                     Foreground="White">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="MouseDoubleClick">
+                                                    <i:InvokeCommandAction Command="{Binding Path=Countries}"/>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </ListBoxItem>
+                                    </Grid>
+                                    <Grid Grid.Row="1">
+                                        <mdt:PackIcon Kind="CityVariant"
+                                                      Width="15"
+                                                      Height="15"
+                                                      Margin="10 16"
+                                                      Foreground="White"/>
+                                        <ListBoxItem Content="Города"
+                                                     Padding="37 14"
+                                                     FontSize="15"
+                                                     Foreground="White">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="MouseDoubleClick">
+                                                    <i:InvokeCommandAction Command="{Binding Path=Cities}"/>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </ListBoxItem>
+                                    </Grid>
+                                    <Grid Grid.Row="2">
+                                        <mdt:PackIcon Kind="HandPointingRight"
+                                                      Width="15"
+                                                      Height="15"
+                                                      Margin="10 16"
+                                                      Foreground="White"/>
+                                        <ListBoxItem Content="Улицы"
+                                                     Padding="37 14"
+                                                     FontSize="15"
+                                                     Foreground="White">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="MouseDoubleClick">
+                                                    <i:InvokeCommandAction Command="{Binding Path=Streets}"/>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </ListBoxItem>
+                                    </Grid>
+                                    <Grid Grid.Row="3">
+                                        <mdt:PackIcon Kind="HammerWrench"
+                                                      Width="15"
+                                                      Height="15"
+                                                      Margin="10 16"
+                                                      Foreground="White"/>
+                                        <ListBoxItem Content="Навыки"
+                                                     Padding="37 14"
+                                                     FontSize="15"
+                                                     Foreground="White">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="MouseDoubleClick">
+                                                    <i:InvokeCommandAction Command="{Binding Path=Skills}"/>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </ListBoxItem>
+                                    </Grid>
+                                    <Grid Grid.Row="4">
+                                        <mdt:PackIcon Kind="Car"
+                                                      Width="15"
+                                                      Height="15"
+                                                      Margin="10 16"
+                                                      Foreground="White"/>
+                                        <ListBoxItem Content="Категории водительских прав"
+                                                     Padding="37 14"
+                                                     FontSize="15"
+                                                     Foreground="White">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="MouseDoubleClick">
+                                                    <i:InvokeCommandAction Command="{Binding Path=DrivingLicenseCategories}"/>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </ListBoxItem>
+                                    </Grid>
+                                    <Grid Grid.Row="5">
+                                        <mdt:PackIcon Kind="School"
+                                                      Width="15"
+                                                      Height="15"
+                                                      Margin="10 16"
+                                                      Foreground="White"/>
+                                        <ListBoxItem Content="Виды образования"
+                                                     Padding="37 14"
+                                                     FontSize="15"
+                                                     Foreground="White">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="MouseDoubleClick">
+                                                    <i:InvokeCommandAction Command="{Binding Path=Educations}"/>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </ListBoxItem>
+                                    </Grid>
+                                    <Grid Grid.Row="6">
+                                        <mdt:PackIcon Kind="BriefcaseClock"
+                                                      Width="15"
+                                                      Height="15"
+                                                      Margin="10 16"
+                                                      Foreground="White"/>
+                                        <ListBoxItem Content="Тип занятости"
+                                                     Padding="37 14"
+                                                     FontSize="15"
+                                                     Foreground="White">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="MouseDoubleClick">
+                                                    <i:InvokeCommandAction Command="{Binding Path=EmploymentTypes}"/>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </ListBoxItem>
+                                    </Grid>
+                                    <Grid Grid.Row="7">
+                                        <mdt:PackIcon Kind="HardHat"
+                                                      Width="15"
+                                                      Height="15"
+                                                      Margin="10 16"
+                                                      Foreground="White"/>
+                                        <ListBoxItem Content="Опыт"
+                                                     Padding="37 14"
+                                                     FontSize="15"
+                                                     Foreground="White">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="MouseDoubleClick">
+                                                    <i:InvokeCommandAction Command="{Binding Path=Experiences}"/>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </ListBoxItem>
+                                    </Grid>
+                                    <Grid Grid.Row="8">
+                                        <mdt:PackIcon Kind="Translate"
+                                                      Width="15"
+                                                      Height="15"
+                                                      Margin="10 16"
+                                                      Foreground="White"/>
+                                        <ListBoxItem Content="Языки"
+                                                     Padding="37 14"
+                                                     FontSize="15"
+                                                     Foreground="White">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="MouseDoubleClick">
+                                                    <i:InvokeCommandAction Command="{Binding Path=Languages}"/>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </ListBoxItem>
+                                    </Grid>
+                                    <Grid Grid.Row="9">
+                                        <mdt:PackIcon Kind="Wrench"
+                                                      Width="15"
+                                                      Height="15"
+                                                      Margin="10 16"
+                                                      Foreground="White"/>
+                                        <ListBoxItem Content="Сферы деятельности"
+                                                     Padding="37 14"
+                                                     FontSize="15"
+                                                     Foreground="White">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="MouseDoubleClick">
+                                                    <i:InvokeCommandAction Command="{Binding Path=ProfessionCategories}"/>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </ListBoxItem>
+                                    </Grid>
+                                    <Grid Grid.Row="10">
+                                        <mdt:PackIcon Kind="AccountTie"
+                                                      Width="15"
+                                                      Height="15"
+                                                      Margin="10 16"
+                                                      Foreground="White"/>
+                                        <ListBoxItem Content="Организации"
+                                                     Padding="37 14"
+                                                     FontSize="15"
+                                                     Foreground="White">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="MouseDoubleClick">
+                                                    <i:InvokeCommandAction Command="{Binding Path=Organizations}"/>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </ListBoxItem>
+                                    </Grid>
+                                    <Grid Grid.Row="11">
+                                        <mdt:PackIcon Kind="Store"
+                                                      Width="15"
+                                                      Height="15"
+                                                      Margin="10 16"
+                                                      Foreground="White"/>
+                                        <ListBoxItem Content="Филиалы организаций"
+                                                     Padding="37 14"
+                                                     FontSize="15"
+                                                     Foreground="White">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="MouseDoubleClick">
+                                                    <i:InvokeCommandAction Command="{Binding Path=Branches}"/>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </ListBoxItem>
+                                    </Grid>
+                                    <Grid Grid.Row="12">
+                                        <mdt:PackIcon Kind="ExitRun"
+                                                      Width="15"
+                                                      Height="15"
+                                                      Margin="10 16"
+                                                      Foreground="White"/>
+                                        <ListBoxItem Content="Выход"
+                                                     Padding="37 14"
+                                                     FontSize="15"
+                                                     Foreground="White">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="MouseDoubleClick">
+                                                    <i:InvokeCommandAction Command="{Binding Path=Exit}"/>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </ListBoxItem>
+                                    </Grid>
+                                </Grid>
+                            </ScrollViewer>
+                        </Grid>
+                    </DockPanel>
+                </mdt:DrawerHost.LeftDrawerContent>
+            </mdt:DrawerHost>
+        </mdt:DialogHost>
+        <Frame Content="{Binding Path=PageSource, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
+               NavigationUIVisibility="Hidden"
+               Panel.ZIndex="0"
+               Margin="5,75,5,5">
+        </Frame>
     </Grid>
 </Page>

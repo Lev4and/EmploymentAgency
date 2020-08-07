@@ -503,6 +503,12 @@ namespace EmploymentAgency.Model.Database.Interactions
             return _context.v_organizationWithoutPhoto.AsNoTracking().ToList();
         }
 
+        public List<ProfessionCategory> GetProfessionCategories(string nameProfessionCategory)
+        {
+            return _context.ProfessionCategory.Where(p =>
+            (nameProfessionCategory.Length > 0 ? p.NameProfessionCategory.ToLower().StartsWith(nameProfessionCategory.ToLower()) : true)).AsNoTracking().ToList();
+        }
+
         public List<Role> GetRoles()
         {
             return _context.Role.AsNoTracking().ToList();
