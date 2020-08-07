@@ -100,6 +100,11 @@ namespace EmploymentAgency.ViewModels
             _menuPageService.ChangePage(new ProfessionCategories());
         });
 
+        public ICommand Professions => new DelegateCommand(() =>
+        {
+            _menuPageService.ChangePage(new Professions());
+        });
+
         public ICommand Organizations => new DelegateCommand(() =>
         {
             _menuPageService.ChangePage(new Organizations());

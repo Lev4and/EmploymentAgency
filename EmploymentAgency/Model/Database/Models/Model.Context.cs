@@ -74,5 +74,6 @@ namespace EmploymentAgency.Model.Database.Models
         public virtual DbSet<v_city> v_city { get; set; }
         public virtual DbSet<v_street> v_street { get; set; }
         public virtual DbSet<v_subIndustry> v_subIndustry { get; set; }
+        public virtual DbSet<v_profession> v_profession { get; set; }
     }
 }

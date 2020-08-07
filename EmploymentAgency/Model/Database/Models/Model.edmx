@@ -437,6 +437,20 @@
           <Property Name="ClosingDate" Type="smalldatetime" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Employment agency.dbo.v_profession" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="v_profession">
+          <Key>
+            <PropertyRef Name="IdProfession" />
+            <PropertyRef Name="IdProfessionCategory" />
+            <PropertyRef Name="NameProfessionCategory" />
+            <PropertyRef Name="ProfessionName" />
+          </Key>
+          <Property Name="IdProfession" Type="int" Nullable="false" />
+          <Property Name="IdProfessionCategory" Type="int" Nullable="false" />
+          <Property Name="NameProfessionCategory" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="ProfessionName" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
 предупреждение 6002: В таблице или представлении "Employment agency.dbo.v_street" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
         <EntityType Name="v_street">
           <Key>
@@ -1216,6 +1230,14 @@
     [v_organizationWithoutPhoto].[DateOfRegistration] AS [DateOfRegistration], 
     [v_organizationWithoutPhoto].[ClosingDate] AS [ClosingDate]
     FROM [dbo].[v_organizationWithoutPhoto] AS [v_organizationWithoutPhoto]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="v_profession" EntityType="Self.v_profession" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_profession].[IdProfession] AS [IdProfession], 
+    [v_profession].[IdProfessionCategory] AS [IdProfessionCategory], 
+    [v_profession].[NameProfessionCategory] AS [NameProfessionCategory], 
+    [v_profession].[ProfessionName] AS [ProfessionName]
+    FROM [dbo].[v_profession] AS [v_profession]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="v_street" EntityType="Self.v_street" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -2765,6 +2787,7 @@
           <EntitySet Name="v_city" EntityType="Model.v_city" />
           <EntitySet Name="v_street" EntityType="Model.v_street" />
           <EntitySet Name="v_subIndustry" EntityType="Model.v_subIndustry" />
+          <EntitySet Name="v_profession" EntityType="Model.v_profession" />
         </EntityContainer>
         <EntityType Name="v_organization">
           <Key>
@@ -2857,6 +2880,18 @@
           <Property Name="IdIndustry" Type="Int32" Nullable="false" />
           <Property Name="IndustryName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="NameSubIndustry" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="v_profession">
+          <Key>
+            <PropertyRef Name="IdProfession" />
+            <PropertyRef Name="IdProfessionCategory" />
+            <PropertyRef Name="NameProfessionCategory" />
+            <PropertyRef Name="ProfessionName" />
+          </Key>
+          <Property Name="IdProfession" Type="Int32" Nullable="false" />
+          <Property Name="IdProfessionCategory" Type="Int32" Nullable="false" />
+          <Property Name="NameProfessionCategory" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ProfessionName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -3331,6 +3366,16 @@
                 <ScalarProperty Name="IndustryName" ColumnName="IndustryName" />
                 <ScalarProperty Name="IdIndustry" ColumnName="IdIndustry" />
                 <ScalarProperty Name="IdSubIndustry" ColumnName="IdSubIndustry" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_profession">
+            <EntityTypeMapping TypeName="Model.v_profession">
+              <MappingFragment StoreEntitySet="v_profession">
+                <ScalarProperty Name="ProfessionName" ColumnName="ProfessionName" />
+                <ScalarProperty Name="NameProfessionCategory" ColumnName="NameProfessionCategory" />
+                <ScalarProperty Name="IdProfessionCategory" ColumnName="IdProfessionCategory" />
+                <ScalarProperty Name="IdProfession" ColumnName="IdProfession" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

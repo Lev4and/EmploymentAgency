@@ -527,6 +527,18 @@ namespace EmploymentAgency.Model.Database.Interactions
             (nameProfessionCategory.Length > 0 ? p.NameProfessionCategory.ToLower().StartsWith(nameProfessionCategory.ToLower()) : true)).AsNoTracking().ToList();
         }
 
+        public List<ProfessionCategory> GetProfessionCategories()
+        {
+            return _context.ProfessionCategory.AsNoTracking().ToList();
+        }
+
+        public List<v_profession> GetProfessions(int idProfessionCategory, string professionName)
+        {
+            return _context.v_profession.Where(p =>
+            (idProfessionCategory != -1 ? p.IdProfessionCategory == idProfessionCategory : true) &&
+            (professionName.Length > 0 ? p.ProfessionName.ToLower().StartsWith(professionName.ToLower()) : true)).AsNoTracking().ToList();
+        }
+
         public List<Role> GetRoles()
         {
             return _context.Role.AsNoTracking().ToList();

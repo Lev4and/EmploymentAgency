@@ -51,6 +51,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         List<SubIndustry> GetSubIndustries(int idIndustry);
 
+        List<ProfessionCategory> GetProfessionCategories();
+
         List<ProfessionCategory> GetProfessionCategories(string nameProfessionCategory);
 
         List<Role> GetRoles();
@@ -68,6 +70,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
         List<v_street> GetStreets(int idCountry, int idCity, string streetName);
 
         List<v_subIndustry> GetSubIndustries(int idIndustry, string nameSubIndustry);
+
+        List<v_profession> GetProfessions(int idProfessionCategory, string professionName);
 
         List<v_organization> GetOrganizations(int idIndustry, int idSubIndustry, string organizationName);
 

@@ -87,6 +87,7 @@
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
                                     </Grid.RowDefinitions>
                                     <Grid Grid.Row="0">
                                         <mdt:PackIcon Kind="City"
@@ -327,6 +328,23 @@
                                         </ListBoxItem>
                                     </Grid>
                                     <Grid Grid.Row="14">
+                                        <mdt:PackIcon Kind="AccountHardHat"
+                                                      Width="15"
+                                                      Height="15"
+                                                      Margin="10 16"
+                                                      Foreground="White"/>
+                                        <ListBoxItem Content="Профессии"
+                                                     Padding="37 14"
+                                                     FontSize="15"
+                                                     Foreground="White">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="MouseDoubleClick">
+                                                    <i:InvokeCommandAction Command="{Binding Path=Professions}"/>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </ListBoxItem>
+                                    </Grid>
+                                    <Grid Grid.Row="15">
                                         <mdt:PackIcon Kind="AccountTie"
                                                       Width="15"
                                                       Height="15"
@@ -343,7 +361,7 @@
                                             </i:Interaction.Triggers>
                                         </ListBoxItem>
                                     </Grid>
-                                    <Grid Grid.Row="15">
+                                    <Grid Grid.Row="16">
                                         <mdt:PackIcon Kind="Store"
                                                       Width="15"
                                                       Height="15"
@@ -360,7 +378,7 @@
                                             </i:Interaction.Triggers>
                                         </ListBoxItem>
                                     </Grid>
-                                    <Grid Grid.Row="16">
+                                    <Grid Grid.Row="17">
                                         <mdt:PackIcon Kind="ExitRun"
                                                       Width="15"
                                                       Height="15"
