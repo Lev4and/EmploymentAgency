@@ -80,7 +80,7 @@
                         <Style TargetType="mdt:PackIcon">
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding ElementName=iconPencil, Path=IsEnabled}" Value="True">
-                                    <Setter Property="Foreground" Value="Yellow"/>
+                                    <Setter Property="Foreground" Value="Orange"/>
                                 </DataTrigger>
                                 <DataTrigger Binding="{Binding ElementName=iconPencil, Path=IsEnabled}" Value="False">
                                     <Setter Property="Foreground" Value="Gray"/>

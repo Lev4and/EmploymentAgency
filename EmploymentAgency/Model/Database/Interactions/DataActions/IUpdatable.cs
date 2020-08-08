@@ -3,5 +3,7 @@
     public interface IUpdatable
     {
         void UpdateBranch(int idBranch, string phoneNumber);
+
+        void UpdateCountry(int idCountry, byte[] flag);
     }
 }

@@ -7,15 +7,28 @@ using System.Windows.Input;
 
 namespace EmploymentAgency.ViewModels
 {
-    public class AddSkillViewModel : BindableBase
+    public class AddCountryViewModel : BindableBase
     {
+        private byte[] _flag;
+
         private QueryExecutor _executor;
 
-        public string SkillName { get; set; }
-        
-        public byte[] Photo { get; set; }
+        public bool IsCanAddFlag { get; set; }
 
-        public AddSkillViewModel()
+        public string CountryName { get; set; }
+
+        public byte[] Flag
+        {
+            get { return _flag; }
+            set
+            {
+                _flag = value;
+
+                IsCanAddFlag = _flag != null ? false : true;
+            }
+        }
+
+        public AddCountryViewModel()
         {
 
         }
@@ -24,22 +37,22 @@ namespace EmploymentAgency.ViewModels
         {
             _executor = new QueryExecutor();
 
-            SkillName = "";
+            IsCanAddFlag = true;
 
-            Photo = null;
+            Flag = null;
         });
 
         public ICommand Add => new DelegateCommand(() =>
         {
-            if(_executor.AddSkill(SkillName, Photo))
+            if (_executor.AddCountry(CountryName, Flag))
             {
                 MessageBox.Show("Успешное добавление");
             }
             else
             {
-                MessageBox.Show("Навык с такими данными уже существует");
+                MessageBox.Show("Страна с такими данными уже существует");
             }
-        }, () => (SkillName != null ? SkillName.Length > 0 : false));
+        }, () => (CountryName != null ? CountryName.Length > 0 : false));
 
         public ICommand AddPhoto => new DelegateCommand(() =>
         {
@@ -50,13 +63,13 @@ namespace EmploymentAgency.ViewModels
 
             if (openFileDialog.FileName != "")
             {
-                Photo = FileConverter.GetBytesFromFile(openFileDialog.FileName);
+                Flag = FileConverter.GetBytesFromFile(openFileDialog.FileName);
             }
-        }, () => Photo == null);
+        }, () => IsCanAddFlag == true);
 
         public ICommand RemovePhoto => new DelegateCommand(() =>
         {
-            Photo = null;
-        }, () => Photo != null);
+            Flag = null;
+        }, () => IsCanAddFlag == false);
     }
 }

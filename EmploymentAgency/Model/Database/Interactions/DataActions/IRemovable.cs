@@ -5,5 +5,7 @@
         void RemoveBranch(int idBranch);
 
         void RemoveCity(int idCity);
+
+        void RemoveCountry(int idCountry);
     }
 }

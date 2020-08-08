@@ -329,7 +329,7 @@ namespace EmploymentAgency.ViewModels
                 }
                 else
                 {
-                    MessageBox.Show("Организация с таким данными уже существует");
+                    MessageBox.Show("Организация с такими данными уже существует");
                 }
             }
             else

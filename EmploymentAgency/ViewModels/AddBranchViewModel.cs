@@ -212,7 +212,7 @@ namespace EmploymentAgency.ViewModels
             }
             else
             {
-                MessageBox.Show("Филиал организации с таким данными уже существует");
+                MessageBox.Show("Филиал организации с такими данными уже существует");
             }
         }, () => SelectedIdStreet != null &&
                  SelectedIdOrganization != null &&

@@ -64,7 +64,7 @@ namespace EmploymentAgency.ViewModels
             }
             else
             {
-                MessageBox.Show("Город с таким данными уже существует");
+                MessageBox.Show("Город с такими данными уже существует");
             }
         }, () => SelectedIdCountry != null &&
                  (CityName != null ? CityName.Length > 0 : false));

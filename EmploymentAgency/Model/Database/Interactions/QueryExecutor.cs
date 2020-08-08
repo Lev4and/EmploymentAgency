@@ -22,6 +22,8 @@ namespace EmploymentAgency.Model.Database.Interactions
             SetCommandTimeout();
         }
 
+        public object MessageBox { get; internal set; }
+
         public bool AddApplicant(int idUser, string name, string surname, string patronymic, int idGender, byte[] photo, DateTime dateOfBirth, string phoneNumber, int idStreet, string nameHouse, string apartment)
         {
             if(!ContainsApplicant(idUser))
@@ -75,6 +77,23 @@ namespace EmploymentAgency.Model.Database.Interactions
                 {
                     IdCountry = idCountry,
                     CityName = cityName
+                });
+                _context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool AddCountry(string countryName, byte[] flag)
+        {
+            if(!ContainsCountry(countryName))
+            {
+                _context.Country.Add(new Country
+                {
+                    CountryName = countryName,
+                    Flag = flag
                 });
                 _context.SaveChanges();
 
@@ -320,6 +339,11 @@ namespace EmploymentAgency.Model.Database.Interactions
             return _context.City.SingleOrDefault(c => c.IdCountry == idCountry && c.CityName == cityName) != null;
         }
 
+        public bool ContainsCountry(string countryName)
+        {
+            return _context.Country.SingleOrDefault(c => c.CountryName == countryName) != null;
+        }
+
         public bool ContainsEducationalActivity(int idApplicant, int idEducation, string nameEducationalnstitution, string address, DateTime startDate, DateTime? endDate)
         {
             return _context.EducationalActivity.SingleOrDefault(e =>
@@ -445,6 +469,11 @@ namespace EmploymentAgency.Model.Database.Interactions
         {
             return _context.Country.Where(c =>
             (countryName.Length > 0 ? c.CountryName.ToLower().StartsWith(countryName.ToLower()) : true)).AsNoTracking().ToList();
+        }
+
+        public Country GetCountry(int idCountry)
+        {
+            return _context.Country.SingleOrDefault(c => c.IdCountry == idCountry);
         }
 
         public List<DrivingLicenseCategory> GetDrivingLicenseCategories()
@@ -664,11 +693,28 @@ namespace EmploymentAgency.Model.Database.Interactions
             _context.SaveChanges();
         }
 
+        public void RemoveCountry(int idCountry)
+        {
+            var country = GetCountry(idCountry);
+
+            _context.Country.Remove(country);
+            _context.SaveChanges();
+        }
+
         public void UpdateBranch(int idBranch, string phoneNumber)
         {
             var branch = _context.Branch.SingleOrDefault(b => b.IdBranch == idBranch);
 
             branch.PhoneNumber = phoneNumber;
+
+            _context.SaveChanges();
+        }
+
+        public void UpdateCountry(int idCountry, byte[] flag)
+        {
+            var country = GetCountry(idCountry);
+
+            country.Flag = flag;
 
             _context.SaveChanges();
         }

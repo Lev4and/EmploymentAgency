@@ -303,11 +303,13 @@
     <Compile Include="Services\WindowService.cs" />
     <Compile Include="ViewModels\AddBranchViewModel.cs" />
     <Compile Include="ViewModels\AddCityViewModel.cs" />
+    <Compile Include="ViewModels\AddCountryViewModel.cs" />
     <Compile Include="ViewModels\AddOrganizationViewModel.cs" />
     <Compile Include="ViewModels\AddSkillViewModel.cs" />
     <Compile Include="ViewModels\AuthorizationViewModel.cs" />
     <Compile Include="ViewModels\BranchesViewModel.cs" />
     <Compile Include="ViewModels\ChangeBranchViewModel.cs" />
+    <Compile Include="ViewModels\ChangeCountryViewModel.cs" />
     <Compile Include="ViewModels\CitiesViewModel.cs" />
     <Compile Include="ViewModels\CountriesViewModel.cs" />
     <Compile Include="ViewModels\DrivingLicenseCategoriesViewModel.cs" />
@@ -487,6 +489,9 @@
     <Compile Include="Views\Windows\AddCity.xaml.cs">
       <DependentUpon>AddCity.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Windows\AddCountry.xaml.cs">
+      <DependentUpon>AddCountry.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Windows\AddOrganization.xaml.cs">
       <DependentUpon>AddOrganization.xaml</DependentUpon>
     </Compile>
@@ -495,6 +500,9 @@
     </Compile>
     <Compile Include="Views\Windows\ChangeBranch.xaml.cs">
       <DependentUpon>ChangeBranch.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Windows\ChangeCountry.xaml.cs">
+      <DependentUpon>ChangeCountry.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -732,6 +740,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Windows\AddCountry.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Windows\AddOrganization.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -741,6 +753,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Windows\ChangeBranch.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Windows\ChangeCountry.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

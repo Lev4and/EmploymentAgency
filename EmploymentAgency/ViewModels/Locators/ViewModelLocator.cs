@@ -77,6 +77,10 @@ namespace EmploymentAgency.ViewModels.Locators
 
         public AddCityViewModel AddCityViewModel => _provider.GetRequiredService<AddCityViewModel>();
 
+        public AddCountryViewModel AddCountryViewModel => _provider.GetRequiredService<AddCountryViewModel>();
+
+        public ChangeCountryViewModel ChangeCountryViewModel => _provider.GetRequiredService<ChangeCountryViewModel>();
+
         public static void Init()
         {
             var services = new ServiceCollection();
@@ -116,6 +120,8 @@ namespace EmploymentAgency.ViewModels.Locators
             services.AddTransient<AddBranchViewModel>();
             services.AddTransient<ChangeBranchViewModel>();
             services.AddTransient<AddCityViewModel>();
+            services.AddTransient<AddCountryViewModel>();
+            services.AddTransient<ChangeCountryViewModel>();
 
             services.AddSingleton<PageService>();
             services.AddSingleton<MenuPageService>();
