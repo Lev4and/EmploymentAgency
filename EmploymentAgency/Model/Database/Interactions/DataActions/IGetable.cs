@@ -9,6 +9,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         Organization GetOrganization(int idOrganization);
 
+        v_branch GetBranch(int idBranch);
+
         List<City> GetCities(int idCountry);
 
         List<Country> GetCountries();

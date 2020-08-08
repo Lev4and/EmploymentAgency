@@ -2,6 +2,6 @@
 {
     public interface IUpdatable
     {
-
+        void UpdateBranch(int idBranch, string phoneNumber);
     }
 }

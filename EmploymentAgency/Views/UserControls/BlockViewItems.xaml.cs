@@ -62,6 +62,8 @@ namespace EmploymentAgency.Views.UserControls
             {
                 if (current.Data != null)
                 {
+                    current.SelectedValue = null;
+
                     current.RemoveContorls();
                     current.GenerateItems();
                     current.RenderContorls();

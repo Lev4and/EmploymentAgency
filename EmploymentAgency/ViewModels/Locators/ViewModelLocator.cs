@@ -71,6 +71,10 @@ namespace EmploymentAgency.ViewModels.Locators
 
         public UsersViewModel UsersViewModel => _provider.GetRequiredService<UsersViewModel>();
 
+        public AddBranchViewModel AddBranchViewModel => _provider.GetRequiredService<AddBranchViewModel>();
+
+        public ChangeBranchViewModel ChangeBranchViewModel => _provider.GetRequiredService<ChangeBranchViewModel>();
+
         public static void Init()
         {
             var services = new ServiceCollection();
@@ -107,6 +111,8 @@ namespace EmploymentAgency.ViewModels.Locators
             services.AddTransient<RolesViewModel>();
             services.AddTransient<SchedulesViewModel>();
             services.AddTransient<UsersViewModel>();
+            services.AddTransient<AddBranchViewModel>();
+            services.AddTransient<ChangeBranchViewModel>();
 
             services.AddSingleton<PageService>();
             services.AddSingleton<MenuPageService>();

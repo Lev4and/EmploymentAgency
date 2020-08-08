@@ -27,5 +27,9 @@ namespace EmploymentAgency.Model.Database.Models
         public int IdCountry { get; set; }
         public int IdCity { get; set; }
         public int IdStreet { get; set; }
+        public string CountryName { get; set; }
+        public string CityName { get; set; }
+        public string StreetName { get; set; }
+        public string NameHouse { get; set; }
     }
 }

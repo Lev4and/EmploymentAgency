@@ -376,6 +376,11 @@ namespace EmploymentAgency.Model.Database.Interactions
             return user != null;
         }
 
+        public v_branch GetBranch(int idBranch)
+        {
+            return _context.v_branch.SingleOrDefault(b => b.IdBranch == idBranch);
+        }
+
         public List<v_branchSimplifiedInformation> GetBranches(int idOrganization)
         {
             return _context.v_branchSimplifiedInformation.Where(b => b.IdOrganization == idOrganization).AsNoTracking().ToList();
@@ -619,6 +624,23 @@ namespace EmploymentAgency.Model.Database.Interactions
             results.Add(ContainsManager(idUser));
 
             return results.All(r => r == false);
+        }
+
+        public void RemoveBranch(int idBranch)
+        {
+            var branch = _context.Branch.SingleOrDefault(b => b.IdBranch == idBranch);
+
+            _context.Branch.Remove(branch);
+            _context.SaveChanges();
+        }
+
+        public void UpdateBranch(int idBranch, string phoneNumber)
+        {
+            var branch = _context.Branch.SingleOrDefault(b => b.IdBranch == idBranch);
+
+            branch.PhoneNumber = phoneNumber;
+
+            _context.SaveChanges();
         }
 
         private void SetCommandTimeout()
