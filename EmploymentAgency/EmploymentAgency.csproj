@@ -472,6 +472,12 @@
       <DependentUpon>ExpanderWithCheckBoxes.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\ISelectable.cs" />
+    <Compile Include="Views\UserControls\SearchByInputField.xaml.cs">
+      <DependentUpon>SearchByInputField.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\SearchByInputFieldItem.xaml.cs">
+      <DependentUpon>SearchByInputFieldItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Windows\AddOrganization.xaml.cs">
       <DependentUpon>AddOrganization.xaml</DependentUpon>
     </Compile>
@@ -695,6 +701,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\ExpanderWithCheckBoxes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\SearchByInputField.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\SearchByInputFieldItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

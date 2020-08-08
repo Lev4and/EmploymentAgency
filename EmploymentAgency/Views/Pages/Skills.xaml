@@ -31,13 +31,9 @@
                 <ColumnDefinition/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0"
+            <Grid x:Name="searchByInputFieldGrid"
+                  Grid.Column="0"
                   Margin="5,0,5,0">
-                <TextBox mdt:HintAssist.Hint="Введите название навыка"
-                         Text="{Binding Path=SkillName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                         FontSize="20"
-                         FontWeight="Medium"
-                         VerticalContentAlignment="Center"/>
             </Grid>
             <Grid Grid.Column="1">
                 <mdt:PackIcon x:Name="iconMagnify"
@@ -53,6 +49,19 @@
                     </i:Interaction.Triggers>
                 </mdt:PackIcon>
             </Grid>
+        </Grid>
+        <Grid Grid.RowSpan="2"
+              Grid.ColumnSpan="2"
+              Panel.ZIndex="1"
+              Width="{Binding ElementName=searchByInputFieldGrid, Path=ActualWidth, UpdateSourceTrigger=PropertyChanged}"
+              VerticalAlignment="Top"
+              HorizontalAlignment="Right"
+              Margin="0,0,65,0">
+            <uc:SearchByInputField Hint="Название навыка"
+                                   SearchLine="{Binding Path=SkillName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                   DisplayMemberPath="SkillName"
+                                   Data="{Binding Path=Skills, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                   Height="Auto"/>
         </Grid>
         <Grid Grid.Row="1"
               Margin="5">
