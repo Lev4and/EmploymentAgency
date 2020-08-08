@@ -67,6 +67,23 @@ namespace EmploymentAgency.Model.Database.Interactions
             return false;
         }
 
+        public bool AddCity(int idCountry, string cityName)
+        {
+            if(!ContainsCity(idCountry, cityName))
+            {
+                _context.City.Add(new City
+                {
+                    IdCountry = idCountry,
+                    CityName = cityName
+                });
+                _context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
+        }
+
         public bool AddEducationalActivity(int idApplicant, int idEducation, string nameEducationalnstitution, string address, DateTime startDate, DateTime? endDate)
         {
             if(!ContainsEducationalActivity(idApplicant, idEducation, nameEducationalnstitution, address, startDate, endDate))
@@ -296,6 +313,11 @@ namespace EmploymentAgency.Model.Database.Interactions
         public bool ContainsBranch(int idOrganization, int idStreet, string nameHouse)
         {
             return _context.Branch.SingleOrDefault(b => b.IdOrganization == idOrganization && b.IdStreet == idStreet && b.NameHouse == nameHouse) != null;
+        }
+
+        public bool ContainsCity(int idCountry, string cityName)
+        {
+            return _context.City.SingleOrDefault(c => c.IdCountry == idCountry && c.CityName == cityName) != null;
         }
 
         public bool ContainsEducationalActivity(int idApplicant, int idEducation, string nameEducationalnstitution, string address, DateTime startDate, DateTime? endDate)
@@ -631,6 +653,14 @@ namespace EmploymentAgency.Model.Database.Interactions
             var branch = _context.Branch.SingleOrDefault(b => b.IdBranch == idBranch);
 
             _context.Branch.Remove(branch);
+            _context.SaveChanges();
+        }
+
+        public void RemoveCity(int idCity)
+        {
+            var city = _context.City.SingleOrDefault(c => c.IdCity == idCity);
+
+            _context.City.Remove(city);
             _context.SaveChanges();
         }
 

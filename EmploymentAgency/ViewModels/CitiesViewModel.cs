@@ -2,21 +2,39 @@
 using DevExpress.Mvvm;
 using EmploymentAgency.Model.Database.Interactions;
 using EmploymentAgency.Model.Database.Models;
+using EmploymentAgency.Services;
+using EmploymentAgency.Views.Windows;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows;
 using System.Windows.Input;
 
 namespace EmploymentAgency.ViewModels
 {
     public class CitiesViewModel : BindableBase
     {
+        private int? _selectedIdCity;
+
         private string _countryName;
 
         private QueryExecutor _executor;
 
+        public bool IsCanAdd { get; set; } = true;
+
+        public bool IsCanRemove { get; set; }
+
         public int? SelectedIdCountry { get; set; }
 
-        public int? SelectedIdCity { get; set; }
+        public int? SelectedIdCity
+        {
+            get { return _selectedIdCity; }
+            set
+            {
+                _selectedIdCity = value;
+
+                IsCanRemove = _selectedIdCity != null ? true : false;
+            }
+        }
 
         public string CountryName
         {
@@ -62,6 +80,23 @@ namespace EmploymentAgency.ViewModels
 
             ResetToDefault();
         });
+
+        public ICommand Add => new DelegateCommand(() =>
+        {
+            WindowService.ShowWindow(new AddCity());
+        }, () => IsCanAdd == true);
+
+        public ICommand Remove => new DelegateCommand(() =>
+        {
+            if (MessageBox.Show("Вы действительно хотите удалить эту запись из базы данных?", "Предупреждение", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                _executor.RemoveCity((int)SelectedIdCity);
+
+                MessageBox.Show("Успешное удаление");
+
+                Find();
+            }
+        }, () => IsCanRemove);
 
         public ICommand ToFind => new DelegateCommand(() =>
         {

@@ -302,6 +302,7 @@
     <Compile Include="Services\PageService.cs" />
     <Compile Include="Services\WindowService.cs" />
     <Compile Include="ViewModels\AddBranchViewModel.cs" />
+    <Compile Include="ViewModels\AddCityViewModel.cs" />
     <Compile Include="ViewModels\AddOrganizationViewModel.cs" />
     <Compile Include="ViewModels\AddSkillViewModel.cs" />
     <Compile Include="ViewModels\AuthorizationViewModel.cs" />
@@ -482,6 +483,9 @@
     </Compile>
     <Compile Include="Views\Windows\AddBranch.xaml.cs">
       <DependentUpon>AddBranch.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Windows\AddCity.xaml.cs">
+      <DependentUpon>AddCity.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Windows\AddOrganization.xaml.cs">
       <DependentUpon>AddOrganization.xaml</DependentUpon>
@@ -721,6 +725,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Windows\AddBranch.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Windows\AddCity.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

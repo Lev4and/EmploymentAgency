@@ -8,6 +8,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         bool ContainsBranch(int idOrganization, int idStreet, string nameHouse);
 
+        bool ContainsCity(int idCountry, string cityName);
+
         bool ContainsEducationalActivity(int idApplicant, int idEducation, string nameEducationalnstitution, string address, DateTime startDate, DateTime? endDate);
 
         bool ContainsEmployer(int idEmployer);
