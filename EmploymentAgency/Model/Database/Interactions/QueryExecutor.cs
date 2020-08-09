@@ -710,13 +710,40 @@ namespace EmploymentAgency.Model.Database.Interactions
             _context.SaveChanges();
         }
 
-        public void UpdateCountry(int idCountry, byte[] flag)
+        public bool UpdateCity(int idCountry, int idCity, string cityName)
+        {
+            if(!ContainsCity(idCountry, cityName))
+            {
+                var city = _context.City.SingleOrDefault(c => c.IdCity == idCity);
+
+                city.CityName = cityName;
+
+                _context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool UpdateCountry(int idCountry, string countryName, byte[] flag)
         {
             var country = GetCountry(idCountry);
 
+            if(country.CountryName != countryName)
+            {
+                if(ContainsCountry(countryName))
+                {
+                    return false;
+                }
+            }
+
+            country.CountryName = countryName;
             country.Flag = flag;
 
             _context.SaveChanges();
+
+            return true;
         }
 
         private void SetCommandTimeout()

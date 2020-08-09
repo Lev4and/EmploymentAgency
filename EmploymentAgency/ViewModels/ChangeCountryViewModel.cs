@@ -52,10 +52,15 @@ namespace EmploymentAgency.ViewModels
 
         public ICommand Change => new DelegateCommand(() =>
         {
-            _executor.UpdateCountry(SelectedIdCountry, Flag);
-
-            MessageBox.Show("Успешное изменение");
-        });
+            if(_executor.UpdateCountry(SelectedIdCountry, CountryName, Flag))
+            {
+                MessageBox.Show("Успешное изменение");
+            }
+            else
+            {
+                MessageBox.Show("Государство с такими данными уже существует");
+            }
+        }, () => (CountryName != null ? CountryName.Length > 0 : false));
 
         public ICommand AddPhoto => new DelegateCommand(() =>
         {

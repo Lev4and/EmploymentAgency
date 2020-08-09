@@ -2,8 +2,10 @@
 {
     public interface IUpdatable
     {
-        void UpdateBranch(int idBranch, string phoneNumber);
+        bool UpdateCity(int idCountry, int idCity, string cityName);
 
-        void UpdateCountry(int idCountry, byte[] flag);
+        bool UpdateCountry(int idCountry, string countryName, byte[] flag);
+
+        void UpdateBranch(int idBranch, string phoneNumber);
     }
 }

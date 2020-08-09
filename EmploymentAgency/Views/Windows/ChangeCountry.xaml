@@ -48,8 +48,7 @@
             <Grid Grid.Column="1" 
                       Margin="5,0,0,0">
                 <TextBox x:Name="countryNameTextBox"
-                         IsReadOnly="True"
-                         Text="{Binding Path=CountryName, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
+                         Text="{Binding Path=CountryName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                          mdt:HintAssist.Hint="Название страны"
                          mdt:HintAssist.HelperText="Введите название страны"
                          FontSize="20"
