@@ -1,6 +1,4 @@
 ﻿using DevExpress.Mvvm;
-using EmploymentAgency.Commands;
-using System;
 using System.Windows.Media;
 
 namespace EmploymentAgency.Views.UserControls
@@ -9,7 +7,9 @@ namespace EmploymentAgency.Views.UserControls
     {
         bool IsCanSelect { get; set; }
 
-        SolidColorBrush MonochromeBrush { get; set; }
+        SolidColorBrush BackgroundBrush { get; set; }
+
+        SolidColorBrush ForegroundBrush { get; set; }
 
         DelegateCommand Select { get; set; }
 

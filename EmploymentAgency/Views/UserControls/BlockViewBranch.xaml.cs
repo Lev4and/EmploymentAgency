@@ -13,14 +13,14 @@ namespace EmploymentAgency.Views.UserControls
             InitializeComponent();
 
             Select = new DelegateCommand(() => 
-            { 
-                MonochromeBrush = new SolidColorBrush(Colors.Yellow); 
+            {
+                BackgroundBrush = new SolidColorBrush(Colors.Yellow); 
             }, () => IsCanSelect);
 
 
             Deselect = new DelegateCommand(() => 
             { 
-                MonochromeBrush = new SolidColorBrush(Colors.Transparent); 
+                BackgroundBrush = new SolidColorBrush(Colors.Transparent); 
             }, () => IsCanSelect);
         }
     }

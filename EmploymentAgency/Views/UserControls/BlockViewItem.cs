@@ -1,5 +1,4 @@
 ﻿using DevExpress.Mvvm;
-using EmploymentAgency.Commands;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -28,14 +27,23 @@ namespace EmploymentAgency.Views.UserControls
         public static readonly DependencyProperty DataProperty =
             DependencyProperty.Register("Data", typeof(object), typeof(BlockViewItem), new PropertyMetadata(null));
 
-        public SolidColorBrush MonochromeBrush
+        public SolidColorBrush BackgroundBrush
         {
-            get { return (SolidColorBrush)GetValue(MonochromeBrushProperty); }
-            set { SetValue(MonochromeBrushProperty, value); }
+            get { return (SolidColorBrush)GetValue(BackgroundBrushProperty); }
+            set { SetValue(BackgroundBrushProperty, value); }
         }
 
-        public static readonly DependencyProperty MonochromeBrushProperty =
-            DependencyProperty.Register("MonochromeBrush", typeof(SolidColorBrush), typeof(BlockViewItem), new PropertyMetadata(new SolidColorBrush(Colors.Transparent)));
+        public static readonly DependencyProperty BackgroundBrushProperty =
+            DependencyProperty.Register("BackgroundBrush", typeof(SolidColorBrush), typeof(BlockViewItem), new PropertyMetadata(new SolidColorBrush(Colors.Transparent)));
+
+        public SolidColorBrush ForegroundBrush
+        {
+            get { return (SolidColorBrush)GetValue(ForegroundBrushProperty); }
+            set { SetValue(ForegroundBrushProperty, value); }
+        }
+
+        public static readonly DependencyProperty ForegroundBrushProperty =
+            DependencyProperty.Register("ForegroundBrush", typeof(SolidColorBrush), typeof(BlockViewItem), new PropertyMetadata(new SolidColorBrush(Colors.Black)));
 
         public DelegateCommand Select { get; set; }
 

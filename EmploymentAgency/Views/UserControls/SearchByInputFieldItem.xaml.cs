@@ -37,14 +37,23 @@ namespace EmploymentAgency.Views.UserControls
         public static readonly DependencyProperty ResultSearchProperty =
             DependencyProperty.Register("ResultSearch", typeof(string), typeof(SearchByInputFieldItem), new PropertyMetadata(""));
 
-        public SolidColorBrush MonochromeBrush
+        public SolidColorBrush BackgroundBrush
         {
-            get { return (SolidColorBrush)GetValue(MonochromeBrushProperty); }
-            set { SetValue(MonochromeBrushProperty, value); }
+            get { return (SolidColorBrush)GetValue(BackgroundBrushProperty); }
+            set { SetValue(BackgroundBrushProperty, value); }
         }
 
-        public static readonly DependencyProperty MonochromeBrushProperty =
-            DependencyProperty.Register("MonochromeBrush", typeof(SolidColorBrush), typeof(SearchByInputFieldItem), new PropertyMetadata(new SolidColorBrush(Colors.White)));
+        public static readonly DependencyProperty BackgroundBrushProperty =
+            DependencyProperty.Register("BackgroundBrush", typeof(SolidColorBrush), typeof(SearchByInputFieldItem), new PropertyMetadata(new SolidColorBrush(Colors.White)));
+
+        public SolidColorBrush ForegroundBrush
+        {
+            get { return (SolidColorBrush)GetValue(ForegroundBrushProperty); }
+            set { SetValue(ForegroundBrushProperty, value); }
+        }
+
+        public static readonly DependencyProperty ForegroundBrushProperty =
+            DependencyProperty.Register("ForegroundBrush", typeof(SolidColorBrush), typeof(SearchByInputFieldItem), new PropertyMetadata(new SolidColorBrush(Colors.Black)));
 
         public DelegateCommand Select { get; set; }
 
@@ -58,14 +67,16 @@ namespace EmploymentAgency.Views.UserControls
             {
                 IsSelect = true;
 
-                MonochromeBrush = new SolidColorBrush(Colors.Blue);
+                BackgroundBrush = new SolidColorBrush(Colors.Blue);
+                ForegroundBrush = new SolidColorBrush(Colors.White);
             }, () => IsCanSelect);
 
             Deselect = new DelegateCommand(() =>
             {
                 IsSelect = false;
 
-                MonochromeBrush = new SolidColorBrush(Colors.White);
+                BackgroundBrush = new SolidColorBrush(Colors.White);
+                ForegroundBrush = new SolidColorBrush(Colors.Black);
             }, () => IsCanSelect);
         }
     }

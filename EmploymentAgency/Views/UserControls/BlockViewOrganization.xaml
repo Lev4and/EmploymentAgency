@@ -17,7 +17,7 @@
     </UserControl.Resources>
     <Grid>
         <Border BorderThickness="4" BorderBrush="Black" CornerRadius="10">
-            <Grid Background="{Binding ElementName=_this, Path=MonochromeBrush, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+            <Grid Background="{Binding ElementName=_this, Path=BackgroundBrush, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                   Margin="0">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="MouseDown">

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -23,6 +22,30 @@ namespace EmploymentAgency.Views.UserControls
 
         public static readonly DependencyProperty IsDrawerOpenProperty =
             DependencyProperty.Register("IsDrawerOpen", typeof(bool), typeof(SearchByInputField), new PropertyMetadata(false));
+
+        public bool IsGlobalDataChanged
+        {
+            get { return (bool)GetValue(IsGlobalDataChangedProperty); }
+            set { SetValue(IsGlobalDataChangedProperty, value); }
+        }
+
+        public static readonly DependencyProperty IsGlobalDataChangedProperty =
+            DependencyProperty.Register("IsGlobalDataChanged", typeof(bool), typeof(SearchByInputField), new PropertyMetadata(true, IsGlobalDataChanged_Changed));
+
+        private static void IsGlobalDataChanged_Changed(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var current = d as SearchByInputField;
+
+            if(current != null)
+            {
+                if(current.IsGlobalDataChanged)
+                {
+                    current._savedData = null;
+
+                    current.IsGlobalDataChanged = false;
+                }
+            }
+        }
 
         public int MaxToOutput
         {

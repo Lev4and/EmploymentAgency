@@ -16,7 +16,7 @@
     </UserControl.Resources>
     <Grid>
         <Border BorderThickness="4" BorderBrush="Black" Background="Transparent" CornerRadius="10">
-            <Grid Background="{Binding ElementName=_this, Path=MonochromeBrush, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+            <Grid Background="{Binding ElementName=_this, Path=BackgroundBrush, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                   Margin="0">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="MouseDown">
@@ -32,7 +32,7 @@
                       Margin="5">
                     <Border BorderThickness="1"
                             BorderBrush="Black">
-                        <Image Stretch="Uniform"
+                        <Image Stretch="Fill"
                                Source="{Binding Path=Flag, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource arrayByteToImageSource}}"/>
                     </Border>
                 </Grid>
