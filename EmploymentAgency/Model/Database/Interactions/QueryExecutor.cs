@@ -460,6 +460,11 @@ namespace EmploymentAgency.Model.Database.Interactions
             (cityName.Length > 0 ? c.CityName.ToLower().StartsWith(cityName.ToLower()) : true)).AsNoTracking().ToList();
         }
 
+        public City GetCity(int idCity)
+        {
+            return _context.City.SingleOrDefault(c => c.IdCity == idCity);
+        }
+
         public List<Country> GetCountries()
         {
             return _context.Country.AsNoTracking().ToList();

@@ -21,6 +21,8 @@ namespace EmploymentAgency.ViewModels
 
         public bool IsCanAdd { get; set; } = true;
 
+        public bool IsCanChange { get; set; }
+
         public bool IsCanRemove { get; set; }
 
         public int? SelectedIdCountry { get; set; }
@@ -32,6 +34,7 @@ namespace EmploymentAgency.ViewModels
             {
                 _selectedIdCity = value;
 
+                IsCanChange = _selectedIdCity != null ? true : false;
                 IsCanRemove = _selectedIdCity != null ? true : false;
             }
         }
@@ -85,6 +88,13 @@ namespace EmploymentAgency.ViewModels
         {
             WindowService.ShowWindow(new AddCity());
         }, () => IsCanAdd == true);
+
+        public ICommand Change => new DelegateCommand(() =>
+        {
+            ChangeCityViewModel.SelectedIdCity = (int)SelectedIdCity;
+
+            WindowService.ShowWindow(new ChangeCity());
+        }, () => IsCanChange);
 
         public ICommand Remove => new DelegateCommand(() =>
         {

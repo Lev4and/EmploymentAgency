@@ -36,6 +36,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0"
@@ -67,6 +68,34 @@
                 </mdt:PackIcon>
             </Grid>
             <Grid Grid.Column="1"
+                  Margin="5,0,5,0">
+                <mdt:PackIcon x:Name="iconPencil"
+                              Kind="Pencil"
+                              Panel.ZIndex="1"
+                              IsEnabled="{Binding Path=IsCanChange, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                              Height="Auto"
+                              Width="{Binding ElementName=iconPencil, Path=Height}"
+                              ToolTip="Изменить">
+                    <mdt:PackIcon.Style>
+                        <Style TargetType="mdt:PackIcon">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=iconPencil, Path=IsEnabled}" Value="True">
+                                    <Setter Property="Foreground" Value="Orange"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=iconPencil, Path=IsEnabled}" Value="False">
+                                    <Setter Property="Foreground" Value="Gray"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </mdt:PackIcon.Style>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseDown">
+                            <i:InvokeCommandAction Command="{Binding Path=Change}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </mdt:PackIcon>
+            </Grid>
+            <Grid Grid.Column="2"
                   Margin="5,0,5,0">
                 <mdt:PackIcon x:Name="iconCloseCircle"
                               Kind="CloseCircle"

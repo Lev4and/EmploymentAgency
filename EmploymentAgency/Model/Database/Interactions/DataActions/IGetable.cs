@@ -7,6 +7,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
     {
         int GetIdRole(string roleName);
 
+        City GetCity(int idCity);
+
         Country GetCountry(int idCountry);
 
         Organization GetOrganization(int idOrganization);

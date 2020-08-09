@@ -309,6 +309,7 @@
     <Compile Include="ViewModels\AuthorizationViewModel.cs" />
     <Compile Include="ViewModels\BranchesViewModel.cs" />
     <Compile Include="ViewModels\ChangeBranchViewModel.cs" />
+    <Compile Include="ViewModels\ChangeCityViewModel.cs" />
     <Compile Include="ViewModels\ChangeCountryViewModel.cs" />
     <Compile Include="ViewModels\CitiesViewModel.cs" />
     <Compile Include="ViewModels\CountriesViewModel.cs" />
@@ -500,6 +501,9 @@
     </Compile>
     <Compile Include="Views\Windows\ChangeBranch.xaml.cs">
       <DependentUpon>ChangeBranch.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Windows\ChangeCity.xaml.cs">
+      <DependentUpon>ChangeCity.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Windows\ChangeCountry.xaml.cs">
       <DependentUpon>ChangeCountry.xaml</DependentUpon>
@@ -753,6 +757,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Windows\ChangeBranch.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Windows\ChangeCity.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
