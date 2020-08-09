@@ -304,6 +304,7 @@
     <Compile Include="ViewModels\AddBranchViewModel.cs" />
     <Compile Include="ViewModels\AddCityViewModel.cs" />
     <Compile Include="ViewModels\AddCountryViewModel.cs" />
+    <Compile Include="ViewModels\AddDrivingLicenseCategoryViewModel.cs" />
     <Compile Include="ViewModels\AddOrganizationViewModel.cs" />
     <Compile Include="ViewModels\AddSkillViewModel.cs" />
     <Compile Include="ViewModels\AuthorizationViewModel.cs" />
@@ -311,6 +312,7 @@
     <Compile Include="ViewModels\ChangeBranchViewModel.cs" />
     <Compile Include="ViewModels\ChangeCityViewModel.cs" />
     <Compile Include="ViewModels\ChangeCountryViewModel.cs" />
+    <Compile Include="ViewModels\ChangeDrivingLicenseCategoryViewModel.cs" />
     <Compile Include="ViewModels\CitiesViewModel.cs" />
     <Compile Include="ViewModels\CountriesViewModel.cs" />
     <Compile Include="ViewModels\DrivingLicenseCategoriesViewModel.cs" />
@@ -493,6 +495,9 @@
     <Compile Include="Views\Windows\AddCountry.xaml.cs">
       <DependentUpon>AddCountry.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Windows\AddDrivingLicenseCategory.xaml.cs">
+      <DependentUpon>AddDrivingLicenseCategory.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Windows\AddOrganization.xaml.cs">
       <DependentUpon>AddOrganization.xaml</DependentUpon>
     </Compile>
@@ -507,6 +512,9 @@
     </Compile>
     <Compile Include="Views\Windows\ChangeCountry.xaml.cs">
       <DependentUpon>ChangeCountry.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Windows\ChangeDrivingLicenseCategory.xaml.cs">
+      <DependentUpon>ChangeDrivingLicenseCategory.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -748,6 +756,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Windows\AddDrivingLicenseCategory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Windows\AddOrganization.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -765,6 +777,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Windows\ChangeCountry.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Windows\ChangeDrivingLicenseCategory.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

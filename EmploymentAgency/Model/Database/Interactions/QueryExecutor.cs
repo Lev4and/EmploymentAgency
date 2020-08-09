@@ -103,6 +103,22 @@ namespace EmploymentAgency.Model.Database.Interactions
             return false;
         }
 
+        public bool AddDrivingLicenseCategory(string drivingLicenseCategoryName)
+        {
+            if(!ContainsDrivingLicenseCategory(drivingLicenseCategoryName))
+            {
+                _context.DrivingLicenseCategory.Add(new DrivingLicenseCategory
+                {
+                    DrivingLicenseCategoryName = drivingLicenseCategoryName
+                });
+                _context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
+        }
+
         public bool AddEducationalActivity(int idApplicant, int idEducation, string nameEducationalnstitution, string address, DateTime startDate, DateTime? endDate)
         {
             if(!ContainsEducationalActivity(idApplicant, idEducation, nameEducationalnstitution, address, startDate, endDate))
@@ -344,6 +360,11 @@ namespace EmploymentAgency.Model.Database.Interactions
             return _context.Country.SingleOrDefault(c => c.CountryName == countryName) != null;
         }
 
+        public bool ContainsDrivingLicenseCategory(string drivingLicenseCategoryName)
+        {
+            return _context.DrivingLicenseCategory.SingleOrDefault(d => d.DrivingLicenseCategoryName == drivingLicenseCategoryName) != null;
+        }
+
         public bool ContainsEducationalActivity(int idApplicant, int idEducation, string nameEducationalnstitution, string address, DateTime startDate, DateTime? endDate)
         {
             return _context.EducationalActivity.SingleOrDefault(e =>
@@ -490,6 +511,11 @@ namespace EmploymentAgency.Model.Database.Interactions
         {
             return _context.DrivingLicenseCategory.Where(d =>
             (drivingLicenseCategoryName.Length > 0 ? d.DrivingLicenseCategoryName.ToLower().StartsWith(drivingLicenseCategoryName.ToLower()) : true)).AsNoTracking().ToList();
+        }
+
+        public DrivingLicenseCategory GetDrivingLicenseCategory(int idDrivingLicenseCategory)
+        {
+            return _context.DrivingLicenseCategory.SingleOrDefault(d => d.IdDrivingLicenseCategory == idDrivingLicenseCategory);
         }
 
         public List<Education> GetEducations()
@@ -706,6 +732,14 @@ namespace EmploymentAgency.Model.Database.Interactions
             _context.SaveChanges();
         }
 
+        public void RemoveDrivingLicenseCategory(int idDrivingLicenseCategory)
+        {
+            var drivingLicenseCategory = GetDrivingLicenseCategory(idDrivingLicenseCategory);
+
+            _context.DrivingLicenseCategory.Remove(drivingLicenseCategory);
+            _context.SaveChanges();
+        }
+
         public void UpdateBranch(int idBranch, string phoneNumber)
         {
             var branch = _context.Branch.SingleOrDefault(b => b.IdBranch == idBranch);
@@ -749,6 +783,22 @@ namespace EmploymentAgency.Model.Database.Interactions
             _context.SaveChanges();
 
             return true;
+        }
+
+        public bool UpdateDrivingLicenseCategory(int idDrivingLicenseCategory, string drivingLicenseCategoryName)
+        {
+            if(!ContainsDrivingLicenseCategory(drivingLicenseCategoryName))
+            {
+                var drivingLicenseCategory = GetDrivingLicenseCategory(idDrivingLicenseCategory);
+
+                drivingLicenseCategory.DrivingLicenseCategoryName = drivingLicenseCategoryName;
+
+                _context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
         }
 
         private void SetCommandTimeout()

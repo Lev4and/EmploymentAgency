@@ -6,6 +6,8 @@
 
         bool UpdateCountry(int idCountry, string countryName, byte[] flag);
 
+        bool UpdateDrivingLicenseCategory(int idDrivingLicenseCategory, string drivingLicenseCategoryName);
+
         void UpdateBranch(int idBranch, string phoneNumber);
     }
 }

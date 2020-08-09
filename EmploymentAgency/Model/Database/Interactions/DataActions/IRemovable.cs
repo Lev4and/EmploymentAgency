@@ -7,5 +7,7 @@
         void RemoveCity(int idCity);
 
         void RemoveCountry(int idCountry);
+
+        void RemoveDrivingLicenseCategory(int idDrivingLicenseCategory);
     }
 }

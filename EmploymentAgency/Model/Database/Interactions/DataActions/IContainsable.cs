@@ -12,6 +12,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         bool ContainsCountry(string countryName);
 
+        bool ContainsDrivingLicenseCategory(string drivingLicenseCategoryName);
+
         bool ContainsEducationalActivity(int idApplicant, int idEducation, string nameEducationalnstitution, string address, DateTime startDate, DateTime? endDate);
 
         bool ContainsEmployer(int idEmployer);

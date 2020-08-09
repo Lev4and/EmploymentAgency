@@ -11,6 +11,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         Country GetCountry(int idCountry);
 
+        DrivingLicenseCategory GetDrivingLicenseCategory(int idDrivingLicenseCategory);
+
         Organization GetOrganization(int idOrganization);
 
         v_branch GetBranch(int idBranch);
