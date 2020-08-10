@@ -228,6 +228,22 @@ namespace EmploymentAgency.Model.Database.Interactions
             return false;
         }
 
+        public bool AddIndustry(string industryName)
+        {
+            if(!ContainsIndustry(industryName))
+            {
+                _context.Industry.Add(new Industry
+                {
+                    IndustryName = industryName
+                });
+                _context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
+        }
+
         public bool AddKnowledgeLanguage(int idApplicant, int idLanguage, int idLanguageProficiency)
         {
             if(!ContainsKnowledgeLanguage(idApplicant, idLanguage, idLanguageProficiency))
@@ -465,6 +481,11 @@ namespace EmploymentAgency.Model.Database.Interactions
             return _context.Gender.SingleOrDefault(g => g.GenderName == genderName) != null;
         }
 
+        public bool ContainsIndustry(string industryName)
+        {
+            return _context.Industry.SingleOrDefault(i => i.IndustryName == industryName) != null;
+        }
+
         public bool ContainsKnowledgeLanguage(int idApplicant, int idLanguage, int idLanguageProficiency)
         {
             return _context.KnowledgeLanguage.SingleOrDefault(k =>
@@ -672,6 +693,11 @@ namespace EmploymentAgency.Model.Database.Interactions
             (industryName.Length > 0 ? i.IndustryName.ToLower().StartsWith(industryName.ToLower()) : true)).AsNoTracking().ToList();
         }
 
+        public Industry GetIndustry(int idIndustry)
+        {
+            return _context.Industry.SingleOrDefault(i => i.IdIndustry == idIndustry);
+        }
+
         public List<LanguageProficiency> GetLanguageProficiencies()
         {
             return _context.LanguageProficiency.AsNoTracking().ToList();
@@ -876,6 +902,14 @@ namespace EmploymentAgency.Model.Database.Interactions
             _context.SaveChanges();
         }
 
+        public void RemoveIndustry(int idIndustry)
+        {
+            var industry = GetIndustry(idIndustry);
+
+            _context.Industry.Remove(industry);
+            _context.SaveChanges();
+        }
+
         public void UpdateBranch(int idBranch, string phoneNumber)
         {
             var branch = _context.Branch.SingleOrDefault(b => b.IdBranch == idBranch);
@@ -992,6 +1026,22 @@ namespace EmploymentAgency.Model.Database.Interactions
                 var gender = GetGender(idGender);
 
                 gender.GenderName = genderName;
+
+                _context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool UpdateIndustry(int idIndustry, string industryName)
+        {
+            if(!ContainsIndustry(industryName))
+            {
+                var industry = GetIndustry(idIndustry);
+
+                industry.IndustryName = industryName;
 
                 _context.SaveChanges();
 

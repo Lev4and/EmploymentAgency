@@ -21,6 +21,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         Gender GetGender(int idGender);
 
+        Industry GetIndustry(int idIndustry);
+
         Organization GetOrganization(int idOrganization);
 
         v_branch GetBranch(int idBranch);
