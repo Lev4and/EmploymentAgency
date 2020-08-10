@@ -307,6 +307,7 @@
     <Compile Include="ViewModels\AddDrivingLicenseCategoryViewModel.cs" />
     <Compile Include="ViewModels\AddEducationViewModel.cs" />
     <Compile Include="ViewModels\AddEmploymentTypeViewModel.cs" />
+    <Compile Include="ViewModels\AddExperienceViewModel.cs" />
     <Compile Include="ViewModels\AddOrganizationViewModel.cs" />
     <Compile Include="ViewModels\AddSkillViewModel.cs" />
     <Compile Include="ViewModels\AuthorizationViewModel.cs" />
@@ -317,6 +318,7 @@
     <Compile Include="ViewModels\ChangeDrivingLicenseCategoryViewModel.cs" />
     <Compile Include="ViewModels\ChangeEducationViewModel.cs" />
     <Compile Include="ViewModels\ChangeEmploymentTypeViewModel.cs" />
+    <Compile Include="ViewModels\ChangeExperienceViewModel.cs" />
     <Compile Include="ViewModels\CitiesViewModel.cs" />
     <Compile Include="ViewModels\CountriesViewModel.cs" />
     <Compile Include="ViewModels\DrivingLicenseCategoriesViewModel.cs" />
@@ -508,6 +510,9 @@
     <Compile Include="Views\Windows\AddEmploymentType.xaml.cs">
       <DependentUpon>AddEmploymentType.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Windows\AddExperience.xaml.cs">
+      <DependentUpon>AddExperience.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Windows\AddOrganization.xaml.cs">
       <DependentUpon>AddOrganization.xaml</DependentUpon>
     </Compile>
@@ -531,6 +536,9 @@
     </Compile>
     <Compile Include="Views\Windows\ChangeEmploymentType.xaml.cs">
       <DependentUpon>ChangeEmploymentType.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Windows\ChangeExperience.xaml.cs">
+      <DependentUpon>ChangeExperience.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -784,6 +792,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Windows\AddExperience.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Windows\AddOrganization.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -813,6 +825,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Windows\ChangeEmploymentType.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Windows\ChangeExperience.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

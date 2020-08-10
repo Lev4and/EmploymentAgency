@@ -15,6 +15,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         EmploymentType GetEmploymentType(int idEmploymentType);
 
+        Experience GetExperience(int idExperience);
+
         DrivingLicenseCategory GetDrivingLicenseCategory(int idDrivingLicenseCategory);
 
         Organization GetOrganization(int idOrganization);

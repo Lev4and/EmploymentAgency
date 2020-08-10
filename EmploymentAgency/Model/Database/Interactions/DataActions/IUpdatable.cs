@@ -12,6 +12,8 @@
 
         bool UpdateEmploymentType(int idEmploymentType, string employmentTypeName);
 
+        bool UpdateExperience(int idExperience, string experienceName);
+
         void UpdateBranch(int idBranch, string phoneNumber);
     }
 }

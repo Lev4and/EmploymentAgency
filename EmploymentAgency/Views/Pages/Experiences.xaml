@@ -29,14 +29,108 @@
               Grid.Column="1"
               Margin="5">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0"
+                  Margin="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0"
+                  Margin="0,0,5,0">
+                    <mdt:PackIcon x:Name="iconPlusCircle"
+                              Kind="PlusCircle"
+                              Panel.ZIndex="1"
+                              IsEnabled="{Binding Path=IsCanAdd, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                              Height="Auto"
+                              Width="{Binding ElementName=iconPlusCircle, Path=Height}"
+                              ToolTip="Добавить">
+                        <mdt:PackIcon.Style>
+                            <Style TargetType="mdt:PackIcon">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=iconPlusCircle, Path=IsEnabled}" Value="True">
+                                        <Setter Property="Foreground" Value="Green"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding ElementName=iconPlusCircle, Path=IsEnabled}" Value="False">
+                                        <Setter Property="Foreground" Value="Gray"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </mdt:PackIcon.Style>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="MouseDown">
+                                <i:InvokeCommandAction Command="{Binding Path=Add}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </mdt:PackIcon>
+                </Grid>
+                <Grid Grid.Column="1"
+                  Margin="5,0,5,0">
+                    <mdt:PackIcon x:Name="iconPencil"
+                              Kind="Pencil"
+                              Panel.ZIndex="1"
+                              IsEnabled="{Binding Path=IsCanChange, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                              Height="Auto"
+                              Width="{Binding ElementName=iconPencil, Path=Height}"
+                              ToolTip="Изменить">
+                        <mdt:PackIcon.Style>
+                            <Style TargetType="mdt:PackIcon">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=iconPencil, Path=IsEnabled}" Value="True">
+                                        <Setter Property="Foreground" Value="Orange"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding ElementName=iconPencil, Path=IsEnabled}" Value="False">
+                                        <Setter Property="Foreground" Value="Gray"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </mdt:PackIcon.Style>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="MouseDown">
+                                <i:InvokeCommandAction Command="{Binding Path=Change}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </mdt:PackIcon>
+                </Grid>
+                <Grid Grid.Column="2"
+                  Margin="5,0,5,0">
+                    <mdt:PackIcon x:Name="iconCloseCircle"
+                              Kind="CloseCircle"
+                              Panel.ZIndex="1"
+                              IsEnabled="{Binding Path=IsCanRemove, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                              Height="Auto"
+                              Width="{Binding ElementName=iconCloseCircle, Path=Height}"
+                              ToolTip="Удалить">
+                        <mdt:PackIcon.Style>
+                            <Style TargetType="mdt:PackIcon">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=iconCloseCircle, Path=IsEnabled}" Value="True">
+                                        <Setter Property="Foreground" Value="Red"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding ElementName=iconCloseCircle, Path=IsEnabled}" Value="False">
+                                        <Setter Property="Foreground" Value="Gray"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </mdt:PackIcon.Style>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="MouseDown">
+                                <i:InvokeCommandAction Command="{Binding Path=Remove}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </mdt:PackIcon>
+                </Grid>
+            </Grid>
             <Grid x:Name="searchByInputFieldGrid"
-                  Grid.Column="0"
+                  Grid.Column="1"
                   Margin="5,0,5,0">
             </Grid>
-            <Grid Grid.Column="1">
+            <Grid Grid.Column="2">
                 <mdt:PackIcon x:Name="iconMagnify"
                               Kind="Magnify"
                               Panel.ZIndex="1"

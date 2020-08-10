@@ -12,6 +12,8 @@
 
         void RemoveEmploymentType(int idEmploymentType);
 
+        void RemoveExperience(int idExperience);
+
         void RemoveDrivingLicenseCategory(int idDrivingLicenseCategory);
     }
 }

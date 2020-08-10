@@ -196,6 +196,22 @@ namespace EmploymentAgency.Model.Database.Interactions
             return false;
         }
 
+        public bool AddExperience(string experienceName)
+        {
+            if(!ContainsExperience(experienceName))
+            {
+                _context.Experience.Add(new Experience
+                {
+                    ExperienceName = experienceName
+                });
+                _context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
+        }
+
         public bool AddKnowledgeLanguage(int idApplicant, int idLanguage, int idLanguageProficiency)
         {
             if(!ContainsKnowledgeLanguage(idApplicant, idLanguage, idLanguageProficiency))
@@ -423,6 +439,11 @@ namespace EmploymentAgency.Model.Database.Interactions
             return _context.EmploymentType.SingleOrDefault(e => e.EmploymentTypeName == employmentTypeName) != null;
         }
 
+        public bool ContainsExperience(string experienceName)
+        {
+            return _context.Experience.SingleOrDefault(e => e.ExperienceName == experienceName) != null;
+        }
+
         public bool ContainsKnowledgeLanguage(int idApplicant, int idLanguage, int idLanguageProficiency)
         {
             return _context.KnowledgeLanguage.SingleOrDefault(k =>
@@ -585,6 +606,11 @@ namespace EmploymentAgency.Model.Database.Interactions
         {
             return _context.EmploymentType.Where(e =>
             (employmentTypeName.Length > 0 ? e.EmploymentTypeName.ToLower().StartsWith(employmentTypeName.ToLower()) : true)).AsNoTracking().ToList();
+        }
+
+        public Experience GetExperience(int idExperience)
+        {
+            return _context.Experience.SingleOrDefault(e => e.IdExperience == idExperience);
         }
 
         public List<Experience> GetExperiences(string experienceName)
@@ -808,6 +834,14 @@ namespace EmploymentAgency.Model.Database.Interactions
             _context.SaveChanges();
         }
 
+        public void RemoveExperience(int idExperience)
+        {
+            var experience = GetExperience(idExperience);
+
+            _context.Experience.Remove(experience);
+            _context.SaveChanges();
+        }
+
         public void UpdateBranch(int idBranch, string phoneNumber)
         {
             var branch = _context.Branch.SingleOrDefault(b => b.IdBranch == idBranch);
@@ -892,6 +926,22 @@ namespace EmploymentAgency.Model.Database.Interactions
                 var employmentType = GetEmploymentType(idEmploymentType);
 
                 employmentType.EmploymentTypeName = employmentTypeName;
+
+                _context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool UpdateExperience(int idExperience, string experienceName)
+        {
+            if(!ContainsExperience(experienceName))
+            {
+                var experience = GetExperience(idExperience);
+
+                experience.ExperienceName = experienceName;
 
                 _context.SaveChanges();
 
