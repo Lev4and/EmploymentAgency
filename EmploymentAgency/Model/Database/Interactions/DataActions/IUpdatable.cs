@@ -8,6 +8,8 @@
 
         bool UpdateDrivingLicenseCategory(int idDrivingLicenseCategory, string drivingLicenseCategoryName);
 
+        bool UpdateEducation(int idEducation, string educationName);
+
         void UpdateBranch(int idBranch, string phoneNumber);
     }
 }

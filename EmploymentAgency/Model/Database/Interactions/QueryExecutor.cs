@@ -119,6 +119,22 @@ namespace EmploymentAgency.Model.Database.Interactions
             return false;
         }
 
+        public bool AddEducation(string educationName)
+        {
+            if(!ContainsEducation(educationName))
+            {
+                _context.Education.Add(new Education
+                {
+                    EducationName = educationName
+                });
+                _context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
+        }
+
         public bool AddEducationalActivity(int idApplicant, int idEducation, string nameEducationalnstitution, string address, DateTime startDate, DateTime? endDate)
         {
             if(!ContainsEducationalActivity(idApplicant, idEducation, nameEducationalnstitution, address, startDate, endDate))
@@ -365,6 +381,11 @@ namespace EmploymentAgency.Model.Database.Interactions
             return _context.DrivingLicenseCategory.SingleOrDefault(d => d.DrivingLicenseCategoryName == drivingLicenseCategoryName) != null;
         }
 
+        public bool ContainsEducation(string educationName)
+        {
+            return _context.Education.SingleOrDefault(e => e.EducationName == educationName) != null;
+        }
+
         public bool ContainsEducationalActivity(int idApplicant, int idEducation, string nameEducationalnstitution, string address, DateTime startDate, DateTime? endDate)
         {
             return _context.EducationalActivity.SingleOrDefault(e =>
@@ -516,6 +537,11 @@ namespace EmploymentAgency.Model.Database.Interactions
         public DrivingLicenseCategory GetDrivingLicenseCategory(int idDrivingLicenseCategory)
         {
             return _context.DrivingLicenseCategory.SingleOrDefault(d => d.IdDrivingLicenseCategory == idDrivingLicenseCategory);
+        }
+
+        public Education GetEducation(int idEducation)
+        {
+            return _context.Education.SingleOrDefault(e => e.IdEducation == idEducation);
         }
 
         public List<Education> GetEducations()
@@ -740,6 +766,14 @@ namespace EmploymentAgency.Model.Database.Interactions
             _context.SaveChanges();
         }
 
+        public void RemoveEducation(int idEducation)
+        {
+            var education = GetEducation(idEducation);
+
+            _context.Education.Remove(education);
+            _context.SaveChanges();
+        }
+
         public void UpdateBranch(int idBranch, string phoneNumber)
         {
             var branch = _context.Branch.SingleOrDefault(b => b.IdBranch == idBranch);
@@ -792,6 +826,22 @@ namespace EmploymentAgency.Model.Database.Interactions
                 var drivingLicenseCategory = GetDrivingLicenseCategory(idDrivingLicenseCategory);
 
                 drivingLicenseCategory.DrivingLicenseCategoryName = drivingLicenseCategoryName;
+
+                _context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool UpdateEducation(int idEducation, string educationName)
+        {
+            if(!ContainsEducation(educationName))
+            {
+                var education = GetEducation(idEducation);
+
+                education.EducationName = educationName;
 
                 _context.SaveChanges();
 

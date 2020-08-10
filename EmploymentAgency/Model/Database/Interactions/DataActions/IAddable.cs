@@ -15,6 +15,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         bool AddDrivingLicenseCategory(string drivingLicenseCategoryName);
 
+        bool AddEducation(string educationName);
+
         bool AddEducationalActivity(int idApplicant, int idEducation, string nameEducationalnstitution, string address, DateTime startDate, DateTime? endDate);
 
         bool AddEmployer(int idUser, int idBranch, string name, string surname, string patronymic, int idGender, byte[] photo, DateTime dateOfBirth, string phoneNumber);

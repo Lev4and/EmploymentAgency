@@ -1,4 +1,4 @@
-﻿<Window x:Class="EmploymentAgency.Views.Windows.AddDrivingLicenseCategory"
+﻿<Window x:Class="EmploymentAgency.Views.Windows.ChangeEducation"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,8 +7,8 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:local="clr-namespace:EmploymentAgency.Views.Windows"
         mc:Ignorable="d"
-        DataContext="{Binding AddDrivingLicenseCategoryViewModel, Source={StaticResource ViewModelLocator}}"
-        Title="Агентство трудоустройства - Добавление водительского права" Height="450" Width="800">
+        DataContext="{Binding ChangeEducationViewModel, Source={StaticResource ViewModelLocator}}"
+        Title="Агентство трудоустройства - Изменение данных образования" Height="450" Width="800">
     <Grid>
         <i:Interaction.Triggers>
             <i:EventTrigger EventName="Loaded">
@@ -29,21 +29,21 @@
                 <ColumnDefinition Width="300"/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
-                <mdt:PackIcon x:Name="iconCar"
-                              Kind="Car"
+                <mdt:PackIcon x:Name="iconSchool"
+                              Kind="School"
                               Height="Auto"
                               Width="{Binding ElementName=iconCar, Path=Height}"
                               ToolTip="Водительское право"/>
             </Grid>
             <Grid Grid.Column="1" 
                       Margin="5,0,0,0">
-                <TextBox x:Name="drivingLicenseCategoryNameTextBox"
-                         Text="{Binding Path=DrivingLicenseCategoryName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                         mdt:HintAssist.Hint="Название водительское права"
-                         mdt:HintAssist.HelperText="Введите название водительское права"
+                <TextBox x:Name="educationNameTextBox"
+                         Text="{Binding Path=EducationName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                         mdt:HintAssist.Hint="Название образования"
+                         mdt:HintAssist.HelperText="Введите название образования"
                          FontSize="20"
                          FontWeight="Medium"
-                         ToolTip="{Binding ElementName=drivingLicenseCategoryNameTextBox, Path=Text}"
+                         ToolTip="{Binding ElementName=educationNameTextBox, Path=Text}"
                          VerticalContentAlignment="Center"/>
             </Grid>
         </Grid>
@@ -56,9 +56,9 @@
                     <Button Style="{StaticResource MaterialDesignRaisedDarkButton}"
                             Height="50"
                             mdt:ButtonAssist.CornerRadius="25"
-                            ToolTip="Добавить"
-                            Command="{Binding Path=Add}">
-                        <TextBlock Text="Добавить"/>
+                            ToolTip="Изменить"
+                            Command="{Binding Path=Change}">
+                        <TextBlock Text="Изменить"/>
                     </Button>
                 </mdt:Badged>
             </Grid>

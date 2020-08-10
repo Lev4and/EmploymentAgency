@@ -8,7 +8,7 @@
         xmlns:local="clr-namespace:EmploymentAgency.Views.Windows"
         mc:Ignorable="d"
         DataContext="{Binding ChangeDrivingLicenseCategoryViewModel, Source={StaticResource ViewModelLocator}}"
-        Title="Агентство трудоустройства - Изменение водительского права" Height="450" Width="800">
+        Title="Агентство трудоустройства - Изменение данных водительского права" Height="450" Width="800">
     <Grid>
         <i:Interaction.Triggers>
             <i:EventTrigger EventName="Loaded">

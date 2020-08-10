@@ -11,6 +11,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         Country GetCountry(int idCountry);
 
+        Education GetEducation(int idEducation);
+
         DrivingLicenseCategory GetDrivingLicenseCategory(int idDrivingLicenseCategory);
 
         Organization GetOrganization(int idOrganization);
