@@ -35,6 +35,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         bool AddLanguage(string languageName);
 
+        bool AddLanguageProficiency(string designation, string languageProficiencyName);
+
         bool AddManager(int idUser, string name, string surname, string patronymic, int idGender, byte[] photo, DateTime dateOfBirth, string phoneNumber);
 
         bool AddOrganization(int idSubIndustry, string organizationName, byte[] photo);

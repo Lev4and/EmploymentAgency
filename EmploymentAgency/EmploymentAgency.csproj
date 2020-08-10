@@ -310,6 +310,7 @@
     <Compile Include="ViewModels\AddExperienceViewModel.cs" />
     <Compile Include="ViewModels\AddGenderViewModel.cs" />
     <Compile Include="ViewModels\AddIndustryViewModel.cs" />
+    <Compile Include="ViewModels\AddLanguageProficiencyViewModel.cs" />
     <Compile Include="ViewModels\AddLanguageViewModel.cs" />
     <Compile Include="ViewModels\AddOrganizationViewModel.cs" />
     <Compile Include="ViewModels\AddSkillViewModel.cs" />
@@ -324,6 +325,7 @@
     <Compile Include="ViewModels\ChangeExperienceViewModel.cs" />
     <Compile Include="ViewModels\ChangeGenderViewModel.cs" />
     <Compile Include="ViewModels\ChangeIndustryViewModel.cs" />
+    <Compile Include="ViewModels\ChangeLanguageProficiencyViewModel.cs" />
     <Compile Include="ViewModels\ChangeLanguageViewModel.cs" />
     <Compile Include="ViewModels\CitiesViewModel.cs" />
     <Compile Include="ViewModels\CountriesViewModel.cs" />
@@ -528,6 +530,9 @@
     <Compile Include="Views\Windows\AddLanguage.xaml.cs">
       <DependentUpon>AddLanguage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Windows\AddLanguageProficiency.xaml.cs">
+      <DependentUpon>AddLanguageProficiency.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Windows\AddOrganization.xaml.cs">
       <DependentUpon>AddOrganization.xaml</DependentUpon>
     </Compile>
@@ -563,6 +568,9 @@
     </Compile>
     <Compile Include="Views\Windows\ChangeLanguage.xaml.cs">
       <DependentUpon>ChangeLanguage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Windows\ChangeLanguageProficiency.xaml.cs">
+      <DependentUpon>ChangeLanguageProficiency.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -832,6 +840,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Windows\AddLanguageProficiency.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Windows\AddOrganization.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -877,6 +889,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Windows\ChangeLanguage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Windows\ChangeLanguageProficiency.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

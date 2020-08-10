@@ -20,6 +20,8 @@
 
         bool UpdateLanguage(int idLanguage, string languageName);
 
+        bool UpdateLanguageProficiency(int idLanguageProficiency, string designation, string languageProficiencyName);
+
         void UpdateBranch(int idBranch, string phoneNumber);
     }
 }

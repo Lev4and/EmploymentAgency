@@ -21,5 +21,7 @@
         void RemoveIndustry(int idIndustry);
 
         void RemoveLanguage(int idLanguage);
+
+        void RemoveLanguageProficiency(int idLanguageProficiency);
     }
 }

@@ -25,6 +25,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         Language GetLanguage(int idLanguage);
 
+        LanguageProficiency GetLanguageProficiency(int idLanguageProficiency);
+
         Organization GetOrganization(int idOrganization);
 
         v_branch GetBranch(int idBranch);

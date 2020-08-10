@@ -34,6 +34,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         bool ContainsLanguage(string languageName);
 
+        bool ContainsLanguageProficiency(string designation, string languageProficiencyName);
+
         bool ContainsManager(int idManager);
 
         bool ContainsOrganization(string organizationName);

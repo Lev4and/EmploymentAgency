@@ -299,6 +299,23 @@ namespace EmploymentAgency.Model.Database.Interactions
             return false;
         }
 
+        public bool AddLanguageProficiency(string designation, string languageProficiencyName)
+        {
+            if(!ContainsLanguageProficiency(designation, languageProficiencyName))
+            {
+                _context.LanguageProficiency.Add(new LanguageProficiency
+                {
+                    Designation = designation,
+                    LanguageProficiencyName = languageProficiencyName
+                });
+                _context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
+        }
+
         public bool AddManager(int idUser, string name, string surname, string patronymic, int idGender, byte[] photo, DateTime dateOfBirth, string phoneNumber)
         {
             if(!ContainsManager(idUser))
@@ -527,6 +544,13 @@ namespace EmploymentAgency.Model.Database.Interactions
             return _context.Language.SingleOrDefault(l => l.LanguageName == languageName) != null;
         }
 
+        public bool ContainsLanguageProficiency(string designation, string languageProficiencyName)
+        {
+            return _context.LanguageProficiency.SingleOrDefault(l =>
+            l.Designation == designation &&
+            l.LanguageProficiencyName == languageProficiencyName) != null;
+        }
+
         public bool ContainsManager(int idManager)
         {
             return _context.Manager.SingleOrDefault(m => m.IdManager == idManager) != null;
@@ -733,6 +757,11 @@ namespace EmploymentAgency.Model.Database.Interactions
         {
             return _context.LanguageProficiency.Where(l =>
             (languageProficiencyName.Length > 0 ? l.LanguageProficiencyName.ToLower().StartsWith(languageProficiencyName.ToLower()) : true)).AsNoTracking().ToList();
+        }
+
+        public LanguageProficiency GetLanguageProficiency(int idLanguageProficiency)
+        {
+            return _context.LanguageProficiency.SingleOrDefault(l => l.IdLanguageProficiency == idLanguageProficiency);
         }
 
         public List<Language> GetLanguages()
@@ -944,6 +973,14 @@ namespace EmploymentAgency.Model.Database.Interactions
             _context.SaveChanges();
         }
 
+        public void RemoveLanguageProficiency(int idLanguageProficiency)
+        {
+            var languageProficiency = GetLanguageProficiency(idLanguageProficiency);
+
+            _context.LanguageProficiency.Remove(languageProficiency);
+            _context.SaveChanges();
+        }
+
         public void UpdateBranch(int idBranch, string phoneNumber)
         {
             var branch = _context.Branch.SingleOrDefault(b => b.IdBranch == idBranch);
@@ -1092,6 +1129,23 @@ namespace EmploymentAgency.Model.Database.Interactions
                 var language = GetLanguage(idLanguage);
 
                 language.LanguageName = languageName;
+
+                _context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool UpdateLanguageProficiency(int idLanguageProficiency, string designation, string languageProficiencyName)
+        {
+            if (!ContainsLanguageProficiency(designation, languageProficiencyName))
+            {
+                var languageProficiency = GetLanguageProficiency(idLanguageProficiency);
+
+                languageProficiency.Designation = designation;
+                languageProficiency.LanguageProficiencyName = languageProficiencyName;
 
                 _context.SaveChanges();
 
