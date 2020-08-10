@@ -10,6 +10,8 @@
 
         bool UpdateEducation(int idEducation, string educationName);
 
+        bool UpdateEmploymentType(int idEmploymentType, string employmentTypeName);
+
         void UpdateBranch(int idBranch, string phoneNumber);
     }
 }

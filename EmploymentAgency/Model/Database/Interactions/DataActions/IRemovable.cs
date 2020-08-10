@@ -10,6 +10,8 @@
 
         void RemoveEducation(int idEducation);
 
+        void RemoveEmploymentType(int idEmploymentType);
+
         void RemoveDrivingLicenseCategory(int idDrivingLicenseCategory);
     }
 }

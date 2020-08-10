@@ -91,6 +91,10 @@ namespace EmploymentAgency.ViewModels.Locators
 
         public ChangeEducationViewModel ChangeEducationViewModel => _provider.GetRequiredService<ChangeEducationViewModel>();
 
+        public AddEmploymentTypeViewModel AddEmploymentTypeViewModel => _provider.GetRequiredService<AddEmploymentTypeViewModel>();
+
+        public ChangeEmploymentTypeViewModel ChangeEmploymentTypeViewModel => _provider.GetRequiredService<ChangeEmploymentTypeViewModel>();
+
         public static void Init()
         {
             var services = new ServiceCollection();
@@ -137,6 +141,8 @@ namespace EmploymentAgency.ViewModels.Locators
             services.AddTransient<ChangeDrivingLicenseCategoryViewModel>();
             services.AddTransient<AddEducationViewModel>();
             services.AddTransient<ChangeEducationViewModel>();
+            services.AddTransient<AddEmploymentTypeViewModel>();
+            services.AddTransient<ChangeEmploymentTypeViewModel>();
 
             services.AddSingleton<PageService>();
             services.AddSingleton<MenuPageService>();

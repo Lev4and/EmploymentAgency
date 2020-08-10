@@ -180,6 +180,22 @@ namespace EmploymentAgency.Model.Database.Interactions
             return false;
         }
 
+        public bool AddEmploymentType(string employmentTypeName)
+        {
+            if(!ContainsEmploymentType(employmentTypeName))
+            {
+                _context.EmploymentType.Add(new EmploymentType
+                {
+                    EmploymentTypeName = employmentTypeName
+                });
+                _context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
+        }
+
         public bool AddKnowledgeLanguage(int idApplicant, int idLanguage, int idLanguageProficiency)
         {
             if(!ContainsKnowledgeLanguage(idApplicant, idLanguage, idLanguageProficiency))
@@ -402,6 +418,11 @@ namespace EmploymentAgency.Model.Database.Interactions
             return _context.Employer.SingleOrDefault(e => e.IdEmployer == idEmployer) != null;
         }
 
+        public bool ContainsEmploymentType(string employmentTypeName)
+        {
+            return _context.EmploymentType.SingleOrDefault(e => e.EmploymentTypeName == employmentTypeName) != null;
+        }
+
         public bool ContainsKnowledgeLanguage(int idApplicant, int idLanguage, int idLanguageProficiency)
         {
             return _context.KnowledgeLanguage.SingleOrDefault(k =>
@@ -553,6 +574,11 @@ namespace EmploymentAgency.Model.Database.Interactions
         {
             return _context.Education.Where(e =>
             (educationName.Length > 0 ? e.EducationName.ToLower().StartsWith(educationName.ToLower()) : true)).AsNoTracking().ToList();
+        }
+
+        public EmploymentType GetEmploymentType(int idEmploymentType)
+        {
+            return _context.EmploymentType.SingleOrDefault(e => e.IdEmploymentType == idEmploymentType);
         }
 
         public List<EmploymentType> GetEmploymentTypes(string employmentTypeName)
@@ -774,6 +800,14 @@ namespace EmploymentAgency.Model.Database.Interactions
             _context.SaveChanges();
         }
 
+        public void RemoveEmploymentType(int idEmploymentType)
+        {
+            var employmentType = GetEmploymentType(idEmploymentType);
+
+            _context.EmploymentType.Remove(employmentType);
+            _context.SaveChanges();
+        }
+
         public void UpdateBranch(int idBranch, string phoneNumber)
         {
             var branch = _context.Branch.SingleOrDefault(b => b.IdBranch == idBranch);
@@ -842,6 +876,22 @@ namespace EmploymentAgency.Model.Database.Interactions
                 var education = GetEducation(idEducation);
 
                 education.EducationName = educationName;
+
+                _context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool UpdateEmploymentType(int idEmploymentType, string employmentTypeName)
+        {
+            if(!ContainsEmploymentType(employmentTypeName))
+            {
+                var employmentType = GetEmploymentType(idEmploymentType);
+
+                employmentType.EmploymentTypeName = employmentTypeName;
 
                 _context.SaveChanges();
 

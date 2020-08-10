@@ -21,6 +21,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         bool AddEmployer(int idUser, int idBranch, string name, string surname, string patronymic, int idGender, byte[] photo, DateTime dateOfBirth, string phoneNumber);
 
+        bool AddEmploymentType(string employmentTypeName);
+
         bool AddKnowledgeLanguage(int idApplicant, int idLanguage, int idLanguageProficiency);
 
         bool AddLaborActivity(int idApplicant, string organizationName, string organizationAddress, string professionName, string activity, DateTime startDate, DateTime? endDate);

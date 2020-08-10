@@ -32,8 +32,8 @@
                 <mdt:PackIcon x:Name="iconSchool"
                               Kind="School"
                               Height="Auto"
-                              Width="{Binding ElementName=iconCar, Path=Height}"
-                              ToolTip="Водительское право"/>
+                              Width="{Binding ElementName=iconSchool, Path=Height}"
+                              ToolTip="Образование"/>
             </Grid>
             <Grid Grid.Column="1" 
                       Margin="5,0,0,0">
