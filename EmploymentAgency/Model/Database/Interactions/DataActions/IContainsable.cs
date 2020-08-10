@@ -24,6 +24,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         bool ContainsExperience(string experienceName);
 
+        bool ContainsGender(string genderName);
+
         bool ContainsKnowledgeLanguage(int idApplicant, int idLanguage, int idLanguageProficiency);
 
         bool ContainsLaborActivity(int idApplicant, string organizationName, string organizationAddress, string professionName, string activity, DateTime startDate, DateTime? endDate);

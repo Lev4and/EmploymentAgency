@@ -212,6 +212,22 @@ namespace EmploymentAgency.Model.Database.Interactions
             return false;
         }
 
+        public bool AddGender(string genderName)
+        {
+            if(!ContainsGender(genderName))
+            {
+                _context.Gender.Add(new Gender
+                {
+                    GenderName = genderName
+                });
+                _context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
+        }
+
         public bool AddKnowledgeLanguage(int idApplicant, int idLanguage, int idLanguageProficiency)
         {
             if(!ContainsKnowledgeLanguage(idApplicant, idLanguage, idLanguageProficiency))
@@ -444,6 +460,11 @@ namespace EmploymentAgency.Model.Database.Interactions
             return _context.Experience.SingleOrDefault(e => e.ExperienceName == experienceName) != null;
         }
 
+        public bool ContainsGender(string genderName)
+        {
+            return _context.Gender.SingleOrDefault(g => g.GenderName == genderName) != null;
+        }
+
         public bool ContainsKnowledgeLanguage(int idApplicant, int idLanguage, int idLanguageProficiency)
         {
             return _context.KnowledgeLanguage.SingleOrDefault(k =>
@@ -617,6 +638,11 @@ namespace EmploymentAgency.Model.Database.Interactions
         {
             return _context.Experience.Where(e =>
             (experienceName.Length > 0 ? e.ExperienceName.ToLower().StartsWith(experienceName.ToLower()) : true)).AsNoTracking().ToList();
+        }
+
+        public Gender GetGender(int idGender)
+        {
+            return _context.Gender.SingleOrDefault(g => g.IdGender == idGender);
         }
 
         public List<Gender> GetGenders()
@@ -842,6 +868,14 @@ namespace EmploymentAgency.Model.Database.Interactions
             _context.SaveChanges();
         }
 
+        public void RemoveGender(int idGender)
+        {
+            var gender = GetGender(idGender);
+
+            _context.Gender.Remove(gender);
+            _context.SaveChanges();
+        }
+
         public void UpdateBranch(int idBranch, string phoneNumber)
         {
             var branch = _context.Branch.SingleOrDefault(b => b.IdBranch == idBranch);
@@ -942,6 +976,22 @@ namespace EmploymentAgency.Model.Database.Interactions
                 var experience = GetExperience(idExperience);
 
                 experience.ExperienceName = experienceName;
+
+                _context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool UpdateGender(int idGender, string genderName)
+        {
+            if(!ContainsGender(genderName))
+            {
+                var gender = GetGender(idGender);
+
+                gender.GenderName = genderName;
 
                 _context.SaveChanges();
 

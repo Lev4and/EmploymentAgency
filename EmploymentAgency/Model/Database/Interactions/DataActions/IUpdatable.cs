@@ -14,6 +14,8 @@
 
         bool UpdateExperience(int idExperience, string experienceName);
 
+        bool UpdateGender(int idGender, string genderName);
+
         void UpdateBranch(int idBranch, string phoneNumber);
     }
 }

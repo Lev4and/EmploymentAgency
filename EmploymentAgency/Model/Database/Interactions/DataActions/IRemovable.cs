@@ -14,6 +14,8 @@
 
         void RemoveExperience(int idExperience);
 
+        void RemoveGender(int idGender);
+
         void RemoveDrivingLicenseCategory(int idDrivingLicenseCategory);
     }
 }

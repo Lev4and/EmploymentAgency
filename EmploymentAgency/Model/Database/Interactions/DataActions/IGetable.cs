@@ -11,13 +11,15 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         Country GetCountry(int idCountry);
 
+        DrivingLicenseCategory GetDrivingLicenseCategory(int idDrivingLicenseCategory);
+
         Education GetEducation(int idEducation);
 
         EmploymentType GetEmploymentType(int idEmploymentType);
 
         Experience GetExperience(int idExperience);
 
-        DrivingLicenseCategory GetDrivingLicenseCategory(int idDrivingLicenseCategory);
+        Gender GetGender(int idGender);
 
         Organization GetOrganization(int idOrganization);
 

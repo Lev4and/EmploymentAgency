@@ -99,6 +99,10 @@ namespace EmploymentAgency.ViewModels.Locators
 
         public ChangeExperienceViewModel ChangeExperienceViewModel => _provider.GetRequiredService<ChangeExperienceViewModel>();
 
+        public AddGenderViewModel AddGenderViewModel => _provider.GetRequiredService<AddGenderViewModel>();
+
+        public ChangeGenderViewModel ChangeGenderViewModel => _provider.GetRequiredService<ChangeGenderViewModel>();
+
         public static void Init()
         {
             var services = new ServiceCollection();
@@ -149,6 +153,8 @@ namespace EmploymentAgency.ViewModels.Locators
             services.AddTransient<ChangeEmploymentTypeViewModel>();
             services.AddTransient<AddExperienceViewModel>();
             services.AddTransient<ChangeExperienceViewModel>();
+            services.AddTransient<AddGenderViewModel>();
+            services.AddTransient<ChangeGenderViewModel>();
 
             services.AddSingleton<PageService>();
             services.AddSingleton<MenuPageService>();
