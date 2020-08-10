@@ -32,6 +32,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         bool ContainsLaborActivity(int idApplicant, string organizationName, string organizationAddress, string professionName, string activity, DateTime startDate, DateTime? endDate);
 
+        bool ContainsLanguage(string languageName);
+
         bool ContainsManager(int idManager);
 
         bool ContainsOrganization(string organizationName);

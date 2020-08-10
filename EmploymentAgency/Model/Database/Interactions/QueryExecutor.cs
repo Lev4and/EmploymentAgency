@@ -283,6 +283,22 @@ namespace EmploymentAgency.Model.Database.Interactions
             return false;
         }
 
+        public bool AddLanguage(string languageName)
+        {
+            if(!ContainsLanguage(languageName))
+            {
+                _context.Language.Add(new Language
+                {
+                    LanguageName = languageName
+                });
+                _context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
+        }
+
         public bool AddManager(int idUser, string name, string surname, string patronymic, int idGender, byte[] photo, DateTime dateOfBirth, string phoneNumber)
         {
             if(!ContainsManager(idUser))
@@ -506,6 +522,11 @@ namespace EmploymentAgency.Model.Database.Interactions
             l.EndDate == endDate) != null;
         }
 
+        public bool ContainsLanguage(string languageName)
+        {
+            return _context.Language.SingleOrDefault(l => l.LanguageName == languageName) != null;
+        }
+
         public bool ContainsManager(int idManager)
         {
             return _context.Manager.SingleOrDefault(m => m.IdManager == idManager) != null;
@@ -696,6 +717,11 @@ namespace EmploymentAgency.Model.Database.Interactions
         public Industry GetIndustry(int idIndustry)
         {
             return _context.Industry.SingleOrDefault(i => i.IdIndustry == idIndustry);
+        }
+
+        public Language GetLanguage(int idLanguage)
+        {
+            return _context.Language.SingleOrDefault(l => l.IdLanguage == idLanguage);
         }
 
         public List<LanguageProficiency> GetLanguageProficiencies()
@@ -910,6 +936,14 @@ namespace EmploymentAgency.Model.Database.Interactions
             _context.SaveChanges();
         }
 
+        public void RemoveLanguage(int idLanguage)
+        {
+            var language = GetLanguage(idLanguage);
+
+            _context.Language.Remove(language);
+            _context.SaveChanges();
+        }
+
         public void UpdateBranch(int idBranch, string phoneNumber)
         {
             var branch = _context.Branch.SingleOrDefault(b => b.IdBranch == idBranch);
@@ -1042,6 +1076,22 @@ namespace EmploymentAgency.Model.Database.Interactions
                 var industry = GetIndustry(idIndustry);
 
                 industry.IndustryName = industryName;
+
+                _context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool UpdateLanguage(int idLanguage, string languageName)
+        {
+            if(!ContainsLanguage(languageName))
+            {
+                var language = GetLanguage(idLanguage);
+
+                language.LanguageName = languageName;
 
                 _context.SaveChanges();
 

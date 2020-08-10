@@ -33,6 +33,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         bool AddLaborActivity(int idApplicant, string organizationName, string organizationAddress, string professionName, string activity, DateTime startDate, DateTime? endDate);
 
+        bool AddLanguage(string languageName);
+
         bool AddManager(int idUser, string name, string surname, string patronymic, int idGender, byte[] photo, DateTime dateOfBirth, string phoneNumber);
 
         bool AddOrganization(int idSubIndustry, string organizationName, byte[] photo);

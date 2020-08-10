@@ -1,0 +1,67 @@
+﻿<Window x:Class="EmploymentAgency.Views.Windows.AddLanguage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:mdt="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:local="clr-namespace:EmploymentAgency.Views.Windows"
+        mc:Ignorable="d"
+        DataContext="{Binding AddLanguageViewModel, Source={StaticResource ViewModelLocator}}"
+        Title="Агентство трудоустройства - Добавление языка" Height="450" Width="800">
+    <Grid>
+        <i:Interaction.Triggers>
+            <i:EventTrigger EventName="Loaded">
+                <i:InvokeCommandAction Command="{Binding Path=Loaded}"/>
+            </i:EventTrigger>
+        </i:Interaction.Triggers>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0"
+              Margin="5"
+              Height="50"
+              VerticalAlignment="Center"
+              HorizontalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="300"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <mdt:PackIcon x:Name="iconTranslate"
+                              Kind="Translate"
+                              Height="Auto"
+                              Width="{Binding ElementName=iconTranslate, Path=Height}"
+                              ToolTip="Язык"/>
+            </Grid>
+            <Grid Grid.Column="1" 
+                      Margin="5,0,0,0">
+                <TextBox x:Name="languageNameTextBox"
+                         Text="{Binding Path=LanguageName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                         mdt:HintAssist.Hint="Название языка"
+                         mdt:HintAssist.HelperText="Введите название языка"
+                         FontSize="20"
+                         FontWeight="Medium"
+                         ToolTip="{Binding ElementName=languageNameTextBox, Path=Text}"
+                         VerticalContentAlignment="Center"/>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="1"
+              Margin="5">
+            <Grid VerticalAlignment="Bottom">
+                <mdt:Badged Badge="{mdt:PackIcon Kind=ContentSaveCog}"
+                            HorizontalAlignment="Center"
+                            Margin="0,12,0,0">
+                    <Button Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                            Height="50"
+                            mdt:ButtonAssist.CornerRadius="25"
+                            ToolTip="Добавить"
+                            Command="{Binding Path=Add}">
+                        <TextBlock Text="Добавить"/>
+                    </Button>
+                </mdt:Badged>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

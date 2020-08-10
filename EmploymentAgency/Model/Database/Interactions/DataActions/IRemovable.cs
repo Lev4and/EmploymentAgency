@@ -8,6 +8,8 @@
 
         void RemoveCountry(int idCountry);
 
+        void RemoveDrivingLicenseCategory(int idDrivingLicenseCategory);
+
         void RemoveEducation(int idEducation);
 
         void RemoveEmploymentType(int idEmploymentType);
@@ -18,6 +20,6 @@
 
         void RemoveIndustry(int idIndustry);
 
-        void RemoveDrivingLicenseCategory(int idDrivingLicenseCategory);
+        void RemoveLanguage(int idLanguage);
     }
 }

@@ -23,6 +23,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         Industry GetIndustry(int idIndustry);
 
+        Language GetLanguage(int idLanguage);
+
         Organization GetOrganization(int idOrganization);
 
         v_branch GetBranch(int idBranch);

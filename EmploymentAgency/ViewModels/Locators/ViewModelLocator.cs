@@ -107,6 +107,10 @@ namespace EmploymentAgency.ViewModels.Locators
 
         public ChangeIndustryViewModel ChangeIndustryViewModel => _provider.GetRequiredService<ChangeIndustryViewModel>();
 
+        public AddLanguageViewModel AddLanguageViewModel => _provider.GetRequiredService<AddLanguageViewModel>();
+
+        public ChangeLanguageViewModel ChangeLanguageViewModel => _provider.GetRequiredService<ChangeLanguageViewModel>();
+
         public static void Init()
         {
             var services = new ServiceCollection();
@@ -161,6 +165,8 @@ namespace EmploymentAgency.ViewModels.Locators
             services.AddTransient<ChangeGenderViewModel>();
             services.AddTransient<AddIndustryViewModel>();
             services.AddTransient<ChangeIndustryViewModel>();
+            services.AddTransient<AddLanguageViewModel>();
+            services.AddTransient<ChangeLanguageViewModel>();
 
             services.AddSingleton<PageService>();
             services.AddSingleton<MenuPageService>();

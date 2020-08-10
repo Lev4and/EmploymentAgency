@@ -18,6 +18,8 @@
 
         bool UpdateIndustry(int idIndustry, string industryName);
 
+        bool UpdateLanguage(int idLanguage, string languageName);
+
         void UpdateBranch(int idBranch, string phoneNumber);
     }
 }
