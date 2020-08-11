@@ -52,9 +52,11 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         bool ContainsRole(string roleName);
 
+        bool ContainsSchedule(string scheduleName);
+
         bool ContainsSkill(string skillName);
 
-        bool ContainsSchedule(string scheduleName);
+        bool ContainsStreet(int idCity, string streetName);
 
         bool ContainsUser(string login);
     }

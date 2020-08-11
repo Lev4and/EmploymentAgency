@@ -41,11 +41,15 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         Skill GetSkill(int idSkill);
 
+        Street GetStreet(int idStreet);
+
         v_branch GetBranch(int idBranch);
 
         v_organization GetOrganizationExtendedInformation(int idOrganization);
 
         v_profession GetProfessionExtendedInformation(int idProfession);
+
+        v_street GetStreetExtendedInformation(int idStreet);
 
         List<City> GetCities(int idCountry);
 

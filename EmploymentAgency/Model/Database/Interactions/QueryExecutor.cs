@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
-using System.Runtime.InteropServices;
 
 namespace EmploymentAgency.Model.Database.Interactions
 {
@@ -516,6 +515,23 @@ namespace EmploymentAgency.Model.Database.Interactions
             return false;
         }
 
+        public bool AddStreet(int idCity, string streetName)
+        {
+            if(!ContainsStreet(idCity, streetName))
+            {
+                _context.Street.Add(new Street
+                {
+                    IdCity = idCity,
+                    StreetName = streetName,
+                });
+                _context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
+        }
+
         public bool AddUser(int idRole, string login, string password)
         {
             if(!ContainsUser(login))
@@ -681,6 +697,13 @@ namespace EmploymentAgency.Model.Database.Interactions
         public bool ContainsSkill(string skillName)
         {
             return _context.Skill.SingleOrDefault(s => s.SkillName == skillName) != null;
+        }
+
+        public bool ContainsStreet(int idCity, string streetName)
+        {
+            return _context.Street.SingleOrDefault(s =>
+            s.IdCity == idCity &&
+            s.StreetName == streetName) != null;
         }
 
         public bool ContainsUser(string login)
@@ -991,6 +1014,16 @@ namespace EmploymentAgency.Model.Database.Interactions
             (skillName.Length > 0 ? s.SkillName.ToLower().StartsWith(skillName.ToLower()) : true)).AsNoTracking().ToList();
         }
 
+        public Street GetStreet(int idStreet)
+        {
+            return _context.Street.SingleOrDefault(s => s.IdStreet == idStreet);
+        }
+
+        public v_street GetStreetExtendedInformation(int idStreet)
+        {
+            return _context.v_street.SingleOrDefault(s => s.IdStreet == idStreet);
+        }
+
         public List<Street> GetStreets(int idCity)
         {
             return _context.Street.Where(s => s.IdCity == idCity).AsNoTracking().ToList();
@@ -1180,6 +1213,14 @@ namespace EmploymentAgency.Model.Database.Interactions
             var skill = GetSkill(idSkill);
 
             _context.Skill.Remove(skill);
+            _context.SaveChanges();
+        }
+
+        public void RemoveStreet(int idStreet)
+        {
+            var street = GetStreet(idStreet);
+
+            _context.Street.Remove(street);
             _context.SaveChanges();
         }
 
@@ -1490,6 +1531,22 @@ namespace EmploymentAgency.Model.Database.Interactions
 
                     return true;
                 }
+            }
+
+            return false;
+        }
+
+        public bool UpdateStreet(int idStreet, string streetName)
+        {
+            var street = GetStreet(idStreet);
+
+            if (!ContainsStreet(street.IdCity, streetName))
+            {
+                street.StreetName = streetName;
+
+                _context.SaveChanges();
+
+                return true;
             }
 
             return false;

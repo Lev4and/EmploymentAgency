@@ -37,5 +37,7 @@
         void RemoveSchedule(int idSchedule);
 
         void RemoveSkill(int idSkill);
+
+        void RemoveStreet(int idStreet);
     }
 }

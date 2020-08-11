@@ -59,6 +59,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         bool AddSkill(string skillName, byte[] photo);
 
+        bool AddStreet(int idCity, string streetName);
+
         bool AddUser(int idRole, string login, string password);
     }
 }

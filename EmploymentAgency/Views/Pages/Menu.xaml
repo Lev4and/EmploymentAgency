@@ -128,7 +128,7 @@
                                         </ListBoxItem>
                                     </Grid>
                                     <Grid Grid.Row="2">
-                                        <mdt:PackIcon Kind="HandPointingRight"
+                                        <mdt:PackIcon Kind="SignDirection"
                                                       Width="15"
                                                       Height="15"
                                                       Margin="10 16"

@@ -1,9 +1,6 @@
-﻿using Converters;
-using DevExpress.Mvvm;
+﻿using DevExpress.Mvvm;
 using EmploymentAgency.Model.Database.Interactions;
 using EmploymentAgency.Model.Database.Models;
-using EmploymentAgency.Services;
-using EmploymentAgency.Views.Windows;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
@@ -11,21 +8,14 @@ using System.Windows.Input;
 
 namespace EmploymentAgency.ViewModels
 {
-    public class StreetsViewModel : BindableBase
+    public class AddStreetViewModel : BindableBase
     {
         private int? _selectedIdCountry;
-        private int? _selectedIdStreet;
 
         private string _countryName;
         private string _cityName;
 
         private QueryExecutor _executor;
-
-        public bool IsCanAdd { get; set; } = true;
-
-        public bool IsCanChange { get; set; }
-
-        public bool IsCanRemove { get; set; }
 
         public int? SelectedIdCountry
         {
@@ -38,8 +28,6 @@ namespace EmploymentAgency.ViewModels
                 {
                     UpdateCities();
                     UpdateDisplayedCities();
-
-                    Streets = null;
                 }
                 else
                 {
@@ -50,18 +38,6 @@ namespace EmploymentAgency.ViewModels
         }
 
         public int? SelectedIdCity { get; set; }
-
-        public int? SelectedIdStreet
-        {
-            get { return _selectedIdStreet; }
-            set
-            {
-                _selectedIdStreet = value;
-
-                IsCanChange = _selectedIdStreet != null ? true : false;
-                IsCanRemove = _selectedIdStreet != null ? true : false;
-            }
-        }
 
         public string CountryName
         {
@@ -75,6 +51,9 @@ namespace EmploymentAgency.ViewModels
                     if (_countryName.Length == 0)
                     {
                         SelectedIdCountry = null;
+                        SelectedIdCity = null;
+
+                        CityName = "";
                     }
                 }
 
@@ -97,6 +76,8 @@ namespace EmploymentAgency.ViewModels
                     if (_cityName.Length == 0)
                     {
                         SelectedIdCity = null;
+
+                        StreetName = "";
                     }
                 }
 
@@ -117,9 +98,7 @@ namespace EmploymentAgency.ViewModels
 
         public ObservableCollection<City> DisplayedCities { get; set; }
 
-        public ObservableCollection<object> Streets { get; set; }
-
-        public StreetsViewModel()
+        public AddStreetViewModel()
         {
 
         }
@@ -128,66 +107,31 @@ namespace EmploymentAgency.ViewModels
         {
             _executor = new QueryExecutor();
 
-            Streets = new ObservableCollection<object>(CollectionConverter<v_street>.ConvertToObjectList(_executor.GetStreets()));
+            SelectedIdCountry = null;
+            SelectedIdCity = null;
+
+            CountryName = "";
+            CityName = "";
+
+            Cities = new ObservableCollection<City>();
+
             Countries = new ObservableCollection<Country>(_executor.GetCountries());
 
-            ResetToDefault();
+            UpdateDisplayedCountries();
         });
 
         public ICommand Add => new DelegateCommand(() =>
         {
-            WindowService.ShowWindow(new AddStreet());
-        }, () => IsCanAdd == true);
-
-        public ICommand Change => new DelegateCommand(() =>
-        {
-            ChangeStreetViewModel.SelectedIdStreet = (int)SelectedIdStreet;
-
-            WindowService.ShowWindow(new ChangeStreet());
-        }, () => IsCanChange);
-
-        public ICommand Remove => new DelegateCommand(() =>
-        {
-            if (MessageBox.Show("Вы действительно хотите удалить эту запись из базы данных?", "Предупреждение", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            if (_executor.AddStreet((int)SelectedIdCity, StreetName))
             {
-                _executor.RemoveStreet((int)SelectedIdStreet);
-
-                MessageBox.Show("Успешное удаление");
-
-                Find();
+                MessageBox.Show("Успешное добавление");
             }
-        }, () => IsCanRemove);
-
-        public ICommand ToFind => new DelegateCommand(() =>
-        {
-            Find();
-        });
-
-        public ICommand ResetFilters => new DelegateCommand(() =>
-        {
-            ResetToDefault();
-        }, () => SelectedIdCountry != null || SelectedIdCity != null || (StreetName != null ? StreetName.Length > 0 : false));
-
-        private void ResetToDefault()
-        {
-            SelectedIdCountry = null;
-            SelectedIdCity = null;
-            SelectedIdStreet = null;
-
-            CountryName = "";
-            CityName = "";
-            StreetName = "";
-
-            Find();
-        }
-
-        private void Find()
-        {
-            Streets = new ObservableCollection<object>(CollectionConverter<v_street>.ConvertToObjectList(_executor.GetStreets(
-                (SelectedIdCountry != null ? (int)SelectedIdCountry : -1),
-                (SelectedIdCity != null ? (int)SelectedIdCity : -1),
-                StreetName)));
-        }
+            else
+            {
+                MessageBox.Show("Улица с такими данными уже существует");
+            }
+        }, () => SelectedIdCity != null &&
+                 (StreetName != null ? StreetName.Length > 0 : false));
 
         private void UpdateCities()
         {

@@ -38,6 +38,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         bool UpdateSkill(int idSkill, string skillName, byte[] photo);
 
+        bool UpdateStreet(int idStreet, string streetName);
+
         void UpdateBranch(int idBranch, string phoneNumber);
     }
 }
