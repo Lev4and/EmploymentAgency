@@ -54,6 +54,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         bool ContainsSkill(string skillName);
 
+        bool ContainsSchedule(string scheduleName);
+
         bool ContainsUser(string login);
     }
 }

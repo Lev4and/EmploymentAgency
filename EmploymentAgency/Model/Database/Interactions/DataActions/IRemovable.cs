@@ -33,5 +33,7 @@
         void RemoveRequestStatus(int idRequestStatus);
 
         void RemoveRole(int idRole);
+
+        void RemoveSchedule(int idSchedule);
     }
 }

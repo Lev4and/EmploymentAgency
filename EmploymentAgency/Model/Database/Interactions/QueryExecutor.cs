@@ -482,6 +482,22 @@ namespace EmploymentAgency.Model.Database.Interactions
             return false;
         }
 
+        public bool AddSchedule(string scheduleName)
+        {
+            if(!ContainsSchedule(scheduleName))
+            {
+                _context.Schedule.Add(new Schedule
+                {
+                    ScheduleName = scheduleName
+                });
+                _context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
+        }
+
         public bool AddSkill(string skillName, byte[] photo)
         {
             if(!ContainsSkill(skillName))
@@ -654,6 +670,11 @@ namespace EmploymentAgency.Model.Database.Interactions
         public bool ContainsRole(string roleName)
         {
             return _context.Role.SingleOrDefault(r => r.RoleName == roleName) != null;
+        }
+
+        public bool ContainsSchedule(string scheduleName)
+        {
+            return _context.Schedule.SingleOrDefault(s => s.ScheduleName == scheduleName) != null;
         }
 
         public bool ContainsSkill(string skillName)
@@ -942,6 +963,11 @@ namespace EmploymentAgency.Model.Database.Interactions
             (roleName.Length > 0 ? r.RoleName.ToLower().StartsWith(roleName.ToLower()) : true)).AsNoTracking().ToList();
         }
 
+        public Schedule GetSchedule(int idSchedule)
+        {
+            return _context.Schedule.SingleOrDefault(s => s.IdSchedule == idSchedule);
+        }
+
         public List<Schedule> GetSchedules(string scheduleName)
         {
             return _context.Schedule.Where(s =>
@@ -1132,6 +1158,14 @@ namespace EmploymentAgency.Model.Database.Interactions
             var role = GetRole(idRole);
 
             _context.Role.Remove(role);
+            _context.SaveChanges();
+        }
+
+        public void RemoveSchedule(int idSchedule)
+        {
+            var schedule = GetSchedule(idSchedule);
+
+            _context.Schedule.Remove(schedule);
             _context.SaveChanges();
         }
 
@@ -1394,6 +1428,22 @@ namespace EmploymentAgency.Model.Database.Interactions
                 var role = GetRole(idRole);
 
                 role.RoleName = roleName;
+
+                _context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool UpdateSchedule(int idSchedule, string scheduleName)
+        {
+            if(!ContainsSchedule(scheduleName))
+            {
+                var schedule = GetSchedule(idSchedule);
+
+                schedule.ScheduleName = scheduleName;
 
                 _context.SaveChanges();
 

@@ -34,6 +34,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         bool UpdateRole(int idRole, string roleName);
 
+        bool UpdateSchedule(int idSchedule, string scheduleName);
+
         void UpdateBranch(int idBranch, string phoneNumber);
     }
 }

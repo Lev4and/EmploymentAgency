@@ -37,6 +37,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         Role GetRole(int idRole);
 
+        Schedule GetSchedule(int idSchedule);
+
         v_branch GetBranch(int idBranch);
 
         v_organization GetOrganizationExtendedInformation(int idOrganization);
