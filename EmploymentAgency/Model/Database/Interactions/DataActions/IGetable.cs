@@ -43,6 +43,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         Street GetStreet(int idStreet);
 
+        SubIndustry GetSubIndustry(int idSubIndustry);
+
         v_branch GetBranch(int idBranch);
 
         v_organization GetOrganizationExtendedInformation(int idOrganization);
@@ -50,6 +52,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
         v_profession GetProfessionExtendedInformation(int idProfession);
 
         v_street GetStreetExtendedInformation(int idStreet);
+
+        v_subIndustry GetSubIndustryExtendedInformation(int idSubIndustry);
 
         List<City> GetCities(int idCountry);
 

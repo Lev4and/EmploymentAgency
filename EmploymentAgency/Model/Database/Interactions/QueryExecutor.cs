@@ -532,6 +532,23 @@ namespace EmploymentAgency.Model.Database.Interactions
             return false;
         }
 
+        public bool AddSubIndustry(int idIndustry, string nameSubIndustry)
+        {
+            if(!ContainsSubIndustry(idIndustry, nameSubIndustry))
+            {
+                _context.SubIndustry.Add(new SubIndustry
+                {
+                    IdIndustry = idIndustry,
+                    NameSubIndustry = nameSubIndustry
+                });
+                _context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
+        }
+
         public bool AddUser(int idRole, string login, string password)
         {
             if(!ContainsUser(login))
@@ -704,6 +721,13 @@ namespace EmploymentAgency.Model.Database.Interactions
             return _context.Street.SingleOrDefault(s =>
             s.IdCity == idCity &&
             s.StreetName == streetName) != null;
+        }
+
+        public bool ContainsSubIndustry(int idIndustry, string nameSubIndustry)
+        {
+            return _context.SubIndustry.SingleOrDefault(s =>
+            s.IdIndustry == idIndustry &&
+            s.NameSubIndustry == nameSubIndustry) != null;
         }
 
         public bool ContainsUser(string login)
@@ -1054,6 +1078,16 @@ namespace EmploymentAgency.Model.Database.Interactions
             (nameSubIndustry.Length > 0 ? s.NameSubIndustry.ToLower().StartsWith(nameSubIndustry.ToLower()) : true)).AsNoTracking().ToList();
         }
 
+        public SubIndustry GetSubIndustry(int idSubIndustry)
+        {
+            return _context.SubIndustry.SingleOrDefault(s => s.IdSubIndustry == idSubIndustry);
+        }
+
+        public v_subIndustry GetSubIndustryExtendedInformation(int idSubIndustry)
+        {
+            return _context.v_subIndustry.SingleOrDefault(s => s.IdSubIndustry == idSubIndustry);
+        }
+
         public List<v_user> GetUsers(int idRole, string login)
         {
             return _context.v_user.Where(u =>
@@ -1221,6 +1255,14 @@ namespace EmploymentAgency.Model.Database.Interactions
             var street = GetStreet(idStreet);
 
             _context.Street.Remove(street);
+            _context.SaveChanges();
+        }
+
+        public void RemoveSubIndustry(int idSubIndustry)
+        {
+            var subIndustry = GetSubIndustry(idSubIndustry);
+
+            _context.SubIndustry.Remove(subIndustry);
             _context.SaveChanges();
         }
 
@@ -1543,6 +1585,22 @@ namespace EmploymentAgency.Model.Database.Interactions
             if (!ContainsStreet(street.IdCity, streetName))
             {
                 street.StreetName = streetName;
+
+                _context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool UpdateSubIndustry(int idSubIndustry, string nameSubIndustry)
+        {
+            var subIndustry = GetSubIndustry(idSubIndustry);
+
+            if (!ContainsSubIndustry(subIndustry.IdIndustry, nameSubIndustry))
+            {
+                subIndustry.NameSubIndustry = nameSubIndustry;
 
                 _context.SaveChanges();
 

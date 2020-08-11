@@ -320,6 +320,7 @@
     <Compile Include="ViewModels\AddScheduleViewModel.cs" />
     <Compile Include="ViewModels\AddSkillViewModel.cs" />
     <Compile Include="ViewModels\AddStreetViewModel.cs" />
+    <Compile Include="ViewModels\AddSubIndustryViewModel.cs" />
     <Compile Include="ViewModels\AuthorizationViewModel.cs" />
     <Compile Include="ViewModels\BranchesViewModel.cs" />
     <Compile Include="ViewModels\ChangeBranchViewModel.cs" />
@@ -341,6 +342,7 @@
     <Compile Include="ViewModels\ChangeScheduleViewModel.cs" />
     <Compile Include="ViewModels\ChangeSkillViewModel.cs" />
     <Compile Include="ViewModels\ChangeStreetViewModel.cs" />
+    <Compile Include="ViewModels\ChangeSubIndustryViewModel.cs" />
     <Compile Include="ViewModels\CitiesViewModel.cs" />
     <Compile Include="ViewModels\CountriesViewModel.cs" />
     <Compile Include="ViewModels\DrivingLicenseCategoriesViewModel.cs" />
@@ -571,6 +573,9 @@
     <Compile Include="Views\Windows\AddStreet.xaml.cs">
       <DependentUpon>AddStreet.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Windows\AddSubIndustry.xaml.cs">
+      <DependentUpon>AddSubIndustry.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Windows\ChangeBranch.xaml.cs">
       <DependentUpon>ChangeBranch.xaml</DependentUpon>
     </Compile>
@@ -627,6 +632,9 @@
     </Compile>
     <Compile Include="Views\Windows\ChangeStreet.xaml.cs">
       <DependentUpon>ChangeStreet.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Windows\ChangeSubIndustry.xaml.cs">
+      <DependentUpon>ChangeSubIndustry.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -932,6 +940,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Windows\AddSubIndustry.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Windows\ChangeBranch.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1005,6 +1017,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Windows\ChangeStreet.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Windows\ChangeSubIndustry.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

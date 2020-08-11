@@ -58,6 +58,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         bool ContainsStreet(int idCity, string streetName);
 
+        bool ContainsSubIndustry(int idIndustry, string nameSubIndustry);
+
         bool ContainsUser(string login);
     }
 }

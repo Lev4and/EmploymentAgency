@@ -39,5 +39,7 @@
         void RemoveSkill(int idSkill);
 
         void RemoveStreet(int idStreet);
+
+        void RemoveSubIndustry(int idSubIndustry);
     }
 }

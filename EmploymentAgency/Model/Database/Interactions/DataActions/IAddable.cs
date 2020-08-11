@@ -61,6 +61,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         bool AddStreet(int idCity, string streetName);
 
+        bool AddSubIndustry(int idIndustry, string nameSubIndustry);
+
         bool AddUser(int idRole, string login, string password);
     }
 }
