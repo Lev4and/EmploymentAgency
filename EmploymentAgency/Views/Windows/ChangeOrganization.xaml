@@ -1,4 +1,4 @@
-﻿<Window x:Class="EmploymentAgency.Views.Windows.AddOrganization"
+﻿<Window x:Class="EmploymentAgency.Views.Windows.ChangeOrganization"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -8,11 +8,10 @@
         xmlns:local="clr-namespace:EmploymentAgency.Views.Windows"
         xmlns:c="clr-namespace:EmploymentAgency.Converters"
         mc:Ignorable="d"
-        DataContext="{Binding AddOrganizationViewModel, Source={StaticResource ViewModelLocator}}"
-        Title="Агентство трудоустройства - Добавление организации" Height="490" Width="800">
+        DataContext="{Binding ChangeOrganizationViewModel, Source={StaticResource ViewModelLocator}}"
+        Title="Агентство трудоустройства - Изменение данных организации" Height="490" Width="800">
     <Window.Resources>
         <c:ArrayByteToImageSource x:Key="arrayByteToImageSource"/>
-        <c:SelectedValueToNullableInt32 x:Key="selectedValueToNullableInt32"/>
     </Window.Resources>
     <Grid>
         <i:Interaction.Triggers>
@@ -36,6 +35,7 @@
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0" Height="50">
                 <Grid.ColumnDefinitions>
@@ -50,19 +50,15 @@
                                   ToolTip="Отрасль промышленности"/>
                 </Grid>
                 <Grid Grid.Column="1" Margin="5,0,0,0">
-                    <ComboBox Name="industriesComboBox"
-                              mdt:HintAssist.Hint="Отрасль"
-                              mdt:HintAssist.HelperText="Укажите отрасль"
-                              ItemsSource="{Binding Path=Industries, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                              DisplayMemberPath="IndustryName"
-                              SelectedValuePath="IdIndustry"
-                              SelectedValue="{Binding Path=SelectedIdIndustry, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource selectedValueToNullableInt32}}"
-                              FontSize="20"
-                              FontWeight="Medium"
-                              IsEditable="True"
-                              IsTextSearchEnabled="False"
-                              Text="{Binding Path=IndustryName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                              ToolTip="{Binding ElementName=industriesComboBox, Path=Text}"/>
+                    <TextBox Name="industryNameTextBox"
+                             IsReadOnly="True"
+                             mdt:HintAssist.Hint="Отрасль"
+                             mdt:HintAssist.HelperText="Укажите отрасль"
+                             FontSize="20"
+                             FontWeight="Medium"
+                             Text="{Binding Path=IndustryName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                             ToolTip="{Binding ElementName=industryNameTextBox, Path=Text}"
+                             VerticalContentAlignment="Center"/>
                 </Grid>
             </Grid>
             <Grid Grid.Row="1" Height="50">
@@ -78,19 +74,15 @@
                                   ToolTip="Подотрасль промышленности"/>
                 </Grid>
                 <Grid Grid.Column="1" Margin="5,0,0,0">
-                    <ComboBox x:Name="subIndustriesComboBox"
-                              mdt:HintAssist.Hint="Подотрасль"
-                              mdt:HintAssist.HelperText="Укажите подотрасль"
-                              ItemsSource="{Binding Path=SubIndustries, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                              DisplayMemberPath="NameSubIndustry"
-                              SelectedValuePath="IdSubIndustry"
-                              SelectedValue="{Binding Path=SelectedIdSubIndustry, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource selectedValueToNullableInt32}}"
-                              FontSize="20"
-                              FontWeight="Medium"
-                              IsEditable="True"
-                              IsTextSearchEnabled="False"
-                              Text="{Binding Path=NameSubIndustry, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                              ToolTip="{Binding ElementName=subIndustriesComboBox, Path=Text}"/>
+                    <TextBox x:Name="nameSubIndustryTextBox"
+                             IsReadOnly="True"
+                             mdt:HintAssist.Hint="Подотрасль"
+                             mdt:HintAssist.HelperText="Укажите подотрасль"
+                             FontSize="20"
+                             FontWeight="Medium"
+                             Text="{Binding Path=NameSubIndustry, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                             ToolTip="{Binding ElementName=nameSubIndustryTextBox, Path=Text}"
+                             VerticalContentAlignment="Center"/>
                 </Grid>
             </Grid>
             <Grid Grid.Row="2" Height="50">
@@ -114,6 +106,38 @@
                              Text="{Binding Path=OrganizationName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                              ToolTip="{Binding ElementName=organizationNameTextBox, Path=Text}"
                              VerticalContentAlignment="Center"/>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="3" Height="50">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="300"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <mdt:PackIcon x:Name="iconCalendarRemove"
+                                  Kind="CalendarRemove"
+                                  Height="Auto"
+                                  Width="{Binding ElementName=iconCalendarRemove, Path=Height}"
+                                  ToolTip="Дата закрытия"/>
+                </Grid>
+                <Grid Grid.Column="1" Margin="5,0,0,0">
+                    <DatePicker Name="closingDateDatePicker"
+                                mdt:HintAssist.Hint="Дата закрытия"
+                                mdt:HintAssist.HelperText="Укажите дату закрытия"
+                                DisplayDateStart="{Binding Path=MinValueClosingDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                DisplayDateEnd="{Binding Path=MaxValueClosingDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                SelectedDate="{Binding Path=ClosingDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                ToolTip="{Binding ElementName=closingDateDatePicker, Path=SelectedDate}"
+                                FontSize="20"
+                                FontWeight="Medium"/>
+                    <!--<TextBox x:Name="organizationNameTextBox"
+                                 mdt:HintAssist.Hint="Название организации"
+                                 mdt:HintAssist.HelperText="Укажите название организации"
+                                 FontSize="20"
+                                 FontWeight="Medium"
+                                 Text="{Binding Path=OrganizationName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                 ToolTip="{Binding ElementName=organizationNameTextBox, Path=Text}"
+                                 VerticalContentAlignment="Center"/>-->
                 </Grid>
             </Grid>
         </Grid>
@@ -178,9 +202,9 @@
                     <Button Style="{StaticResource MaterialDesignRaisedDarkButton}"
                             Height="50"
                             mdt:ButtonAssist.CornerRadius="25"
-                            ToolTip="Добавить"
-                            Command="{Binding Path=Add}">
-                        <TextBlock Text="Добавить"/>
+                            ToolTip="Изменить"
+                            Command="{Binding Path=Change}">
+                        <TextBlock Text="Изменить"/>
                     </Button>
                 </mdt:Badged>
             </Grid>

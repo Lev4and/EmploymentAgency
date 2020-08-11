@@ -115,6 +115,8 @@ namespace EmploymentAgency.ViewModels.Locators
 
         public ChangeLanguageProficiencyViewModel ChangeLanguageProficiencyViewModel => _provider.GetRequiredService<ChangeLanguageProficiencyViewModel>();
 
+        public ChangeOrganizationViewModel ChangeOrganizationViewModel => _provider.GetRequiredService<ChangeOrganizationViewModel>();
+
         public static void Init()
         {
             var services = new ServiceCollection();
@@ -173,6 +175,7 @@ namespace EmploymentAgency.ViewModels.Locators
             services.AddTransient<ChangeLanguageViewModel>();
             services.AddTransient<AddLanguageProficiencyViewModel>();
             services.AddTransient<ChangeLanguageProficiencyViewModel>();
+            services.AddTransient<ChangeOrganizationViewModel>();
 
             services.AddSingleton<PageService>();
             services.AddSingleton<MenuPageService>();

@@ -706,6 +706,11 @@ namespace EmploymentAgency.Model.Database.Interactions
             (experienceName.Length > 0 ? e.ExperienceName.ToLower().StartsWith(experienceName.ToLower()) : true)).AsNoTracking().ToList();
         }
 
+        public v_organization GetOrganizationExtendedInformation(int idOrganization)
+        {
+            return _context.v_organization.SingleOrDefault(o => o.IdOrganization == idOrganization);
+        }
+
         public Gender GetGender(int idGender)
         {
             return _context.Gender.SingleOrDefault(g => g.IdGender == idGender);
@@ -981,6 +986,14 @@ namespace EmploymentAgency.Model.Database.Interactions
             _context.SaveChanges();
         }
 
+        public void RemoveOrganization(int idOrganization)
+        {
+            var organization = GetOrganization(idOrganization);
+
+            _context.Organization.Remove(organization);
+            _context.SaveChanges();
+        }
+
         public void UpdateBranch(int idBranch, string phoneNumber)
         {
             var branch = _context.Branch.SingleOrDefault(b => b.IdBranch == idBranch);
@@ -1150,6 +1163,36 @@ namespace EmploymentAgency.Model.Database.Interactions
                 _context.SaveChanges();
 
                 return true;
+            }
+
+            return false;
+        }
+
+        public bool UpdateOrganization(int idOrganization, string organizationName, byte[] photo, DateTime? closingDate)
+        {
+            var organization = GetOrganization(idOrganization);
+
+            if (!ContainsOrganization(organizationName))
+            {
+                organization.OrganizationName = organizationName;
+                organization.Photo = photo;
+                organization.ClosingDate = closingDate;
+
+                _context.SaveChanges();
+
+                return true;
+            }
+            else
+            {
+                if((organization.Photo != photo || organization.ClosingDate != closingDate) && organization.OrganizationName == organizationName)
+                {
+                    organization.Photo = photo;
+                    organization.ClosingDate = closingDate;
+
+                    _context.SaveChanges();
+
+                    return true;
+                }
             }
 
             return false;

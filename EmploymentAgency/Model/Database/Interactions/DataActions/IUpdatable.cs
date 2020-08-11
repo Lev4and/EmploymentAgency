@@ -1,4 +1,6 @@
-﻿namespace EmploymentAgency.Model.Database.Interactions.DataActions
+﻿using System;
+
+namespace EmploymentAgency.Model.Database.Interactions.DataActions
 {
     public interface IUpdatable
     {
@@ -21,6 +23,8 @@
         bool UpdateLanguage(int idLanguage, string languageName);
 
         bool UpdateLanguageProficiency(int idLanguageProficiency, string designation, string languageProficiencyName);
+
+        bool UpdateOrganization(int idOrganization, string organizationName, byte[] photo, DateTime? closingDate);
 
         void UpdateBranch(int idBranch, string phoneNumber);
     }

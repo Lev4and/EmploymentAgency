@@ -327,6 +327,7 @@
     <Compile Include="ViewModels\ChangeIndustryViewModel.cs" />
     <Compile Include="ViewModels\ChangeLanguageProficiencyViewModel.cs" />
     <Compile Include="ViewModels\ChangeLanguageViewModel.cs" />
+    <Compile Include="ViewModels\ChangeOrganizationViewModel.cs" />
     <Compile Include="ViewModels\CitiesViewModel.cs" />
     <Compile Include="ViewModels\CountriesViewModel.cs" />
     <Compile Include="ViewModels\DrivingLicenseCategoriesViewModel.cs" />
@@ -571,6 +572,9 @@
     </Compile>
     <Compile Include="Views\Windows\ChangeLanguageProficiency.xaml.cs">
       <DependentUpon>ChangeLanguageProficiency.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Windows\ChangeOrganization.xaml.cs">
+      <DependentUpon>ChangeOrganization.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -893,6 +897,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Windows\ChangeLanguageProficiency.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Windows\ChangeOrganization.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

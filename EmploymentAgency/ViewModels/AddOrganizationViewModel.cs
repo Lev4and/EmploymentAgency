@@ -4,7 +4,6 @@ using EmploymentAgency.Model.Database.Interactions;
 using EmploymentAgency.Model.Database.Models;
 using Microsoft.Win32;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 
@@ -13,17 +12,9 @@ namespace EmploymentAgency.ViewModels
     public class AddOrganizationViewModel : BindableBase
     {
         private int? _selectedIdIndustry;
-        private int? _selectedIdSubIndustry;
-        private int? _selectedIdCountry;
-        private int? _selectedIdCity;
-        private int? _selectedIdOrganization;
 
         private string _industryName;
         private string _nameSubIndustry;
-        private string _countryName;
-        private string _cityName;
-        private string _streetName;
-        private string _organizationName;
 
         private QueryExecutor _executor;
 
@@ -38,101 +29,12 @@ namespace EmploymentAgency.ViewModels
                     UpdateSubIndustries();
                 else
                     SubIndustries = null;
-
-                UpdateDisplayedOrganizations();
             }
         }
 
-        public int? SelectedIdSubIndustry
-        {
-            get { return _selectedIdSubIndustry; }
-            set
-            {
-                _selectedIdSubIndustry = value;
+        public int? SelectedIdSubIndustry { get; set; }
 
-                UpdateDisplayedOrganizations();
-            }
-        }
-
-        public int? SelectedIdCountry
-        {
-            get { return _selectedIdCountry; }
-            set
-            {
-                _selectedIdCountry = value;
-
-                if (_selectedIdCountry != null)
-                {
-                    UpdateCities();
-                    UpdateDisplayedCities();
-
-                    Streets = null;
-                }
-                else
-                {
-                    Cities = null;
-                    DisplayedCities = null;
-                }
-            }
-        }
-
-        public int? SelectedIdCity
-        {
-            get { return _selectedIdCity; }
-            set
-            {
-                _selectedIdCity = value;
-
-                if (_selectedIdCity != null)
-                {
-                    UpdateStreets();
-                    UpdateDisplayedStreets();
-                }
-                else
-                {
-                    Streets = null;
-                    DisplayedStreets = null;
-                }
-            }
-        }
-
-        public int? SelectedIdStreet { get; set; }
-
-        public int? SelectedIdOrganization
-        {
-            get { return _selectedIdOrganization; }
-            set
-            {
-                _selectedIdOrganization = value;
-
-                if (_selectedIdOrganization != null)
-                    Photo = _executor.GetOrganization((int)_selectedIdOrganization).Photo;
-                else
-                    Photo = null;
-            }
-        }
-
-        public string OrganizationName
-        {
-            get { return _organizationName; }
-            set
-            {
-                _organizationName = value;
-
-                if(_organizationName != null)
-                {
-                    if (_organizationName.Length == 0)
-                        Photo = null;
-                }
-
-                if(Organizations != null)
-                    UpdateDisplayedOrganizations();
-            }
-        }
-
-        public string NameHouse { get; set; }
-
-        public string PhoneNumber { get; set; }
+        public string OrganizationName { get; set; }
 
         public string IndustryName
         {
@@ -147,13 +49,9 @@ namespace EmploymentAgency.ViewModels
                     {
                         SelectedIdIndustry = null;
                         SelectedIdSubIndustry = null;
-                        SelectedIdOrganization = null;
 
                         IndustryName = "";
                         NameSubIndustry = "";
-                        OrganizationName = "";
-
-                        Photo = null;
                     }
                 }
             }
@@ -171,88 +69,7 @@ namespace EmploymentAgency.ViewModels
                     if (_nameSubIndustry.Length == 0)
                     {
                         SelectedIdSubIndustry = null;
-                        SelectedIdOrganization = null;
-
-                        OrganizationName = "";
-
-                        Photo = null;
                     }
-                }
-            }
-        }
-
-        public string CountryName
-        {
-            get { return _countryName; }
-            set
-            {
-                _countryName = value;
-
-                if(_countryName != null)
-                {
-                    if (_countryName.Length == 0)
-                    {
-                        SelectedIdCountry = null;
-                        SelectedIdCity = null;
-                        SelectedIdStreet = null;
-
-                        CityName = "";
-                        StreetName = "";
-                    }
-                }
-
-                if (Countries != null)
-                {
-                    UpdateDisplayedCountries();
-                }
-            }
-        }
-
-        public string CityName
-        {
-            get { return _cityName; }
-            set
-            {
-                _cityName = value;
-
-                if(_cityName != null)
-                {
-                    if (_cityName.Length == 0)
-                    {
-                        SelectedIdCity = null;
-                        SelectedIdStreet = null;
-
-                        StreetName = "";
-                    }
-                }
-
-                if (Cities != null)
-                {
-                    UpdateDisplayedCities();
-                }
-            }
-        }
-
-        public string StreetName
-        {
-            get { return _streetName; }
-            set
-            {
-                _streetName = value;
-
-                if(_streetName != null)
-                {
-                    if (_streetName.Length == 0)
-                    {
-                        SelectedIdStreet = null;
-
-                        StreetName = "";
-                    }
-                }
-
-                if(Streets != null)
-                {
-                    UpdateDisplayedStreets();
                 }
             }
         }
@@ -262,22 +79,6 @@ namespace EmploymentAgency.ViewModels
         public ObservableCollection<Industry> Industries { get; set; }
 
         public ObservableCollection<SubIndustry> SubIndustries { get; set; }
-
-        public ObservableCollection<Country> Countries { get; set; }
-
-        public ObservableCollection<Country> DisplayedCountries { get; set; }
-
-        public ObservableCollection<City> Cities { get; set; }
-
-        public ObservableCollection<City> DisplayedCities { get; set; }
-
-        public ObservableCollection<v_organizationWithoutPhoto> Organizations { get; set; }
-
-        public ObservableCollection<Street> Streets { get; set; }
-
-        public ObservableCollection<Street> DisplayedStreets { get; set; }
-
-        public ObservableCollection<v_organizationWithoutPhoto> DisplayedOrganizations { get; set; }
 
         public AddOrganizationViewModel()
         {
@@ -290,71 +91,30 @@ namespace EmploymentAgency.ViewModels
 
             SelectedIdIndustry = null;
             SelectedIdSubIndustry = null;
-            SelectedIdOrganization = null;
-            SelectedIdCountry = null;
-            SelectedIdCity = null;
-            SelectedIdStreet = null;
 
             IndustryName = "";
             NameSubIndustry = "";
             OrganizationName = "";
-            CityName = "";
-            NameHouse = "";
-            PhoneNumber = "";
 
             Photo = null;
 
             SubIndustries = new ObservableCollection<SubIndustry>();
-            Cities = new ObservableCollection<City>();
-            Streets = new ObservableCollection<Street>();
 
             Industries = new ObservableCollection<Industry>(_executor.GetIndustries());
-            Countries = new ObservableCollection<Country>(_executor.GetCountries());
-
-            CountryName = "";
-
-            UpdateOrganizations();
-            UpdateDisplayedOrganizations();
         });
 
         public ICommand Add => new DelegateCommand(() =>
         {
-            if(SelectedIdOrganization != null)
+            if(_executor.AddOrganization((int)SelectedIdSubIndustry, OrganizationName, Photo))
             {
-                if(_executor.AddBranch((int)SelectedIdOrganization, (int)SelectedIdStreet, NameHouse, PhoneNumber))
-                {
-                    MessageBox.Show("Успешное добавление");
-
-                    UpdateDisplayedOrganizations();
-                }
-                else
-                {
-                    MessageBox.Show("Организация с такими данными уже существует");
-                }
+                MessageBox.Show("Успешное добавление");
             }
             else
             {
-                Organization organization = null;
-
-                if(_executor.AddOrganization((int)SelectedIdSubIndustry, OrganizationName, Photo, out organization))
-                {
-                    _executor.AddBranch(organization.IdOrganization, (int)SelectedIdStreet, NameHouse, PhoneNumber);
-
-                    MessageBox.Show("Успешное добавление");
-
-                    UpdateOrganizations();
-                    UpdateDisplayedOrganizations();
-                }
-                else
-                {
-                    MessageBox.Show("Организация с таким данными уже существует");
-                }
+                MessageBox.Show("Организация с такими данными уже существует");
             }
         }, () => SelectedIdSubIndustry != null &&
-                 SelectedIdStreet != null &&
-                 (OrganizationName != null ? OrganizationName.Length > 0 : false) &&
-                 (NameHouse != null ? NameHouse.Length > 0 : false) &&
-                 (PhoneNumber != null ? PhoneNumber.Length > 0 : false));
+                 (OrganizationName != null ? OrganizationName.Length > 0 : false));
 
         public ICommand AddPhoto => new DelegateCommand(() =>
         {
@@ -374,47 +134,9 @@ namespace EmploymentAgency.ViewModels
             Photo = null;
         }, () => Photo != null);
 
-        private void UpdateCities()
-        {
-            Cities = new ObservableCollection<City>(_executor.GetCities((int)SelectedIdCountry));
-        }
-
-        private void UpdateStreets()
-        {
-            Streets = new ObservableCollection<Street>(_executor.GetStreets((int)SelectedIdCity));
-        }
-
         private void UpdateSubIndustries()
         {
             SubIndustries = new ObservableCollection<SubIndustry>(_executor.GetSubIndustries((int)SelectedIdIndustry));
-        }
-
-        private void UpdateOrganizations()
-        {
-            Organizations = new ObservableCollection<v_organizationWithoutPhoto>(_executor.GetOrganizationsWithoutPhoto());
-        }
-
-        private void UpdateDisplayedCountries()
-        {
-            DisplayedCountries = new ObservableCollection<Country>(Countries.Where(c => c.CountryName.ToLower().StartsWith(CountryName.ToLower())).Take(100).ToList());
-        }
-
-        private void UpdateDisplayedCities()
-        {
-            DisplayedCities = new ObservableCollection<City>(Cities.Where(c => c.CityName.ToLower().StartsWith(CityName.ToLower())).Take(100).ToList());
-        }
-
-        private void UpdateDisplayedStreets()
-        {
-            DisplayedStreets = new ObservableCollection<Street>(Streets.Where(s => s.StreetName.ToLower().StartsWith(StreetName.ToLower())).Take(100).ToList());
-        }
-
-        private void UpdateDisplayedOrganizations()
-        {
-            DisplayedOrganizations = new ObservableCollection<v_organizationWithoutPhoto>(Organizations.Where(o =>
-                                                                                                             (OrganizationName.Length > 0 ? o.OrganizationName.ToLower().StartsWith(OrganizationName.ToLower()) : true) &&
-                                                                                                             (SelectedIdIndustry != null ? o.IdIndustry == (int)SelectedIdIndustry : true) &&
-                                                                                                             (SelectedIdSubIndustry != null ? o.IdSubIndustry == (int)SelectedIdSubIndustry : true)).Take(100).ToList());
         }
     }
 }

@@ -2,18 +2,38 @@
 using DevExpress.Mvvm;
 using EmploymentAgency.Model.Database.Interactions;
 using EmploymentAgency.Model.Database.Models;
+using EmploymentAgency.Services;
+using EmploymentAgency.Views.Windows;
 using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Input;
 
 namespace EmploymentAgency.ViewModels
 {
     public class OrganizationsViewModel : BindableBase
     {
+        private int? _selectedIdOrganization;
         private int? _selectedIdIndustry;
 
         private QueryExecutor _executor;
 
-        public int? SelectedIdOrganization { get; set; }
+        public bool IsCanAdd { get; set; } = true;
+
+        public bool IsCanChange { get; set; }
+
+        public bool IsCanRemove { get; set; }
+
+        public int? SelectedIdOrganization
+        {
+            get { return _selectedIdOrganization; }
+            set
+            {
+                _selectedIdOrganization = value;
+
+                IsCanChange = _selectedIdOrganization != null ? true : false;
+                IsCanRemove = _selectedIdOrganization != null ? true : false;
+            }
+        }
 
         public int? SelectedIdIndustry
         {
@@ -56,6 +76,30 @@ namespace EmploymentAgency.ViewModels
 
             ResetToDefault();
         });
+
+        public ICommand Add => new DelegateCommand(() =>
+        {
+            WindowService.ShowWindow(new AddOrganization());
+        }, () => IsCanAdd == true);
+
+        public ICommand Change => new DelegateCommand(() =>
+        {
+            ChangeOrganizationViewModel.SelectedIdOrganization = (int)SelectedIdOrganization;
+
+            WindowService.ShowWindow(new ChangeOrganization());
+        }, () => IsCanChange);
+
+        public ICommand Remove => new DelegateCommand(() =>
+        {
+            if (MessageBox.Show("Вы действительно хотите удалить эту запись из базы данных?", "Предупреждение", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                _executor.RemoveOrganization((int)SelectedIdOrganization);
+
+                MessageBox.Show("Успешное удаление");
+
+                Find();
+            }
+        }, () => IsCanRemove);
 
         public ICommand ToFind => new DelegateCommand(() =>
         {

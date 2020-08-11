@@ -23,5 +23,7 @@
         void RemoveLanguage(int idLanguage);
 
         void RemoveLanguageProficiency(int idLanguageProficiency);
+
+        void RemoveOrganization(int idOrganization);
     }
 }
