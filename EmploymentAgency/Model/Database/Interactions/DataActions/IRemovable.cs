@@ -27,5 +27,7 @@
         void RemoveOrganization(int idOrganization);
 
         void RemoveProfession(int idProfession);
+
+        void RemoveProfessionCategory(int idProfessionCategory);
     }
 }

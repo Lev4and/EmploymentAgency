@@ -49,6 +49,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         bool AddProfession(int idProfessionCategory, string professionName);
 
+        bool AddProfessionCategory(string nameProfessionCategory);
+
         bool AddSkill(string skillName, byte[] photo);
 
         bool AddUser(int idRole, string login, string password);

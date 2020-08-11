@@ -28,6 +28,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         bool UpdateProfession(int idProfession, string professionName);
 
+        bool UpdateProfessionCategory(int idProfessionCategory, string nameProfessionCategory);
+
         void UpdateBranch(int idBranch, string phoneNumber);
     }
 }

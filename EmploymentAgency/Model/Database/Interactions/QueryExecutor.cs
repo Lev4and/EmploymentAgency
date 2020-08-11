@@ -434,6 +434,22 @@ namespace EmploymentAgency.Model.Database.Interactions
             return false;
         }
 
+        public bool AddProfessionCategory(string nameProfessionCategory)
+        {
+            if(!ContainsProfessionCategory(nameProfessionCategory))
+            {
+                _context.ProfessionCategory.Add(new ProfessionCategory
+                {
+                    NameProfessionCategory = nameProfessionCategory
+                });
+                _context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
+        }
+
         public bool AddSkill(string skillName, byte[] photo)
         {
             if(!ContainsSkill(skillName))
@@ -591,6 +607,11 @@ namespace EmploymentAgency.Model.Database.Interactions
         public bool ContainsProfession(string professionName)
         {
             return _context.Profession.FirstOrDefault(p => p.ProfessionName == professionName) != null;
+        }
+
+        public bool ContainsProfessionCategory(string nameProfessionCategory)
+        {
+            return _context.ProfessionCategory.SingleOrDefault(p => p.NameProfessionCategory == nameProfessionCategory) != null;
         }
 
         public bool ContainsSkill(string skillName)
@@ -835,6 +856,11 @@ namespace EmploymentAgency.Model.Database.Interactions
             return _context.ProfessionCategory.AsNoTracking().ToList();
         }
 
+        public ProfessionCategory GetProfessionCategory(int idProfessionCategory)
+        {
+            return _context.ProfessionCategory.SingleOrDefault(p => p.IdProfessionCategory == idProfessionCategory);
+        }
+
         public v_profession GetProfessionExtendedInformation(int idProfession)
         {
             return _context.v_profession.SingleOrDefault(p => p.IdProfession == idProfession);
@@ -1030,6 +1056,14 @@ namespace EmploymentAgency.Model.Database.Interactions
             var profession = GetProfession(idProfession);
 
             _context.Profession.Remove(profession);
+            _context.SaveChanges();
+        }
+
+        public void RemoveProfessionCategory(int idProfessionCategory)
+        {
+            var professionCategory = GetProfessionCategory(idProfessionCategory);
+
+            _context.ProfessionCategory.Remove(professionCategory);
             _context.SaveChanges();
         }
 
@@ -1244,6 +1278,22 @@ namespace EmploymentAgency.Model.Database.Interactions
                 var profession = GetProfession(idProfession);
 
                 profession.ProfessionName = professionName;
+
+                _context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool UpdateProfessionCategory(int idProfessionCategory, string nameProfessionCategory)
+        {
+            if(!ContainsProfessionCategory(nameProfessionCategory))
+            {
+                var professionCategory = GetProfessionCategory(idProfessionCategory);
+
+                professionCategory.NameProfessionCategory = nameProfessionCategory;
 
                 _context.SaveChanges();
 

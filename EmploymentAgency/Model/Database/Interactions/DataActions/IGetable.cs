@@ -31,6 +31,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         Profession GetProfession(int idProfession);
 
+        ProfessionCategory GetProfessionCategory(int idProfessionCategory);
+
         v_branch GetBranch(int idBranch);
 
         v_organization GetOrganizationExtendedInformation(int idOrganization);
