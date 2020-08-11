@@ -29,9 +29,13 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         Organization GetOrganization(int idOrganization);
 
+        Profession GetProfession(int idProfession);
+
         v_branch GetBranch(int idBranch);
 
         v_organization GetOrganizationExtendedInformation(int idOrganization);
+
+        v_profession GetProfessionExtendedInformation(int idProfession);
 
         List<City> GetCities(int idCountry);
 
@@ -87,7 +91,7 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         List<Role> GetRoles(string roleName);
 
-        List<v_branch> GetBranches(int idIndustry, int idSubIndustry, int idCountry, int idCity, int idStreet, int idOrganization); 
+        List<v_branch> GetBranches(int idIndustry, int idSubIndustry, int idCountry, int idCity, int idStreet, int idOrganization);
 
         List<v_branchSimplifiedInformation> GetBranches(int idOrganization);
 

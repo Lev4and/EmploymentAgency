@@ -44,6 +44,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         bool ContainsPossessionSkill(int idApplicant, int idSkill);
 
+        bool ContainsProfession(string professionName);
+
         bool ContainsSkill(string skillName);
 
         bool ContainsUser(string login);

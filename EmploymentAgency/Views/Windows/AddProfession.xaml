@@ -1,0 +1,104 @@
+﻿<Window x:Class="EmploymentAgency.Views.Windows.AddProfession"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:mdt="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:local="clr-namespace:EmploymentAgency.Views.Windows"
+        xmlns:c="clr-namespace:EmploymentAgency.Converters"
+        mc:Ignorable="d"
+        DataContext="{Binding AddProfessionViewModel, Source={StaticResource ViewModelLocator}}"
+        Title="Агентство трудоустройства - Добавление профессии" Height="450" Width="800">
+    <Window.Resources>
+        <c:SelectedValueToNullableInt32 x:Key="selectedValueToNullableInt32"/>
+    </Window.Resources>
+    <Grid>
+        <i:Interaction.Triggers>
+            <i:EventTrigger EventName="Loaded">
+                <i:InvokeCommandAction Command="{Binding Path=Loaded}"/>
+            </i:EventTrigger>
+        </i:Interaction.Triggers>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0"
+              Height="50"
+              Margin="5"
+              VerticalAlignment="Center"
+              HorizontalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="300"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <mdt:PackIcon x:Name="iconWrench"
+                              Kind="Wrench"
+                              Height="Auto"
+                              Width="{Binding ElementName=iconWrench, Path=Height}"
+                              ToolTip="Сфера деятельности"/>
+            </Grid>
+            <Grid Grid.Column="1" Margin="5,0,0,0">
+                <ComboBox x:Name="professionCategoriesComboBox"
+                              mdt:HintAssist.Hint="Сфера деятельности"
+                              mdt:HintAssist.HelperText="Укажите сферу деятельности"
+                              ItemsSource="{Binding Path=ProfessionCategories, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                              DisplayMemberPath="NameProfessionCategory"
+                              SelectedValuePath="IdProfessionCategory"
+                              SelectedValue="{Binding Path=SelectedIdProfessionCategory, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource selectedValueToNullableInt32}}"
+                              FontSize="20"
+                              FontWeight="Medium"
+                              IsEditable="True"
+                              IsTextSearchEnabled="False"
+                              Text="{Binding Path=NameProfessionCategory, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                              ToolTip="{Binding ElementName=professionCategoriesComboBox, Path=Text}"/>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="1"
+              Height="50"
+              Margin="5"
+              VerticalAlignment="Center"
+              HorizontalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="300"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <mdt:PackIcon x:Name="iconAccountHardHat"
+                              Kind="AccountHardHat"
+                              Height="Auto"
+                              Width="{Binding ElementName=iconAccountHardHat, Path=Height}"
+                              ToolTip="Профессия"/>
+            </Grid>
+            <Grid Grid.Column="1" 
+                      Margin="5,0,0,0">
+                <TextBox x:Name="professionNameTextBox"
+                         Text="{Binding Path=ProfessionName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                         mdt:HintAssist.Hint="Профессия"
+                         mdt:HintAssist.HelperText="Укажите название профессии"
+                         FontSize="20"
+                         FontWeight="Medium"
+                         ToolTip="{Binding ElementName=professionNameTextBox, Path=Text}"
+                         VerticalContentAlignment="Center"/>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="2"
+              Margin="5">
+            <Grid VerticalAlignment="Bottom">
+                <mdt:Badged Badge="{mdt:PackIcon Kind=ContentSaveCog}"
+                            HorizontalAlignment="Center"
+                            Margin="0,12,0,0">
+                    <Button Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                            Height="50"
+                            mdt:ButtonAssist.CornerRadius="25"
+                            ToolTip="Добавить"
+                            Command="{Binding Path=Add}">
+                        <TextBlock Text="Добавить"/>
+                    </Button>
+                </mdt:Badged>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

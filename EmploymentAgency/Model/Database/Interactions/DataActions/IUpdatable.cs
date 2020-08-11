@@ -26,6 +26,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         bool UpdateOrganization(int idOrganization, string organizationName, byte[] photo, DateTime? closingDate);
 
+        bool UpdateProfession(int idProfession, string professionName);
+
         void UpdateBranch(int idBranch, string phoneNumber);
     }
 }

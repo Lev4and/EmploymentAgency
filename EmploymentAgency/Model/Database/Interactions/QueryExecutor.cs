@@ -417,6 +417,23 @@ namespace EmploymentAgency.Model.Database.Interactions
             return false;
         }
 
+        public bool AddProfession(int idProfessionCategory, string professionName)
+        {
+            if(!ContainsProfession(professionName))
+            {
+                _context.Profession.Add(new Profession
+                {
+                    IdProfessionCategory = idProfessionCategory,
+                    ProfessionName = professionName
+                });
+                _context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
+        }
+
         public bool AddSkill(string skillName, byte[] photo)
         {
             if(!ContainsSkill(skillName))
@@ -571,6 +588,11 @@ namespace EmploymentAgency.Model.Database.Interactions
             return _context.PossessionSkill.SingleOrDefault(p => p.IdApplicant == idApplicant && p.IdSkill == idSkill) != null;
         }
 
+        public bool ContainsProfession(string professionName)
+        {
+            return _context.Profession.FirstOrDefault(p => p.ProfessionName == professionName) != null;
+        }
+
         public bool ContainsSkill(string skillName)
         {
             return _context.Skill.SingleOrDefault(s => s.SkillName == skillName) != null;
@@ -706,11 +728,6 @@ namespace EmploymentAgency.Model.Database.Interactions
             (experienceName.Length > 0 ? e.ExperienceName.ToLower().StartsWith(experienceName.ToLower()) : true)).AsNoTracking().ToList();
         }
 
-        public v_organization GetOrganizationExtendedInformation(int idOrganization)
-        {
-            return _context.v_organization.SingleOrDefault(o => o.IdOrganization == idOrganization);
-        }
-
         public Gender GetGender(int idGender)
         {
             return _context.Gender.SingleOrDefault(g => g.IdGender == idGender);
@@ -785,6 +802,10 @@ namespace EmploymentAgency.Model.Database.Interactions
             return _context.Organization.Single(o => o.IdOrganization == idOrganization);
         }
 
+        public v_organization GetOrganizationExtendedInformation(int idOrganization)
+        {
+            return _context.v_organization.SingleOrDefault(o => o.IdOrganization == idOrganization);
+        }
         public List<v_organization> GetOrganizations(int idIndustry, int idSubIndustry, string organizationName)
         {
             return _context.v_organization.Where(o =>
@@ -798,6 +819,11 @@ namespace EmploymentAgency.Model.Database.Interactions
             return _context.v_organizationWithoutPhoto.AsNoTracking().ToList();
         }
 
+        public Profession GetProfession(int idProfession)
+        {
+            return _context.Profession.SingleOrDefault(p => p.IdProfession == idProfession);
+        }
+
         public List<ProfessionCategory> GetProfessionCategories(string nameProfessionCategory)
         {
             return _context.ProfessionCategory.Where(p =>
@@ -807,6 +833,11 @@ namespace EmploymentAgency.Model.Database.Interactions
         public List<ProfessionCategory> GetProfessionCategories()
         {
             return _context.ProfessionCategory.AsNoTracking().ToList();
+        }
+
+        public v_profession GetProfessionExtendedInformation(int idProfession)
+        {
+            return _context.v_profession.SingleOrDefault(p => p.IdProfession == idProfession);
         }
 
         public List<v_profession> GetProfessions(int idProfessionCategory, string professionName)
@@ -991,6 +1022,14 @@ namespace EmploymentAgency.Model.Database.Interactions
             var organization = GetOrganization(idOrganization);
 
             _context.Organization.Remove(organization);
+            _context.SaveChanges();
+        }
+
+        public void RemoveProfession(int idProfession)
+        {
+            var profession = GetProfession(idProfession);
+
+            _context.Profession.Remove(profession);
             _context.SaveChanges();
         }
 
@@ -1193,6 +1232,22 @@ namespace EmploymentAgency.Model.Database.Interactions
 
                     return true;
                 }
+            }
+
+            return false;
+        }
+
+        public bool UpdateProfession(int idProfession, string professionName)
+        {
+            if(!ContainsProfession(professionName))
+            {
+                var profession = GetProfession(idProfession);
+
+                profession.ProfessionName = professionName;
+
+                _context.SaveChanges();
+
+                return true;
             }
 
             return false;
