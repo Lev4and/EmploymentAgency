@@ -39,6 +39,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         Schedule GetSchedule(int idSchedule);
 
+        Skill GetSkill(int idSkill);
+
         v_branch GetBranch(int idBranch);
 
         v_organization GetOrganizationExtendedInformation(int idOrganization);

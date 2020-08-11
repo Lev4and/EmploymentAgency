@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
+using System.Runtime.InteropServices;
 
 namespace EmploymentAgency.Model.Database.Interactions
 {
@@ -974,6 +975,11 @@ namespace EmploymentAgency.Model.Database.Interactions
             (scheduleName.Length > 0 ? s.ScheduleName.ToLower().StartsWith(scheduleName.ToLower()) : true)).AsNoTracking().ToList();
         }
 
+        public Skill GetSkill(int idSkill)
+        {
+            return _context.Skill.SingleOrDefault(s => s.IdSkill == idSkill);
+        }
+
         public List<Skill> GetSkills()
         {
             return _context.Skill.AsNoTracking().ToList();
@@ -1166,6 +1172,14 @@ namespace EmploymentAgency.Model.Database.Interactions
             var schedule = GetSchedule(idSchedule);
 
             _context.Schedule.Remove(schedule);
+            _context.SaveChanges();
+        }
+
+        public void RemoveSkill(int idSkill)
+        {
+            var skill = GetSkill(idSkill);
+
+            _context.Skill.Remove(skill);
             _context.SaveChanges();
         }
 
@@ -1448,6 +1462,34 @@ namespace EmploymentAgency.Model.Database.Interactions
                 _context.SaveChanges();
 
                 return true;
+            }
+
+            return false;
+        }
+
+        public bool UpdateSkill(int idSkill, string skillName, byte[] photo)
+        {
+            var skill = GetSkill(idSkill);
+
+            if(!ContainsSkill(skillName))
+            {
+                skill.SkillName = skillName;
+                skill.Photo = photo;
+
+                _context.SaveChanges();
+
+                return true;
+            }
+            else
+            {
+                if(skill.Photo != photo && skill.SkillName == skillName)
+                {
+                    skill.Photo = photo;
+
+                    _context.SaveChanges();
+
+                    return true;
+                }
             }
 
             return false;

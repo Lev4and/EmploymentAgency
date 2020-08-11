@@ -137,6 +137,8 @@ namespace EmploymentAgency.ViewModels.Locators
 
         public ChangeScheduleViewModel ChangeScheduleViewModel => _provider.GetRequiredService<ChangeScheduleViewModel>();
 
+        public ChangeSkillViewModel ChangeSkillViewModel => _provider.GetRequiredService<ChangeSkillViewModel>();
+
         public static void Init()
         {
             var services = new ServiceCollection();
@@ -206,6 +208,7 @@ namespace EmploymentAgency.ViewModels.Locators
             services.AddTransient<ChangeRoleViewModel>();
             services.AddTransient<AddScheduleViewModel>();
             services.AddTransient<ChangeScheduleViewModel>();
+            services.AddTransient<ChangeSkillViewModel>();
 
             services.AddSingleton<PageService>();
             services.AddSingleton<MenuPageService>();

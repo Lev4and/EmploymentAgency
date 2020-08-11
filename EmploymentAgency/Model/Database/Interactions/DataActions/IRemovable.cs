@@ -35,5 +35,7 @@
         void RemoveRole(int idRole);
 
         void RemoveSchedule(int idSchedule);
+
+        void RemoveSkill(int idSkill);
     }
 }

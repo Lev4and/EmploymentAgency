@@ -36,6 +36,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         bool UpdateSchedule(int idSchedule, string scheduleName);
 
+        bool UpdateSkill(int idSkill, string skillName, byte[] photo);
+
         void UpdateBranch(int idBranch, string phoneNumber);
     }
 }

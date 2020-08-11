@@ -338,6 +338,7 @@
     <Compile Include="ViewModels\ChangeRequestStatusViewModel.cs" />
     <Compile Include="ViewModels\ChangeRoleViewModel.cs" />
     <Compile Include="ViewModels\ChangeScheduleViewModel.cs" />
+    <Compile Include="ViewModels\ChangeSkillViewModel.cs" />
     <Compile Include="ViewModels\CitiesViewModel.cs" />
     <Compile Include="ViewModels\CountriesViewModel.cs" />
     <Compile Include="ViewModels\DrivingLicenseCategoriesViewModel.cs" />
@@ -615,6 +616,9 @@
     </Compile>
     <Compile Include="Views\Windows\ChangeSchedule.xaml.cs">
       <DependentUpon>ChangeSchedule.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Windows\ChangeSkill.xaml.cs">
+      <DependentUpon>ChangeSkill.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -981,6 +985,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Windows\ChangeSchedule.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Windows\ChangeSkill.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
