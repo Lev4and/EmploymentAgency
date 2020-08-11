@@ -41,5 +41,7 @@
         void RemoveStreet(int idStreet);
 
         void RemoveSubIndustry(int idSubIndustry);
+
+        void RemoveUser(int idUser);
     }
 }

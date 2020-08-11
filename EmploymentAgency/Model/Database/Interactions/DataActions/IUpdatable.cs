@@ -42,6 +42,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         bool UpdateSubIndustry(int idSubIndustry, string nameSubIndustry);
 
+        bool UpdateUser(int idUser, string login, string password);
+
         void UpdateBranch(int idBranch, string phoneNumber);
     }
 }

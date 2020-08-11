@@ -1088,11 +1088,28 @@ namespace EmploymentAgency.Model.Database.Interactions
             return _context.v_subIndustry.SingleOrDefault(s => s.IdSubIndustry == idSubIndustry);
         }
 
+        public User GetUser(int idUser)
+        {
+            return _context.User.SingleOrDefault(u => u.IdUser == idUser);
+        }
+
+        public v_user GetUserExtendedInformation(int idUser)
+        {
+            return _context.v_user.SingleOrDefault(u => u.IdUser == idUser);
+        }
+
         public List<v_user> GetUsers(int idRole, string login)
         {
             return _context.v_user.Where(u =>
             (idRole != -1 ? u.IdRole == idRole : true) &&
             (login.Length > 0 ? u.Login.ToLower().StartsWith(login.ToLower()) : true)).AsNoTracking().ToList();
+        }
+
+        public bool IsRelatedToStaff(int idUser)
+        {
+            var user = GetUserExtendedInformation(idUser);
+
+            return user.RoleName == "Администратор" || user.RoleName == "Менеджер" || user.RoleName == "Владелец";
         }
 
         public bool NecessaryToSupplementTheInformation(int idUser)
@@ -1263,6 +1280,14 @@ namespace EmploymentAgency.Model.Database.Interactions
             var subIndustry = GetSubIndustry(idSubIndustry);
 
             _context.SubIndustry.Remove(subIndustry);
+            _context.SaveChanges();
+        }
+
+        public void RemoveUser(int idUser)
+        {
+            var user = GetUser(idUser);
+
+            _context.User.Remove(user);
             _context.SaveChanges();
         }
 
@@ -1605,6 +1630,34 @@ namespace EmploymentAgency.Model.Database.Interactions
                 _context.SaveChanges();
 
                 return true;
+            }
+
+            return false;
+        }
+
+        public bool UpdateUser(int idUser, string login, string password)
+        {
+            var user = GetUser(idUser);
+
+            if(!ContainsUser(login))
+            {
+                user.Login = login;
+                user.Password = password;
+
+                _context.SaveChanges();
+
+                return true;
+            }
+            else
+            {
+                if(user.Login == login && user.Password != password)
+                {
+                    user.Password = password;
+
+                    _context.SaveChanges();
+
+                    return true;
+                }
             }
 
             return false;

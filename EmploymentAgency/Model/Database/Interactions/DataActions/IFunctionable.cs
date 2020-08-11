@@ -2,6 +2,8 @@
 {
     public interface IFunctionable
     {
+        bool IsRelatedToStaff(int idUser);
+
         bool NecessaryToSupplementTheInformation(int idUser);
     }
 }
