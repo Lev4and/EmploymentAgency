@@ -129,6 +129,10 @@ namespace EmploymentAgency.ViewModels.Locators
 
         public ChangeRequestStatusViewModel ChangeRequestStatusViewModel => _provider.GetRequiredService<ChangeRequestStatusViewModel>();
 
+        public AddRoleViewModel AddRoleViewModel => _provider.GetRequiredService<AddRoleViewModel>();
+
+        public ChangeRoleViewModel ChangeRoleViewModel => _provider.GetRequiredService<ChangeRoleViewModel>();
+
         public static void Init()
         {
             var services = new ServiceCollection();
@@ -194,6 +198,8 @@ namespace EmploymentAgency.ViewModels.Locators
             services.AddTransient<ChangeProfessionCategoryViewModel>();
             services.AddTransient<AddRequestStatusViewModel>();
             services.AddTransient<ChangeRequestStatusViewModel>();
+            services.AddTransient<AddRoleViewModel>();
+            services.AddTransient<ChangeRoleViewModel>();
 
             services.AddSingleton<PageService>();
             services.AddSingleton<MenuPageService>();

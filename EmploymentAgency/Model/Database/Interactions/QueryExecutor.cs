@@ -466,6 +466,22 @@ namespace EmploymentAgency.Model.Database.Interactions
             return false;
         }
 
+        public bool AddRole(string roleName)
+        {
+            if(!ContainsRole(roleName))
+            {
+                _context.Role.Add(new Role
+                {
+                    RoleName = roleName
+                });
+                _context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
+        }
+
         public bool AddSkill(string skillName, byte[] photo)
         {
             if(!ContainsSkill(skillName))
@@ -633,6 +649,11 @@ namespace EmploymentAgency.Model.Database.Interactions
         public bool ContainsRequestStatus(string requestStatusName)
         {
             return _context.RequestStatus.SingleOrDefault(r => r.RequestStatusName == requestStatusName) != null;
+        }
+
+        public bool ContainsRole(string roleName)
+        {
+            return _context.Role.SingleOrDefault(r => r.RoleName == roleName) != null;
         }
 
         public bool ContainsSkill(string skillName)
@@ -905,6 +926,11 @@ namespace EmploymentAgency.Model.Database.Interactions
             (requestStatusName.Length > 0 ? r.RequestStatusName.ToLower().StartsWith(requestStatusName.ToLower()) : true)).AsNoTracking().ToList();
         }
 
+        public Role GetRole(int idRole)
+        {
+            return _context.Role.SingleOrDefault(r => r.IdRole == idRole);
+        }
+
         public List<Role> GetRoles()
         {
             return _context.Role.AsNoTracking().ToList();
@@ -1098,6 +1124,14 @@ namespace EmploymentAgency.Model.Database.Interactions
             var requestStatus = GetRequestStatus(idRequestStatus);
 
             _context.RequestStatus.Remove(requestStatus);
+            _context.SaveChanges();
+        }
+
+        public void RemoveRole(int idRole)
+        {
+            var role = GetRole(idRole);
+
+            _context.Role.Remove(role);
             _context.SaveChanges();
         }
 
@@ -1344,6 +1378,22 @@ namespace EmploymentAgency.Model.Database.Interactions
                 var requestStatus = GetRequestStatus(idRequestStatus);
 
                 requestStatus.RequestStatusName = requestStatusName;
+
+                _context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool UpdateRole(int idRole, string roleName)
+        {
+            if(!ContainsRole(roleName))
+            {
+                var role = GetRole(idRole);
+
+                role.RoleName = roleName;
 
                 _context.SaveChanges();
 

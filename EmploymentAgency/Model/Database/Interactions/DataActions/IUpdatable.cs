@@ -32,6 +32,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         bool UpdateRequestStatus(int idRequestStatus, string requestStatusName);
 
+        bool UpdateRole(int idRole, string roleName);
+
         void UpdateBranch(int idBranch, string phoneNumber);
     }
 }

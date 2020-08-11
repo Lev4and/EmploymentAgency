@@ -35,6 +35,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         RequestStatus GetRequestStatus(int idRequestStatus);
 
+        Role GetRole(int idRole);
+
         v_branch GetBranch(int idBranch);
 
         v_organization GetOrganizationExtendedInformation(int idOrganization);

@@ -50,6 +50,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         bool ContainsRequestStatus(string requestStatusName);
 
+        bool ContainsRole(string roleName);
+
         bool ContainsSkill(string skillName);
 
         bool ContainsUser(string login);

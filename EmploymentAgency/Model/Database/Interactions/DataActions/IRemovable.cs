@@ -31,5 +31,7 @@
         void RemoveProfessionCategory(int idProfessionCategory);
 
         void RemoveRequestStatus(int idRequestStatus);
+
+        void RemoveRole(int idRole);
     }
 }

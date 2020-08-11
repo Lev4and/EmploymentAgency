@@ -53,6 +53,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         bool AddRequestStatus(string requestStatusName);
 
+        bool AddRole(string roleName);
+
         bool AddSkill(string skillName, byte[] photo);
 
         bool AddUser(int idRole, string login, string password);
