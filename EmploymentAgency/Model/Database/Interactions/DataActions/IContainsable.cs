@@ -48,6 +48,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         bool ContainsProfessionCategory(string nameProfessionCategory);
 
+        bool ContainsRequestStatus(string requestStatusName);
+
         bool ContainsSkill(string skillName);
 
         bool ContainsUser(string login);

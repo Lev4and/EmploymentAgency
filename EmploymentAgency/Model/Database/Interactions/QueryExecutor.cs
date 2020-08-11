@@ -450,6 +450,22 @@ namespace EmploymentAgency.Model.Database.Interactions
             return false;
         }
 
+        public bool AddRequestStatus(string requestStatusName)
+        {
+            if(!ContainsRequestStatus(requestStatusName))
+            {
+                _context.RequestStatus.Add(new RequestStatus
+                {
+                    RequestStatusName = requestStatusName
+                });
+                _context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
+        }
+
         public bool AddSkill(string skillName, byte[] photo)
         {
             if(!ContainsSkill(skillName))
@@ -612,6 +628,11 @@ namespace EmploymentAgency.Model.Database.Interactions
         public bool ContainsProfessionCategory(string nameProfessionCategory)
         {
             return _context.ProfessionCategory.SingleOrDefault(p => p.NameProfessionCategory == nameProfessionCategory) != null;
+        }
+
+        public bool ContainsRequestStatus(string requestStatusName)
+        {
+            return _context.RequestStatus.SingleOrDefault(r => r.RequestStatusName == requestStatusName) != null;
         }
 
         public bool ContainsSkill(string skillName)
@@ -873,6 +894,11 @@ namespace EmploymentAgency.Model.Database.Interactions
             (professionName.Length > 0 ? p.ProfessionName.ToLower().StartsWith(professionName.ToLower()) : true)).AsNoTracking().ToList();
         }
 
+        public RequestStatus GetRequestStatus(int idRequestStatus)
+        {
+            return _context.RequestStatus.SingleOrDefault(r => r.IdRequestStatus == idRequestStatus);
+        }
+
         public List<RequestStatus> GetRequestStatuses(string requestStatusName)
         {
             return _context.RequestStatus.Where(r =>
@@ -1064,6 +1090,14 @@ namespace EmploymentAgency.Model.Database.Interactions
             var professionCategory = GetProfessionCategory(idProfessionCategory);
 
             _context.ProfessionCategory.Remove(professionCategory);
+            _context.SaveChanges();
+        }
+
+        public void RemoveRequestStatus(int idRequestStatus)
+        {
+            var requestStatus = GetRequestStatus(idRequestStatus);
+
+            _context.RequestStatus.Remove(requestStatus);
             _context.SaveChanges();
         }
 
@@ -1294,6 +1328,22 @@ namespace EmploymentAgency.Model.Database.Interactions
                 var professionCategory = GetProfessionCategory(idProfessionCategory);
 
                 professionCategory.NameProfessionCategory = nameProfessionCategory;
+
+                _context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool UpdateRequestStatus(int idRequestStatus, string requestStatusName)
+        {
+            if(!ContainsRequestStatus(requestStatusName))
+            {
+                var requestStatus = GetRequestStatus(idRequestStatus);
+
+                requestStatus.RequestStatusName = requestStatusName;
 
                 _context.SaveChanges();
 

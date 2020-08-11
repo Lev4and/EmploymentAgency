@@ -315,6 +315,7 @@
     <Compile Include="ViewModels\AddOrganizationViewModel.cs" />
     <Compile Include="ViewModels\AddProfessionCategoryViewModel.cs" />
     <Compile Include="ViewModels\AddProfessionViewModel.cs" />
+    <Compile Include="ViewModels\AddRequestStatusViewModel.cs" />
     <Compile Include="ViewModels\AddSkillViewModel.cs" />
     <Compile Include="ViewModels\AuthorizationViewModel.cs" />
     <Compile Include="ViewModels\BranchesViewModel.cs" />
@@ -332,6 +333,7 @@
     <Compile Include="ViewModels\ChangeOrganizationViewModel.cs" />
     <Compile Include="ViewModels\ChangeProfessionCategoryViewModel.cs" />
     <Compile Include="ViewModels\ChangeProfessionViewModel.cs" />
+    <Compile Include="ViewModels\ChangeRequestStatusViewModel.cs" />
     <Compile Include="ViewModels\CitiesViewModel.cs" />
     <Compile Include="ViewModels\CountriesViewModel.cs" />
     <Compile Include="ViewModels\DrivingLicenseCategoriesViewModel.cs" />
@@ -547,6 +549,9 @@
     <Compile Include="Views\Windows\AddProfessionCategory.xaml.cs">
       <DependentUpon>AddProfessionCategory.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Windows\AddRequestStatus.xaml.cs">
+      <DependentUpon>AddRequestStatus.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Windows\AddSkill.xaml.cs">
       <DependentUpon>AddSkill.xaml</DependentUpon>
     </Compile>
@@ -591,6 +596,9 @@
     </Compile>
     <Compile Include="Views\Windows\ChangeProfessionCategory.xaml.cs">
       <DependentUpon>ChangeProfessionCategory.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Windows\ChangeRequestStatus.xaml.cs">
+      <DependentUpon>ChangeRequestStatus.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -876,6 +884,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Windows\AddRequestStatus.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Windows\AddSkill.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -933,6 +945,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Windows\ChangeProfessionCategory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Windows\ChangeRequestStatus.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

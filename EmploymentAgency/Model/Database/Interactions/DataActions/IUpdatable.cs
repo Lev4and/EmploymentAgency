@@ -30,6 +30,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         bool UpdateProfessionCategory(int idProfessionCategory, string nameProfessionCategory);
 
+        bool UpdateRequestStatus(int idRequestStatus, string requestStatusName);
+
         void UpdateBranch(int idBranch, string phoneNumber);
     }
 }
