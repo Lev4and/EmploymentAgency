@@ -138,7 +138,6 @@
     <Compile Include="Model\Database\Interactions\DataActions\IGetable.cs" />
     <Compile Include="Model\Database\Interactions\DataActions\IProcedurable.cs" />
     <Compile Include="Model\Database\Interactions\DataActions\IRemovable.cs" />
-    <Compile Include="Model\Database\Interactions\DataActions\ISortable.cs" />
     <Compile Include="Model\Database\Interactions\DataActions\IUpdatable.cs" />
     <Compile Include="Model\Database\Interactions\IInteraction.cs" />
     <Compile Include="Model\Database\Interactions\QueryExecutor.cs" />

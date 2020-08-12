@@ -2,7 +2,7 @@
 
 namespace EmploymentAgency.Model.Database.Interactions
 {
-    public interface IInteraction : IAccordanable, IAddable, IContainsable, IFunctionable, IGetable, IProcedurable, IRemovable, ISortable, IUpdatable
+    public interface IInteraction : IAccordanable, IAddable, IContainsable, IFunctionable, IGetable, IProcedurable, IRemovable, IUpdatable
     {
 
     }

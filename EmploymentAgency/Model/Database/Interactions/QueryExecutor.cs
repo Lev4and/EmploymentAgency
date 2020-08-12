@@ -765,24 +765,24 @@ namespace EmploymentAgency.Model.Database.Interactions
             (idCountry != -1 ? b.IdCountry == idCountry : true) &&
             (idCity != -1 ? b.IdCity == idCity : true) &&
             (idStreet != -1 ? b.IdStreet == idStreet : true) &&
-            (idOrganization != -1 ? b.IdOrganization == idOrganization : true)).AsNoTracking().ToList();
+            (idOrganization != -1 ? b.IdOrganization == idOrganization : true)).OrderBy(b => b.OrganizationName).AsNoTracking().ToList();
         }
 
         public List<City> GetCities(int idCountry)
         {
-            return _context.City.Where(c => c.IdCountry == idCountry).AsNoTracking().ToList();
+            return _context.City.Where(c => c.IdCountry == idCountry).OrderBy(c => c.CityName).AsNoTracking().ToList();
         }
 
         public List<v_city> GetCities()
         {
-            return _context.v_city.AsNoTracking().ToList();
+            return _context.v_city.OrderBy(c => c.CityName).AsNoTracking().ToList();
         }
 
         public List<v_city> GetCities(int idCountry, string cityName)
         {
             return _context.v_city.Where(c =>
             (idCountry != -1 ? c.IdCountry == idCountry : true) &&
-            (cityName.Length > 0 ? c.CityName.ToLower().StartsWith(cityName.ToLower()) : true)).AsNoTracking().ToList();
+            (cityName.Length > 0 ? c.CityName.ToLower().StartsWith(cityName.ToLower()) : true)).OrderBy(c => c.CityName).AsNoTracking().ToList();
         }
 
         public City GetCity(int idCity)
@@ -792,13 +792,13 @@ namespace EmploymentAgency.Model.Database.Interactions
 
         public List<Country> GetCountries()
         {
-            return _context.Country.AsNoTracking().ToList();
+            return _context.Country.OrderBy(c => c.CountryName).AsNoTracking().ToList();
         }
 
         public List<Country> GetCountries(string countryName)
         {
             return _context.Country.Where(c =>
-            (countryName.Length > 0 ? c.CountryName.ToLower().StartsWith(countryName.ToLower()) : true)).AsNoTracking().ToList();
+            (countryName.Length > 0 ? c.CountryName.ToLower().StartsWith(countryName.ToLower()) : true)).OrderBy(c => c.CountryName).AsNoTracking().ToList();
         }
 
         public Country GetCountry(int idCountry)
@@ -808,13 +808,13 @@ namespace EmploymentAgency.Model.Database.Interactions
 
         public List<DrivingLicenseCategory> GetDrivingLicenseCategories()
         {
-            return _context.DrivingLicenseCategory.AsNoTracking().ToList();
+            return _context.DrivingLicenseCategory.OrderBy(d => d.DrivingLicenseCategoryName).AsNoTracking().ToList();
         }
 
         public List<DrivingLicenseCategory> GetDrivingLicenseCategories(string drivingLicenseCategoryName)
         {
             return _context.DrivingLicenseCategory.Where(d =>
-            (drivingLicenseCategoryName.Length > 0 ? d.DrivingLicenseCategoryName.ToLower().StartsWith(drivingLicenseCategoryName.ToLower()) : true)).AsNoTracking().ToList();
+            (drivingLicenseCategoryName.Length > 0 ? d.DrivingLicenseCategoryName.ToLower().StartsWith(drivingLicenseCategoryName.ToLower()) : true)).OrderBy(d => d.DrivingLicenseCategoryName).AsNoTracking().ToList();
         }
 
         public DrivingLicenseCategory GetDrivingLicenseCategory(int idDrivingLicenseCategory)
@@ -829,13 +829,13 @@ namespace EmploymentAgency.Model.Database.Interactions
 
         public List<Education> GetEducations()
         {
-            return _context.Education.AsNoTracking().ToList();
+            return _context.Education.OrderBy(e => e.EducationName).AsNoTracking().ToList();
         }
 
         public List<Education> GetEducations(string educationName)
         {
             return _context.Education.Where(e =>
-            (educationName.Length > 0 ? e.EducationName.ToLower().StartsWith(educationName.ToLower()) : true)).AsNoTracking().ToList();
+            (educationName.Length > 0 ? e.EducationName.ToLower().StartsWith(educationName.ToLower()) : true)).OrderBy(e => e.EducationName).AsNoTracking().ToList();
         }
 
         public EmploymentType GetEmploymentType(int idEmploymentType)
@@ -846,7 +846,7 @@ namespace EmploymentAgency.Model.Database.Interactions
         public List<EmploymentType> GetEmploymentTypes(string employmentTypeName)
         {
             return _context.EmploymentType.Where(e =>
-            (employmentTypeName.Length > 0 ? e.EmploymentTypeName.ToLower().StartsWith(employmentTypeName.ToLower()) : true)).AsNoTracking().ToList();
+            (employmentTypeName.Length > 0 ? e.EmploymentTypeName.ToLower().StartsWith(employmentTypeName.ToLower()) : true)).OrderBy(e => e.EmploymentTypeName).AsNoTracking().ToList();
         }
 
         public Experience GetExperience(int idExperience)
@@ -857,7 +857,7 @@ namespace EmploymentAgency.Model.Database.Interactions
         public List<Experience> GetExperiences(string experienceName)
         {
             return _context.Experience.Where(e =>
-            (experienceName.Length > 0 ? e.ExperienceName.ToLower().StartsWith(experienceName.ToLower()) : true)).AsNoTracking().ToList();
+            (experienceName.Length > 0 ? e.ExperienceName.ToLower().StartsWith(experienceName.ToLower()) : true)).OrderBy(e => e.ExperienceName).AsNoTracking().ToList();
         }
 
         public Gender GetGender(int idGender)
@@ -867,13 +867,13 @@ namespace EmploymentAgency.Model.Database.Interactions
 
         public List<Gender> GetGenders()
         {
-            return _context.Gender.AsNoTracking().ToList();
+            return _context.Gender.OrderBy(g => g.GenderName).AsNoTracking().ToList();
         }
 
         public List<Gender> GetGenders(string genderName)
         {
             return _context.Gender.Where(g =>
-            (genderName.Length > 0 ? g.GenderName.ToLower().StartsWith(genderName.ToLower()) : true)).AsNoTracking().ToList();
+            (genderName.Length > 0 ? g.GenderName.ToLower().StartsWith(genderName.ToLower()) : true)).OrderBy(g => g.GenderName).AsNoTracking().ToList();
         }
 
         public int GetIdRole(string roleName)
@@ -883,13 +883,13 @@ namespace EmploymentAgency.Model.Database.Interactions
 
         public List<Industry> GetIndustries()
         {
-            return _context.Industry.AsNoTracking().ToList();
+            return _context.Industry.OrderBy(i => i.IndustryName).AsNoTracking().ToList();
         }
 
         public List<Industry> GetIndustries(string industryName)
         {
             return _context.Industry.Where(i =>
-            (industryName.Length > 0 ? i.IndustryName.ToLower().StartsWith(industryName.ToLower()) : true)).AsNoTracking().ToList();
+            (industryName.Length > 0 ? i.IndustryName.ToLower().StartsWith(industryName.ToLower()) : true)).OrderBy(i => i.IndustryName).AsNoTracking().ToList();
         }
 
         public Industry GetIndustry(int idIndustry)
@@ -904,13 +904,13 @@ namespace EmploymentAgency.Model.Database.Interactions
 
         public List<LanguageProficiency> GetLanguageProficiencies()
         {
-            return _context.LanguageProficiency.AsNoTracking().ToList();
+            return _context.LanguageProficiency.OrderBy(l => l.Designation).AsNoTracking().ToList();
         }
 
         public List<LanguageProficiency> GetLanguageProficiencies(string languageProficiencyName)
         {
             return _context.LanguageProficiency.Where(l =>
-            (languageProficiencyName.Length > 0 ? l.LanguageProficiencyName.ToLower().StartsWith(languageProficiencyName.ToLower()) : true)).AsNoTracking().ToList();
+            (languageProficiencyName.Length > 0 ? l.LanguageProficiencyName.ToLower().StartsWith(languageProficiencyName.ToLower()) : true)).OrderBy(l => l.Designation).AsNoTracking().ToList();
         }
 
         public LanguageProficiency GetLanguageProficiency(int idLanguageProficiency)
@@ -920,13 +920,13 @@ namespace EmploymentAgency.Model.Database.Interactions
 
         public List<Language> GetLanguages()
         {
-            return _context.Language.AsNoTracking().ToList();
+            return _context.Language.OrderBy(l => l.LanguageName).AsNoTracking().ToList();
         }
 
         public List<Language> GetLanguages(string languageName)
         {
             return _context.Language.Where(l =>
-            (languageName.Length > 0 ? l.LanguageName.ToLower().StartsWith(languageName.ToLower()) : true)).AsNoTracking().ToList();
+            (languageName.Length > 0 ? l.LanguageName.ToLower().StartsWith(languageName.ToLower()) : true)).OrderBy(l => l.LanguageName).AsNoTracking().ToList();
         }
 
         public Organization GetOrganization(int idOrganization)
@@ -943,12 +943,12 @@ namespace EmploymentAgency.Model.Database.Interactions
             return _context.v_organization.Where(o =>
             (idIndustry != -1 ? o.IdIndustry == idIndustry : true) &&
             (idSubIndustry != -1 ? o.IdSubIndustry == idSubIndustry : true) &&
-            (organizationName.Length > 0 ? o.OrganizationName.ToLower().StartsWith(organizationName.ToLower()) : true)).AsNoTracking().ToList();
+            (organizationName.Length > 0 ? o.OrganizationName.ToLower().StartsWith(organizationName.ToLower()) : true)).OrderBy(o => o.OrganizationName).AsNoTracking().ToList();
         }
 
         public List<v_organizationWithoutPhoto> GetOrganizationsWithoutPhoto()
         {
-            return _context.v_organizationWithoutPhoto.AsNoTracking().ToList();
+            return _context.v_organizationWithoutPhoto.OrderBy(o => o.OrganizationName).AsNoTracking().ToList();
         }
 
         public Profession GetProfession(int idProfession)
@@ -959,12 +959,12 @@ namespace EmploymentAgency.Model.Database.Interactions
         public List<ProfessionCategory> GetProfessionCategories(string nameProfessionCategory)
         {
             return _context.ProfessionCategory.Where(p =>
-            (nameProfessionCategory.Length > 0 ? p.NameProfessionCategory.ToLower().StartsWith(nameProfessionCategory.ToLower()) : true)).AsNoTracking().ToList();
+            (nameProfessionCategory.Length > 0 ? p.NameProfessionCategory.ToLower().StartsWith(nameProfessionCategory.ToLower()) : true)).OrderBy(p => p.NameProfessionCategory).AsNoTracking().ToList();
         }
 
         public List<ProfessionCategory> GetProfessionCategories()
         {
-            return _context.ProfessionCategory.AsNoTracking().ToList();
+            return _context.ProfessionCategory.OrderBy(o => o.NameProfessionCategory).AsNoTracking().ToList();
         }
 
         public ProfessionCategory GetProfessionCategory(int idProfessionCategory)
@@ -981,7 +981,7 @@ namespace EmploymentAgency.Model.Database.Interactions
         {
             return _context.v_profession.Where(p =>
             (idProfessionCategory != -1 ? p.IdProfessionCategory == idProfessionCategory : true) &&
-            (professionName.Length > 0 ? p.ProfessionName.ToLower().StartsWith(professionName.ToLower()) : true)).AsNoTracking().ToList();
+            (professionName.Length > 0 ? p.ProfessionName.ToLower().StartsWith(professionName.ToLower()) : true)).OrderBy(p => p.ProfessionName).AsNoTracking().ToList();
         }
 
         public RequestStatus GetRequestStatus(int idRequestStatus)
@@ -992,7 +992,7 @@ namespace EmploymentAgency.Model.Database.Interactions
         public List<RequestStatus> GetRequestStatuses(string requestStatusName)
         {
             return _context.RequestStatus.Where(r =>
-            (requestStatusName.Length > 0 ? r.RequestStatusName.ToLower().StartsWith(requestStatusName.ToLower()) : true)).AsNoTracking().ToList();
+            (requestStatusName.Length > 0 ? r.RequestStatusName.ToLower().StartsWith(requestStatusName.ToLower()) : true)).OrderBy(r => r.RequestStatusName).AsNoTracking().ToList();
         }
 
         public Role GetRole(int idRole)
@@ -1002,13 +1002,13 @@ namespace EmploymentAgency.Model.Database.Interactions
 
         public List<Role> GetRoles()
         {
-            return _context.Role.AsNoTracking().ToList();
+            return _context.Role.OrderBy(r => r.RoleName).AsNoTracking().ToList();
         }
 
         public List<Role> GetRoles(string roleName)
         {
             return _context.Role.Where(r =>
-            (roleName.Length > 0 ? r.RoleName.ToLower().StartsWith(roleName.ToLower()) : true)).AsNoTracking().ToList();
+            (roleName.Length > 0 ? r.RoleName.ToLower().StartsWith(roleName.ToLower()) : true)).OrderBy(r => r.RoleName).AsNoTracking().ToList();
         }
 
         public Schedule GetSchedule(int idSchedule)
@@ -1019,7 +1019,7 @@ namespace EmploymentAgency.Model.Database.Interactions
         public List<Schedule> GetSchedules(string scheduleName)
         {
             return _context.Schedule.Where(s =>
-            (scheduleName.Length > 0 ? s.ScheduleName.ToLower().StartsWith(scheduleName.ToLower()) : true)).AsNoTracking().ToList();
+            (scheduleName.Length > 0 ? s.ScheduleName.ToLower().StartsWith(scheduleName.ToLower()) : true)).OrderBy(s => s.ScheduleName).AsNoTracking().ToList();
         }
 
         public Skill GetSkill(int idSkill)
@@ -1029,13 +1029,13 @@ namespace EmploymentAgency.Model.Database.Interactions
 
         public List<Skill> GetSkills()
         {
-            return _context.Skill.AsNoTracking().ToList();
+            return _context.Skill.OrderBy(s => s.SkillName).AsNoTracking().ToList();
         }
 
         public List<Skill> GetSkills(string skillName)
         {
             return _context.Skill.Where(s =>
-            (skillName.Length > 0 ? s.SkillName.ToLower().StartsWith(skillName.ToLower()) : true)).AsNoTracking().ToList();
+            (skillName.Length > 0 ? s.SkillName.ToLower().StartsWith(skillName.ToLower()) : true)).OrderBy(s => s.SkillName).AsNoTracking().ToList();
         }
 
         public Street GetStreet(int idStreet)
@@ -1050,12 +1050,12 @@ namespace EmploymentAgency.Model.Database.Interactions
 
         public List<Street> GetStreets(int idCity)
         {
-            return _context.Street.Where(s => s.IdCity == idCity).AsNoTracking().ToList();
+            return _context.Street.Where(s => s.IdCity == idCity).OrderBy(s => s.StreetName).AsNoTracking().ToList();
         }
 
         public List<v_street> GetStreets()
         {
-            return _context.v_street.AsNoTracking().ToList();
+            return _context.v_street.OrderBy(s => s.StreetName).AsNoTracking().ToList();
         }
 
         public List<v_street> GetStreets(int idCountry, int idCity, string streetName)
@@ -1063,19 +1063,19 @@ namespace EmploymentAgency.Model.Database.Interactions
             return _context.v_street.Where(s =>
             (idCountry != -1 ? s.IdCountry == idCountry : true) &&
             (idCity != -1 ? s.IdCity == idCity : true) &&
-            (streetName.Length > 0 ? s.StreetName.ToLower().StartsWith(streetName.ToLower()) : true)).AsNoTracking().ToList();
+            (streetName.Length > 0 ? s.StreetName.ToLower().StartsWith(streetName.ToLower()) : true)).OrderBy(s => s.StreetName).AsNoTracking().ToList();
         }
 
         public List<SubIndustry> GetSubIndustries(int idIndustry)
         {
-            return _context.SubIndustry.Where(s => s.IdIndustry == idIndustry).AsNoTracking().ToList();
+            return _context.SubIndustry.Where(s => s.IdIndustry == idIndustry).OrderBy(s => s.NameSubIndustry).AsNoTracking().ToList();
         }
 
         public List<v_subIndustry> GetSubIndustries(int idIndustry, string nameSubIndustry)
         {
             return _context.v_subIndustry.Where(s =>
             (idIndustry != -1 ? s.IdIndustry == idIndustry : true) &&
-            (nameSubIndustry.Length > 0 ? s.NameSubIndustry.ToLower().StartsWith(nameSubIndustry.ToLower()) : true)).AsNoTracking().ToList();
+            (nameSubIndustry.Length > 0 ? s.NameSubIndustry.ToLower().StartsWith(nameSubIndustry.ToLower()) : true)).OrderBy(s => s.NameSubIndustry).AsNoTracking().ToList();
         }
 
         public SubIndustry GetSubIndustry(int idSubIndustry)
@@ -1102,7 +1102,7 @@ namespace EmploymentAgency.Model.Database.Interactions
         {
             return _context.v_user.Where(u =>
             (idRole != -1 ? u.IdRole == idRole : true) &&
-            (login.Length > 0 ? u.Login.ToLower().StartsWith(login.ToLower()) : true)).AsNoTracking().ToList();
+            (login.Length > 0 ? u.Login.ToLower().StartsWith(login.ToLower()) : true)).OrderBy(u => u.Login).AsNoTracking().ToList();
         }
 
         public bool IsRelatedToStaff(int idUser)
