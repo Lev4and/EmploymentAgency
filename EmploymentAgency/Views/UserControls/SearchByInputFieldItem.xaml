@@ -5,10 +5,22 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mdt="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:EmploymentAgency.Views.UserControls"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              mc:Ignorable="d"
              x:Name="_this"
              d:DesignHeight="60" d:DesignWidth="800" MinHeight="60" MaxHeight="60">
     <Grid Background="{Binding ElementName=_this, Path=BackgroundBrush, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+        <i:Interaction.Triggers>
+            <i:EventTrigger EventName="MouseDown">
+                <i:InvokeCommandAction Command="{Binding ElementName=_this, Path=OnMouseDown}"/>
+            </i:EventTrigger>
+            <i:EventTrigger EventName="MouseMove">
+                <i:InvokeCommandAction Command="{Binding ElementName=_this, Path=OnMouseMove}"/>
+            </i:EventTrigger>
+            <i:EventTrigger EventName="MouseLeave">
+                <i:InvokeCommandAction Command="{Binding ElementName=_this, Path=OnMouseLeave}"/>
+            </i:EventTrigger>
+        </i:Interaction.Triggers>
         <TextBlock Text="{Binding ElementName=_this, Path=ResultSearch, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                    FontSize="20"
                    FontWeight="Medium"

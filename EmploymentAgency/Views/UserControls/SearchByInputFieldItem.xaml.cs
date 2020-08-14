@@ -1,6 +1,8 @@
 ﻿using DevExpress.Mvvm;
+using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 
 namespace EmploymentAgency.Views.UserControls
@@ -58,6 +60,29 @@ namespace EmploymentAgency.Views.UserControls
         public DelegateCommand Select { get; set; }
 
         public DelegateCommand Deselect { get; set; }
+
+        public new ICommand OnMouseDown => new DelegateCommand(() =>
+        {
+            Click?.Invoke(this, new EventArgs());
+        }, () => IsSelect);
+
+        public new ICommand OnMouseMove => new DelegateCommand(() =>
+        {
+            MouseMove?.Invoke(this, new EventArgs());
+        });
+
+        public new ICommand OnMouseLeave => new DelegateCommand(() =>
+        {
+            MouseLeave?.Invoke(this, new EventArgs());
+        });
+
+        public event SearchByInputFieldItemHandler Click;
+
+        public new event SearchByInputFieldItemHandler MouseMove;
+
+        public new event SearchByInputFieldItemHandler MouseLeave;
+
+        public delegate void SearchByInputFieldItemHandler(object sender, EventArgs e);
 
         public SearchByInputFieldItem()
         {

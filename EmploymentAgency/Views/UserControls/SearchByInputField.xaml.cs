@@ -223,8 +223,36 @@ namespace EmploymentAgency.Views.UserControls
                 item.VerticalAlignment = VerticalAlignment.Top;
                 item.Margin = new Thickness(0, (i * 60), 0, 0);
                 item.ResultSearch = GetTextInformation(DisplayedData[i]);
+                item.Click += Item_Click;
+                item.MouseMove += Item_MouseMove;
+                item.MouseLeave += Item_MouseLeave;
                 Items.Add(item);
             }
+        }
+
+        private void Item_Click(object sender, EventArgs e)
+        {
+            var item = sender as SearchByInputFieldItem;
+
+            DeselectItems();
+
+            SearchLine = item.ResultSearch;
+
+            IsDrawerOpen = false;
+        }
+
+        private void Item_MouseMove(object sender, EventArgs e)
+        {
+            var item = sender as SearchByInputFieldItem;
+
+            item.Select.Execute(item);
+        }
+
+        private void Item_MouseLeave(object sender, EventArgs e)
+        {
+            var item = sender as SearchByInputFieldItem;
+
+            item.Deselect.Execute(item);
         }
 
         private void RenderContorls()
