@@ -1,0 +1,62 @@
+﻿<UserControl x:Class="EmploymentAgency.Views.UserControls.BlockViewImage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mdt="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:local="clr-namespace:EmploymentAgency.Views.UserControls"
+             xmlns:c="clr-namespace:EmploymentAgency.Converters"
+             mc:Ignorable="d"
+             x:Name="_this"
+             d:DesignHeight="185" d:DesignWidth="185">
+    <UserControl.Resources>
+        <c:ArrayByteToImageSource x:Key="arrayByteToImageSource"/>
+    </UserControl.Resources>
+    <Grid>
+        <Border Width="165"
+                Height="165"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Left"
+                Margin="5,5,0,0"
+                BorderBrush="Black"
+                BorderThickness="1,1,1,1">
+            <Grid>
+                <Image x:Name="image"
+                       Stretch="Uniform"
+                       Source="{Binding ElementName=_this, Path=Image, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource arrayByteToImageSource}}"
+                       ToolTip="Картинка"/>
+            </Grid>
+        </Border>
+        <Grid VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="40">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="45"/>
+                <RowDefinition Height="45"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Button Width="40"
+                        Height="40"
+                        Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
+                        Command="{Binding ElementName=_this, Path=RemoveImage}">
+                    <mdt:PackIcon x:Name="imageRemoveIcon"
+                                  Kind="ImageRemove"
+                                  Height="30"
+                                  Width="{Binding ElementName=imageRemoveIcon, Path=Height}"
+                                  Foreground="Red"/>
+                </Button>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Button Width="40"
+                        Height="40"
+                        Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
+                        Command="{Binding ElementName=_this, Path=AddImage}">
+                    <mdt:PackIcon x:Name="imagePlusIcon"
+                              Kind="ImagePlus"
+                              Height="30"
+                              Width="{Binding ElementName=imagePlusIcon, Path=Height}"
+                              Foreground="Lime"/>
+                </Button>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

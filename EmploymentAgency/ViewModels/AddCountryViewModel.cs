@@ -53,23 +53,5 @@ namespace EmploymentAgency.ViewModels
                 MessageBox.Show("Страна с такими данными уже существует");
             }
         }, () => (CountryName != null ? CountryName.Length > 0 : false));
-
-        public ICommand AddPhoto => new DelegateCommand(() =>
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-
-            openFileDialog.Filter = "Файлы изображений (*.bmp, *.jpg, *.jpeg, *.png, *webp)|*.bmp;*.jpg;*.jpeg;*.png;*.webp";
-            openFileDialog.ShowDialog();
-
-            if (openFileDialog.FileName != "")
-            {
-                Flag = FileConverter.GetBytesFromFile(openFileDialog.FileName);
-            }
-        }, () => IsCanAddFlag == true);
-
-        public ICommand RemovePhoto => new DelegateCommand(() =>
-        {
-            Flag = null;
-        }, () => IsCanAddFlag == false);
     }
 }

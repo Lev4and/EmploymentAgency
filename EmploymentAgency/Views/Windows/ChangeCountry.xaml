@@ -6,6 +6,7 @@
         xmlns:mdt="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:local="clr-namespace:EmploymentAgency.Views.Windows"
+        xmlns:uc="clr-namespace:EmploymentAgency.Views.UserControls"
         xmlns:c="clr-namespace:EmploymentAgency.Converters"
         mc:Ignorable="d"
         DataContext="{Binding ChangeCountryViewModel, Source={StaticResource ViewModelLocator}}"
@@ -63,75 +64,7 @@
               Height="185"
               VerticalAlignment="Center"
               HorizontalAlignment="Center">
-            <Border Width="165"
-                    Height="165"
-                    VerticalAlignment="Top"
-                    HorizontalAlignment="Left"
-                    Margin="5,5,0,0"
-                    BorderBrush="Black"
-                    BorderThickness="1,1,1,1">
-                <Grid>
-                    <Image Stretch="Uniform"
-                           Source="{Binding Path=Flag, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource arrayByteToImageSource}}"
-                           ToolTip="Фото"/>
-                </Grid>
-            </Border>
-            <Grid VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="40">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="40"/>
-                    <RowDefinition Height="40"/>
-                </Grid.RowDefinitions>
-                <Grid Grid.Row="0">
-                    <mdt:PackIcon x:Name="imageRemoveIcon"
-                                  IsEnabled="{Binding Path=IsCanAddFlag, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource boolToBackBool}}"
-                                  Kind="ImageRemove"
-                                  Height="40"
-                                  Width="{Binding ElementName=imageRemoveIcon, Path=Height}">
-                        <mdt:PackIcon.Style>
-                            <Style TargetType="mdt:PackIcon">
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding ElementName=imageRemoveIcon, Path=IsEnabled}" Value="True">
-                                        <Setter Property="Foreground" Value="Red"/>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding ElementName=imageRemoveIcon, Path=IsEnabled}" Value="False">
-                                        <Setter Property="Foreground" Value="Gray"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </mdt:PackIcon.Style>
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="MouseDown">
-                                <i:InvokeCommandAction Command="{Binding Path=RemovePhoto}"/>
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
-                    </mdt:PackIcon>
-                </Grid>
-                <Grid Grid.Row="1">
-                    <mdt:PackIcon x:Name="imagePlusIcon"
-                                  IsEnabled="{Binding Path=IsCanAddFlag, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                  Kind="ImagePlus"
-                                  Height="40"
-                                  Width="{Binding ElementName=imagePlusIcon, Path=Height}">
-                        <mdt:PackIcon.Style>
-                            <Style TargetType="mdt:PackIcon">
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding ElementName=imagePlusIcon, Path=IsEnabled}" Value="True">
-                                        <Setter Property="Foreground" Value="Lime"/>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding ElementName=imagePlusIcon, Path=IsEnabled}" Value="False">
-                                        <Setter Property="Foreground" Value="Gray"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </mdt:PackIcon.Style>
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="MouseDown">
-                                <i:InvokeCommandAction Command="{Binding Path=AddPhoto}"/>
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
-                    </mdt:PackIcon>
-                </Grid>
-            </Grid>
+            <uc:BlockViewImage Image="{Binding Path=Flag, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
         </Grid>
         <Grid Grid.Row="1"
               Grid.ColumnSpan="2"

@@ -1,10 +1,8 @@
-﻿using Converters;
-using DevExpress.Mvvm;
+﻿using DevExpress.Mvvm;
 using EmploymentAgency.Model.Configurations;
 using EmploymentAgency.Model.Database.Interactions;
 using EmploymentAgency.Model.Database.Models;
 using EmploymentAgency.Services;
-using Microsoft.Win32;
 using System;
 using System.Collections.ObjectModel;
 using System.Windows;
@@ -80,23 +78,5 @@ namespace EmploymentAgency.ViewModels
                  (Surname != null ? Surname.Length > 0 : false) &&
                  (Patronymic != null ? Patronymic.Length > 0 : false) &&
                  (PhoneNumber != null ? PhoneNumber.Length > 0 : false));
-
-        public ICommand AddPhoto => new DelegateCommand(() =>
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-
-            openFileDialog.Filter = "Файлы изображений (*.bmp, *.jpg, *.png, *webp)|*.bmp;*.jpg;*.png;*.webp";
-            openFileDialog.ShowDialog();
-
-            if (openFileDialog.FileName != "")
-            {
-                Photo = FileConverter.GetBytesFromFile(openFileDialog.FileName);
-            }
-        }, () => Photo == null);
-
-        public ICommand RemovePhoto => new DelegateCommand(() =>
-        {
-            Photo = null;
-        }, () => Photo != null);
     }
 }

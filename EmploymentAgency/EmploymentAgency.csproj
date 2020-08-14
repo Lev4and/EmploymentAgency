@@ -464,6 +464,9 @@
     <Compile Include="Views\Pages\Users.xaml.cs">
       <DependentUpon>Users.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserControls\BlockViewImage.xaml.cs">
+      <DependentUpon>BlockViewImage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\BlockViewItem.cs" />
     <Compile Include="Views\UserControls\BlockViewBranch.xaml.cs">
       <DependentUpon>BlockViewBranch.xaml</DependentUpon>
@@ -820,6 +823,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\BlockViewEducationalActivity.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\BlockViewImage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
