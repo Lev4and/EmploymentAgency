@@ -20,12 +20,14 @@
                               IsChecked="{Binding Path=IsLeftDrawerOpen, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                               HorizontalAlignment="Left"
                               Panel.ZIndex="1"/>
-                <TextBlock Text="Агентство трудоустройства"
+                <TextBlock Text="{Binding Path=Title}"
                            TextAlignment="Center"
                            VerticalAlignment="Center"
                            FontSize="22"
                            FontWeight="Medium"
-                           Panel.ZIndex="0"/>
+                           Panel.ZIndex="0"
+                           DataContext="{Binding Path=PageSource}">
+                </TextBlock>
             </Grid>
         </mdt:ColorZone>
         <mdt:DialogHost Identifier="RootDialog"
