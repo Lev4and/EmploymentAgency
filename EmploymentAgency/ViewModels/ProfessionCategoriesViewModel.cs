@@ -12,27 +12,9 @@ namespace EmploymentAgency.ViewModels
 {
     public class ProfessionCategoriesViewModel : BindableBase
     {
-        private int? _selectedIdProfessionCategory;
-
         private QueryExecutor _executor;
 
-        public bool IsCanAdd { get; set; } = true;
-
-        public bool IsCanChange { get; set; }
-
-        public bool IsCanRemove { get; set; }
-
-        public int? SelectedIdProfessionCategory
-        {
-            get { return _selectedIdProfessionCategory; }
-            set
-            {
-                _selectedIdProfessionCategory = value;
-
-                IsCanChange = _selectedIdProfessionCategory != null ? true : false;
-                IsCanRemove = _selectedIdProfessionCategory != null ? true : false;
-            }
-        }
+        public int? SelectedIdProfessionCategory { get; set; }
 
         public string NameProfessionCategory { get; set; }
 
@@ -53,14 +35,14 @@ namespace EmploymentAgency.ViewModels
         public ICommand Add => new DelegateCommand(() =>
         {
             WindowService.ShowWindow(new AddProfessionCategory());
-        }, () => IsCanAdd == true);
+        }, () => true);
 
         public ICommand Change => new DelegateCommand(() =>
         {
             ChangeProfessionCategoryViewModel.SelectedIdProfessionCategory = (int)SelectedIdProfessionCategory;
 
             WindowService.ShowWindow(new ChangeProfessionCategory());
-        }, () => IsCanChange);
+        }, () => SelectedIdProfessionCategory != null ? true : false);
 
         public ICommand Remove => new DelegateCommand(() =>
         {
@@ -72,7 +54,7 @@ namespace EmploymentAgency.ViewModels
 
                 Find();
             }
-        }, () => IsCanRemove);
+        }, () => SelectedIdProfessionCategory != null ? true : false);
 
         public ICommand ToFind => new DelegateCommand(() =>
         {

@@ -1,4 +1,5 @@
 ﻿using DevExpress.Mvvm;
+using System.Windows;
 using System.Windows.Media;
 
 namespace EmploymentAgency.Views.UserControls
@@ -14,13 +15,13 @@ namespace EmploymentAgency.Views.UserControls
 
             Select = new DelegateCommand(() =>
             {
-                BackgroundBrush = new SolidColorBrush(Colors.Yellow);
+                BackgroundBrush = Application.Current.FindResource("SelectedBlockViewItemBackgroundBrush") as SolidColorBrush;
             }, () => IsCanSelect);
 
 
             Deselect = new DelegateCommand(() =>
             {
-                BackgroundBrush = new SolidColorBrush(Colors.Transparent);
+                BackgroundBrush = Application.Current.FindResource("DeselectedBlockViewItemBackgroundBrush") as SolidColorBrush;
             }, () => IsCanSelect);
         }
     }

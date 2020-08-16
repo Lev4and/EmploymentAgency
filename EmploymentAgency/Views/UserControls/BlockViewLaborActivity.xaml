@@ -8,11 +8,11 @@
              xmlns:local="clr-namespace:EmploymentAgency.Views.UserControls"
              xmlns:c="clr-namespace:EmploymentAgency.Converters"
              mc:Ignorable="d"
-             x:Name="_this"
+             x:Name="This"
              d:DesignHeight="200" d:DesignWidth="800" MinHeight="200" MaxHeight="200">
     <UserControl.Resources>
-        <c:BoolToCollapsedVisibility x:Key="boolToCollapsedVisibility"/>
-        <c:NullableDateTimeToText x:Key="nullableDateTimeToText"/>
+        <c:BoolToCollapsedVisibility x:Key="BoolToCollapsedVisibility"/>
+        <c:NullableDateTimeToText x:Key="NullableDateTimeToText"/>
     </UserControl.Resources>
     <Grid>
         <Border BorderThickness="1,1,1,1"
@@ -47,7 +47,7 @@
                             </Grid>
                             <Grid Grid.Column="1"
                                       Margin="5,0,5,0">
-                                <TextBlock Text="{Binding ElementName=_this, Path=StartDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource nullableDateTimeToText}}"
+                                <TextBlock Text="{Binding ElementName=This, Path=StartDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource NullableDateTimeToText}}"
                                                TextAlignment="Center"
                                                FontWeight="Medium"
                                                FontSize="20"
@@ -71,7 +71,7 @@
                             </Grid>
                             <Grid Grid.Column="1"
                                       Margin="5,0,5,0">
-                                <TextBlock Text="{Binding ElementName=_this, Path=EndDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource nullableDateTimeToText}}"
+                                <TextBlock Text="{Binding ElementName=This, Path=EndDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource NullableDateTimeToText}}"
                                                TextAlignment="Center"
                                                FontWeight="Medium"
                                                FontSize="20"
@@ -102,15 +102,15 @@
                                         <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
                                     <Grid Grid.Column="0">
-                                        <mdt:PackIcon x:Name="iconAccountTie"
+                                        <mdt:PackIcon x:Name="IconAccountTie"
                                                       Kind="AccountTie"
                                                       Height="Auto"
-                                                      Width="{Binding ElementName=iconAccountTie, Path=Height}"
+                                                      Width="{Binding ElementName=IconAccountTie, Path=Height}"
                                                       ToolTip="Название компании"/>
                                     </Grid>
                                     <Grid Grid.Column="1"
                                           Margin="5,0,5,0">
-                                        <TextBlock Text="{Binding ElementName=_this, Path=OrganizationName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                        <TextBlock Text="{Binding ElementName=This, Path=OrganizationName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                                    TextAlignment="Center"
                                                    VerticalAlignment="Center"
                                                    HorizontalAlignment="Center"/>
@@ -122,15 +122,15 @@
                                         <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
                                     <Grid Grid.Column="0">
-                                        <mdt:PackIcon x:Name="iconMapMarker"
+                                        <mdt:PackIcon x:Name="IconMapMarker"
                                                       Kind="MapMarker"
                                                       Height="Auto"
-                                                      Width="{Binding ElementName=iconMapMarker, Path=Height}"
+                                                      Width="{Binding ElementName=IconMapMarker, Path=Height}"
                                                       ToolTip="Адрес компании"/>
                                     </Grid>
                                     <Grid Grid.Column="1"
                                           Margin="5,0,0,0">
-                                        <TextBlock Text="{Binding ElementName=_this, Path=OrganizationAddress, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                        <TextBlock Text="{Binding ElementName=This, Path=OrganizationAddress, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                                    TextAlignment="Center"
                                                    VerticalAlignment="Center"
                                                    HorizontalAlignment="Center"/>
@@ -148,15 +148,15 @@
                                         <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
                                     <Grid Grid.Column="0">
-                                        <mdt:PackIcon x:Name="iconCardAccountDetailsOutline"
+                                        <mdt:PackIcon x:Name="IconCardAccountDetailsOutline"
                                                       Kind="CardAccountDetailsOutline"
                                                       Height="Auto"
-                                                      Width="{Binding ElementName=iconCardAccountDetailsOutline, Path=Height}"
+                                                      Width="{Binding ElementName=IconCardAccountDetailsOutline, Path=Height}"
                                                       ToolTip="Должность"/>
                                     </Grid>
                                     <Grid Grid.Column="1"
                                           Margin="5,0,0,0">
-                                        <TextBlock Text="{Binding ElementName=_this, Path=ProfessionName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                        <TextBlock Text="{Binding ElementName=This, Path=ProfessionName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                                    TextAlignment="Center"
                                                    VerticalAlignment="Center"
                                                    HorizontalAlignment="Center"/>
@@ -170,18 +170,18 @@
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
                                 <Grid Grid.Column="0">
-                                    <mdt:PackIcon x:Name="iconMessageReplyText"
+                                    <mdt:PackIcon x:Name="IconMessageReplyText"
                                                   Kind="MessageReplyText"
                                                   Height="30"
                                                   VerticalAlignment="Center"
-                                                  Width="{Binding ElementName=iconCardAccountDetailsOutline, Path=Height}"
+                                                  Width="{Binding ElementName=IconCardAccountDetailsOutline, Path=Height}"
                                                   ToolTip="Активность"/>
                                 </Grid>
                                 <Grid Grid.Column="1"
                                       Margin="5,0,5,0">
                                     <Border BorderThickness="1,1,1,1"
                                             BorderBrush="Black">
-                                        <TextBlock Text="{Binding ElementName=_this, Path=Activity, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                        <TextBlock Text="{Binding ElementName=This, Path=Activity, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                                    TextWrapping="Wrap"
                                                    FontSize="12"/>
                                     </Border>
@@ -192,21 +192,19 @@
                 </Grid>
                 <Grid Grid.Column="2"
                       Margin="5,0,5,0">
-                    <mdt:PackIcon x:Name="iconCloseCircle"
-                                      Kind="CloseCircle"
-                                      Height="Auto"
-                                      Width="{Binding ElementName=iconCloseCircle, Path=Height}"
-                                      VerticalAlignment="Center"
-                                      HorizontalAlignment="Center"
-                                      ToolTip="Удалить"
-                                      Foreground="Red"
-                                      Visibility="{Binding ElementName=_this, Path=IsCanRemove, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource boolToCollapsedVisibility}}">
+                    <Button Width="Auto"
+                            Height="Auto"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            Visibility="{Binding ElementName=This, Path=IsCanRemove, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource BoolToCollapsedVisibility}}"
+                            Style="{StaticResource RemoveButton}"
+                            Command="{Binding Path=Remove}">
                         <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="MouseDown">
-                                <i:InvokeCommandAction Command="{Binding ElementName=_this, Path=Remove}" CommandParameter="{Binding ElementName=_this}"/>
+                            <i:EventTrigger EventName="Click">
+                                <i:InvokeCommandAction Command="{Binding ElementName=This, Path=Remove}" CommandParameter="{Binding ElementName=This}"/>
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
-                    </mdt:PackIcon>
+                    </Button>
                 </Grid>
             </Grid>
         </Border>

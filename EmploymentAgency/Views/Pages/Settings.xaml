@@ -8,11 +8,12 @@
       xmlns:local="clr-namespace:EmploymentAgency.Views.Pages"
       xmlns:c="clr-namespace:EmploymentAgency.Converters"
       mc:Ignorable="d"
+      Background="{StaticResource PageBackgroundBrush}"
       DataContext="{Binding SettingsViewModel, Source={StaticResource ViewModelLocator}}"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Настройки" WindowTitle="Агентство трудоустройства - Настройки">
     <Page.Resources>
-        <c:TextToInt32 x:Key="textToInt32"/>
+        <c:TextToInt32 x:Key="TextToInt32"/>
     </Page.Resources>
     <Grid>
         <i:Interaction.Triggers>
@@ -26,18 +27,18 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <mdt:PackIcon Kind="ArrowLeftCircle"
-                          Panel.ZIndex="1"
-                          Width="40"
-                          Height="40"
-                          Margin="5,5,0,5"
-                          ToolTip="Вернуться в главное окно">
+            <Button Panel.ZIndex="1"
+                    Margin="5,5,0,5"
+                    HorizontalAlignment="Left"
+                    Style="{StaticResource BackButton}"
+                    Command="{Binding Path=Back}"
+                    ToolTip="Вернуться в главное окно">
                 <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="MouseDown">
+                    <i:EventTrigger EventName="Click">
                         <i:InvokeCommandAction Command="{Binding Path=Back}"/>
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
-            </mdt:PackIcon>
+            </Button>
             <TextBlock Style="{StaticResource MaterialDesignHeadline4TextBlock}"
                        Text="Настройки"
                        TextAlignment="Center"/>
@@ -54,14 +55,14 @@
                     <ColumnDefinition Width="400"/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
-                    <mdt:PackIcon x:Name="iconAlarm"
+                    <mdt:PackIcon x:Name="IconAlarm"
                                   Kind="Alarm"
                                   Height="Auto"
-                                  Width="{Binding ElementName=iconAlarm, Path=Height}"
+                                  Width="{Binding ElementName=IconAlarm, Path=Height}"
                                   ToolTip="Максимальное время выполнения запроса"/>
                 </Grid>
                 <Grid Grid.Column="1" Margin="5,0,0,0">
-                    <TextBox Text="{Binding Path=CommandTimeout, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource textToInt32}}"
+                    <TextBox Text="{Binding Path=CommandTimeout, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource TextToInt32}}"
                              mdt:HintAssist.Hint="Время выполнения запроса (MAX)"
                              mdt:HintAssist.HelperText="Максимальное время выполнения запроса должно быть более 0 секунд"
                              FontSize="20"
@@ -75,20 +76,20 @@
                     <ColumnDefinition Width="400"/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
-                    <mdt:PackIcon x:Name="iconServer"
+                    <mdt:PackIcon x:Name="IconServer"
                                   Kind="Server"
                                   Height="Auto"
-                                  Width="{Binding ElementName=iconServer, Path=Height}"
+                                  Width="{Binding ElementName=IconServer, Path=Height}"
                                   ToolTip="Адрес сервера базы данных"/>
                 </Grid>
                 <Grid Grid.Column="1" Margin="5,0,0,0">
-                    <TextBox x:Name="serverAddressTextBox"
+                    <TextBox x:Name="ServerAddressTextBox"
                              Text="{Binding Path=ServerAddress, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                              mdt:HintAssist.Hint="Адрес сервера базы данных"
                              mdt:HintAssist.HelperText="Адрес сервера должен быть длиной более 0 символов"
                              FontSize="20"
                              FontWeight="Medium"
-                             ToolTip="{Binding ElementName=serverAddressTextBox, Path=Text}"
+                             ToolTip="{Binding ElementName=ServerAddressTextBox, Path=Text}"
                              VerticalContentAlignment="Center"/>
                 </Grid>
             </Grid>
@@ -98,20 +99,20 @@
                     <ColumnDefinition Width="400"/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
-                    <mdt:PackIcon x:Name="iconDatabase"
+                    <mdt:PackIcon x:Name="IconDatabase"
                                   Kind="Database"
                                   Height="Auto"
-                                  Width="{Binding ElementName=iconDatabase, Path=Height}"
+                                  Width="{Binding ElementName=IconDatabase, Path=Height}"
                                   ToolTip="Название базы данных"/>
                 </Grid>
                 <Grid Grid.Column="1" Margin="5,0,0,0">
-                    <TextBox x:Name="databaseNameTextBox"
+                    <TextBox x:Name="DatabaseNameTextBox"
                              Text="{Binding Path=DatabaseName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                              mdt:HintAssist.Hint="Название базы данных"
                              mdt:HintAssist.HelperText="Название базы данных должно быть длиной более 0 символов"
                              FontSize="20"
                              FontWeight="Medium"
-                             ToolTip="{Binding ElementName=databaseNameTextBox, Path=Text}"
+                             ToolTip="{Binding ElementName=DatabaseNameTextBox, Path=Text}"
                              VerticalContentAlignment="Center"/>
                 </Grid>
             </Grid>

@@ -12,27 +12,9 @@ namespace EmploymentAgency.ViewModels
 {
     public class SkillsViewModel : BindableBase
     {
-        private int? _selectedIdSkill;
-
         private QueryExecutor _executor;
 
-        public bool IsCanAdd { get; set; } = true;
-
-        public bool IsCanChange { get; set; }
-
-        public bool IsCanRemove { get; set; }
-
-        public int? SelectedIdSkill
-        {
-            get { return _selectedIdSkill; }
-            set
-            {
-                _selectedIdSkill = value;
-
-                IsCanChange = _selectedIdSkill != null ? true : false;
-                IsCanRemove = _selectedIdSkill != null ? true : false;
-            }
-        }
+        public int? SelectedIdSkill { get; set; }
 
         public string SkillName { get; set; }
 
@@ -55,14 +37,14 @@ namespace EmploymentAgency.ViewModels
         public ICommand Add => new DelegateCommand(() =>
         {
             WindowService.ShowWindow(new AddSkill());
-        }, () => IsCanAdd == true);
+        }, () => true);
 
         public ICommand Change => new DelegateCommand(() =>
         {
             ChangeSkillViewModel.SelectedIdSkill = (int)SelectedIdSkill;
 
             WindowService.ShowWindow(new ChangeSkill());
-        }, () => IsCanChange);
+        }, () => SelectedIdSkill != null ? true : false);
 
         public ICommand Remove => new DelegateCommand(() =>
         {
@@ -74,7 +56,7 @@ namespace EmploymentAgency.ViewModels
 
                 Find();
             }
-        }, () => IsCanRemove);
+        }, () => SelectedIdSkill != null ? true : false);
 
         public ICommand ToFind => new DelegateCommand(() =>
         {

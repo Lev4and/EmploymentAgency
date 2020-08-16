@@ -12,27 +12,9 @@ namespace EmploymentAgency.ViewModels
 {
     public class SchedulesViewModel : BindableBase
     {
-        private int? _selectedIdSchedule;
-
         private QueryExecutor _executor;
 
-        public bool IsCanAdd { get; set; } = true;
-
-        public bool IsCanChange { get; set; }
-
-        public bool IsCanRemove { get; set; }
-
-        public int? SelectedIdSchedule
-        {
-            get { return _selectedIdSchedule; }
-            set
-            {
-                _selectedIdSchedule = value;
-
-                IsCanChange = _selectedIdSchedule != null ? true : false;
-                IsCanRemove = _selectedIdSchedule != null ? true : false;
-            }
-        }
+        public int? SelectedIdSchedule { get; set; }
 
         public string ScheduleName { get; set; }
 
@@ -53,14 +35,14 @@ namespace EmploymentAgency.ViewModels
         public ICommand Add => new DelegateCommand(() =>
         {
             WindowService.ShowWindow(new AddSchedule());
-        }, () => IsCanAdd == true);
+        }, () => true);
 
         public ICommand Change => new DelegateCommand(() =>
         {
             ChangeScheduleViewModel.SelectedIdSchedule = (int)SelectedIdSchedule;
 
             WindowService.ShowWindow(new ChangeSchedule());
-        }, () => IsCanChange);
+        }, () => SelectedIdSchedule != null ? true : false);
 
         public ICommand Remove => new DelegateCommand(() =>
         {
@@ -72,7 +54,7 @@ namespace EmploymentAgency.ViewModels
 
                 Find();
             }
-        }, () => IsCanRemove);
+        }, () => SelectedIdSchedule != null ? true : false);
 
         public ICommand ToFind => new DelegateCommand(() =>
         {

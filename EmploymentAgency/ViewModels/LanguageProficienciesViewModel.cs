@@ -12,27 +12,9 @@ namespace EmploymentAgency.ViewModels
 {
     public class LanguageProficienciesViewModel : BindableBase
     {
-        private int? _selectedIdLanguageProficiency;
-
         private QueryExecutor _executor;
 
-        public bool IsCanAdd { get; set; } = true;
-
-        public bool IsCanChange { get; set; }
-
-        public bool IsCanRemove { get; set; }
-
-        public int? SelectedIdLanguageProficiency
-        {
-            get { return _selectedIdLanguageProficiency; }
-            set
-            {
-                _selectedIdLanguageProficiency = value;
-
-                IsCanChange = _selectedIdLanguageProficiency != null ? true : false;
-                IsCanRemove = _selectedIdLanguageProficiency != null ? true : false;
-            }
-        }
+        public int? SelectedIdLanguageProficiency { get; set; }
 
         public string LanguageProficiencyName { get; set; }
 
@@ -53,14 +35,14 @@ namespace EmploymentAgency.ViewModels
         public ICommand Add => new DelegateCommand(() =>
         {
             WindowService.ShowWindow(new AddLanguageProficiency());
-        }, () => IsCanAdd == true);
+        }, () => true);
 
         public ICommand Change => new DelegateCommand(() =>
         {
             ChangeLanguageProficiencyViewModel.SelectedIdLanguageProficiency = (int)SelectedIdLanguageProficiency;
 
             WindowService.ShowWindow(new ChangeLanguageProficiency());
-        }, () => IsCanChange);
+        }, () => SelectedIdLanguageProficiency != null ? true : false);
 
         public ICommand Remove => new DelegateCommand(() =>
         {
@@ -72,7 +54,7 @@ namespace EmploymentAgency.ViewModels
 
                 Find();
             }
-        }, () => IsCanRemove);
+        }, () => SelectedIdLanguageProficiency != null ? true : false);
 
         public ICommand ToFind => new DelegateCommand(() =>
         {

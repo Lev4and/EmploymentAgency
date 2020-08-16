@@ -102,7 +102,8 @@ namespace EmploymentAgency.Views.UserControls
             {
                 BlockViewItem item = Activator.CreateInstance(TypesBlockViewItem.Find(t => t.Name == TypeItem.ToString())) as BlockViewItem;
                 item.VerticalAlignment = VerticalAlignment.Top;
-                item.Margin = new Thickness(10, 10 + (i * (item.Height + 10)), 10, 0);
+                item.HorizontalAlignment = HorizontalAlignment.Stretch;
+                item.Margin = new Thickness(0, 10 + (i * (item.Height + 10)), 10, 0);
                 item.Data = Data[i];
                 item.Click += Item_Click;
                 Items.Add(item);
@@ -111,19 +112,19 @@ namespace EmploymentAgency.Views.UserControls
 
         private void RemoveContorls()
         {
-            while (grid.Children.Count > 0)
-                grid.Children.Clear();
+            while (Grid.Children.Count > 0)
+                Grid.Children.Clear();
         }
 
         private void RenderContorl(UIElement control)
         {
-            grid.Children.Add(control);
+            Grid.Children.Add(control);
         }
 
         private void RenderContorls()
         {
             foreach (var item in Items)
-                grid.Children.Add(item);
+                Grid.Children.Add(item);
         }
 
         private void Item_Click(object sender, EventArgs e)
@@ -159,7 +160,8 @@ namespace EmploymentAgency.Views.UserControls
                     {
                         var item = Activator.CreateInstance(TypesBlockViewItem.Find(t => t.Name == TypeItem.ToString())) as BlockViewItem;
                         item.VerticalAlignment = VerticalAlignment.Top;
-                        item.Margin = new Thickness(10, 10 + (i * (item.Height + 10)), 10, 0);
+                        item.HorizontalAlignment = HorizontalAlignment.Stretch;
+                        item.Margin = new Thickness(0, 10 + (i * (item.Height + 10)), 10, 0);
                         item.Data = Data[i];
                         item.Click += Item_Click;
                         Items.Add(item);

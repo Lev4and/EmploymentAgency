@@ -9,10 +9,11 @@
         xmlns:uc="clr-namespace:EmploymentAgency.Views.UserControls"
         xmlns:c="clr-namespace:EmploymentAgency.Converters"
         mc:Ignorable="d"
+        Background="{StaticResource WindowBackgroundBrush}"
         DataContext="{Binding ChangeOrganizationViewModel, Source={StaticResource ViewModelLocator}}"
         Title="Агентство трудоустройства - Изменение данных организации" Height="490" Width="800">
     <Window.Resources>
-        <c:ArrayByteToImageSource x:Key="arrayByteToImageSource"/>
+        <c:ArrayByteToImageSource x:Key="ArrayByteToImageSource"/>
     </Window.Resources>
     <Grid>
         <i:Interaction.Triggers>
@@ -44,21 +45,21 @@
                     <ColumnDefinition Width="300"/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
-                    <mdt:PackIcon x:Name="iconCog"
+                    <mdt:PackIcon x:Name="IconCog"
                                   Kind="Cog"
                                   Height="Auto"
-                                  Width="{Binding ElementName=iconCog, Path=Height}"
+                                  Width="{Binding ElementName=IconCog, Path=Height}"
                                   ToolTip="Отрасль промышленности"/>
                 </Grid>
                 <Grid Grid.Column="1" Margin="5,0,0,0">
-                    <TextBox Name="industryNameTextBox"
+                    <TextBox Name="IndustryNameTextBox"
                              IsReadOnly="True"
                              mdt:HintAssist.Hint="Отрасль"
                              mdt:HintAssist.HelperText="Укажите отрасль"
                              FontSize="20"
                              FontWeight="Medium"
                              Text="{Binding Path=IndustryName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                             ToolTip="{Binding ElementName=industryNameTextBox, Path=Text}"
+                             ToolTip="{Binding ElementName=IndustryNameTextBox, Path=Text}"
                              VerticalContentAlignment="Center"/>
                 </Grid>
             </Grid>
@@ -68,21 +69,21 @@
                     <ColumnDefinition Width="300"/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
-                    <mdt:PackIcon x:Name="iconCogOutline"
+                    <mdt:PackIcon x:Name="IconCogOutline"
                                   Kind="CogOutline"
                                   Height="Auto"
-                                  Width="{Binding ElementName=iconCogOutline, Path=Height}"
+                                  Width="{Binding ElementName=IconCogOutline, Path=Height}"
                                   ToolTip="Подотрасль промышленности"/>
                 </Grid>
                 <Grid Grid.Column="1" Margin="5,0,0,0">
-                    <TextBox x:Name="nameSubIndustryTextBox"
+                    <TextBox x:Name="NameSubIndustryTextBox"
                              IsReadOnly="True"
                              mdt:HintAssist.Hint="Подотрасль"
                              mdt:HintAssist.HelperText="Укажите подотрасль"
                              FontSize="20"
                              FontWeight="Medium"
                              Text="{Binding Path=NameSubIndustry, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                             ToolTip="{Binding ElementName=nameSubIndustryTextBox, Path=Text}"
+                             ToolTip="{Binding ElementName=NameSubIndustryTextBox, Path=Text}"
                              VerticalContentAlignment="Center"/>
                 </Grid>
             </Grid>
@@ -92,20 +93,20 @@
                     <ColumnDefinition Width="300"/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
-                    <mdt:PackIcon x:Name="iconAccountTie"
+                    <mdt:PackIcon x:Name="IconAccountTie"
                                   Kind="AccountTie"
                                   Height="Auto"
-                                  Width="{Binding ElementName=iconAccountTie, Path=Height}"
+                                  Width="{Binding ElementName=IconAccountTie, Path=Height}"
                                   ToolTip="Название организации"/>
                 </Grid>
                 <Grid Grid.Column="1" Margin="5,0,0,0">
-                    <TextBox x:Name="organizationNameTextBox"
+                    <TextBox x:Name="OrganizationNameTextBox"
                              mdt:HintAssist.Hint="Название организации"
                              mdt:HintAssist.HelperText="Укажите название организации"
                              FontSize="20"
                              FontWeight="Medium"
                              Text="{Binding Path=OrganizationName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                             ToolTip="{Binding ElementName=organizationNameTextBox, Path=Text}"
+                             ToolTip="{Binding ElementName=OrganizationNameTextBox, Path=Text}"
                              VerticalContentAlignment="Center"/>
                 </Grid>
             </Grid>
@@ -115,10 +116,10 @@
                     <ColumnDefinition Width="300"/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
-                    <mdt:PackIcon x:Name="iconCalendarRemove"
+                    <mdt:PackIcon x:Name="IconCalendarRemove"
                                   Kind="CalendarRemove"
                                   Height="Auto"
-                                  Width="{Binding ElementName=iconCalendarRemove, Path=Height}"
+                                  Width="{Binding ElementName=IconCalendarRemove, Path=Height}"
                                   ToolTip="Дата закрытия"/>
                 </Grid>
                 <Grid Grid.Column="1" Margin="5,0,0,0">

@@ -8,12 +8,13 @@
       xmlns:local="clr-namespace:EmploymentAgency.Views.Pages"
       xmlns:c="clr-namespace:EmploymentAgency.Converters"
       mc:Ignorable="d"
+      Background="{StaticResource PageBackgroundBrush}"
       DataContext="{Binding RegistrationViewModel, Source={StaticResource ViewModelLocator}}"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Регистрация" WindowTitle="Агентство трудоустройства - Регистрация">
     <Page.Resources>
-        <c:BoolToVisibility x:Key="boolToVisibility"/>
-        <c:SelectedValueToNullableInt32 x:Key="selectedValueToNullableInt32"/>
+        <c:BoolToVisibility x:Key="BoolToVisibility"/>
+        <c:SelectedValueToNullableInt32 x:Key="SelectedValueToNullableInt32"/>
     </Page.Resources>
     <Grid>
         <i:Interaction.Triggers>
@@ -27,18 +28,18 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <mdt:PackIcon Kind="ArrowLeftCircle"
-                          Panel.ZIndex="1"
-                          Width="40"
-                          Height="40"
-                          Margin="5,5,0,5"
-                          ToolTip="Вернуться в главное окно">
+            <Button Panel.ZIndex="1"
+                    Margin="5,5,0,5"
+                    HorizontalAlignment="Left"
+                    Style="{StaticResource BackButton}"
+                    Command="{Binding Path=Back}"
+                    ToolTip="Вернуться в главное окно">
                 <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="MouseDown">
+                    <i:EventTrigger EventName="Click">
                         <i:InvokeCommandAction Command="{Binding Path=Back}"/>
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
-            </mdt:PackIcon>
+            </Button>
             <TextBlock Style="{StaticResource MaterialDesignHeadline4TextBlock}"
                        Text="Регистрация"
                        TextAlignment="Center"/>
@@ -58,10 +59,10 @@
                     <ColumnDefinition Width="300"/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
-                    <mdt:PackIcon x:Name="iconAccountTie"
+                    <mdt:PackIcon x:Name="IconAccountTie"
                                   Kind="AccountTie"
                                   Height="Auto"
-                                  Width="{Binding ElementName=iconAccountTie, Path=Height}"
+                                  Width="{Binding ElementName=IconAccountTie, Path=Height}"
                                   ToolTip="Тип пользователя"/>
                 </Grid>
                 <Grid Grid.Column="1" Margin="5,0,0,0">
@@ -70,7 +71,7 @@
                                       ItemsSource="{Binding Path=Roles, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                       DisplayMemberPath="RoleName"
                                       SelectedValuePath="IdRole"
-                                      SelectedValue="{Binding Path=SelectedIdRole, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource selectedValueToNullableInt32}}"
+                                      SelectedValue="{Binding Path=SelectedIdRole, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource SelectedValueToNullableInt32}}"
                                       FontSize="20"
                                       FontWeight="Medium"/>
                 </Grid>
@@ -81,10 +82,10 @@
                     <ColumnDefinition Width="300"/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
-                    <mdt:PackIcon x:Name="iconAccount"
+                    <mdt:PackIcon x:Name="IconAccount"
                                   Kind="Account"
                                   Height="Auto"
-                                  Width="{Binding ElementName=iconAccount, Path=Height}"
+                                  Width="{Binding ElementName=IconAccount, Path=Height}"
                                   ToolTip="Логин"/>
                 </Grid>
                 <Grid Grid.Column="1" Margin="5,0,0,0">
@@ -104,14 +105,14 @@
                     <ColumnDefinition Width="300"/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
-                    <mdt:PackIcon x:Name="iconPassword"
+                    <mdt:PackIcon x:Name="IconPassword"
                                   Kind="FormTextboxPassword"
                                   Height="Auto"
-                                  Width="{Binding ElementName=iconPassword, Path=Height}"
+                                  Width="{Binding ElementName=IconPassword, Path=Height}"
                                   ToolTip="Пароль"/>
                 </Grid>
                 <Grid Grid.Column="1" Margin="5,0,0,0">
-                    <PasswordBox x:Name="passwordBox"
+                    <PasswordBox x:Name="PasswordBox"
                                  mdt:HintAssist.Hint="Пароль"
                                  mdt:HintAssist.HelperText="Длина пароля должна быть больше 0 символов"
                                  FontSize="20"
@@ -119,7 +120,7 @@
                                  VerticalContentAlignment="Center">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="PasswordChanged">
-                                <i:InvokeCommandAction Command="{Binding Path=PasswordChanged}" CommandParameter="{Binding ElementName=passwordBox}"/>
+                                <i:InvokeCommandAction Command="{Binding Path=PasswordChanged}" CommandParameter="{Binding ElementName=PasswordBox}"/>
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
                     </PasswordBox>
@@ -131,14 +132,14 @@
                     <ColumnDefinition Width="300"/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
-                    <mdt:PackIcon x:Name="iconLockOpen"
+                    <mdt:PackIcon x:Name="IconLockOpen"
                                   Kind="LockOpen"
                                   Height="Auto"
-                                  Width="{Binding ElementName=iconLockOpen, Path=Height}"
+                                  Width="{Binding ElementName=IconLockOpen, Path=Height}"
                                   ToolTip="Подтвердите пароль"/>
                 </Grid>
                 <Grid Grid.Column="1" Margin="5,0,0,0">
-                    <PasswordBox x:Name="repeatPasswordBox"
+                    <PasswordBox x:Name="RepeatPasswordBox"
                                  mdt:HintAssist.Hint="Подтвердите пароль"
                                  mdt:HintAssist.HelperText="Повторите введенный ранее пароль"
                                  FontSize="20"
@@ -146,7 +147,7 @@
                                  VerticalContentAlignment="Center">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="PasswordChanged">
-                                <i:InvokeCommandAction Command="{Binding Path=RepeatPasswordChanged}" CommandParameter="{Binding ElementName=repeatPasswordBox}"/>
+                                <i:InvokeCommandAction Command="{Binding Path=RepeatPasswordChanged}" CommandParameter="{Binding ElementName=RepeatPasswordBox}"/>
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
                     </PasswordBox>

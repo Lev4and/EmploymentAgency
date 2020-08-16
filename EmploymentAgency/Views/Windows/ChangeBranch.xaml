@@ -8,6 +8,7 @@
         xmlns:local="clr-namespace:EmploymentAgency.Views.Windows"
         xmlns:c="clr-namespace:EmploymentAgency.Converters"
         mc:Ignorable="d"
+        Background="{StaticResource WindowBackgroundBrush}"
         DataContext="{Binding ChangeBranchViewModel, Source={StaticResource ViewModelLocator}}"
         Title="Агентство трудоустройства -  Изменение данных филиала организации" Height="450" Width="800">
     <Grid>
@@ -41,20 +42,20 @@
                     <ColumnDefinition Width="220"/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
-                    <mdt:PackIcon x:Name="iconCity"
+                    <mdt:PackIcon x:Name="IconCity"
                                   Kind="City"
                                   Height="Auto"
-                                  Width="{Binding ElementName=iconCity, Path=Height}"
+                                  Width="{Binding ElementName=IconCity, Path=Height}"
                                   ToolTip="Страна"/>
                 </Grid>
                 <Grid Grid.Column="1" Margin="5,0,0,0">
-                    <TextBox x:Name="countryTextBox"
+                    <TextBox x:Name="CountryTextBox"
                              IsReadOnly="True"
                              mdt:HintAssist.HelperText="Страна"
                              Text="{Binding Path=CountryName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                              FontSize="20"
                              FontWeight="Medium"
-                             ToolTip="{Binding ElementName=countryTextBox, Path=Text}"
+                             ToolTip="{Binding ElementName=CountryTextBox, Path=Text}"
                              VerticalContentAlignment="Center"/>
                 </Grid>
             </Grid>
@@ -67,20 +68,20 @@
                     <ColumnDefinition Width="220"/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
-                    <mdt:PackIcon x:Name="iconCityVariant"
+                    <mdt:PackIcon x:Name="IconCityVariant"
                                   Kind="CityVariant"
                                   Height="Auto"
-                                  Width="{Binding ElementName=iconCityVariant, Path=Height}"
+                                  Width="{Binding ElementName=IconCityVariant, Path=Height}"
                                   ToolTip="Город"/>
                 </Grid>
                 <Grid Grid.Column="1" Margin="5,0,0,0">
-                    <TextBox x:Name="cityTextBox"
+                    <TextBox x:Name="CityTextBox"
                              IsReadOnly="True"
                              mdt:HintAssist.HelperText="Город"
                              Text="{Binding Path=CityName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                              FontSize="20"
                              FontWeight="Medium"
-                             ToolTip="{Binding ElementName=cityTextBox, Path=Text}"
+                             ToolTip="{Binding ElementName=CityTextBox, Path=Text}"
                              VerticalContentAlignment="Center"/>
                 </Grid>
             </Grid>
@@ -93,20 +94,20 @@
                     <ColumnDefinition Width="220"/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
-                    <mdt:PackIcon x:Name="iconMapMarker"
+                    <mdt:PackIcon x:Name="IconMapMarker"
                                   Kind="MapMarker"
                                   Height="Auto"
-                                  Width="{Binding ElementName=iconMapMarker, Path=Height}"
+                                  Width="{Binding ElementName=IconMapMarker, Path=Height}"
                                   ToolTip="Улица"/>
                 </Grid>
                 <Grid Grid.Column="1" Margin="5,0,0,0">
-                    <TextBox x:Name="streetBox"
+                    <TextBox x:Name="StreetBox"
                              IsReadOnly="True"
                              mdt:HintAssist.HelperText="Улица"
                              Text="{Binding Path=StreetName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                              FontSize="20"
                              FontWeight="Medium"
-                             ToolTip="{Binding ElementName=streetBox, Path=Text}"
+                             ToolTip="{Binding ElementName=StreetBox, Path=Text}"
                              VerticalContentAlignment="Center"/>
                 </Grid>
             </Grid>
@@ -128,20 +129,20 @@
                     <ColumnDefinition Width="220"/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
-                    <mdt:PackIcon x:Name="iconAccountTie"
+                    <mdt:PackIcon x:Name="IconAccountTie"
                                   Kind="AccountTie"
                                   Height="Auto"
-                                  Width="{Binding ElementName=iconAccountTie, Path=Height}"
+                                  Width="{Binding ElementName=IconAccountTie, Path=Height}"
                                   ToolTip="Название организации"/>
                 </Grid>
                 <Grid Grid.Column="1" Margin="5,0,0,0">
-                    <TextBox x:Name="organizationBox"
+                    <TextBox x:Name="OrganizationBox"
                              IsReadOnly="True"
                              mdt:HintAssist.HelperText="Организация"
                              Text="{Binding Path=OrganizationName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                              FontSize="20"
                              FontWeight="Medium"
-                             ToolTip="{Binding ElementName=organizationBox, Path=Text}"
+                             ToolTip="{Binding ElementName=OrganizationBox, Path=Text}"
                              VerticalContentAlignment="Center"/>
                 </Grid>
             </Grid>
@@ -154,21 +155,21 @@
                     <ColumnDefinition Width="220"/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
-                    <mdt:PackIcon x:Name="iconHomeMapMarker"
+                    <mdt:PackIcon x:Name="IconHomeMapMarker"
                                   Kind="HomeMapMarker"
                                   Height="Auto"
-                                  Width="{Binding ElementName=iconHomeMapMarker, Path=Height}"
+                                  Width="{Binding ElementName=IconHomeMapMarker, Path=Height}"
                                   ToolTip="Дом"/>
                 </Grid>
                 <Grid Grid.Column="1" 
                       Margin="5,0,0,0">
-                    <TextBox x:Name="houseTextBox"
+                    <TextBox x:Name="HouseTextBox"
                              IsReadOnly="True"
                              Text="{Binding Path=NameHouse, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                              mdt:HintAssist.HelperText="Дом"
                              FontSize="20"
                              FontWeight="Medium"
-                             ToolTip="{Binding ElementName=houseTextBox, Path=Text}"
+                             ToolTip="{Binding ElementName=HouseTextBox, Path=Text}"
                              VerticalContentAlignment="Center"/>
                 </Grid>
             </Grid>
@@ -181,21 +182,21 @@
                     <ColumnDefinition Width="220"/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
-                    <mdt:PackIcon x:Name="iconPhone"
+                    <mdt:PackIcon x:Name="IconPhone"
                                   Kind="Phone"
                                   Height="Auto"
-                                  Width="{Binding ElementName=iconPhone, Path=Height}"
+                                  Width="{Binding ElementName=IconPhone, Path=Height}"
                                   ToolTip="Номер телефона"/>
                 </Grid>
                 <Grid Grid.Column="1" 
                       Margin="5,0,0,0">
-                    <TextBox x:Name="phoneNumberTextBox"
+                    <TextBox x:Name="PhoneNumberTextBox"
                              Text="{Binding Path=PhoneNumber, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                              mdt:HintAssist.Hint="Номер телефона"
                              mdt:HintAssist.HelperText="Номер телефона"
                              FontSize="20"
                              FontWeight="Medium"
-                             ToolTip="{Binding ElementName=phoneNumberTextBox, Path=Text}"
+                             ToolTip="{Binding ElementName=PhoneNumberTextBox, Path=Text}"
                              VerticalContentAlignment="Center"/>
                 </Grid>
             </Grid>

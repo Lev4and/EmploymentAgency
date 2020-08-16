@@ -7,6 +7,7 @@
         xmlns:local="clr-namespace:EmploymentAgency.Views.Windows"
         xmlns:vm="clr-namespace:EmploymentAgency.ViewModels"
         mc:Ignorable="d"
+        Background="{StaticResource WindowBackgroundBrush}"
         DataContext="{Binding MainWindowViewModel, Source={StaticResource ViewModelLocator}}"
         Content="{Binding PageSource}"
         Title="Агентство трудоустройства" Height="465" Width="820" Icon="/EmploymentAgency;component/Resources/Images/Icons/Icon.ico">

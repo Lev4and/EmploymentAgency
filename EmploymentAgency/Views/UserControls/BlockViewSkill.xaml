@@ -8,19 +8,19 @@
                      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
                      xmlns:c="clr-namespace:EmploymentAgency.Converters"
                      mc:Ignorable="d"
-                     x:Name="_this"
-                     DataContext="{Binding ElementName=_this, Path=Data}"
+                     x:Name="This"
+                     DataContext="{Binding ElementName=This, Path=Data}"
                      d:DesignHeight="450" d:DesignWidth="800" MinWidth="800" MinHeight="100" Height="100" MaxHeight="100">
     <UserControl.Resources>
-        <c:ArrayByteToImageSource x:Key="arrayByteToImageSource"/>
+        <c:ArrayByteToImageSource x:Key="ArrayByteToImageSource"/>
     </UserControl.Resources>
     <Grid>
         <Border BorderThickness="4" BorderBrush="Black" CornerRadius="10">
-            <Grid Background="{Binding ElementName=_this, Path=BackgroundBrush, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
+            <Grid Background="{Binding ElementName=This, Path=BackgroundBrush, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
                   Margin="0">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="MouseDown">
-                        <i:InvokeCommandAction Command="{Binding ElementName=_this, Path=OnClick}"/>
+                        <i:InvokeCommandAction Command="{Binding ElementName=This, Path=OnClick}"/>
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
                 <Grid.ColumnDefinitions>
@@ -33,7 +33,7 @@
                     <Border BorderThickness="1"
                             BorderBrush="Black">
                         <Image Stretch="Uniform"
-                               Source="{Binding Path=Photo, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource arrayByteToImageSource}}"/>
+                               Source="{Binding Path=Photo, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource ArrayByteToImageSource}}"/>
                     </Border>
                 </Grid>
                 <Grid Grid.Column="1"

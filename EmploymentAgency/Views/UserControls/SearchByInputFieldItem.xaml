@@ -7,24 +7,24 @@
              xmlns:local="clr-namespace:EmploymentAgency.Views.UserControls"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              mc:Ignorable="d"
-             x:Name="_this"
+             x:Name="This"
              d:DesignHeight="60" d:DesignWidth="800" MinHeight="60" MaxHeight="60">
-    <Grid Background="{Binding ElementName=_this, Path=BackgroundBrush, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+    <Grid Background="{Binding ElementName=This, Path=BackgroundBrush, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
         <i:Interaction.Triggers>
             <i:EventTrigger EventName="MouseDown">
-                <i:InvokeCommandAction Command="{Binding ElementName=_this, Path=OnMouseDown}"/>
+                <i:InvokeCommandAction Command="{Binding ElementName=This, Path=OnMouseDown}"/>
             </i:EventTrigger>
             <i:EventTrigger EventName="MouseMove">
-                <i:InvokeCommandAction Command="{Binding ElementName=_this, Path=OnMouseMove}"/>
+                <i:InvokeCommandAction Command="{Binding ElementName=This, Path=OnMouseMove}"/>
             </i:EventTrigger>
             <i:EventTrigger EventName="MouseLeave">
-                <i:InvokeCommandAction Command="{Binding ElementName=_this, Path=OnMouseLeave}"/>
+                <i:InvokeCommandAction Command="{Binding ElementName=This, Path=OnMouseLeave}"/>
             </i:EventTrigger>
         </i:Interaction.Triggers>
-        <TextBlock Text="{Binding ElementName=_this, Path=ResultSearch, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+        <TextBlock Text="{Binding ElementName=This, Path=ResultSearch, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                    FontSize="20"
                    FontWeight="Medium"
-                   Foreground="{Binding ElementName=_this, Path=ForegroundBrush, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                   Foreground="{Binding ElementName=This, Path=ForegroundBrush, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                    Margin="5,0,5,0"
                    VerticalAlignment="Center"/>
     </Grid>

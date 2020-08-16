@@ -178,7 +178,7 @@ namespace EmploymentAgency.Views.UserControls
 
             if (Items.Contains(item))
             {
-                grid.Children.Remove(item);
+                Grid.Children.Remove(item);
 
                 Items.Remove(item);
 
@@ -201,12 +201,12 @@ namespace EmploymentAgency.Views.UserControls
                 item.ProfessionName = SelectedLaborActivities[i].ProfessionName;
                 item.Activity = SelectedLaborActivities[i].Activity;
                 item.VerticalAlignment = VerticalAlignment.Top;
-                item.MinWidth = grid.ActualWidth - 20;
-                item.MaxWidth = grid.ActualWidth - 20;
-                item.Width = grid.ActualWidth - 20;
+                item.MinWidth = Grid.ActualWidth - 20;
+                item.MaxWidth = Grid.ActualWidth - 20;
+                item.Width = Grid.ActualWidth - 20;
                 item.Margin = new Thickness(10, 10 + (210 * i), 10, 0);
                 item.Remove = Remove;
-                grid.Children.Add(item);
+                Grid.Children.Add(item);
 
                 Items.Add(item);
             }
@@ -222,12 +222,12 @@ namespace EmploymentAgency.Views.UserControls
             item.ProfessionName = ProfessionName;
             item.Activity = Activity;
             item.VerticalAlignment = VerticalAlignment.Top;
-            item.MinWidth = grid.ActualWidth - 20;
-            item.MaxWidth = grid.ActualWidth - 20;
-            item.Width = grid.ActualWidth - 20;
+            item.MinWidth = Grid.ActualWidth - 20;
+            item.MaxWidth = Grid.ActualWidth - 20;
+            item.Width = Grid.ActualWidth - 20;
             item.Margin = new Thickness(10, 10 + (210 * Items.Count), 10, 0);
             item.Remove = Remove;
-            grid.Children.Add(item);
+            Grid.Children.Add(item);
 
             Items.Add(item);
 

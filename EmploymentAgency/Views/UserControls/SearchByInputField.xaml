@@ -6,11 +6,11 @@
              xmlns:mdt="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:EmploymentAgency.Views.UserControls"
              mc:Ignorable="d"
-             x:Name="_this"
+             x:Name="This"
              d:DesignHeight="60" d:DesignWidth="800">
     <Grid>
-        <TextBox mdt:HintAssist.Hint="{Binding ElementName=_this, Path=Hint, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                 Text="{Binding ElementName=_this, Path=SearchLine, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+        <TextBox mdt:HintAssist.Hint="{Binding ElementName=This, Path=Hint, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                 Text="{Binding ElementName=This, Path=SearchLine, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                  Focusable="True"
                  
                  FontSize="20"
@@ -26,10 +26,10 @@
                         VerticalAlignment="Stretch"
                         HorizontalAlignment="Stretch">
             <mdt:DrawerHost Width="Auto" 
-                            IsTopDrawerOpen="{Binding ElementName=_this, Path=IsDrawerOpen, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+                            IsTopDrawerOpen="{Binding ElementName=This, Path=IsDrawerOpen, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
                 <mdt:DrawerHost.TopDrawerContent>
                     <DockPanel Width="Auto">
-                        <Grid x:Name="grid"
+                        <Grid x:Name="Grid"
                               HorizontalAlignment="Stretch">
                         </Grid>
                     </DockPanel>

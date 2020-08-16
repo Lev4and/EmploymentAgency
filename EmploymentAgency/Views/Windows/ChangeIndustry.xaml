@@ -7,6 +7,7 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:local="clr-namespace:EmploymentAgency.Views.Windows"
         mc:Ignorable="d"
+        Background="{StaticResource WindowBackgroundBrush}"
         DataContext="{Binding ChangeIndustryViewModel, Source={StaticResource ViewModelLocator}}"
         Title="Агентство трудоустройства - Изменение данных отрасля" Height="450" Width="800">
     <Grid>
@@ -29,21 +30,21 @@
                 <ColumnDefinition Width="300"/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
-                <mdt:PackIcon x:Name="iconCog"
+                <mdt:PackIcon x:Name="IconCog"
                               Kind="Cog"
                               Height="Auto"
-                              Width="{Binding ElementName=iconCog, Path=Height}"
+                              Width="{Binding ElementName=IconCog, Path=Height}"
                               ToolTip="Отрасль"/>
             </Grid>
             <Grid Grid.Column="1" 
                       Margin="5,0,0,0">
-                <TextBox x:Name="industryNameTextBox"
+                <TextBox x:Name="IndustryNameTextBox"
                          Text="{Binding Path=IndustryName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                          mdt:HintAssist.Hint="Название отрасля"
                          mdt:HintAssist.HelperText="Введите название отрасля"
                          FontSize="20"
                          FontWeight="Medium"
-                         ToolTip="{Binding ElementName=industryNameTextBox, Path=Text}"
+                         ToolTip="{Binding ElementName=IndustryNameTextBox, Path=Text}"
                          VerticalContentAlignment="Center"/>
             </Grid>
         </Grid>

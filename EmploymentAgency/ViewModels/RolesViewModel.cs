@@ -12,27 +12,9 @@ namespace EmploymentAgency.ViewModels
 {
     public class RolesViewModel : BindableBase
     {
-        private int? _selectedIdRole;
-
         private QueryExecutor _executor;
 
-        public bool IsCanAdd { get; set; } = true;
-
-        public bool IsCanChange { get; set; }
-
-        public bool IsCanRemove { get; set; }
-
-        public int? SelectedIdRole
-        {
-            get { return _selectedIdRole; }
-            set
-            {
-                _selectedIdRole = value;
-
-                IsCanChange = _selectedIdRole != null ? true : false;
-                IsCanRemove = _selectedIdRole != null ? true : false;
-            }
-        }
+        public int? SelectedIdRole { get; set; }
 
         public string RoleName { get; set; }
 
@@ -53,14 +35,14 @@ namespace EmploymentAgency.ViewModels
         public ICommand Add => new DelegateCommand(() =>
         {
             WindowService.ShowWindow(new AddRole());
-        }, () => IsCanAdd == true);
+        }, () => true);
 
         public ICommand Change => new DelegateCommand(() =>
         {
             ChangeRoleViewModel.SelectedIdRole = (int)SelectedIdRole;
 
             WindowService.ShowWindow(new ChangeRole());
-        }, () => IsCanChange);
+        }, () => SelectedIdRole != null ? true : false);
 
         public ICommand Remove => new DelegateCommand(() =>
         {
@@ -72,7 +54,7 @@ namespace EmploymentAgency.ViewModels
 
                 Find();
             }
-        }, () => IsCanRemove);
+        }, () => SelectedIdRole != null ? true : false);
 
         public ICommand ToFind => new DelegateCommand(() =>
         {

@@ -9,11 +9,12 @@
       xmlns:uc="clr-namespace:EmploymentAgency.Views.UserControls"
       xmlns:c="clr-namespace:EmploymentAgency.Converters"
       mc:Ignorable="d"
+      Background="{StaticResource PageBackgroundBrush}"
       DataContext="{Binding StreetsViewModel, Source={StaticResource ViewModelLocator}}"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Улицы" WindowTitle="Агентство трудоустройства - Улицы">
     <Page.Resources>
-        <c:SelectedValueToNullableInt32 x:Key="selectedValueToNullableInt32"/>
+        <c:SelectedValueToNullableInt32 x:Key="SelectedValueToNullableInt32"/>
     </Page.Resources>
     <Grid>
         <i:Interaction.Triggers>
@@ -35,8 +36,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0"
-                  Margin="5">
+            <Grid Grid.Column="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
@@ -44,88 +44,43 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0"
-                  Margin="0,0,5,0">
-                    <mdt:PackIcon x:Name="iconPlusCircle"
-                              Kind="PlusCircle"
-                              Panel.ZIndex="1"
-                              IsEnabled="{Binding Path=IsCanAdd, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                              Height="Auto"
-                              Width="{Binding ElementName=iconPlusCircle, Path=Height}"
-                              ToolTip="Добавить">
-                        <mdt:PackIcon.Style>
-                            <Style TargetType="mdt:PackIcon">
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding ElementName=iconPlusCircle, Path=IsEnabled}" Value="True">
-                                        <Setter Property="Foreground" Value="Green"/>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding ElementName=iconPlusCircle, Path=IsEnabled}" Value="False">
-                                        <Setter Property="Foreground" Value="Gray"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </mdt:PackIcon.Style>
+                      Margin="0,0,5,0">
+                    <Button Width="50"
+                            Height="50"
+                            Style="{StaticResource AddButton}"
+                            Command="{Binding Path=Add}">
                         <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="MouseDown">
+                            <i:EventTrigger EventName="Click">
                                 <i:InvokeCommandAction Command="{Binding Path=Add}"/>
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
-                    </mdt:PackIcon>
+                    </Button>
                 </Grid>
                 <Grid Grid.Column="1"
-                  Margin="5,0,5,0">
-                    <mdt:PackIcon x:Name="iconPencil"
-                              Kind="Pencil"
-                              Panel.ZIndex="1"
-                              IsEnabled="{Binding Path=IsCanChange, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                              Height="Auto"
-                              Width="{Binding ElementName=iconPencil, Path=Height}"
-                              ToolTip="Изменить">
-                        <mdt:PackIcon.Style>
-                            <Style TargetType="mdt:PackIcon">
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding ElementName=iconPencil, Path=IsEnabled}" Value="True">
-                                        <Setter Property="Foreground" Value="Orange"/>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding ElementName=iconPencil, Path=IsEnabled}" Value="False">
-                                        <Setter Property="Foreground" Value="Gray"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </mdt:PackIcon.Style>
+                      Margin="5,0,5,0">
+                    <Button Width="50"
+                            Height="50"
+                            Style="{StaticResource ChangeButton}"
+                            Command="{Binding Path=Change}">
                         <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="MouseDown">
+                            <i:EventTrigger EventName="Click">
                                 <i:InvokeCommandAction Command="{Binding Path=Change}"/>
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
-                    </mdt:PackIcon>
+                    </Button>
                 </Grid>
                 <Grid Grid.Column="2"
-                  Margin="5,0,5,0">
-                    <mdt:PackIcon x:Name="iconCloseCircle"
-                              Kind="CloseCircle"
-                              Panel.ZIndex="1"
-                              IsEnabled="{Binding Path=IsCanRemove, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                              Height="Auto"
-                              Width="{Binding ElementName=iconCloseCircle, Path=Height}"
-                              ToolTip="Удалить">
-                        <mdt:PackIcon.Style>
-                            <Style TargetType="mdt:PackIcon">
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding ElementName=iconCloseCircle, Path=IsEnabled}" Value="True">
-                                        <Setter Property="Foreground" Value="Red"/>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding ElementName=iconCloseCircle, Path=IsEnabled}" Value="False">
-                                        <Setter Property="Foreground" Value="Gray"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </mdt:PackIcon.Style>
+                      Margin="5,0,5,0">
+                    <Button Width="50"
+                            Height="50"
+                            Style="{StaticResource RemoveButton}"
+                            Command="{Binding Path=Remove}">
                         <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="MouseDown">
+                            <i:EventTrigger EventName="Click">
                                 <i:InvokeCommandAction Command="{Binding Path=Remove}"/>
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
-                    </mdt:PackIcon>
+                    </Button>
                 </Grid>
             </Grid>
         </Grid>
@@ -136,33 +91,33 @@
                 <ColumnDefinition/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <Grid x:Name="searchByInputFieldGrid"
+            <Grid x:Name="SearchByInputFieldGrid"
                   Grid.Column="0"
-                  Margin="5,0,5,0">
+                  Margin="0,0,5,0">
             </Grid>
             <Grid Grid.Column="1">
-                <mdt:PackIcon x:Name="iconMagnify"
-                              Kind="Magnify"
-                              Panel.ZIndex="1"
-                              Height="Auto"
-                              Width="{Binding ElementName=iconMagnify, Path=Height}"
-                              ToolTip="Найти">
+                <Button Width="50"
+                        Height="50"
+                        Style="{StaticResource ToFindButton}"
+                        Command="{Binding Path=ToFind}"
+                        ToolTip="Найти">
                     <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="MouseDown">
+                        <i:EventTrigger EventName="Click">
                             <i:InvokeCommandAction Command="{Binding Path=ToFind}"/>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
-                </mdt:PackIcon>
+                </Button>
             </Grid>
         </Grid>
         <Grid Grid.RowSpan="2"
               Grid.ColumnSpan="2"
               Panel.ZIndex="1"
-              Width="{Binding ElementName=searchByInputFieldGrid, Path=ActualWidth, UpdateSourceTrigger=PropertyChanged}"
+              Width="{Binding ElementName=SearchByInputFieldGrid, Path=ActualWidth, UpdateSourceTrigger=PropertyChanged}"
               VerticalAlignment="Top"
               HorizontalAlignment="Right"
-              Margin="0,0,65,0">
-            <uc:SearchByInputField Hint="Название улицы"
+              Margin="0,0,59,0">
+            <uc:SearchByInputField x:Name="SearchByInputField"
+                                   Hint="Название улицы"
                                    SearchLine="{Binding Path=StreetName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                    DisplayMemberPath="StreetName"
                                    Data="{Binding Path=Streets, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
@@ -192,19 +147,19 @@
                                            TextAlignment="Center"/>
                             </Grid>
                             <Grid Grid.Row="1">
-                                <ComboBox x:Name="countriesComboBox"
+                                <ComboBox x:Name="CountriesComboBox"
                                           mdt:HintAssist.Hint="Страна"
                                           mdt:HintAssist.HelperText="Укажите страну"
                                           ItemsSource="{Binding Path=DisplayedCountries, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                           DisplayMemberPath="CountryName"
                                           SelectedValuePath="IdCountry"
-                                          SelectedValue="{Binding Path=SelectedIdCountry, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource selectedValueToNullableInt32}}"
+                                          SelectedValue="{Binding Path=SelectedIdCountry, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource SelectedValueToNullableInt32}}"
                                           FontSize="14"
                                           FontWeight="Medium"
                                           IsEditable="True"
                                           IsTextSearchEnabled="True"
                                           Text="{Binding Path=CountryName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                          ToolTip="{Binding ElementName=countriesComboBox, Path=Text}"/>
+                                          ToolTip="{Binding ElementName=CountriesComboBox, Path=Text}"/>
                             </Grid>
                         </Grid>
                         <Grid Grid.Row="1"
@@ -218,19 +173,19 @@
                                            TextAlignment="Center"/>
                             </Grid>
                             <Grid Grid.Row="1">
-                                <ComboBox x:Name="citiesComboBox"
+                                <ComboBox x:Name="CitiesComboBox"
                                           mdt:HintAssist.Hint="Город"
                                           mdt:HintAssist.HelperText="Укажите город"
                                           ItemsSource="{Binding Path=DisplayedCities, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                           DisplayMemberPath="CityName"
                                           SelectedValuePath="IdCity"
-                                          SelectedValue="{Binding Path=SelectedIdCity, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource selectedValueToNullableInt32}}"
+                                          SelectedValue="{Binding Path=SelectedIdCity, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource SelectedValueToNullableInt32}}"
                                           FontSize="14"
                                           FontWeight="Medium"
                                           IsEditable="True"
                                           IsTextSearchEnabled="True"
                                           Text="{Binding Path=CityName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                          ToolTip="{Binding ElementName=citiesComboBox, Path=Text}"/>
+                                          ToolTip="{Binding ElementName=CitiesComboBox, Path=Text}"/>
                             </Grid>
                         </Grid>
                         <Grid Grid.Row="2" Margin="0,20,0,0">
@@ -240,7 +195,14 @@
                                     ToolTip="Сбросить фильтры"
                                     VerticalAlignment="Center"
                                     HorizontalAlignment="Center"
-                                    Command="{Binding Path=ResetFilters}"/>
+                                    Command="{Binding Path=ResetFilters}">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Click">
+                                        <i:InvokeCommandAction Command="{Binding ElementName=SearchByInputField, Path=ResetFilters}"/>
+                                        <i:InvokeCommandAction Command="{Binding Path=ResetFilters}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </Button>
                         </Grid>
                     </Grid>
                 </ScrollViewer>

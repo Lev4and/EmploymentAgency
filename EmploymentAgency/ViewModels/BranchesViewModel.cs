@@ -4,7 +4,6 @@ using EmploymentAgency.Model.Database.Interactions;
 using EmploymentAgency.Model.Database.Models;
 using EmploymentAgency.Services;
 using EmploymentAgency.Views.Windows;
-using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
@@ -14,7 +13,6 @@ namespace EmploymentAgency.ViewModels
 {
     public class BranchesViewModel : BindableBase
     {
-        private int? _selectedIdBranch;
         private int? _selectedIdIndustry;
         private int? _selectedIdSubIndustry;
         private int? _selectedIdCountry;
@@ -29,23 +27,7 @@ namespace EmploymentAgency.ViewModels
 
         private QueryExecutor _executor;
 
-        public bool IsCanAdd { get; set; } = true;
-
-        public bool IsCanChange { get; set; }
-
-        public bool IsCanRemove { get; set; }
-
-        public int? SelectedIdBranch
-        {
-            get { return _selectedIdBranch; }
-            set
-            {
-                _selectedIdBranch = value;
-
-                IsCanChange = _selectedIdBranch != null ? true : false;
-                IsCanRemove = _selectedIdBranch != null ? true : false;
-            }
-        }
+        public int? SelectedIdBranch { get; set; }
 
         public int? SelectedIdIndustry
         {
@@ -291,14 +273,14 @@ namespace EmploymentAgency.ViewModels
         public ICommand Add => new DelegateCommand(() =>
         {
             WindowService.ShowWindow(new AddBranch());
-        }, () => IsCanAdd == true);
+        }, () => true);
 
         public ICommand Change => new DelegateCommand(() =>
         {
             ChangeBranchViewModel.SelectedIdBranch = (int)SelectedIdBranch;
 
             WindowService.ShowWindow(new ChangeBranch());
-        }, () => IsCanChange);
+        }, () => SelectedIdBranch != null ? true : false);
 
         public ICommand Remove => new DelegateCommand(() =>
         {
@@ -310,7 +292,7 @@ namespace EmploymentAgency.ViewModels
 
                 Find();
             }
-        }, () => IsCanRemove);
+        }, () => SelectedIdBranch != null ? true : false);
 
         public ICommand ToFind => new DelegateCommand(() =>
         {

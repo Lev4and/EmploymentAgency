@@ -1,4 +1,7 @@
-﻿using System;
+﻿using DevExpress.Mvvm;
+using EmploymentAgency.Commands;
+using EmploymentAgency.Events;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
@@ -22,30 +25,6 @@ namespace EmploymentAgency.Views.UserControls
 
         public static readonly DependencyProperty IsDrawerOpenProperty =
             DependencyProperty.Register("IsDrawerOpen", typeof(bool), typeof(SearchByInputField), new PropertyMetadata(false));
-
-        public bool IsGlobalDataChanged
-        {
-            get { return (bool)GetValue(IsGlobalDataChangedProperty); }
-            set { SetValue(IsGlobalDataChangedProperty, value); }
-        }
-
-        public static readonly DependencyProperty IsGlobalDataChangedProperty =
-            DependencyProperty.Register("IsGlobalDataChanged", typeof(bool), typeof(SearchByInputField), new PropertyMetadata(true, IsGlobalDataChanged_Changed));
-
-        private static void IsGlobalDataChanged_Changed(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var current = d as SearchByInputField;
-
-            if(current != null)
-            {
-                if(current.IsGlobalDataChanged)
-                {
-                    current._savedData = null;
-
-                    current.IsGlobalDataChanged = false;
-                }
-            }
-        }
 
         public int MaxToOutput
         {
@@ -72,9 +51,9 @@ namespace EmploymentAgency.Views.UserControls
         }
 
         public static readonly DependencyProperty SearchLineProperty =
-            DependencyProperty.Register("SearchLine", typeof(string), typeof(SearchByInputField), new PropertyMetadata("", SearchLine_Change));
+            DependencyProperty.Register("SearchLine", typeof(string), typeof(SearchByInputField), new PropertyMetadata("", SearchLine_Changed));
 
-        private static void SearchLine_Change(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void SearchLine_Changed(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var current = d as SearchByInputField;
 
@@ -149,6 +128,16 @@ namespace EmploymentAgency.Views.UserControls
         public static readonly DependencyProperty ItemsProperty =
             DependencyProperty.Register("Items", typeof(List<SearchByInputFieldItem>), typeof(SearchByInputField), new PropertyMetadata(null));
 
+        public ICommand ResetSearchLine => new Command((obj) =>
+        {
+            _savedData = null;
+        }, (obj) => (((string)obj) != null ? ((string)obj).Length == 0 : true));
+
+        public ICommand ResetFilters => new DelegateCommand(() =>
+        {
+            _savedData = null;
+        });
+
         public SearchByInputField()
         {
             InitializeComponent();
@@ -209,8 +198,8 @@ namespace EmploymentAgency.Views.UserControls
 
         private void RemoveContorls()
         {
-            while (grid.Children.Count > 0)
-                grid.Children.Clear();
+            while (Grid.Children.Count > 0)
+                Grid.Children.Clear();
         }
 
         private void GenerateItems()
@@ -243,6 +232,8 @@ namespace EmploymentAgency.Views.UserControls
 
         private void Item_MouseMove(object sender, EventArgs e)
         {
+            DeselectItems();
+
             var item = sender as SearchByInputFieldItem;
 
             item.Select.Execute(item);
@@ -250,6 +241,8 @@ namespace EmploymentAgency.Views.UserControls
 
         private void Item_MouseLeave(object sender, EventArgs e)
         {
+            DeselectItems();
+
             var item = sender as SearchByInputFieldItem;
 
             item.Deselect.Execute(item);
@@ -258,7 +251,7 @@ namespace EmploymentAgency.Views.UserControls
         private void RenderContorls()
         {
             foreach (var item in Items)
-                grid.Children.Add(item);
+                Grid.Children.Add(item);
         }
 
         private void TextBox_PreviewKeyDown(object sender, KeyEventArgs e)

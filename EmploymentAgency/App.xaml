@@ -17,6 +17,12 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
 
+                <ResourceDictionary Source="/EmploymentAgency;component/Views/Styles/Brushes.xaml"/>
+
+                <ResourceDictionary Source="/EmploymentAgency;component/Views/Templates/ButtonTemplates.xaml"/>
+
+                <ResourceDictionary Source="/EmploymentAgency;component/Views/Styles/DataGrid.xaml"/>
+                <ResourceDictionary Source="/EmploymentAgency;component/Views/Styles/Button.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

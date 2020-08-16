@@ -8,10 +8,10 @@
              xmlns:local="clr-namespace:EmploymentAgency.Views.UserControls"
              xmlns:c="clr-namespace:EmploymentAgency.Converters"
              mc:Ignorable="d" 
-             x:Name="_this"
+             x:Name="This"
              d:DesignHeight="50" d:DesignWidth="550" MinHeight="50" MaxHeight="50">
     <UserControl.Resources>
-        <c:BoolToCollapsedVisibility x:Key="boolToCollapsedVisibility"/>
+        <c:BoolToCollapsedVisibility x:Key="BoolToCollapsedVisibility"/>
     </UserControl.Resources>
     <Grid MaxHeight="50">
         <Border BorderThickness="1,1,1,1"
@@ -33,7 +33,7 @@
                                    Margin="10,0,10,0"
                                    TextAlignment="Center"
                                    TextWrapping="Wrap"
-                                   DataContext="{Binding ElementName=_this, Path=Language}"/>
+                                   DataContext="{Binding ElementName=This, Path=Language}"/>
                     </Border>
                 </Grid>
                 <Grid Grid.Column="1">
@@ -48,7 +48,7 @@
                                    FontWeight="Medium"
                                    VerticalAlignment="Center"
                                    HorizontalAlignment="Center"
-                                   DataContext="{Binding ElementName=_this, Path=LanguageProficiency}"/>
+                                   DataContext="{Binding ElementName=This, Path=LanguageProficiency}"/>
                     </Grid>
                     <Grid Grid.Column="1"
                           Margin="10,0,10,0">
@@ -58,27 +58,25 @@
                                    VerticalAlignment="Center"
                                    TextAlignment="Center"
                                    TextWrapping="Wrap"
-                                   DataContext="{Binding ElementName=_this, Path=LanguageProficiency}"/>
+                                   DataContext="{Binding ElementName=This, Path=LanguageProficiency}"/>
                     </Grid>
                 </Grid>
                 <Grid Grid.Column="2">
                     <Border BorderThickness="1,0,0,0"
                             BorderBrush="Black">
-                        <mdt:PackIcon x:Name="iconCloseCircle"
-                                      Kind="CloseCircle"
-                                      Height="Auto"
-                                      Width="{Binding ElementName=iconCloseCircle, Path=Height}"
-                                      VerticalAlignment="Center"
-                                      HorizontalAlignment="Center"
-                                      ToolTip="Удалить"
-                                      Foreground="Red"
-                                      Visibility="{Binding ElementName=_this, Path=IsCanRemove, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource boolToCollapsedVisibility}}">
+                        <Button Width="Auto"
+                                Height="Auto"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                Visibility="{Binding ElementName=This, Path=IsCanRemove, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource BoolToCollapsedVisibility}}"
+                                Style="{StaticResource RemoveButton}"
+                                Command="{Binding Path=Remove}">
                             <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="MouseDown">
-                                    <i:InvokeCommandAction Command="{Binding ElementName=_this, Path=Remove}" CommandParameter="{Binding ElementName=_this}"/>
+                                <i:EventTrigger EventName="Click">
+                                    <i:InvokeCommandAction Command="{Binding ElementName=This, Path=Remove}" CommandParameter="{Binding ElementName=This}"/>
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
-                        </mdt:PackIcon>
+                        </Button>
                     </Border>
                 </Grid>
             </Grid>

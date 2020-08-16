@@ -7,6 +7,7 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:local="clr-namespace:EmploymentAgency.Views.Windows"
         mc:Ignorable="d"
+        Background="{StaticResource WindowBackgroundBrush}"
         DataContext="{Binding ChangeScheduleViewModel, Source={StaticResource ViewModelLocator}}"
         Title="Агентство трудоустройства - Изменение данных графика работы" Height="450" Width="800">
     <Grid>
@@ -29,21 +30,21 @@
                 <ColumnDefinition Width="300"/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
-                <mdt:PackIcon x:Name="iconProgressClock"
+                <mdt:PackIcon x:Name="IconProgressClock"
                               Kind="ProgressClock"
                               Height="Auto"
-                              Width="{Binding ElementName=iconProgressClock, Path=Height}"
+                              Width="{Binding ElementName=IconProgressClock, Path=Height}"
                               ToolTip="График работы"/>
             </Grid>
             <Grid Grid.Column="1" 
                       Margin="5,0,0,0">
-                <TextBox x:Name="scheduleNameTextBox"
+                <TextBox x:Name="ScheduleNameTextBox"
                          Text="{Binding Path=ScheduleName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                          mdt:HintAssist.Hint="Название графика работы"
                          mdt:HintAssist.HelperText="Введите название графика работы"
                          FontSize="20"
                          FontWeight="Medium"
-                         ToolTip="{Binding ElementName=scheduleNameTextBox, Path=Text}"
+                         ToolTip="{Binding ElementName=ScheduleNameTextBox, Path=Text}"
                          VerticalContentAlignment="Center"/>
             </Grid>
         </Grid>

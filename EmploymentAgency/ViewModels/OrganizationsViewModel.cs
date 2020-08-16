@@ -12,28 +12,11 @@ namespace EmploymentAgency.ViewModels
 {
     public class OrganizationsViewModel : BindableBase
     {
-        private int? _selectedIdOrganization;
         private int? _selectedIdIndustry;
 
         private QueryExecutor _executor;
 
-        public bool IsCanAdd { get; set; } = true;
-
-        public bool IsCanChange { get; set; }
-
-        public bool IsCanRemove { get; set; }
-
-        public int? SelectedIdOrganization
-        {
-            get { return _selectedIdOrganization; }
-            set
-            {
-                _selectedIdOrganization = value;
-
-                IsCanChange = _selectedIdOrganization != null ? true : false;
-                IsCanRemove = _selectedIdOrganization != null ? true : false;
-            }
-        }
+        public int? SelectedIdOrganization { get; set; }
 
         public int? SelectedIdIndustry
         {
@@ -80,14 +63,14 @@ namespace EmploymentAgency.ViewModels
         public ICommand Add => new DelegateCommand(() =>
         {
             WindowService.ShowWindow(new AddOrganization());
-        }, () => IsCanAdd == true);
+        }, () => true);
 
         public ICommand Change => new DelegateCommand(() =>
         {
             ChangeOrganizationViewModel.SelectedIdOrganization = (int)SelectedIdOrganization;
 
             WindowService.ShowWindow(new ChangeOrganization());
-        }, () => IsCanChange);
+        }, () => SelectedIdOrganization != null ? true : false);
 
         public ICommand Remove => new DelegateCommand(() =>
         {
@@ -99,7 +82,7 @@ namespace EmploymentAgency.ViewModels
 
                 Find();
             }
-        }, () => IsCanRemove);
+        }, () => SelectedIdOrganization != null ? true : false);
 
         public ICommand ToFind => new DelegateCommand(() =>
         {

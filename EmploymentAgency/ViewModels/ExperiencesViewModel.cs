@@ -12,27 +12,9 @@ namespace EmploymentAgency.ViewModels
 {
     public class ExperiencesViewModel : BindableBase
     {
-        private int? _selectedIdExperience;
-
         private QueryExecutor _executor;
 
-        public bool IsCanAdd { get; set; } = true;
-
-        public bool IsCanChange { get; set; }
-
-        public bool IsCanRemove { get; set; }
-
-        public int? SelectedIdExperience
-        {
-            get { return _selectedIdExperience; }
-            set
-            {
-                _selectedIdExperience = value;
-
-                IsCanChange = _selectedIdExperience != null ? true : false;
-                IsCanRemove = _selectedIdExperience != null ? true : false;
-            }
-        }
+        public int? SelectedIdExperience { get; set; }
 
         public string ExperienceName { get; set; }
 
@@ -46,14 +28,14 @@ namespace EmploymentAgency.ViewModels
         public ICommand Add => new DelegateCommand(() =>
         {
             WindowService.ShowWindow(new AddExperience());
-        }, () => IsCanAdd == true);
+        }, () => true);
 
         public ICommand Change => new DelegateCommand(() =>
         {
             ChangeExperienceViewModel.SelectedIdExperience = (int)SelectedIdExperience;
 
             WindowService.ShowWindow(new ChangeExperience());
-        }, () => IsCanChange);
+        }, () => SelectedIdExperience != null ? true : false);
 
         public ICommand Remove => new DelegateCommand(() =>
         {
@@ -65,7 +47,7 @@ namespace EmploymentAgency.ViewModels
 
                 Find();
             }
-        }, () => IsCanRemove);
+        }, () => SelectedIdExperience != null ? true : false);
 
         public ICommand Loaded => new DelegateCommand(() =>
         {

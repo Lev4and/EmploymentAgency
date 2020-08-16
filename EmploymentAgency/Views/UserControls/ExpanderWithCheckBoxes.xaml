@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mdt="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:EmploymentAgency.Views.UserControls"
-             x:Name="_this"
+             x:Name="This"
              mc:Ignorable="d" 
              d:DesignHeight="200" d:DesignWidth="200">
     <Grid>
@@ -13,14 +13,14 @@
                   HorizontalAlignment="Stretch"
                   MaxHeight="400">
             <Expander.Header>
-                <TextBlock Text="{Binding ElementName=_this, Path=ElementHeader, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                <TextBlock Text="{Binding ElementName=This, Path=ElementHeader, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                            Padding="0"
                            Foreground="White"
                            FontSize="20"
                            FontWeight="Medium"/>
             </Expander.Header>
             <ScrollViewer HorizontalScrollBarVisibility="Visible" ScrollChanged="ScrollViewer_ScrollChanged">
-                <Grid Name="grid" Background="#FFE5E5E5"/>
+                <Grid Name="Grid" Background="#FFE5E5E5"/>
             </ScrollViewer>
         </Expander>
     </Grid>

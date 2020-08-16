@@ -9,11 +9,12 @@
       xmlns:uc="clr-namespace:EmploymentAgency.Views.UserControls"
       xmlns:c="clr-namespace:EmploymentAgency.Converters"
       mc:Ignorable="d"
+      Background="{StaticResource PageBackgroundBrush}"
       DataContext="{Binding UsersViewModel, Source={StaticResource ViewModelLocator}}"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Пользователи" WindowTitle="Агентство трудоустройства - Пользователи">
     <Page.Resources>
-        <c:SelectedValueToNullableInt32 x:Key="selectedValueToNullableInt32"/>
+        <c:SelectedValueToNullableInt32 x:Key="SelectedValueToNullableInt32"/>
         <c:DateTimeToStringDateTimeConverter x:Key="dateTimeToStringDateTimeConverter"/>
     </Page.Resources>
     <Grid>
@@ -36,8 +37,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0"
-                  Margin="5">
+            <Grid Grid.Column="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
@@ -45,88 +45,43 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0"
-                  Margin="0,0,5,0">
-                    <mdt:PackIcon x:Name="iconPlusCircle"
-                              Kind="PlusCircle"
-                              Panel.ZIndex="1"
-                              IsEnabled="{Binding Path=IsCanAdd, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                              Height="Auto"
-                              Width="{Binding ElementName=iconPlusCircle, Path=Height}"
-                              ToolTip="Добавить">
-                        <mdt:PackIcon.Style>
-                            <Style TargetType="mdt:PackIcon">
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding ElementName=iconPlusCircle, Path=IsEnabled}" Value="True">
-                                        <Setter Property="Foreground" Value="Green"/>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding ElementName=iconPlusCircle, Path=IsEnabled}" Value="False">
-                                        <Setter Property="Foreground" Value="Gray"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </mdt:PackIcon.Style>
+                      Margin="0,0,5,0">
+                    <Button Width="50"
+                            Height="50"
+                            Style="{StaticResource AddButton}"
+                            Command="{Binding Path=Add}">
                         <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="MouseDown">
+                            <i:EventTrigger EventName="Click">
                                 <i:InvokeCommandAction Command="{Binding Path=Add}"/>
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
-                    </mdt:PackIcon>
+                    </Button>
                 </Grid>
                 <Grid Grid.Column="1"
-                  Margin="5,0,5,0">
-                    <mdt:PackIcon x:Name="iconPencil"
-                              Kind="Pencil"
-                              Panel.ZIndex="1"
-                              IsEnabled="{Binding Path=IsCanChange, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                              Height="Auto"
-                              Width="{Binding ElementName=iconPencil, Path=Height}"
-                              ToolTip="Изменить">
-                        <mdt:PackIcon.Style>
-                            <Style TargetType="mdt:PackIcon">
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding ElementName=iconPencil, Path=IsEnabled}" Value="True">
-                                        <Setter Property="Foreground" Value="Orange"/>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding ElementName=iconPencil, Path=IsEnabled}" Value="False">
-                                        <Setter Property="Foreground" Value="Gray"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </mdt:PackIcon.Style>
+                      Margin="5,0,5,0">
+                    <Button Width="50"
+                            Height="50"
+                            Style="{StaticResource ChangeButton}"
+                            Command="{Binding Path=Change}">
                         <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="MouseDown">
+                            <i:EventTrigger EventName="Click">
                                 <i:InvokeCommandAction Command="{Binding Path=Change}"/>
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
-                    </mdt:PackIcon>
+                    </Button>
                 </Grid>
                 <Grid Grid.Column="2"
-                  Margin="5,0,5,0">
-                    <mdt:PackIcon x:Name="iconCloseCircle"
-                              Kind="CloseCircle"
-                              Panel.ZIndex="1"
-                              IsEnabled="{Binding Path=IsCanRemove, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                              Height="Auto"
-                              Width="{Binding ElementName=iconCloseCircle, Path=Height}"
-                              ToolTip="Удалить">
-                        <mdt:PackIcon.Style>
-                            <Style TargetType="mdt:PackIcon">
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding ElementName=iconCloseCircle, Path=IsEnabled}" Value="True">
-                                        <Setter Property="Foreground" Value="Red"/>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding ElementName=iconCloseCircle, Path=IsEnabled}" Value="False">
-                                        <Setter Property="Foreground" Value="Gray"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </mdt:PackIcon.Style>
+                      Margin="5,0,5,0">
+                    <Button Width="50"
+                            Height="50"
+                            Style="{StaticResource RemoveButton}"
+                            Command="{Binding Path=Remove}">
                         <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="MouseDown">
+                            <i:EventTrigger EventName="Click">
                                 <i:InvokeCommandAction Command="{Binding Path=Remove}"/>
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
-                    </mdt:PackIcon>
+                    </Button>
                 </Grid>
             </Grid>
         </Grid>
@@ -137,33 +92,33 @@
                 <ColumnDefinition/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <Grid x:Name="searchByInputFieldGrid"
+            <Grid x:Name="SearchByInputFieldGrid"
                   Grid.Column="0"
-                  Margin="5,0,5,0">
+                  Margin="0,0,5,0">
             </Grid>
             <Grid Grid.Column="1">
-                <mdt:PackIcon x:Name="iconMagnify"
-                          Kind="Magnify"
-                          Panel.ZIndex="1"
-                          Height="Auto"
-                          Width="{Binding ElementName=iconMagnify, Path=Height}"
-                          ToolTip="Найти">
+                <Button Width="50"
+                        Height="50"
+                        Style="{StaticResource ToFindButton}"
+                        Command="{Binding Path=ToFind}"
+                        ToolTip="Найти">
                     <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="MouseDown">
+                        <i:EventTrigger EventName="Click">
                             <i:InvokeCommandAction Command="{Binding Path=ToFind}"/>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
-                </mdt:PackIcon>
+                </Button>
             </Grid>
         </Grid>
         <Grid Grid.RowSpan="2"
               Grid.ColumnSpan="2"
               Panel.ZIndex="1"
-              Width="{Binding ElementName=searchByInputFieldGrid, Path=ActualWidth, UpdateSourceTrigger=PropertyChanged}"
+              Width="{Binding ElementName=SearchByInputFieldGrid, Path=ActualWidth, UpdateSourceTrigger=PropertyChanged}"
               VerticalAlignment="Top"
               HorizontalAlignment="Right"
-              Margin="0,0,65,0">
-            <uc:SearchByInputField Hint="Логин пользователя"
+              Margin="0,0,59,0">
+            <uc:SearchByInputField x:Name="SearchByInputField"
+                                   Hint="Логин пользователя"
                                    SearchLine="{Binding Path=Login, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                    DisplayMemberPath="Login"
                                    Data="{Binding Path=Users, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
@@ -192,18 +147,18 @@
                                            TextAlignment="Center"/>
                             </Grid>
                             <Grid Grid.Row="1">
-                                <ComboBox x:Name="rolesComboBox"
+                                <ComboBox x:Name="RolesComboBox"
                                           mdt:HintAssist.Hint="Должность"
                                           mdt:HintAssist.HelperText="Укажите должность"
                                           ItemsSource="{Binding Path=Roles, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                           DisplayMemberPath="RoleName"
                                           SelectedValuePath="IdRole"
-                                          SelectedValue="{Binding Path=SelectedIdRole, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource selectedValueToNullableInt32}}"
+                                          SelectedValue="{Binding Path=SelectedIdRole, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource SelectedValueToNullableInt32}}"
                                           FontSize="14"
                                           FontWeight="Medium"
                                           IsEditable="False"
                                           IsTextSearchEnabled="False"
-                                          ToolTip="{Binding ElementName=rolesComboBox, Path=Text}"/>
+                                          ToolTip="{Binding ElementName=RolesComboBox, Path=Text}"/>
                             </Grid>
                         </Grid>
                         <Grid Grid.Row="1" Margin="0,20,0,0">
@@ -213,7 +168,14 @@
                                     ToolTip="Сбросить фильтры"
                                     VerticalAlignment="Center"
                                     HorizontalAlignment="Center"
-                                    Command="{Binding Path=ResetFilters}"/>
+                                    Command="{Binding Path=ResetFilters}">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Click">
+                                        <i:InvokeCommandAction Command="{Binding ElementName=SearchByInputField, Path=ResetFilters}"/>
+                                        <i:InvokeCommandAction Command="{Binding Path=ResetFilters}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </Button>
                         </Grid>
                     </Grid>
                 </ScrollViewer>
@@ -222,46 +184,31 @@
         <Grid Grid.Row="1"
               Grid.Column="1"
               Margin="5">
-            <DataGrid AutoGenerateColumns="False"
+            <DataGrid Style="{StaticResource DefaultDataGridStyle}"
+                      CellStyle="{StaticResource DefaultDataGridCellStyle}"
+                      ColumnHeaderStyle="{StaticResource DefaultDataGridColumnHeaderStyle}"
                       ItemsSource="{Binding Path=Users}"
                       SelectedValuePath="IdUser"
-                      SelectedValue="{Binding Path=SelectedIdUser, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                      CanUserAddRows="False"
-                      CanUserDeleteRows="False"
-                      IsReadOnly="True"
-                      SelectionMode="Single"
-                      SelectionUnit="FullRow">
+                      SelectedValue="{Binding Path=SelectedIdUser, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding Path=RoleName}">
                         <DataGridTextColumn.Header>
-                            <TextBlock Text="Должность"
-                                       FontSize="16"
-                                       FontWeight="Bold"
-                                       Foreground="Black"/>
+                            <TextBlock Text="Должность"/>
                         </DataGridTextColumn.Header>
                     </DataGridTextColumn>
                     <DataGridTextColumn Binding="{Binding Path=Login}">
                         <DataGridTextColumn.Header>
-                            <TextBlock Text="Логин"
-                                       FontSize="16"
-                                       FontWeight="Bold"
-                                       Foreground="Black"/>
+                            <TextBlock Text="Логин"/>
                         </DataGridTextColumn.Header>
                     </DataGridTextColumn>
                     <DataGridTextColumn Binding="{Binding Path=Password}">
                         <DataGridTextColumn.Header>
-                            <TextBlock Text="Пароль"
-                                       FontSize="16"
-                                       FontWeight="Bold"
-                                       Foreground="Black"/>
+                            <TextBlock Text="Пароль"/>
                         </DataGridTextColumn.Header>
                     </DataGridTextColumn>
                     <DataGridTextColumn Binding="{Binding Path=DateOfRegistration, Converter={StaticResource dateTimeToStringDateTimeConverter}}">
                         <DataGridTextColumn.Header>
-                            <TextBlock Text="Дата регистрации"
-                                       FontSize="16"
-                                       FontWeight="Bold"
-                                       Foreground="Black"/>
+                            <TextBlock Text="Дата регистрации"/>
                         </DataGridTextColumn.Header>
                     </DataGridTextColumn>
                 </DataGrid.Columns>

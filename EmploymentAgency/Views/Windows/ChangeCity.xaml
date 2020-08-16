@@ -8,6 +8,7 @@
         xmlns:local="clr-namespace:EmploymentAgency.Views.Windows"
         xmlns:c="clr-namespace:EmploymentAgency.Converters"
         mc:Ignorable="d"
+        Background="{StaticResource WindowBackgroundBrush}"
         DataContext="{Binding ChangeCityViewModel, Source={StaticResource ViewModelLocator}}"
         Title="Агентство трудоустройства -  Изменение данных города" Height="450" Width="800">
     <Grid>
@@ -30,21 +31,21 @@
                 <ColumnDefinition Width="220"/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
-                <mdt:PackIcon x:Name="iconCityVariant"
+                <mdt:PackIcon x:Name="IconCityVariant"
                               Kind="CityVariant"
                               Height="Auto"
-                              Width="{Binding ElementName=iconCityVariant, Path=Height}"
+                              Width="{Binding ElementName=IconCityVariant, Path=Height}"
                               ToolTip="Город"/>
             </Grid>
             <Grid Grid.Column="1" 
                       Margin="5,0,0,0">
-                <TextBox x:Name="cityNameTextBox"
+                <TextBox x:Name="CityNameTextBox"
                          Text="{Binding Path=CityName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                          mdt:HintAssist.Hint="Название города"
                          mdt:HintAssist.HelperText="Введите название города"
                          FontSize="20"
                          FontWeight="Medium"
-                         ToolTip="{Binding ElementName=cityNameTextBox, Path=Text}"
+                         ToolTip="{Binding ElementName=CityNameTextBox, Path=Text}"
                          VerticalContentAlignment="Center"/>
             </Grid>
         </Grid>

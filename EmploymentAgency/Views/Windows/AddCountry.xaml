@@ -9,11 +9,12 @@
         xmlns:uc="clr-namespace:EmploymentAgency.Views.UserControls"
         xmlns:c="clr-namespace:EmploymentAgency.Converters"
         mc:Ignorable="d"
+        Background="{StaticResource WindowBackgroundBrush}"
         DataContext="{Binding AddCountryViewModel, Source={StaticResource ViewModelLocator}}"
         Title="Агентство трудоустройства -  Добавление страны" Height="450" Width="800">
     <Window.Resources>
-        <c:BoolToBackBool x:Key="boolToBackBool"/>
-        <c:ArrayByteToImageSource x:Key="arrayByteToImageSource"/>
+        <c:BoolToBackBool x:Key="BoolToBackBool"/>
+        <c:ArrayByteToImageSource x:Key="ArrayByteToImageSource"/>
     </Window.Resources>
     <Grid>
         <i:Interaction.Triggers>
@@ -40,21 +41,21 @@
                 <ColumnDefinition Width="220"/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
-                <mdt:PackIcon x:Name="iconCity"
+                <mdt:PackIcon x:Name="IconCity"
                                   Kind="City"
                                   Height="Auto"
-                                  Width="{Binding ElementName=iconCity, Path=Height}"
+                                  Width="{Binding ElementName=IconCity, Path=Height}"
                                   ToolTip="Страна"/>
             </Grid>
             <Grid Grid.Column="1" 
                       Margin="5,0,0,0">
-                <TextBox x:Name="countryNameTextBox"
+                <TextBox x:Name="CountryNameTextBox"
                              Text="{Binding Path=CountryName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                              mdt:HintAssist.Hint="Название страны"
                              mdt:HintAssist.HelperText="Введите название страны"
                              FontSize="20"
                              FontWeight="Medium"
-                             ToolTip="{Binding ElementName=countryNameTextBox, Path=Text}"
+                             ToolTip="{Binding ElementName=CountryNameTextBox, Path=Text}"
                              VerticalContentAlignment="Center"/>
             </Grid>
         </Grid>

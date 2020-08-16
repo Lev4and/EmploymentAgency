@@ -8,10 +8,10 @@
              xmlns:local="clr-namespace:EmploymentAgency.Views.UserControls"
              xmlns:c="clr-namespace:EmploymentAgency.Converters"
              mc:Ignorable="d"
-             x:Name="_this"
+             x:Name="This"
              d:DesignHeight="185" d:DesignWidth="185">
     <UserControl.Resources>
-        <c:ArrayByteToImageSource x:Key="arrayByteToImageSource"/>
+        <c:ArrayByteToImageSource x:Key="ArrayByteToImageSource"/>
     </UserControl.Resources>
     <Grid>
         <Border Width="165"
@@ -22,9 +22,8 @@
                 BorderBrush="Black"
                 BorderThickness="1,1,1,1">
             <Grid>
-                <Image x:Name="image"
-                       Stretch="Uniform"
-                       Source="{Binding ElementName=_this, Path=Image, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource arrayByteToImageSource}}"
+                <Image Stretch="Uniform"
+                       Source="{Binding ElementName=This, Path=Image, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource ArrayByteToImageSource}}"
                        ToolTip="Картинка"/>
             </Grid>
         </Border>
@@ -36,25 +35,25 @@
             <Grid Grid.Row="0">
                 <Button Width="40"
                         Height="40"
-                        Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
-                        Command="{Binding ElementName=_this, Path=RemoveImage}">
-                    <mdt:PackIcon x:Name="imageRemoveIcon"
-                                  Kind="ImageRemove"
-                                  Height="30"
-                                  Width="{Binding ElementName=imageRemoveIcon, Path=Height}"
-                                  Foreground="Red"/>
+                        Style="{StaticResource RemoveImageButton}"
+                        Command="{Binding ElementName=This, Path=RemoveImage}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding ElementName=This, Path=RemoveImage}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
                 </Button>
             </Grid>
             <Grid Grid.Row="1">
                 <Button Width="40"
                         Height="40"
-                        Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
-                        Command="{Binding ElementName=_this, Path=AddImage}">
-                    <mdt:PackIcon x:Name="imagePlusIcon"
-                              Kind="ImagePlus"
-                              Height="30"
-                              Width="{Binding ElementName=imagePlusIcon, Path=Height}"
-                              Foreground="Lime"/>
+                        Style="{StaticResource AddImageButton}"
+                        Command="{Binding ElementName=This, Path=AddImage}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding ElementName=This, Path=AddImage}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
                 </Button>
             </Grid>
         </Grid>

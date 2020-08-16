@@ -12,27 +12,9 @@ namespace EmploymentAgency.ViewModels
 {
     public class ProfessionsViewModel : BindableBase
     {
-        private int? _selectedIdProfession;
-
         private QueryExecutor _executor;
 
-        public bool IsCanAdd { get; set; } = true;
-
-        public bool IsCanChange { get; set; }
-
-        public bool IsCanRemove { get; set; }
-
-        public int? SelectedIdProfession
-        {
-            get { return _selectedIdProfession; }
-            set
-            {
-                _selectedIdProfession = value;
-
-                IsCanChange = _selectedIdProfession != null ? true : false;
-                IsCanRemove = _selectedIdProfession != null ? true : false;
-            }
-        }
+        public int? SelectedIdProfession { get; set; }
 
         public int? SelectedIdProfessionCategory { get; set; }
 
@@ -59,14 +41,14 @@ namespace EmploymentAgency.ViewModels
         public ICommand Add => new DelegateCommand(() =>
         {
             WindowService.ShowWindow(new AddProfession());
-        }, () => IsCanAdd == true);
+        }, () => true);
 
         public ICommand Change => new DelegateCommand(() =>
         {
             ChangeProfessionViewModel.SelectedIdProfession = (int)SelectedIdProfession;
 
             WindowService.ShowWindow(new ChangeProfession());
-        }, () => IsCanChange);
+        }, () => SelectedIdProfession != null ? true : false);
 
         public ICommand Remove => new DelegateCommand(() =>
         {
@@ -78,7 +60,7 @@ namespace EmploymentAgency.ViewModels
 
                 Find();
             }
-        }, () => IsCanRemove);
+        }, () => SelectedIdProfession != null ? true : false);
 
         public ICommand ToFind => new DelegateCommand(() =>
         {

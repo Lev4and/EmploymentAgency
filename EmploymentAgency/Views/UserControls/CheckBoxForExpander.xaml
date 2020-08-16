@@ -6,15 +6,15 @@
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:local="clr-namespace:EmploymentAgency.Views.UserControls"
              mc:Ignorable="d"
-             x:Name="_this">
+             x:Name="This">
     <Grid>
         <i:Interaction.Triggers>
             <i:EventTrigger EventName="Loaded">
-                <i:InvokeCommandAction Command="{Binding ElementName=_this, Path=Loaded}"/>
+                <i:InvokeCommandAction Command="{Binding ElementName=This, Path=Loaded}"/>
             </i:EventTrigger>
         </i:Interaction.Triggers>
-        <CheckBox Content="{Binding ElementName=_this, Path=Text, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                  IsChecked="{Binding ElementName=_this, Path=IsChecked, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+        <CheckBox Content="{Binding ElementName=This, Path=Text, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                  IsChecked="{Binding ElementName=This, Path=IsChecked, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
 
     </Grid>
 </UserControl>

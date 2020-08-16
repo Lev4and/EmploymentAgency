@@ -1,9 +1,11 @@
 ﻿using Converters;
 using DevExpress.Mvvm;
+using EmploymentAgency.Events;
 using EmploymentAgency.Model.Database.Interactions;
 using EmploymentAgency.Model.Database.Models;
 using EmploymentAgency.Services;
 using EmploymentAgency.Views.Windows;
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
@@ -13,31 +15,13 @@ namespace EmploymentAgency.ViewModels
 {
     public class CitiesViewModel : BindableBase
     {
-        private int? _selectedIdCity;
-
         private string _countryName;
 
         private QueryExecutor _executor;
 
-        public bool IsCanAdd { get; set; } = true;
-
-        public bool IsCanChange { get; set; }
-
-        public bool IsCanRemove { get; set; }
-
         public int? SelectedIdCountry { get; set; }
 
-        public int? SelectedIdCity
-        {
-            get { return _selectedIdCity; }
-            set
-            {
-                _selectedIdCity = value;
-
-                IsCanChange = _selectedIdCity != null ? true : false;
-                IsCanRemove = _selectedIdCity != null ? true : false;
-            }
-        }
+        public int? SelectedIdCity { get; set; }
 
         public string CountryName
         {
@@ -87,14 +71,14 @@ namespace EmploymentAgency.ViewModels
         public ICommand Add => new DelegateCommand(() =>
         {
             WindowService.ShowWindow(new AddCity());
-        }, () => IsCanAdd == true);
+        }, () => true);
 
         public ICommand Change => new DelegateCommand(() =>
         {
             ChangeCityViewModel.SelectedIdCity = (int)SelectedIdCity;
 
             WindowService.ShowWindow(new ChangeCity());
-        }, () => IsCanChange);
+        }, () => SelectedIdCity != null ? true : false);
 
         public ICommand Remove => new DelegateCommand(() =>
         {
@@ -106,7 +90,7 @@ namespace EmploymentAgency.ViewModels
 
                 Find();
             }
-        }, () => IsCanRemove);
+        }, () => SelectedIdCity != null ? true : false);
 
         public ICommand ToFind => new DelegateCommand(() =>
         {

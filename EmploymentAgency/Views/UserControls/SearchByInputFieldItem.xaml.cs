@@ -92,16 +92,16 @@ namespace EmploymentAgency.Views.UserControls
             {
                 IsSelect = true;
 
-                BackgroundBrush = new SolidColorBrush(Colors.Blue);
-                ForegroundBrush = new SolidColorBrush(Colors.White);
+                BackgroundBrush = Application.Current.FindResource("SelectedSearchByInputFieldItemBackgroundBrush") as SolidColorBrush;
+                ForegroundBrush = Application.Current.FindResource("SelectedSearchByInputFieldItemForegroundBrush") as SolidColorBrush;
             }, () => IsCanSelect);
 
             Deselect = new DelegateCommand(() =>
             {
                 IsSelect = false;
 
-                BackgroundBrush = new SolidColorBrush(Colors.White);
-                ForegroundBrush = new SolidColorBrush(Colors.Black);
+                BackgroundBrush = Application.Current.FindResource("DeselectedSearchByInputFieldItemBackgroundBrush") as SolidColorBrush; ;
+                ForegroundBrush = Application.Current.FindResource("DeselectedSearchByInputFieldItemForegroundBrush") as SolidColorBrush;
             }, () => IsCanSelect);
         }
     }

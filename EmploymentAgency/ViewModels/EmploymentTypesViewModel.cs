@@ -12,27 +12,9 @@ namespace EmploymentAgency.ViewModels
 {
     public class EmploymentTypesViewModel : BindableBase
     {
-        private int? _selectedIdEmploymentType;
-
         private QueryExecutor _executor;
 
-        public bool IsCanAdd { get; set; } = true;
-
-        public bool IsCanChange { get; set; }
-
-        public bool IsCanRemove { get; set; }
-
-        public int? SelectedIdEmploymentType
-        {
-            get { return _selectedIdEmploymentType; }
-            set
-            {
-                _selectedIdEmploymentType = value;
-
-                IsCanChange = _selectedIdEmploymentType != null ? true : false;
-                IsCanRemove = _selectedIdEmploymentType != null ? true : false;
-            }
-        }
+        public int? SelectedIdEmploymentType { get; set; }
 
         public string EmploymentTypeName { get; set; }
 
@@ -53,14 +35,14 @@ namespace EmploymentAgency.ViewModels
         public ICommand Add => new DelegateCommand(() =>
         {
             WindowService.ShowWindow(new AddEmploymentType());
-        }, () => IsCanAdd == true);
+        }, () => true);
 
         public ICommand Change => new DelegateCommand(() =>
         {
             ChangeEmploymentTypeViewModel.SelectedIdEmploymentType = (int)SelectedIdEmploymentType;
 
             WindowService.ShowWindow(new ChangeEmploymentType());
-        }, () => IsCanChange);
+        }, () => SelectedIdEmploymentType != null ? true : false);
 
         public ICommand Remove => new DelegateCommand(() =>
         {
@@ -72,7 +54,7 @@ namespace EmploymentAgency.ViewModels
 
                 Find();
             }
-        }, () => IsCanRemove);
+        }, () => SelectedIdEmploymentType != null ? true : false);
 
         public ICommand ToFind => new DelegateCommand(() =>
         {

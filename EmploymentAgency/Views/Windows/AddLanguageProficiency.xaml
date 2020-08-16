@@ -7,6 +7,7 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:local="clr-namespace:EmploymentAgency.Views.Windows"
         mc:Ignorable="d"
+        Background="{StaticResource WindowBackgroundBrush}"
         DataContext="{Binding AddLanguageProficiencyViewModel, Source={StaticResource ViewModelLocator}}"
         Title="Агентство трудоустройства - Добавление уровня знания языка" Height="450" Width="800">
     <Grid>
@@ -30,21 +31,21 @@
                 <ColumnDefinition Width="400"/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
-                <mdt:PackIcon x:Name="iconAlphabeticalVariant"
+                <mdt:PackIcon x:Name="IconAlphabeticalVariant"
                               Kind="AlphabeticalVariant"
                               Height="Auto"
-                              Width="{Binding ElementName=iconAlphabeticalVariant, Path=Height}"
+                              Width="{Binding ElementName=IconAlphabeticalVariant, Path=Height}"
                               ToolTip="Обозначение"/>
             </Grid>
             <Grid Grid.Column="1" 
                       Margin="5,0,0,0">
-                <TextBox x:Name="designationTextBox"
+                <TextBox x:Name="DesignationTextBox"
                          Text="{Binding Path=Designation, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                          mdt:HintAssist.Hint="Обозначение уровня знания языка"
                          mdt:HintAssist.HelperText="Введите обозначение уровня знания языка"
                          FontSize="20"
                          FontWeight="Medium"
-                         ToolTip="{Binding ElementName=designationTextBox, Path=Text}"
+                         ToolTip="{Binding ElementName=DesignationTextBox, Path=Text}"
                          VerticalContentAlignment="Center"/>
             </Grid>
         </Grid>
@@ -58,21 +59,21 @@
                 <ColumnDefinition Width="400"/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
-                <mdt:PackIcon x:Name="iconTranslate"
+                <mdt:PackIcon x:Name="IconTranslate"
                               Kind="Translate"
                               Height="Auto"
-                              Width="{Binding ElementName=iconTranslate, Path=Height}"
+                              Width="{Binding ElementName=IconTranslate, Path=Height}"
                               ToolTip="Язык"/>
             </Grid>
             <Grid Grid.Column="1" 
                       Margin="5,0,0,0">
-                <TextBox x:Name="languageProficiencyNameTextBox"
+                <TextBox x:Name="LanguageProficiencyNameTextBox"
                          Text="{Binding Path=LanguageProficiencyName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                          mdt:HintAssist.Hint="Название уровня знания языка"
                          mdt:HintAssist.HelperText="Введите название уровня знания языка"
                          FontSize="20"
                          FontWeight="Medium"
-                         ToolTip="{Binding ElementName=languageProficiencyNameTextBox, Path=Text}"
+                         ToolTip="{Binding ElementName=LanguageProficiencyNameTextBox, Path=Text}"
                          VerticalContentAlignment="Center"/>
             </Grid>
         </Grid>

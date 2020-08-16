@@ -12,27 +12,9 @@ namespace EmploymentAgency.ViewModels
 {
     public class CountriesViewModel : BindableBase
     {
-        private int? _selectedIdCountry;
-
         private QueryExecutor _executor;
 
-        public bool IsCanAdd { get; set; } = true;
-
-        public bool IsCanChange { get; set; }
-
-        public bool IsCanRemove { get; set; }
-
-        public int? SelectedIdCountry
-        {
-            get { return _selectedIdCountry; }
-            set
-            {
-                _selectedIdCountry = value;
-
-                IsCanChange = _selectedIdCountry != null ? true : false;
-                IsCanRemove = _selectedIdCountry != null ? true : false;
-            }
-        }
+        public int? SelectedIdCountry { get; set; }
 
         public string CountryName { get; set; }
 
@@ -55,14 +37,14 @@ namespace EmploymentAgency.ViewModels
         public ICommand Add => new DelegateCommand(() =>
         {
             WindowService.ShowWindow(new AddCountry());
-        }, () => IsCanAdd == true);
+        }, () => true);
 
         public ICommand Change => new DelegateCommand(() =>
         {
             ChangeCountryViewModel.SelectedIdCountry = (int)SelectedIdCountry;
 
             WindowService.ShowWindow(new ChangeCountry());
-        }, () => IsCanChange);
+        }, () => SelectedIdCountry != null ? true : false);
 
         public ICommand Remove => new DelegateCommand(() =>
         {
@@ -74,7 +56,7 @@ namespace EmploymentAgency.ViewModels
 
                 Find();
             }
-        }, () => IsCanRemove);
+        }, () => SelectedIdCountry != null ? true : false);
 
         public ICommand ToFind => new DelegateCommand(() =>
         {

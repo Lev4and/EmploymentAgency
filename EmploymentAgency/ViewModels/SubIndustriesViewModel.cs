@@ -12,29 +12,11 @@ namespace EmploymentAgency.ViewModels
 {
     public class SubIndustriesViewModel : BindableBase
     {
-        private int? _selectedIdSubIndustry;
-
         private QueryExecutor _executor;
-
-        public bool IsCanAdd { get; set; } = true;
-
-        public bool IsCanChange { get; set; }
-
-        public bool IsCanRemove { get; set; }
 
         public int? SelectedIdIndustry { get; set; }
 
-        public int? SelectedIdSubIndustry
-        {
-            get { return _selectedIdSubIndustry; }
-            set
-            {
-                _selectedIdSubIndustry = value;
-
-                IsCanChange = _selectedIdSubIndustry != null ? true : false;
-                IsCanRemove = _selectedIdSubIndustry != null ? true : false;
-            }
-        }
+        public int? SelectedIdSubIndustry { get; set; }
 
         public string NameSubIndustry { get; set; }
 
@@ -59,14 +41,14 @@ namespace EmploymentAgency.ViewModels
         public ICommand Add => new DelegateCommand(() =>
         {
             WindowService.ShowWindow(new AddSubIndustry());
-        }, () => IsCanAdd == true);
+        }, () => true);
 
         public ICommand Change => new DelegateCommand(() =>
         {
             ChangeSubIndustryViewModel.SelectedIdSubIndustry = (int)SelectedIdSubIndustry;
 
             WindowService.ShowWindow(new ChangeSubIndustry());
-        }, () => IsCanChange);
+        }, () => SelectedIdSubIndustry != null ? true : false);
 
         public ICommand Remove => new DelegateCommand(() =>
         {
@@ -78,7 +60,7 @@ namespace EmploymentAgency.ViewModels
 
                 Find();
             }
-        }, () => IsCanRemove);
+        }, () => SelectedIdSubIndustry != null ? true : false);
 
         public ICommand ToFind => new DelegateCommand(() =>
         {

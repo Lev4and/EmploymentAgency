@@ -12,27 +12,9 @@ namespace EmploymentAgency.ViewModels
 {
     public class RequestStatusesViewModel : BindableBase
     {
-        private int? _selectedIdRequestStatus;
-
         private QueryExecutor _executor;
 
-        public bool IsCanAdd { get; set; } = true;
-
-        public bool IsCanChange { get; set; }
-
-        public bool IsCanRemove { get; set; }
-
-        public int? SelectedIdRequestStatus
-        {
-            get { return _selectedIdRequestStatus; }
-            set
-            {
-                _selectedIdRequestStatus = value;
-
-                IsCanChange = _selectedIdRequestStatus != null ? true : false;
-                IsCanRemove = _selectedIdRequestStatus != null ? true : false;
-            }
-        }
+        public int? SelectedIdRequestStatus { get; set; }
 
         public string RequestStatusName { get; set; }
 
@@ -53,14 +35,14 @@ namespace EmploymentAgency.ViewModels
         public ICommand Add => new DelegateCommand(() =>
         {
             WindowService.ShowWindow(new AddRequestStatus());
-        }, () => IsCanAdd == true);
+        }, () => true);
 
         public ICommand Change => new DelegateCommand(() =>
         {
             ChangeRequestStatusViewModel.SelectedIdRequestStatus = (int)SelectedIdRequestStatus;
 
             WindowService.ShowWindow(new ChangeRequestStatus());
-        }, () => IsCanChange);
+        }, () => SelectedIdRequestStatus != null ? true : false);
 
         public ICommand Remove => new DelegateCommand(() =>
         {
@@ -72,7 +54,7 @@ namespace EmploymentAgency.ViewModels
 
                 Find();
             }
-        }, () => IsCanRemove);
+        }, () => SelectedIdRequestStatus != null ? true : false);
 
         public ICommand ToFind => new DelegateCommand(() =>
         {

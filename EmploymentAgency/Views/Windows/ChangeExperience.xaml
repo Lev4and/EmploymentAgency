@@ -7,6 +7,7 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:local="clr-namespace:EmploymentAgency.Views.Windows"
         mc:Ignorable="d"
+        Background="{StaticResource WindowBackgroundBrush}"
         DataContext="{Binding ChangeExperienceViewModel, Source={StaticResource ViewModelLocator}}"
         Title="Агентство трудоустройства - Изменение данных опыта" Height="450" Width="800">
     <Grid>
@@ -29,21 +30,21 @@
                 <ColumnDefinition Width="300"/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
-                <mdt:PackIcon x:Name="iconHardHat"
+                <mdt:PackIcon x:Name="IconHardHat"
                               Kind="HardHat"
                               Height="Auto"
-                              Width="{Binding ElementName=iconHardHat, Path=Height}"
+                              Width="{Binding ElementName=IconHardHat, Path=Height}"
                               ToolTip="Опыт работы"/>
             </Grid>
             <Grid Grid.Column="1" 
                       Margin="5,0,0,0">
-                <TextBox x:Name="experienceNameTextBox"
+                <TextBox x:Name="ExperienceNameTextBox"
                          Text="{Binding Path=ExperienceName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                          mdt:HintAssist.Hint="Название оыта"
                          mdt:HintAssist.HelperText="Введите название типа опыта"
                          FontSize="20"
                          FontWeight="Medium"
-                         ToolTip="{Binding ElementName=experienceNameTextBox, Path=Text}"
+                         ToolTip="{Binding ElementName=ExperienceNameTextBox, Path=Text}"
                          VerticalContentAlignment="Center"/>
             </Grid>
         </Grid>

@@ -12,27 +12,9 @@ namespace EmploymentAgency.ViewModels
 {
     public class IndustriesViewModel : BindableBase
     {
-        private int? _selectedIdIndustry;
-
         private QueryExecutor _executor;
 
-        public bool IsCanAdd { get; set; } = true;
-
-        public bool IsCanChange { get; set; }
-
-        public bool IsCanRemove { get; set; }
-
-        public int? SelectedIdIndustry
-        {
-            get { return _selectedIdIndustry; }
-            set
-            {
-                _selectedIdIndustry = value;
-
-                IsCanChange = _selectedIdIndustry != null ? true : false;
-                IsCanRemove = _selectedIdIndustry != null ? true : false;
-            }
-        }
+        public int? SelectedIdIndustry { get; set; }
 
         public string IndustryName { get; set; }
 
@@ -53,14 +35,14 @@ namespace EmploymentAgency.ViewModels
         public ICommand Add => new DelegateCommand(() =>
         {
             WindowService.ShowWindow(new AddIndustry());
-        }, () => IsCanAdd == true);
+        }, () => true);
 
         public ICommand Change => new DelegateCommand(() =>
         {
             ChangeIndustryViewModel.SelectedIdIndustry = (int)SelectedIdIndustry;
 
             WindowService.ShowWindow(new ChangeIndustry());
-        }, () => IsCanChange);
+        }, () => SelectedIdIndustry != null ? true : false);
 
         public ICommand Remove => new DelegateCommand(() =>
         {
@@ -72,7 +54,7 @@ namespace EmploymentAgency.ViewModels
 
                 Find();
             }
-        }, () => IsCanRemove);
+        }, () => SelectedIdIndustry != null ? true : false);
 
         public ICommand ToFind => new DelegateCommand(() =>
         {

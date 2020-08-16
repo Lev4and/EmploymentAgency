@@ -7,6 +7,7 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:local="clr-namespace:EmploymentAgency.Views.Windows"
         mc:Ignorable="d"
+        Background="{StaticResource WindowBackgroundBrush}"
         DataContext="{Binding ChangeProfessionViewModel, Source={StaticResource ViewModelLocator}}"
         Title="Агентство трудоустройства - Изменение данных профессии" Height="450" Width="800">
     <Grid>
@@ -30,21 +31,21 @@
                 <ColumnDefinition Width="300"/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
-                <mdt:PackIcon x:Name="iconWrench"
+                <mdt:PackIcon x:Name="IconWrench"
                               Kind="Wrench"
                               Height="Auto"
-                              Width="{Binding ElementName=iconWrench, Path=Height}"
+                              Width="{Binding ElementName=IconWrench, Path=Height}"
                               ToolTip="Сфера деятельности"/>
             </Grid>
             <Grid Grid.Column="1" Margin="5,0,0,0">
-                <TextBox x:Name="nameProfessionCategoryTextBox"
+                <TextBox x:Name="NameProfessionCategoryTextBox"
                          IsReadOnly="True"
                          mdt:HintAssist.Hint="Сфера деятельности"
                          mdt:HintAssist.HelperText="Укажите сферу деятельности"
                          FontSize="20"
                          FontWeight="Medium"
                          Text="{Binding Path=NameProfessionCategory, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                         ToolTip="{Binding ElementName=nameProfessionCategoryTextBox, Path=Text}"
+                         ToolTip="{Binding ElementName=NameProfessionCategoryTextBox, Path=Text}"
                          VerticalContentAlignment="Center"/>
             </Grid>
         </Grid>
@@ -58,21 +59,21 @@
                 <ColumnDefinition Width="300"/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
-                <mdt:PackIcon x:Name="iconAccountHardHat"
+                <mdt:PackIcon x:Name="IconAccountHardHat"
                               Kind="AccountHardHat"
                               Height="Auto"
-                              Width="{Binding ElementName=iconAccountHardHat, Path=Height}"
+                              Width="{Binding ElementName=IconAccountHardHat, Path=Height}"
                               ToolTip="Профессия"/>
             </Grid>
             <Grid Grid.Column="1" 
                       Margin="5,0,0,0">
-                <TextBox x:Name="professionNameTextBox"
+                <TextBox x:Name="ProfessionNameTextBox"
                          Text="{Binding Path=ProfessionName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                          mdt:HintAssist.Hint="Профессия"
                          mdt:HintAssist.HelperText="Укажите название профессии"
                          FontSize="20"
                          FontWeight="Medium"
-                         ToolTip="{Binding ElementName=professionNameTextBox, Path=Text}"
+                         ToolTip="{Binding ElementName=ProfessionNameTextBox, Path=Text}"
                          VerticalContentAlignment="Center"/>
             </Grid>
         </Grid>

@@ -12,27 +12,9 @@ namespace EmploymentAgency.ViewModels
 {
     public class DrivingLicenseCategoriesViewModel : BindableBase
     {
-        private int? _selectedIdDrivingLicenseCategory;
-
         private QueryExecutor _executor;
 
-        public bool IsCanAdd { get; set; } = true;
-
-        public bool IsCanChange { get; set; }
-
-        public bool IsCanRemove { get; set; }
-
-        public int? SelectedIdDrivingLicenseCategory
-        {
-            get { return _selectedIdDrivingLicenseCategory; }
-            set
-            {
-                _selectedIdDrivingLicenseCategory = value;
-
-                IsCanChange = _selectedIdDrivingLicenseCategory != null ? true : false;
-                IsCanRemove = _selectedIdDrivingLicenseCategory != null ? true : false;
-            }
-        }
+        public int? SelectedIdDrivingLicenseCategory { get; set; }
 
         public string DrivingLicenseCategoryName { get; set; }
 
@@ -53,14 +35,14 @@ namespace EmploymentAgency.ViewModels
         public ICommand Add => new DelegateCommand(() =>
         {
             WindowService.ShowWindow(new AddDrivingLicenseCategory());
-        }, () => IsCanAdd == true);
+        }, () => true);
 
         public ICommand Change => new DelegateCommand(() =>
         {
             ChangeDrivingLicenseCategoryViewModel.SelectedIdDrivingLicenseCategory = (int)SelectedIdDrivingLicenseCategory;
 
             WindowService.ShowWindow(new ChangeDrivingLicenseCategory());
-        }, () => IsCanChange);
+        }, () => SelectedIdDrivingLicenseCategory != null ? true : false);
 
         public ICommand Remove => new DelegateCommand(() =>
         {
@@ -72,7 +54,7 @@ namespace EmploymentAgency.ViewModels
 
                 Find();
             }
-        }, () => IsCanRemove);
+        }, () => SelectedIdDrivingLicenseCategory != null ? true : false);
 
         public ICommand ToFind => new DelegateCommand(() =>
         {

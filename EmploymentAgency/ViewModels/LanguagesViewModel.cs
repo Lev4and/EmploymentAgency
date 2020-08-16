@@ -12,27 +12,9 @@ namespace EmploymentAgency.ViewModels
 {
     public class LanguagesViewModel : BindableBase
     {
-        private int? _selectedIdLanguage;
-
         private QueryExecutor _executor;
 
-        public bool IsCanAdd { get; set; } = true;
-
-        public bool IsCanChange { get; set; }
-
-        public bool IsCanRemove { get; set; }
-
-        public int? SelectedIdLanguage
-        {
-            get { return _selectedIdLanguage; }
-            set
-            {
-                _selectedIdLanguage = value;
-
-                IsCanChange = _selectedIdLanguage != null ? true : false;
-                IsCanRemove = _selectedIdLanguage != null ? true : false;
-            }
-        }
+        public int? SelectedIdLanguage { get; set; }
 
         public string LanguageName { get; set; }
 
@@ -53,14 +35,14 @@ namespace EmploymentAgency.ViewModels
         public ICommand Add => new DelegateCommand(() =>
         {
             WindowService.ShowWindow(new AddLanguage());
-        }, () => IsCanAdd == true);
+        }, () => true);
 
         public ICommand Change => new DelegateCommand(() =>
         {
             ChangeLanguageViewModel.SelectedIdLanguage = (int)SelectedIdLanguage;
 
             WindowService.ShowWindow(new ChangeLanguage());
-        }, () => IsCanChange);
+        }, () => SelectedIdLanguage != null ? true : false);
 
         public ICommand Remove => new DelegateCommand(() =>
         {
@@ -72,7 +54,7 @@ namespace EmploymentAgency.ViewModels
 
                 Find();
             }
-        }, () => IsCanRemove);
+        }, () => SelectedIdLanguage != null ? true : false);
 
         public ICommand ToFind => new DelegateCommand(() =>
         {

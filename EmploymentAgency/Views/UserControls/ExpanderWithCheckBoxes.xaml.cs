@@ -157,19 +157,19 @@ namespace EmploymentAgency.Views.UserControls
 
         private void RemoveContorls()
         {
-            while (grid.Children.Count > 0)
-                grid.Children.Clear();
+            while (Grid.Children.Count > 0)
+                Grid.Children.Clear();
         }
 
         private void RenderContorl(UIElement control)
         {
-            grid.Children.Add(control);
+            Grid.Children.Add(control);
         }
 
         private void RenderContorls()
         {
             foreach (var item in Items)
-                grid.Children.Add(item);
+                Grid.Children.Add(item);
         }
 
         private void ScrollViewer_ScrollChanged(object sender, ScrollChangedEventArgs e)

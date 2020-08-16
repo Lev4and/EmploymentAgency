@@ -12,29 +12,11 @@ namespace EmploymentAgency.ViewModels
 {
     public class UsersViewModel : BindableBase
     {
-        private int? _selectedIdUser;
-
         private QueryExecutor _executor;
-
-        public bool IsCanAdd { get; set; } = true;
-
-        public bool IsCanChange { get; set; }
-
-        public bool IsCanRemove { get; set; }
 
         public int? SelectedIdRole { get; set; }
 
-        public int? SelectedIdUser
-        {
-            get { return _selectedIdUser; }
-            set
-            {
-                _selectedIdUser = value;
-
-                IsCanChange = _selectedIdUser != null ? true : false;
-                IsCanRemove = _selectedIdUser != null ? true : false;
-            }
-        }
+        public int? SelectedIdUser { get; set; }
 
         public string Login { get; set; }
 
@@ -59,7 +41,7 @@ namespace EmploymentAgency.ViewModels
         public ICommand Add => new DelegateCommand(() =>
         {
             WindowService.ShowWindow(new AddUser());
-        }, () => IsCanAdd == true);
+        }, () => true);
 
         public ICommand Change => new DelegateCommand(() =>
         {
@@ -73,7 +55,7 @@ namespace EmploymentAgency.ViewModels
             {
                 MessageBox.Show("Нельзя менять данные пользователей неработающих в этой компанией", "Предупреждение");
             }
-        }, () => IsCanChange);
+        }, () => SelectedIdUser != null ? true : false);
 
         public ICommand Remove => new DelegateCommand(() =>
         {
@@ -85,7 +67,7 @@ namespace EmploymentAgency.ViewModels
 
                 Find();
             }
-        }, () => IsCanRemove);
+        }, () => SelectedIdUser != null ? true : false);
 
         public ICommand ToFind => new DelegateCommand(() =>
         {

@@ -9,11 +9,12 @@
         xmlns:uc="clr-namespace:EmploymentAgency.Views.UserControls"
         xmlns:c="clr-namespace:EmploymentAgency.Converters"
         mc:Ignorable="d"
+        Background="{StaticResource WindowBackgroundBrush}"
         DataContext="{Binding AddOrganizationViewModel, Source={StaticResource ViewModelLocator}}"
         Title="Агентство трудоустройства - Добавление организации" Height="490" Width="800">
     <Window.Resources>
-        <c:ArrayByteToImageSource x:Key="arrayByteToImageSource"/>
-        <c:SelectedValueToNullableInt32 x:Key="selectedValueToNullableInt32"/>
+        <c:ArrayByteToImageSource x:Key="ArrayByteToImageSource"/>
+        <c:SelectedValueToNullableInt32 x:Key="SelectedValueToNullableInt32"/>
     </Window.Resources>
     <Grid>
         <i:Interaction.Triggers>
@@ -44,26 +45,26 @@
                     <ColumnDefinition Width="300"/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
-                    <mdt:PackIcon x:Name="iconCog"
+                    <mdt:PackIcon x:Name="IconCog"
                                   Kind="Cog"
                                   Height="Auto"
-                                  Width="{Binding ElementName=iconCog, Path=Height}"
+                                  Width="{Binding ElementName=IconCog, Path=Height}"
                                   ToolTip="Отрасль промышленности"/>
                 </Grid>
                 <Grid Grid.Column="1" Margin="5,0,0,0">
-                    <ComboBox Name="industriesComboBox"
+                    <ComboBox Name="IndustriesComboBox"
                               mdt:HintAssist.Hint="Отрасль"
                               mdt:HintAssist.HelperText="Укажите отрасль"
                               ItemsSource="{Binding Path=Industries, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                               DisplayMemberPath="IndustryName"
                               SelectedValuePath="IdIndustry"
-                              SelectedValue="{Binding Path=SelectedIdIndustry, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource selectedValueToNullableInt32}}"
+                              SelectedValue="{Binding Path=SelectedIdIndustry, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource SelectedValueToNullableInt32}}"
                               FontSize="20"
                               FontWeight="Medium"
                               IsEditable="True"
                               IsTextSearchEnabled="False"
                               Text="{Binding Path=IndustryName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                              ToolTip="{Binding ElementName=industriesComboBox, Path=Text}"/>
+                              ToolTip="{Binding ElementName=IndustriesComboBox, Path=Text}"/>
                 </Grid>
             </Grid>
             <Grid Grid.Row="1" Height="50">
@@ -72,26 +73,26 @@
                     <ColumnDefinition Width="300"/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
-                    <mdt:PackIcon x:Name="iconCogOutline"
+                    <mdt:PackIcon x:Name="IconCogOutline"
                                   Kind="CogOutline"
                                   Height="Auto"
-                                  Width="{Binding ElementName=iconCogOutline, Path=Height}"
+                                  Width="{Binding ElementName=IconCogOutline, Path=Height}"
                                   ToolTip="Подотрасль промышленности"/>
                 </Grid>
                 <Grid Grid.Column="1" Margin="5,0,0,0">
-                    <ComboBox x:Name="subIndustriesComboBox"
+                    <ComboBox x:Name="SubIndustriesComboBox"
                               mdt:HintAssist.Hint="Подотрасль"
                               mdt:HintAssist.HelperText="Укажите подотрасль"
                               ItemsSource="{Binding Path=SubIndustries, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                               DisplayMemberPath="NameSubIndustry"
                               SelectedValuePath="IdSubIndustry"
-                              SelectedValue="{Binding Path=SelectedIdSubIndustry, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource selectedValueToNullableInt32}}"
+                              SelectedValue="{Binding Path=SelectedIdSubIndustry, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource SelectedValueToNullableInt32}}"
                               FontSize="20"
                               FontWeight="Medium"
                               IsEditable="True"
                               IsTextSearchEnabled="False"
                               Text="{Binding Path=NameSubIndustry, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                              ToolTip="{Binding ElementName=subIndustriesComboBox, Path=Text}"/>
+                              ToolTip="{Binding ElementName=SubIndustriesComboBox, Path=Text}"/>
                 </Grid>
             </Grid>
             <Grid Grid.Row="2" Height="50">
@@ -100,20 +101,20 @@
                     <ColumnDefinition Width="300"/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
-                    <mdt:PackIcon x:Name="iconAccountTie"
+                    <mdt:PackIcon x:Name="IconAccountTie"
                                   Kind="AccountTie"
                                   Height="Auto"
-                                  Width="{Binding ElementName=iconAccountTie, Path=Height}"
+                                  Width="{Binding ElementName=IconAccountTie, Path=Height}"
                                   ToolTip="Название организации"/>
                 </Grid>
                 <Grid Grid.Column="1" Margin="5,0,0,0">
-                    <TextBox x:Name="organizationNameTextBox"
+                    <TextBox x:Name="OrganizationNameTextBox"
                              mdt:HintAssist.Hint="Название организации"
                              mdt:HintAssist.HelperText="Укажите название организации"
                              FontSize="20"
                              FontWeight="Medium"
                              Text="{Binding Path=OrganizationName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                             ToolTip="{Binding ElementName=organizationNameTextBox, Path=Text}"
+                             ToolTip="{Binding ElementName=OrganizationNameTextBox, Path=Text}"
                              VerticalContentAlignment="Center"/>
                 </Grid>
             </Grid>

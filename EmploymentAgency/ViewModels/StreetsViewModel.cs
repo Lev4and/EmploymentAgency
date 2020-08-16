@@ -14,18 +14,11 @@ namespace EmploymentAgency.ViewModels
     public class StreetsViewModel : BindableBase
     {
         private int? _selectedIdCountry;
-        private int? _selectedIdStreet;
 
         private string _countryName;
         private string _cityName;
 
         private QueryExecutor _executor;
-
-        public bool IsCanAdd { get; set; } = true;
-
-        public bool IsCanChange { get; set; }
-
-        public bool IsCanRemove { get; set; }
 
         public int? SelectedIdCountry
         {
@@ -51,17 +44,7 @@ namespace EmploymentAgency.ViewModels
 
         public int? SelectedIdCity { get; set; }
 
-        public int? SelectedIdStreet
-        {
-            get { return _selectedIdStreet; }
-            set
-            {
-                _selectedIdStreet = value;
-
-                IsCanChange = _selectedIdStreet != null ? true : false;
-                IsCanRemove = _selectedIdStreet != null ? true : false;
-            }
-        }
+        public int? SelectedIdStreet { get; set; }
 
         public string CountryName
         {
@@ -137,14 +120,14 @@ namespace EmploymentAgency.ViewModels
         public ICommand Add => new DelegateCommand(() =>
         {
             WindowService.ShowWindow(new AddStreet());
-        }, () => IsCanAdd == true);
+        }, () => true);
 
         public ICommand Change => new DelegateCommand(() =>
         {
             ChangeStreetViewModel.SelectedIdStreet = (int)SelectedIdStreet;
 
             WindowService.ShowWindow(new ChangeStreet());
-        }, () => IsCanChange);
+        }, () => SelectedIdStreet != null ? true : false);
 
         public ICommand Remove => new DelegateCommand(() =>
         {
@@ -156,7 +139,7 @@ namespace EmploymentAgency.ViewModels
 
                 Find();
             }
-        }, () => IsCanRemove);
+        }, () => SelectedIdStreet != null ? true : false);
 
         public ICommand ToFind => new DelegateCommand(() =>
         {

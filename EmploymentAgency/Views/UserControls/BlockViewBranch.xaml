@@ -8,19 +8,19 @@
                      xmlns:local="clr-namespace:EmploymentAgency.Views.UserControls"
                      xmlns:c="clr-namespace:EmploymentAgency.Converters"
                      mc:Ignorable="d"
-                     x:Name="_this"
-                     DataContext="{Binding ElementName=_this, Path=Data}"
+                     x:Name="This"
+                     DataContext="{Binding ElementName=This, Path=Data}"
                      d:DesignHeight="450" d:DesignWidth="800" MinWidth="800" MinHeight="100" Height="100" MaxHeight="100">
     <UserControl.Resources>
-        <c:ArrayByteToImageSource x:Key="arrayByteToImageSource"/>
+        <c:ArrayByteToImageSource x:Key="ArrayByteToImageSource"/>
     </UserControl.Resources>
     <Grid>
         <Border BorderThickness="4" BorderBrush="Black" Background="Transparent" CornerRadius="10">
-            <Grid Background="{Binding ElementName=_this, Path=BackgroundBrush, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+            <Grid Background="{Binding ElementName=This, Path=BackgroundBrush, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                   Margin="0">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="MouseDown">
-                        <i:InvokeCommandAction Command="{Binding ElementName=_this, Path=OnClick}"/>
+                        <i:InvokeCommandAction Command="{Binding ElementName=This, Path=OnClick}"/>
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
                 <Grid.ColumnDefinitions>
@@ -33,7 +33,7 @@
                     <Border BorderThickness="1"
                             BorderBrush="Black">
                         <Image Stretch="Uniform"
-                               Source="{Binding Path=Photo, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource arrayByteToImageSource}}"/>
+                               Source="{Binding Path=Photo, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource ArrayByteToImageSource}}"/>
                     </Border>
                 </Grid>
                 <Grid Grid.Column="1"
@@ -57,10 +57,10 @@
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
                         <Grid Grid.Column="0">
-                            <mdt:PackIcon x:Name="iconCog"
+                            <mdt:PackIcon x:Name="IconCog"
                                           Kind="Cog"
                                           Height="Auto"
-                                          Width="{Binding ElementName=iconCog, Path=Height}"
+                                          Width="{Binding ElementName=IconCog, Path=Height}"
                                           ToolTip="Отрасль промышленности"/>
                         </Grid>
                         <Grid Grid.Column="1">
@@ -78,10 +78,10 @@
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
                         <Grid Grid.Column="0">
-                            <mdt:PackIcon x:Name="iconCogOutline"
+                            <mdt:PackIcon x:Name="IconCogOutline"
                                           Kind="CogOutline"
                                           Height="Auto"
-                                          Width="{Binding ElementName=iconCogOutline, Path=Height}"
+                                          Width="{Binding ElementName=IconCogOutline, Path=Height}"
                                           ToolTip="Подотрасль промышленности"/>
                         </Grid>
                         <Grid Grid.Column="1">
@@ -107,15 +107,15 @@
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
                         <Grid Grid.Column="0">
-                            <mdt:PackIcon x:Name="iconMapMarker"
+                            <mdt:PackIcon x:Name="IconMapMarker"
                                               Kind="MapMarker"
-                                              Height="{Binding ElementName=addressTextBlock, Path=ActualHeight}"
-                                              Width="{Binding ElementName=addressTextBlock, Path=ActualHeight}"
+                                              Height="{Binding ElementName=AddressTextBlock, Path=ActualHeight}"
+                                              Width="{Binding ElementName=AddressTextBlock, Path=ActualHeight}"
                                               VerticalAlignment="Center"
                                               ToolTip="Адрес"/>
                         </Grid>
                         <Grid Grid.Column="1">
-                            <TextBlock x:Name="addressTextBlock"
+                            <TextBlock x:Name="AddressTextBlock"
                                            Text="{Binding Path=Address, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                            FontSize="16"
                                            TextAlignment="Left"
@@ -131,15 +131,15 @@
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
                         <Grid Grid.Column="0">
-                            <mdt:PackIcon x:Name="iconPhone"
+                            <mdt:PackIcon x:Name="IconPhone"
                                               Kind="Phone"
-                                              Height="{Binding ElementName=phoneNumberTextBlock, Path=ActualHeight}"
-                                              Width="{Binding ElementName=phoneNumberTextBlock, Path=ActualHeight}"
+                                              Height="{Binding ElementName=PhoneNumberTextBlock, Path=ActualHeight}"
+                                              Width="{Binding ElementName=PhoneNumberTextBlock, Path=ActualHeight}"
                                               VerticalAlignment="Center"
                                               ToolTip="Номер телефона"/>
                         </Grid>
                         <Grid Grid.Column="1">
-                            <TextBlock x:Name="phoneNumberTextBlock"
+                            <TextBlock x:Name="PhoneNumberTextBlock"
                                        Text="{Binding Path=PhoneNumber, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                        FontSize="16"
                                        TextAlignment="Left"

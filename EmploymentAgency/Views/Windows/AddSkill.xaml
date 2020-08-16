@@ -9,10 +9,11 @@
         xmlns:uc="clr-namespace:EmploymentAgency.Views.UserControls"
         xmlns:c="clr-namespace:EmploymentAgency.Converters"
         mc:Ignorable="d"
+        Background="{StaticResource WindowBackgroundBrush}"
         DataContext="{Binding AddSkillViewModel, Source={StaticResource ViewModelLocator}}"
         Title="Агентство трудоустройства - Добавление навыка" Height="450" Width="800">
     <Window.Resources>
-        <c:ArrayByteToImageSource x:Key="arrayByteToImageSource"/>
+        <c:ArrayByteToImageSource x:Key="ArrayByteToImageSource"/>
     </Window.Resources>
     <Grid>
         <i:Interaction.Triggers>
@@ -45,21 +46,21 @@
                     <ColumnDefinition Width="300"/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
-                    <mdt:PackIcon x:Name="iconHammerWrench"
+                    <mdt:PackIcon x:Name="IconHammerWrench"
                                   Kind="HammerWrench"
                                   Height="Auto"
-                                  Width="{Binding ElementName=iconHammerWrench, Path=Height}"
+                                  Width="{Binding ElementName=IconHammerWrench, Path=Height}"
                                   ToolTip="Навык"/>
                 </Grid>
                 <Grid Grid.Column="1" 
                       Margin="5,0,0,0">
-                    <TextBox x:Name="skillNameTextBox"
+                    <TextBox x:Name="SkillNameTextBox"
                              Text="{Binding Path=SkillName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                              mdt:HintAssist.Hint="Навык"
                              mdt:HintAssist.HelperText="Введите навык"
                              FontSize="20"
                              FontWeight="Medium"
-                             ToolTip="{Binding ElementName=skillNameTextBox, Path=Text}"
+                             ToolTip="{Binding ElementName=SkillNameTextBox, Path=Text}"
                              VerticalContentAlignment="Center"/>
                 </Grid>
             </Grid>

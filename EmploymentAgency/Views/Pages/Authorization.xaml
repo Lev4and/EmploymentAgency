@@ -8,12 +8,13 @@
       xmlns:local="clr-namespace:EmploymentAgency.Views.Pages"
       xmlns:c="clr-namespace:EmploymentAgency.Converters"
       mc:Ignorable="d"
+      Background="{StaticResource PageBackgroundBrush}"
       DataContext="{Binding AuthorizationViewModel, Source={StaticResource ViewModelLocator}}"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Авторизация" WindowTitle="Агентство трудоустройства - Авторизация">
     <Page.Resources>
-        <c:BoolToBackBool x:Key="boolToBackBool"/>
-        <c:BoolToVisibility x:Key="boolToVisibility"/>
+        <c:BoolToBackBool x:Key="BoolToBackBool"/>
+        <c:BoolToVisibility x:Key="BoolToVisibility"/>
     </Page.Resources>
     <Grid>
         <i:Interaction.Triggers>
@@ -27,18 +28,18 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <mdt:PackIcon Kind="ArrowLeftCircle"
-                          Panel.ZIndex="1"
-                          Width="40"
-                          Height="40"
-                          Margin="5,5,0,5"
-                          ToolTip="Вернуться в главное окно">
+            <Button Panel.ZIndex="1"
+                    Margin="5,5,0,5"
+                    HorizontalAlignment="Left"
+                    Style="{StaticResource BackButton}"
+                    Command="{Binding Path=Back}"
+                    ToolTip="Вернуться в главное окно">
                 <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="MouseDown">
+                    <i:EventTrigger EventName="Click">
                         <i:InvokeCommandAction Command="{Binding Path=Back}"/>
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
-            </mdt:PackIcon>
+            </Button>
             <TextBlock Style="{StaticResource MaterialDesignHeadline4TextBlock}"
                        Text="Авторизация"
                        TextAlignment="Center"/>
@@ -56,22 +57,22 @@
                     <ColumnDefinition Width="300"/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
-                    <mdt:PackIcon x:Name="iconAccount"
+                    <mdt:PackIcon x:Name="IconAccount"
                                   Kind="Account"
                                   Height="Auto"
-                                  Width="{Binding ElementName=iconAccount, Path=Height}"
+                                  Width="{Binding ElementName=IconAccount, Path=Height}"
                                   ToolTip="Логин"/>
                 </Grid>
                 <Grid Grid.Column="1" Margin="5,0,0,0">
-                    <TextBox x:Name="loginTextBox"
+                    <TextBox x:Name="LoginTextBox"
                              Text="{Binding Path=Login, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                             IsEnabled="{Binding Path=IsBackgroundTaskRunning, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource boolToBackBool}}"
+                             IsEnabled="{Binding Path=IsBackgroundTaskRunning, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource BoolToBackBool}}"
                              mdt:HintAssist.Hint="Логин"
                              mdt:HintAssist.HelperText="Длина логина должна быть больше 0 символов"
                              FontSize="20"
                              FontWeight="Medium"
                              VerticalContentAlignment="Center"
-                             ToolTip="{Binding ElementName=loginTextBox, Path=Text}"/>
+                             ToolTip="{Binding ElementName=LoginTextBox, Path=Text}"/>
                 </Grid>
             </Grid>
             <Grid Grid.Row="1" Height="50" Margin="0,20,0,0">
@@ -80,15 +81,15 @@
                     <ColumnDefinition Width="300"/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
-                    <mdt:PackIcon x:Name="iconPassword"
+                    <mdt:PackIcon x:Name="IconPassword"
                                   Kind="FormTextboxPassword"
                                   Height="Auto"
-                                  Width="{Binding ElementName=iconPassword, Path=Height}"
+                                  Width="{Binding ElementName=IconPassword, Path=Height}"
                                   ToolTip="Пароль"/>
                 </Grid>
                 <Grid Grid.Column="1" Margin="5,0,0,0">
-                    <PasswordBox x:Name="passwordBox"
-                                 IsEnabled="{Binding Path=IsBackgroundTaskRunning, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource boolToBackBool}}"
+                    <PasswordBox x:Name="PasswordBox"
+                                 IsEnabled="{Binding Path=IsBackgroundTaskRunning, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource BoolToBackBool}}"
                                  mdt:HintAssist.Hint="Пароль"
                                  mdt:HintAssist.HelperText="Длина пароля должна быть больше 0 символов"
                                  FontSize="20"
@@ -96,7 +97,7 @@
                                  VerticalContentAlignment="Center">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="PasswordChanged">
-                                <i:InvokeCommandAction Command="{Binding Path=PasswordChanged}" CommandParameter="{Binding ElementName=passwordBox}"/>
+                                <i:InvokeCommandAction Command="{Binding Path=PasswordChanged}" CommandParameter="{Binding ElementName=PasswordBox}"/>
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
                     </PasswordBox>
@@ -122,7 +123,7 @@
                 </mdt:Badged>
             </Grid>
             <Grid Grid.Column="1" HorizontalAlignment="Right">
-                <Button Visibility="{Binding Path=IsBackgroundTaskRunning, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource boolToVisibility}}"
+                <Button Visibility="{Binding Path=IsBackgroundTaskRunning, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource BoolToVisibility}}"
                         Style="{StaticResource MaterialDesignFloatingActionButton}"
                         Height="45"
                         Width="45"

@@ -8,20 +8,20 @@
                      xmlns:local="clr-namespace:EmploymentAgency.Views.UserControls"
                      xmlns:c="clr-namespace:EmploymentAgency.Converters"
                      mc:Ignorable="d"
-                     x:Name="_this"
-                     DataContext="{Binding ElementName=_this, Path=Data}"
+                     x:Name="This"
+                     DataContext="{Binding ElementName=This, Path=Data}"
                      d:DesignHeight="100" d:DesignWidth="800" MinWidth="800" MinHeight="100" Height="100" MaxHeight="100">
     <UserControl.Resources>
-        <c:ArrayByteToImageSource x:Key="arrayByteToImageSource"/>
+        <c:ArrayByteToImageSource x:Key="ArrayByteToImageSource"/>
         <c:DateTimeToDateConverter x:Key="dateTimeToDateConverter"/>
     </UserControl.Resources>
     <Grid>
         <Border BorderThickness="4" BorderBrush="Black" CornerRadius="10">
-            <Grid Background="{Binding ElementName=_this, Path=BackgroundBrush, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+            <Grid Background="{Binding ElementName=This, Path=BackgroundBrush, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                   Margin="0">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="MouseDown">
-                        <i:InvokeCommandAction Command="{Binding ElementName=_this, Path=OnClick}"/>
+                        <i:InvokeCommandAction Command="{Binding ElementName=This, Path=OnClick}"/>
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
                 <Grid.ColumnDefinitions>
@@ -34,7 +34,7 @@
                     <Border BorderThickness="1"
                             BorderBrush="Black">
                         <Image Stretch="Uniform"
-                               Source="{Binding Path=Photo, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource arrayByteToImageSource}}"/>
+                               Source="{Binding Path=Photo, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource ArrayByteToImageSource}}"/>
                     </Border>
                 </Grid>
                 <Grid Grid.Column="1"
@@ -58,10 +58,10 @@
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
                         <Grid Grid.Column="0">
-                            <mdt:PackIcon x:Name="iconCog"
+                            <mdt:PackIcon x:Name="IconCog"
                                           Kind="Cog"
                                           Height="Auto"
-                                          Width="{Binding ElementName=iconCog, Path=Height}"
+                                          Width="{Binding ElementName=IconCog, Path=Height}"
                                           ToolTip="Отрасль промышленности"/>
                         </Grid>
                         <Grid Grid.Column="1">
@@ -79,10 +79,10 @@
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
                         <Grid Grid.Column="0">
-                            <mdt:PackIcon x:Name="iconCogOutline"
+                            <mdt:PackIcon x:Name="IconCogOutline"
                                           Kind="CogOutline"
                                           Height="Auto"
-                                          Width="{Binding ElementName=iconCogOutline, Path=Height}"
+                                          Width="{Binding ElementName=IconCogOutline, Path=Height}"
                                           ToolTip="Подотрасль промышленности"/>
                         </Grid>
                         <Grid Grid.Column="1">
@@ -108,15 +108,15 @@
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
                         <Grid Grid.Column="0">
-                            <mdt:PackIcon x:Name="iconMapMarkerMultiple"
+                            <mdt:PackIcon x:Name="IconMapMarkerMultiple"
                                           Kind="MapMarkerMultiple"
-                                          Height="{Binding ElementName=countBranchesTextBlock, Path=ActualHeight}"
-                                          Width="{Binding ElementName=countBranchesTextBlock, Path=ActualHeight}"
+                                          Height="{Binding ElementName=CountBranchesTextBlock, Path=ActualHeight}"
+                                          Width="{Binding ElementName=CountBranchesTextBlock, Path=ActualHeight}"
                                           VerticalAlignment="Center"
                                           ToolTip="Количество филиалов"/>
                         </Grid>
                         <Grid Grid.Column="1">
-                            <TextBlock x:Name="countBranchesTextBlock"
+                            <TextBlock x:Name="CountBranchesTextBlock"
                                        Text="{Binding Path=CountBranches, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                        FontSize="16"
                                        TextAlignment="Left"
@@ -136,15 +136,15 @@
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
                             <Grid Grid.Column="0">
-                                <mdt:PackIcon x:Name="iconCalendarPlus"
+                                <mdt:PackIcon x:Name="IconCalendarPlus"
                                               Kind="CalendarPlus"
-                                              Height="{Binding ElementName=dateOfRegistrationTextBlock, Path=ActualHeight}"
-                                              Width="{Binding ElementName=dateOfRegistrationTextBlock, Path=ActualHeight}"
+                                              Height="{Binding ElementName=DateOfRegistrationTextBlock, Path=ActualHeight}"
+                                              Width="{Binding ElementName=DateOfRegistrationTextBlock, Path=ActualHeight}"
                                               VerticalAlignment="Center"
                                               ToolTip="Дата регистрации"/>
                             </Grid>
                             <Grid Grid.Column="1">
-                                <TextBlock x:Name="dateOfRegistrationTextBlock"
+                                <TextBlock x:Name="DateOfRegistrationTextBlock"
                                            Text="{Binding Path=DateOfRegistration, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource dateTimeToDateConverter}}"
                                            FontSize="16"
                                            TextAlignment="Left"
@@ -159,15 +159,15 @@
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
                             <Grid Grid.Column="0">
-                                <mdt:PackIcon x:Name="iconCalendarRemove"
+                                <mdt:PackIcon x:Name="IconCalendarRemove"
                                               Kind="CalendarRemove"
-                                              Height="{Binding ElementName=closingDateTextBlock, Path=ActualHeight}"
-                                              Width="{Binding ElementName=closingDateTextBlock, Path=ActualHeight}"
+                                              Height="{Binding ElementName=ClosingDateTextBlock, Path=ActualHeight}"
+                                              Width="{Binding ElementName=ClosingDateTextBlock, Path=ActualHeight}"
                                               VerticalAlignment="Center"
                                               ToolTip="Дата закрытия"/>
                             </Grid>
                             <Grid Grid.Column="1">
-                                <TextBlock x:Name="closingDateTextBlock"
+                                <TextBlock x:Name="ClosingDateTextBlock"
                                            Text="{Binding Path=ClosingDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource dateTimeToDateConverter}}"
                                            FontSize="16"
                                            TextAlignment="Left"

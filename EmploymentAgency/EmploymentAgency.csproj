@@ -129,6 +129,7 @@
     <Compile Include="Converters\SelectedValueToNullableInt32.cs" />
     <Compile Include="Converters\TextToInt32.cs" />
     <Compile Include="Converters\BoolToVisibility.cs" />
+    <Compile Include="Events\DataEventArgs.cs" />
     <Compile Include="Model\Configurations\ConfigurationDatabase.cs" />
     <Compile Include="Model\Configurations\ConfigurationUser.cs" />
     <Compile Include="Model\Database\Interactions\DataActions\IAccordanable.cs" />
@@ -685,7 +686,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Events\" />
     <Folder Include="Resources\Images\Interface\" />
     <Folder Include="Resources\Images\Loading\" />
   </ItemGroup>
@@ -803,6 +803,22 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Pages\Users.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Styles\Brushes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Styles\Button.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Styles\DataGrid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Templates\ButtonTemplates.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

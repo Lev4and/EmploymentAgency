@@ -8,10 +8,11 @@
         xmlns:local="clr-namespace:EmploymentAgency.Views.Windows"
         xmlns:c="clr-namespace:EmploymentAgency.Converters"
         mc:Ignorable="d"
+        Background="{StaticResource WindowBackgroundBrush}"
         DataContext="{Binding AddUserViewModel, Source={StaticResource ViewModelLocator}}"
         Title="Агентство трудоустройства - Добавление пользователя" Height="450" Width="800">
     <Window.Resources>
-        <c:SelectedValueToNullableInt32 x:Key="selectedValueToNullableInt32"/>
+        <c:SelectedValueToNullableInt32 x:Key="SelectedValueToNullableInt32"/>
     </Window.Resources>
     <Grid>
         <i:Interaction.Triggers>
@@ -33,24 +34,24 @@
                     <ColumnDefinition Width="300"/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
-                    <mdt:PackIcon x:Name="iconAccountTie"
+                    <mdt:PackIcon x:Name="IconAccountTie"
                                   Kind="AccountTie"
                                   Height="Auto"
-                                  Width="{Binding ElementName=iconAccountTie, Path=Height}"
+                                  Width="{Binding ElementName=IconAccountTie, Path=Height}"
                                   ToolTip="Тип пользователя"/>
                 </Grid>
                 <Grid Grid.Column="1" Margin="5,0,0,0">
-                    <ComboBox x:Name="rolesComboBox"
+                    <ComboBox x:Name="RolesComboBox"
                               mdt:HintAssist.Hint="Тип пользователя"
                               mdt:HintAssist.HelperText="Укажите тип пользователя"
                               ItemsSource="{Binding Path=Roles, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                               DisplayMemberPath="RoleName"
                               SelectedValuePath="IdRole"
-                              SelectedValue="{Binding Path=SelectedIdRole, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource selectedValueToNullableInt32}}"
+                              SelectedValue="{Binding Path=SelectedIdRole, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource SelectedValueToNullableInt32}}"
                               FontSize="20"
                               FontWeight="Medium"
                               Text="{Binding Path=RoleName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                              ToolTip="{Binding ElementName=rolesComboBox, Path=Text}"/>
+                              ToolTip="{Binding ElementName=RolesComboBox, Path=Text}"/>
                 </Grid>
             </Grid>
             <Grid Grid.Row="1" 
@@ -60,21 +61,21 @@
                     <ColumnDefinition Width="300"/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
-                    <mdt:PackIcon x:Name="iconAccount"
+                    <mdt:PackIcon x:Name="IconAccount"
                                   Kind="Account"
                                   Height="Auto"
-                                  Width="{Binding ElementName=iconAccount, Path=Height}"
+                                  Width="{Binding ElementName=IconAccount, Path=Height}"
                                   ToolTip="Логин"/>
                 </Grid>
                 <Grid Grid.Column="1" Margin="5,0,0,0">
-                    <TextBox x:Name="loginTextBox"
+                    <TextBox x:Name="LoginTextBox"
                              Text="{Binding Path=Login, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                              mdt:HintAssist.Hint="Логин"
                              mdt:HintAssist.HelperText="Длина логина должна быть больше 0 символов"
                              FontSize="20"
                              FontWeight="Medium"
                              VerticalContentAlignment="Center"
-                             ToolTip="{Binding ElementName=loginTextBox, Path=Text}"/>
+                             ToolTip="{Binding ElementName=LoginTextBox, Path=Text}"/>
                 </Grid>
             </Grid>
             <Grid Grid.Row="2" 
@@ -84,21 +85,21 @@
                     <ColumnDefinition Width="300"/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
-                    <mdt:PackIcon x:Name="iconFormTextboxPassword"
+                    <mdt:PackIcon x:Name="IconFormTextboxPassword"
                                   Kind="FormTextboxPassword"
                                   Height="Auto"
-                                  Width="{Binding ElementName=iconFormTextboxPassword, Path=Height}"
+                                  Width="{Binding ElementName=IconFormTextboxPassword, Path=Height}"
                                   ToolTip="Пароль"/>
                 </Grid>
                 <Grid Grid.Column="1" Margin="5,0,0,0">
-                    <TextBox x:Name="passwordTextBox"
+                    <TextBox x:Name="PasswordTextBox"
                              Text="{Binding Path=Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                              mdt:HintAssist.Hint="Пароль"
                              mdt:HintAssist.HelperText="Длина пароля должна быть больше 0 символов"
                              FontSize="20"
                              FontWeight="Medium"
                              VerticalContentAlignment="Center"
-                             ToolTip="{Binding ElementName=passwordTextBox, Path=Text}"/>
+                             ToolTip="{Binding ElementName=PasswordTextBox, Path=Text}"/>
                 </Grid>
             </Grid>
             <Grid Grid.Row="3"
