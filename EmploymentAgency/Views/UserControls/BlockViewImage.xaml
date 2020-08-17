@@ -35,7 +35,7 @@
             <Grid Grid.Row="0">
                 <Button Width="40"
                         Height="40"
-                        Style="{StaticResource RemoveImageButton}"
+                        Style="{StaticResource RemoveImageButtonStyle}"
                         Command="{Binding ElementName=This, Path=RemoveImage}">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="Click">
@@ -47,7 +47,7 @@
             <Grid Grid.Row="1">
                 <Button Width="40"
                         Height="40"
-                        Style="{StaticResource AddImageButton}"
+                        Style="{StaticResource AddImageButtonStyle}"
                         Command="{Binding ElementName=This, Path=AddImage}">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="Click">

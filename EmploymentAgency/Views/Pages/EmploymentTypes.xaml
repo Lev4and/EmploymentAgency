@@ -44,7 +44,7 @@
                       Margin="0,0,5,0">
                     <Button Width="50"
                             Height="50"
-                            Style="{StaticResource AddButton}"
+                            Style="{StaticResource AddButtonStyle}"
                             Command="{Binding Path=Add}">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="Click">
@@ -57,7 +57,7 @@
                       Margin="5,0,5,0">
                     <Button Width="50"
                             Height="50"
-                            Style="{StaticResource ChangeButton}"
+                            Style="{StaticResource ChangeButtonStyle}"
                             Command="{Binding Path=Change}">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="Click">
@@ -70,7 +70,7 @@
                       Margin="5,0,5,0">
                     <Button Width="50"
                             Height="50"
-                            Style="{StaticResource RemoveButton}"
+                            Style="{StaticResource RemoveButtonStyle}"
                             Command="{Binding Path=Remove}">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="Click">
@@ -87,7 +87,7 @@
             <Grid Grid.Column="2">
                 <Button Width="50"
                         Height="50"
-                        Style="{StaticResource ToFindButton}"
+                        Style="{StaticResource ToFindButtonStyle}"
                         Command="{Binding Path=ToFind}"
                         ToolTip="Найти">
                     <i:Interaction.Triggers>

@@ -69,7 +69,7 @@
                                 VerticalAlignment="Center"
                                 HorizontalAlignment="Center"
                                 Visibility="{Binding ElementName=This, Path=IsCanRemove, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource BoolToCollapsedVisibility}}"
-                                Style="{StaticResource RemoveButton}"
+                                Style="{StaticResource RemoveButtonStyle}"
                                 Command="{Binding Path=Remove}">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="Click">

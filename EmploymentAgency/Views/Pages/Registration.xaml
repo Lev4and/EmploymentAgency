@@ -31,7 +31,7 @@
             <Button Panel.ZIndex="1"
                     Margin="5,5,0,5"
                     HorizontalAlignment="Left"
-                    Style="{StaticResource BackButton}"
+                    Style="{StaticResource BackButtonStyle}"
                     Command="{Binding Path=Back}"
                     ToolTip="Вернуться в главное окно">
                 <i:Interaction.Triggers>

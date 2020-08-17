@@ -221,7 +221,7 @@
                                             Height="Auto"
                                             VerticalAlignment="Center"
                                             HorizontalAlignment="Center"
-                                            Style="{StaticResource AddButton}"
+                                            Style="{StaticResource AddButtonStyle}"
                                             Command="{Binding ElementName=This, Path=Remove}">
                                         <i:Interaction.Triggers>
                                             <i:EventTrigger EventName="Click">
