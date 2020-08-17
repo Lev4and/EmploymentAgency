@@ -57,7 +57,7 @@ namespace EmploymentAgency.ViewModels
 
         private void RewriteConfiguration(v_user user)
         {
-            var config = new ConfigurationUser(user.IdUser, user.Password);
+            var config = new ConfigurationUser(user.IdUser, user.RoleName);
             config.Save();
         }
 

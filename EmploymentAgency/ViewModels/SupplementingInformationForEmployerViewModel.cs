@@ -180,12 +180,12 @@ namespace EmploymentAgency.ViewModels
 
         private void UpdateDisplayedBranches()
         {
-            DisplayedBranches = new ObservableCollection<v_branchSimplifiedInformation>(Branches.Where(b => b.Address.ToLower().StartsWith(Address.ToLower())).Take(100).ToList());
+            DisplayedBranches = new ObservableCollection<v_branchSimplifiedInformation>(Branches.Where(b => b.Address.ToLower().StartsWith(Address.ToLower())).Take(15).ToList());
         }
 
         private void UpdateDisplayedOrganizations()
         {
-            DisplayedOrganizations = new ObservableCollection<v_organizationWithoutPhoto>(Organizations.Where(o => o.OrganizationName.ToLower().StartsWith(OrganizationName.ToLower())).Take(100).ToList());
+            DisplayedOrganizations = new ObservableCollection<v_organizationWithoutPhoto>(Organizations.Where(o => o.OrganizationName.ToLower().StartsWith(OrganizationName.ToLower())).Take(15).ToList());
         }
     }
 }

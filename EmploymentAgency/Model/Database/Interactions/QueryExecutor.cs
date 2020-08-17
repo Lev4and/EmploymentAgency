@@ -757,7 +757,7 @@ namespace EmploymentAgency.Model.Database.Interactions
             return _context.v_branchSimplifiedInformation.Where(b => b.IdOrganization == idOrganization).AsNoTracking().ToList();
         }
 
-        public List<v_branch> GetBranches(int idIndustry, int idSubIndustry, int idCountry, int idCity, int idStreet, int idOrganization)
+        public List<v_branch> GetBranches(int idIndustry, int idSubIndustry, int idCountry, int idCity, int idStreet, int idOrganization, string organizationName)
         {
             return _context.v_branch.Where(b =>
             (idIndustry != -1 ? b.IdIndustry == idIndustry : true) &&
@@ -765,7 +765,8 @@ namespace EmploymentAgency.Model.Database.Interactions
             (idCountry != -1 ? b.IdCountry == idCountry : true) &&
             (idCity != -1 ? b.IdCity == idCity : true) &&
             (idStreet != -1 ? b.IdStreet == idStreet : true) &&
-            (idOrganization != -1 ? b.IdOrganization == idOrganization : true)).OrderBy(b => b.OrganizationName).AsNoTracking().ToList();
+            (idOrganization != -1 ? b.IdOrganization == idOrganization : true) &&
+            (organizationName.Length > 0 ? b.OrganizationName.ToLower().StartsWith(organizationName.ToLower()) : true)).OrderBy(b => b.OrganizationName).AsNoTracking().ToList();
         }
 
         public List<City> GetCities(int idCountry)

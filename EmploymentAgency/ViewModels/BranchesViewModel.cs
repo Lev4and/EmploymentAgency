@@ -338,7 +338,8 @@ namespace EmploymentAgency.ViewModels
                 (SelectedIdCountry != null ? (int)SelectedIdCountry : -1),
                 (SelectedIdCity != null ? (int)SelectedIdCity : -1),
                 (SelectedIdStreet != null ? (int)SelectedIdStreet : -1),
-                (SelectedIdOrganization != null ? (int)SelectedIdOrganization : -1))));
+                (SelectedIdOrganization != null ? (int)SelectedIdOrganization : -1), 
+                OrganizationName)));
         }
 
         private void UpdateCities()
@@ -363,17 +364,17 @@ namespace EmploymentAgency.ViewModels
 
         private void UpdateDisplayedCountries()
         {
-            DisplayedCountries = new ObservableCollection<Country>(Countries.Where(c => c.CountryName.ToLower().StartsWith(CountryName.ToLower())).Take(100).ToList());
+            DisplayedCountries = new ObservableCollection<Country>(Countries.Where(c => c.CountryName.ToLower().StartsWith(CountryName.ToLower())).Take(15).ToList());
         }
 
         private void UpdateDisplayedCities()
         {
-            DisplayedCities = new ObservableCollection<City>(Cities.Where(c => c.CityName.ToLower().StartsWith(CityName.ToLower())).Take(100).ToList());
+            DisplayedCities = new ObservableCollection<City>(Cities.Where(c => c.CityName.ToLower().StartsWith(CityName.ToLower())).Take(15).ToList());
         }
 
         private void UpdateDisplayedStreets()
         {
-            DisplayedStreets = new ObservableCollection<Street>(Streets.Where(s => s.StreetName.ToLower().StartsWith(StreetName.ToLower())).Take(100).ToList());
+            DisplayedStreets = new ObservableCollection<Street>(Streets.Where(s => s.StreetName.ToLower().StartsWith(StreetName.ToLower())).Take(15).ToList());
         }
 
         private void UpdateDisplayedOrganizations()
@@ -381,7 +382,7 @@ namespace EmploymentAgency.ViewModels
             DisplayedOrganizations = new ObservableCollection<v_organizationWithoutPhoto>(Organizations.Where(o =>
                                                                                                              (OrganizationName.Length > 0 ? o.OrganizationName.ToLower().StartsWith(OrganizationName.ToLower()) : true) &&
                                                                                                              (SelectedIdIndustry != null ? o.IdIndustry == (int)SelectedIdIndustry : true) &&
-                                                                                                             (SelectedIdSubIndustry != null ? o.IdSubIndustry == (int)SelectedIdSubIndustry : true)).Take(100).ToList());
+                                                                                                             (SelectedIdSubIndustry != null ? o.IdSubIndustry == (int)SelectedIdSubIndustry : true)).Take(15).ToList());
         }
     }
 }

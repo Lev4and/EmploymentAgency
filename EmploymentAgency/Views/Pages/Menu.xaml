@@ -107,7 +107,7 @@
                                                      FontSize="15"
                                                      Foreground="White">
                                             <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="MouseDoubleClick">
+                                                <i:EventTrigger EventName="MouseUp">
                                                     <i:InvokeCommandAction Command="{Binding Path=Countries}"/>
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>
@@ -124,7 +124,7 @@
                                                      FontSize="15"
                                                      Foreground="White">
                                             <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="MouseDoubleClick">
+                                                <i:EventTrigger EventName="MouseUp">
                                                     <i:InvokeCommandAction Command="{Binding Path=Cities}"/>
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>
@@ -141,7 +141,7 @@
                                                      FontSize="15"
                                                      Foreground="White">
                                             <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="MouseDoubleClick">
+                                                <i:EventTrigger EventName="MouseUp">
                                                     <i:InvokeCommandAction Command="{Binding Path=Streets}"/>
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>
@@ -158,7 +158,7 @@
                                                      FontSize="15"
                                                      Foreground="White">
                                             <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="MouseDoubleClick">
+                                                <i:EventTrigger EventName="MouseUp">
                                                     <i:InvokeCommandAction Command="{Binding Path=Skills}"/>
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>
@@ -175,7 +175,7 @@
                                                      FontSize="15"
                                                      Foreground="White">
                                             <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="MouseDoubleClick">
+                                                <i:EventTrigger EventName="MouseUp">
                                                     <i:InvokeCommandAction Command="{Binding Path=DrivingLicenseCategories}"/>
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>
@@ -192,7 +192,7 @@
                                                      FontSize="15"
                                                      Foreground="White">
                                             <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="MouseDoubleClick">
+                                                <i:EventTrigger EventName="MouseUp">
                                                     <i:InvokeCommandAction Command="{Binding Path=Educations}"/>
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>
@@ -209,7 +209,7 @@
                                                      FontSize="15"
                                                      Foreground="White">
                                             <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="MouseDoubleClick">
+                                                <i:EventTrigger EventName="MouseUp">
                                                     <i:InvokeCommandAction Command="{Binding Path=EmploymentTypes}"/>
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>
@@ -226,7 +226,7 @@
                                                      FontSize="15"
                                                      Foreground="White">
                                             <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="MouseDoubleClick">
+                                                <i:EventTrigger EventName="MouseUp">
                                                     <i:InvokeCommandAction Command="{Binding Path=Experiences}"/>
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>
@@ -243,7 +243,7 @@
                                                      FontSize="15"
                                                      Foreground="White">
                                             <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="MouseDoubleClick">
+                                                <i:EventTrigger EventName="MouseUp">
                                                     <i:InvokeCommandAction Command="{Binding Path=Languages}"/>
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>
@@ -260,7 +260,7 @@
                                                      FontSize="15"
                                                      Foreground="White">
                                             <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="MouseDoubleClick">
+                                                <i:EventTrigger EventName="MouseUp">
                                                     <i:InvokeCommandAction Command="{Binding Path=LanguageProficiencies}"/>
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>
@@ -277,7 +277,7 @@
                                                      FontSize="15"
                                                      Foreground="White">
                                             <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="MouseDoubleClick">
+                                                <i:EventTrigger EventName="MouseUp">
                                                     <i:InvokeCommandAction Command="{Binding Path=Genders}"/>
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>
@@ -294,7 +294,7 @@
                                                      FontSize="15"
                                                      Foreground="White">
                                             <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="MouseDoubleClick">
+                                                <i:EventTrigger EventName="MouseUp">
                                                     <i:InvokeCommandAction Command="{Binding Path=Industries}"/>
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>
@@ -311,7 +311,7 @@
                                                      FontSize="15"
                                                      Foreground="White">
                                             <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="MouseDoubleClick">
+                                                <i:EventTrigger EventName="MouseUp">
                                                     <i:InvokeCommandAction Command="{Binding Path=SubIndustries}"/>
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>
@@ -328,7 +328,7 @@
                                                      FontSize="15"
                                                      Foreground="White">
                                             <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="MouseDoubleClick">
+                                                <i:EventTrigger EventName="MouseUp">
                                                     <i:InvokeCommandAction Command="{Binding Path=ProfessionCategories}"/>
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>
@@ -345,7 +345,7 @@
                                                      FontSize="15"
                                                      Foreground="White">
                                             <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="MouseDoubleClick">
+                                                <i:EventTrigger EventName="MouseUp">
                                                     <i:InvokeCommandAction Command="{Binding Path=Professions}"/>
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>
@@ -362,7 +362,7 @@
                                                      FontSize="15"
                                                      Foreground="White">
                                             <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="MouseDoubleClick">
+                                                <i:EventTrigger EventName="MouseUp">
                                                     <i:InvokeCommandAction Command="{Binding Path=RequestStatuses}"/>
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>
@@ -379,7 +379,7 @@
                                                      FontSize="15"
                                                      Foreground="White">
                                             <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="MouseDoubleClick">
+                                                <i:EventTrigger EventName="MouseUp">
                                                     <i:InvokeCommandAction Command="{Binding Path=Organizations}"/>
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>
@@ -396,7 +396,7 @@
                                                      FontSize="15"
                                                      Foreground="White">
                                             <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="MouseDoubleClick">
+                                                <i:EventTrigger EventName="MouseUp">
                                                     <i:InvokeCommandAction Command="{Binding Path=Branches}"/>
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>
@@ -413,7 +413,7 @@
                                                      FontSize="15"
                                                      Foreground="White">
                                             <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="MouseDoubleClick">
+                                                <i:EventTrigger EventName="MouseUp">
                                                     <i:InvokeCommandAction Command="{Binding Path=Roles}"/>
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>
@@ -430,7 +430,7 @@
                                                      FontSize="15"
                                                      Foreground="White">
                                             <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="MouseDoubleClick">
+                                                <i:EventTrigger EventName="MouseUp">
                                                     <i:InvokeCommandAction Command="{Binding Path=Schedules}"/>
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>
@@ -447,7 +447,7 @@
                                                      FontSize="15"
                                                      Foreground="White">
                                             <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="MouseDoubleClick">
+                                                <i:EventTrigger EventName="MouseUp">
                                                     <i:InvokeCommandAction Command="{Binding Path=Users}"/>
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>
@@ -464,7 +464,7 @@
                                                      FontSize="15"
                                                      Foreground="White">
                                             <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="MouseDoubleClick">
+                                                <i:EventTrigger EventName="MouseUp">
                                                     <i:InvokeCommandAction Command="{Binding Path=Exit}"/>
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>

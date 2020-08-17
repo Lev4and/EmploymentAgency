@@ -113,7 +113,7 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         List<Role> GetRoles(string roleName);
 
-        List<v_branch> GetBranches(int idIndustry, int idSubIndustry, int idCountry, int idCity, int idStreet, int idOrganization);
+        List<v_branch> GetBranches(int idIndustry, int idSubIndustry, int idCountry, int idCity, int idStreet, int idOrganization, string organizationName);
 
         List<v_branchSimplifiedInformation> GetBranches(int idOrganization);
 

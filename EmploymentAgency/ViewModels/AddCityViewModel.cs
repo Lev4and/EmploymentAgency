@@ -71,7 +71,7 @@ namespace EmploymentAgency.ViewModels
 
         private void UpdateDisplayedCountries()
         {
-            DisplayedCountries = new ObservableCollection<Country>(Countries.Where(c => c.CountryName.ToLower().StartsWith(CountryName.ToLower())).Take(100).ToList());
+            DisplayedCountries = new ObservableCollection<Country>(Countries.Where(c => c.CountryName.ToLower().StartsWith(CountryName.ToLower())).Take(15).ToList());
         }
     }
 }
