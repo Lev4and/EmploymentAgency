@@ -12,7 +12,6 @@
         <TextBox mdt:HintAssist.Hint="{Binding ElementName=This, Path=Hint, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                  Text="{Binding ElementName=This, Path=SearchLine, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                  Focusable="True"
-                 
                  FontSize="20"
                  FontWeight="Medium"
                  Height="60"

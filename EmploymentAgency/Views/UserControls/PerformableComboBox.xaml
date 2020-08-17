@@ -1,0 +1,74 @@
+﻿<UserControl x:Class="EmploymentAgency.Views.UserControls.PerformableComboBox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mdt="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:EmploymentAgency.Views.UserControls"
+             xmlns:c="clr-namespace:EmploymentAgency.Converters"
+             mc:Ignorable="d"
+             x:Name="This"
+             d:DesignWidth="800">
+    <UserControl.Resources>
+        <c:BoolToBackBool x:Key="BoolToBackBool"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="0"
+              Grid.Column="0">
+            <TextBox x:Name="FieldTextBox"
+                     mdt:HintAssist.Hint="{Binding ElementName=This, Path=Hint, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                     mdt:HintAssist.HelperText="{Binding ElementName=This, Path=HelperText, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                     IsReadOnly="{Binding ElementName=This, Path=IsEditable, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource BoolToBackBool}}"
+                     Text="{Binding ElementName=This, Path=SearchLine, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                     Focusable="True"
+                     FontSize="20"
+                     FontWeight="Medium"
+                     VerticalAlignment="Top"
+                     VerticalContentAlignment="Center"
+                     PreviewKeyDown="FieldTextBox_PreviewKeyDown"/>
+        </Grid>
+        <Grid Grid.Row="0"
+              Grid.Column="1">
+            <ToggleButton x:Name="IsExpandedToggleButton"
+                          Style="{StaticResource MaterialDesignActionToggleButton}"
+                          IsChecked="{Binding ElementName=This, Path=IsDrawerOpen, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                          Background="Transparent"
+                          Foreground="Black">
+                <ToggleButton.Content>
+                    <mdt:PackIcon Kind="ChevronDown"/>
+                </ToggleButton.Content>
+                <mdt:ToggleButtonAssist.OnContent>
+                    <mdt:PackIcon Kind="ChevronUp"/>
+                </mdt:ToggleButtonAssist.OnContent>
+            </ToggleButton>
+        </Grid>
+        <StackPanel Margin="0,35.2,0,0">
+            <mdt:DialogHost Identifier="RootDialog"
+                            Panel.ZIndex="1"
+                            Width="Auto"
+                            VerticalAlignment="Stretch"
+                            HorizontalAlignment="Stretch">
+                <mdt:DrawerHost Width="Auto"
+                                IsTopDrawerOpen="{Binding ElementName=This, Path=IsDrawerOpen, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+                    <mdt:DrawerHost.TopDrawerContent>
+                        <DockPanel Width="Auto">
+                            <ScrollViewer HorizontalScrollBarVisibility="Visible" ScrollChanged="ScrollViewer_ScrollChanged">
+                                <Grid x:Name="Grid"
+                                      HorizontalAlignment="Stretch">
+
+                                </Grid>
+                            </ScrollViewer>
+                        </DockPanel>
+                    </mdt:DrawerHost.TopDrawerContent>
+                </mdt:DrawerHost>
+            </mdt:DialogHost>
+        </StackPanel>
+    </Grid>
+</UserControl>

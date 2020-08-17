@@ -126,6 +126,7 @@
     <Compile Include="Converters\DateTimeToDateConverter.cs" />
     <Compile Include="Converters\DateTimeToStringDateTimeConverter.cs" />
     <Compile Include="Converters\NullableDateTimeToText.cs" />
+    <Compile Include="Converters\ObservableCollectionTypeToObservableCollectionObject.cs" />
     <Compile Include="Converters\SelectedValueToNullableInt32.cs" />
     <Compile Include="Converters\TextToInt32.cs" />
     <Compile Include="Converters\BoolToVisibility.cs" />
@@ -515,6 +516,12 @@
       <DependentUpon>ExpanderWithCheckBoxes.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\ISelectable.cs" />
+    <Compile Include="Views\UserControls\PerformableComboBox.xaml.cs">
+      <DependentUpon>PerformableComboBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\PerformableComboBoxItem.xaml.cs">
+      <DependentUpon>PerformableComboBoxItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\SearchByInputField.xaml.cs">
       <DependentUpon>SearchByInputField.xaml</DependentUpon>
     </Compile>
@@ -883,6 +890,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\ExpanderWithCheckBoxes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\PerformableComboBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\PerformableComboBoxItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

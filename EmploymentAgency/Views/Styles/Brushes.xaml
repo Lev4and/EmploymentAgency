@@ -13,6 +13,12 @@
     <SolidColorBrush Color="Gray" x:Key="SelectedSearchByInputFieldItemBackgroundBrush"/>
     <SolidColorBrush Color="White" x:Key="DeselectedSearchByInputFieldItemBackgroundBrush"/>
 
+    <SolidColorBrush Color="Gray" x:Key="SelectedPerformableComboBoxItemBackgroundBrush"/>
+    <SolidColorBrush Color="White" x:Key="DeselectedPerformableComboBoxItemBackgroundBrush"/>
+
     <SolidColorBrush Color="Orange" x:Key="SelectedSearchByInputFieldItemForegroundBrush"/>
     <SolidColorBrush Color="Black" x:Key="DeselectedSearchByInputFieldItemForegroundBrush"/>
+
+    <SolidColorBrush Color="Orange" x:Key="SelectedPerformableComboBoxItemForegroundBrush"/>
+    <SolidColorBrush Color="Black" x:Key="DeselectedPerformableComboBoxItemForegroundBrush"/>
 </ResourceDictionary>

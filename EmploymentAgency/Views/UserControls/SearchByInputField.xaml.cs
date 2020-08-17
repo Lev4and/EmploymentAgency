@@ -1,6 +1,5 @@
 ﻿using DevExpress.Mvvm;
 using EmploymentAgency.Commands;
-using EmploymentAgency.Events;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
