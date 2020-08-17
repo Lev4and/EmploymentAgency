@@ -49,6 +49,7 @@
                 </Grid>
                 <Grid Grid.Column="1" Margin="5,0,0,0">
                     <TextBox x:Name="CountryNameTextBox"
+                             IsReadOnly="True"
                              mdt:HintAssist.Hint="Страна"
                              mdt:HintAssist.HelperText="Укажите название страны"
                              FontSize="20"
@@ -75,6 +76,7 @@
                 </Grid>
                 <Grid Grid.Column="1" Margin="5,0,0,0">
                     <TextBox x:Name="CityNameTextBox"
+                             IsReadOnly="True"
                              mdt:HintAssist.Hint="Город"
                              mdt:HintAssist.HelperText="Укажите название города"
                              FontSize="20"

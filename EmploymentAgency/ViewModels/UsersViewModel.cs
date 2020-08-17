@@ -59,13 +59,20 @@ namespace EmploymentAgency.ViewModels
 
         public ICommand Remove => new DelegateCommand(() =>
         {
-            if (MessageBox.Show("Вы действительно хотите удалить эту запись из базы данных?", "Предупреждение", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            if (_executor.IsRelatedToStaff((int)SelectedIdUser))
             {
-                _executor.RemoveUser((int)SelectedIdUser);
+                if (MessageBox.Show("Вы действительно хотите удалить эту запись из базы данных?", "Предупреждение", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    _executor.RemoveUser((int)SelectedIdUser);
 
-                MessageBox.Show("Успешное удаление");
+                    MessageBox.Show("Успешное удаление");
 
-                Find();
+                    Find();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Нельзя менять данные пользователей неработающих в этой компанией", "Предупреждение");
             }
         }, () => SelectedIdUser != null ? true : false);
 
