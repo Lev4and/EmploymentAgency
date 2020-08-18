@@ -1057,6 +1057,16 @@ namespace EmploymentAgency.Model.Database.Interactions
             (languageName.Length > 0 ? l.LanguageName.ToLower().StartsWith(languageName.ToLower()) : true)).OrderBy(l => l.LanguageName).AsNoTracking().ToList();
         }
 
+        public Manager GetManager(int idManager)
+        {
+            return _context.Manager.SingleOrDefault(m => m.IdManager == idManager);
+        }
+
+        public v_manager GetManagerExtendedInformation(int idManager)
+        {
+            return _context.v_manager.SingleOrDefault(m => m.IdManager == idManager);
+        }
+
         public Organization GetOrganization(int idOrganization)
         {
             return _context.Organization.Single(o => o.IdOrganization == idOrganization);
@@ -1639,6 +1649,19 @@ namespace EmploymentAgency.Model.Database.Interactions
             }
 
             return false;
+        }
+
+        public void UpdateManager(int idManager, string name, string surname, string patronymic, byte[] photo, string phoneNumber)
+        {
+            var manager = GetManager(idManager);
+
+            manager.Name = name;
+            manager.Surname = surname;
+            manager.Patronymic = patronymic;
+            manager.Photo = photo;
+            manager.PhoneNumber = phoneNumber;
+
+            _context.SaveChanges();
         }
 
         public bool UpdateOrganization(int idOrganization, string organizationName, byte[] photo, DateTime? closingDate)

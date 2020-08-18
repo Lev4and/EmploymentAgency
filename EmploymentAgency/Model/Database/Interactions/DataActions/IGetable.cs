@@ -31,6 +31,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         LanguageProficiency GetLanguageProficiency(int idLanguageProficiency);
 
+        Manager GetManager(int idManager);
+
         Organization GetOrganization(int idOrganization);
 
         Profession GetProfession(int idProfession);
@@ -56,6 +58,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
         v_branch GetBranch(int idBranch);
 
         v_employer GetEmployerExtendedInformation(int idEmployer);
+
+        v_manager GetManagerExtendedInformation(int idManager);
 
         v_organization GetOrganizationExtendedInformation(int idOrganization);
 

@@ -155,6 +155,8 @@ namespace EmploymentAgency.ViewModels.Locators
 
         public ChangeSupplementInformationForEmployerViewModel ChangeSupplementInformationForEmployerViewModel => _provider.GetRequiredService<ChangeSupplementInformationForEmployerViewModel>();
 
+        public ChangeSupplementInformationForManagerViewModel ChangeSupplementInformationForManagerViewModel => _provider.GetRequiredService<ChangeSupplementInformationForManagerViewModel>();
+
         public static void Init()
         {
             var services = new ServiceCollection();
@@ -233,6 +235,7 @@ namespace EmploymentAgency.ViewModels.Locators
             services.AddTransient<ChangeUserViewModel>();
             services.AddTransient<ChangeSupplementInformationForApplicantViewModel>();
             services.AddTransient<ChangeSupplementInformationForEmployerViewModel>();
+            services.AddTransient<ChangeSupplementInformationForManagerViewModel>();
 
             services.AddSingleton<PageService>();
             services.AddSingleton<MenuPageService>();
