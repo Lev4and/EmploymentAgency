@@ -7,6 +7,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
     {
         int GetIdRole(string roleName);
 
+        Applicant GetApplicant(int idApplicant);
+
         City GetCity(int idCity);
 
         Country GetCountry(int idCountry);
@@ -46,6 +48,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
         SubIndustry GetSubIndustry(int idSubIndustry);
 
         User GetUser(int idUser);
+
+        v_applicant GetApplicantExtendedInformation(int idApplicant);
 
         v_branch GetBranch(int idBranch);
 
@@ -95,6 +99,16 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         List<Schedule> GetSchedules(string scheduleName);
 
+        List<Skill> GetSkills(int idApplicant);
+
+        List<DrivingLicenseCategory> GetDrivingLicenseCategories(int idApplicant);
+
+        List<EducationalActivity> GetEducationActivities(int idApplicant);
+
+        List<KnowledgeLanguage> GetKnowledgeLanguages(int idApplicant);
+
+        List<LaborActivity> GetLaborActivities(int idApplicant);
+
         List<Skill> GetSkills();
 
         List<Skill> GetSkills(string skillName);
@@ -102,6 +116,10 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
         List<Street> GetStreets(int idCity);
 
         List<SubIndustry> GetSubIndustries(int idIndustry);
+
+        List<PossessionDrivingLicenseCategory> GetPossessionDrivingLicenseCategories(int idApplicant);
+
+        List<PossessionSkill> GetPossessionSkills(int idApplicant);
 
         List<ProfessionCategory> GetProfessionCategories();
 

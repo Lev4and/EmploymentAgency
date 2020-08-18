@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
@@ -34,6 +35,9 @@ namespace EmploymentAgency.Views.UserControls
             {
                 if (current.Data != null)
                 {
+                    if (current.SelectedValues != null)
+                        current.FormattingSelectedValues();
+
                     current.RemoveContorls();
                     current.GenerateItems();
                     current.RenderContorls();
@@ -102,7 +106,16 @@ namespace EmploymentAgency.Views.UserControls
         private bool ContainsValue(object obj)
         {
             return SelectedValues.SingleOrDefault(o =>
-            o.GetType().GetProperty(SelectedValuePath).GetValue(o).ToString() == obj.GetType().GetProperty(SelectedValuePath).GetValue(obj).ToString()) != null;
+            o.ToString() == obj.GetType().GetProperty(SelectedValuePath).GetValue(obj).ToString()) != null;
+        }
+
+        private void FormattingSelectedValues()
+        {
+            for(int i = 0; i < SelectedValues.Count; i++)
+            {
+                if (SelectedValuePath != null ? SelectedValuePath.Length > 0 : false)
+                    SelectedValues[i] = SelectedValues[i].GetType().GetProperty(SelectedValuePath).GetValue(SelectedValues[i]);
+            }
         }
 
         private void GenerateItems()

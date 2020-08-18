@@ -266,6 +266,9 @@
     <Compile Include="Model\Database\Models\Vacancy.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Database\Models\v_applicant.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\Database\Models\v_branch.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -273,6 +276,12 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Database\Models\v_city.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Database\Models\v_employer.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Database\Models\v_manager.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Database\Models\v_organization.cs">
@@ -345,6 +354,7 @@
     <Compile Include="ViewModels\ChangeSkillViewModel.cs" />
     <Compile Include="ViewModels\ChangeStreetViewModel.cs" />
     <Compile Include="ViewModels\ChangeSubIndustryViewModel.cs" />
+    <Compile Include="ViewModels\ChangeSupplementInformationForApplicantViewModel.cs" />
     <Compile Include="ViewModels\ChangeUserViewModel.cs" />
     <Compile Include="ViewModels\CitiesViewModel.cs" />
     <Compile Include="ViewModels\CountriesViewModel.cs" />
@@ -384,6 +394,9 @@
     </Compile>
     <Compile Include="Views\Pages\Branches.xaml.cs">
       <DependentUpon>Branches.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\ChangeSupplementInformationForApplicant.xaml.cs">
+      <DependentUpon>ChangeSupplementInformationForApplicant.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\Cities.xaml.cs">
       <DependentUpon>Cities.xaml</DependentUpon>
@@ -702,6 +715,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Pages\Branches.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\ChangeSupplementInformationForApplicant.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

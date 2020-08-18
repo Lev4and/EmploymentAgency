@@ -1,5 +1,6 @@
 ﻿using DevExpress.Mvvm;
 using EmploymentAgency.Model.Configurations;
+using EmploymentAgency.Model.Logic.Managers;
 using EmploymentAgency.Services;
 using EmploymentAgency.Views.Pages;
 using System.Windows;
@@ -134,6 +135,11 @@ namespace EmploymentAgency.ViewModels
         {
             _menuPageService.ChangePage(new Users());
         }, () => _config.RoleName == "Администратор");
+
+        public ICommand PersonalInformation => new DelegateCommand(() =>
+        {
+            _menuPageService.ChangePage(PageManager.GetPageManager(_config.IdUser).GetChangeInformationPage());
+        }, () => _config.RoleName == "Соискатель" || _config.RoleName == "Менеджер" || _config.RoleName == "Работодатель");
 
         public ICommand Exit => new DelegateCommand(() =>
         {

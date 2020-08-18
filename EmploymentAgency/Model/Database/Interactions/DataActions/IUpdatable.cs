@@ -49,6 +49,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         bool UpdateUser(int idUser, string login, string password, out v_user user);
 
+        void UpdateApplicant(int idApplicant, string name, string surname, string patronymic, byte[] photo, string phoneNumber, int idStreet, string nameHouse, string apartment);
+
         void UpdateBranch(int idBranch, string phoneNumber);
     }
 }

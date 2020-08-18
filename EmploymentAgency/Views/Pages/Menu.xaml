@@ -95,6 +95,7 @@
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
                                     </Grid.RowDefinitions>
                                     <Grid Grid.Row="0">
                                         <mdt:PackIcon Kind="City"
@@ -454,6 +455,23 @@
                                         </ListBoxItem>
                                     </Grid>
                                     <Grid Grid.Row="21">
+                                        <mdt:PackIcon Kind="CardAccountDetails"
+                                                      Width="15"
+                                                      Height="15"
+                                                      Margin="10 16"
+                                                      Foreground="White"/>
+                                        <ListBoxItem Content="Информация о себе"
+                                                     Padding="37 14"
+                                                     FontSize="15"
+                                                     Foreground="White">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="MouseUp">
+                                                    <i:InvokeCommandAction Command="{Binding Path=PersonalInformation}"/>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </ListBoxItem>
+                                    </Grid>
+                                    <Grid Grid.Row="22">
                                         <mdt:PackIcon Kind="ExitRun"
                                                       Width="15"
                                                       Height="15"

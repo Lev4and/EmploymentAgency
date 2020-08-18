@@ -2,6 +2,16 @@
 {
     public interface IRemovable
     {
+        void CompleteRemovalPossessionSkills(int idApplicant);
+
+        void CompleteRemovalPossessionDrivingLicenseCategories(int idApplicant);
+
+        void CompleteRemovalEducationActivities(int idApplicant);
+
+        void CompleteRemovalKnowledgeLanguages(int idApplicant);
+
+        void CompleteRemovalLaborActivities(int idApplicant);
+
         void RemoveBranch(int idBranch);
 
         void RemoveCity(int idCity);

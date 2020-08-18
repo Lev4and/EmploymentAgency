@@ -339,6 +339,49 @@
           <Property Name="ClosingDate" Type="smalldatetime" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Employment agency.dbo.v_applicant" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="v_applicant">
+          <Key>
+            <PropertyRef Name="IdApplicant" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Surname" />
+            <PropertyRef Name="Patronymic" />
+            <PropertyRef Name="FullName" />
+            <PropertyRef Name="IdGender" />
+            <PropertyRef Name="GenderName" />
+            <PropertyRef Name="DateOfBirth" />
+            <PropertyRef Name="PhoneNumber" />
+            <PropertyRef Name="IdCountry" />
+            <PropertyRef Name="CountryName" />
+            <PropertyRef Name="IdCity" />
+            <PropertyRef Name="CityName" />
+            <PropertyRef Name="IdStreet" />
+            <PropertyRef Name="StreetName" />
+            <PropertyRef Name="NameHouse" />
+            <PropertyRef Name="IsEmployed" />
+          </Key>
+          <Property Name="IdApplicant" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Surname" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Patronymic" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IdGender" Type="int" Nullable="false" />
+          <Property Name="GenderName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Photo" Type="varbinary(max)" />
+          <Property Name="DateOfBirth" Type="date" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="18" Nullable="false" />
+          <Property Name="IdCountry" Type="int" Nullable="false" />
+          <Property Name="CountryName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IdCity" Type="int" Nullable="false" />
+          <Property Name="CityName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="IdStreet" Type="int" Nullable="false" />
+          <Property Name="StreetName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="NameHouse" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="Apartment" Type="nvarchar(max)" />
+          <Property Name="IsEmployed" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
 предупреждение 6002: В таблице или представлении "Employment agency.dbo.v_branch" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
         <EntityType Name="v_branch">
           <Key>
@@ -403,6 +446,79 @@
           <Property Name="CountryName" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Flag" Type="varbinary(max)" />
           <Property Name="CityName" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Employment agency.dbo.v_employer" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="v_employer">
+          <Key>
+            <PropertyRef Name="IdEmployer" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Surname" />
+            <PropertyRef Name="Patronymic" />
+            <PropertyRef Name="FullName" />
+            <PropertyRef Name="IdGender" />
+            <PropertyRef Name="GenderName" />
+            <PropertyRef Name="DateOfBirth" />
+            <PropertyRef Name="PhoneNumber" />
+            <PropertyRef Name="IdOrganization" />
+            <PropertyRef Name="OrganizationName" />
+            <PropertyRef Name="IdBranch" />
+            <PropertyRef Name="IdCountry" />
+            <PropertyRef Name="CountryName" />
+            <PropertyRef Name="IdCity" />
+            <PropertyRef Name="CityName" />
+            <PropertyRef Name="IdStreet" />
+            <PropertyRef Name="StreetName" />
+            <PropertyRef Name="NameHouse" />
+            <PropertyRef Name="AddressOrganization" />
+          </Key>
+          <Property Name="IdEmployer" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Surname" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Patronymic" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IdGender" Type="int" Nullable="false" />
+          <Property Name="GenderName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Photo" Type="varbinary(max)" />
+          <Property Name="DateOfBirth" Type="date" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="18" Nullable="false" />
+          <Property Name="IdOrganization" Type="int" Nullable="false" />
+          <Property Name="PhotoOrganization" Type="varbinary(max)" />
+          <Property Name="OrganizationName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IdBranch" Type="int" Nullable="false" />
+          <Property Name="IdCountry" Type="int" Nullable="false" />
+          <Property Name="CountryName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IdCity" Type="int" Nullable="false" />
+          <Property Name="CityName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="IdStreet" Type="int" Nullable="false" />
+          <Property Name="StreetName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="NameHouse" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="AddressOrganization" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Employment agency.dbo.v_manager" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="v_manager">
+          <Key>
+            <PropertyRef Name="IdManager" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Surname" />
+            <PropertyRef Name="Patronymic" />
+            <PropertyRef Name="FullName" />
+            <PropertyRef Name="IdGender" />
+            <PropertyRef Name="GenderName" />
+            <PropertyRef Name="DateOfBirth" />
+            <PropertyRef Name="PhoneNumber" />
+          </Key>
+          <Property Name="IdManager" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Surname" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Patronymic" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IdGender" Type="int" Nullable="false" />
+          <Property Name="GenderName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Photo" Type="varbinary(max)" />
+          <Property Name="DateOfBirth" Type="date" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="18" Nullable="false" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
 предупреждение 6002: В таблице или представлении "Employment agency.dbo.v_organization" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
@@ -1184,6 +1300,30 @@
           <EntitySet Name="SuitableVacancy" EntityType="Self.SuitableVacancy" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Vacancy" EntityType="Self.Vacancy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="v_applicant" EntityType="Self.v_applicant" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_applicant].[IdApplicant] AS [IdApplicant], 
+    [v_applicant].[Name] AS [Name], 
+    [v_applicant].[Surname] AS [Surname], 
+    [v_applicant].[Patronymic] AS [Patronymic], 
+    [v_applicant].[FullName] AS [FullName], 
+    [v_applicant].[IdGender] AS [IdGender], 
+    [v_applicant].[GenderName] AS [GenderName], 
+    [v_applicant].[Photo] AS [Photo], 
+    [v_applicant].[DateOfBirth] AS [DateOfBirth], 
+    [v_applicant].[PhoneNumber] AS [PhoneNumber], 
+    [v_applicant].[IdCountry] AS [IdCountry], 
+    [v_applicant].[CountryName] AS [CountryName], 
+    [v_applicant].[IdCity] AS [IdCity], 
+    [v_applicant].[CityName] AS [CityName], 
+    [v_applicant].[IdStreet] AS [IdStreet], 
+    [v_applicant].[StreetName] AS [StreetName], 
+    [v_applicant].[NameHouse] AS [NameHouse], 
+    [v_applicant].[Address] AS [Address], 
+    [v_applicant].[Apartment] AS [Apartment], 
+    [v_applicant].[IsEmployed] AS [IsEmployed]
+    FROM [dbo].[v_applicant] AS [v_applicant]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="v_branch" EntityType="Self.v_branch" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [v_branch].[IdBranch] AS [IdBranch], 
@@ -1220,6 +1360,46 @@
     [v_city].[Flag] AS [Flag], 
     [v_city].[CityName] AS [CityName]
     FROM [dbo].[v_city] AS [v_city]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="v_employer" EntityType="Self.v_employer" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_employer].[IdEmployer] AS [IdEmployer], 
+    [v_employer].[Name] AS [Name], 
+    [v_employer].[Surname] AS [Surname], 
+    [v_employer].[Patronymic] AS [Patronymic], 
+    [v_employer].[FullName] AS [FullName], 
+    [v_employer].[IdGender] AS [IdGender], 
+    [v_employer].[GenderName] AS [GenderName], 
+    [v_employer].[Photo] AS [Photo], 
+    [v_employer].[DateOfBirth] AS [DateOfBirth], 
+    [v_employer].[PhoneNumber] AS [PhoneNumber], 
+    [v_employer].[IdOrganization] AS [IdOrganization], 
+    [v_employer].[PhotoOrganization] AS [PhotoOrganization], 
+    [v_employer].[OrganizationName] AS [OrganizationName], 
+    [v_employer].[IdBranch] AS [IdBranch], 
+    [v_employer].[IdCountry] AS [IdCountry], 
+    [v_employer].[CountryName] AS [CountryName], 
+    [v_employer].[IdCity] AS [IdCity], 
+    [v_employer].[CityName] AS [CityName], 
+    [v_employer].[IdStreet] AS [IdStreet], 
+    [v_employer].[StreetName] AS [StreetName], 
+    [v_employer].[NameHouse] AS [NameHouse], 
+    [v_employer].[AddressOrganization] AS [AddressOrganization]
+    FROM [dbo].[v_employer] AS [v_employer]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="v_manager" EntityType="Self.v_manager" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_manager].[IdManager] AS [IdManager], 
+    [v_manager].[Name] AS [Name], 
+    [v_manager].[Surname] AS [Surname], 
+    [v_manager].[Patronymic] AS [Patronymic], 
+    [v_manager].[FullName] AS [FullName], 
+    [v_manager].[IdGender] AS [IdGender], 
+    [v_manager].[GenderName] AS [GenderName], 
+    [v_manager].[Photo] AS [Photo], 
+    [v_manager].[DateOfBirth] AS [DateOfBirth], 
+    [v_manager].[PhoneNumber] AS [PhoneNumber]
+    FROM [dbo].[v_manager] AS [v_manager]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="v_organization" EntityType="Self.v_organization" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -2805,6 +2985,9 @@
           <EntitySet Name="v_street" EntityType="Model.v_street" />
           <EntitySet Name="v_subIndustry" EntityType="Model.v_subIndustry" />
           <EntitySet Name="v_profession" EntityType="Model.v_profession" />
+          <EntitySet Name="v_applicant" EntityType="Model.v_applicant" />
+          <EntitySet Name="v_employer" EntityType="Model.v_employer" />
+          <EntitySet Name="v_manager" EntityType="Model.v_manager" />
         </EntityContainer>
         <EntityType Name="v_organization">
           <Key>
@@ -2917,6 +3100,116 @@
           <Property Name="IdProfessionCategory" Type="Int32" Nullable="false" />
           <Property Name="NameProfessionCategory" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="ProfessionName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="v_applicant">
+          <Key>
+            <PropertyRef Name="IdApplicant" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Surname" />
+            <PropertyRef Name="Patronymic" />
+            <PropertyRef Name="FullName" />
+            <PropertyRef Name="IdGender" />
+            <PropertyRef Name="GenderName" />
+            <PropertyRef Name="DateOfBirth" />
+            <PropertyRef Name="PhoneNumber" />
+            <PropertyRef Name="IdCountry" />
+            <PropertyRef Name="CountryName" />
+            <PropertyRef Name="IdCity" />
+            <PropertyRef Name="CityName" />
+            <PropertyRef Name="IdStreet" />
+            <PropertyRef Name="StreetName" />
+            <PropertyRef Name="NameHouse" />
+            <PropertyRef Name="IsEmployed" />
+          </Key>
+          <Property Name="IdApplicant" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Surname" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Patronymic" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IdGender" Type="Int32" Nullable="false" />
+          <Property Name="GenderName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="18" FixedLength="false" Unicode="true" />
+          <Property Name="IdCountry" Type="Int32" Nullable="false" />
+          <Property Name="CountryName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IdCity" Type="Int32" Nullable="false" />
+          <Property Name="CityName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IdStreet" Type="Int32" Nullable="false" />
+          <Property Name="StreetName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="NameHouse" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Apartment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsEmployed" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="v_employer">
+          <Key>
+            <PropertyRef Name="IdEmployer" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Surname" />
+            <PropertyRef Name="Patronymic" />
+            <PropertyRef Name="FullName" />
+            <PropertyRef Name="IdGender" />
+            <PropertyRef Name="GenderName" />
+            <PropertyRef Name="DateOfBirth" />
+            <PropertyRef Name="PhoneNumber" />
+            <PropertyRef Name="IdOrganization" />
+            <PropertyRef Name="OrganizationName" />
+            <PropertyRef Name="IdBranch" />
+            <PropertyRef Name="IdCountry" />
+            <PropertyRef Name="CountryName" />
+            <PropertyRef Name="IdCity" />
+            <PropertyRef Name="CityName" />
+            <PropertyRef Name="IdStreet" />
+            <PropertyRef Name="StreetName" />
+            <PropertyRef Name="NameHouse" />
+            <PropertyRef Name="AddressOrganization" />
+          </Key>
+          <Property Name="IdEmployer" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Surname" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Patronymic" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IdGender" Type="Int32" Nullable="false" />
+          <Property Name="GenderName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="18" FixedLength="false" Unicode="true" />
+          <Property Name="IdOrganization" Type="Int32" Nullable="false" />
+          <Property Name="PhotoOrganization" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="OrganizationName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IdBranch" Type="Int32" Nullable="false" />
+          <Property Name="IdCountry" Type="Int32" Nullable="false" />
+          <Property Name="CountryName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IdCity" Type="Int32" Nullable="false" />
+          <Property Name="CityName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IdStreet" Type="Int32" Nullable="false" />
+          <Property Name="StreetName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="NameHouse" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AddressOrganization" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="v_manager">
+          <Key>
+            <PropertyRef Name="IdManager" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Surname" />
+            <PropertyRef Name="Patronymic" />
+            <PropertyRef Name="FullName" />
+            <PropertyRef Name="IdGender" />
+            <PropertyRef Name="GenderName" />
+            <PropertyRef Name="DateOfBirth" />
+            <PropertyRef Name="PhoneNumber" />
+          </Key>
+          <Property Name="IdManager" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Surname" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Patronymic" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IdGender" Type="Int32" Nullable="false" />
+          <Property Name="GenderName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="18" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -3406,6 +3699,76 @@
                 <ScalarProperty Name="NameProfessionCategory" ColumnName="NameProfessionCategory" />
                 <ScalarProperty Name="IdProfessionCategory" ColumnName="IdProfessionCategory" />
                 <ScalarProperty Name="IdProfession" ColumnName="IdProfession" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_applicant">
+            <EntityTypeMapping TypeName="Model.v_applicant">
+              <MappingFragment StoreEntitySet="v_applicant">
+                <ScalarProperty Name="IsEmployed" ColumnName="IsEmployed" />
+                <ScalarProperty Name="Apartment" ColumnName="Apartment" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="NameHouse" ColumnName="NameHouse" />
+                <ScalarProperty Name="StreetName" ColumnName="StreetName" />
+                <ScalarProperty Name="IdStreet" ColumnName="IdStreet" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="IdCity" ColumnName="IdCity" />
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+                <ScalarProperty Name="IdCountry" ColumnName="IdCountry" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="GenderName" ColumnName="GenderName" />
+                <ScalarProperty Name="IdGender" ColumnName="IdGender" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IdApplicant" ColumnName="IdApplicant" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_employer">
+            <EntityTypeMapping TypeName="Model.v_employer">
+              <MappingFragment StoreEntitySet="v_employer">
+                <ScalarProperty Name="AddressOrganization" ColumnName="AddressOrganization" />
+                <ScalarProperty Name="NameHouse" ColumnName="NameHouse" />
+                <ScalarProperty Name="StreetName" ColumnName="StreetName" />
+                <ScalarProperty Name="IdStreet" ColumnName="IdStreet" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="IdCity" ColumnName="IdCity" />
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+                <ScalarProperty Name="IdCountry" ColumnName="IdCountry" />
+                <ScalarProperty Name="IdBranch" ColumnName="IdBranch" />
+                <ScalarProperty Name="OrganizationName" ColumnName="OrganizationName" />
+                <ScalarProperty Name="PhotoOrganization" ColumnName="PhotoOrganization" />
+                <ScalarProperty Name="IdOrganization" ColumnName="IdOrganization" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="GenderName" ColumnName="GenderName" />
+                <ScalarProperty Name="IdGender" ColumnName="IdGender" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IdEmployer" ColumnName="IdEmployer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_manager">
+            <EntityTypeMapping TypeName="Model.v_manager">
+              <MappingFragment StoreEntitySet="v_manager">
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="GenderName" ColumnName="GenderName" />
+                <ScalarProperty Name="IdGender" ColumnName="IdGender" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IdManager" ColumnName="IdManager" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

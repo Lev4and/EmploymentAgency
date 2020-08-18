@@ -610,6 +610,46 @@ namespace EmploymentAgency.Model.Database.Interactions
             return false;
         }
 
+        public void CompleteRemovalEducationActivities(int idApplicant)
+        {
+            var educationalActivities = GetEducationActivities(idApplicant);
+
+            _context.EducationalActivity.RemoveRange(educationalActivities);
+            _context.SaveChanges();
+        }
+
+        public void CompleteRemovalKnowledgeLanguages(int idApplicant)
+        {
+            var knowledgeLanguages = GetKnowledgeLanguages(idApplicant);
+
+            _context.KnowledgeLanguage.RemoveRange(knowledgeLanguages);
+            _context.SaveChanges();
+        }
+
+        public void CompleteRemovalLaborActivities(int idApplicant)
+        {
+            var laborActivities = GetLaborActivities(idApplicant);
+
+            _context.LaborActivity.RemoveRange(laborActivities);
+            _context.SaveChanges();
+        }
+
+        public void CompleteRemovalPossessionDrivingLicenseCategories(int idApplicant)
+        {
+            var possessionDrivingLicenseCategories = GetPossessionDrivingLicenseCategories(idApplicant);
+
+            _context.PossessionDrivingLicenseCategory.RemoveRange(possessionDrivingLicenseCategories);
+            _context.SaveChanges();
+        }
+
+        public void CompleteRemovalPossessionSkills(int idApplicant)
+        {
+            var possessionSkills = GetPossessionSkills(idApplicant);
+
+            _context.PossessionSkill.RemoveRange(possessionSkills);
+            _context.SaveChanges();
+        }
+
         public bool ContainsApplicant(int idApplicant)
         {
             return _context.Applicant.SingleOrDefault(a => a.IdApplicant == idApplicant) != null;
@@ -789,6 +829,16 @@ namespace EmploymentAgency.Model.Database.Interactions
             return user != null;
         }
 
+        public Applicant GetApplicant(int idApplicant)
+        {
+            return _context.Applicant.SingleOrDefault(a => a.IdApplicant == idApplicant);
+        }
+
+        public v_applicant GetApplicantExtendedInformation(int idApplicant)
+        {
+            return _context.v_applicant.SingleOrDefault(a => a.IdApplicant == idApplicant);
+        }
+
         public v_branch GetBranch(int idBranch)
         {
             return _context.v_branch.SingleOrDefault(b => b.IdBranch == idBranch);
@@ -860,6 +910,16 @@ namespace EmploymentAgency.Model.Database.Interactions
             (drivingLicenseCategoryName.Length > 0 ? d.DrivingLicenseCategoryName.ToLower().StartsWith(drivingLicenseCategoryName.ToLower()) : true)).OrderBy(d => d.DrivingLicenseCategoryName).AsNoTracking().ToList();
         }
 
+        public List<DrivingLicenseCategory> GetDrivingLicenseCategories(int idApplicant)
+        {
+            var selectedDrivingLicenseCategories = new List<DrivingLicenseCategory>();
+
+            _context.PossessionDrivingLicenseCategory.Where(p => p.IdApplicant == idApplicant).AsNoTracking().ToList().ForEach(p =>
+            selectedDrivingLicenseCategories.Add(p.DrivingLicenseCategory));
+
+            return selectedDrivingLicenseCategories;
+        }
+
         public DrivingLicenseCategory GetDrivingLicenseCategory(int idDrivingLicenseCategory)
         {
             return _context.DrivingLicenseCategory.SingleOrDefault(d => d.IdDrivingLicenseCategory == idDrivingLicenseCategory);
@@ -868,6 +928,11 @@ namespace EmploymentAgency.Model.Database.Interactions
         public Education GetEducation(int idEducation)
         {
             return _context.Education.SingleOrDefault(e => e.IdEducation == idEducation);
+        }
+
+        public List<EducationalActivity> GetEducationActivities(int idApplicant)
+        {
+            return _context.EducationalActivity.Where(e => e.IdApplicant == idApplicant).ToList();
         }
 
         public List<Education> GetEducations()
@@ -940,6 +1005,16 @@ namespace EmploymentAgency.Model.Database.Interactions
             return _context.Industry.SingleOrDefault(i => i.IdIndustry == idIndustry);
         }
 
+        public List<KnowledgeLanguage> GetKnowledgeLanguages(int idApplicant)
+        {
+            return _context.KnowledgeLanguage.Where(k => k.IdApplicant == idApplicant).ToList();
+        }
+
+        public List<LaborActivity> GetLaborActivities(int idApplicant)
+        {
+            return _context.LaborActivity.Where(l => l.IdApplicant == idApplicant).ToList();
+        }
+
         public Language GetLanguage(int idLanguage)
         {
             return _context.Language.SingleOrDefault(l => l.IdLanguage == idLanguage);
@@ -992,6 +1067,16 @@ namespace EmploymentAgency.Model.Database.Interactions
         public List<v_organizationWithoutPhoto> GetOrganizationsWithoutPhoto()
         {
             return _context.v_organizationWithoutPhoto.OrderBy(o => o.OrganizationName).AsNoTracking().ToList();
+        }
+
+        public List<PossessionDrivingLicenseCategory> GetPossessionDrivingLicenseCategories(int idApplicant)
+        {
+            return _context.PossessionDrivingLicenseCategory.Where(p => p.IdApplicant == idApplicant).ToList();
+        }
+
+        public List<PossessionSkill> GetPossessionSkills(int idApplicant)
+        {
+            return _context.PossessionSkill.Where(p => p.IdApplicant == idApplicant).ToList();
         }
 
         public Profession GetProfession(int idProfession)
@@ -1064,12 +1149,20 @@ namespace EmploymentAgency.Model.Database.Interactions
             return _context.Schedule.Where(s =>
             (scheduleName.Length > 0 ? s.ScheduleName.ToLower().StartsWith(scheduleName.ToLower()) : true)).OrderBy(s => s.ScheduleName).AsNoTracking().ToList();
         }
-
         public Skill GetSkill(int idSkill)
         {
             return _context.Skill.SingleOrDefault(s => s.IdSkill == idSkill);
         }
 
+        public List<Skill> GetSkills(int idApplicant)
+        {
+            var selectedSkills = new List<Skill>();
+
+            _context.PossessionSkill.Where(p => p.IdApplicant == idApplicant).AsNoTracking().ToList().ForEach(p =>
+            selectedSkills.Add(p.Skill));
+
+            return selectedSkills;
+        }
         public List<Skill> GetSkills()
         {
             return _context.Skill.OrderBy(s => s.SkillName).AsNoTracking().ToList();
@@ -1331,6 +1424,22 @@ namespace EmploymentAgency.Model.Database.Interactions
             var user = GetUser(idUser);
 
             _context.User.Remove(user);
+            _context.SaveChanges();
+        }
+
+        public void UpdateApplicant(int idApplicant, string name, string surname, string patronymic, byte[] photo, string phoneNumber, int idStreet, string nameHouse, string apartment)
+        {
+            var applicant = GetApplicant(idApplicant);
+
+            applicant.Name = name;
+            applicant.Surname = surname;
+            applicant.Patronymic = patronymic;
+            applicant.Photo = photo;
+            applicant.PhoneNumber = phoneNumber;
+            applicant.IdStreet = idStreet;
+            applicant.NameHouse = nameHouse;
+            applicant.Apartment = apartment;
+
             _context.SaveChanges();
         }
 

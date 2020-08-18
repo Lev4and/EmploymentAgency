@@ -96,6 +96,9 @@
         <EntityTypeShape EntityType="Model.v_street" Width="1.5" PointX="8.375" PointY="8.75" />
         <EntityTypeShape EntityType="Model.v_subIndustry" Width="1.5" PointX="10.375" PointY="0.75" />
         <EntityTypeShape EntityType="Model.v_profession" Width="1.5" PointX="10.375" PointY="3.75" />
+        <EntityTypeShape EntityType="Model.v_applicant" Width="1.5" PointX="12.375" PointY="0.75" />
+        <EntityTypeShape EntityType="Model.v_employer" Width="1.5" PointX="14.375" PointY="0.75" />
+        <EntityTypeShape EntityType="Model.v_manager" Width="1.5" PointX="10.375" PointY="6.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
