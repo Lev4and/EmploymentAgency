@@ -1,79 +1,82 @@
-﻿<UserControl x:Class="EmploymentAgency.Views.UserControls.BlockViewKnowledgeLanguage"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mdt="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-             xmlns:local="clr-namespace:EmploymentAgency.Views.UserControls"
-             xmlns:c="clr-namespace:EmploymentAgency.Converters"
-             mc:Ignorable="d" 
-             x:Name="This"
-             d:DesignHeight="50" d:DesignWidth="550" MinHeight="50" MaxHeight="50">
+﻿<UserControl
+    x:Class="EmploymentAgency.Views.UserControls.BlockViewKnowledgeLanguage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:c="clr-namespace:EmploymentAgency.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:local="clr-namespace:EmploymentAgency.Views.UserControls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mdt="http://materialdesigninxaml.net/winfx/xaml/themes"
+    x:Name="This"
+    MinHeight="50"
+    MaxHeight="50"
+    d:DesignHeight="50"
+    d:DesignWidth="550"
+    mc:Ignorable="d">
     <UserControl.Resources>
-        <c:BoolToCollapsedVisibility x:Key="BoolToCollapsedVisibility"/>
+        <c:BoolToCollapsedVisibility x:Key="BoolToCollapsedVisibility" />
     </UserControl.Resources>
     <Grid MaxHeight="50">
-        <Border BorderThickness="1,1,1,1"
-                BorderBrush="Black">
+        <Border BorderBrush="Black" BorderThickness="1,1,1,1">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="2*"/>
-                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
-                    <Border BorderThickness="0,0,1,0"
-                            BorderBrush="Black">
-                        <TextBlock Text="{Binding Path=LanguageName}"
-                                   FontSize="14"
-                                   FontWeight="Medium"
-                                   VerticalAlignment="Center"
-                                   HorizontalAlignment="Center"
-                                   Margin="10,0,10,0"
-                                   TextAlignment="Center"
-                                   TextWrapping="Wrap"
-                                   DataContext="{Binding ElementName=This, Path=Language}"/>
+                    <Border BorderBrush="Black" BorderThickness="0,0,1,0">
+                        <TextBlock
+                            Margin="10,0,10,0"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            DataContext="{Binding ElementName=This, Path=Language}"
+                            FontSize="14"
+                            FontWeight="Medium"
+                            Text="{Binding Path=LanguageName}"
+                            TextAlignment="Center"
+                            TextWrapping="Wrap" />
                     </Border>
                 </Grid>
                 <Grid Grid.Column="1">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition/>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    <Grid Grid.Column="0"
-                          Margin="10,0,10,0">
-                        <TextBlock Text="{Binding Path=Designation}"
-                                   FontSize="14"
-                                   FontWeight="Medium"
-                                   VerticalAlignment="Center"
-                                   HorizontalAlignment="Center"
-                                   DataContext="{Binding ElementName=This, Path=LanguageProficiency}"/>
+                    <Grid Grid.Column="0" Margin="10,0,10,0">
+                        <TextBlock
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            DataContext="{Binding ElementName=This, Path=LanguageProficiency}"
+                            FontSize="14"
+                            FontWeight="Medium"
+                            Text="{Binding Path=Designation}" />
                     </Grid>
-                    <Grid Grid.Column="1"
-                          Margin="10,0,10,0">
-                        <TextBlock Text="{Binding Path=LanguageProficiencyName}"
-                                   FontSize="14"
-                                   FontWeight="Medium"
-                                   VerticalAlignment="Center"
-                                   TextAlignment="Center"
-                                   TextWrapping="Wrap"
-                                   DataContext="{Binding ElementName=This, Path=LanguageProficiency}"/>
+                    <Grid Grid.Column="1" Margin="10,0,10,0">
+                        <TextBlock
+                            VerticalAlignment="Center"
+                            DataContext="{Binding ElementName=This, Path=LanguageProficiency}"
+                            FontSize="14"
+                            FontWeight="Medium"
+                            Text="{Binding Path=LanguageProficiencyName}"
+                            TextAlignment="Center"
+                            TextWrapping="Wrap" />
                     </Grid>
                 </Grid>
                 <Grid Grid.Column="2">
-                    <Border BorderThickness="1,0,0,0"
-                            BorderBrush="Black">
-                        <Button Width="Auto"
-                                Height="Auto"
-                                VerticalAlignment="Center"
-                                HorizontalAlignment="Center"
-                                Visibility="{Binding ElementName=This, Path=IsCanRemove, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource BoolToCollapsedVisibility}}"
-                                Style="{StaticResource RemoveButtonStyle}"
-                                Command="{Binding Path=Remove}">
+                    <Border BorderBrush="Black" BorderThickness="1,0,0,0">
+                        <Button
+                            Width="Auto"
+                            Height="Auto"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Command="{Binding Path=Remove}"
+                            Style="{StaticResource RemoveButtonStyle}"
+                            Visibility="{Binding ElementName=This, Path=IsCanRemove, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource BoolToCollapsedVisibility}}">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="Click">
-                                    <i:InvokeCommandAction Command="{Binding ElementName=This, Path=Remove}" CommandParameter="{Binding ElementName=This}"/>
+                                    <i:InvokeCommandAction Command="{Binding ElementName=This, Path=Remove}" CommandParameter="{Binding ElementName=This}" />
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
                         </Button>

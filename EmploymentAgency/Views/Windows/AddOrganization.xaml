@@ -1,144 +1,156 @@
-﻿<Window x:Class="EmploymentAgency.Views.Windows.AddOrganization"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:mdt="http://materialdesigninxaml.net/winfx/xaml/themes"
-        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-        xmlns:local="clr-namespace:EmploymentAgency.Views.Windows"
-        xmlns:uc="clr-namespace:EmploymentAgency.Views.UserControls"
-        xmlns:c="clr-namespace:EmploymentAgency.Converters"
-        mc:Ignorable="d"
-        Background="{StaticResource WindowBackgroundBrush}"
-        DataContext="{Binding AddOrganizationViewModel, Source={StaticResource ViewModelLocator}}"
-        Title="Агентство трудоустройства - Добавление организации" Height="490" Width="800">
+﻿<Window
+    x:Class="EmploymentAgency.Views.Windows.AddOrganization"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:c="clr-namespace:EmploymentAgency.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:local="clr-namespace:EmploymentAgency.Views.Windows"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mdt="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:uc="clr-namespace:EmploymentAgency.Views.UserControls"
+    Title="Агентство трудоустройства - Добавление организации"
+    Width="800"
+    Height="490"
+    Background="{StaticResource WindowBackgroundBrush}"
+    DataContext="{Binding AddOrganizationViewModel, Source={StaticResource ViewModelLocator}}"
+    mc:Ignorable="d">
     <Window.Resources>
-        <c:ArrayByteToImageSource x:Key="ArrayByteToImageSource"/>
-        <c:SelectedValueToNullableInt32 x:Key="SelectedValueToNullableInt32"/>
+        <c:ArrayByteToImageSource x:Key="ArrayByteToImageSource" />
+        <c:SelectedValueToNullableInt32 x:Key="SelectedValueToNullableInt32" />
     </Window.Resources>
     <Grid>
         <i:Interaction.Triggers>
             <i:EventTrigger EventName="Loaded">
-                <i:InvokeCommandAction Command="{Binding Path=Loaded}"/>
+                <i:InvokeCommandAction Command="{Binding Path=Loaded}" />
             </i:EventTrigger>
         </i:Interaction.Triggers>
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition />
+            <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
-        <Grid Grid.Row="0"
-              Grid.Column="0"
-              VerticalAlignment="Stretch"
-              HorizontalAlignment="Center">
+        <Grid
+            Grid.Row="0"
+            Grid.Column="0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Stretch">
             <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
             </Grid.RowDefinitions>
             <Grid Grid.Row="0" Height="50">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="300" />
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
-                    <mdt:PackIcon x:Name="IconCog"
-                                  Kind="Cog"
-                                  Height="Auto"
-                                  Width="{Binding ElementName=IconCog, Path=Height}"
-                                  ToolTip="Отрасль промышленности"/>
+                    <mdt:PackIcon
+                        x:Name="IconCog"
+                        Width="{Binding ElementName=IconCog, Path=Height}"
+                        Height="Auto"
+                        Kind="Cog"
+                        ToolTip="Отрасль промышленности" />
                 </Grid>
                 <Grid Grid.Column="1" Margin="5,0,0,0">
-                    <ComboBox Name="IndustriesComboBox"
-                              mdt:HintAssist.Hint="Отрасль"
-                              mdt:HintAssist.HelperText="Укажите отрасль"
-                              ItemsSource="{Binding Path=Industries, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                              DisplayMemberPath="IndustryName"
-                              SelectedValuePath="IdIndustry"
-                              SelectedValue="{Binding Path=SelectedIdIndustry, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource SelectedValueToNullableInt32}}"
-                              FontSize="20"
-                              FontWeight="Medium"
-                              IsEditable="True"
-                              IsTextSearchEnabled="False"
-                              Text="{Binding Path=IndustryName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                              ToolTip="{Binding ElementName=IndustriesComboBox, Path=Text}"/>
+                    <ComboBox
+                        Name="IndustriesComboBox"
+                        mdt:HintAssist.HelperText="Укажите отрасль"
+                        mdt:HintAssist.Hint="Отрасль"
+                        DisplayMemberPath="IndustryName"
+                        FontSize="20"
+                        FontWeight="Medium"
+                        IsEditable="True"
+                        IsTextSearchEnabled="False"
+                        ItemsSource="{Binding Path=Industries, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                        SelectedValue="{Binding Path=SelectedIdIndustry, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource SelectedValueToNullableInt32}}"
+                        SelectedValuePath="IdIndustry"
+                        Text="{Binding Path=IndustryName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                        ToolTip="{Binding ElementName=IndustriesComboBox, Path=Text}" />
                 </Grid>
             </Grid>
             <Grid Grid.Row="1" Height="50">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="300" />
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
-                    <mdt:PackIcon x:Name="IconCogOutline"
-                                  Kind="CogOutline"
-                                  Height="Auto"
-                                  Width="{Binding ElementName=IconCogOutline, Path=Height}"
-                                  ToolTip="Подотрасль промышленности"/>
+                    <mdt:PackIcon
+                        x:Name="IconCogOutline"
+                        Width="{Binding ElementName=IconCogOutline, Path=Height}"
+                        Height="Auto"
+                        Kind="CogOutline"
+                        ToolTip="Подотрасль промышленности" />
                 </Grid>
                 <Grid Grid.Column="1" Margin="5,0,0,0">
-                    <ComboBox x:Name="SubIndustriesComboBox"
-                              mdt:HintAssist.Hint="Подотрасль"
-                              mdt:HintAssist.HelperText="Укажите подотрасль"
-                              ItemsSource="{Binding Path=SubIndustries, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                              DisplayMemberPath="NameSubIndustry"
-                              SelectedValuePath="IdSubIndustry"
-                              SelectedValue="{Binding Path=SelectedIdSubIndustry, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource SelectedValueToNullableInt32}}"
-                              FontSize="20"
-                              FontWeight="Medium"
-                              IsEditable="True"
-                              IsTextSearchEnabled="False"
-                              Text="{Binding Path=NameSubIndustry, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                              ToolTip="{Binding ElementName=SubIndustriesComboBox, Path=Text}"/>
+                    <ComboBox
+                        x:Name="SubIndustriesComboBox"
+                        mdt:HintAssist.HelperText="Укажите подотрасль"
+                        mdt:HintAssist.Hint="Подотрасль"
+                        DisplayMemberPath="NameSubIndustry"
+                        FontSize="20"
+                        FontWeight="Medium"
+                        IsEditable="True"
+                        IsTextSearchEnabled="False"
+                        ItemsSource="{Binding Path=SubIndustries, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                        SelectedValue="{Binding Path=SelectedIdSubIndustry, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource SelectedValueToNullableInt32}}"
+                        SelectedValuePath="IdSubIndustry"
+                        Text="{Binding Path=NameSubIndustry, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                        ToolTip="{Binding ElementName=SubIndustriesComboBox, Path=Text}" />
                 </Grid>
             </Grid>
             <Grid Grid.Row="2" Height="50">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="300" />
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
-                    <mdt:PackIcon x:Name="IconAccountTie"
-                                  Kind="AccountTie"
-                                  Height="Auto"
-                                  Width="{Binding ElementName=IconAccountTie, Path=Height}"
-                                  ToolTip="Название организации"/>
+                    <mdt:PackIcon
+                        x:Name="IconAccountTie"
+                        Width="{Binding ElementName=IconAccountTie, Path=Height}"
+                        Height="Auto"
+                        Kind="AccountTie"
+                        ToolTip="Название организации" />
                 </Grid>
                 <Grid Grid.Column="1" Margin="5,0,0,0">
-                    <TextBox x:Name="OrganizationNameTextBox"
-                             mdt:HintAssist.Hint="Название организации"
-                             mdt:HintAssist.HelperText="Укажите название организации"
-                             FontSize="20"
-                             FontWeight="Medium"
-                             Text="{Binding Path=OrganizationName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                             ToolTip="{Binding ElementName=OrganizationNameTextBox, Path=Text}"
-                             VerticalContentAlignment="Center"/>
+                    <TextBox
+                        x:Name="OrganizationNameTextBox"
+                        VerticalContentAlignment="Center"
+                        mdt:HintAssist.HelperText="Укажите название организации"
+                        mdt:HintAssist.Hint="Название организации"
+                        FontSize="20"
+                        FontWeight="Medium"
+                        Text="{Binding Path=OrganizationName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                        ToolTip="{Binding ElementName=OrganizationNameTextBox, Path=Text}" />
                 </Grid>
             </Grid>
         </Grid>
-        <Grid Grid.Row="0"
-              Grid.Column="2"
-              Width="185" 
-              Height="185"
-              VerticalAlignment="Center"
-              HorizontalAlignment="Center">
-            <uc:BlockViewImage Image="{Binding Path=Photo, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+        <Grid
+            Grid.Row="0"
+            Grid.Column="2"
+            Width="185"
+            Height="185"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center">
+            <uc:BlockViewImage Image="{Binding Path=Photo, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
         </Grid>
-        <Grid Grid.Row="1"
-              Grid.ColumnSpan="3">
-            <Grid VerticalAlignment="Bottom" Margin="0,0,0,5">
-                <mdt:Badged Badge="{mdt:PackIcon Kind=ContentSaveCog}"
-                            HorizontalAlignment="Center"
-                            Margin="0,12,0,0">
-                    <Button Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                            Height="50"
-                            mdt:ButtonAssist.CornerRadius="25"
-                            ToolTip="Добавить"
-                            Command="{Binding Path=Add}">
-                        <TextBlock Text="Добавить"/>
+        <Grid Grid.Row="1" Grid.ColumnSpan="3">
+            <Grid Margin="0,0,0,5" VerticalAlignment="Bottom">
+                <mdt:Badged
+                    Margin="0,12,0,0"
+                    HorizontalAlignment="Center"
+                    Badge="{mdt:PackIcon Kind=ContentSaveCog}">
+                    <Button
+                        Height="50"
+                        mdt:ButtonAssist.CornerRadius="25"
+                        Command="{Binding Path=Add}"
+                        Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                        ToolTip="Добавить">
+                        <TextBlock Text="Добавить" />
                     </Button>
                 </mdt:Badged>
             </Grid>

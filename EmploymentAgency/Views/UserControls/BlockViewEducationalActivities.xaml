@@ -1,231 +1,230 @@
-﻿<UserControl x:Class="EmploymentAgency.Views.UserControls.BlockViewEducationalActivities"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mdt="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-             xmlns:local="clr-namespace:EmploymentAgency.Views.UserControls"
-             xmlns:c="clr-namespace:EmploymentAgency.Converters"
-             mc:Ignorable="d"
-             x:Name="This"
-             d:DesignHeight="450" d:DesignWidth="800">
+﻿<UserControl
+    x:Class="EmploymentAgency.Views.UserControls.BlockViewEducationalActivities"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:c="clr-namespace:EmploymentAgency.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:local="clr-namespace:EmploymentAgency.Views.UserControls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mdt="http://materialdesigninxaml.net/winfx/xaml/themes"
+    x:Name="This"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
     <UserControl.Resources>
-        <c:BoolToBackBool x:Key="BoolToBackBool"/>
-        <c:SelectedValueToNullableInt32 x:Key="SelectedValueToNullableInt32"/>
+        <c:BoolToBackBool x:Key="BoolToBackBool" />
+        <c:SelectedValueToNullableInt32 x:Key="SelectedValueToNullableInt32" />
     </UserControl.Resources>
     <Grid>
         <i:Interaction.Triggers>
             <i:EventTrigger EventName="Loaded">
-                <i:InvokeCommandAction Command="{Binding ElementName=This, Path=Loaded}"/>
+                <i:InvokeCommandAction Command="{Binding ElementName=This, Path=Loaded}" />
             </i:EventTrigger>
         </i:Interaction.Triggers>
-        <GroupBox Header="Образовательная деятельность"
-                  FontWeight="Medium"
-                  FontSize="24"
-                  BorderThickness="3">
+        <GroupBox
+            BorderThickness="3"
+            FontSize="24"
+            FontWeight="Medium"
+            Header="Образовательная деятельность">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="3*"/>
-                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="3*" />
+                    <RowDefinition Height="2*" />
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0" MaxHeight="300">
-                    <Border BorderThickness="3"
-                            BorderBrush="Black">
-                        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-                            <Grid x:Name="Grid"
-                                  VerticalAlignment="Top">
-                                
-                            </Grid>
+                    <Border BorderBrush="Black" BorderThickness="3">
+                        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                            <Grid x:Name="Grid" VerticalAlignment="Top" />
                         </ScrollViewer>
                     </Border>
                 </Grid>
                 <Grid Grid.Row="1">
                     <Grid Margin="0,5,0,5">
-                        <Border BorderThickness="3"
-                            BorderBrush="Black">
+                        <Border BorderBrush="Black" BorderThickness="3">
                             <Grid>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition Width="60"/>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition Width="60" />
                                 </Grid.ColumnDefinitions>
-                                <Grid Grid.Column="0" 
-                                      Margin="5">
+                                <Grid Grid.Column="0" Margin="5">
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="50"/>
-                                        <RowDefinition Height="50"/>
-                                        <RowDefinition/>
+                                        <RowDefinition Height="50" />
+                                        <RowDefinition Height="50" />
+                                        <RowDefinition />
                                     </Grid.RowDefinitions>
-                                    <Grid Grid.Row="0"
-                                          VerticalAlignment="Center">
+                                    <Grid Grid.Row="0" VerticalAlignment="Center">
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto"/>
-                                            <ColumnDefinition/>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition />
                                         </Grid.ColumnDefinitions>
                                         <Grid Grid.Column="0">
-                                            <mdt:PackIcon x:Name="IconCalendarRange"
-                                                          Kind="CalendarRange"
-                                                          Height="30"
-                                                          VerticalAlignment="Center"
-                                                          Width="{Binding ElementName=IconCalendarRange, Path=Height}"
-                                                          ToolTip="Дата начала периода"/>
+                                            <mdt:PackIcon
+                                                x:Name="IconCalendarRange"
+                                                Width="{Binding ElementName=IconCalendarRange, Path=Height}"
+                                                Height="30"
+                                                VerticalAlignment="Center"
+                                                Kind="CalendarRange"
+                                                ToolTip="Дата начала периода" />
                                         </Grid>
-                                        <Grid Grid.Column="1"
-                                              Margin="5,0,0,0">
-                                            <DatePicker x:Name="BeginDatePeriodDatePicker"
-                                                        mdt:HintAssist.Hint="Дата начала"
-                                                        mdt:HintAssist.HelperText="Укажите дату начала периода"
-                                                        DisplayDateStart="{Binding ElementName=This, Path=MinDatePeriod, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                                        DisplayDateEnd="{Binding ElementName=EndDatePeriodDatePicker, Path=SelectedDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                                        SelectedDate="{Binding ElementName=This, Path=BeginDatePeriod, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                                        ToolTip="{Binding ElementName=BeginDatePeriodDatePicker, Path=SelectedDate}"
-                                                        FontSize="12"
-                                                        FontWeight="Medium"/>
+                                        <Grid Grid.Column="1" Margin="5,0,0,0">
+                                            <DatePicker
+                                                x:Name="BeginDatePeriodDatePicker"
+                                                mdt:HintAssist.HelperText="Укажите дату начала периода"
+                                                mdt:HintAssist.Hint="Дата начала"
+                                                DisplayDateEnd="{Binding ElementName=EndDatePeriodDatePicker, Path=SelectedDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                                DisplayDateStart="{Binding ElementName=This, Path=MinDatePeriod, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                                FontSize="12"
+                                                FontWeight="Medium"
+                                                SelectedDate="{Binding ElementName=This, Path=BeginDatePeriod, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                                ToolTip="{Binding ElementName=BeginDatePeriodDatePicker, Path=SelectedDate}" />
                                         </Grid>
                                     </Grid>
-                                    <Grid Grid.Row="1"
-                                          VerticalAlignment="Center">
+                                    <Grid Grid.Row="1" VerticalAlignment="Center">
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto"/>
-                                            <ColumnDefinition/>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition />
                                         </Grid.ColumnDefinitions>
                                         <Grid Grid.Column="0">
-                                            <mdt:PackIcon x:Name="IconCalendarClock"
-                                                          Kind="CalendarClock"
-                                                          Height="30"
-                                                          VerticalAlignment="Center"
-                                                          Width="{Binding ElementName=IconCalendarClock, Path=Height}"
-                                                          ToolTip="Дата окончания периода"/>
+                                            <mdt:PackIcon
+                                                x:Name="IconCalendarClock"
+                                                Width="{Binding ElementName=IconCalendarClock, Path=Height}"
+                                                Height="30"
+                                                VerticalAlignment="Center"
+                                                Kind="CalendarClock"
+                                                ToolTip="Дата окончания периода" />
                                         </Grid>
-                                        <Grid Grid.Column="1"
-                                              Margin="5,0,0,0">
-                                            <DatePicker IsEnabled="{Binding ElementName=PeriodEndedCheckBox, Path=IsChecked, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                                        x:Name="EndDatePeriodDatePicker"
-                                                        mdt:HintAssist.Hint="Дата окончания"
-                                                        mdt:HintAssist.HelperText="Укажите дату окончания периода"
-                                                        DisplayDateStart="{Binding ElementName=BeginDatePeriodDatePicker, Path=SelectedDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                                        DisplayDateEnd="{Binding ElementName=This, Path=MaxDatePeriod, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                                        SelectedDate="{Binding ElementName=This, Path=EndDatePeriod, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                                        ToolTip="{Binding ElementName=EndDatePeriodDatePicker, Path=SelectedDate}"
-                                                        FontSize="12"
-                                                        FontWeight="Medium"/>
+                                        <Grid Grid.Column="1" Margin="5,0,0,0">
+                                            <DatePicker
+                                                x:Name="EndDatePeriodDatePicker"
+                                                mdt:HintAssist.HelperText="Укажите дату окончания периода"
+                                                mdt:HintAssist.Hint="Дата окончания"
+                                                DisplayDateEnd="{Binding ElementName=This, Path=MaxDatePeriod, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                                DisplayDateStart="{Binding ElementName=BeginDatePeriodDatePicker, Path=SelectedDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                                FontSize="12"
+                                                FontWeight="Medium"
+                                                IsEnabled="{Binding ElementName=PeriodEndedCheckBox, Path=IsChecked, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                                SelectedDate="{Binding ElementName=This, Path=EndDatePeriod, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                                ToolTip="{Binding ElementName=EndDatePeriodDatePicker, Path=SelectedDate}" />
 
                                         </Grid>
                                     </Grid>
                                     <Grid Grid.Row="2">
-                                        <CheckBox x:Name="PeriodEndedCheckBox"
-                                                  Content="Период закончен"
-                                                  IsChecked="{Binding ElementName=This, Path=IsPeriodEnded, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                                  VerticalAlignment="Center"
-                                                  VerticalContentAlignment="Center"
-                                                  HorizontalAlignment="Center"
-                                                  HorizontalContentAlignment="Center"
-                                                  FontSize="12"
-                                                  FontWeight="Medium"/>
+                                        <CheckBox
+                                            x:Name="PeriodEndedCheckBox"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            HorizontalContentAlignment="Center"
+                                            VerticalContentAlignment="Center"
+                                            Content="Период закончен"
+                                            FontSize="12"
+                                            FontWeight="Medium"
+                                            IsChecked="{Binding ElementName=This, Path=IsPeriodEnded, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                                     </Grid>
                                 </Grid>
-                                <Grid Grid.Column="1"
-                                      Margin="5"
-                                      Height="50">
+                                <Grid
+                                    Grid.Column="1"
+                                    Height="50"
+                                    Margin="5">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="30"/>
-                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="30" />
+                                        <ColumnDefinition />
                                     </Grid.ColumnDefinitions>
                                     <Grid Grid.Column="0">
-                                        <mdt:PackIcon x:Name="IconBook"
-                                                      Kind="Book"
-                                                      Height="Auto"
-                                                      Width="{Binding ElementName=IconBook, Path=Height}"
-                                                      VerticalAlignment="Center"
-                                                      VerticalContentAlignment="Center"
-                                                      HorizontalAlignment="Center"
-                                                      HorizontalContentAlignment="Center"
-                                                      ToolTip="Образование"/>
-                                    </Grid>
-                                    <Grid Grid.Column="1"
-                                          Margin="5,0,0,0">
-                                        <ComboBox x:Name="EducationNameComboBox"
-                                                  mdt:HintAssist.Hint="Образование"
-                                                  mdt:HintAssist.HelperText="Укажите образование"
-                                                  ItemsSource="{Binding ElementName=This, Path=Educations, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                                  DisplayMemberPath="EducationName"
-                                                  SelectedValuePath="IdEducation"
-                                                  SelectedValue="{Binding ElementName=This, Path=SelectedIdEducation, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource SelectedValueToNullableInt32}}"
-                                                  FontSize="12"
-                                                  FontWeight="Medium"
-                                                  ToolTip="{Binding ElementName=EducationNameComboBox, Path=Text, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
-                                    </Grid>
-                                </Grid>
-                                <Grid Grid.Column="2"
-                                      Margin="5">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition/>
-                                        <RowDefinition/>
-                                    </Grid.RowDefinitions>
-                                    <Grid Grid.Row="0" 
-                                          Height="30">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto"/>
-                                            <ColumnDefinition/>
-                                        </Grid.ColumnDefinitions>
-                                        <Grid Grid.Column="0">
-                                            <mdt:PackIcon x:Name="IconBookOpenPageVariant"
-                                                          Kind="BookOpenPageVariant"
-                                                          Height="Auto"
-                                                          Width="{Binding ElementName=IconBookOpenPageVariant, Path=Height}"
-                                                          ToolTip="Образовательное учреждение"/>
-                                        </Grid>
-                                        <Grid Grid.Column="1"
-                                              Margin="5,0,0,0">
-                                            <TextBox x:Name="NameEducationalnstitutionTextBox"
-                                                     Text="{Binding ElementName=This, Path=NameEducationalnstitution, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                                     mdt:HintAssist.Hint="Образовательное учреждение"
-                                                     mdt:HintAssist.HelperText="Укажите образовательное учреждение"
-                                                     FontSize="12"
-                                                     FontWeight="Medium"
-                                                     ToolTip="{Binding ElementName=NameEducationalnstitutionTextBox, Path=Text}"
-                                                     VerticalContentAlignment="Center"/>
-                                        </Grid>
-                                    </Grid>
-                                    <Grid Grid.Row="1"
-                                          Height="30">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto"/>
-                                            <ColumnDefinition/>
-                                        </Grid.ColumnDefinitions>
-                                        <Grid Grid.Column="0">
-                                            <mdt:PackIcon x:Name="IconMapMarker"
-                                                          Kind="MapMarker"
-                                                          Height="Auto"
-                                                          Width="{Binding ElementName=IconMapMarker, Path=Height}"
-                                                          ToolTip="Адрес"/>
-                                        </Grid>
-                                        <Grid Grid.Column="1"
-                                              Margin="5,0,0,0">
-                                            <TextBox x:Name="NameAddress"
-                                                     Text="{Binding ElementName=This, Path=Address, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                                     mdt:HintAssist.Hint="Адрес"
-                                                     mdt:HintAssist.HelperText="Укажите адрес"
-                                                     FontSize="12"
-                                                     FontWeight="Medium"
-                                                     ToolTip="{Binding ElementName=NameAddress, Path=Text}"
-                                                     VerticalContentAlignment="Center"/>
-                                        </Grid>
-                                    </Grid>
-                                </Grid>
-                                <Grid Grid.Column="3"
-                                      Margin="5,0,5,0">
-                                    <Button Width="Auto"
+                                        <mdt:PackIcon
+                                            x:Name="IconBook"
+                                            Width="{Binding ElementName=IconBook, Path=Height}"
                                             Height="Auto"
-                                            VerticalAlignment="Center"
                                             HorizontalAlignment="Center"
-                                            Style="{StaticResource AddButtonStyle}"
-                                            Command="{Binding ElementName=This, Path=Remove}">
+                                            VerticalAlignment="Center"
+                                            HorizontalContentAlignment="Center"
+                                            VerticalContentAlignment="Center"
+                                            Kind="Book"
+                                            ToolTip="Образование" />
+                                    </Grid>
+                                    <Grid Grid.Column="1" Margin="5,0,0,0">
+                                        <ComboBox
+                                            x:Name="EducationNameComboBox"
+                                            mdt:HintAssist.HelperText="Укажите образование"
+                                            mdt:HintAssist.Hint="Образование"
+                                            DisplayMemberPath="EducationName"
+                                            FontSize="12"
+                                            FontWeight="Medium"
+                                            ItemsSource="{Binding ElementName=This, Path=Educations, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                            SelectedValue="{Binding ElementName=This, Path=SelectedIdEducation, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource SelectedValueToNullableInt32}}"
+                                            SelectedValuePath="IdEducation"
+                                            ToolTip="{Binding ElementName=EducationNameComboBox, Path=Text, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                    </Grid>
+                                </Grid>
+                                <Grid Grid.Column="2" Margin="5">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <Grid Grid.Row="0" Height="30">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid Grid.Column="0">
+                                            <mdt:PackIcon
+                                                x:Name="IconBookOpenPageVariant"
+                                                Width="{Binding ElementName=IconBookOpenPageVariant, Path=Height}"
+                                                Height="Auto"
+                                                Kind="BookOpenPageVariant"
+                                                ToolTip="Образовательное учреждение" />
+                                        </Grid>
+                                        <Grid Grid.Column="1" Margin="5,0,0,0">
+                                            <TextBox
+                                                x:Name="NameEducationalnstitutionTextBox"
+                                                VerticalContentAlignment="Center"
+                                                mdt:HintAssist.HelperText="Укажите образовательное учреждение"
+                                                mdt:HintAssist.Hint="Образовательное учреждение"
+                                                FontSize="12"
+                                                FontWeight="Medium"
+                                                Text="{Binding ElementName=This, Path=NameEducationalnstitution, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                                ToolTip="{Binding ElementName=NameEducationalnstitutionTextBox, Path=Text}" />
+                                        </Grid>
+                                    </Grid>
+                                    <Grid Grid.Row="1" Height="30">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid Grid.Column="0">
+                                            <mdt:PackIcon
+                                                x:Name="IconMapMarker"
+                                                Width="{Binding ElementName=IconMapMarker, Path=Height}"
+                                                Height="Auto"
+                                                Kind="MapMarker"
+                                                ToolTip="Адрес" />
+                                        </Grid>
+                                        <Grid Grid.Column="1" Margin="5,0,0,0">
+                                            <TextBox
+                                                x:Name="NameAddress"
+                                                VerticalContentAlignment="Center"
+                                                mdt:HintAssist.HelperText="Укажите адрес"
+                                                mdt:HintAssist.Hint="Адрес"
+                                                FontSize="12"
+                                                FontWeight="Medium"
+                                                Text="{Binding ElementName=This, Path=Address, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                                ToolTip="{Binding ElementName=NameAddress, Path=Text}" />
+                                        </Grid>
+                                    </Grid>
+                                </Grid>
+                                <Grid Grid.Column="3" Margin="5,0,5,0">
+                                    <Button
+                                        Width="Auto"
+                                        Height="Auto"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Command="{Binding ElementName=This, Path=Remove}"
+                                        Style="{StaticResource AddButtonStyle}">
                                         <i:Interaction.Triggers>
                                             <i:EventTrigger EventName="Click">
-                                                <i:InvokeCommandAction Command="{Binding ElementName=This, Path=Add}"/>
+                                                <i:InvokeCommandAction Command="{Binding ElementName=This, Path=Add}" />
                                             </i:EventTrigger>
                                         </i:Interaction.Triggers>
                                     </Button>

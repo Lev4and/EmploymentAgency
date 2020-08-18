@@ -1,76 +1,74 @@
-﻿<UserControl x:Class="EmploymentAgency.Views.UserControls.BlockViewKnowledgeLanguages"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mdt="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-             xmlns:local="clr-namespace:EmploymentAgency.Views.UserControls"
-             mc:Ignorable="d" 
-             x:Name="This"
-             d:DesignHeight="450" d:DesignWidth="500">
+﻿<UserControl
+    x:Class="EmploymentAgency.Views.UserControls.BlockViewKnowledgeLanguages"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:local="clr-namespace:EmploymentAgency.Views.UserControls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mdt="http://materialdesigninxaml.net/winfx/xaml/themes"
+    x:Name="This"
+    d:DesignHeight="450"
+    d:DesignWidth="500"
+    mc:Ignorable="d">
     <Grid>
         <i:Interaction.Triggers>
             <i:EventTrigger EventName="Loaded">
-                <i:InvokeCommandAction Command="{Binding ElementName=This, Path=Loaded}"/>
+                <i:InvokeCommandAction Command="{Binding ElementName=This, Path=Loaded}" />
             </i:EventTrigger>
         </i:Interaction.Triggers>
-        <GroupBox Header="Знание языков"
-                  FontWeight="Medium"
-                  FontSize="24"
-                  BorderThickness="3">
+        <GroupBox
+            BorderThickness="3"
+            FontSize="24"
+            FontWeight="Medium"
+            Header="Знание языков">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition Height="70"/>
+                    <RowDefinition />
+                    <RowDefinition Height="70" />
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0" MaxHeight="300">
-                    <Border BorderThickness="3"
-                            BorderBrush="Black">
-                        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-                            <Grid x:Name="Grid"
-                                  VerticalAlignment="Top">
-
-                            </Grid>
+                    <Border BorderBrush="Black" BorderThickness="3">
+                        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                            <Grid x:Name="Grid" VerticalAlignment="Top" />
                         </ScrollViewer>
                     </Border>
                 </Grid>
                 <Grid Grid.Row="1" Margin="0,5,0,5">
-                    <Border BorderThickness="3"
-                            BorderBrush="Black">
+                    <Border BorderBrush="Black" BorderThickness="3">
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
-                            <Grid Grid.Column="0" 
-                                  Margin="5">
-                                <ComboBox ItemsSource="{Binding ElementName=This, Path=Languages, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                          mdt:HintAssist.Hint="Язык"
-                                          DisplayMemberPath="LanguageName"
-                                          SelectedValuePath="IdLanguage"
-                                          SelectedValue="{Binding ElementName=This, Path=SelectedIdLanguage, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                            <Grid Grid.Column="0" Margin="5">
+                                <ComboBox
+                                    mdt:HintAssist.Hint="Язык"
+                                    DisplayMemberPath="LanguageName"
+                                    ItemsSource="{Binding ElementName=This, Path=Languages, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    SelectedValue="{Binding ElementName=This, Path=SelectedIdLanguage, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    SelectedValuePath="IdLanguage" />
                             </Grid>
-                            <Grid Grid.Column="1"
-                                  Margin="5">
-                                <ComboBox ItemsSource="{Binding ElementName=This, Path=LanguageProficiencies, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                          mdt:HintAssist.Hint="Уровень знания языка"
-                                          DisplayMemberPath="LanguageProficiencyName"
-                                          SelectedValuePath="IdLanguageProficiency"
-                                          SelectedValue="{Binding ElementName=This, Path=SelectedIdLanguageProficiency, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                            <Grid Grid.Column="1" Margin="5">
+                                <ComboBox
+                                    mdt:HintAssist.Hint="Уровень знания языка"
+                                    DisplayMemberPath="LanguageProficiencyName"
+                                    ItemsSource="{Binding ElementName=This, Path=LanguageProficiencies, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    SelectedValue="{Binding ElementName=This, Path=SelectedIdLanguageProficiency, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    SelectedValuePath="IdLanguageProficiency" />
                             </Grid>
-                            <Grid Grid.Column="2"
-                                  Margin="5">
-                                <Button Width="Auto"
-                                        Height="Auto"
-                                        VerticalAlignment="Center"
-                                        HorizontalAlignment="Center"
-                                        Style="{StaticResource AddButtonStyle}"
-                                        Command="{Binding ElementName=This, Path=Remove}">
+                            <Grid Grid.Column="2" Margin="5">
+                                <Button
+                                    Width="Auto"
+                                    Height="Auto"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Command="{Binding ElementName=This, Path=Remove}"
+                                    Style="{StaticResource AddButtonStyle}">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger EventName="Click">
-                                            <i:InvokeCommandAction Command="{Binding ElementName=This, Path=Add}"/>
+                                            <i:InvokeCommandAction Command="{Binding ElementName=This, Path=Add}" />
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
                                 </Button>

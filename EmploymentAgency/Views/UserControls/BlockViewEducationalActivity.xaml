@@ -1,164 +1,168 @@
-﻿<UserControl x:Class="EmploymentAgency.Views.UserControls.BlockViewEducationalActivity"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mdt="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-             xmlns:local="clr-namespace:EmploymentAgency.Views.UserControls"
-             xmlns:c="clr-namespace:EmploymentAgency.Converters"
-             mc:Ignorable="d"
-             x:Name="This"
-             d:DesignHeight="100" d:DesignWidth="800" MinHeight="100" MaxHeight="100">
+﻿<UserControl
+    x:Class="EmploymentAgency.Views.UserControls.BlockViewEducationalActivity"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:c="clr-namespace:EmploymentAgency.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:local="clr-namespace:EmploymentAgency.Views.UserControls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mdt="http://materialdesigninxaml.net/winfx/xaml/themes"
+    x:Name="This"
+    MinHeight="100"
+    MaxHeight="100"
+    d:DesignHeight="100"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
     <UserControl.Resources>
-        <c:BoolToCollapsedVisibility x:Key="BoolToCollapsedVisibility"/>
-        <c:NullableDateTimeToText x:Key="NullableDateTimeToText"/>
+        <c:BoolToCollapsedVisibility x:Key="BoolToCollapsedVisibility" />
+        <c:NullableDateTimeToText x:Key="NullableDateTimeToText" />
     </UserControl.Resources>
     <Grid>
-        <Border BorderThickness="1,1,1,1"
-                BorderBrush="Black">
+        <Border BorderBrush="Black" BorderThickness="1,1,1,1">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="1.5*"/>
-                    <ColumnDefinition Width="60"/>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1.5*" />
+                    <ColumnDefinition Width="60" />
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
-                    <Border BorderThickness="0,0,1,0"
-                            BorderBrush="Black">
+                    <Border BorderBrush="Black" BorderThickness="0,0,1,0">
                         <Grid>
                             <Grid.RowDefinitions>
-                                <RowDefinition/>
-                                <RowDefinition/>
+                                <RowDefinition />
+                                <RowDefinition />
                             </Grid.RowDefinitions>
                             <Grid Grid.Row="0">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition />
                                 </Grid.ColumnDefinitions>
-                                <Grid Grid.Column="0"
-                                      Margin="5,0,5,0">
-                                    <TextBlock Text="От:"
-                                               TextAlignment="Center"
-                                               FontWeight="Medium"
-                                               FontSize="20"
-                                               VerticalAlignment="Center"
-                                               HorizontalAlignment="Center"/>
+                                <Grid Grid.Column="0" Margin="5,0,5,0">
+                                    <TextBlock
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="20"
+                                        FontWeight="Medium"
+                                        Text="От:"
+                                        TextAlignment="Center" />
                                 </Grid>
-                                <Grid Grid.Column="1"
-                                      Margin="5,0,5,0">
-                                    <TextBlock Text="{Binding ElementName=This, Path=BeginDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource NullableDateTimeToText}}"
-                                               TextAlignment="Center"
-                                               FontWeight="Medium"
-                                               FontSize="20"
-                                               VerticalAlignment="Center"
-                                               HorizontalAlignment="Center"/>
+                                <Grid Grid.Column="1" Margin="5,0,5,0">
+                                    <TextBlock
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="20"
+                                        FontWeight="Medium"
+                                        Text="{Binding ElementName=This, Path=BeginDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource NullableDateTimeToText}}"
+                                        TextAlignment="Center" />
                                 </Grid>
                             </Grid>
                             <Grid Grid.Row="1">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition />
                                 </Grid.ColumnDefinitions>
-                                <Grid Grid.Column="0"
-                                      Margin="5,0,5,0">
-                                    <TextBlock Text="До:"
-                                               TextAlignment="Center"
-                                               FontWeight="Medium"
-                                               FontSize="20"
-                                               VerticalAlignment="Center"
-                                               HorizontalAlignment="Center"/>
+                                <Grid Grid.Column="0" Margin="5,0,5,0">
+                                    <TextBlock
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="20"
+                                        FontWeight="Medium"
+                                        Text="До:"
+                                        TextAlignment="Center" />
                                 </Grid>
-                                <Grid Grid.Column="1"
-                                      Margin="5,0,5,0">
-                                    <TextBlock Text="{Binding ElementName=This, Path=EndDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource NullableDateTimeToText}}"
-                                               TextAlignment="Center"
-                                               FontWeight="Medium"
-                                               FontSize="20"
-                                               VerticalAlignment="Center"
-                                               HorizontalAlignment="Center"/>
+                                <Grid Grid.Column="1" Margin="5,0,5,0">
+                                    <TextBlock
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="20"
+                                        FontWeight="Medium"
+                                        Text="{Binding ElementName=This, Path=EndDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource NullableDateTimeToText}}"
+                                        TextAlignment="Center" />
                                 </Grid>
                             </Grid>
                         </Grid>
                     </Border>
                 </Grid>
                 <Grid Grid.Column="1">
-                    <Border BorderThickness="0,0,1,0"
-                            BorderBrush="Black">
+                    <Border BorderBrush="Black" BorderThickness="0,0,1,0">
                         <Grid Margin="5,0,5,0">
-                            <TextBlock Text="{Binding Path=EducationName}"
-                                       TextAlignment="Center"
-                                       FontWeight="Medium"
-                                       FontSize="14"
-                                       TextWrapping="Wrap"
-                                       VerticalAlignment="Center"
-                                       HorizontalAlignment="Center"
-                                       DataContext="{Binding ElementName=This, Path=Education, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"/>
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                DataContext="{Binding ElementName=This, Path=Education, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
+                                FontSize="14"
+                                FontWeight="Medium"
+                                Text="{Binding Path=EducationName}"
+                                TextAlignment="Center"
+                                TextWrapping="Wrap" />
                         </Grid>
                     </Border>
                 </Grid>
                 <Grid Grid.Column="2">
-                    <Border BorderThickness="0,0,1,0"
-                            BorderBrush="Black">
+                    <Border BorderBrush="Black" BorderThickness="0,0,1,0">
                         <Grid Margin="5,0,5,0">
                             <Grid.RowDefinitions>
-                                <RowDefinition/>
-                                <RowDefinition/>
+                                <RowDefinition />
+                                <RowDefinition />
                             </Grid.RowDefinitions>
                             <Grid Grid.Row="0">
-                                <TextBlock Text="{Binding ElementName=This, Path=NameEducationalnstitution, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
-                                           TextAlignment="Center"
-                                           FontWeight="Medium"
-                                           FontSize="12"
-                                           TextWrapping="Wrap"
-                                           VerticalAlignment="Center"
-                                           HorizontalAlignment="Center"/>
+                                <TextBlock
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    FontSize="12"
+                                    FontWeight="Medium"
+                                    Text="{Binding ElementName=This, Path=NameEducationalnstitution, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
+                                    TextAlignment="Center"
+                                    TextWrapping="Wrap" />
                             </Grid>
                             <Grid Grid.Row="1">
                                 <Grid.RowDefinitions>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
+                                    <RowDefinition />
+                                    <RowDefinition />
                                 </Grid.RowDefinitions>
                                 <Grid Grid.Row="0">
-                                    <TextBlock Text="Город/Адрес/Сайт"
-                                               TextAlignment="Center"
-                                               FontWeight="Medium"
-                                               FontSize="12"
-                                               TextWrapping="Wrap"
-                                               VerticalAlignment="Center"
-                                               HorizontalAlignment="Center"/>
+                                    <TextBlock
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="12"
+                                        FontWeight="Medium"
+                                        Text="Город/Адрес/Сайт"
+                                        TextAlignment="Center"
+                                        TextWrapping="Wrap" />
                                 </Grid>
                                 <Grid Grid.Row="1">
-                                    <TextBlock Text="{Binding ElementName=This, Path=Address, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
-                                               TextAlignment="Center"
-                                               FontWeight="Medium"
-                                               FontSize="12"
-                                               TextWrapping="Wrap"
-                                               VerticalAlignment="Center"
-                                               HorizontalAlignment="Center"/>
+                                    <TextBlock
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="12"
+                                        FontWeight="Medium"
+                                        Text="{Binding ElementName=This, Path=Address, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
+                                        TextAlignment="Center"
+                                        TextWrapping="Wrap" />
                                 </Grid>
                             </Grid>
                         </Grid>
                     </Border>
                 </Grid>
-                <Grid Grid.Column="3"
-                      Margin="5,0,5,0">
-                    <Button Width="Auto"
-                                Height="Auto"
-                                VerticalAlignment="Center"
-                                HorizontalAlignment="Center"
-                                Visibility="{Binding ElementName=This, Path=IsCanRemove, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource BoolToCollapsedVisibility}}"
-                                Style="{StaticResource RemoveButtonStyle}"
-                                Command="{Binding Path=Remove}">
+                <Grid Grid.Column="3" Margin="5,0,5,0">
+                    <Button
+                        Width="Auto"
+                        Height="Auto"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Command="{Binding Path=Remove}"
+                        Style="{StaticResource RemoveButtonStyle}"
+                        Visibility="{Binding ElementName=This, Path=IsCanRemove, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource BoolToCollapsedVisibility}}">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="Click">
-                                <i:InvokeCommandAction Command="{Binding ElementName=This, Path=Remove}" CommandParameter="{Binding ElementName=This}"/>
+                                <i:InvokeCommandAction Command="{Binding ElementName=This, Path=Remove}" CommandParameter="{Binding ElementName=This}" />
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
                     </Button>
                 </Grid>
             </Grid>
-        </Border>     
+        </Border>
     </Grid>
 </UserControl>

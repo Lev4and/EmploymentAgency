@@ -1,20 +1,20 @@
-﻿<UserControl x:Class="EmploymentAgency.Views.UserControls.CheckBoxForExpander"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-             xmlns:local="clr-namespace:EmploymentAgency.Views.UserControls"
-             mc:Ignorable="d"
-             x:Name="This">
+﻿<UserControl
+    x:Class="EmploymentAgency.Views.UserControls.CheckBoxForExpander"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:local="clr-namespace:EmploymentAgency.Views.UserControls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="This"
+    mc:Ignorable="d">
     <Grid>
         <i:Interaction.Triggers>
             <i:EventTrigger EventName="Loaded">
-                <i:InvokeCommandAction Command="{Binding ElementName=This, Path=Loaded}"/>
+                <i:InvokeCommandAction Command="{Binding ElementName=This, Path=Loaded}" />
             </i:EventTrigger>
         </i:Interaction.Triggers>
-        <CheckBox Content="{Binding ElementName=This, Path=Text, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                  IsChecked="{Binding ElementName=This, Path=IsChecked, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+        <CheckBox Content="{Binding ElementName=This, Path=Text, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" IsChecked="{Binding ElementName=This, Path=IsChecked, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
 
     </Grid>
 </UserControl>

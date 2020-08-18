@@ -1,31 +1,32 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:EmploymentAgency.Views.Styles">
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:EmploymentAgency.Views.Styles">
     <Style x:Key="BackButtonStyle" TargetType="Button">
-        <Setter Property="Template" Value="{StaticResource BackButtonTemplate}"/>
+        <Setter Property="Template" Value="{StaticResource BackButtonTemplate}" />
     </Style>
-    
+
     <Style x:Key="AddImageButtonStyle" TargetType="Button">
-        <Setter Property="Template" Value="{StaticResource AddImageButtonTemplate}"/>
+        <Setter Property="Template" Value="{StaticResource AddImageButtonTemplate}" />
     </Style>
 
     <Style x:Key="RemoveImageButtonStyle" TargetType="Button">
-        <Setter Property="Template" Value="{StaticResource RemoveImageButtonTemplate}"/>
+        <Setter Property="Template" Value="{StaticResource RemoveImageButtonTemplate}" />
     </Style>
 
     <Style x:Key="ToFindButtonStyle" TargetType="Button">
-        <Setter Property="Template" Value="{StaticResource ToFindButtonTemplate}"/>
+        <Setter Property="Template" Value="{StaticResource ToFindButtonTemplate}" />
     </Style>
 
     <Style x:Key="AddButtonStyle" TargetType="Button">
-        <Setter Property="Template" Value="{StaticResource AddButtonTemplate}"/>
+        <Setter Property="Template" Value="{StaticResource AddButtonTemplate}" />
     </Style>
 
     <Style x:Key="ChangeButtonStyle" TargetType="Button">
-        <Setter Property="Template" Value="{StaticResource ChangeButtonTemplate}"/>
+        <Setter Property="Template" Value="{StaticResource ChangeButtonTemplate}" />
     </Style>
 
     <Style x:Key="RemoveButtonStyle" TargetType="Button">
-        <Setter Property="Template" Value="{StaticResource RemoveButtonTemplate}"/>
+        <Setter Property="Template" Value="{StaticResource RemoveButtonTemplate}" />
     </Style>
 </ResourceDictionary>

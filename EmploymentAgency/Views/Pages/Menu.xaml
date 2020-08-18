@@ -1,489 +1,538 @@
-﻿<Page x:Class="EmploymentAgency.Views.Pages.Menu"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:mdt="http://materialdesigninxaml.net/winfx/xaml/themes"
-      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-      xmlns:local="clr-namespace:EmploymentAgency.Views.Pages"
-      mc:Ignorable="d"
-      Background="{StaticResource PageBackgroundBrush}"
-      DataContext="{Binding MenuViewModel, Source={StaticResource ViewModelLocator}}"
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="Меню" WindowTitle="Агентство трудоустройства - Меню">
+﻿<Page
+    x:Class="EmploymentAgency.Views.Pages.Menu"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:local="clr-namespace:EmploymentAgency.Views.Pages"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mdt="http://materialdesigninxaml.net/winfx/xaml/themes"
+    Title="Меню"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    Background="{StaticResource PageBackgroundBrush}"
+    DataContext="{Binding MenuViewModel, Source={StaticResource ViewModelLocator}}"
+    WindowTitle="Агентство трудоустройства - Меню"
+    mc:Ignorable="d">
     <Grid>
-        <mdt:ColorZone Mode="PrimaryMid"
-                       Padding="16"
-                       Height="70">
+        <mdt:ColorZone
+            Height="70"
+            Padding="16"
+            Mode="PrimaryMid">
             <Grid>
-                <ToggleButton x:Name="IsLeftDrawerOpenToggleButton" 
-                              Style="{DynamicResource MaterialDesignHamburgerToggleButton}"
-                              IsChecked="{Binding Path=IsLeftDrawerOpen, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                              HorizontalAlignment="Left"
-                              Panel.ZIndex="1"/>
-                <TextBlock Text="{Binding Path=Title}"
-                           TextAlignment="Center"
-                           VerticalAlignment="Center"
-                           FontSize="22"
-                           FontWeight="Medium"
-                           Panel.ZIndex="0"
-                           DataContext="{Binding Path=PageSource}">
-                </TextBlock>
+                <ToggleButton
+                    x:Name="IsLeftDrawerOpenToggleButton"
+                    HorizontalAlignment="Left"
+                    Panel.ZIndex="1"
+                    IsChecked="{Binding Path=IsLeftDrawerOpen, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                    Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
+                <TextBlock
+                    VerticalAlignment="Center"
+                    Panel.ZIndex="0"
+                    DataContext="{Binding Path=PageSource}"
+                    FontSize="22"
+                    FontWeight="Medium"
+                    Text="{Binding Path=Title}"
+                    TextAlignment="Center" />
             </Grid>
         </mdt:ColorZone>
-        <mdt:DialogHost Identifier="RootDialog"
-                        Panel.ZIndex="1"
-                        Width="Auto"
-                        VerticalAlignment="Top"
-                        HorizontalAlignment="Left">
+        <mdt:DialogHost
+            Width="Auto"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Panel.ZIndex="1"
+            Identifier="RootDialog">
             <mdt:DrawerHost Width="Auto" IsLeftDrawerOpen="{Binding ElementName=IsLeftDrawerOpenToggleButton, Path=IsChecked, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
                 <mdt:DrawerHost.LeftDrawerContent>
                     <DockPanel Width="Auto">
-                        <Grid HorizontalAlignment="Stretch" 
-                              Background="{StaticResource PrimaryHueMidBrush}">
+                        <Grid HorizontalAlignment="Stretch" Background="{StaticResource PrimaryHueMidBrush}">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="70"/>
-                                <RowDefinition Height="70"/>
-                                <RowDefinition Height="326*"/>
+                                <RowDefinition Height="70" />
+                                <RowDefinition Height="70" />
+                                <RowDefinition Height="326*" />
                             </Grid.RowDefinitions>
-                            <Grid Grid.Row="0"
-                                  Background="GhostWhite">
-                                <ToggleButton IsChecked="{Binding Path=IsLeftDrawerOpen, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                              Style="{DynamicResource MaterialDesignActionToggleButton}">
+                            <Grid Grid.Row="0" Background="GhostWhite">
+                                <ToggleButton IsChecked="{Binding Path=IsLeftDrawerOpen, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Style="{DynamicResource MaterialDesignActionToggleButton}">
                                     <ToggleButton.Content>
-                                        <mdt:PackIcon Kind="Menu"/>
+                                        <mdt:PackIcon Kind="Menu" />
                                     </ToggleButton.Content>
                                     <mdt:ToggleButtonAssist.OnContent>
                                         <mdt:PackIcon Kind="ArrowLeft" />
                                     </mdt:ToggleButtonAssist.OnContent>
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger EventName="Unchecked">
-                                            <i:InvokeCommandAction Command="{Binding Path=OnUnchecked}"/>
+                                            <i:InvokeCommandAction Command="{Binding Path=OnUnchecked}" />
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
                                 </ToggleButton>
                             </Grid>
-                            <Grid Grid.Row="1" 
-                                  Background="GhostWhite">
-                                <Image Source="/EmploymentAgency;component/Resources/Images/Icons/Icon.ico"/>
+                            <Grid Grid.Row="1" Background="GhostWhite">
+                                <Image Source="/EmploymentAgency;component/Resources/Images/Icons/Icon.ico" />
                             </Grid>
-                            <ScrollViewer HorizontalAlignment="Stretch"
-                                          HorizontalScrollBarVisibility="Disabled"
-                                          VerticalScrollBarVisibility="Auto" 
-                                          Grid.Row="2">
+                            <ScrollViewer
+                                Grid.Row="2"
+                                HorizontalAlignment="Stretch"
+                                HorizontalScrollBarVisibility="Disabled"
+                                VerticalScrollBarVisibility="Auto">
                                 <Grid Margin="10">
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
                                     <Grid Grid.Row="0">
-                                        <mdt:PackIcon Kind="City"
-                                                      Width="15"
-                                                      Height="15"
-                                                      Margin="10 16"
-                                                      Foreground="White"/>
-                                        <ListBoxItem Content="Страны"
-                                                     Padding="37 14"
-                                                     FontSize="15"
-                                                     Foreground="White">
+                                        <mdt:PackIcon
+                                            Width="15"
+                                            Height="15"
+                                            Margin="10,16"
+                                            Foreground="White"
+                                            Kind="City" />
+                                        <ListBoxItem
+                                            Padding="37,14"
+                                            Content="Страны"
+                                            FontSize="15"
+                                            Foreground="White">
                                             <i:Interaction.Triggers>
                                                 <i:EventTrigger EventName="MouseUp">
-                                                    <i:InvokeCommandAction Command="{Binding Path=Countries}"/>
+                                                    <i:InvokeCommandAction Command="{Binding Path=Countries}" />
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>
                                         </ListBoxItem>
                                     </Grid>
                                     <Grid Grid.Row="1">
-                                        <mdt:PackIcon Kind="CityVariant"
-                                                      Width="15"
-                                                      Height="15"
-                                                      Margin="10 16"
-                                                      Foreground="White"/>
-                                        <ListBoxItem Content="Города"
-                                                     Padding="37 14"
-                                                     FontSize="15"
-                                                     Foreground="White">
+                                        <mdt:PackIcon
+                                            Width="15"
+                                            Height="15"
+                                            Margin="10,16"
+                                            Foreground="White"
+                                            Kind="CityVariant" />
+                                        <ListBoxItem
+                                            Padding="37,14"
+                                            Content="Города"
+                                            FontSize="15"
+                                            Foreground="White">
                                             <i:Interaction.Triggers>
                                                 <i:EventTrigger EventName="MouseUp">
-                                                    <i:InvokeCommandAction Command="{Binding Path=Cities}"/>
+                                                    <i:InvokeCommandAction Command="{Binding Path=Cities}" />
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>
                                         </ListBoxItem>
                                     </Grid>
                                     <Grid Grid.Row="2">
-                                        <mdt:PackIcon Kind="SignDirection"
-                                                      Width="15"
-                                                      Height="15"
-                                                      Margin="10 16"
-                                                      Foreground="White"/>
-                                        <ListBoxItem Content="Улицы"
-                                                     Padding="37 14"
-                                                     FontSize="15"
-                                                     Foreground="White">
+                                        <mdt:PackIcon
+                                            Width="15"
+                                            Height="15"
+                                            Margin="10,16"
+                                            Foreground="White"
+                                            Kind="SignDirection" />
+                                        <ListBoxItem
+                                            Padding="37,14"
+                                            Content="Улицы"
+                                            FontSize="15"
+                                            Foreground="White">
                                             <i:Interaction.Triggers>
                                                 <i:EventTrigger EventName="MouseUp">
-                                                    <i:InvokeCommandAction Command="{Binding Path=Streets}"/>
+                                                    <i:InvokeCommandAction Command="{Binding Path=Streets}" />
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>
                                         </ListBoxItem>
                                     </Grid>
                                     <Grid Grid.Row="3">
-                                        <mdt:PackIcon Kind="HammerWrench"
-                                                      Width="15"
-                                                      Height="15"
-                                                      Margin="10 16"
-                                                      Foreground="White"/>
-                                        <ListBoxItem Content="Навыки"
-                                                     Padding="37 14"
-                                                     FontSize="15"
-                                                     Foreground="White">
+                                        <mdt:PackIcon
+                                            Width="15"
+                                            Height="15"
+                                            Margin="10,16"
+                                            Foreground="White"
+                                            Kind="HammerWrench" />
+                                        <ListBoxItem
+                                            Padding="37,14"
+                                            Content="Навыки"
+                                            FontSize="15"
+                                            Foreground="White">
                                             <i:Interaction.Triggers>
                                                 <i:EventTrigger EventName="MouseUp">
-                                                    <i:InvokeCommandAction Command="{Binding Path=Skills}"/>
+                                                    <i:InvokeCommandAction Command="{Binding Path=Skills}" />
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>
                                         </ListBoxItem>
                                     </Grid>
                                     <Grid Grid.Row="4">
-                                        <mdt:PackIcon Kind="Car"
-                                                      Width="15"
-                                                      Height="15"
-                                                      Margin="10 16"
-                                                      Foreground="White"/>
-                                        <ListBoxItem Content="Категории водительских прав"
-                                                     Padding="37 14"
-                                                     FontSize="15"
-                                                     Foreground="White">
+                                        <mdt:PackIcon
+                                            Width="15"
+                                            Height="15"
+                                            Margin="10,16"
+                                            Foreground="White"
+                                            Kind="Car" />
+                                        <ListBoxItem
+                                            Padding="37,14"
+                                            Content="Категории водительских прав"
+                                            FontSize="15"
+                                            Foreground="White">
                                             <i:Interaction.Triggers>
                                                 <i:EventTrigger EventName="MouseUp">
-                                                    <i:InvokeCommandAction Command="{Binding Path=DrivingLicenseCategories}"/>
+                                                    <i:InvokeCommandAction Command="{Binding Path=DrivingLicenseCategories}" />
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>
                                         </ListBoxItem>
                                     </Grid>
                                     <Grid Grid.Row="5">
-                                        <mdt:PackIcon Kind="School"
-                                                      Width="15"
-                                                      Height="15"
-                                                      Margin="10 16"
-                                                      Foreground="White"/>
-                                        <ListBoxItem Content="Виды образования"
-                                                     Padding="37 14"
-                                                     FontSize="15"
-                                                     Foreground="White">
+                                        <mdt:PackIcon
+                                            Width="15"
+                                            Height="15"
+                                            Margin="10,16"
+                                            Foreground="White"
+                                            Kind="School" />
+                                        <ListBoxItem
+                                            Padding="37,14"
+                                            Content="Виды образования"
+                                            FontSize="15"
+                                            Foreground="White">
                                             <i:Interaction.Triggers>
                                                 <i:EventTrigger EventName="MouseUp">
-                                                    <i:InvokeCommandAction Command="{Binding Path=Educations}"/>
+                                                    <i:InvokeCommandAction Command="{Binding Path=Educations}" />
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>
                                         </ListBoxItem>
                                     </Grid>
                                     <Grid Grid.Row="6">
-                                        <mdt:PackIcon Kind="BriefcaseClock"
-                                                      Width="15"
-                                                      Height="15"
-                                                      Margin="10 16"
-                                                      Foreground="White"/>
-                                        <ListBoxItem Content="Типы занятости"
-                                                     Padding="37 14"
-                                                     FontSize="15"
-                                                     Foreground="White">
+                                        <mdt:PackIcon
+                                            Width="15"
+                                            Height="15"
+                                            Margin="10,16"
+                                            Foreground="White"
+                                            Kind="BriefcaseClock" />
+                                        <ListBoxItem
+                                            Padding="37,14"
+                                            Content="Типы занятости"
+                                            FontSize="15"
+                                            Foreground="White">
                                             <i:Interaction.Triggers>
                                                 <i:EventTrigger EventName="MouseUp">
-                                                    <i:InvokeCommandAction Command="{Binding Path=EmploymentTypes}"/>
+                                                    <i:InvokeCommandAction Command="{Binding Path=EmploymentTypes}" />
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>
                                         </ListBoxItem>
                                     </Grid>
                                     <Grid Grid.Row="7">
-                                        <mdt:PackIcon Kind="HardHat"
-                                                      Width="15"
-                                                      Height="15"
-                                                      Margin="10 16"
-                                                      Foreground="White"/>
-                                        <ListBoxItem Content="Опыт работы"
-                                                     Padding="37 14"
-                                                     FontSize="15"
-                                                     Foreground="White">
+                                        <mdt:PackIcon
+                                            Width="15"
+                                            Height="15"
+                                            Margin="10,16"
+                                            Foreground="White"
+                                            Kind="HardHat" />
+                                        <ListBoxItem
+                                            Padding="37,14"
+                                            Content="Опыт работы"
+                                            FontSize="15"
+                                            Foreground="White">
                                             <i:Interaction.Triggers>
                                                 <i:EventTrigger EventName="MouseUp">
-                                                    <i:InvokeCommandAction Command="{Binding Path=Experiences}"/>
+                                                    <i:InvokeCommandAction Command="{Binding Path=Experiences}" />
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>
                                         </ListBoxItem>
                                     </Grid>
                                     <Grid Grid.Row="8">
-                                        <mdt:PackIcon Kind="Translate"
-                                                      Width="15"
-                                                      Height="15"
-                                                      Margin="10 16"
-                                                      Foreground="White"/>
-                                        <ListBoxItem Content="Языки"
-                                                     Padding="37 14"
-                                                     FontSize="15"
-                                                     Foreground="White">
+                                        <mdt:PackIcon
+                                            Width="15"
+                                            Height="15"
+                                            Margin="10,16"
+                                            Foreground="White"
+                                            Kind="Translate" />
+                                        <ListBoxItem
+                                            Padding="37,14"
+                                            Content="Языки"
+                                            FontSize="15"
+                                            Foreground="White">
                                             <i:Interaction.Triggers>
                                                 <i:EventTrigger EventName="MouseUp">
-                                                    <i:InvokeCommandAction Command="{Binding Path=Languages}"/>
+                                                    <i:InvokeCommandAction Command="{Binding Path=Languages}" />
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>
                                         </ListBoxItem>
                                     </Grid>
                                     <Grid Grid.Row="9">
-                                        <mdt:PackIcon Kind="Translate"
-                                                      Width="15"
-                                                      Height="15"
-                                                      Margin="10 16"
-                                                      Foreground="White"/>
-                                        <ListBoxItem Content="Уровни знания языка"
-                                                     Padding="37 14"
-                                                     FontSize="15"
-                                                     Foreground="White">
+                                        <mdt:PackIcon
+                                            Width="15"
+                                            Height="15"
+                                            Margin="10,16"
+                                            Foreground="White"
+                                            Kind="Translate" />
+                                        <ListBoxItem
+                                            Padding="37,14"
+                                            Content="Уровни знания языка"
+                                            FontSize="15"
+                                            Foreground="White">
                                             <i:Interaction.Triggers>
                                                 <i:EventTrigger EventName="MouseUp">
-                                                    <i:InvokeCommandAction Command="{Binding Path=LanguageProficiencies}"/>
+                                                    <i:InvokeCommandAction Command="{Binding Path=LanguageProficiencies}" />
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>
                                         </ListBoxItem>
                                     </Grid>
                                     <Grid Grid.Row="10">
-                                        <mdt:PackIcon Kind="GenderMaleFemale"
-                                                      Width="15"
-                                                      Height="15"
-                                                      Margin="10 16"
-                                                      Foreground="White"/>
-                                        <ListBoxItem Content="Гендеры"
-                                                     Padding="37 14"
-                                                     FontSize="15"
-                                                     Foreground="White">
+                                        <mdt:PackIcon
+                                            Width="15"
+                                            Height="15"
+                                            Margin="10,16"
+                                            Foreground="White"
+                                            Kind="GenderMaleFemale" />
+                                        <ListBoxItem
+                                            Padding="37,14"
+                                            Content="Гендеры"
+                                            FontSize="15"
+                                            Foreground="White">
                                             <i:Interaction.Triggers>
                                                 <i:EventTrigger EventName="MouseUp">
-                                                    <i:InvokeCommandAction Command="{Binding Path=Genders}"/>
+                                                    <i:InvokeCommandAction Command="{Binding Path=Genders}" />
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>
                                         </ListBoxItem>
                                     </Grid>
                                     <Grid Grid.Row="11">
-                                        <mdt:PackIcon Kind="Cog"
-                                                      Width="15"
-                                                      Height="15"
-                                                      Margin="10 16"
-                                                      Foreground="White"/>
-                                        <ListBoxItem Content="Отрасли"
-                                                     Padding="37 14"
-                                                     FontSize="15"
-                                                     Foreground="White">
+                                        <mdt:PackIcon
+                                            Width="15"
+                                            Height="15"
+                                            Margin="10,16"
+                                            Foreground="White"
+                                            Kind="Cog" />
+                                        <ListBoxItem
+                                            Padding="37,14"
+                                            Content="Отрасли"
+                                            FontSize="15"
+                                            Foreground="White">
                                             <i:Interaction.Triggers>
                                                 <i:EventTrigger EventName="MouseUp">
-                                                    <i:InvokeCommandAction Command="{Binding Path=Industries}"/>
+                                                    <i:InvokeCommandAction Command="{Binding Path=Industries}" />
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>
                                         </ListBoxItem>
                                     </Grid>
                                     <Grid Grid.Row="12">
-                                        <mdt:PackIcon Kind="CogOutline"
-                                                      Width="15"
-                                                      Height="15"
-                                                      Margin="10 16"
-                                                      Foreground="White"/>
-                                        <ListBoxItem Content="Подотрасли"
-                                                     Padding="37 14"
-                                                     FontSize="15"
-                                                     Foreground="White">
+                                        <mdt:PackIcon
+                                            Width="15"
+                                            Height="15"
+                                            Margin="10,16"
+                                            Foreground="White"
+                                            Kind="CogOutline" />
+                                        <ListBoxItem
+                                            Padding="37,14"
+                                            Content="Подотрасли"
+                                            FontSize="15"
+                                            Foreground="White">
                                             <i:Interaction.Triggers>
                                                 <i:EventTrigger EventName="MouseUp">
-                                                    <i:InvokeCommandAction Command="{Binding Path=SubIndustries}"/>
+                                                    <i:InvokeCommandAction Command="{Binding Path=SubIndustries}" />
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>
                                         </ListBoxItem>
                                     </Grid>
                                     <Grid Grid.Row="13">
-                                        <mdt:PackIcon Kind="Wrench"
-                                                      Width="15"
-                                                      Height="15"
-                                                      Margin="10 16"
-                                                      Foreground="White"/>
-                                        <ListBoxItem Content="Сферы деятельности"
-                                                     Padding="37 14"
-                                                     FontSize="15"
-                                                     Foreground="White">
+                                        <mdt:PackIcon
+                                            Width="15"
+                                            Height="15"
+                                            Margin="10,16"
+                                            Foreground="White"
+                                            Kind="Wrench" />
+                                        <ListBoxItem
+                                            Padding="37,14"
+                                            Content="Сферы деятельности"
+                                            FontSize="15"
+                                            Foreground="White">
                                             <i:Interaction.Triggers>
                                                 <i:EventTrigger EventName="MouseUp">
-                                                    <i:InvokeCommandAction Command="{Binding Path=ProfessionCategories}"/>
+                                                    <i:InvokeCommandAction Command="{Binding Path=ProfessionCategories}" />
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>
                                         </ListBoxItem>
                                     </Grid>
                                     <Grid Grid.Row="14">
-                                        <mdt:PackIcon Kind="AccountHardHat"
-                                                      Width="15"
-                                                      Height="15"
-                                                      Margin="10 16"
-                                                      Foreground="White"/>
-                                        <ListBoxItem Content="Профессии"
-                                                     Padding="37 14"
-                                                     FontSize="15"
-                                                     Foreground="White">
+                                        <mdt:PackIcon
+                                            Width="15"
+                                            Height="15"
+                                            Margin="10,16"
+                                            Foreground="White"
+                                            Kind="AccountHardHat" />
+                                        <ListBoxItem
+                                            Padding="37,14"
+                                            Content="Профессии"
+                                            FontSize="15"
+                                            Foreground="White">
                                             <i:Interaction.Triggers>
                                                 <i:EventTrigger EventName="MouseUp">
-                                                    <i:InvokeCommandAction Command="{Binding Path=Professions}"/>
+                                                    <i:InvokeCommandAction Command="{Binding Path=Professions}" />
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>
                                         </ListBoxItem>
                                     </Grid>
                                     <Grid Grid.Row="15">
-                                        <mdt:PackIcon Kind="BadgeAccountAlert"
-                                                      Width="15"
-                                                      Height="15"
-                                                      Margin="10 16"
-                                                      Foreground="White"/>
-                                        <ListBoxItem Content="Статусы рассмотрения заявок"
-                                                     Padding="37 14"
-                                                     FontSize="15"
-                                                     Foreground="White">
+                                        <mdt:PackIcon
+                                            Width="15"
+                                            Height="15"
+                                            Margin="10,16"
+                                            Foreground="White"
+                                            Kind="BadgeAccountAlert" />
+                                        <ListBoxItem
+                                            Padding="37,14"
+                                            Content="Статусы рассмотрения заявок"
+                                            FontSize="15"
+                                            Foreground="White">
                                             <i:Interaction.Triggers>
                                                 <i:EventTrigger EventName="MouseUp">
-                                                    <i:InvokeCommandAction Command="{Binding Path=RequestStatuses}"/>
+                                                    <i:InvokeCommandAction Command="{Binding Path=RequestStatuses}" />
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>
                                         </ListBoxItem>
                                     </Grid>
                                     <Grid Grid.Row="16">
-                                        <mdt:PackIcon Kind="AccountTie"
-                                                      Width="15"
-                                                      Height="15"
-                                                      Margin="10 16"
-                                                      Foreground="White"/>
-                                        <ListBoxItem Content="Организации"
-                                                     Padding="37 14"
-                                                     FontSize="15"
-                                                     Foreground="White">
+                                        <mdt:PackIcon
+                                            Width="15"
+                                            Height="15"
+                                            Margin="10,16"
+                                            Foreground="White"
+                                            Kind="AccountTie" />
+                                        <ListBoxItem
+                                            Padding="37,14"
+                                            Content="Организации"
+                                            FontSize="15"
+                                            Foreground="White">
                                             <i:Interaction.Triggers>
                                                 <i:EventTrigger EventName="MouseUp">
-                                                    <i:InvokeCommandAction Command="{Binding Path=Organizations}"/>
+                                                    <i:InvokeCommandAction Command="{Binding Path=Organizations}" />
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>
                                         </ListBoxItem>
                                     </Grid>
                                     <Grid Grid.Row="17">
-                                        <mdt:PackIcon Kind="Store"
-                                                      Width="15"
-                                                      Height="15"
-                                                      Margin="10 16"
-                                                      Foreground="White"/>
-                                        <ListBoxItem Content="Филиалы организаций"
-                                                     Padding="37 14"
-                                                     FontSize="15"
-                                                     Foreground="White">
+                                        <mdt:PackIcon
+                                            Width="15"
+                                            Height="15"
+                                            Margin="10,16"
+                                            Foreground="White"
+                                            Kind="Store" />
+                                        <ListBoxItem
+                                            Padding="37,14"
+                                            Content="Филиалы организаций"
+                                            FontSize="15"
+                                            Foreground="White">
                                             <i:Interaction.Triggers>
                                                 <i:EventTrigger EventName="MouseUp">
-                                                    <i:InvokeCommandAction Command="{Binding Path=Branches}"/>
+                                                    <i:InvokeCommandAction Command="{Binding Path=Branches}" />
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>
                                         </ListBoxItem>
                                     </Grid>
                                     <Grid Grid.Row="18">
-                                        <mdt:PackIcon Kind="BriefcaseAccount"
-                                                      Width="15"
-                                                      Height="15"
-                                                      Margin="10 16"
-                                                      Foreground="White"/>
-                                        <ListBoxItem Content="Должности"
-                                                     Padding="37 14"
-                                                     FontSize="15"
-                                                     Foreground="White">
+                                        <mdt:PackIcon
+                                            Width="15"
+                                            Height="15"
+                                            Margin="10,16"
+                                            Foreground="White"
+                                            Kind="BriefcaseAccount" />
+                                        <ListBoxItem
+                                            Padding="37,14"
+                                            Content="Должности"
+                                            FontSize="15"
+                                            Foreground="White">
                                             <i:Interaction.Triggers>
                                                 <i:EventTrigger EventName="MouseUp">
-                                                    <i:InvokeCommandAction Command="{Binding Path=Roles}"/>
+                                                    <i:InvokeCommandAction Command="{Binding Path=Roles}" />
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>
                                         </ListBoxItem>
                                     </Grid>
                                     <Grid Grid.Row="19">
-                                        <mdt:PackIcon Kind="ProgressClock"
-                                                      Width="15"
-                                                      Height="15"
-                                                      Margin="10 16"
-                                                      Foreground="White"/>
-                                        <ListBoxItem Content="График работы"
-                                                     Padding="37 14"
-                                                     FontSize="15"
-                                                     Foreground="White">
+                                        <mdt:PackIcon
+                                            Width="15"
+                                            Height="15"
+                                            Margin="10,16"
+                                            Foreground="White"
+                                            Kind="ProgressClock" />
+                                        <ListBoxItem
+                                            Padding="37,14"
+                                            Content="График работы"
+                                            FontSize="15"
+                                            Foreground="White">
                                             <i:Interaction.Triggers>
                                                 <i:EventTrigger EventName="MouseUp">
-                                                    <i:InvokeCommandAction Command="{Binding Path=Schedules}"/>
+                                                    <i:InvokeCommandAction Command="{Binding Path=Schedules}" />
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>
                                         </ListBoxItem>
                                     </Grid>
                                     <Grid Grid.Row="20">
-                                        <mdt:PackIcon Kind="AccountGroup"
-                                                      Width="15"
-                                                      Height="15"
-                                                      Margin="10 16"
-                                                      Foreground="White"/>
-                                        <ListBoxItem Content="Пользователи"
-                                                     Padding="37 14"
-                                                     FontSize="15"
-                                                     Foreground="White">
+                                        <mdt:PackIcon
+                                            Width="15"
+                                            Height="15"
+                                            Margin="10,16"
+                                            Foreground="White"
+                                            Kind="AccountGroup" />
+                                        <ListBoxItem
+                                            Padding="37,14"
+                                            Content="Пользователи"
+                                            FontSize="15"
+                                            Foreground="White">
                                             <i:Interaction.Triggers>
                                                 <i:EventTrigger EventName="MouseUp">
-                                                    <i:InvokeCommandAction Command="{Binding Path=Users}"/>
+                                                    <i:InvokeCommandAction Command="{Binding Path=Users}" />
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>
                                         </ListBoxItem>
                                     </Grid>
                                     <Grid Grid.Row="21">
-                                        <mdt:PackIcon Kind="CardAccountDetails"
-                                                      Width="15"
-                                                      Height="15"
-                                                      Margin="10 16"
-                                                      Foreground="White"/>
-                                        <ListBoxItem Content="Информация о себе"
-                                                     Padding="37 14"
-                                                     FontSize="15"
-                                                     Foreground="White">
+                                        <mdt:PackIcon
+                                            Width="15"
+                                            Height="15"
+                                            Margin="10,16"
+                                            Foreground="White"
+                                            Kind="CardAccountDetails" />
+                                        <ListBoxItem
+                                            Padding="37,14"
+                                            Content="Информация о себе"
+                                            FontSize="15"
+                                            Foreground="White">
                                             <i:Interaction.Triggers>
                                                 <i:EventTrigger EventName="MouseUp">
-                                                    <i:InvokeCommandAction Command="{Binding Path=PersonalInformation}"/>
+                                                    <i:InvokeCommandAction Command="{Binding Path=PersonalInformation}" />
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>
                                         </ListBoxItem>
                                     </Grid>
                                     <Grid Grid.Row="22">
-                                        <mdt:PackIcon Kind="ExitRun"
-                                                      Width="15"
-                                                      Height="15"
-                                                      Margin="10 16"
-                                                      Foreground="White"/>
-                                        <ListBoxItem Content="Выход"
-                                                     Padding="37 14"
-                                                     FontSize="15"
-                                                     Foreground="White">
+                                        <mdt:PackIcon
+                                            Width="15"
+                                            Height="15"
+                                            Margin="10,16"
+                                            Foreground="White"
+                                            Kind="ExitRun" />
+                                        <ListBoxItem
+                                            Padding="37,14"
+                                            Content="Выход"
+                                            FontSize="15"
+                                            Foreground="White">
                                             <i:Interaction.Triggers>
                                                 <i:EventTrigger EventName="MouseUp">
-                                                    <i:InvokeCommandAction Command="{Binding Path=Exit}"/>
+                                                    <i:InvokeCommandAction Command="{Binding Path=Exit}" />
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>
                                         </ListBoxItem>
@@ -495,10 +544,10 @@
                 </mdt:DrawerHost.LeftDrawerContent>
             </mdt:DrawerHost>
         </mdt:DialogHost>
-        <Frame Content="{Binding Path=PageSource, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
-               NavigationUIVisibility="Hidden"
-               Panel.ZIndex="0"
-               Margin="5,75,5,5">
-        </Frame>
+        <Frame
+            Margin="5,75,5,5"
+            Panel.ZIndex="0"
+            Content="{Binding Path=PageSource, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+            NavigationUIVisibility="Hidden" />
     </Grid>
 </Page>

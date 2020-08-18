@@ -1,140 +1,156 @@
-﻿<Window x:Class="EmploymentAgency.Views.Windows.AddStreet"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:mdt="http://materialdesigninxaml.net/winfx/xaml/themes"
-        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-        xmlns:local="clr-namespace:EmploymentAgency.Views.Windows"
-        xmlns:c="clr-namespace:EmploymentAgency.Converters"
-        mc:Ignorable="d"
-        Background="{StaticResource WindowBackgroundBrush}"
-        DataContext="{Binding AddStreetViewModel, Source={StaticResource ViewModelLocator}}"
-        Title="Агентство трудоустройства -  Добавление улицы" Height="450" Width="800">
+﻿<Window
+    x:Class="EmploymentAgency.Views.Windows.AddStreet"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:c="clr-namespace:EmploymentAgency.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:local="clr-namespace:EmploymentAgency.Views.Windows"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mdt="http://materialdesigninxaml.net/winfx/xaml/themes"
+    Title="Агентство трудоустройства -  Добавление улицы"
+    Width="800"
+    Height="450"
+    Background="{StaticResource WindowBackgroundBrush}"
+    DataContext="{Binding AddStreetViewModel, Source={StaticResource ViewModelLocator}}"
+    mc:Ignorable="d">
     <Window.Resources>
-        <c:SelectedValueToNullableInt32 x:Key="SelectedValueToNullableInt32"/>
+        <c:SelectedValueToNullableInt32 x:Key="SelectedValueToNullableInt32" />
     </Window.Resources>
     <Grid>
         <i:Interaction.Triggers>
             <i:EventTrigger EventName="Loaded">
-                <i:InvokeCommandAction Command="{Binding Path=Loaded}"/>
+                <i:InvokeCommandAction Command="{Binding Path=Loaded}" />
             </i:EventTrigger>
         </i:Interaction.Triggers>
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0"
-              Grid.Column="0"
-              Margin="5">
+        <Grid
+            Grid.Row="0"
+            Grid.Column="0"
+            Margin="5">
             <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
             </Grid.RowDefinitions>
-            <Grid Grid.Row="0" 
-                  Height="50"
-                  VerticalAlignment="Center"
-                  HorizontalAlignment="Center">
+            <Grid
+                Grid.Row="0"
+                Height="50"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="220"/>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="220" />
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
-                    <mdt:PackIcon x:Name="IconCity"
-                                  Kind="City"
-                                  Height="Auto"
-                                  Width="{Binding ElementName=IconCity, Path=Height}"
-                                  ToolTip="Страна"/>
+                    <mdt:PackIcon
+                        x:Name="IconCity"
+                        Width="{Binding ElementName=IconCity, Path=Height}"
+                        Height="Auto"
+                        Kind="City"
+                        ToolTip="Страна" />
                 </Grid>
                 <Grid Grid.Column="1" Margin="5,0,0,0">
-                    <ComboBox x:Name="CountriesComboBox"
-                              mdt:HintAssist.Hint="Страна"
-                              mdt:HintAssist.HelperText="Укажите название страны"
-                              ItemsSource="{Binding Path=DisplayedCountries, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                              DisplayMemberPath="CountryName"
-                              SelectedValuePath="IdCountry"
-                              SelectedValue="{Binding Path=SelectedIdCountry, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource SelectedValueToNullableInt32}}"
-                              FontSize="20"
-                              FontWeight="Medium"
-                              IsEditable="True"
-                              IsTextSearchEnabled="False"
-                              Text="{Binding Path=CountryName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                              ToolTip="{Binding ElementName=CountriesComboBox, Path=Text}"/>
+                    <ComboBox
+                        x:Name="CountriesComboBox"
+                        mdt:HintAssist.HelperText="Укажите название страны"
+                        mdt:HintAssist.Hint="Страна"
+                        DisplayMemberPath="CountryName"
+                        FontSize="20"
+                        FontWeight="Medium"
+                        IsEditable="True"
+                        IsTextSearchEnabled="False"
+                        ItemsSource="{Binding Path=DisplayedCountries, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                        SelectedValue="{Binding Path=SelectedIdCountry, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource SelectedValueToNullableInt32}}"
+                        SelectedValuePath="IdCountry"
+                        Text="{Binding Path=CountryName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                        ToolTip="{Binding ElementName=CountriesComboBox, Path=Text}" />
                 </Grid>
             </Grid>
-            <Grid Grid.Row="1" 
-                  Height="50"
-                  VerticalAlignment="Center"
-                  HorizontalAlignment="Center">
+            <Grid
+                Grid.Row="1"
+                Height="50"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="220"/>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="220" />
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
-                    <mdt:PackIcon x:Name="IconCityVariant"
-                                  Kind="CityVariant"
-                                  Height="Auto"
-                                  Width="{Binding ElementName=IconCityVariant, Path=Height}"
-                                  ToolTip="Город"/>
+                    <mdt:PackIcon
+                        x:Name="IconCityVariant"
+                        Width="{Binding ElementName=IconCityVariant, Path=Height}"
+                        Height="Auto"
+                        Kind="CityVariant"
+                        ToolTip="Город" />
                 </Grid>
                 <Grid Grid.Column="1" Margin="5,0,0,0">
-                    <ComboBox x:Name="CitiesComboBox"
-                              mdt:HintAssist.Hint="Город"
-                              mdt:HintAssist.HelperText="Укажите название города"
-                              ItemsSource="{Binding Path=DisplayedCities, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                              DisplayMemberPath="CityName"
-                              SelectedValuePath="IdCity"
-                              SelectedValue="{Binding Path=SelectedIdCity, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource SelectedValueToNullableInt32}}"
-                              FontSize="20"
-                              FontWeight="Medium"
-                              IsEditable="True"
-                              IsTextSearchEnabled="False"
-                              Text="{Binding Path=CityName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                              ToolTip="{Binding ElementName=CitiesComboBox, Path=Text}"/>
+                    <ComboBox
+                        x:Name="CitiesComboBox"
+                        mdt:HintAssist.HelperText="Укажите название города"
+                        mdt:HintAssist.Hint="Город"
+                        DisplayMemberPath="CityName"
+                        FontSize="20"
+                        FontWeight="Medium"
+                        IsEditable="True"
+                        IsTextSearchEnabled="False"
+                        ItemsSource="{Binding Path=DisplayedCities, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                        SelectedValue="{Binding Path=SelectedIdCity, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource SelectedValueToNullableInt32}}"
+                        SelectedValuePath="IdCity"
+                        Text="{Binding Path=CityName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                        ToolTip="{Binding ElementName=CitiesComboBox, Path=Text}" />
                 </Grid>
             </Grid>
-            <Grid Grid.Row="2" 
-                  Height="50" 
-                  VerticalAlignment="Center"
-                  HorizontalAlignment="Center">
+            <Grid
+                Grid.Row="2"
+                Height="50"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="220"/>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="220" />
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
-                    <mdt:PackIcon x:Name="IconSignDirection"
-                                  Kind="SignDirection"
-                                  Height="Auto"
-                                  Width="{Binding ElementName=IconSignDirection, Path=Height}"
-                                  ToolTip="Улица"/>
+                    <mdt:PackIcon
+                        x:Name="IconSignDirection"
+                        Width="{Binding ElementName=IconSignDirection, Path=Height}"
+                        Height="Auto"
+                        Kind="SignDirection"
+                        ToolTip="Улица" />
                 </Grid>
                 <Grid Grid.Column="1" Margin="5,0,0,0">
-                    <TextBox x:Name="StreetNameTextBox"
-                             mdt:HintAssist.Hint="Улица"
-                             mdt:HintAssist.HelperText="Укажите название улицы"
-                             FontSize="20"
-                             FontWeight="Medium"
-                             Text="{Binding Path=StreetName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                             ToolTip="{Binding ElementName=StreetNameTextBox, Path=Text}"
-                             VerticalAlignment="Center"/>
+                    <TextBox
+                        x:Name="StreetNameTextBox"
+                        VerticalAlignment="Center"
+                        mdt:HintAssist.HelperText="Укажите название улицы"
+                        mdt:HintAssist.Hint="Улица"
+                        FontSize="20"
+                        FontWeight="Medium"
+                        Text="{Binding Path=StreetName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                        ToolTip="{Binding ElementName=StreetNameTextBox, Path=Text}" />
 
                 </Grid>
             </Grid>
         </Grid>
-        <Grid Grid.Row="1"
-              Grid.ColumnSpan="2"
-              Margin="5">
+        <Grid
+            Grid.Row="1"
+            Grid.ColumnSpan="2"
+            Margin="5">
             <Grid VerticalAlignment="Bottom">
-                <mdt:Badged Badge="{mdt:PackIcon Kind=ContentSaveCog}"
-                            HorizontalAlignment="Center"
-                            Margin="0,12,0,0">
-                    <Button Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                            Height="50"
-                            mdt:ButtonAssist.CornerRadius="25"
-                            ToolTip="Добавить"
-                            Command="{Binding Path=Add}">
-                        <TextBlock Text="Добавить"/>
+                <mdt:Badged
+                    Margin="0,12,0,0"
+                    HorizontalAlignment="Center"
+                    Badge="{mdt:PackIcon Kind=ContentSaveCog}">
+                    <Button
+                        Height="50"
+                        mdt:ButtonAssist.CornerRadius="25"
+                        Command="{Binding Path=Add}"
+                        Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                        ToolTip="Добавить">
+                        <TextBlock Text="Добавить" />
                     </Button>
                 </mdt:Badged>
             </Grid>
