@@ -51,6 +51,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         void UpdateApplicant(int idApplicant, string name, string surname, string patronymic, byte[] photo, string phoneNumber, int idStreet, string nameHouse, string apartment);
 
+        void UpdateEmployer(int idEmployer, int idBranch, string name, string surname, string patronymic, byte[] photo, string phoneNumber);
+
         void UpdateBranch(int idBranch, string phoneNumber);
     }
 }

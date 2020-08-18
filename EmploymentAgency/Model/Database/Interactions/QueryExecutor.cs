@@ -946,6 +946,16 @@ namespace EmploymentAgency.Model.Database.Interactions
             (educationName.Length > 0 ? e.EducationName.ToLower().StartsWith(educationName.ToLower()) : true)).OrderBy(e => e.EducationName).AsNoTracking().ToList();
         }
 
+        public Employer GetEmployer(int idEmployer)
+        {
+            return _context.Employer.SingleOrDefault(e => e.IdEmployer == idEmployer);
+        }
+
+        public v_employer GetEmployerExtendedInformation(int idEmployer)
+        {
+            return _context.v_employer.SingleOrDefault(e => e.IdEmployer == idEmployer);
+        }
+
         public EmploymentType GetEmploymentType(int idEmploymentType)
         {
             return _context.EmploymentType.SingleOrDefault(e => e.IdEmploymentType == idEmploymentType);
@@ -1518,6 +1528,20 @@ namespace EmploymentAgency.Model.Database.Interactions
             }
 
             return false;
+        }
+
+        public void UpdateEmployer(int idEmployer, int idBranch, string name, string surname, string patronymic, byte[] photo, string phoneNumber)
+        {
+            var employer = GetEmployer(idEmployer);
+
+            employer.IdBranch = idBranch;
+            employer.Name = name;
+            employer.Surname = surname;
+            employer.Patronymic = patronymic;
+            employer.Photo = photo;
+            employer.PhoneNumber = phoneNumber;
+
+            _context.SaveChanges();
         }
 
         public bool UpdateEmploymentType(int idEmploymentType, string employmentTypeName)

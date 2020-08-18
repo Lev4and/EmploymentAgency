@@ -355,6 +355,7 @@
     <Compile Include="ViewModels\ChangeStreetViewModel.cs" />
     <Compile Include="ViewModels\ChangeSubIndustryViewModel.cs" />
     <Compile Include="ViewModels\ChangeSupplementInformationForApplicantViewModel.cs" />
+    <Compile Include="ViewModels\ChangeSupplementInformationForEmployerViewModel.cs" />
     <Compile Include="ViewModels\ChangeUserViewModel.cs" />
     <Compile Include="ViewModels\CitiesViewModel.cs" />
     <Compile Include="ViewModels\CountriesViewModel.cs" />
@@ -397,6 +398,9 @@
     </Compile>
     <Compile Include="Views\Pages\ChangeSupplementInformationForApplicant.xaml.cs">
       <DependentUpon>ChangeSupplementInformationForApplicant.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\ChangeSupplementInformationForEmployer.xaml.cs">
+      <DependentUpon>ChangeSupplementInformationForEmployer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\Cities.xaml.cs">
       <DependentUpon>Cities.xaml</DependentUpon>
@@ -719,6 +723,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Pages\ChangeSupplementInformationForApplicant.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\ChangeSupplementInformationForEmployer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

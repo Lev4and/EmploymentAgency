@@ -17,6 +17,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         Education GetEducation(int idEducation);
 
+        Employer GetEmployer(int idEmployer);
+
         EmploymentType GetEmploymentType(int idEmploymentType);
 
         Experience GetExperience(int idExperience);
@@ -52,6 +54,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
         v_applicant GetApplicantExtendedInformation(int idApplicant);
 
         v_branch GetBranch(int idBranch);
+
+        v_employer GetEmployerExtendedInformation(int idEmployer);
 
         v_organization GetOrganizationExtendedInformation(int idOrganization);
 

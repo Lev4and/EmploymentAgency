@@ -243,7 +243,7 @@ namespace EmploymentAgency.ViewModels
             UpdateKnowledgeLanguages();
             UpdateLaborActivities();
 
-            MessageBox.Show("Успешное добавление информации");
+            MessageBox.Show("Успешное изменение информации");
         }, () => SelectedIdStreet != null &&
                  (Name != null ? Name.Length > 0 : false) &&
                  (Surname != null ? Surname.Length > 0 : false) &&

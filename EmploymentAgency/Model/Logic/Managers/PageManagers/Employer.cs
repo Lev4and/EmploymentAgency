@@ -17,7 +17,7 @@ namespace EmploymentAgency.Model.Logic.Managers.PageManagers
 
         public override Page GetChangeInformationPage()
         {
-            throw new System.NotImplementedException();
+            return new ChangeSupplementInformationForEmployer();
         }
     }
 }
