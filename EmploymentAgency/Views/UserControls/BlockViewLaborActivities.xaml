@@ -73,13 +73,13 @@
                                         </Grid>
                                         <Grid Grid.Column="1"
                                               Margin="5,0,0,0">
-                                            <DatePicker Name="beginDatePeriodDatePicker"
+                                            <DatePicker Name="BeginDatePeriodDatePicker"
                                                         mdt:HintAssist.Hint="Дата начала"
                                                         mdt:HintAssist.HelperText="Укажите дату начала периода"
                                                         DisplayDateStart="{Binding ElementName=This, Path=MinDatePeriod, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                                        DisplayDateEnd="{Binding ElementName=endDatePeriodDatePicker, Path=SelectedDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                                        DisplayDateEnd="{Binding ElementName=EndDatePeriodDatePicker, Path=SelectedDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                                         SelectedDate="{Binding ElementName=This, Path=BeginDatePeriod, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                                        ToolTip="{Binding ElementName=beginDatePeriodDatePicker, Path=SelectedDate}"
+                                                        ToolTip="{Binding ElementName=BeginDatePeriodDatePicker, Path=SelectedDate}"
                                                         FontSize="12"
                                                         FontWeight="Medium"/>
                                         </Grid>
@@ -101,13 +101,13 @@
                                         <Grid Grid.Column="1"
                                               Margin="5,0,0,0">
                                             <DatePicker IsEnabled="{Binding ElementName=PeriodEndedCheckBox, Path=IsChecked, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                                        Name="endDatePeriodDatePicker"
+                                                        Name="EndDatePeriodDatePicker"
                                                         mdt:HintAssist.Hint="Дата окончания"
                                                         mdt:HintAssist.HelperText="Укажите дату окончания периода"
-                                                        DisplayDateStart="{Binding ElementName=beginDatePeriodDatePicker, Path=SelectedDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                                        DisplayDateStart="{Binding ElementName=BeginDatePeriodDatePicker, Path=SelectedDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                                         DisplayDateEnd="{Binding ElementName=This, Path=MaxDatePeriod, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                                         SelectedDate="{Binding ElementName=This, Path=EndDatePeriod, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                                        ToolTip="{Binding ElementName=endDatePeriodDatePicker, Path=SelectedDate}"
+                                                        ToolTip="{Binding ElementName=EndDatePeriodDatePicker, Path=SelectedDate}"
                                                         FontSize="12"
                                                         FontWeight="Medium"/>
 

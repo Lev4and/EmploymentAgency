@@ -158,13 +158,13 @@
                                       ToolTip="Дата рождения"/>
                 </Grid>
                 <Grid Grid.Column="1" Margin="5,0,0,0">
-                    <DatePicker Name="dateOfBirthDatePicker"
+                    <DatePicker x:Name="DateOfBirthDatePicker"
                                 mdt:HintAssist.Hint="Дата рождения"
                                 mdt:HintAssist.HelperText="Укажите дату рождения"
                                 DisplayDateStart="{Binding Path=MinValueDateOfBirth, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                 DisplayDateEnd="{Binding Path=MaxValueDateOfBirth, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                 SelectedDate="{Binding Path=DateOfBirth, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                ToolTip="{Binding ElementName=dateOfBirthDatePicker, Path=SelectedDate}"
+                                ToolTip="{Binding ElementName=DateOfBirthDatePicker, Path=SelectedDate}"
                                 FontSize="20"
                                 FontWeight="Medium"/>
                 </Grid>
