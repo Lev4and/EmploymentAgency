@@ -22,8 +22,6 @@ namespace EmploymentAgency.Model.Database.Interactions
             SetCommandTimeout();
         }
 
-        public object MessageBox { get; internal set; }
-
         public bool AddApplicant(int idUser, string name, string surname, string patronymic, int idGender, byte[] photo, DateTime dateOfBirth, string phoneNumber, int idStreet, string nameHouse, string apartment)
         {
             if(!ContainsApplicant(idUser))
@@ -561,6 +559,50 @@ namespace EmploymentAgency.Model.Database.Interactions
                     DateOfRegistration = DateTime.Now
                 });
                 _context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool AddUser(int idRole, string login, string password, out User user)
+        {
+            user = null;
+
+            if(!ContainsUser(login))
+            {
+                user = _context.User.Add(new User
+                {
+                    IdRole = idRole,
+                    Login = login,
+                    Password = password,
+                    DateOfRegistration = DateTime.Now
+                });
+                _context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool AddUser(int idRole, string login, string password, out v_user user)
+        {
+            user = null;
+
+            if (!ContainsUser(login))
+            {
+                User userDefault = _context.User.Add(new User
+                {
+                    IdRole = idRole,
+                    Login = login,
+                    Password = password,
+                    DateOfRegistration = DateTime.Now
+                });
+                _context.SaveChanges();
+
+                user = GetUserExtendedInformation(userDefault.IdUser);
 
                 return true;
             }
@@ -1656,6 +1698,68 @@ namespace EmploymentAgency.Model.Database.Interactions
                     user.Password = password;
 
                     _context.SaveChanges();
+
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public bool UpdateUser(int idUser, string login, string password, out User user)
+        {
+            user = GetUser(idUser);
+
+            if (!ContainsUser(login))
+            {
+                user.Login = login;
+                user.Password = password;
+
+                _context.SaveChanges();
+
+                return true;
+            }
+            else
+            {
+                if (user.Login == login && user.Password != password)
+                {
+                    user.Password = password;
+
+                    _context.SaveChanges();
+
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public bool UpdateUser(int idUser, string login, string password, out v_user user)
+        {
+            user = null;
+
+            User userDefault = GetUser(idUser);
+
+            if (!ContainsUser(login))
+            {
+                userDefault.Login = login;
+                userDefault.Password = password;
+
+                _context.SaveChanges();
+
+                user = GetUserExtendedInformation(userDefault.IdUser);
+
+                return true;
+            }
+            else
+            {
+                if (userDefault.Login == login && userDefault.Password != password)
+                {
+                    userDefault.Password = password;
+
+                    _context.SaveChanges();
+
+                    user = GetUserExtendedInformation(userDefault.IdUser);
 
                     return true;
                 }

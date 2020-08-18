@@ -11,9 +11,14 @@ namespace EmploymentAgency.Model.Logic.Managers.PageManagers
 
         }
 
-        public override Page GetPage()
+        public override Page GetAddInformationPage()
         {
             return new SupplementingInformationForApplicant();
+        }
+
+        public override Page GetChangeInformationPage()
+        {
+            throw new NotImplementedException();
         }
     }
 }

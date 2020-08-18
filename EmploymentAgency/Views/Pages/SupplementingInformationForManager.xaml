@@ -25,7 +25,7 @@
         </i:Interaction.Triggers>
         <Grid.RowDefinitions>
             <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -34,8 +34,9 @@
         </Grid.ColumnDefinitions>
         <Grid Grid.Row="0"
               Grid.Column="0"
-              VerticalAlignment="Center"
-              HorizontalAlignment="Center">
+              Margin="15"
+              VerticalAlignment="Stretch"
+              HorizontalAlignment="Stretch">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -44,7 +45,7 @@
             <Grid Grid.Row="0" Height="50">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="220"/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
                     <mdt:PackIcon x:Name="IconCardAccountDetailName"
@@ -67,7 +68,7 @@
             <Grid Grid.Row="1" Height="50" Margin="0,20,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="220"/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
                     <mdt:PackIcon x:Name="IconCardAccountDetailSurname"
@@ -90,7 +91,7 @@
             <Grid Grid.Row="2" Height="50" Margin="0,20,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="220"/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
                     <mdt:PackIcon x:Name="IconCardAccountDetailPatronymic"
@@ -113,8 +114,9 @@
         </Grid>
         <Grid Grid.Row="0"
               Grid.Column="1"
-              VerticalAlignment="Center"
-              HorizontalAlignment="Center">
+              Margin="15"
+              VerticalAlignment="Stretch"
+              HorizontalAlignment="Stretch">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -123,7 +125,7 @@
             <Grid Grid.Row="0" Height="50">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="220"/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
                     <mdt:PackIcon x:Name="IconGenderMaleFemale"
@@ -146,7 +148,7 @@
             <Grid Grid.Row="1" Height="50" Margin="0,20,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="220"/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
                     <mdt:PackIcon x:Name="IconCalendarRange"
@@ -170,7 +172,7 @@
             <Grid Grid.Row="2" Height="50" Margin="0,20,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="220"/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
                     <mdt:PackIcon x:Name="IconPhone"

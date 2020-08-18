@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EmploymentAgency.Model.Database.Models;
+using System;
 
 namespace EmploymentAgency.Model.Database.Interactions.DataActions
 {
@@ -43,6 +44,10 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
         bool UpdateSubIndustry(int idSubIndustry, string nameSubIndustry);
 
         bool UpdateUser(int idUser, string login, string password);
+
+        bool UpdateUser(int idUser, string login, string password, out User user);
+
+        bool UpdateUser(int idUser, string login, string password, out v_user user);
 
         void UpdateBranch(int idBranch, string phoneNumber);
     }

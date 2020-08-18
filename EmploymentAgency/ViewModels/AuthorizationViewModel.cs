@@ -81,7 +81,7 @@ namespace EmploymentAgency.ViewModels
                             {
                                 var pageManager = PageManager.GetPageManager(_executor.GetIdRole(user.RoleName));
 
-                                Invoke(() => _pageService.ChangePage(pageManager.GetPage()));
+                                Invoke(() => _pageService.ChangePage(pageManager.GetAddInformationPage()));
                             }
                             else
                             {

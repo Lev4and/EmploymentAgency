@@ -64,5 +64,9 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
         bool AddSubIndustry(int idIndustry, string nameSubIndustry);
 
         bool AddUser(int idRole, string login, string password);
+
+        bool AddUser(int idRole, string login, string password, out User user);
+
+        bool AddUser(int idRole, string login, string password, out v_user user);
     }
 }

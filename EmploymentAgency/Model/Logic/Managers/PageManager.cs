@@ -16,7 +16,9 @@ namespace EmploymentAgency.Model.Logic.Managers
             typeof(Applicant)
         };
 
-        public abstract Page GetPage();
+        public abstract Page GetAddInformationPage();
+
+        public abstract Page GetChangeInformationPage();
 
         public static PageManager GetPageManager(int idRole)
         {
