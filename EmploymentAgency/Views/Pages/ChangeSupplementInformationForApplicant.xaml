@@ -222,7 +222,7 @@
                             <TextBox
                                 x:Name="PhoneNumberTextBox"
                                 VerticalContentAlignment="Center"
-                                mdt:HintAssist.HelperText="Введите номер телефона"
+                                mdt:HintAssist.HelperText="Пример +7 (900) 000-00-00"
                                 mdt:HintAssist.Hint="Номер телефона"
                                 FontSize="20"
                                 FontWeight="Medium"
