@@ -38,6 +38,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         bool ContainsManager(int idManager);
 
+        bool ContainsNecessarySkill(int idVacancy, int idSkill);
+
         bool ContainsOrganization(string organizationName);
 
         bool ContainsPossessionDrivingLicenseCategory(int idApplicant, int idDrivingLicenseCategory);

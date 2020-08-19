@@ -337,6 +337,23 @@ namespace EmploymentAgency.Model.Database.Interactions
             return false;
         }
 
+        public bool AddNecessarySkill(int idVacancy, int idSkill)
+        {
+            if(!ContainsNecessarySkill(idVacancy, idSkill))
+            {
+                _context.NecessarySkill.Add(new NecessarySkill
+                {
+                    IdVacancy = idVacancy,
+                    IdSkill = idSkill
+                });
+                _context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
+        }
+
         public bool AddOrganization(int idSubIndustry, string organizationName, byte[] photo)
         {
             if(!ContainsOrganization(organizationName))
@@ -610,6 +627,29 @@ namespace EmploymentAgency.Model.Database.Interactions
             return false;
         }
 
+        public void AddVacancy(int idEmployer, int idProfession, int idEmploymentType, int idSchedule, int idExperience, string description, string duties, string requirements, string terms, int? salary, out Vacancy vacancy)
+        {
+            vacancy = null;
+
+            DateTime dateTime = DateTime.Now;
+
+            vacancy = _context.Vacancy.Add(new Vacancy
+            {
+                IdEmployer = idEmployer,
+                IdProfession = idProfession,
+                IdEmploymentType = idEmploymentType,
+                IdSchedule = idSchedule,
+                IdExperience = idExperience,
+                Description = description,
+                Duties = duties,
+                Requirements = requirements,
+                Terms = terms,
+                Salary = salary,
+                DateOfRegistration = dateTime
+            });
+            _context.SaveChanges();
+        }
+
         public void CompleteRemovalEducationActivities(int idApplicant)
         {
             var educationalActivities = GetEducationActivities(idApplicant);
@@ -751,6 +791,13 @@ namespace EmploymentAgency.Model.Database.Interactions
         public bool ContainsManager(int idManager)
         {
             return _context.Manager.SingleOrDefault(m => m.IdManager == idManager) != null;
+        }
+
+        public bool ContainsNecessarySkill(int idVacancy, int idSkill)
+        {
+            return _context.NecessarySkill.SingleOrDefault(n =>
+            n.IdVacancy == idVacancy &&
+            n.IdSkill == idSkill) != null;
         }
 
         public bool ContainsOrganization(string organizationName)
@@ -967,6 +1014,11 @@ namespace EmploymentAgency.Model.Database.Interactions
             (employmentTypeName.Length > 0 ? e.EmploymentTypeName.ToLower().StartsWith(employmentTypeName.ToLower()) : true)).OrderBy(e => e.EmploymentTypeName).AsNoTracking().ToList();
         }
 
+        public List<EmploymentType> GetEmploymentTypes()
+        {
+            return _context.EmploymentType.AsNoTracking().ToList();
+        }
+
         public Experience GetExperience(int idExperience)
         {
             return _context.Experience.SingleOrDefault(e => e.IdExperience == idExperience);
@@ -976,6 +1028,11 @@ namespace EmploymentAgency.Model.Database.Interactions
         {
             return _context.Experience.Where(e =>
             (experienceName.Length > 0 ? e.ExperienceName.ToLower().StartsWith(experienceName.ToLower()) : true)).OrderBy(e => e.ExperienceName).AsNoTracking().ToList();
+        }
+
+        public List<Experience> GetExperiences()
+        {
+            return _context.Experience.AsNoTracking().ToList();
         }
 
         public Gender GetGender(int idGender)
@@ -1132,6 +1189,11 @@ namespace EmploymentAgency.Model.Database.Interactions
             (professionName.Length > 0 ? p.ProfessionName.ToLower().StartsWith(professionName.ToLower()) : true)).OrderBy(p => p.ProfessionName).AsNoTracking().ToList();
         }
 
+        public List<Profession> GetProfessions(int idProfessionCategory)
+        {
+            return _context.Profession.Where(p => p.IdProfessionCategory == idProfessionCategory).AsNoTracking().ToList();
+        }
+
         public RequestStatus GetRequestStatus(int idRequestStatus)
         {
             return _context.RequestStatus.SingleOrDefault(r => r.IdRequestStatus == idRequestStatus);
@@ -1169,6 +1231,12 @@ namespace EmploymentAgency.Model.Database.Interactions
             return _context.Schedule.Where(s =>
             (scheduleName.Length > 0 ? s.ScheduleName.ToLower().StartsWith(scheduleName.ToLower()) : true)).OrderBy(s => s.ScheduleName).AsNoTracking().ToList();
         }
+
+        public List<Schedule> GetSchedules()
+        {
+            return _context.Schedule.AsNoTracking().ToList();
+        }
+
         public Skill GetSkill(int idSkill)
         {
             return _context.Skill.SingleOrDefault(s => s.IdSkill == idSkill);

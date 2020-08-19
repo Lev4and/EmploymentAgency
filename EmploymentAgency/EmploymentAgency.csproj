@@ -332,6 +332,7 @@
     <Compile Include="ViewModels\AddStreetViewModel.cs" />
     <Compile Include="ViewModels\AddSubIndustryViewModel.cs" />
     <Compile Include="ViewModels\AddUserViewModel.cs" />
+    <Compile Include="ViewModels\AddVacancyViewModel.cs" />
     <Compile Include="ViewModels\AuthorizationViewModel.cs" />
     <Compile Include="ViewModels\BranchesViewModel.cs" />
     <Compile Include="ViewModels\ChangeBranchViewModel.cs" />
@@ -376,6 +377,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ViewModels\MenuViewModel.cs" />
+    <Compile Include="ViewModels\MyVacanciesViewModel.cs" />
     <Compile Include="ViewModels\OrganizationsViewModel.cs" />
     <Compile Include="ViewModels\ProfessionCategoriesViewModel.cs" />
     <Compile Include="ViewModels\ProfessionsViewModel.cs" />
@@ -441,6 +443,9 @@
     </Compile>
     <Compile Include="Views\Pages\Menu.xaml.cs">
       <DependentUpon>Menu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\MyVacancies.xaml.cs">
+      <DependentUpon>MyVacancies.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\Organizations.xaml.cs">
       <DependentUpon>Organizations.xaml</DependentUpon>
@@ -611,6 +616,9 @@
     </Compile>
     <Compile Include="Views\Windows\AddUser.xaml.cs">
       <DependentUpon>AddUser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Windows\AddVacancy.xaml.cs">
+      <DependentUpon>AddVacancy.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Windows\ChangeBranch.xaml.cs">
       <DependentUpon>ChangeBranch.xaml</DependentUpon>
@@ -783,6 +791,10 @@
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
     <Page Include="Views\Pages\Menu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\MyVacancies.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1023,6 +1035,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Windows\AddUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Windows\AddVacancy.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

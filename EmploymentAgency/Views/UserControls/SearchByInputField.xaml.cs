@@ -285,15 +285,18 @@ namespace EmploymentAgency.Views.UserControls
                         break;
                     case Key.Enter:
                         {
-                            DeselectItems();
+                            if(IsDrawerOpen)
+                            {
+                                DeselectItems();
 
-                            var item = GetItem(index);
+                                var item = GetItem(index);
 
-                            SearchLine = item.ResultSearch;
+                                SearchLine = item.ResultSearch;
 
-                            item.Select.Execute(item);
+                                item.Select.Execute(item);
 
-                            IsDrawerOpen = false;
+                                IsDrawerOpen = false;
+                            }
                         }
                         break;
                     case Key.Escape:

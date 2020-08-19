@@ -1,4 +1,5 @@
 ﻿using EmploymentAgency.Model.Database.Models;
+using EmploymentAgency.Views.Pages;
 using System.Collections.Generic;
 
 namespace EmploymentAgency.Model.Database.Interactions.DataActions
@@ -85,7 +86,11 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         List<Education> GetEducations(string educationName);
 
+        List<EmploymentType> GetEmploymentTypes();
+
         List<EmploymentType> GetEmploymentTypes(string employmentTypeName);
+
+        List<Experience> GetExperiences();
 
         List<Experience> GetExperiences(string experienceName);
 
@@ -104,6 +109,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
         List<LanguageProficiency> GetLanguageProficiencies();
 
         List<LanguageProficiency> GetLanguageProficiencies(string languageProficiencyName);
+
+        List<Schedule> GetSchedules();
 
         List<Schedule> GetSchedules(string scheduleName);
 
@@ -128,6 +135,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
         List<PossessionDrivingLicenseCategory> GetPossessionDrivingLicenseCategories(int idApplicant);
 
         List<PossessionSkill> GetPossessionSkills(int idApplicant);
+
+        List<Profession> GetProfessions(int idProfessionCategory);
 
         List<ProfessionCategory> GetProfessionCategories();
 

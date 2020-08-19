@@ -99,6 +99,7 @@
                                         <RowDefinition Height="Auto" />
                                         <RowDefinition Height="Auto" />
                                         <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
                                     <Grid Grid.Row="0">
                                         <mdt:PackIcon
@@ -505,6 +506,25 @@
                                             Height="15"
                                             Margin="10,16"
                                             Foreground="White"
+                                            Kind="MessageProcessing" />
+                                        <ListBoxItem
+                                            Padding="37,14"
+                                            Content="Мои вакансии"
+                                            FontSize="15"
+                                            Foreground="White">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="MouseUp">
+                                                    <i:InvokeCommandAction Command="{Binding Path=MyVacancies}" />
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </ListBoxItem>
+                                    </Grid>
+                                    <Grid Grid.Row="22">
+                                        <mdt:PackIcon
+                                            Width="15"
+                                            Height="15"
+                                            Margin="10,16"
+                                            Foreground="White"
                                             Kind="CardAccountDetails" />
                                         <ListBoxItem
                                             Padding="37,14"
@@ -518,7 +538,7 @@
                                             </i:Interaction.Triggers>
                                         </ListBoxItem>
                                     </Grid>
-                                    <Grid Grid.Row="22">
+                                    <Grid Grid.Row="23">
                                         <mdt:PackIcon
                                             Width="15"
                                             Height="15"

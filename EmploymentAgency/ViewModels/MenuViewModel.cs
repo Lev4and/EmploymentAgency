@@ -3,6 +3,7 @@ using EmploymentAgency.Model.Configurations;
 using EmploymentAgency.Model.Logic.Managers;
 using EmploymentAgency.Services;
 using EmploymentAgency.Views.Pages;
+using EmploymentAgency.Views.Windows;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -135,6 +136,11 @@ namespace EmploymentAgency.ViewModels
         {
             _menuPageService.ChangePage(new Users());
         }, () => _config.RoleName == "Администратор");
+
+        public ICommand MyVacancies => new DelegateCommand(() =>
+        {
+            _menuPageService.ChangePage(new MyVacancies());
+        }, () => _config.RoleName == "Работодатель");
 
         public ICommand PersonalInformation => new DelegateCommand(() =>
         {

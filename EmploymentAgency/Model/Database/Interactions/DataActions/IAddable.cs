@@ -39,6 +39,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         bool AddManager(int idUser, string name, string surname, string patronymic, int idGender, byte[] photo, DateTime dateOfBirth, string phoneNumber);
 
+        bool AddNecessarySkill(int idVacancy, int idSkill);
+
         bool AddOrganization(int idSubIndustry, string organizationName, byte[] photo);
 
         bool AddOrganization(int idSubIndustry, string organizationName, byte[] photo, out Organization organization);
@@ -68,5 +70,7 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
         bool AddUser(int idRole, string login, string password, out User user);
 
         bool AddUser(int idRole, string login, string password, out v_user user);
+
+        void AddVacancy(int idEmployer, int idProfession, int idEmploymentType, int idSchedule, int idExperience, string description, string duties, string requirements, string terms, int? salary, out Vacancy vacancy);
     }
 }
