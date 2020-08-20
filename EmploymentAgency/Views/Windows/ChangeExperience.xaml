@@ -46,7 +46,7 @@
                     x:Name="ExperienceNameTextBox"
                     VerticalContentAlignment="Center"
                     mdt:HintAssist.HelperText="Введите название типа опыта"
-                    mdt:HintAssist.Hint="Название оыта"
+                    mdt:HintAssist.Hint="Название опыта"
                     FontSize="20"
                     FontWeight="Medium"
                     Text="{Binding Path=ExperienceName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"

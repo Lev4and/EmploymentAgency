@@ -489,6 +489,56 @@ namespace EmploymentAgency.Model.Database.Interactions
             }
         }
 
+        public bool AddPreferredEmploymentType(int idRequest, int idEmploymentType)
+        {
+            if(!ContainsPreferredEmploymentType(idRequest, idEmploymentType))
+            {
+                _context.PreferredEmploymentType.Add(new PreferredEmploymentType
+                {
+                    IdRequest = idRequest,
+                    IdEmploymentType = idEmploymentType
+                });
+                _context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
+        }
+
+        public void AddPreferredEmploymentTypes(int idRequest, List<object> preferredEmploymentTypes)
+        {
+            foreach(var preferredEmploymentType in preferredEmploymentTypes)
+            {
+                AddPreferredEmploymentType(idRequest, Convert.ToInt32(preferredEmploymentType));
+            }
+        }
+
+        public bool AddPreferredSchedule(int idRequest, int idSchedule)
+        {
+            if(!ContainsPreferredSchedule(idRequest, idSchedule))
+            {
+                _context.PreferredSchedule.Add(new PreferredSchedule
+                {
+                    IdRequest = idRequest,
+                    IdSchedule = idSchedule
+                });
+                _context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
+        }
+
+        public void AddPreferredSchedules(int idRequest, List<object> preferredSchedules)
+        {
+            foreach(var preferredSchedule in preferredSchedules)
+            {
+                AddPreferredSchedule(idRequest, Convert.ToInt32(preferredSchedule));
+            }
+        }
+
         public bool AddProfession(int idProfessionCategory, string professionName)
         {
             if(!ContainsProfession(professionName))
@@ -520,6 +570,23 @@ namespace EmploymentAgency.Model.Database.Interactions
             }
 
             return false;
+        }
+
+        public void AddRequest(int idApplicant, int idProfession, int idExperience, int? salary, string aboutMe, List<object> preferredEmploymentTypes, List<object> preferredSchedules)
+        {
+            var request = _context.Request.Add(new Request
+            {
+                IdApplicant = idApplicant,
+                IdProfession = idProfession,
+                IdExperience = idExperience,
+                Salary = salary,
+                AboutMe = aboutMe,
+                DateOfRegistration = DateTime.Now,
+                IdRequestStatus = GetIdRequestStatus("Не рассматривался")
+            });
+
+            AddPreferredEmploymentTypes(request.IdRequest, preferredEmploymentTypes);
+            AddPreferredSchedules(request.IdRequest, preferredSchedules);
         }
 
         public bool AddRequestStatus(string requestStatusName)
@@ -891,6 +958,20 @@ namespace EmploymentAgency.Model.Database.Interactions
             return _context.PossessionSkill.SingleOrDefault(p => p.IdApplicant == idApplicant && p.IdSkill == idSkill) != null;
         }
 
+        public bool ContainsPreferredEmploymentType(int idRequest, int idEmploymentType)
+        {
+            return _context.PreferredEmploymentType.SingleOrDefault(p =>
+            p.IdRequest == idRequest &&
+            p.IdPreferredEmploymentType == idEmploymentType) != null;
+        }
+
+        public bool ContainsPreferredSchedule(int idRequest, int idSchedule)
+        {
+            return _context.PreferredSchedule.SingleOrDefault(p =>
+            p.IdRequest == idRequest &&
+            p.IdSchedule == idSchedule) != null;
+        }
+
         public bool ContainsProfession(string professionName)
         {
             return _context.Profession.FirstOrDefault(p => p.ProfessionName == professionName) != null;
@@ -1125,6 +1206,11 @@ namespace EmploymentAgency.Model.Database.Interactions
         {
             return _context.Gender.Where(g =>
             (genderName.Length > 0 ? g.GenderName.ToLower().StartsWith(genderName.ToLower()) : true)).OrderBy(g => g.GenderName).AsNoTracking().ToList();
+        }
+
+        public int GetIdRequestStatus(string requestStatusName)
+        {
+            return _context.RequestStatus.SingleOrDefault(r => r.RequestStatusName == requestStatusName).IdRequestStatus;
         }
 
         public int GetIdRole(string roleName)

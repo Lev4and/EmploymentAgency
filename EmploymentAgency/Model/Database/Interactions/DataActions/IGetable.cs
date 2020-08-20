@@ -29,6 +29,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         int GetIdRole(string roleName);
 
+        int GetIdRequestStatus(string requestStatusName);
+
         DateTime? GetMaxClosingDateMyVacancy(int idEmployer);
 
         DateTime? GetMinClosingDateMyVacancy(int idEmployer);

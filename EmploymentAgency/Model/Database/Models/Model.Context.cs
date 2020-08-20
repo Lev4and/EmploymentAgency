@@ -80,5 +80,6 @@ namespace EmploymentAgency.Model.Database.Models
         public virtual DbSet<v_subIndustry> v_subIndustry { get; set; }
         public virtual DbSet<v_user> v_user { get; set; }
         public virtual DbSet<v_vacancy> v_vacancy { get; set; }
+        public virtual DbSet<v_request> v_request { get; set; }
     }
 }

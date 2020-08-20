@@ -50,6 +50,10 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         bool ContainsProfessionCategory(string nameProfessionCategory);
 
+        bool ContainsPreferredEmploymentType(int idRequest, int idEmploymentType);
+
+        bool ContainsPreferredSchedule(int idRequest, int idSchedule);
+
         bool ContainsRequestStatus(string requestStatusName);
 
         bool ContainsRole(string roleName);

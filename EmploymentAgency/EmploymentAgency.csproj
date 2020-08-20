@@ -297,6 +297,9 @@
     <Compile Include="Model\Database\Models\v_profession.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Database\Models\v_request.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\Database\Models\v_street.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -333,6 +336,7 @@
     <Compile Include="ViewModels\AddProfessionCategoryViewModel.cs" />
     <Compile Include="ViewModels\AddProfessionViewModel.cs" />
     <Compile Include="ViewModels\AddRequestStatusViewModel.cs" />
+    <Compile Include="ViewModels\AddRequestViewModel.cs" />
     <Compile Include="ViewModels\AddRoleViewModel.cs" />
     <Compile Include="ViewModels\AddScheduleViewModel.cs" />
     <Compile Include="ViewModels\AddSkillViewModel.cs" />
@@ -385,6 +389,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ViewModels\MenuViewModel.cs" />
+    <Compile Include="ViewModels\MyRequestsViewModel.cs" />
     <Compile Include="ViewModels\MyVacanciesViewModel.cs" />
     <Compile Include="ViewModels\OrganizationsViewModel.cs" />
     <Compile Include="ViewModels\ProfessionCategoriesViewModel.cs" />
@@ -451,6 +456,9 @@
     </Compile>
     <Compile Include="Views\Pages\Menu.xaml.cs">
       <DependentUpon>Menu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\MyRequests.xaml.cs">
+      <DependentUpon>MyRequests.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\MyVacancies.xaml.cs">
       <DependentUpon>MyVacancies.xaml</DependentUpon>
@@ -612,6 +620,9 @@
     </Compile>
     <Compile Include="Views\Windows\AddProfessionCategory.xaml.cs">
       <DependentUpon>AddProfessionCategory.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Windows\AddRequest.xaml.cs">
+      <DependentUpon>AddRequest.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Windows\AddRequestStatus.xaml.cs">
       <DependentUpon>AddRequestStatus.xaml</DependentUpon>
@@ -811,6 +822,10 @@
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
     <Page Include="Views\Pages\Menu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\MyRequests.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1039,6 +1054,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Windows\AddProfessionCategory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Windows\AddRequest.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

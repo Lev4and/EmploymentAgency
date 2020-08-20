@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Applicant">
           <Key>
             <PropertyRef Name="IdApplicant" />
@@ -257,6 +257,7 @@
           <Property Name="IdApplicant" Type="int" Nullable="false" />
           <Property Name="IdProfession" Type="int" Nullable="false" />
           <Property Name="IdExperience" Type="int" Nullable="false" />
+          <Property Name="Salary" Type="int" />
           <Property Name="AboutMe" Type="text" />
           <Property Name="DateOfRegistration" Type="smalldatetime" Nullable="false" />
           <Property Name="DateOfConsideration" Type="smalldatetime" />
@@ -580,6 +581,60 @@
           <Property Name="IdProfessionCategory" Type="int" Nullable="false" />
           <Property Name="NameProfessionCategory" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="ProfessionName" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Employment agency.dbo.v_request" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="v_request">
+          <Key>
+            <PropertyRef Name="IdRequest" />
+            <PropertyRef Name="IdApplicant" />
+            <PropertyRef Name="ApplicantFullName" />
+            <PropertyRef Name="IdGender" />
+            <PropertyRef Name="GenderName" />
+            <PropertyRef Name="IdCountry" />
+            <PropertyRef Name="CountryName" />
+            <PropertyRef Name="IdCity" />
+            <PropertyRef Name="CityName" />
+            <PropertyRef Name="IdStreet" />
+            <PropertyRef Name="StreetName" />
+            <PropertyRef Name="PhoneNumber" />
+            <PropertyRef Name="IdProfessionCategory" />
+            <PropertyRef Name="NameProfessionCategory" />
+            <PropertyRef Name="IdProfession" />
+            <PropertyRef Name="ProfessionName" />
+            <PropertyRef Name="IdExperience" />
+            <PropertyRef Name="ExperienceName" />
+            <PropertyRef Name="DateOfRegistration" />
+            <PropertyRef Name="IdRequestStatus" />
+            <PropertyRef Name="RequestStatusName" />
+          </Key>
+          <Property Name="IdRequest" Type="int" Nullable="false" />
+          <Property Name="IdApplicant" Type="int" Nullable="false" />
+          <Property Name="Photo" Type="varbinary(max)" />
+          <Property Name="ApplicantFullName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IdGender" Type="int" Nullable="false" />
+          <Property Name="GenderName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Age" Type="int" />
+          <Property Name="IdCountry" Type="int" Nullable="false" />
+          <Property Name="CountryName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IdCity" Type="int" Nullable="false" />
+          <Property Name="CityName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="IdStreet" Type="int" Nullable="false" />
+          <Property Name="StreetName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="AddressApplicant" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="18" Nullable="false" />
+          <Property Name="IdProfessionCategory" Type="int" Nullable="false" />
+          <Property Name="NameProfessionCategory" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="IdProfession" Type="int" Nullable="false" />
+          <Property Name="ProfessionName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="IdExperience" Type="int" Nullable="false" />
+          <Property Name="ExperienceName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Salary" Type="int" />
+          <Property Name="AboutMe" Type="text" />
+          <Property Name="DateOfRegistration" Type="smalldatetime" Nullable="false" />
+          <Property Name="DateOfConsideration" Type="smalldatetime" />
+          <Property Name="IdRequestStatus" Type="int" Nullable="false" />
+          <Property Name="RequestStatusName" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
 предупреждение 6002: В таблице или представлении "Employment agency.dbo.v_street" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
@@ -1513,6 +1568,37 @@
     [v_profession].[ProfessionName] AS [ProfessionName]
     FROM [dbo].[v_profession] AS [v_profession]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="v_request" EntityType="Self.v_request" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_request].[IdRequest] AS [IdRequest], 
+    [v_request].[IdApplicant] AS [IdApplicant], 
+    [v_request].[Photo] AS [Photo], 
+    [v_request].[ApplicantFullName] AS [ApplicantFullName], 
+    [v_request].[IdGender] AS [IdGender], 
+    [v_request].[GenderName] AS [GenderName], 
+    [v_request].[Age] AS [Age], 
+    [v_request].[IdCountry] AS [IdCountry], 
+    [v_request].[CountryName] AS [CountryName], 
+    [v_request].[IdCity] AS [IdCity], 
+    [v_request].[CityName] AS [CityName], 
+    [v_request].[IdStreet] AS [IdStreet], 
+    [v_request].[StreetName] AS [StreetName], 
+    [v_request].[AddressApplicant] AS [AddressApplicant], 
+    [v_request].[PhoneNumber] AS [PhoneNumber], 
+    [v_request].[IdProfessionCategory] AS [IdProfessionCategory], 
+    [v_request].[NameProfessionCategory] AS [NameProfessionCategory], 
+    [v_request].[IdProfession] AS [IdProfession], 
+    [v_request].[ProfessionName] AS [ProfessionName], 
+    [v_request].[IdExperience] AS [IdExperience], 
+    [v_request].[ExperienceName] AS [ExperienceName], 
+    [v_request].[Salary] AS [Salary], 
+    [v_request].[AboutMe] AS [AboutMe], 
+    [v_request].[DateOfRegistration] AS [DateOfRegistration], 
+    [v_request].[DateOfConsideration] AS [DateOfConsideration], 
+    [v_request].[IdRequestStatus] AS [IdRequestStatus], 
+    [v_request].[RequestStatusName] AS [RequestStatusName]
+    FROM [dbo].[v_request] AS [v_request]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="v_street" EntityType="Self.v_street" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [v_street].[IdStreet] AS [IdStreet], 
@@ -1769,8 +1855,7 @@
             <End Role="Vacancy" EntitySet="Vacancy" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -2096,6 +2181,7 @@
           <NavigationProperty Name="Profession" Relationship="Self.FK_Request_Profession1" FromRole="Request" ToRole="Profession" />
           <NavigationProperty Name="RequestStatus" Relationship="Self.FK_Request_RequestStatus" FromRole="Request" ToRole="RequestStatus" />
           <NavigationProperty Name="SuitableVacancy" Relationship="Self.FK_SuitableVacancy_Request" FromRole="Request" ToRole="SuitableVacancy" />
+          <Property Name="Salary" Type="Int32" />
         </EntityType>
         <EntityType Name="RequestStatus">
           <Key>
@@ -3412,7 +3498,60 @@
             <End Role="Vacancy" EntitySet="Vacancy" />
             <End Role="SuitableVacancy" EntitySet="SuitableVacancy" />
           </AssociationSet>
+          <EntitySet Name="v_request" EntityType="Model.v_request" />
         </EntityContainer>
+        <EntityType Name="v_request">
+          <Key>
+            <PropertyRef Name="IdRequest" />
+            <PropertyRef Name="IdApplicant" />
+            <PropertyRef Name="ApplicantFullName" />
+            <PropertyRef Name="IdGender" />
+            <PropertyRef Name="GenderName" />
+            <PropertyRef Name="IdCountry" />
+            <PropertyRef Name="CountryName" />
+            <PropertyRef Name="IdCity" />
+            <PropertyRef Name="CityName" />
+            <PropertyRef Name="IdStreet" />
+            <PropertyRef Name="StreetName" />
+            <PropertyRef Name="PhoneNumber" />
+            <PropertyRef Name="IdProfessionCategory" />
+            <PropertyRef Name="NameProfessionCategory" />
+            <PropertyRef Name="IdProfession" />
+            <PropertyRef Name="ProfessionName" />
+            <PropertyRef Name="IdExperience" />
+            <PropertyRef Name="ExperienceName" />
+            <PropertyRef Name="DateOfRegistration" />
+            <PropertyRef Name="IdRequestStatus" />
+            <PropertyRef Name="RequestStatusName" />
+          </Key>
+          <Property Name="IdRequest" Type="Int32" Nullable="false" />
+          <Property Name="IdApplicant" Type="Int32" Nullable="false" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="ApplicantFullName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IdGender" Type="Int32" Nullable="false" />
+          <Property Name="GenderName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Age" Type="Int32" />
+          <Property Name="IdCountry" Type="Int32" Nullable="false" />
+          <Property Name="CountryName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IdCity" Type="Int32" Nullable="false" />
+          <Property Name="CityName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IdStreet" Type="Int32" Nullable="false" />
+          <Property Name="StreetName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="AddressApplicant" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="18" FixedLength="false" Unicode="true" />
+          <Property Name="IdProfessionCategory" Type="Int32" Nullable="false" />
+          <Property Name="NameProfessionCategory" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IdProfession" Type="Int32" Nullable="false" />
+          <Property Name="ProfessionName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IdExperience" Type="Int32" Nullable="false" />
+          <Property Name="ExperienceName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Salary" Type="Int32" />
+          <Property Name="AboutMe" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DateOfRegistration" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DateOfConsideration" Type="DateTime" Precision="0" />
+          <Property Name="IdRequestStatus" Type="Int32" Nullable="false" />
+          <Property Name="RequestStatusName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3693,6 +3832,7 @@
           <EntitySetMapping Name="Request">
             <EntityTypeMapping TypeName="Model.Request">
               <MappingFragment StoreEntitySet="Request">
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
                 <ScalarProperty Name="IdRequest" ColumnName="IdRequest" />
                 <ScalarProperty Name="IdApplicant" ColumnName="IdApplicant" />
                 <ScalarProperty Name="IdProfession" ColumnName="IdProfession" />
@@ -4023,6 +4163,39 @@
                 <ScalarProperty Name="Salary" ColumnName="Salary" />
                 <ScalarProperty Name="DateOfRegistration" ColumnName="DateOfRegistration" />
                 <ScalarProperty Name="ClosingDate" ColumnName="ClosingDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_request">
+            <EntityTypeMapping TypeName="Model.v_request">
+              <MappingFragment StoreEntitySet="v_request">
+                <ScalarProperty Name="RequestStatusName" ColumnName="RequestStatusName" />
+                <ScalarProperty Name="IdRequestStatus" ColumnName="IdRequestStatus" />
+                <ScalarProperty Name="DateOfConsideration" ColumnName="DateOfConsideration" />
+                <ScalarProperty Name="DateOfRegistration" ColumnName="DateOfRegistration" />
+                <ScalarProperty Name="AboutMe" ColumnName="AboutMe" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="ExperienceName" ColumnName="ExperienceName" />
+                <ScalarProperty Name="IdExperience" ColumnName="IdExperience" />
+                <ScalarProperty Name="ProfessionName" ColumnName="ProfessionName" />
+                <ScalarProperty Name="IdProfession" ColumnName="IdProfession" />
+                <ScalarProperty Name="NameProfessionCategory" ColumnName="NameProfessionCategory" />
+                <ScalarProperty Name="IdProfessionCategory" ColumnName="IdProfessionCategory" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="AddressApplicant" ColumnName="AddressApplicant" />
+                <ScalarProperty Name="StreetName" ColumnName="StreetName" />
+                <ScalarProperty Name="IdStreet" ColumnName="IdStreet" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="IdCity" ColumnName="IdCity" />
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+                <ScalarProperty Name="IdCountry" ColumnName="IdCountry" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="GenderName" ColumnName="GenderName" />
+                <ScalarProperty Name="IdGender" ColumnName="IdGender" />
+                <ScalarProperty Name="ApplicantFullName" ColumnName="ApplicantFullName" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="IdApplicant" ColumnName="IdApplicant" />
+                <ScalarProperty Name="IdRequest" ColumnName="IdRequest" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

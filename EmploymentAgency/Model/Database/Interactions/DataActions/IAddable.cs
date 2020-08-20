@@ -55,6 +55,10 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         bool AddProfessionCategory(string nameProfessionCategory);
 
+        bool AddPreferredEmploymentType(int idRequest, int idEmploymentType);
+
+        bool AddPreferredSchedule(int idRequest, int idSchedule);
+
         bool AddRequestStatus(string requestStatusName);
 
         bool AddRole(string roleName);
@@ -84,6 +88,12 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
         void AddPossessionDrivingLicenseCategories(int idApplicant, List<object> possessionDrivingLicenseCategories);
 
         void AddPossessionSkills(int idApplicant, List<object> possessionSkills);
+
+        void AddPreferredEmploymentTypes(int idRequest, List<object> preferredEmploymentTypes);
+
+        void AddPreferredSchedules(int idRequest, List<object> preferredSchedules);
+
+        void AddRequest(int idApplicant, int idProfession, int idExperience, int? salary, string aboutMe, List<object> preferredEmploymentTypes, List<object> preferredSchedules);
 
         void AddVacancy(int idEmployer, int idProfession, int idEmploymentType, int idSchedule, int idExperience, string description, string duties, string requirements, string terms, int? salary, List<object> necessarySkills);
     }

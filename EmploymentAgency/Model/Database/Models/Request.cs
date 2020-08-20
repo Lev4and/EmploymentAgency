@@ -30,6 +30,7 @@ namespace EmploymentAgency.Model.Database.Models
         public System.DateTime DateOfRegistration { get; set; }
         public Nullable<System.DateTime> DateOfConsideration { get; set; }
         public int IdRequestStatus { get; set; }
+        public Nullable<int> Salary { get; set; }
     
         public virtual Applicant Applicant { get; set; }
         public virtual Experience Experience { get; set; }
