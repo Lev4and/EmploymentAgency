@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Хранилище Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Applicant">
           <Key>
             <PropertyRef Name="IdApplicant" />
@@ -45,8 +45,7 @@
             <PropertyRef Name="IdContract" />
           </Key>
           <Property Name="IdContract" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="IdRequest" Type="int" Nullable="false" />
-          <Property Name="IdVacancy" Type="int" Nullable="false" />
+          <Property Name="IdEmploymentRequest" Type="int" Nullable="false" />
           <Property Name="DateOfConclusion" Type="smalldatetime" Nullable="false" />
           <Property Name="BreakDate" Type="smalldatetime" />
         </EntityType>
@@ -97,6 +96,14 @@
           <Property Name="Photo" Type="varbinary(max)" />
           <Property Name="DateOfBirth" Type="date" Nullable="false" />
           <Property Name="PhoneNumber" Type="nvarchar" MaxLength="18" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmploymentRequest">
+          <Key>
+            <PropertyRef Name="IdEmploymentRequest" />
+          </Key>
+          <Property Name="IdEmploymentRequest" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdSuitableVacancy" Type="int" Nullable="false" />
+          <Property Name="IsSuitable" Type="bit" />
         </EntityType>
         <EntityType Name="EmploymentType">
           <Key>
@@ -305,8 +312,8 @@
             <PropertyRef Name="IdSuitableVacancy" />
           </Key>
           <Property Name="IdSuitableVacancy" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdRequest" Type="int" Nullable="false" />
           <Property Name="IdManager" Type="int" Nullable="false" />
-          <Property Name="IdApplicant" Type="int" Nullable="false" />
           <Property Name="IdVacancy" Type="int" Nullable="false" />
           <Property Name="DiscoveryDate" Type="smalldatetime" Nullable="false" />
         </EntityType>
@@ -553,7 +560,7 @@
             <PropertyRef Name="OrganizationName" />
             <PropertyRef Name="DateOfRegistration" />
           </Key>
-          <Property Name="IdOrganization" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdOrganization" Type="int" Nullable="false" />
           <Property Name="IdIndustry" Type="int" Nullable="false" />
           <Property Name="IdSubIndustry" Type="int" Nullable="false" />
           <Property Name="OrganizationName" Type="nvarchar(max)" Nullable="false" />
@@ -624,6 +631,76 @@
           <Property Name="Login" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
           <Property Name="DateOfRegistration" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Employment agency.dbo.v_vacancy" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="v_vacancy">
+          <Key>
+            <PropertyRef Name="IdVacancy" />
+            <PropertyRef Name="IdOrganization" />
+            <PropertyRef Name="OrganizationName" />
+            <PropertyRef Name="IdCountry" />
+            <PropertyRef Name="CountryName" />
+            <PropertyRef Name="IdCity" />
+            <PropertyRef Name="CityName" />
+            <PropertyRef Name="IdStreet" />
+            <PropertyRef Name="StreetName" />
+            <PropertyRef Name="IdBranch" />
+            <PropertyRef Name="AddressBranch" />
+            <PropertyRef Name="PhoneNumberBranch" />
+            <PropertyRef Name="IdEmployer" />
+            <PropertyRef Name="EmployerFullName" />
+            <PropertyRef Name="PhoneNumberEmployer" />
+            <PropertyRef Name="IdProfessionCategory" />
+            <PropertyRef Name="NameProfessionCategory" />
+            <PropertyRef Name="IdProfession" />
+            <PropertyRef Name="ProfessionName" />
+            <PropertyRef Name="IdEmploymentType" />
+            <PropertyRef Name="EmploymentTypeName" />
+            <PropertyRef Name="IdSchedule" />
+            <PropertyRef Name="ScheduleName" />
+            <PropertyRef Name="IdExperience" />
+            <PropertyRef Name="ExperienceName" />
+            <PropertyRef Name="DateOfRegistration" />
+          </Key>
+          <Property Name="IdVacancy" Type="int" Nullable="false" />
+          <Property Name="NumberOfPotentialApplicants" Type="int" />
+          <Property Name="NumberOfInterestedApplicants" Type="int" />
+          <Property Name="NumberOfApprovedApplicants" Type="int" />
+          <Property Name="NumberOfAcceptedApplicants" Type="int" />
+          <Property Name="IdOrganization" Type="int" Nullable="false" />
+          <Property Name="OrganizationPhoto" Type="varbinary(max)" />
+          <Property Name="OrganizationName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IdCountry" Type="int" Nullable="false" />
+          <Property Name="CountryName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IdCity" Type="int" Nullable="false" />
+          <Property Name="CityName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="IdStreet" Type="int" Nullable="false" />
+          <Property Name="StreetName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="IdBranch" Type="int" Nullable="false" />
+          <Property Name="AddressBranch" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PhoneNumberBranch" Type="nvarchar" MaxLength="18" Nullable="false" />
+          <Property Name="IdEmployer" Type="int" Nullable="false" />
+          <Property Name="EmployerPhoto" Type="varbinary(max)" />
+          <Property Name="EmployerFullName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PhoneNumberEmployer" Type="nvarchar" MaxLength="18" Nullable="false" />
+          <Property Name="IdProfessionCategory" Type="int" Nullable="false" />
+          <Property Name="NameProfessionCategory" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="IdProfession" Type="int" Nullable="false" />
+          <Property Name="ProfessionName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="IdEmploymentType" Type="int" Nullable="false" />
+          <Property Name="EmploymentTypeName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IdSchedule" Type="int" Nullable="false" />
+          <Property Name="ScheduleName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IdExperience" Type="int" Nullable="false" />
+          <Property Name="ExperienceName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Description" Type="text" />
+          <Property Name="Duties" Type="text" />
+          <Property Name="Requirements" Type="text" />
+          <Property Name="Terms" Type="text" />
+          <Property Name="Salary" Type="int" />
+          <Property Name="DateOfRegistration" Type="smalldatetime" Nullable="false" />
+          <Property Name="ClosingDate" Type="smalldatetime" />
         </EntityType>
         <Association Name="FK_Applicant_Gender">
           <End Role="Gender" Type="Self.Gender" Multiplicity="1">
@@ -709,29 +786,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Contract_Request">
-          <End Role="Request" Type="Self.Request" Multiplicity="1" />
-          <End Role="Contract" Type="Self.Contract" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Request">
-              <PropertyRef Name="IdRequest" />
-            </Principal>
-            <Dependent Role="Contract">
-              <PropertyRef Name="IdRequest" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Contract_Vacancy">
-          <End Role="Vacancy" Type="Self.Vacancy" Multiplicity="1">
+        <Association Name="FK_Contract_EmploymentRequest">
+          <End Role="EmploymentRequest" Type="Self.EmploymentRequest" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="Contract" Type="Self.Contract" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Vacancy">
-              <PropertyRef Name="IdVacancy" />
+            <Principal Role="EmploymentRequest">
+              <PropertyRef Name="IdEmploymentRequest" />
             </Principal>
             <Dependent Role="Contract">
-              <PropertyRef Name="IdVacancy" />
+              <PropertyRef Name="IdEmploymentRequest" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -802,6 +867,20 @@
             </Principal>
             <Dependent Role="Employer">
               <PropertyRef Name="IdEmployer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmploymentRequest_SuitableVacancy">
+          <End Role="SuitableVacancy" Type="Self.SuitableVacancy" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="EmploymentRequest" Type="Self.EmploymentRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SuitableVacancy">
+              <PropertyRef Name="IdSuitableVacancy" />
+            </Principal>
+            <Dependent Role="EmploymentRequest">
+              <PropertyRef Name="IdSuitableVacancy" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1141,18 +1220,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_SuitableVacancy_Applicant">
-          <End Role="Applicant" Type="Self.Applicant" Multiplicity="1" />
-          <End Role="SuitableVacancy" Type="Self.SuitableVacancy" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Applicant">
-              <PropertyRef Name="IdApplicant" />
-            </Principal>
-            <Dependent Role="SuitableVacancy">
-              <PropertyRef Name="IdApplicant" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_SuitableVacancy_Manager">
           <End Role="Manager" Type="Self.Manager" Multiplicity="1" />
           <End Role="SuitableVacancy" Type="Self.SuitableVacancy" Multiplicity="*" />
@@ -1162,6 +1229,18 @@
             </Principal>
             <Dependent Role="SuitableVacancy">
               <PropertyRef Name="IdManager" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SuitableVacancy_Request">
+          <End Role="Request" Type="Self.Request" Multiplicity="1" />
+          <End Role="SuitableVacancy" Type="Self.SuitableVacancy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Request">
+              <PropertyRef Name="IdRequest" />
+            </Principal>
+            <Dependent Role="SuitableVacancy">
+              <PropertyRef Name="IdRequest" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1273,6 +1352,7 @@
           <EntitySet Name="Education" EntityType="Self.Education" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EducationalActivity" EntityType="Self.EducationalActivity" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employer" EntityType="Self.Employer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmploymentRequest" EntityType="Self.EmploymentRequest" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EmploymentType" EntityType="Self.EmploymentType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Experience" EntityType="Self.Experience" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
@@ -1462,6 +1542,48 @@
     [v_user].[DateOfRegistration] AS [DateOfRegistration]
     FROM [dbo].[v_user] AS [v_user]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="v_vacancy" EntityType="Self.v_vacancy" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_vacancy].[IdVacancy] AS [IdVacancy], 
+    [v_vacancy].[NumberOfPotentialApplicants] AS [NumberOfPotentialApplicants], 
+    [v_vacancy].[NumberOfInterestedApplicants] AS [NumberOfInterestedApplicants], 
+    [v_vacancy].[NumberOfApprovedApplicants] AS [NumberOfApprovedApplicants], 
+    [v_vacancy].[NumberOfAcceptedApplicants] AS [NumberOfAcceptedApplicants], 
+    [v_vacancy].[IdOrganization] AS [IdOrganization], 
+    [v_vacancy].[OrganizationPhoto] AS [OrganizationPhoto], 
+    [v_vacancy].[OrganizationName] AS [OrganizationName], 
+    [v_vacancy].[IdCountry] AS [IdCountry], 
+    [v_vacancy].[CountryName] AS [CountryName], 
+    [v_vacancy].[IdCity] AS [IdCity], 
+    [v_vacancy].[CityName] AS [CityName], 
+    [v_vacancy].[IdStreet] AS [IdStreet], 
+    [v_vacancy].[StreetName] AS [StreetName], 
+    [v_vacancy].[IdBranch] AS [IdBranch], 
+    [v_vacancy].[AddressBranch] AS [AddressBranch], 
+    [v_vacancy].[PhoneNumberBranch] AS [PhoneNumberBranch], 
+    [v_vacancy].[IdEmployer] AS [IdEmployer], 
+    [v_vacancy].[EmployerPhoto] AS [EmployerPhoto], 
+    [v_vacancy].[EmployerFullName] AS [EmployerFullName], 
+    [v_vacancy].[PhoneNumberEmployer] AS [PhoneNumberEmployer], 
+    [v_vacancy].[IdProfessionCategory] AS [IdProfessionCategory], 
+    [v_vacancy].[NameProfessionCategory] AS [NameProfessionCategory], 
+    [v_vacancy].[IdProfession] AS [IdProfession], 
+    [v_vacancy].[ProfessionName] AS [ProfessionName], 
+    [v_vacancy].[IdEmploymentType] AS [IdEmploymentType], 
+    [v_vacancy].[EmploymentTypeName] AS [EmploymentTypeName], 
+    [v_vacancy].[IdSchedule] AS [IdSchedule], 
+    [v_vacancy].[ScheduleName] AS [ScheduleName], 
+    [v_vacancy].[IdExperience] AS [IdExperience], 
+    [v_vacancy].[ExperienceName] AS [ExperienceName], 
+    [v_vacancy].[Description] AS [Description], 
+    [v_vacancy].[Duties] AS [Duties], 
+    [v_vacancy].[Requirements] AS [Requirements], 
+    [v_vacancy].[Terms] AS [Terms], 
+    [v_vacancy].[Salary] AS [Salary], 
+    [v_vacancy].[DateOfRegistration] AS [DateOfRegistration], 
+    [v_vacancy].[ClosingDate] AS [ClosingDate]
+    FROM [dbo].[v_vacancy] AS [v_vacancy]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_Applicant_Gender" Association="Self.FK_Applicant_Gender">
             <End Role="Gender" EntitySet="Gender" />
             <End Role="Applicant" EntitySet="Applicant" />
@@ -1486,12 +1608,8 @@
             <End Role="Country" EntitySet="Country" />
             <End Role="City" EntitySet="City" />
           </AssociationSet>
-          <AssociationSet Name="FK_Contract_Request" Association="Self.FK_Contract_Request">
-            <End Role="Request" EntitySet="Request" />
-            <End Role="Contract" EntitySet="Contract" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Contract_Vacancy" Association="Self.FK_Contract_Vacancy">
-            <End Role="Vacancy" EntitySet="Vacancy" />
+          <AssociationSet Name="FK_Contract_EmploymentRequest" Association="Self.FK_Contract_EmploymentRequest">
+            <End Role="EmploymentRequest" EntitySet="EmploymentRequest" />
             <End Role="Contract" EntitySet="Contract" />
           </AssociationSet>
           <AssociationSet Name="FK_EducationalActivity_Applicant" Association="Self.FK_EducationalActivity_Applicant">
@@ -1513,6 +1631,10 @@
           <AssociationSet Name="FK_Employer_User" Association="Self.FK_Employer_User">
             <End Role="User" EntitySet="User" />
             <End Role="Employer" EntitySet="Employer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmploymentRequest_SuitableVacancy" Association="Self.FK_EmploymentRequest_SuitableVacancy">
+            <End Role="SuitableVacancy" EntitySet="SuitableVacancy" />
+            <End Role="EmploymentRequest" EntitySet="EmploymentRequest" />
           </AssociationSet>
           <AssociationSet Name="FK_KnowledgeLanguage_Applicant" Association="Self.FK_KnowledgeLanguage_Applicant">
             <End Role="Applicant" EntitySet="Applicant" />
@@ -1610,12 +1732,12 @@
             <End Role="Industry" EntitySet="Industry" />
             <End Role="SubIndustry" EntitySet="SubIndustry" />
           </AssociationSet>
-          <AssociationSet Name="FK_SuitableVacancy_Applicant" Association="Self.FK_SuitableVacancy_Applicant">
-            <End Role="Applicant" EntitySet="Applicant" />
-            <End Role="SuitableVacancy" EntitySet="SuitableVacancy" />
-          </AssociationSet>
           <AssociationSet Name="FK_SuitableVacancy_Manager" Association="Self.FK_SuitableVacancy_Manager">
             <End Role="Manager" EntitySet="Manager" />
+            <End Role="SuitableVacancy" EntitySet="SuitableVacancy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SuitableVacancy_Request" Association="Self.FK_SuitableVacancy_Request">
+            <End Role="Request" EntitySet="Request" />
             <End Role="SuitableVacancy" EntitySet="SuitableVacancy" />
           </AssociationSet>
           <AssociationSet Name="FK_SuitableVacancy_Vacancy" Association="Self.FK_SuitableVacancy_Vacancy">
@@ -1647,7 +1769,8 @@
             <End Role="Vacancy" EntitySet="Vacancy" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1676,7 +1799,6 @@
           <NavigationProperty Name="PossessionDrivingLicenseCategory" Relationship="Self.FK_PossessionDrivingLicenseCategory_Applicant" FromRole="Applicant" ToRole="PossessionDrivingLicenseCategory" />
           <NavigationProperty Name="PossessionSkill" Relationship="Self.FK_PossessionSkill_Applicant" FromRole="Applicant" ToRole="PossessionSkill" />
           <NavigationProperty Name="Request" Relationship="Self.FK_Request_Applicant" FromRole="Applicant" ToRole="Request" />
-          <NavigationProperty Name="SuitableVacancy" Relationship="Self.FK_SuitableVacancy_Applicant" FromRole="Applicant" ToRole="SuitableVacancy" />
         </EntityType>
         <EntityType Name="Branch">
           <Key>
@@ -1706,12 +1828,10 @@
             <PropertyRef Name="IdContract" />
           </Key>
           <Property Name="IdContract" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IdRequest" Type="Int32" Nullable="false" />
-          <Property Name="IdVacancy" Type="Int32" Nullable="false" />
+          <Property Name="IdEmploymentRequest" Type="Int32" Nullable="false" />
           <Property Name="DateOfConclusion" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="BreakDate" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="Request" Relationship="Self.FK_Contract_Request" FromRole="Contract" ToRole="Request" />
-          <NavigationProperty Name="Vacancy" Relationship="Self.FK_Contract_Vacancy" FromRole="Contract" ToRole="Vacancy" />
+          <NavigationProperty Name="EmploymentRequest" Relationship="Self.FK_Contract_EmploymentRequest" FromRole="Contract" ToRole="EmploymentRequest" />
         </EntityType>
         <EntityType Name="Country">
           <Key>
@@ -1769,6 +1889,16 @@
           <NavigationProperty Name="Gender" Relationship="Self.FK_Employer_Gender" FromRole="Employer" ToRole="Gender" />
           <NavigationProperty Name="User" Relationship="Self.FK_Employer_User" FromRole="Employer" ToRole="User" />
           <NavigationProperty Name="Vacancy" Relationship="Self.FK_Vacancy_Employer" FromRole="Employer" ToRole="Vacancy" />
+        </EntityType>
+        <EntityType Name="EmploymentRequest">
+          <Key>
+            <PropertyRef Name="IdEmploymentRequest" />
+          </Key>
+          <Property Name="IdEmploymentRequest" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdSuitableVacancy" Type="Int32" Nullable="false" />
+          <Property Name="IsSuitable" Type="Boolean" />
+          <NavigationProperty Name="Contract" Relationship="Self.FK_Contract_EmploymentRequest" FromRole="EmploymentRequest" ToRole="Contract" />
+          <NavigationProperty Name="SuitableVacancy" Relationship="Self.FK_EmploymentRequest_SuitableVacancy" FromRole="EmploymentRequest" ToRole="SuitableVacancy" />
         </EntityType>
         <EntityType Name="EmploymentType">
           <Key>
@@ -1960,12 +2090,12 @@
           <Property Name="DateOfConsideration" Type="DateTime" Precision="0" />
           <Property Name="IdRequestStatus" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Applicant" Relationship="Self.FK_Request_Applicant" FromRole="Request" ToRole="Applicant" />
-          <NavigationProperty Name="Contract" Relationship="Self.FK_Contract_Request" FromRole="Request" ToRole="Contract" />
           <NavigationProperty Name="Experience" Relationship="Self.FK_Request_Experience" FromRole="Request" ToRole="Experience" />
           <NavigationProperty Name="PreferredEmploymentType" Relationship="Self.FK_PreferredEmploymentType_Request" FromRole="Request" ToRole="PreferredEmploymentType" />
           <NavigationProperty Name="PreferredSchedule" Relationship="Self.FK_PreferredSchedule_Request" FromRole="Request" ToRole="PreferredSchedule" />
           <NavigationProperty Name="Profession" Relationship="Self.FK_Request_Profession1" FromRole="Request" ToRole="Profession" />
           <NavigationProperty Name="RequestStatus" Relationship="Self.FK_Request_RequestStatus" FromRole="Request" ToRole="RequestStatus" />
+          <NavigationProperty Name="SuitableVacancy" Relationship="Self.FK_SuitableVacancy_Request" FromRole="Request" ToRole="SuitableVacancy" />
         </EntityType>
         <EntityType Name="RequestStatus">
           <Key>
@@ -2028,12 +2158,13 @@
             <PropertyRef Name="IdSuitableVacancy" />
           </Key>
           <Property Name="IdSuitableVacancy" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdRequest" Type="Int32" Nullable="false" />
           <Property Name="IdManager" Type="Int32" Nullable="false" />
-          <Property Name="IdApplicant" Type="Int32" Nullable="false" />
           <Property Name="IdVacancy" Type="Int32" Nullable="false" />
           <Property Name="DiscoveryDate" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Applicant" Relationship="Self.FK_SuitableVacancy_Applicant" FromRole="SuitableVacancy" ToRole="Applicant" />
+          <NavigationProperty Name="EmploymentRequest" Relationship="Self.FK_EmploymentRequest_SuitableVacancy" FromRole="SuitableVacancy" ToRole="EmploymentRequest" />
           <NavigationProperty Name="Manager" Relationship="Self.FK_SuitableVacancy_Manager" FromRole="SuitableVacancy" ToRole="Manager" />
+          <NavigationProperty Name="Request" Relationship="Self.FK_SuitableVacancy_Request" FromRole="SuitableVacancy" ToRole="Request" />
           <NavigationProperty Name="Vacancy" Relationship="Self.FK_SuitableVacancy_Vacancy" FromRole="SuitableVacancy" ToRole="Vacancy" />
         </EntityType>
         <EntityType Name="User">
@@ -2067,7 +2198,6 @@
           <Property Name="Salary" Type="Int32" />
           <Property Name="DateOfRegistration" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="ClosingDate" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="Contract" Relationship="Self.FK_Contract_Vacancy" FromRole="Vacancy" ToRole="Contract" />
           <NavigationProperty Name="Employer" Relationship="Self.FK_Vacancy_Employer" FromRole="Vacancy" ToRole="Employer" />
           <NavigationProperty Name="EmploymentType" Relationship="Self.FK_Vacancy_EmploymentType" FromRole="Vacancy" ToRole="EmploymentType" />
           <NavigationProperty Name="Experience" Relationship="Self.FK_Vacancy_Experience" FromRole="Vacancy" ToRole="Experience" />
@@ -2075,6 +2205,84 @@
           <NavigationProperty Name="Profession" Relationship="Self.FK_Vacancy_Profession" FromRole="Vacancy" ToRole="Profession" />
           <NavigationProperty Name="Schedule" Relationship="Self.FK_Vacancy_Schedule" FromRole="Vacancy" ToRole="Schedule" />
           <NavigationProperty Name="SuitableVacancy" Relationship="Self.FK_SuitableVacancy_Vacancy" FromRole="Vacancy" ToRole="SuitableVacancy" />
+        </EntityType>
+        <EntityType Name="v_applicant">
+          <Key>
+            <PropertyRef Name="IdApplicant" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Surname" />
+            <PropertyRef Name="Patronymic" />
+            <PropertyRef Name="FullName" />
+            <PropertyRef Name="IdGender" />
+            <PropertyRef Name="GenderName" />
+            <PropertyRef Name="DateOfBirth" />
+            <PropertyRef Name="PhoneNumber" />
+            <PropertyRef Name="IdCountry" />
+            <PropertyRef Name="CountryName" />
+            <PropertyRef Name="IdCity" />
+            <PropertyRef Name="CityName" />
+            <PropertyRef Name="IdStreet" />
+            <PropertyRef Name="StreetName" />
+            <PropertyRef Name="NameHouse" />
+            <PropertyRef Name="IsEmployed" />
+          </Key>
+          <Property Name="IdApplicant" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Surname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Patronymic" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FullName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdGender" Type="Int32" Nullable="false" />
+          <Property Name="GenderName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="18" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdCountry" Type="Int32" Nullable="false" />
+          <Property Name="CountryName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdCity" Type="Int32" Nullable="false" />
+          <Property Name="CityName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdStreet" Type="Int32" Nullable="false" />
+          <Property Name="StreetName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NameHouse" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Apartment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsEmployed" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="v_branch">
+          <Key>
+            <PropertyRef Name="IdBranch" />
+            <PropertyRef Name="IdOrganization" />
+            <PropertyRef Name="OrganizationName" />
+            <PropertyRef Name="IdIndustry" />
+            <PropertyRef Name="IndustryName" />
+            <PropertyRef Name="IdSubIndustry" />
+            <PropertyRef Name="NameSubIndustry" />
+            <PropertyRef Name="IdCountry" />
+            <PropertyRef Name="CountryName" />
+            <PropertyRef Name="IdCity" />
+            <PropertyRef Name="CityName" />
+            <PropertyRef Name="IdStreet" />
+            <PropertyRef Name="StreetName" />
+            <PropertyRef Name="NameHouse" />
+            <PropertyRef Name="Address" />
+            <PropertyRef Name="PhoneNumber" />
+          </Key>
+          <Property Name="IdBranch" Type="Int32" Nullable="false" />
+          <Property Name="IdOrganization" Type="Int32" Nullable="false" />
+          <Property Name="OrganizationName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="IdIndustry" Type="Int32" Nullable="false" />
+          <Property Name="IndustryName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdSubIndustry" Type="Int32" Nullable="false" />
+          <Property Name="NameSubIndustry" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdCountry" Type="Int32" Nullable="false" />
+          <Property Name="CountryName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdCity" Type="Int32" Nullable="false" />
+          <Property Name="CityName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdStreet" Type="Int32" Nullable="false" />
+          <Property Name="StreetName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NameHouse" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="18" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityType Name="v_branchSimplifiedInformation">
           <Key>
@@ -2086,36 +2294,248 @@
           <Property Name="IdOrganization" Type="Int32" Nullable="false" />
           <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
+        <EntityType Name="v_city">
+          <Key>
+            <PropertyRef Name="IdCity" />
+            <PropertyRef Name="IdCountry" />
+            <PropertyRef Name="CountryName" />
+            <PropertyRef Name="CityName" />
+          </Key>
+          <Property Name="IdCity" Type="Int32" Nullable="false" />
+          <Property Name="IdCountry" Type="Int32" Nullable="false" />
+          <Property Name="CountryName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Flag" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="CityName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="v_employer">
+          <Key>
+            <PropertyRef Name="IdEmployer" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Surname" />
+            <PropertyRef Name="Patronymic" />
+            <PropertyRef Name="FullName" />
+            <PropertyRef Name="IdGender" />
+            <PropertyRef Name="GenderName" />
+            <PropertyRef Name="DateOfBirth" />
+            <PropertyRef Name="PhoneNumber" />
+            <PropertyRef Name="IdOrganization" />
+            <PropertyRef Name="OrganizationName" />
+            <PropertyRef Name="IdBranch" />
+            <PropertyRef Name="IdCountry" />
+            <PropertyRef Name="CountryName" />
+            <PropertyRef Name="IdCity" />
+            <PropertyRef Name="CityName" />
+            <PropertyRef Name="IdStreet" />
+            <PropertyRef Name="StreetName" />
+            <PropertyRef Name="NameHouse" />
+            <PropertyRef Name="AddressOrganization" />
+          </Key>
+          <Property Name="IdEmployer" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Surname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Patronymic" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FullName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdGender" Type="Int32" Nullable="false" />
+          <Property Name="GenderName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="18" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdOrganization" Type="Int32" Nullable="false" />
+          <Property Name="PhotoOrganization" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="OrganizationName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdBranch" Type="Int32" Nullable="false" />
+          <Property Name="IdCountry" Type="Int32" Nullable="false" />
+          <Property Name="CountryName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdCity" Type="Int32" Nullable="false" />
+          <Property Name="CityName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdStreet" Type="Int32" Nullable="false" />
+          <Property Name="StreetName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NameHouse" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AddressOrganization" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="v_manager">
+          <Key>
+            <PropertyRef Name="IdManager" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Surname" />
+            <PropertyRef Name="Patronymic" />
+            <PropertyRef Name="FullName" />
+            <PropertyRef Name="IdGender" />
+            <PropertyRef Name="GenderName" />
+            <PropertyRef Name="DateOfBirth" />
+            <PropertyRef Name="PhoneNumber" />
+          </Key>
+          <Property Name="IdManager" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Surname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Patronymic" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FullName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdGender" Type="Int32" Nullable="false" />
+          <Property Name="GenderName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="18" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="v_organization">
+          <Key>
+            <PropertyRef Name="IdOrganization" />
+            <PropertyRef Name="IdIndustry" />
+            <PropertyRef Name="IndustryName" />
+            <PropertyRef Name="IdSubIndustry" />
+            <PropertyRef Name="NameSubIndustry" />
+            <PropertyRef Name="OrganizationName" />
+            <PropertyRef Name="DateOfRegistration" />
+          </Key>
+          <Property Name="IdOrganization" Type="Int32" Nullable="false" />
+          <Property Name="IdIndustry" Type="Int32" Nullable="false" />
+          <Property Name="IndustryName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdSubIndustry" Type="Int32" Nullable="false" />
+          <Property Name="NameSubIndustry" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="OrganizationName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CountBranches" Type="Int32" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="DateOfRegistration" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ClosingDate" Type="DateTime" Precision="0" />
+        </EntityType>
         <EntityType Name="v_organizationWithoutPhoto">
           <Key>
             <PropertyRef Name="IdOrganization" />
+            <PropertyRef Name="IdIndustry" />
             <PropertyRef Name="IdSubIndustry" />
             <PropertyRef Name="OrganizationName" />
             <PropertyRef Name="DateOfRegistration" />
-            <PropertyRef Name="IdIndustry" />
           </Key>
-          <Property Name="IdOrganization" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdOrganization" Type="Int32" Nullable="false" />
+          <Property Name="IdIndustry" Type="Int32" Nullable="false" />
           <Property Name="IdSubIndustry" Type="Int32" Nullable="false" />
           <Property Name="OrganizationName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DateOfRegistration" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="ClosingDate" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="v_profession">
+          <Key>
+            <PropertyRef Name="IdProfession" />
+            <PropertyRef Name="IdProfessionCategory" />
+            <PropertyRef Name="NameProfessionCategory" />
+            <PropertyRef Name="ProfessionName" />
+          </Key>
+          <Property Name="IdProfession" Type="Int32" Nullable="false" />
+          <Property Name="IdProfessionCategory" Type="Int32" Nullable="false" />
+          <Property Name="NameProfessionCategory" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProfessionName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="v_street">
+          <Key>
+            <PropertyRef Name="IdStreet" />
+            <PropertyRef Name="IdCountry" />
+            <PropertyRef Name="CountryName" />
+            <PropertyRef Name="IdCity" />
+            <PropertyRef Name="CityName" />
+            <PropertyRef Name="StreetName" />
+          </Key>
+          <Property Name="IdStreet" Type="Int32" Nullable="false" />
+          <Property Name="IdCountry" Type="Int32" Nullable="false" />
+          <Property Name="Flag" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="CountryName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdCity" Type="Int32" Nullable="false" />
+          <Property Name="CityName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StreetName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="v_subIndustry">
+          <Key>
+            <PropertyRef Name="IdSubIndustry" />
+            <PropertyRef Name="IdIndustry" />
+            <PropertyRef Name="IndustryName" />
+            <PropertyRef Name="NameSubIndustry" />
+          </Key>
+          <Property Name="IdSubIndustry" Type="Int32" Nullable="false" />
           <Property Name="IdIndustry" Type="Int32" Nullable="false" />
+          <Property Name="IndustryName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NameSubIndustry" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityType Name="v_user">
           <Key>
             <PropertyRef Name="IdUser" />
+            <PropertyRef Name="IdRole" />
             <PropertyRef Name="RoleName" />
             <PropertyRef Name="Login" />
             <PropertyRef Name="Password" />
             <PropertyRef Name="DateOfRegistration" />
-            <PropertyRef Name="IdRole" />
           </Key>
           <Property Name="IdUser" Type="Int32" Nullable="false" />
+          <Property Name="IdRole" Type="Int32" Nullable="false" />
           <Property Name="RoleName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Login" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DateOfRegistration" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="IdRole" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="v_vacancy">
+          <Key>
+            <PropertyRef Name="IdVacancy" />
+            <PropertyRef Name="IdOrganization" />
+            <PropertyRef Name="OrganizationName" />
+            <PropertyRef Name="IdCountry" />
+            <PropertyRef Name="CountryName" />
+            <PropertyRef Name="IdCity" />
+            <PropertyRef Name="CityName" />
+            <PropertyRef Name="IdStreet" />
+            <PropertyRef Name="StreetName" />
+            <PropertyRef Name="IdBranch" />
+            <PropertyRef Name="AddressBranch" />
+            <PropertyRef Name="PhoneNumberBranch" />
+            <PropertyRef Name="IdEmployer" />
+            <PropertyRef Name="EmployerFullName" />
+            <PropertyRef Name="PhoneNumberEmployer" />
+            <PropertyRef Name="IdProfessionCategory" />
+            <PropertyRef Name="NameProfessionCategory" />
+            <PropertyRef Name="IdProfession" />
+            <PropertyRef Name="ProfessionName" />
+            <PropertyRef Name="IdEmploymentType" />
+            <PropertyRef Name="EmploymentTypeName" />
+            <PropertyRef Name="IdSchedule" />
+            <PropertyRef Name="ScheduleName" />
+            <PropertyRef Name="IdExperience" />
+            <PropertyRef Name="ExperienceName" />
+            <PropertyRef Name="DateOfRegistration" />
+          </Key>
+          <Property Name="IdVacancy" Type="Int32" Nullable="false" />
+          <Property Name="NumberOfPotentialApplicants" Type="Int32" />
+          <Property Name="NumberOfInterestedApplicants" Type="Int32" />
+          <Property Name="NumberOfApprovedApplicants" Type="Int32" />
+          <Property Name="NumberOfAcceptedApplicants" Type="Int32" />
+          <Property Name="IdOrganization" Type="Int32" Nullable="false" />
+          <Property Name="OrganizationPhoto" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="OrganizationName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdCountry" Type="Int32" Nullable="false" />
+          <Property Name="CountryName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdCity" Type="Int32" Nullable="false" />
+          <Property Name="CityName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdStreet" Type="Int32" Nullable="false" />
+          <Property Name="StreetName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdBranch" Type="Int32" Nullable="false" />
+          <Property Name="AddressBranch" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PhoneNumberBranch" Type="String" MaxLength="18" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdEmployer" Type="Int32" Nullable="false" />
+          <Property Name="EmployerPhoto" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="EmployerFullName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PhoneNumberEmployer" Type="String" MaxLength="18" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdProfessionCategory" Type="Int32" Nullable="false" />
+          <Property Name="NameProfessionCategory" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdProfession" Type="Int32" Nullable="false" />
+          <Property Name="ProfessionName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdEmploymentType" Type="Int32" Nullable="false" />
+          <Property Name="EmploymentTypeName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdSchedule" Type="Int32" Nullable="false" />
+          <Property Name="ScheduleName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdExperience" Type="Int32" Nullable="false" />
+          <Property Name="ExperienceName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Duties" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Requirements" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Terms" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Salary" Type="Int32" />
+          <Property Name="DateOfRegistration" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ClosingDate" Type="DateTime" Precision="0" />
         </EntityType>
         <Association Name="FK_Applicant_Gender">
           <End Role="Gender" Type="Self.Gender" Multiplicity="1">
@@ -2243,18 +2663,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_SuitableVacancy_Applicant">
-          <End Role="Applicant" Type="Self.Applicant" Multiplicity="1" />
-          <End Role="SuitableVacancy" Type="Self.SuitableVacancy" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Applicant">
-              <PropertyRef Name="IdApplicant" />
-            </Principal>
-            <Dependent Role="SuitableVacancy">
-              <PropertyRef Name="IdApplicant" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Branch_Organization">
           <End Role="Organization" Type="Self.Organization" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -2325,29 +2733,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Contract_Request">
-          <End Role="Request" Type="Self.Request" Multiplicity="1" />
-          <End Role="Contract" Type="Self.Contract" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Request">
-              <PropertyRef Name="IdRequest" />
-            </Principal>
-            <Dependent Role="Contract">
-              <PropertyRef Name="IdRequest" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Contract_Vacancy">
-          <End Role="Vacancy" Type="Self.Vacancy" Multiplicity="1">
+        <Association Name="FK_Contract_EmploymentRequest">
+          <End Role="EmploymentRequest" Type="Self.EmploymentRequest" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="Contract" Type="Self.Contract" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Vacancy">
-              <PropertyRef Name="IdVacancy" />
+            <Principal Role="EmploymentRequest">
+              <PropertyRef Name="IdEmploymentRequest" />
             </Principal>
             <Dependent Role="Contract">
-              <PropertyRef Name="IdVacancy" />
+              <PropertyRef Name="IdEmploymentRequest" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2418,6 +2814,20 @@
             </Principal>
             <Dependent Role="Vacancy">
               <PropertyRef Name="IdEmployer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmploymentRequest_SuitableVacancy">
+          <End Role="SuitableVacancy" Type="Self.SuitableVacancy" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="EmploymentRequest" Type="Self.EmploymentRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SuitableVacancy">
+              <PropertyRef Name="IdSuitableVacancy" />
+            </Principal>
+            <Dependent Role="EmploymentRequest">
+              <PropertyRef Name="IdSuitableVacancy" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2713,6 +3123,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_SuitableVacancy_Request">
+          <End Role="Request" Type="Self.Request" Multiplicity="1" />
+          <End Role="SuitableVacancy" Type="Self.SuitableVacancy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Request">
+              <PropertyRef Name="IdRequest" />
+            </Principal>
+            <Dependent Role="SuitableVacancy">
+              <PropertyRef Name="IdRequest" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_User_Role">
           <End Role="Role" Type="Self.Role" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -2765,6 +3187,7 @@
           <EntitySet Name="Education" EntityType="Self.Education" />
           <EntitySet Name="EducationalActivity" EntityType="Self.EducationalActivity" />
           <EntitySet Name="Employer" EntityType="Self.Employer" />
+          <EntitySet Name="EmploymentRequest" EntityType="Self.EmploymentRequest" />
           <EntitySet Name="EmploymentType" EntityType="Self.EmploymentType" />
           <EntitySet Name="Experience" EntityType="Self.Experience" />
           <EntitySet Name="Gender" EntityType="Self.Gender" />
@@ -2792,9 +3215,19 @@
           <EntitySet Name="SuitableVacancy" EntityType="Self.SuitableVacancy" />
           <EntitySet Name="User" EntityType="Self.User" />
           <EntitySet Name="Vacancy" EntityType="Self.Vacancy" />
+          <EntitySet Name="v_applicant" EntityType="Self.v_applicant" />
+          <EntitySet Name="v_branch" EntityType="Self.v_branch" />
           <EntitySet Name="v_branchSimplifiedInformation" EntityType="Self.v_branchSimplifiedInformation" />
+          <EntitySet Name="v_city" EntityType="Self.v_city" />
+          <EntitySet Name="v_employer" EntityType="Self.v_employer" />
+          <EntitySet Name="v_manager" EntityType="Self.v_manager" />
+          <EntitySet Name="v_organization" EntityType="Self.v_organization" />
           <EntitySet Name="v_organizationWithoutPhoto" EntityType="Self.v_organizationWithoutPhoto" />
+          <EntitySet Name="v_profession" EntityType="Self.v_profession" />
+          <EntitySet Name="v_street" EntityType="Self.v_street" />
+          <EntitySet Name="v_subIndustry" EntityType="Self.v_subIndustry" />
           <EntitySet Name="v_user" EntityType="Self.v_user" />
+          <EntitySet Name="v_vacancy" EntityType="Self.v_vacancy" />
           <AssociationSet Name="FK_Applicant_Gender" Association="Self.FK_Applicant_Gender">
             <End Role="Gender" EntitySet="Gender" />
             <End Role="Applicant" EntitySet="Applicant" />
@@ -2831,10 +3264,6 @@
             <End Role="Applicant" EntitySet="Applicant" />
             <End Role="Request" EntitySet="Request" />
           </AssociationSet>
-          <AssociationSet Name="FK_SuitableVacancy_Applicant" Association="Self.FK_SuitableVacancy_Applicant">
-            <End Role="Applicant" EntitySet="Applicant" />
-            <End Role="SuitableVacancy" EntitySet="SuitableVacancy" />
-          </AssociationSet>
           <AssociationSet Name="FK_Branch_Organization" Association="Self.FK_Branch_Organization">
             <End Role="Organization" EntitySet="Organization" />
             <End Role="Branch" EntitySet="Branch" />
@@ -2855,12 +3284,8 @@
             <End Role="City" EntitySet="City" />
             <End Role="Street" EntitySet="Street" />
           </AssociationSet>
-          <AssociationSet Name="FK_Contract_Request" Association="Self.FK_Contract_Request">
-            <End Role="Request" EntitySet="Request" />
-            <End Role="Contract" EntitySet="Contract" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Contract_Vacancy" Association="Self.FK_Contract_Vacancy">
-            <End Role="Vacancy" EntitySet="Vacancy" />
+          <AssociationSet Name="FK_Contract_EmploymentRequest" Association="Self.FK_Contract_EmploymentRequest">
+            <End Role="EmploymentRequest" EntitySet="EmploymentRequest" />
             <End Role="Contract" EntitySet="Contract" />
           </AssociationSet>
           <AssociationSet Name="FK_PossessionDrivingLicenseCategory_DrivingLicenseCategory" Association="Self.FK_PossessionDrivingLicenseCategory_DrivingLicenseCategory">
@@ -2882,6 +3307,10 @@
           <AssociationSet Name="FK_Vacancy_Employer" Association="Self.FK_Vacancy_Employer">
             <End Role="Employer" EntitySet="Employer" />
             <End Role="Vacancy" EntitySet="Vacancy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmploymentRequest_SuitableVacancy" Association="Self.FK_EmploymentRequest_SuitableVacancy">
+            <End Role="SuitableVacancy" EntitySet="SuitableVacancy" />
+            <End Role="EmploymentRequest" EntitySet="EmploymentRequest" />
           </AssociationSet>
           <AssociationSet Name="FK_PreferredEmploymentType_EmploymentType" Association="Self.FK_PreferredEmploymentType_EmploymentType">
             <End Role="EmploymentType" EntitySet="EmploymentType" />
@@ -2967,6 +3396,10 @@
             <End Role="RequestStatus" EntitySet="RequestStatus" />
             <End Role="Request" EntitySet="Request" />
           </AssociationSet>
+          <AssociationSet Name="FK_SuitableVacancy_Request" Association="Self.FK_SuitableVacancy_Request">
+            <End Role="Request" EntitySet="Request" />
+            <End Role="SuitableVacancy" EntitySet="SuitableVacancy" />
+          </AssociationSet>
           <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
             <End Role="Role" EntitySet="Role" />
             <End Role="User" EntitySet="User" />
@@ -2979,238 +3412,7 @@
             <End Role="Vacancy" EntitySet="Vacancy" />
             <End Role="SuitableVacancy" EntitySet="SuitableVacancy" />
           </AssociationSet>
-          <EntitySet Name="v_organization" EntityType="Model.v_organization" />
-          <EntitySet Name="v_branch" EntityType="Model.v_branch" />
-          <EntitySet Name="v_city" EntityType="Model.v_city" />
-          <EntitySet Name="v_street" EntityType="Model.v_street" />
-          <EntitySet Name="v_subIndustry" EntityType="Model.v_subIndustry" />
-          <EntitySet Name="v_profession" EntityType="Model.v_profession" />
-          <EntitySet Name="v_applicant" EntityType="Model.v_applicant" />
-          <EntitySet Name="v_employer" EntityType="Model.v_employer" />
-          <EntitySet Name="v_manager" EntityType="Model.v_manager" />
         </EntityContainer>
-        <EntityType Name="v_organization">
-          <Key>
-            <PropertyRef Name="IdOrganization" />
-            <PropertyRef Name="IdIndustry" />
-            <PropertyRef Name="IndustryName" />
-            <PropertyRef Name="IdSubIndustry" />
-            <PropertyRef Name="NameSubIndustry" />
-            <PropertyRef Name="OrganizationName" />
-            <PropertyRef Name="DateOfRegistration" />
-          </Key>
-          <Property Name="IdOrganization" Type="Int32" Nullable="false" />
-          <Property Name="IdIndustry" Type="Int32" Nullable="false" />
-          <Property Name="IndustryName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="IdSubIndustry" Type="Int32" Nullable="false" />
-          <Property Name="NameSubIndustry" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="OrganizationName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="CountBranches" Type="Int32" />
-          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="DateOfRegistration" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="ClosingDate" Type="DateTime" Precision="0" />
-        </EntityType>
-        <EntityType Name="v_branch">
-          <Key>
-            <PropertyRef Name="IdBranch" />
-            <PropertyRef Name="IdOrganization" />
-            <PropertyRef Name="OrganizationName" />
-            <PropertyRef Name="IdIndustry" />
-            <PropertyRef Name="IndustryName" />
-            <PropertyRef Name="IdSubIndustry" />
-            <PropertyRef Name="NameSubIndustry" />
-            <PropertyRef Name="Address" />
-            <PropertyRef Name="PhoneNumber" />
-            <PropertyRef Name="IdCountry" />
-            <PropertyRef Name="IdCity" />
-            <PropertyRef Name="IdStreet" />
-            <PropertyRef Name="CountryName" />
-            <PropertyRef Name="CityName" />
-            <PropertyRef Name="StreetName" />
-            <PropertyRef Name="NameHouse" />
-          </Key>
-          <Property Name="IdBranch" Type="Int32" Nullable="false" />
-          <Property Name="IdOrganization" Type="Int32" Nullable="false" />
-          <Property Name="OrganizationName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="IdIndustry" Type="Int32" Nullable="false" />
-          <Property Name="IndustryName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="IdSubIndustry" Type="Int32" Nullable="false" />
-          <Property Name="NameSubIndustry" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="18" FixedLength="false" Unicode="true" />
-          <Property Name="IdCountry" Type="Int32" Nullable="false" />
-          <Property Name="IdCity" Type="Int32" Nullable="false" />
-          <Property Name="IdStreet" Type="Int32" Nullable="false" />
-          <Property Name="CountryName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="CityName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="StreetName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="NameHouse" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="v_city">
-          <Key>
-            <PropertyRef Name="IdCity" />
-            <PropertyRef Name="IdCountry" />
-            <PropertyRef Name="CityName" />
-            <PropertyRef Name="CountryName" />
-          </Key>
-          <Property Name="IdCity" Type="Int32" Nullable="false" />
-          <Property Name="IdCountry" Type="Int32" Nullable="false" />
-          <Property Name="Flag" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="CityName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="CountryName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="v_street">
-          <Key>
-            <PropertyRef Name="IdStreet" />
-            <PropertyRef Name="IdCountry" />
-            <PropertyRef Name="CountryName" />
-            <PropertyRef Name="IdCity" />
-            <PropertyRef Name="CityName" />
-            <PropertyRef Name="StreetName" />
-          </Key>
-          <Property Name="IdStreet" Type="Int32" Nullable="false" />
-          <Property Name="IdCountry" Type="Int32" Nullable="false" />
-          <Property Name="Flag" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="CountryName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="IdCity" Type="Int32" Nullable="false" />
-          <Property Name="CityName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="StreetName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="v_subIndustry">
-          <Key>
-            <PropertyRef Name="IdSubIndustry" />
-            <PropertyRef Name="IdIndustry" />
-            <PropertyRef Name="IndustryName" />
-            <PropertyRef Name="NameSubIndustry" />
-          </Key>
-          <Property Name="IdSubIndustry" Type="Int32" Nullable="false" />
-          <Property Name="IdIndustry" Type="Int32" Nullable="false" />
-          <Property Name="IndustryName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="NameSubIndustry" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="v_profession">
-          <Key>
-            <PropertyRef Name="IdProfession" />
-            <PropertyRef Name="IdProfessionCategory" />
-            <PropertyRef Name="NameProfessionCategory" />
-            <PropertyRef Name="ProfessionName" />
-          </Key>
-          <Property Name="IdProfession" Type="Int32" Nullable="false" />
-          <Property Name="IdProfessionCategory" Type="Int32" Nullable="false" />
-          <Property Name="NameProfessionCategory" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="ProfessionName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="v_applicant">
-          <Key>
-            <PropertyRef Name="IdApplicant" />
-            <PropertyRef Name="Name" />
-            <PropertyRef Name="Surname" />
-            <PropertyRef Name="Patronymic" />
-            <PropertyRef Name="FullName" />
-            <PropertyRef Name="IdGender" />
-            <PropertyRef Name="GenderName" />
-            <PropertyRef Name="DateOfBirth" />
-            <PropertyRef Name="PhoneNumber" />
-            <PropertyRef Name="IdCountry" />
-            <PropertyRef Name="CountryName" />
-            <PropertyRef Name="IdCity" />
-            <PropertyRef Name="CityName" />
-            <PropertyRef Name="IdStreet" />
-            <PropertyRef Name="StreetName" />
-            <PropertyRef Name="NameHouse" />
-            <PropertyRef Name="IsEmployed" />
-          </Key>
-          <Property Name="IdApplicant" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Surname" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Patronymic" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="FullName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="IdGender" Type="Int32" Nullable="false" />
-          <Property Name="GenderName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="18" FixedLength="false" Unicode="true" />
-          <Property Name="IdCountry" Type="Int32" Nullable="false" />
-          <Property Name="CountryName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="IdCity" Type="Int32" Nullable="false" />
-          <Property Name="CityName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="IdStreet" Type="Int32" Nullable="false" />
-          <Property Name="StreetName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="NameHouse" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Apartment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="IsEmployed" Type="Boolean" Nullable="false" />
-        </EntityType>
-        <EntityType Name="v_employer">
-          <Key>
-            <PropertyRef Name="IdEmployer" />
-            <PropertyRef Name="Name" />
-            <PropertyRef Name="Surname" />
-            <PropertyRef Name="Patronymic" />
-            <PropertyRef Name="FullName" />
-            <PropertyRef Name="IdGender" />
-            <PropertyRef Name="GenderName" />
-            <PropertyRef Name="DateOfBirth" />
-            <PropertyRef Name="PhoneNumber" />
-            <PropertyRef Name="IdOrganization" />
-            <PropertyRef Name="OrganizationName" />
-            <PropertyRef Name="IdBranch" />
-            <PropertyRef Name="IdCountry" />
-            <PropertyRef Name="CountryName" />
-            <PropertyRef Name="IdCity" />
-            <PropertyRef Name="CityName" />
-            <PropertyRef Name="IdStreet" />
-            <PropertyRef Name="StreetName" />
-            <PropertyRef Name="NameHouse" />
-            <PropertyRef Name="AddressOrganization" />
-          </Key>
-          <Property Name="IdEmployer" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Surname" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Patronymic" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="FullName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="IdGender" Type="Int32" Nullable="false" />
-          <Property Name="GenderName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="18" FixedLength="false" Unicode="true" />
-          <Property Name="IdOrganization" Type="Int32" Nullable="false" />
-          <Property Name="PhotoOrganization" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="OrganizationName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="IdBranch" Type="Int32" Nullable="false" />
-          <Property Name="IdCountry" Type="Int32" Nullable="false" />
-          <Property Name="CountryName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="IdCity" Type="Int32" Nullable="false" />
-          <Property Name="CityName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="IdStreet" Type="Int32" Nullable="false" />
-          <Property Name="StreetName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="NameHouse" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="AddressOrganization" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="v_manager">
-          <Key>
-            <PropertyRef Name="IdManager" />
-            <PropertyRef Name="Name" />
-            <PropertyRef Name="Surname" />
-            <PropertyRef Name="Patronymic" />
-            <PropertyRef Name="FullName" />
-            <PropertyRef Name="IdGender" />
-            <PropertyRef Name="GenderName" />
-            <PropertyRef Name="DateOfBirth" />
-            <PropertyRef Name="PhoneNumber" />
-          </Key>
-          <Property Name="IdManager" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Surname" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Patronymic" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="FullName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="IdGender" Type="Int32" Nullable="false" />
-          <Property Name="GenderName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="18" FixedLength="false" Unicode="true" />
-        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3259,8 +3461,7 @@
             <EntityTypeMapping TypeName="Model.Contract">
               <MappingFragment StoreEntitySet="Contract">
                 <ScalarProperty Name="IdContract" ColumnName="IdContract" />
-                <ScalarProperty Name="IdRequest" ColumnName="IdRequest" />
-                <ScalarProperty Name="IdVacancy" ColumnName="IdVacancy" />
+                <ScalarProperty Name="IdEmploymentRequest" ColumnName="IdEmploymentRequest" />
                 <ScalarProperty Name="DateOfConclusion" ColumnName="DateOfConclusion" />
                 <ScalarProperty Name="BreakDate" ColumnName="BreakDate" />
               </MappingFragment>
@@ -3316,6 +3517,15 @@
                 <ScalarProperty Name="Photo" ColumnName="Photo" />
                 <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
                 <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmploymentRequest">
+            <EntityTypeMapping TypeName="Model.EmploymentRequest">
+              <MappingFragment StoreEntitySet="EmploymentRequest">
+                <ScalarProperty Name="IdEmploymentRequest" ColumnName="IdEmploymentRequest" />
+                <ScalarProperty Name="IdSuitableVacancy" ColumnName="IdSuitableVacancy" />
+                <ScalarProperty Name="IsSuitable" ColumnName="IsSuitable" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3549,8 +3759,8 @@
             <EntityTypeMapping TypeName="Model.SuitableVacancy">
               <MappingFragment StoreEntitySet="SuitableVacancy">
                 <ScalarProperty Name="IdSuitableVacancy" ColumnName="IdSuitableVacancy" />
+                <ScalarProperty Name="IdRequest" ColumnName="IdRequest" />
                 <ScalarProperty Name="IdManager" ColumnName="IdManager" />
-                <ScalarProperty Name="IdApplicant" ColumnName="IdApplicant" />
                 <ScalarProperty Name="IdVacancy" ColumnName="IdVacancy" />
                 <ScalarProperty Name="DiscoveryDate" ColumnName="DiscoveryDate" />
               </MappingFragment>
@@ -3586,6 +3796,55 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="v_applicant">
+            <EntityTypeMapping TypeName="Model.v_applicant">
+              <MappingFragment StoreEntitySet="v_applicant">
+                <ScalarProperty Name="IdApplicant" ColumnName="IdApplicant" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="IdGender" ColumnName="IdGender" />
+                <ScalarProperty Name="GenderName" ColumnName="GenderName" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="IdCountry" ColumnName="IdCountry" />
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+                <ScalarProperty Name="IdCity" ColumnName="IdCity" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="IdStreet" ColumnName="IdStreet" />
+                <ScalarProperty Name="StreetName" ColumnName="StreetName" />
+                <ScalarProperty Name="NameHouse" ColumnName="NameHouse" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Apartment" ColumnName="Apartment" />
+                <ScalarProperty Name="IsEmployed" ColumnName="IsEmployed" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_branch">
+            <EntityTypeMapping TypeName="Model.v_branch">
+              <MappingFragment StoreEntitySet="v_branch">
+                <ScalarProperty Name="IdBranch" ColumnName="IdBranch" />
+                <ScalarProperty Name="IdOrganization" ColumnName="IdOrganization" />
+                <ScalarProperty Name="OrganizationName" ColumnName="OrganizationName" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="IdIndustry" ColumnName="IdIndustry" />
+                <ScalarProperty Name="IndustryName" ColumnName="IndustryName" />
+                <ScalarProperty Name="IdSubIndustry" ColumnName="IdSubIndustry" />
+                <ScalarProperty Name="NameSubIndustry" ColumnName="NameSubIndustry" />
+                <ScalarProperty Name="IdCountry" ColumnName="IdCountry" />
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+                <ScalarProperty Name="IdCity" ColumnName="IdCity" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="IdStreet" ColumnName="IdStreet" />
+                <ScalarProperty Name="StreetName" ColumnName="StreetName" />
+                <ScalarProperty Name="NameHouse" ColumnName="NameHouse" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="v_branchSimplifiedInformation">
             <EntityTypeMapping TypeName="Model.v_branchSimplifiedInformation">
               <MappingFragment StoreEntitySet="v_branchSimplifiedInformation">
@@ -3595,11 +3854,82 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="v_city">
+            <EntityTypeMapping TypeName="Model.v_city">
+              <MappingFragment StoreEntitySet="v_city">
+                <ScalarProperty Name="IdCity" ColumnName="IdCity" />
+                <ScalarProperty Name="IdCountry" ColumnName="IdCountry" />
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+                <ScalarProperty Name="Flag" ColumnName="Flag" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_employer">
+            <EntityTypeMapping TypeName="Model.v_employer">
+              <MappingFragment StoreEntitySet="v_employer">
+                <ScalarProperty Name="IdEmployer" ColumnName="IdEmployer" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="IdGender" ColumnName="IdGender" />
+                <ScalarProperty Name="GenderName" ColumnName="GenderName" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="IdOrganization" ColumnName="IdOrganization" />
+                <ScalarProperty Name="PhotoOrganization" ColumnName="PhotoOrganization" />
+                <ScalarProperty Name="OrganizationName" ColumnName="OrganizationName" />
+                <ScalarProperty Name="IdBranch" ColumnName="IdBranch" />
+                <ScalarProperty Name="IdCountry" ColumnName="IdCountry" />
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+                <ScalarProperty Name="IdCity" ColumnName="IdCity" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="IdStreet" ColumnName="IdStreet" />
+                <ScalarProperty Name="StreetName" ColumnName="StreetName" />
+                <ScalarProperty Name="NameHouse" ColumnName="NameHouse" />
+                <ScalarProperty Name="AddressOrganization" ColumnName="AddressOrganization" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_manager">
+            <EntityTypeMapping TypeName="Model.v_manager">
+              <MappingFragment StoreEntitySet="v_manager">
+                <ScalarProperty Name="IdManager" ColumnName="IdManager" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="IdGender" ColumnName="IdGender" />
+                <ScalarProperty Name="GenderName" ColumnName="GenderName" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_organization">
+            <EntityTypeMapping TypeName="Model.v_organization">
+              <MappingFragment StoreEntitySet="v_organization">
+                <ScalarProperty Name="IdOrganization" ColumnName="IdOrganization" />
+                <ScalarProperty Name="IdIndustry" ColumnName="IdIndustry" />
+                <ScalarProperty Name="IndustryName" ColumnName="IndustryName" />
+                <ScalarProperty Name="IdSubIndustry" ColumnName="IdSubIndustry" />
+                <ScalarProperty Name="NameSubIndustry" ColumnName="NameSubIndustry" />
+                <ScalarProperty Name="OrganizationName" ColumnName="OrganizationName" />
+                <ScalarProperty Name="CountBranches" ColumnName="CountBranches" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="DateOfRegistration" ColumnName="DateOfRegistration" />
+                <ScalarProperty Name="ClosingDate" ColumnName="ClosingDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="v_organizationWithoutPhoto">
             <EntityTypeMapping TypeName="Model.v_organizationWithoutPhoto">
               <MappingFragment StoreEntitySet="v_organizationWithoutPhoto">
-                <ScalarProperty Name="IdIndustry" ColumnName="IdIndustry" />
                 <ScalarProperty Name="IdOrganization" ColumnName="IdOrganization" />
+                <ScalarProperty Name="IdIndustry" ColumnName="IdIndustry" />
                 <ScalarProperty Name="IdSubIndustry" ColumnName="IdSubIndustry" />
                 <ScalarProperty Name="OrganizationName" ColumnName="OrganizationName" />
                 <ScalarProperty Name="DateOfRegistration" ColumnName="DateOfRegistration" />
@@ -3607,11 +3937,44 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="v_profession">
+            <EntityTypeMapping TypeName="Model.v_profession">
+              <MappingFragment StoreEntitySet="v_profession">
+                <ScalarProperty Name="IdProfession" ColumnName="IdProfession" />
+                <ScalarProperty Name="IdProfessionCategory" ColumnName="IdProfessionCategory" />
+                <ScalarProperty Name="NameProfessionCategory" ColumnName="NameProfessionCategory" />
+                <ScalarProperty Name="ProfessionName" ColumnName="ProfessionName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_street">
+            <EntityTypeMapping TypeName="Model.v_street">
+              <MappingFragment StoreEntitySet="v_street">
+                <ScalarProperty Name="IdStreet" ColumnName="IdStreet" />
+                <ScalarProperty Name="IdCountry" ColumnName="IdCountry" />
+                <ScalarProperty Name="Flag" ColumnName="Flag" />
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+                <ScalarProperty Name="IdCity" ColumnName="IdCity" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="StreetName" ColumnName="StreetName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_subIndustry">
+            <EntityTypeMapping TypeName="Model.v_subIndustry">
+              <MappingFragment StoreEntitySet="v_subIndustry">
+                <ScalarProperty Name="IdSubIndustry" ColumnName="IdSubIndustry" />
+                <ScalarProperty Name="IdIndustry" ColumnName="IdIndustry" />
+                <ScalarProperty Name="IndustryName" ColumnName="IndustryName" />
+                <ScalarProperty Name="NameSubIndustry" ColumnName="NameSubIndustry" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="v_user">
             <EntityTypeMapping TypeName="Model.v_user">
               <MappingFragment StoreEntitySet="v_user">
-                <ScalarProperty Name="IdRole" ColumnName="IdRole" />
                 <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="IdRole" ColumnName="IdRole" />
                 <ScalarProperty Name="RoleName" ColumnName="RoleName" />
                 <ScalarProperty Name="Login" ColumnName="Login" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
@@ -3619,156 +3982,47 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="v_organization">
-            <EntityTypeMapping TypeName="Model.v_organization">
-              <MappingFragment StoreEntitySet="v_organization">
-                <ScalarProperty Name="ClosingDate" ColumnName="ClosingDate" />
-                <ScalarProperty Name="DateOfRegistration" ColumnName="DateOfRegistration" />
-                <ScalarProperty Name="Photo" ColumnName="Photo" />
-                <ScalarProperty Name="CountBranches" ColumnName="CountBranches" />
-                <ScalarProperty Name="OrganizationName" ColumnName="OrganizationName" />
-                <ScalarProperty Name="NameSubIndustry" ColumnName="NameSubIndustry" />
-                <ScalarProperty Name="IdSubIndustry" ColumnName="IdSubIndustry" />
-                <ScalarProperty Name="IndustryName" ColumnName="IndustryName" />
-                <ScalarProperty Name="IdIndustry" ColumnName="IdIndustry" />
+          <EntitySetMapping Name="v_vacancy">
+            <EntityTypeMapping TypeName="Model.v_vacancy">
+              <MappingFragment StoreEntitySet="v_vacancy">
+                <ScalarProperty Name="IdVacancy" ColumnName="IdVacancy" />
+                <ScalarProperty Name="NumberOfPotentialApplicants" ColumnName="NumberOfPotentialApplicants" />
+                <ScalarProperty Name="NumberOfInterestedApplicants" ColumnName="NumberOfInterestedApplicants" />
+                <ScalarProperty Name="NumberOfApprovedApplicants" ColumnName="NumberOfApprovedApplicants" />
+                <ScalarProperty Name="NumberOfAcceptedApplicants" ColumnName="NumberOfAcceptedApplicants" />
                 <ScalarProperty Name="IdOrganization" ColumnName="IdOrganization" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="v_branch">
-            <EntityTypeMapping TypeName="Model.v_branch">
-              <MappingFragment StoreEntitySet="v_branch">
-                <ScalarProperty Name="NameHouse" ColumnName="NameHouse" />
-                <ScalarProperty Name="StreetName" ColumnName="StreetName" />
-                <ScalarProperty Name="CityName" ColumnName="CityName" />
-                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
-                <ScalarProperty Name="IdStreet" ColumnName="IdStreet" />
-                <ScalarProperty Name="IdCity" ColumnName="IdCity" />
+                <ScalarProperty Name="OrganizationPhoto" ColumnName="OrganizationPhoto" />
+                <ScalarProperty Name="OrganizationName" ColumnName="OrganizationName" />
                 <ScalarProperty Name="IdCountry" ColumnName="IdCountry" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="NameSubIndustry" ColumnName="NameSubIndustry" />
-                <ScalarProperty Name="IdSubIndustry" ColumnName="IdSubIndustry" />
-                <ScalarProperty Name="IndustryName" ColumnName="IndustryName" />
-                <ScalarProperty Name="IdIndustry" ColumnName="IdIndustry" />
-                <ScalarProperty Name="Photo" ColumnName="Photo" />
-                <ScalarProperty Name="OrganizationName" ColumnName="OrganizationName" />
-                <ScalarProperty Name="IdOrganization" ColumnName="IdOrganization" />
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+                <ScalarProperty Name="IdCity" ColumnName="IdCity" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="IdStreet" ColumnName="IdStreet" />
+                <ScalarProperty Name="StreetName" ColumnName="StreetName" />
                 <ScalarProperty Name="IdBranch" ColumnName="IdBranch" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="v_city">
-            <EntityTypeMapping TypeName="Model.v_city">
-              <MappingFragment StoreEntitySet="v_city">
-                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
-                <ScalarProperty Name="CityName" ColumnName="CityName" />
-                <ScalarProperty Name="Flag" ColumnName="Flag" />
-                <ScalarProperty Name="IdCountry" ColumnName="IdCountry" />
-                <ScalarProperty Name="IdCity" ColumnName="IdCity" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="v_street">
-            <EntityTypeMapping TypeName="Model.v_street">
-              <MappingFragment StoreEntitySet="v_street">
-                <ScalarProperty Name="StreetName" ColumnName="StreetName" />
-                <ScalarProperty Name="CityName" ColumnName="CityName" />
-                <ScalarProperty Name="IdCity" ColumnName="IdCity" />
-                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
-                <ScalarProperty Name="Flag" ColumnName="Flag" />
-                <ScalarProperty Name="IdCountry" ColumnName="IdCountry" />
-                <ScalarProperty Name="IdStreet" ColumnName="IdStreet" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="v_subIndustry">
-            <EntityTypeMapping TypeName="Model.v_subIndustry">
-              <MappingFragment StoreEntitySet="v_subIndustry">
-                <ScalarProperty Name="NameSubIndustry" ColumnName="NameSubIndustry" />
-                <ScalarProperty Name="IndustryName" ColumnName="IndustryName" />
-                <ScalarProperty Name="IdIndustry" ColumnName="IdIndustry" />
-                <ScalarProperty Name="IdSubIndustry" ColumnName="IdSubIndustry" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="v_profession">
-            <EntityTypeMapping TypeName="Model.v_profession">
-              <MappingFragment StoreEntitySet="v_profession">
-                <ScalarProperty Name="ProfessionName" ColumnName="ProfessionName" />
-                <ScalarProperty Name="NameProfessionCategory" ColumnName="NameProfessionCategory" />
-                <ScalarProperty Name="IdProfessionCategory" ColumnName="IdProfessionCategory" />
-                <ScalarProperty Name="IdProfession" ColumnName="IdProfession" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="v_applicant">
-            <EntityTypeMapping TypeName="Model.v_applicant">
-              <MappingFragment StoreEntitySet="v_applicant">
-                <ScalarProperty Name="IsEmployed" ColumnName="IsEmployed" />
-                <ScalarProperty Name="Apartment" ColumnName="Apartment" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="NameHouse" ColumnName="NameHouse" />
-                <ScalarProperty Name="StreetName" ColumnName="StreetName" />
-                <ScalarProperty Name="IdStreet" ColumnName="IdStreet" />
-                <ScalarProperty Name="CityName" ColumnName="CityName" />
-                <ScalarProperty Name="IdCity" ColumnName="IdCity" />
-                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
-                <ScalarProperty Name="IdCountry" ColumnName="IdCountry" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
-                <ScalarProperty Name="Photo" ColumnName="Photo" />
-                <ScalarProperty Name="GenderName" ColumnName="GenderName" />
-                <ScalarProperty Name="IdGender" ColumnName="IdGender" />
-                <ScalarProperty Name="FullName" ColumnName="FullName" />
-                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
-                <ScalarProperty Name="Surname" ColumnName="Surname" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="IdApplicant" ColumnName="IdApplicant" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="v_employer">
-            <EntityTypeMapping TypeName="Model.v_employer">
-              <MappingFragment StoreEntitySet="v_employer">
-                <ScalarProperty Name="AddressOrganization" ColumnName="AddressOrganization" />
-                <ScalarProperty Name="NameHouse" ColumnName="NameHouse" />
-                <ScalarProperty Name="StreetName" ColumnName="StreetName" />
-                <ScalarProperty Name="IdStreet" ColumnName="IdStreet" />
-                <ScalarProperty Name="CityName" ColumnName="CityName" />
-                <ScalarProperty Name="IdCity" ColumnName="IdCity" />
-                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
-                <ScalarProperty Name="IdCountry" ColumnName="IdCountry" />
-                <ScalarProperty Name="IdBranch" ColumnName="IdBranch" />
-                <ScalarProperty Name="OrganizationName" ColumnName="OrganizationName" />
-                <ScalarProperty Name="PhotoOrganization" ColumnName="PhotoOrganization" />
-                <ScalarProperty Name="IdOrganization" ColumnName="IdOrganization" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
-                <ScalarProperty Name="Photo" ColumnName="Photo" />
-                <ScalarProperty Name="GenderName" ColumnName="GenderName" />
-                <ScalarProperty Name="IdGender" ColumnName="IdGender" />
-                <ScalarProperty Name="FullName" ColumnName="FullName" />
-                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
-                <ScalarProperty Name="Surname" ColumnName="Surname" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AddressBranch" ColumnName="AddressBranch" />
+                <ScalarProperty Name="PhoneNumberBranch" ColumnName="PhoneNumberBranch" />
                 <ScalarProperty Name="IdEmployer" ColumnName="IdEmployer" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="v_manager">
-            <EntityTypeMapping TypeName="Model.v_manager">
-              <MappingFragment StoreEntitySet="v_manager">
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
-                <ScalarProperty Name="Photo" ColumnName="Photo" />
-                <ScalarProperty Name="GenderName" ColumnName="GenderName" />
-                <ScalarProperty Name="IdGender" ColumnName="IdGender" />
-                <ScalarProperty Name="FullName" ColumnName="FullName" />
-                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
-                <ScalarProperty Name="Surname" ColumnName="Surname" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="IdManager" ColumnName="IdManager" />
+                <ScalarProperty Name="EmployerPhoto" ColumnName="EmployerPhoto" />
+                <ScalarProperty Name="EmployerFullName" ColumnName="EmployerFullName" />
+                <ScalarProperty Name="PhoneNumberEmployer" ColumnName="PhoneNumberEmployer" />
+                <ScalarProperty Name="IdProfessionCategory" ColumnName="IdProfessionCategory" />
+                <ScalarProperty Name="NameProfessionCategory" ColumnName="NameProfessionCategory" />
+                <ScalarProperty Name="IdProfession" ColumnName="IdProfession" />
+                <ScalarProperty Name="ProfessionName" ColumnName="ProfessionName" />
+                <ScalarProperty Name="IdEmploymentType" ColumnName="IdEmploymentType" />
+                <ScalarProperty Name="EmploymentTypeName" ColumnName="EmploymentTypeName" />
+                <ScalarProperty Name="IdSchedule" ColumnName="IdSchedule" />
+                <ScalarProperty Name="ScheduleName" ColumnName="ScheduleName" />
+                <ScalarProperty Name="IdExperience" ColumnName="IdExperience" />
+                <ScalarProperty Name="ExperienceName" ColumnName="ExperienceName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Duties" ColumnName="Duties" />
+                <ScalarProperty Name="Requirements" ColumnName="Requirements" />
+                <ScalarProperty Name="Terms" ColumnName="Terms" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="DateOfRegistration" ColumnName="DateOfRegistration" />
+                <ScalarProperty Name="ClosingDate" ColumnName="ClosingDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

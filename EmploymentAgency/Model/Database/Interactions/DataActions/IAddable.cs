@@ -1,5 +1,7 @@
 ﻿using EmploymentAgency.Model.Database.Models;
 using System;
+using System.Collections.Generic;
+using System.Windows.Documents;
 
 namespace EmploymentAgency.Model.Database.Interactions.DataActions
 {
@@ -71,6 +73,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         bool AddUser(int idRole, string login, string password, out v_user user);
 
-        void AddVacancy(int idEmployer, int idProfession, int idEmploymentType, int idSchedule, int idExperience, string description, string duties, string requirements, string terms, int? salary, out Vacancy vacancy);
+        void AddNecessarySkills(int idVacancy, List<object> necessarySkills);
+
+        void AddVacancy(int idEmployer, int idProfession, int idEmploymentType, int idSchedule, int idExperience, string description, string duties, string requirements, string terms, int? salary, List<object> necessarySkills);
     }
 }

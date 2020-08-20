@@ -12,13 +12,20 @@ namespace EmploymentAgency.Model.Database.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Contract
+    public partial class EmploymentRequest
     {
-        public int IdContract { get; set; }
-        public int IdEmploymentRequest { get; set; }
-        public System.DateTime DateOfConclusion { get; set; }
-        public Nullable<System.DateTime> BreakDate { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public EmploymentRequest()
+        {
+            this.Contract = new HashSet<Contract>();
+        }
     
-        public virtual EmploymentRequest EmploymentRequest { get; set; }
+        public int IdEmploymentRequest { get; set; }
+        public int IdSuitableVacancy { get; set; }
+        public Nullable<bool> IsSuitable { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Contract> Contract { get; set; }
+        public virtual SuitableVacancy SuitableVacancy { get; set; }
     }
 }

@@ -12,21 +12,39 @@ namespace EmploymentAgency.Model.Database.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Vacancy
+    public partial class v_vacancy
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Vacancy()
-        {
-            this.NecessarySkill = new HashSet<NecessarySkill>();
-            this.SuitableVacancy = new HashSet<SuitableVacancy>();
-        }
-    
         public int IdVacancy { get; set; }
+        public Nullable<int> NumberOfPotentialApplicants { get; set; }
+        public Nullable<int> NumberOfInterestedApplicants { get; set; }
+        public Nullable<int> NumberOfApprovedApplicants { get; set; }
+        public Nullable<int> NumberOfAcceptedApplicants { get; set; }
+        public int IdOrganization { get; set; }
+        public byte[] OrganizationPhoto { get; set; }
+        public string OrganizationName { get; set; }
+        public int IdCountry { get; set; }
+        public string CountryName { get; set; }
+        public int IdCity { get; set; }
+        public string CityName { get; set; }
+        public int IdStreet { get; set; }
+        public string StreetName { get; set; }
+        public int IdBranch { get; set; }
+        public string AddressBranch { get; set; }
+        public string PhoneNumberBranch { get; set; }
         public int IdEmployer { get; set; }
+        public byte[] EmployerPhoto { get; set; }
+        public string EmployerFullName { get; set; }
+        public string PhoneNumberEmployer { get; set; }
+        public int IdProfessionCategory { get; set; }
+        public string NameProfessionCategory { get; set; }
         public int IdProfession { get; set; }
+        public string ProfessionName { get; set; }
         public int IdEmploymentType { get; set; }
+        public string EmploymentTypeName { get; set; }
         public int IdSchedule { get; set; }
+        public string ScheduleName { get; set; }
         public int IdExperience { get; set; }
+        public string ExperienceName { get; set; }
         public string Description { get; set; }
         public string Duties { get; set; }
         public string Requirements { get; set; }
@@ -34,15 +52,5 @@ namespace EmploymentAgency.Model.Database.Models
         public Nullable<int> Salary { get; set; }
         public System.DateTime DateOfRegistration { get; set; }
         public Nullable<System.DateTime> ClosingDate { get; set; }
-    
-        public virtual Employer Employer { get; set; }
-        public virtual EmploymentType EmploymentType { get; set; }
-        public virtual Experience Experience { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<NecessarySkill> NecessarySkill { get; set; }
-        public virtual Profession Profession { get; set; }
-        public virtual Schedule Schedule { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SuitableVacancy> SuitableVacancy { get; set; }
     }
 }

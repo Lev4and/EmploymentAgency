@@ -23,7 +23,6 @@ namespace EmploymentAgency.Model.Database.Models
             this.PossessionDrivingLicenseCategory = new HashSet<PossessionDrivingLicenseCategory>();
             this.PossessionSkill = new HashSet<PossessionSkill>();
             this.Request = new HashSet<Request>();
-            this.SuitableVacancy = new HashSet<SuitableVacancy>();
         }
     
         public int IdApplicant { get; set; }
@@ -54,7 +53,5 @@ namespace EmploymentAgency.Model.Database.Models
         public virtual ICollection<PossessionSkill> PossessionSkill { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Request> Request { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SuitableVacancy> SuitableVacancy { get; set; }
     }
 }

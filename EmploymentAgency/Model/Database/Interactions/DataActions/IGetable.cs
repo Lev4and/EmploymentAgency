@@ -1,12 +1,41 @@
 ﻿using EmploymentAgency.Model.Database.Models;
 using EmploymentAgency.Views.Pages;
+using System;
 using System.Collections.Generic;
 
 namespace EmploymentAgency.Model.Database.Interactions.DataActions
 {
     public interface IGetable
     {
+        int? GetMaxNumberOfAcceptedApplicantsMyVacancy(int idEmployer);
+
+        int? GetMaxNumberOfApprovedApplicantsMyVacancy(int idEmployer);
+
+        int? GetMaxNumberOfInterestedApplicantsMyVacancy(int idEmployer);
+
+        int? GetMaxNumberOfPotentialApplicantsMyVacancy(int idEmployer);
+
+        int? GetMaxSalaryMyVacancy(int idEmployer);
+
+        int? GetMinNumberOfAcceptedApplicantsMyVacancy(int idEmployer);
+
+        int? GetMinNumberOfApprovedApplicantsMyVacancy(int idEmployer);
+
+        int? GetMinNumberOfInterestedApplicantsMyVacancy(int idEmployer);
+
+        int? GetMinNumberOfPotentialApplicantsMyVacancy(int idEmployer);
+
+        int? GetMinSalaryMyVacancy(int idEmployer);
+
         int GetIdRole(string roleName);
+
+        DateTime? GetMaxClosingDateMyVacancy(int idEmployer);
+
+        DateTime? GetMinClosingDateMyVacancy(int idEmployer);
+
+        DateTime GetMaxDateOfRegistrationMyVacancy(int idEmployer);
+
+        DateTime GetMinDateOfRegistrationMyVacancy(int idEmployer);
 
         Applicant GetApplicant(int idApplicant);
 
@@ -54,6 +83,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         User GetUser(int idUser);
 
+        Vacancy GetVacancy(int idVacancy);
+
         v_applicant GetApplicantExtendedInformation(int idApplicant);
 
         v_branch GetBranch(int idBranch);
@@ -71,6 +102,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
         v_subIndustry GetSubIndustryExtendedInformation(int idSubIndustry);
 
         v_user GetUserExtendedInformation(int idUser);
+
+        v_vacancy GetVacancyExtendedInformation(int idVacancy);
 
         List<City> GetCities(int idCountry);
 
@@ -109,6 +142,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
         List<LanguageProficiency> GetLanguageProficiencies();
 
         List<LanguageProficiency> GetLanguageProficiencies(string languageProficiencyName);
+
+        List<NecessarySkill> GetNecessarySkills(int idVacancy);
 
         List<Schedule> GetSchedules();
 
@@ -169,5 +204,7 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
         List<v_organizationWithoutPhoto> GetOrganizationsWithoutPhoto();
 
         List<v_user> GetUsers(int idRole, string login);
+
+        List<v_vacancy> GetMyVacancies(int idEmployer, int idProfessionCategory, int idProfession, string professionName, DateTime? beginValueClosingDate, DateTime? endValueClosingDate, DateTime beginValueDateOfRegistration, DateTime endValueDateOfRegistration, int? beginValueNumberOfAcceptedApplicants, int? endValueNumberOfAcceptedApplicants, int? beginValueNumberOfApprovedApplicants, int? endValueNumberOfApprovedApplicants, int? beginValueNumberOfInterestedApplicants, int? endValueNumberOfInterestedApplicants, int? beginValueNumberOfPotentialApplicants, int? endValueNumberOfPotentialApplicants, int? beginValueSalary, int? endValueSalary);
     }
 }

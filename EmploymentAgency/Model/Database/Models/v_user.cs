@@ -15,10 +15,10 @@ namespace EmploymentAgency.Model.Database.Models
     public partial class v_user
     {
         public int IdUser { get; set; }
+        public int IdRole { get; set; }
         public string RoleName { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
         public System.DateTime DateOfRegistration { get; set; }
-        public int IdRole { get; set; }
     }
 }

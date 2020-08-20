@@ -19,7 +19,7 @@
     mc:Ignorable="d">
     <UserControl.Resources>
         <c:ArrayByteToImageSource x:Key="ArrayByteToImageSource" />
-        <c:DateTimeToDateConverter x:Key="dateTimeToDateConverter" />
+        <c:DateTimeToDateConverter x:Key="DateTimeToDateConverter" />
     </UserControl.Resources>
     <Grid>
         <Border
@@ -162,7 +162,7 @@
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Center"
                                     FontSize="16"
-                                    Text="{Binding Path=DateOfRegistration, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource dateTimeToDateConverter}}"
+                                    Text="{Binding Path=DateOfRegistration, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource DateTimeToDateConverter}}"
                                     TextAlignment="Left"
                                     TextWrapping="NoWrap" />
                             </Grid>
@@ -187,7 +187,7 @@
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Center"
                                     FontSize="16"
-                                    Text="{Binding Path=ClosingDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource dateTimeToDateConverter}}"
+                                    Text="{Binding Path=ClosingDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource DateTimeToDateConverter}}"
                                     TextAlignment="Left"
                                     TextWrapping="NoWrap" />
                             </Grid>

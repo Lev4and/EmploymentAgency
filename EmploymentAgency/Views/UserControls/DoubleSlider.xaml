@@ -1,0 +1,88 @@
+﻿<UserControl
+    x:Class="EmploymentAgency.Views.UserControls.DoubleSlider"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:c="clr-namespace:EmploymentAgency.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:EmploymentAgency.Views.UserControls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mdt="http://materialdesigninxaml.net/winfx/xaml/themes"
+    x:Name="This"
+    d:DesignHeight="60"
+    d:DesignWidth="200"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <c:TextToDouble x:Key="TextToDouble" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+            <ColumnDefinition Width="50" />
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Label
+                    VerticalContentAlignment="Center"
+                    Content="От:"
+                    FontSize="14" />
+            </Grid>
+            <Grid Grid.Row="1">
+                <Label
+                    VerticalContentAlignment="Center"
+                    Content="До:"
+                    FontSize="14" />
+            </Grid>
+        </Grid>
+        <Grid Grid.Column="1" Margin="5,0,5,0">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Slider
+                    VerticalAlignment="Center"
+                    IsSnapToTickEnabled="{Binding ElementName=This, Path=IsSnapToTickEnabled}"
+                    Maximum="{Binding ElementName=This, Path=EndValue}"
+                    Minimum="{Binding ElementName=This, Path=MinValue}"
+                    TickFrequency="{Binding ElementName=This, Path=TickFrequency}"
+                    Value="{Binding ElementName=This, Path=BeginValue}" />
+            </Grid>
+            <Grid Grid.Row="1">
+                <Slider
+                    VerticalAlignment="Center"
+                    IsSnapToTickEnabled="{Binding ElementName=This, Path=IsSnapToTickEnabled}"
+                    Maximum="{Binding ElementName=This, Path=MaxValue}"
+                    Minimum="{Binding ElementName=This, Path=BeginValue}"
+                    TickFrequency="{Binding ElementName=This, Path=TickFrequency}"
+                    Value="{Binding ElementName=This, Path=EndValue}" />
+            </Grid>
+        </Grid>
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" VerticalAlignment="Center">
+                <TextBox
+                    VerticalAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    FontSize="14"
+                    Text="{Binding ElementName=This, Path=BeginValue, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource TextToDouble}}"
+                    TextAlignment="Right" />
+            </Grid>
+            <Grid Grid.Row="1" VerticalAlignment="Center">
+                <TextBox
+                    VerticalAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    FontSize="14"
+                    Text="{Binding ElementName=This, Path=EndValue, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource TextToDouble}}"
+                    TextAlignment="Right" />
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

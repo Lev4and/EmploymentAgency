@@ -29,4 +29,8 @@
     <Style x:Key="RemoveButtonStyle" TargetType="Button">
         <Setter Property="Template" Value="{StaticResource RemoveButtonTemplate}" />
     </Style>
+
+    <Style x:Key="LockButtonStyle" TargetType="Button">
+        <Setter Property="Template" Value="{StaticResource LockButtonTemplate}"/>
+    </Style>
 </ResourceDictionary>

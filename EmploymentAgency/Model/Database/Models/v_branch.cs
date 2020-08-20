@@ -22,14 +22,14 @@ namespace EmploymentAgency.Model.Database.Models
         public string IndustryName { get; set; }
         public int IdSubIndustry { get; set; }
         public string NameSubIndustry { get; set; }
-        public string Address { get; set; }
-        public string PhoneNumber { get; set; }
         public int IdCountry { get; set; }
-        public int IdCity { get; set; }
-        public int IdStreet { get; set; }
         public string CountryName { get; set; }
+        public int IdCity { get; set; }
         public string CityName { get; set; }
+        public int IdStreet { get; set; }
         public string StreetName { get; set; }
         public string NameHouse { get; set; }
+        public string Address { get; set; }
+        public string PhoneNumber { get; set; }
     }
 }

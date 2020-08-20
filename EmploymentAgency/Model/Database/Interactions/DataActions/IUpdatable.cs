@@ -1,5 +1,7 @@
 ﻿using EmploymentAgency.Model.Database.Models;
 using System;
+using System.Collections.Generic;
+using System.Windows.Documents;
 
 namespace EmploymentAgency.Model.Database.Interactions.DataActions
 {
@@ -56,5 +58,7 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
         void UpdateEmployer(int idEmployer, int idBranch, string name, string surname, string patronymic, byte[] photo, string phoneNumber);
 
         void UpdateManager(int idManager, string name, string surname, string patronymic, byte[] photo, string phoneNumber);
+
+        void UpdateVacancy(int idVacancy, string description, string duties, string requirements, string terms, int? salary, List<object> necessarySkills);
     }
 }

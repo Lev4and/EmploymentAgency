@@ -17,9 +17,9 @@ namespace EmploymentAgency.Model.Database.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Request()
         {
-            this.Contract = new HashSet<Contract>();
             this.PreferredEmploymentType = new HashSet<PreferredEmploymentType>();
             this.PreferredSchedule = new HashSet<PreferredSchedule>();
+            this.SuitableVacancy = new HashSet<SuitableVacancy>();
         }
     
         public int IdRequest { get; set; }
@@ -32,8 +32,6 @@ namespace EmploymentAgency.Model.Database.Models
         public int IdRequestStatus { get; set; }
     
         public virtual Applicant Applicant { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Contract> Contract { get; set; }
         public virtual Experience Experience { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PreferredEmploymentType> PreferredEmploymentType { get; set; }
@@ -41,5 +39,7 @@ namespace EmploymentAgency.Model.Database.Models
         public virtual ICollection<PreferredSchedule> PreferredSchedule { get; set; }
         public virtual Profession Profession { get; set; }
         public virtual RequestStatus RequestStatus { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SuitableVacancy> SuitableVacancy { get; set; }
     }
 }

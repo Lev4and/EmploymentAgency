@@ -1,5 +1,6 @@
 ﻿using DevExpress.Mvvm;
 using EmploymentAgency.Model.Configurations;
+using EmploymentAgency.Model.Database.Interactions;
 using EmploymentAgency.Model.Logic.Managers;
 using EmploymentAgency.Services;
 using EmploymentAgency.Views.Pages;
@@ -13,6 +14,7 @@ namespace EmploymentAgency.ViewModels
     public class MenuViewModel : BindableBase
     {
         private readonly MenuPageService _menuPageService;
+        private QueryExecutor _executor;
         private ConfigurationUser _config;
 
         public bool IsLeftDrawerOpen { get; set; }
@@ -144,7 +146,9 @@ namespace EmploymentAgency.ViewModels
 
         public ICommand PersonalInformation => new DelegateCommand(() =>
         {
-            _menuPageService.ChangePage(PageManager.GetPageManager(_config.IdUser).GetChangeInformationPage());
+            _executor = new QueryExecutor();
+
+            _menuPageService.ChangePage(PageManager.GetPageManager(_executor.GetIdRole(_config.RoleName)).GetChangeInformationPage());
         }, () => _config.RoleName == "Соискатель" || _config.RoleName == "Менеджер" || _config.RoleName == "Работодатель");
 
         public ICommand Exit => new DelegateCommand(() =>

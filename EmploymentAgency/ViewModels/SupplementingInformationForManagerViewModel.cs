@@ -3,6 +3,7 @@ using EmploymentAgency.Model.Configurations;
 using EmploymentAgency.Model.Database.Interactions;
 using EmploymentAgency.Model.Database.Models;
 using EmploymentAgency.Services;
+using EmploymentAgency.Views.Pages;
 using System;
 using System.Collections.ObjectModel;
 using System.Windows;
@@ -68,6 +69,8 @@ namespace EmploymentAgency.ViewModels
             if(_executor.AddManager(_config.IdUser, Name, Surname, Patronymic, (int)SelectedIdGender, Photo, DateOfBirth, PhoneNumber))
             {
                 MessageBox.Show("Успешное добавление информации");
+
+                _pageService.ChangePage(new Menu());
             }
             else
             {

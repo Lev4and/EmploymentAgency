@@ -39,6 +39,7 @@ namespace EmploymentAgency.Model.Database.Models
         public virtual DbSet<Education> Education { get; set; }
         public virtual DbSet<EducationalActivity> EducationalActivity { get; set; }
         public virtual DbSet<Employer> Employer { get; set; }
+        public virtual DbSet<EmploymentRequest> EmploymentRequest { get; set; }
         public virtual DbSet<EmploymentType> EmploymentType { get; set; }
         public virtual DbSet<Experience> Experience { get; set; }
         public virtual DbSet<Gender> Gender { get; set; }
@@ -66,17 +67,18 @@ namespace EmploymentAgency.Model.Database.Models
         public virtual DbSet<SuitableVacancy> SuitableVacancy { get; set; }
         public virtual DbSet<User> User { get; set; }
         public virtual DbSet<Vacancy> Vacancy { get; set; }
-        public virtual DbSet<v_branchSimplifiedInformation> v_branchSimplifiedInformation { get; set; }
-        public virtual DbSet<v_organizationWithoutPhoto> v_organizationWithoutPhoto { get; set; }
-        public virtual DbSet<v_user> v_user { get; set; }
-        public virtual DbSet<v_organization> v_organization { get; set; }
-        public virtual DbSet<v_branch> v_branch { get; set; }
-        public virtual DbSet<v_city> v_city { get; set; }
-        public virtual DbSet<v_street> v_street { get; set; }
-        public virtual DbSet<v_subIndustry> v_subIndustry { get; set; }
-        public virtual DbSet<v_profession> v_profession { get; set; }
         public virtual DbSet<v_applicant> v_applicant { get; set; }
+        public virtual DbSet<v_branch> v_branch { get; set; }
+        public virtual DbSet<v_branchSimplifiedInformation> v_branchSimplifiedInformation { get; set; }
+        public virtual DbSet<v_city> v_city { get; set; }
         public virtual DbSet<v_employer> v_employer { get; set; }
         public virtual DbSet<v_manager> v_manager { get; set; }
+        public virtual DbSet<v_organization> v_organization { get; set; }
+        public virtual DbSet<v_organizationWithoutPhoto> v_organizationWithoutPhoto { get; set; }
+        public virtual DbSet<v_profession> v_profession { get; set; }
+        public virtual DbSet<v_street> v_street { get; set; }
+        public virtual DbSet<v_subIndustry> v_subIndustry { get; set; }
+        public virtual DbSet<v_user> v_user { get; set; }
+        public virtual DbSet<v_vacancy> v_vacancy { get; set; }
     }
 }

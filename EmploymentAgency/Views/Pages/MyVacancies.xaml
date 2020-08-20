@@ -41,6 +41,7 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0" Margin="0,0,5,0">
@@ -82,6 +83,19 @@
                     </i:Interaction.Triggers>
                 </Button>
             </Grid>
+            <Grid Grid.Column="3" Margin="5,0,5,0">
+                <Button
+                    Width="50"
+                    Height="50"
+                    Command="{Binding Path=Remove}"
+                    Style="{StaticResource LockButtonStyle}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding Path=CloseVacancy}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+            </Grid>
         </Grid>
         <Grid
             Grid.Row="0"
@@ -118,13 +132,13 @@
             HorizontalAlignment="Right"
             VerticalAlignment="Top"
             Panel.ZIndex="1">
-            <!--<uc:SearchByInputField
+            <uc:SearchByInputField
                 x:Name="SearchByInputField"
                 Height="Auto"
-                Data="{Binding Path=Cities, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                DisplayMemberPath="CityName"
-                Hint="Название города"
-                SearchLine="{Binding Path=CityName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />-->
+                Data="{Binding Path=MyVacancies, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                DisplayMemberPath="ProfessionName"
+                Hint="Название профессии"
+                SearchLine="{Binding Path=ProfessionName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
         </Grid>
         <Grid
             Grid.Row="1"
@@ -140,33 +154,198 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
-                        <!--<Grid Grid.Row="0">
+                        <Grid Grid.Row="0">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
                             <Grid Grid.Row="0">
-                                <TextBlock Text="Страна" TextAlignment="Center" />
+                                <TextBlock Text="Сфера деятельности" TextAlignment="Center" />
                             </Grid>
                             <Grid Grid.Row="1">
                                 <ComboBox
-                                    x:Name="CountriesComboBox"
-                                    mdt:HintAssist.HelperText="Укажите страну"
-                                    mdt:HintAssist.Hint="Страна"
-                                    DisplayMemberPath="CountryName"
+                                    x:Name="ProfessionCategoriesComboBox"
+                                    mdt:HintAssist.HelperText="Укажите сферу деятельности"
+                                    mdt:HintAssist.Hint="Сфера деятельности"
+                                    DisplayMemberPath="NameProfessionCategory"
                                     FontSize="14"
                                     FontWeight="Medium"
-                                    IsEditable="True"
-                                    IsTextSearchEnabled="True"
-                                    ItemsSource="{Binding Path=DisplayedCountries, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                    SelectedValue="{Binding Path=SelectedIdCountry, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource SelectedValueToNullableInt32}}"
-                                    SelectedValuePath="IdCountry"
-                                    Text="{Binding Path=CountryName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                    ToolTip="{Binding ElementName=CountriesComboBox, Path=Text}" />
+                                    IsEditable="False"
+                                    IsTextSearchEnabled="False"
+                                    ItemsSource="{Binding Path=ProfessionCategories, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    SelectedValue="{Binding Path=SelectedIdProfessionCategory, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource SelectedValueToNullableInt32}}"
+                                    SelectedValuePath="IdProfessionCategory"
+                                    ToolTip="{Binding ElementName=ProfessionCategoriesComboBox, Path=Text}" />
                             </Grid>
                         </Grid>
                         <Grid Grid.Row="1" Margin="0,20,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <TextBlock Text="Профессия" TextAlignment="Center" />
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <ComboBox
+                                    x:Name="ProfessionsComboBox"
+                                    mdt:HintAssist.HelperText="Укажите профессию"
+                                    mdt:HintAssist.Hint="Профессия"
+                                    DisplayMemberPath="ProfessionName"
+                                    FontSize="14"
+                                    FontWeight="Medium"
+                                    IsEditable="False"
+                                    IsTextSearchEnabled="False"
+                                    ItemsSource="{Binding Path=Professions, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    SelectedValue="{Binding Path=SelectedIdProfession, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource SelectedValueToNullableInt32}}"
+                                    SelectedValuePath="IdProfession"
+                                    ToolTip="{Binding ElementName=ProfessionsComboBox, Path=Text}" />
+                            </Grid>
+                        </Grid>
+                        <Grid Grid.Row="2" Margin="0,20,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <TextBlock Text="Публикация" TextAlignment="Center" />
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <uc:DoubleDatePicker
+                                    MinSelectedDate="{Binding Path=MinValueDateOfRegistration, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    MaxSelectedDate="{Binding Path=MaxValueDateOfRegistration, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    BeginSelectedDate="{Binding Path=BeginValueDateOfRegistration, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    EndSelectedDate="{Binding Path=EndValueDateOfRegistration, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                            </Grid>
+                        </Grid>
+                        <Grid Grid.Row="3" Margin="0,10,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <TextBlock Text="Закрытие" TextAlignment="Center" />
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <uc:DoubleDatePicker
+                                    MinSelectedDate="{Binding Path=MinValueClosingDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    MaxSelectedDate="{Binding Path=MaxValueClosingDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    BeginSelectedDate="{Binding Path=BeginValueClosingDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    EndSelectedDate="{Binding Path=EndValueClosingDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                            </Grid>
+                        </Grid>
+                        <Grid Grid.Row="4" Margin="0,10,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <TextBlock Text="Оклад" TextAlignment="Center" />
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <uc:DoubleSlider
+                                    IsSnapToTickEnabled="True"
+                                    MaxValue="{Binding Path=MaxValueSalary, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    MinValue="{Binding Path=MinValueSalary, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    BeginValue="{Binding Path=BeginValueSalary, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    EndValue="{Binding Path=EndValueSalary, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    TickFrequency="1" />
+                            </Grid>
+                        </Grid>
+                        <Grid Grid.Row="5" Margin="0,20,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <TextBlock
+                                    Text="Потенциальные соискатели"
+                                    TextAlignment="Center"
+                                    TextWrapping="Wrap" />
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <uc:DoubleSlider
+                                    IsSnapToTickEnabled="True"
+                                    MaxValue="{Binding Path=MaxValueNumberOfPotentialApplicants,  UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    MinValue="{Binding Path=MinValueNumberOfPotentialApplicants, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    BeginValue="{Binding Path=BeginValueNumberOfPotentialApplicants,  UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    EndValue="{Binding Path=EndValueNumberOfPotentialApplicants, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    TickFrequency="1" />
+                            </Grid>
+                        </Grid>
+                        <Grid Grid.Row="6" Margin="0,20,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <TextBlock
+                                    Text="Заинтересовавшиеся соискатели"
+                                    TextAlignment="Center"
+                                    TextWrapping="Wrap" />
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <uc:DoubleSlider
+                                    IsSnapToTickEnabled="True"
+                                    MaxValue="{Binding Path=MaxValueNumberOfInterestedApplicants,  UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    MinValue="{Binding Path=MinValueNumberOfInterestedApplicants, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    BeginValue="{Binding Path=BeginValueNumberOfInterestedApplicants, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    EndValue="{Binding Path=EndValueNumberOfInterestedApplicants, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    TickFrequency="1" />
+                            </Grid>
+                        </Grid>
+                        <Grid Grid.Row="7" Margin="0,20,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <TextBlock
+                                    Text="Одобренные соискатели"
+                                    TextAlignment="Center"
+                                    TextWrapping="Wrap" />
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <uc:DoubleSlider
+                                    IsSnapToTickEnabled="True"
+                                    MaxValue="{Binding Path=MaxValueNumberOfApprovedApplicants,  UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    MinValue="{Binding Path=MinValueNumberOfApprovedApplicants,  UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    BeginValue="{Binding Path=BeginValueNumberOfApprovedApplicants,  UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    EndValue="{Binding Path=EndValueNumberOfInterestedApplicants,  UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    TickFrequency="1" />
+                            </Grid>
+                        </Grid>
+                        <Grid Grid.Row="8" Margin="0,20,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <TextBlock
+                                    Text="Принятые соискатели"
+                                    TextAlignment="Center"
+                                    TextWrapping="Wrap" />
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <uc:DoubleSlider
+                                    IsSnapToTickEnabled="True"
+                                    MaxValue="{Binding Path=MaxValueNumberOfAcceptedApplicants, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    MinValue="{Binding Path=MinValueNumberOfAcceptedApplicants, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    BeginValue="{Binding Path=BeginValueNumberOfAcceptedApplicants, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    EndValue="{Binding Path=EndValueNumberOfAcceptedApplicants, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    TickFrequency="1" />
+                            </Grid>
+                        </Grid>
+                        <Grid Grid.Row="9" Margin="0,5,0,0">
                             <Button
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
@@ -182,7 +361,7 @@
                                     </i:EventTrigger>
                                 </i:Interaction.Triggers>
                             </Button>
-                        </Grid>-->
+                        </Grid>
                     </Grid>
                 </ScrollViewer>
             </GroupBox>
@@ -191,11 +370,11 @@
             Grid.Row="1"
             Grid.Column="1"
             Margin="5">
-            <!--<uc:BlockViewItems
-                Data="{Binding Path=Cities, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                SelectedValue="{Binding Path=SelectedIdCity, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                SelectedValuePath="IdCity"
-                TypeItem="BlockViewCity" />-->
+            <uc:BlockViewItems
+                Data="{Binding Path=MyVacancies, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                SelectedValue="{Binding Path=SelectedIdVacancy, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                SelectedValuePath="IdVacancy"
+                TypeItem="BlockViewVacancy" />
         </Grid>
     </Grid>
 </Page>

@@ -15,10 +15,10 @@ namespace EmploymentAgency.Model.Database.Models
     public partial class v_organizationWithoutPhoto
     {
         public int IdOrganization { get; set; }
+        public int IdIndustry { get; set; }
         public int IdSubIndustry { get; set; }
         public string OrganizationName { get; set; }
         public System.DateTime DateOfRegistration { get; set; }
         public Nullable<System.DateTime> ClosingDate { get; set; }
-        public int IdIndustry { get; set; }
     }
 }

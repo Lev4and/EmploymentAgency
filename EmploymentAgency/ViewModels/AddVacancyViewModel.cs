@@ -3,7 +3,6 @@ using DevExpress.Mvvm;
 using EmploymentAgency.Model.Configurations;
 using EmploymentAgency.Model.Database.Interactions;
 using EmploymentAgency.Model.Database.Models;
-using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
@@ -124,11 +123,6 @@ namespace EmploymentAgency.ViewModels
 
         public ObservableCollection<Profession> DisplayedProfessions { get; set; }
 
-        public AddVacancyViewModel()
-        {
-
-        }
-
         public ICommand Loaded => new DelegateCommand(() =>
         {
             _executor = new QueryExecutor();
@@ -153,25 +147,13 @@ namespace EmploymentAgency.ViewModels
 
         public ICommand Add => new DelegateCommand(() =>
         {
-            Vacancy vacancy = null;
-
-            _executor.AddVacancy(_config.IdUser, (int)SelectedIdProfession, (int)SelectedIdEmploymentType, (int)SelectedIdSchedule, (int)SelectedIdExperience, Description, Duties, Requirements, Terms, Salary, out vacancy);
-
-            AddNecessarySkills(vacancy);
+            _executor.AddVacancy(_config.IdUser, (int)SelectedIdProfession, (int)SelectedIdEmploymentType, (int)SelectedIdSchedule, (int)SelectedIdExperience, Description, Duties, Requirements, Terms, Salary, SelectedSkills.ToList());
 
             MessageBox.Show("Успешное добавление");
         }, () => SelectedIdProfession != null &&
                  SelectedIdEmploymentType != null &&
                  SelectedIdSchedule != null &&
                  SelectedIdExperience != null);
-
-        private void AddNecessarySkills(Vacancy vacancy)
-        {
-            foreach(var selectedSkill in SelectedSkills)
-            {
-                _executor.AddNecessarySkill(vacancy.IdVacancy, Convert.ToInt32(selectedSkill));
-            }
-        }
 
         private void UpdateProfessions()
         {

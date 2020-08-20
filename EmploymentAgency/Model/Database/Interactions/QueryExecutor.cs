@@ -1,4 +1,5 @@
-﻿using EmploymentAgency.Model.Configurations;
+﻿using DevExpress.Mvvm.UI;
+using EmploymentAgency.Model.Configurations;
 using EmploymentAgency.Model.Database.Models;
 using EmploymentAgency.Model.Logic;
 using System;
@@ -354,6 +355,14 @@ namespace EmploymentAgency.Model.Database.Interactions
             return false;
         }
 
+        public void AddNecessarySkills(int idVacancy, List<object> necessarySkills)
+        {
+            foreach(var necessarySkill in necessarySkills)
+            {
+                AddNecessarySkill(idVacancy, Convert.ToInt32(necessarySkill));
+            }
+        }
+
         public bool AddOrganization(int idSubIndustry, string organizationName, byte[] photo)
         {
             if(!ContainsOrganization(organizationName))
@@ -627,9 +636,9 @@ namespace EmploymentAgency.Model.Database.Interactions
             return false;
         }
 
-        public void AddVacancy(int idEmployer, int idProfession, int idEmploymentType, int idSchedule, int idExperience, string description, string duties, string requirements, string terms, int? salary, out Vacancy vacancy)
+        public void AddVacancy(int idEmployer, int idProfession, int idEmploymentType, int idSchedule, int idExperience, string description, string duties, string requirements, string terms, int? salary, List<object> necessarySkills)
         {
-            vacancy = null;
+            Vacancy vacancy = null;
 
             DateTime dateTime = DateTime.Now;
 
@@ -647,6 +656,17 @@ namespace EmploymentAgency.Model.Database.Interactions
                 Salary = salary,
                 DateOfRegistration = dateTime
             });
+            _context.SaveChanges();
+
+            AddNecessarySkills(vacancy.IdVacancy, necessarySkills);
+        }
+
+        public void CloseVacancy(int idVacancy)
+        {
+            var vacancy = GetVacancy(idVacancy);
+
+            vacancy.ClosingDate = DateTime.Now;
+
             _context.SaveChanges();
         }
 
@@ -671,6 +691,14 @@ namespace EmploymentAgency.Model.Database.Interactions
             var laborActivities = GetLaborActivities(idApplicant);
 
             _context.LaborActivity.RemoveRange(laborActivities);
+            _context.SaveChanges();
+        }
+
+        public void CompleteRemovalNecessarySkills(int idVacancy)
+        {
+            var necessarySkills = GetNecessarySkills(idVacancy);
+
+            _context.NecessarySkill.RemoveRange(necessarySkills);
             _context.SaveChanges();
         }
 
@@ -1124,6 +1152,104 @@ namespace EmploymentAgency.Model.Database.Interactions
             return _context.v_manager.SingleOrDefault(m => m.IdManager == idManager);
         }
 
+        public DateTime? GetMaxClosingDateMyVacancy(int idEmployer)
+        {
+            return _context.v_vacancy.Where(v => v.IdEmployer == idEmployer).AsNoTracking().Max(v => v.ClosingDate);
+        }
+
+        public DateTime GetMaxDateOfRegistrationMyVacancy(int idEmployer)
+        {
+            return _context.v_vacancy.Where(v => v.IdEmployer == idEmployer).AsNoTracking().Max(v => v.DateOfRegistration);
+        }
+
+        public int? GetMaxNumberOfAcceptedApplicantsMyVacancy(int idEmployer)
+        {
+            return _context.v_vacancy.Where(v => v.IdEmployer == idEmployer).AsNoTracking().Max(v => v.NumberOfAcceptedApplicants);
+        }
+
+        public int? GetMaxNumberOfApprovedApplicantsMyVacancy(int idEmployer)
+        {
+            return _context.v_vacancy.Where(v => v.IdEmployer == idEmployer).AsNoTracking().Max(v => v.NumberOfApprovedApplicants);
+        }
+
+        public int? GetMaxNumberOfInterestedApplicantsMyVacancy(int idEmployer)
+        {
+            return _context.v_vacancy.Where(v => v.IdEmployer == idEmployer).AsNoTracking().Max(v => v.NumberOfInterestedApplicants);
+        }
+
+        public int? GetMaxNumberOfPotentialApplicantsMyVacancy(int idEmployer)
+        {
+            return _context.v_vacancy.Where(v => v.IdEmployer == idEmployer).AsNoTracking().Max(v => v.NumberOfPotentialApplicants);
+        }
+
+        public int? GetMaxSalaryMyVacancy(int idEmployer)
+        {
+            return _context.v_vacancy.Where(v => v.IdEmployer == idEmployer).AsNoTracking().Max(v => v.Salary);
+        }
+
+        public DateTime? GetMinClosingDateMyVacancy(int idEmployer)
+        {
+            return _context.v_vacancy.Where(v => v.IdEmployer == idEmployer).AsNoTracking().Min(v => v.ClosingDate);
+        }
+
+        public DateTime GetMinDateOfRegistrationMyVacancy(int idEmployer)
+        {
+            return _context.v_vacancy.Where(v => v.IdEmployer == idEmployer).AsNoTracking().Min(v => v.DateOfRegistration);
+        }
+
+        public int? GetMinNumberOfAcceptedApplicantsMyVacancy(int idEmployer)
+        {
+            return _context.v_vacancy.Where(v => v.IdEmployer == idEmployer).AsNoTracking().Min(v => v.NumberOfAcceptedApplicants);
+        }
+
+        public int? GetMinNumberOfApprovedApplicantsMyVacancy(int idEmployer)
+        {
+            return _context.v_vacancy.Where(v => v.IdEmployer == idEmployer).AsNoTracking().Min(v => v.NumberOfApprovedApplicants);
+        }
+
+        public int? GetMinNumberOfInterestedApplicantsMyVacancy(int idEmployer)
+        {
+            return _context.v_vacancy.Where(v => v.IdEmployer == idEmployer).AsNoTracking().Min(v => v.NumberOfInterestedApplicants);
+        }
+
+        public int? GetMinNumberOfPotentialApplicantsMyVacancy(int idEmployer)
+        {
+            return _context.v_vacancy.Where(v => v.IdEmployer == idEmployer).AsNoTracking().Min(v => v.NumberOfPotentialApplicants);
+        }
+
+        public int? GetMinSalaryMyVacancy(int idEmployer)
+        {
+            return _context.v_vacancy.Where(v => v.IdEmployer == idEmployer).AsNoTracking().Min(v => v.Salary);
+        }
+
+        public List<v_vacancy> GetMyVacancies(int idEmployer, int idProfessionCategory, int idProfession, string professionName, DateTime? beginValueClosingDate, DateTime? endValueClosingDate, DateTime beginValueDateOfRegistration, DateTime endValueDateOfRegistration, int? beginValueNumberOfAcceptedApplicants, int? endValueNumberOfAcceptedApplicants, int? beginValueNumberOfApprovedApplicants, int? endValueNumberOfApprovedApplicants, int? beginValueNumberOfInterestedApplicants, int? endValueNumberOfInterestedApplicants, int? beginValueNumberOfPotentialApplicants, int? endValueNumberOfPotentialApplicants, int? beginValueSalary, int? endValueSalary)
+        {
+            return _context.v_vacancy.Where(v =>
+            v.IdEmployer == idEmployer &&
+            (idProfessionCategory != -1 ? v.IdProfessionCategory == idProfessionCategory : true) &&
+            (idProfession != -1 ? v.IdProfession == idProfession : true) &&
+            (professionName.Length > 0 ? v.ProfessionName.ToLower().StartsWith(professionName.ToLower()) : true) &&
+            (beginValueClosingDate != null ? v.ClosingDate >= beginValueClosingDate : true) &&
+            (endValueClosingDate != null ? v.ClosingDate <= endValueClosingDate : true) &&
+            v.DateOfRegistration >= beginValueDateOfRegistration &&
+            v.DateOfRegistration <= endValueDateOfRegistration &&
+            v.NumberOfAcceptedApplicants >= beginValueNumberOfAcceptedApplicants &&
+            v.NumberOfAcceptedApplicants <= endValueNumberOfAcceptedApplicants &&
+            v.NumberOfApprovedApplicants >= beginValueNumberOfApprovedApplicants &&
+            v.NumberOfApprovedApplicants <= endValueNumberOfApprovedApplicants &&
+            v.NumberOfInterestedApplicants >= beginValueNumberOfInterestedApplicants &&
+            v.NumberOfInterestedApplicants <= endValueNumberOfInterestedApplicants &&
+            v.NumberOfPotentialApplicants >= beginValueNumberOfPotentialApplicants &&
+            v.NumberOfPotentialApplicants <= endValueNumberOfPotentialApplicants &&
+            v.Salary >= beginValueSalary &&
+            v.Salary <= endValueSalary).AsNoTracking().ToList();
+        }
+
+        public List<NecessarySkill> GetNecessarySkills(int idVacancy)
+        {
+            return _context.NecessarySkill.Where(n => n.IdVacancy == idVacancy).ToList();
+        }
+
         public Organization GetOrganization(int idOrganization)
         {
             return _context.Organization.Single(o => o.IdOrganization == idOrganization);
@@ -1329,6 +1455,21 @@ namespace EmploymentAgency.Model.Database.Interactions
             (login.Length > 0 ? u.Login.ToLower().StartsWith(login.ToLower()) : true)).OrderBy(u => u.Login).AsNoTracking().ToList();
         }
 
+        public Vacancy GetVacancy(int idVacancy)
+        {
+            return _context.Vacancy.SingleOrDefault(v => v.IdVacancy == idVacancy);
+        }
+
+        public v_vacancy GetVacancyExtendedInformation(int idVacancy)
+        {
+            return _context.v_vacancy.SingleOrDefault(v => v.IdVacancy == idVacancy);
+        }
+
+        public bool IsClosedVacancy(int idVacancy)
+        {
+            return GetVacancy(idVacancy).ClosingDate != null;
+        }
+
         public bool IsRelatedToStaff(int idUser)
         {
             var user = GetUserExtendedInformation(idUser);
@@ -1512,6 +1653,14 @@ namespace EmploymentAgency.Model.Database.Interactions
             var user = GetUser(idUser);
 
             _context.User.Remove(user);
+            _context.SaveChanges();
+        }
+
+        public void RemoveVacancy(int idVacancy)
+        {
+            var vacancy = GetVacancy(idVacancy);
+
+            _context.Vacancy.Remove(vacancy);
             _context.SaveChanges();
         }
 
@@ -1990,6 +2139,22 @@ namespace EmploymentAgency.Model.Database.Interactions
             }
 
             return false;
+        }
+
+        public void UpdateVacancy(int idVacancy, string description, string duties, string requirements, string terms, int? salary, List<object> necessarySkills)
+        {
+            var vacancy = GetVacancy(idVacancy);
+
+            vacancy.Description = description;
+            vacancy.Duties = duties;
+            vacancy.Requirements = requirements;
+            vacancy.Terms = terms;
+            vacancy.Salary = salary;
+
+            _context.SaveChanges();
+
+            CompleteRemovalNecessarySkills(idVacancy);
+            AddNecessarySkills(idVacancy, necessarySkills);
         }
 
         private void SetCommandTimeout()

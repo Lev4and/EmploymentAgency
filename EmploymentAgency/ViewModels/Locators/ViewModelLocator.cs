@@ -161,6 +161,8 @@ namespace EmploymentAgency.ViewModels.Locators
 
         public MyVacanciesViewModel MyVacanciesViewModel => _provider.GetRequiredService<MyVacanciesViewModel>();
 
+        public ChangeVacancyViewModel ChangeVacancyViewModel => _provider.GetRequiredService<ChangeVacancyViewModel>();
+
         public static void Init()
         {
             var services = new ServiceCollection();
@@ -242,6 +244,7 @@ namespace EmploymentAgency.ViewModels.Locators
             services.AddTransient<ChangeSupplementInformationForManagerViewModel>();
             services.AddTransient<AddVacancyViewModel>();
             services.AddTransient<MyVacanciesViewModel>();
+            services.AddTransient<ChangeVacancyViewModel>();
 
             services.AddSingleton<PageService>();
             services.AddSingleton<MenuPageService>();

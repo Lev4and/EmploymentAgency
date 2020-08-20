@@ -14,14 +14,22 @@ namespace EmploymentAgency.Model.Database.Models
     
     public partial class SuitableVacancy
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public SuitableVacancy()
+        {
+            this.EmploymentRequest = new HashSet<EmploymentRequest>();
+        }
+    
         public int IdSuitableVacancy { get; set; }
+        public int IdRequest { get; set; }
         public int IdManager { get; set; }
-        public int IdApplicant { get; set; }
         public int IdVacancy { get; set; }
         public System.DateTime DiscoveryDate { get; set; }
     
-        public virtual Applicant Applicant { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<EmploymentRequest> EmploymentRequest { get; set; }
         public virtual Manager Manager { get; set; }
+        public virtual Request Request { get; set; }
         public virtual Vacancy Vacancy { get; set; }
     }
 }

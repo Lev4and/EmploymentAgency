@@ -12,6 +12,8 @@
 
         void CompleteRemovalLaborActivities(int idApplicant);
 
+        void CompleteRemovalNecessarySkills(int idVacancy);
+
         void RemoveBranch(int idBranch);
 
         void RemoveCity(int idCity);
@@ -53,5 +55,7 @@
         void RemoveSubIndustry(int idSubIndustry);
 
         void RemoveUser(int idUser);
+
+        void RemoveVacancy(int idVacancy);
     }
 }

@@ -2,8 +2,12 @@
 {
     public interface IFunctionable
     {
+        bool IsClosedVacancy(int idVacancy);
+
         bool IsRelatedToStaff(int idUser);
 
         bool NecessaryToSupplementTheInformation(int idUser);
+
+        void CloseVacancy(int idVacancy);
     }
 }
