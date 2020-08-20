@@ -101,11 +101,6 @@ namespace EmploymentAgency.ViewModels
 
         public ObservableCollection<Profession> Professions { get; set; }
 
-        public MyVacanciesViewModel()
-        {
-
-        }
-
         public ICommand Loaded => new DelegateCommand(() =>
         {
             _executor = new QueryExecutor();

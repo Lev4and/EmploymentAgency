@@ -18,11 +18,6 @@ namespace EmploymentAgency.ViewModels
 
         public string ProfessionName { get; set; }
 
-        public ChangeProfessionViewModel()
-        {
-
-        }
-
         public ICommand Loaded => new DelegateCommand(() =>
         {
             _executor = new QueryExecutor();

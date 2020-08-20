@@ -1,5 +1,4 @@
-﻿using DevExpress.Mvvm.UI;
-using EmploymentAgency.Model.Configurations;
+﻿using EmploymentAgency.Model.Configurations;
 using EmploymentAgency.Model.Database.Models;
 using EmploymentAgency.Model.Logic;
 using System;
@@ -23,11 +22,13 @@ namespace EmploymentAgency.Model.Database.Interactions
             SetCommandTimeout();
         }
 
-        public bool AddApplicant(int idUser, string name, string surname, string patronymic, int idGender, byte[] photo, DateTime dateOfBirth, string phoneNumber, int idStreet, string nameHouse, string apartment)
+        public bool AddApplicant(int idUser, string name, string surname, string patronymic, int idGender, byte[] photo, DateTime dateOfBirth, string phoneNumber, int idStreet, string nameHouse, string apartment, List<object> possessionSkills, List<object> possessionDrivingLicenseCategories, List<EducationalActivity> educationalActivities, List<KnowledgeLanguage> knowledgeLanguages, List<LaborActivity> laborActivities)
         {
+            Applicant applicant = null;
+
             if(!ContainsApplicant(idUser))
             {
-                _context.Applicant.Add(new Applicant
+                applicant = _context.Applicant.Add(new Applicant
                 {
                     IdApplicant = idUser,
                     Name = name,
@@ -42,6 +43,13 @@ namespace EmploymentAgency.Model.Database.Interactions
                     Apartment = apartment,
                     IsEmployed = false
                 });
+                _context.SaveChanges();
+
+                AddPossessionSkills(applicant.IdApplicant, possessionSkills);
+                AddPossessionDrivingLicenseCategories(applicant.IdApplicant, possessionDrivingLicenseCategories);
+                AddEducationalActivities(applicant.IdApplicant, educationalActivities);
+                AddKnowledgeLanguages(applicant.IdApplicant, knowledgeLanguages);
+                AddLaborActivities(applicant.IdApplicant, laborActivities);
 
                 return true;
             }
@@ -132,6 +140,14 @@ namespace EmploymentAgency.Model.Database.Interactions
             }
 
             return false;
+        }
+
+        public void AddEducationalActivities(int idApplicant, List<EducationalActivity> educationalActivities)
+        {
+            foreach (var educationalActivity in educationalActivities)
+            {
+                AddEducationalActivity(idApplicant, educationalActivity.IdEducation, educationalActivity.NameEducationalnstitution, educationalActivity.Address, educationalActivity.StartDate, educationalActivity.EndDate);
+            }
         }
 
         public bool AddEducationalActivity(int idApplicant, int idEducation, string nameEducationalnstitution, string address, DateTime startDate, DateTime? endDate)
@@ -259,6 +275,22 @@ namespace EmploymentAgency.Model.Database.Interactions
             }
 
             return false;
+        }
+
+        public void AddKnowledgeLanguages(int idApplicant, List<KnowledgeLanguage> knowledgeLanguages)
+        {
+            foreach (var knowledgeLanguage in knowledgeLanguages)
+            {
+                AddKnowledgeLanguage(idApplicant, knowledgeLanguage.IdLanguage, knowledgeLanguage.IdLanguageProficiency);
+            }
+        }
+
+        public void AddLaborActivities(int idApplicant, List<LaborActivity> laborActivities)
+        {
+            foreach (var laborActivity in laborActivities)
+            {
+                AddLaborActivity(idApplicant, laborActivity.OrganizationName, laborActivity.OrganizationAddress, laborActivity.ProfessionName, laborActivity.Activity, laborActivity.StartDate, laborActivity.EndDate);
+            }
         }
 
         public bool AddLaborActivity(int idApplicant, string organizationName, string organizationAddress, string professionName, string activity, DateTime startDate, DateTime? endDate)
@@ -407,6 +439,14 @@ namespace EmploymentAgency.Model.Database.Interactions
             return false;
         }
 
+        public void AddPossessionDrivingLicenseCategories(int idApplicant, List<object> possessionDrivingLicenseCategories)
+        {
+            foreach (var possessionDrivingLicenseCategory in possessionDrivingLicenseCategories)
+            {
+                AddPossessionDrivingLicenseCategory(idApplicant, Convert.ToInt32((object)possessionDrivingLicenseCategory));
+            }
+        }
+
         public bool AddPossessionDrivingLicenseCategory(int idApplicant, int idDrivingLicenseCategory)
         {
             if(!ContainsPossessionDrivingLicenseCategory(idApplicant, idDrivingLicenseCategory))
@@ -439,6 +479,14 @@ namespace EmploymentAgency.Model.Database.Interactions
             }
 
             return false;
+        }
+
+        public void AddPossessionSkills(int idApplicant, List<object> possessionSkills)
+        {
+            foreach (var possessionSkill in possessionSkills)
+            {
+                AddPossessionSkill(idApplicant, Convert.ToInt32((object)possessionSkill));
+            }
         }
 
         public bool AddProfession(int idProfessionCategory, string professionName)
@@ -1664,7 +1712,7 @@ namespace EmploymentAgency.Model.Database.Interactions
             _context.SaveChanges();
         }
 
-        public void UpdateApplicant(int idApplicant, string name, string surname, string patronymic, byte[] photo, string phoneNumber, int idStreet, string nameHouse, string apartment)
+        public void UpdateApplicant(int idApplicant, string name, string surname, string patronymic, byte[] photo, string phoneNumber, int idStreet, string nameHouse, string apartment, List<object> possessionSkills, List<object> possessionDrivingLicenseCategories, List<EducationalActivity> educationalActivities, List<KnowledgeLanguage> knowledgeLanguages, List<LaborActivity> laborActivities)
         {
             var applicant = GetApplicant(idApplicant);
 
@@ -1678,6 +1726,12 @@ namespace EmploymentAgency.Model.Database.Interactions
             applicant.Apartment = apartment;
 
             _context.SaveChanges();
+
+            UpdatePossessionSkills(idApplicant, possessionSkills);
+            UpdatePossessionDrivingLicenseCategories(idApplicant, possessionDrivingLicenseCategories);
+            UpdateEducationalActivities(idApplicant, educationalActivities);
+            UpdateKnowledgeLanguages(idApplicant, knowledgeLanguages);
+            UpdateLaborActivities(idApplicant, laborActivities);
         }
 
         public void UpdateBranch(int idBranch, string phoneNumber)
@@ -1755,6 +1809,12 @@ namespace EmploymentAgency.Model.Database.Interactions
             }
 
             return false;
+        }
+
+        public void UpdateEducationalActivities(int idApplicant, List<EducationalActivity> educationalActivities)
+        {
+            CompleteRemovalEducationActivities(idApplicant);
+            AddEducationalActivities(idApplicant, educationalActivities);
         }
 
         public void UpdateEmployer(int idEmployer, int idBranch, string name, string surname, string patronymic, byte[] photo, string phoneNumber)
@@ -1835,6 +1895,18 @@ namespace EmploymentAgency.Model.Database.Interactions
             return false;
         }
 
+        public void UpdateKnowledgeLanguages(int idApplicant, List<KnowledgeLanguage> knowledgeLanguages)
+        {
+            CompleteRemovalKnowledgeLanguages(idApplicant);
+            AddKnowledgeLanguages(idApplicant, knowledgeLanguages);
+        }
+
+        public void UpdateLaborActivities(int idApplicant, List<LaborActivity> laborActivities)
+        {
+            CompleteRemovalLaborActivities(idApplicant);
+            AddLaborActivities(idApplicant, laborActivities);
+        }
+
         public bool UpdateLanguage(int idLanguage, string languageName)
         {
             if(!ContainsLanguage(languageName))
@@ -1881,6 +1953,12 @@ namespace EmploymentAgency.Model.Database.Interactions
             _context.SaveChanges();
         }
 
+        public void UpdateNecessarySkills(int idVacancy, List<object> necessarySkills)
+        {
+            CompleteRemovalNecessarySkills(idVacancy);
+            AddNecessarySkills(idVacancy, necessarySkills);
+        }
+
         public bool UpdateOrganization(int idOrganization, string organizationName, byte[] photo, DateTime? closingDate)
         {
             var organization = GetOrganization(idOrganization);
@@ -1909,6 +1987,18 @@ namespace EmploymentAgency.Model.Database.Interactions
             }
 
             return false;
+        }
+
+        public void UpdatePossessionDrivingLicenseCategories(int idApplicant, List<object> possessionDrivingLicenseCategories)
+        {
+            CompleteRemovalPossessionDrivingLicenseCategories(idApplicant);
+            AddPossessionDrivingLicenseCategories(idApplicant, possessionDrivingLicenseCategories);
+        }
+
+        public void UpdatePossessionSkills(int idApplicant, List<object> possessionSkills)
+        {
+            CompleteRemovalPossessionSkills(idApplicant);
+            AddPossessionSkills(idApplicant, possessionSkills);
         }
 
         public bool UpdateProfession(int idProfession, string professionName)
@@ -2153,8 +2243,7 @@ namespace EmploymentAgency.Model.Database.Interactions
 
             _context.SaveChanges();
 
-            CompleteRemovalNecessarySkills(idVacancy);
-            AddNecessarySkills(idVacancy, necessarySkills);
+            UpdateNecessarySkills(idVacancy, necessarySkills);
         }
 
         private void SetCommandTimeout()

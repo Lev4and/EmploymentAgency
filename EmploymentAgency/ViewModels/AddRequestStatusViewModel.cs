@@ -11,11 +11,6 @@ namespace EmploymentAgency.ViewModels
 
         public string RequestStatusName { get; set; }
 
-        public AddRequestStatusViewModel()
-        {
-
-        }
-
         public ICommand Loaded => new DelegateCommand(() =>
         {
             _executor = new QueryExecutor();

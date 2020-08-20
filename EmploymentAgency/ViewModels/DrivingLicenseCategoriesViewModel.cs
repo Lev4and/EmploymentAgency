@@ -20,11 +20,6 @@ namespace EmploymentAgency.ViewModels
 
         public ObservableCollection<object> DrivingLicenseCategories { get; set; }
 
-        public DrivingLicenseCategoriesViewModel()
-        {
-
-        }
-
         public ICommand Loaded => new DelegateCommand(() =>
         {
             _executor = new QueryExecutor();

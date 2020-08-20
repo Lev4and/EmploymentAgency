@@ -255,11 +255,6 @@ namespace EmploymentAgency.ViewModels
 
         public ObservableCollection<v_organizationWithoutPhoto> Organizations { get; set; }
 
-        public BranchesViewModel()
-        {
-
-        }
-
         public ICommand Loaded => new DelegateCommand(() =>
         {
             _executor = new QueryExecutor();
@@ -302,7 +297,7 @@ namespace EmploymentAgency.ViewModels
         public ICommand ResetFilters => new DelegateCommand(() =>
         {
             ResetToDefault();
-        }, () => (OrganizationName != null ? OrganizationName.Length > 0 : false));
+        });
 
         private void ResetToDefault()
         {

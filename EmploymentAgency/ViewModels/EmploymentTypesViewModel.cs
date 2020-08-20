@@ -20,11 +20,6 @@ namespace EmploymentAgency.ViewModels
 
         public ObservableCollection<object> EmploymentTypes { get; set; }
 
-        public EmploymentTypesViewModel()
-        {
-
-        }
-
         public ICommand Loaded => new DelegateCommand(() =>
         {
             _executor = new QueryExecutor();

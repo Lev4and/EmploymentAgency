@@ -16,11 +16,6 @@ namespace EmploymentAgency.ViewModels
 
         public string RoleName { get; set; }
 
-        public ChangeRoleViewModel()
-        {
-
-        }
-
         public ICommand Loaded => new DelegateCommand(() =>
         {
             _executor = new QueryExecutor();

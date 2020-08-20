@@ -20,11 +20,6 @@ namespace EmploymentAgency.ViewModels
 
         public string StreetName { get; set; }
 
-        public ChangeStreetViewModel()
-        {
-
-        }
-
         public ICommand Loaded => new DelegateCommand(() =>
         {
             _executor = new QueryExecutor();

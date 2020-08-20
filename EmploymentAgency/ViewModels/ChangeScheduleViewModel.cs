@@ -16,11 +16,6 @@ namespace EmploymentAgency.ViewModels
         
         public string ScheduleName { get; set; }
 
-        public ChangeScheduleViewModel()
-        {
-
-        }
-
         public ICommand Loaded => new DelegateCommand(() =>
         {
             _executor = new QueryExecutor();

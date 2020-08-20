@@ -174,11 +174,6 @@ namespace EmploymentAgency.ViewModels
 
         public ObservableCollection<v_organizationWithoutPhoto> DisplayedOrganizations { get; set; }
 
-        public AddBranchViewModel()
-        {
-
-        }
-
         public ICommand Loaded => new DelegateCommand(() =>
         {
             _executor = new QueryExecutor();

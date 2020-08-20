@@ -190,11 +190,6 @@ namespace EmploymentAgency.ViewModels
 
         public ObservableCollection<Street> DisplayedStreets { get; set; }
 
-        public ChangeSupplementInformationForApplicantViewModel()
-        {
-
-        }
-
         public ICommand Loaded => new DelegateCommand(() =>
         {
             _config = ConfigurationUser.GetConfiguration();
@@ -235,13 +230,7 @@ namespace EmploymentAgency.ViewModels
 
         public ICommand ChangeInformation => new DelegateCommand(() =>
         {
-            _executor.UpdateApplicant(_applicant.IdApplicant, Name, Surname, Patronymic, Photo, PhoneNumber, (int)SelectedIdStreet, NameHouse, Apartment);
-
-            UpdatePossessionSkills();
-            UpdatePossessionDrivingLicenseCategories();
-            UpdateEducationalActivities();
-            UpdateKnowledgeLanguages();
-            UpdateLaborActivities();
+            _executor.UpdateApplicant(_applicant.IdApplicant, Name, Surname, Patronymic, Photo, PhoneNumber, (int)SelectedIdStreet, NameHouse, Apartment, SelectedSkills.ToList(), SelectedDrivingLicenseCategories.ToList(), SelectedEducationActivities.ToList(), SelectedKnowledgeLanguages.ToList(), SelectedLaborActivities.ToList());
 
             MessageBox.Show("Успешное изменение информации");
         }, () => SelectedIdStreet != null &&
@@ -250,56 +239,6 @@ namespace EmploymentAgency.ViewModels
                  (Patronymic != null ? Patronymic.Length > 0 : false) &&
                  (PhoneNumber != null ? PhoneNumber.Length > 0 : false) &&
                  (NameHouse != null ? NameHouse.Length > 0 : false));
-
-        private void UpdatePossessionSkills()
-        {
-            _executor.CompleteRemovalPossessionSkills(_applicant.IdApplicant);
-
-            foreach(var selectedSkill in SelectedSkills)
-            {
-                _executor.AddPossessionSkill(_applicant.IdApplicant, Convert.ToInt32((object)selectedSkill));
-            }
-        }
-
-        private void UpdatePossessionDrivingLicenseCategories()
-        {
-            _executor.CompleteRemovalPossessionDrivingLicenseCategories(_applicant.IdApplicant);
-
-            foreach(var selectedPossessionDrivingLicenseCategory in SelectedDrivingLicenseCategories)
-            {
-                _executor.AddPossessionDrivingLicenseCategory(_applicant.IdApplicant, Convert.ToInt32((object)selectedPossessionDrivingLicenseCategory));
-            }
-        }
-
-        private void UpdateEducationalActivities()
-        {
-            _executor.CompleteRemovalEducationActivities(_applicant.IdApplicant);
-
-            foreach(var selectedEducationActivity in SelectedEducationActivities)
-            {
-                _executor.AddEducationalActivity(_applicant.IdApplicant, selectedEducationActivity.IdEducation, selectedEducationActivity.NameEducationalnstitution, selectedEducationActivity.Address, selectedEducationActivity.StartDate, selectedEducationActivity.EndDate);
-            }
-        }
-
-        private void UpdateKnowledgeLanguages()
-        {
-            _executor.CompleteRemovalKnowledgeLanguages(_applicant.IdApplicant);
-
-            foreach(var selectedKnowledgeLanguage in SelectedKnowledgeLanguages)
-            {
-                _executor.AddKnowledgeLanguage(_applicant.IdApplicant, selectedKnowledgeLanguage.IdLanguage, selectedKnowledgeLanguage.IdLanguageProficiency);
-            }
-        }
-
-        private void UpdateLaborActivities()
-        {
-            _executor.CompleteRemovalLaborActivities(_applicant.IdApplicant);
-
-            foreach(var selectedLaborActivity in SelectedLaborActivities)
-            {
-                _executor.AddLaborActivity(_applicant.IdApplicant, selectedLaborActivity.OrganizationName, selectedLaborActivity.OrganizationAddress, selectedLaborActivity.ProfessionName, selectedLaborActivity.Activity, selectedLaborActivity.StartDate, selectedLaborActivity.EndDate);
-            }
-        }
 
         private void UpdateCities()
         {

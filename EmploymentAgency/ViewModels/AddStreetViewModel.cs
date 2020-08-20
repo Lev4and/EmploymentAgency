@@ -98,11 +98,6 @@ namespace EmploymentAgency.ViewModels
 
         public ObservableCollection<City> DisplayedCities { get; set; }
 
-        public AddStreetViewModel()
-        {
-
-        }
-
         public ICommand Loaded => new DelegateCommand(() =>
         {
             _executor = new QueryExecutor();

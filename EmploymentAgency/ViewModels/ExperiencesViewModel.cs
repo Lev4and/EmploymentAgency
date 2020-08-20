@@ -20,11 +20,6 @@ namespace EmploymentAgency.ViewModels
 
         public ObservableCollection<object> Experiences { get; set; }
 
-        public ExperiencesViewModel()
-        {
-
-        }
-
         public ICommand Add => new DelegateCommand(() =>
         {
             WindowService.ShowWindow(new AddExperience());

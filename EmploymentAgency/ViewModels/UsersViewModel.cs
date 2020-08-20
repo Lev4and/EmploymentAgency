@@ -24,11 +24,6 @@ namespace EmploymentAgency.ViewModels
 
         public ObservableCollection<Role> Roles { get; set; }
 
-        public UsersViewModel()
-        {
-
-        }
-
         public ICommand Loaded => new DelegateCommand(() =>
         {
             _executor = new QueryExecutor();
@@ -84,7 +79,7 @@ namespace EmploymentAgency.ViewModels
         public ICommand ResetFilters => new DelegateCommand(() =>
         {
             ResetToDefault();
-        }, () => SelectedIdRole != null || (Login != null ? Login.Length > 0 : false));
+        });
 
         private void ResetToDefault()
         {

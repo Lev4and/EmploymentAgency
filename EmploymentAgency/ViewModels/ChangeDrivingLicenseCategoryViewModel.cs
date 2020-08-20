@@ -14,13 +14,7 @@ namespace EmploymentAgency.ViewModels
         public static int SelectedIdDrivingLicenseCategory;
 
 
-
         public string DrivingLicenseCategoryName { get; set; }
-
-        public ChangeDrivingLicenseCategoryViewModel()
-        {
-
-        }
 
         public ICommand Loaded => new DelegateCommand(() =>
         {

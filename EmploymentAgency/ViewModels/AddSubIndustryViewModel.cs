@@ -19,11 +19,6 @@ namespace EmploymentAgency.ViewModels
 
         public ObservableCollection<Industry> Industries { get; set; }
 
-        public AddSubIndustryViewModel()
-        {
-
-        }
-
         public ICommand Loaded => new DelegateCommand(() =>
         {
             _executor = new QueryExecutor();

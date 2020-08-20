@@ -100,7 +100,7 @@ namespace EmploymentAgency.ViewModels
         public ICommand ResetFilters => new DelegateCommand(() =>
         {
             ResetToDefault();
-        }, () => SelectedIdCountry != null || (CityName != null ? CityName.Length > 0 : false));
+        });
 
         private void ResetToDefault()
         {

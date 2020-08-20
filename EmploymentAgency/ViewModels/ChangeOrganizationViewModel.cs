@@ -29,11 +29,6 @@ namespace EmploymentAgency.ViewModels
 
         public DateTime? ClosingDate { get; set; }
 
-        public ChangeOrganizationViewModel()
-        {
-
-        }
-
         public ICommand Loaded => new DelegateCommand(() =>
         {
             _executor = new QueryExecutor();

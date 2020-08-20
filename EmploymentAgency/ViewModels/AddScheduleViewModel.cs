@@ -11,11 +11,6 @@ namespace EmploymentAgency.ViewModels
 
         public string ScheduleName { get; set; }
 
-        public AddScheduleViewModel()
-        {
-
-        }
-
         public ICommand Loaded => new DelegateCommand(() =>
         {
             _executor = new QueryExecutor();

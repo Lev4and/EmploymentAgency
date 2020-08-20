@@ -15,11 +15,6 @@ namespace EmploymentAgency.ViewModels
 
         public string CityName { get; set; }
 
-        public ChangeCityViewModel()
-        {
-
-        }
-
         public ICommand Loaded => new DelegateCommand(() =>
         {
             _executor = new QueryExecutor();

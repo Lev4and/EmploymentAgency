@@ -26,11 +26,6 @@ namespace EmploymentAgency.ViewModels
 
         public string PhoneNumber { get; set; }
 
-        public ChangeBranchViewModel()
-        {
-
-        }
-
         public ICommand Loaded => new DelegateCommand(() =>
         {
             _executor = new QueryExecutor();

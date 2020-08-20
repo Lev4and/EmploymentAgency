@@ -16,11 +16,6 @@ namespace EmploymentAgency.ViewModels
 
         public string LanguageName { get; set; }
 
-        public ChangeLanguageViewModel()
-        {
-
-        }
-
         public ICommand Loaded => new DelegateCommand(() =>
         {
             _executor = new QueryExecutor();

@@ -11,11 +11,6 @@ namespace EmploymentAgency.ViewModels
 
         public string EmploymentTypeName { get; set; }
 
-        public AddEmploymentTypeViewModel()
-        {
-
-        }
-
         public ICommand Loaded => new DelegateCommand(() =>
         {
             _executor = new QueryExecutor();

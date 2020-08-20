@@ -11,11 +11,6 @@ namespace EmploymentAgency.ViewModels
 
         public string GenderName { get; set; }
 
-        public AddGenderViewModel()
-        {
-
-        }
-
         public ICommand Loaded => new DelegateCommand(() =>
         {
             _executor = new QueryExecutor();

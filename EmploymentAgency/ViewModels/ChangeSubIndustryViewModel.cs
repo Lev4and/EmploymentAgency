@@ -18,11 +18,6 @@ namespace EmploymentAgency.ViewModels
 
         public string NameSubIndustry { get; set; }
 
-        public ChangeSubIndustryViewModel()
-        {
-
-        }
-
         public ICommand Loaded => new DelegateCommand(() =>
         {
             _executor = new QueryExecutor();

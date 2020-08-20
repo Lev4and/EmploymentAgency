@@ -11,11 +11,6 @@ namespace EmploymentAgency.ViewModels
 
         public string ExperienceName { get; set; }
 
-        public AddExperienceViewModel()
-        {
-
-        }
-
         public ICommand Loaded => new DelegateCommand(() =>
         {
             _executor = new QueryExecutor();

@@ -13,11 +13,6 @@ namespace EmploymentAgency.ViewModels
 
         public string LanguageProficiencyName { get; set; }
 
-        public AddLanguageProficiencyViewModel()
-        {
-
-        }
-
         public ICommand Loaded => new DelegateCommand(() =>
         {
             _executor = new QueryExecutor();

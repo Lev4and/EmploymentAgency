@@ -31,11 +31,6 @@ namespace EmploymentAgency.ViewModels
 
         public ObservableCollection<Gender> Genders { get; set; }
 
-        public ChangeSupplementInformationForManagerViewModel()
-        {
-
-        }
-
         public ICommand Loaded => new DelegateCommand(() =>
         {
             _executor = new QueryExecutor();

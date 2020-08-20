@@ -244,14 +244,8 @@ namespace EmploymentAgency.ViewModels
 
         public ICommand AddInformation => new DelegateCommand(() =>
         {
-            if (_executor.AddApplicant(_config.IdUser, Name, Surname, Patronymic, (int)SelectedIdGender, Photo, DateOfBirth, PhoneNumber, (int)SelectedIdStreet, NameHouse, Apartment))
+            if (_executor.AddApplicant(_config.IdUser, Name, Surname, Patronymic, (int)SelectedIdGender, Photo, DateOfBirth, PhoneNumber, (int)SelectedIdStreet, NameHouse, Apartment, SelectedSkills.ToList(), SelectedDrivingLicenseCategories.ToList(), SelectedEducationActivities.ToList(), SelectedKnowledgeLanguages.ToList(), SelectedLaborActivities.ToList()))
             {
-                AddPossessionSkill();
-                AddPossessionDrivingLicenseCategory();
-                AddEducationalActivity();
-                AddKnowledgeLanguage();
-                AddLaborActivity();
-
                 MessageBox.Show("Успешное добавление информации");
 
                 _pageService.ChangePage(new Menu());
@@ -291,46 +285,6 @@ namespace EmploymentAgency.ViewModels
         private void UpdateDisplayedStreets()
         {
             DisplayedStreets = new ObservableCollection<Street>(Streets.Where(s => s.StreetName.ToLower().StartsWith(StreetName.ToLower())).Take(15).ToList());
-        }
-
-        private void AddPossessionSkill()
-        {
-            for(int i = 0; i < SelectedSkills.Count; i++)
-            {
-                _executor.AddPossessionSkill(_config.IdUser, Convert.ToInt32(SelectedSkills[i]));
-            }
-        }
-
-        private void AddPossessionDrivingLicenseCategory()
-        {
-            for(int i = 0; i < SelectedDrivingLicenseCategories.Count; i++)
-            {
-                _executor.AddPossessionDrivingLicenseCategory(_config.IdUser, Convert.ToInt32(SelectedDrivingLicenseCategories[i]));
-            }
-        }
-
-        private void AddEducationalActivity()
-        {
-            for(int i = 0; i < SelectedEducationActivities.Count; i++)
-            {
-                _executor.AddEducationalActivity(_config.IdUser, SelectedEducationActivities[i].IdEducation, SelectedEducationActivities[i].NameEducationalnstitution, SelectedEducationActivities[i].Address, SelectedEducationActivities[i].StartDate, SelectedEducationActivities[i].EndDate);
-            }
-        }
-
-        private void AddKnowledgeLanguage()
-        {
-            for(int i = 0; i < SelectedKnowledgeLanguages.Count; i++)
-            {
-                _executor.AddKnowledgeLanguage(_config.IdUser, SelectedKnowledgeLanguages[i].IdLanguage, SelectedKnowledgeLanguages[i].IdLanguageProficiency);
-            }
-        }
-
-        private void AddLaborActivity()
-        {
-            for(int i = 0; i < SelectedLaborActivities.Count; i++)
-            {
-                _executor.AddLaborActivity(_config.IdUser, SelectedLaborActivities[i].OrganizationName, SelectedLaborActivities[i].OrganizationAddress, SelectedLaborActivities[i].ProfessionName, SelectedLaborActivities[i].Activity, SelectedLaborActivities[i].StartDate, SelectedLaborActivities[i].EndDate);
-            }
         }
     }
 }

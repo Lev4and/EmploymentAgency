@@ -24,11 +24,6 @@ namespace EmploymentAgency.ViewModels
 
         public ObservableCollection<Industry> Industries { get; set; }
 
-        public SubIndustriesViewModel()
-        {
-
-        }
-
         public ICommand Loaded => new DelegateCommand(() =>
         {
             _executor = new QueryExecutor();
@@ -70,7 +65,7 @@ namespace EmploymentAgency.ViewModels
         public ICommand ResetFilters => new DelegateCommand(() =>
         {
             ResetToDefault();
-        }, () => SelectedIdIndustry != null || (NameSubIndustry != null ? NameSubIndustry.Length > 0 : false));
+        });
 
         private void ResetToDefault()
         {

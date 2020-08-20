@@ -19,11 +19,6 @@ namespace EmploymentAgency.ViewModels
 
         public ObservableCollection<ProfessionCategory> ProfessionCategories { get; set; }
 
-        public AddProfessionViewModel()
-        {
-
-        }
-
         public ICommand Loaded => new DelegateCommand(() =>
         {
             _executor = new QueryExecutor();

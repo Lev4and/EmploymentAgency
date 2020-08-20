@@ -11,11 +11,6 @@ namespace EmploymentAgency.ViewModels
 
         public string IndustryName { get; set; }
 
-        public AddIndustryViewModel()
-        {
-
-        }
-
         public ICommand Loaded => new DelegateCommand(() =>
         {
             _executor = new QueryExecutor();

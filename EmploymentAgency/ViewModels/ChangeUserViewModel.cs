@@ -20,11 +20,6 @@ namespace EmploymentAgency.ViewModels
 
         public string Password { get; set; }
 
-        public ChangeUserViewModel()
-        {
-
-        }
-
         public ICommand Loaded => new DelegateCommand(() =>
         {
             _executor = new QueryExecutor();

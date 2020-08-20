@@ -7,7 +7,7 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 {
     public interface IAddable
     {
-        bool AddApplicant(int idUser, string name, string surname, string patronymic, int idGender, byte[] photo, DateTime dateOfBirth, string phoneNumber, int idStreet, string nameHouse, string apartment);
+        bool AddApplicant(int idUser, string name, string surname, string patronymic, int idGender, byte[] photo, DateTime dateOfBirth, string phoneNumber, int idStreet, string nameHouse, string apartment, List<object> possessionSkills, List<object> possessionDrivingLicenseCategories, List<EducationalActivity> educationalActivities, List<KnowledgeLanguage> knowledgeLanguages, List<LaborActivity> laborActivities);
 
         bool AddBranch(int idOrganization, int idStreet, string nameHouse, string phoneNumber);
 
@@ -73,7 +73,17 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         bool AddUser(int idRole, string login, string password, out v_user user);
 
+        void AddEducationalActivities(int idApplicant, List<EducationalActivity> educationalActivities);
+
+        void AddKnowledgeLanguages(int idApplicant, List<KnowledgeLanguage> knowledgeLanguages);
+
+        void AddLaborActivities(int idApplicant, List<LaborActivity> laborActivities);
+
         void AddNecessarySkills(int idVacancy, List<object> necessarySkills);
+
+        void AddPossessionDrivingLicenseCategories(int idApplicant, List<object> possessionDrivingLicenseCategories);
+
+        void AddPossessionSkills(int idApplicant, List<object> possessionSkills);
 
         void AddVacancy(int idEmployer, int idProfession, int idEmploymentType, int idSchedule, int idExperience, string description, string duties, string requirements, string terms, int? salary, List<object> necessarySkills);
     }

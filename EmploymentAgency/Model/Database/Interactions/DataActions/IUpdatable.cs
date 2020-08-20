@@ -51,13 +51,25 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         bool UpdateUser(int idUser, string login, string password, out v_user user);
 
-        void UpdateApplicant(int idApplicant, string name, string surname, string patronymic, byte[] photo, string phoneNumber, int idStreet, string nameHouse, string apartment);
+        void UpdateApplicant(int idApplicant, string name, string surname, string patronymic, byte[] photo, string phoneNumber, int idStreet, string nameHouse, string apartment, List<object> possessionSkills, List<object> possessionDrivingLicenseCategories, List<EducationalActivity> educationalActivities, List<KnowledgeLanguage> knowledgeLanguages, List<LaborActivity> laborActivities);
 
         void UpdateBranch(int idBranch, string phoneNumber);
 
+        void UpdateEducationalActivities(int idApplicant, List<EducationalActivity> educationalActivities);
+
         void UpdateEmployer(int idEmployer, int idBranch, string name, string surname, string patronymic, byte[] photo, string phoneNumber);
 
+        void UpdateKnowledgeLanguages(int idApplicant, List<KnowledgeLanguage> knowledgeLanguages);
+
+        void UpdateLaborActivities(int idApplicant, List<LaborActivity> laborActivities);
+
         void UpdateManager(int idManager, string name, string surname, string patronymic, byte[] photo, string phoneNumber);
+
+        void UpdateNecessarySkills(int idVacancy, List<object> necessarySkills);
+
+        void UpdatePossessionDrivingLicenseCategories(int idApplicant, List<object> possessionDrivingLicenseCategories);
+
+        void UpdatePossessionSkills(int idApplicant, List<object> possessionSkills);
 
         void UpdateVacancy(int idVacancy, string description, string duties, string requirements, string terms, int? salary, List<object> necessarySkills);
     }

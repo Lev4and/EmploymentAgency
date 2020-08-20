@@ -13,11 +13,6 @@ namespace EmploymentAgency.ViewModels
         
         public byte[] Photo { get; set; }
 
-        public AddSkillViewModel()
-        {
-
-        }
-
         public ICommand Loaded => new DelegateCommand(() =>
         {
             _executor = new QueryExecutor();

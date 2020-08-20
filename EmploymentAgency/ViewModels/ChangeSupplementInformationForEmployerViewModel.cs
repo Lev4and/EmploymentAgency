@@ -116,11 +116,6 @@ namespace EmploymentAgency.ViewModels
 
         public ObservableCollection<v_organizationWithoutPhoto> Organizations { get; set; }
 
-        public ChangeSupplementInformationForEmployerViewModel()
-        {
-
-        }
-
         public ICommand Loaded => new DelegateCommand(() =>
         {
             _executor = new QueryExecutor();

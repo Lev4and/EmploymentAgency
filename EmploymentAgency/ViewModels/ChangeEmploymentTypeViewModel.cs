@@ -13,12 +13,8 @@ namespace EmploymentAgency.ViewModels
 
         public static int SelectedIdEmploymentType { get; set; }
 
+
         public string EmploymentTypeName { get; set; }
-
-        public ChangeEmploymentTypeViewModel()
-        {
-
-        }
 
         public ICommand Loaded => new DelegateCommand(() =>
         {

@@ -44,11 +44,6 @@ namespace EmploymentAgency.ViewModels
 
         public ObservableCollection<Country> DisplayedCountries { get; set; }
 
-        public AddCityViewModel()
-        {
-
-        }
-
         public ICommand Loaded => new DelegateCommand(() =>
         {
             _executor = new QueryExecutor();

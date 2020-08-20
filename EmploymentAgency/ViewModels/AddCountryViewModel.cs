@@ -28,11 +28,6 @@ namespace EmploymentAgency.ViewModels
             }
         }
 
-        public AddCountryViewModel()
-        {
-
-        }
-
         public ICommand Loaded => new DelegateCommand(() =>
         {
             _executor = new QueryExecutor();

@@ -102,11 +102,6 @@ namespace EmploymentAgency.ViewModels
 
         public ObservableCollection<object> Streets { get; set; }
 
-        public StreetsViewModel()
-        {
-
-        }
-
         public ICommand Loaded => new DelegateCommand(() =>
         {
             _executor = new QueryExecutor();
@@ -149,7 +144,7 @@ namespace EmploymentAgency.ViewModels
         public ICommand ResetFilters => new DelegateCommand(() =>
         {
             ResetToDefault();
-        }, () => SelectedIdCountry != null || SelectedIdCity != null || (StreetName != null ? StreetName.Length > 0 : false));
+        });
 
         private void ResetToDefault()
         {

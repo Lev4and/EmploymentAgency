@@ -11,11 +11,6 @@ namespace EmploymentAgency.ViewModels
 
         public string NameProfessionCategory { get; set; }
 
-        public AddProfessionCategoryViewModel()
-        {
-
-        }
-
         public ICommand Loaded => new DelegateCommand(() =>
         {
             _executor = new QueryExecutor();

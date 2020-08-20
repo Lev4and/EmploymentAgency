@@ -11,11 +11,6 @@ namespace EmploymentAgency.ViewModels
 
         public string DrivingLicenseCategoryName { get; set; }
 
-        public AddDrivingLicenseCategoryViewModel()
-        {
-
-        }
-
         public ICommand Loaded => new DelegateCommand(() =>
         {
             _executor = new QueryExecutor();

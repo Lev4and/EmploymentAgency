@@ -78,11 +78,6 @@ namespace EmploymentAgency.ViewModels
 
         public ObservableCollection<SubIndustry> SubIndustries { get; set; }
 
-        public AddOrganizationViewModel()
-        {
-
-        }
-
         public ICommand Loaded => new DelegateCommand(() =>
         {
             _executor = new QueryExecutor();

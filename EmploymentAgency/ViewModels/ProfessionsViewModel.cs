@@ -24,11 +24,6 @@ namespace EmploymentAgency.ViewModels
 
         public ObservableCollection<ProfessionCategory> ProfessionCategories { get; set; }
 
-        public ProfessionsViewModel()
-        {
-
-        }
-
         public ICommand Loaded => new DelegateCommand(() =>
         {
             _executor = new QueryExecutor();
@@ -70,7 +65,7 @@ namespace EmploymentAgency.ViewModels
         public ICommand ResetFilters => new DelegateCommand(() =>
         {
             ResetToDefault();
-        }, () => SelectedIdProfessionCategory != null || (ProfessionName != null ? ProfessionName.Length > 0 : false));
+        });
 
         private void ResetToDefault()
         {
