@@ -1,4 +1,5 @@
-﻿using EmploymentAgency.Model.Database.Models;
+﻿using DevExpress.Internal.WinApi.Windows.UI.Notifications;
+using EmploymentAgency.Model.Database.Models;
 using System;
 using System.Collections.Generic;
 using System.Windows.Documents;
@@ -70,6 +71,12 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
         void UpdatePossessionDrivingLicenseCategories(int idApplicant, List<object> possessionDrivingLicenseCategories);
 
         void UpdatePossessionSkills(int idApplicant, List<object> possessionSkills);
+
+        void UpdatePreferredEmploymentTypes(int idRequest, List<object> preferredEmploymentTypes);
+
+        void UpdatePreferredSchedules(int idRequest, List<object> preferredSchedules);
+
+        void UpdateRequest(int idRequest, int? salary, string aboutMe, List<object> preferredEmploymentTypes, List<object> preferredSchedules);
 
         void UpdateVacancy(int idVacancy, string description, string duties, string requirements, string terms, int? salary, List<object> necessarySkills);
     }

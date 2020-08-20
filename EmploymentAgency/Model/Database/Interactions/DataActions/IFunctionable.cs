@@ -6,6 +6,8 @@
 
         bool IsRelatedToStaff(int idUser);
 
+        bool IsRequestConsidered(int idRequest);
+
         bool NecessaryToSupplementTheInformation(int idUser);
 
         void CloseVacancy(int idVacancy);

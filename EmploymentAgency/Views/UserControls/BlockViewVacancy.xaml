@@ -46,19 +46,35 @@
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
-                    <Grid Grid.Column="0" Margin="0,0,5,0">
-                        <TextBlock
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Center"
-                            FontSize="26"
-                            Text="{Binding Path=ProfessionName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                            TextAlignment="Left"
-                            TextWrapping="NoWrap" />
+                    <Grid Grid.Column="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <mdt:PackIcon
+                                x:Name="IconAccountHardHat"
+                                Width="{Binding ElementName=ProfessionNameTextBlock, Path=ActualHeight}"
+                                Height="{Binding ElementName=ProfessionNameTextBlock, Path=ActualHeight}"
+                                VerticalAlignment="Center"
+                                Kind="AccountHardHat"
+                                ToolTip="Профессия" />
+                        </Grid>
+                        <Grid Grid.Column="1" Margin="5,0,5,0">
+                            <TextBlock
+                                x:Name="ProfessionNameTextBlock"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                FontSize="26"
+                                Text="{Binding Path=ProfessionName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                TextAlignment="Left"
+                                TextWrapping="NoWrap" />
+                        </Grid>
                     </Grid>
                     <Grid Grid.Column="1" HorizontalAlignment="Right">
                         <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition/>
+                            <RowDefinition />
+                            <RowDefinition />
                         </Grid.RowDefinitions>
                         <Grid Grid.Row="0">
                             <Grid.ColumnDefinitions>
@@ -67,22 +83,22 @@
                             </Grid.ColumnDefinitions>
                             <Grid Grid.Column="0">
                                 <mdt:PackIcon
-                                x:Name="IconAccountCheck"
-                                Width="{Binding ElementName=NumberOfApprovedApplicantsTextBlock, Path=ActualHeight}"
-                                Height="{Binding ElementName=NumberOfApprovedApplicantsTextBlock, Path=ActualHeight}"
-                                VerticalAlignment="Center"
-                                Kind="AccountCheck"
-                                ToolTip="Количество одобренных соискателей" />
+                                    x:Name="IconAccountCheck"
+                                    Width="{Binding ElementName=NumberOfApprovedApplicantsTextBlock, Path=ActualHeight}"
+                                    Height="{Binding ElementName=NumberOfApprovedApplicantsTextBlock, Path=ActualHeight}"
+                                    VerticalAlignment="Center"
+                                    Kind="AccountCheck"
+                                    ToolTip="Количество одобренных соискателей" />
                             </Grid>
                             <Grid Grid.Column="1" Margin="5,0,5,0">
                                 <TextBlock
-                                x:Name="NumberOfApprovedApplicantsTextBlock"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Center"
-                                FontSize="14"
-                                Text="{Binding Path=NumberOfApprovedApplicants, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                TextAlignment="Left"
-                                TextWrapping="NoWrap" />
+                                    x:Name="NumberOfApprovedApplicantsTextBlock"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    FontSize="14"
+                                    Text="{Binding Path=NumberOfApprovedApplicants, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    TextAlignment="Left"
+                                    TextWrapping="NoWrap" />
                             </Grid>
                         </Grid>
                         <Grid Grid.Row="1">
@@ -92,29 +108,29 @@
                             </Grid.ColumnDefinitions>
                             <Grid Grid.Column="0">
                                 <mdt:PackIcon
-                                x:Name="IconBriefcaseCheck"
-                                Width="{Binding ElementName=NumberOfAcceptedApplicantsTextBlock, Path=ActualHeight}"
-                                Height="{Binding ElementName=NumberOfAcceptedApplicantsTextBlock, Path=ActualHeight}"
-                                VerticalAlignment="Center"
-                                Kind="BriefcaseCheck"
-                                ToolTip="Количество принятых соискателей" />
+                                    x:Name="IconBriefcaseCheck"
+                                    Width="{Binding ElementName=NumberOfAcceptedApplicantsTextBlock, Path=ActualHeight}"
+                                    Height="{Binding ElementName=NumberOfAcceptedApplicantsTextBlock, Path=ActualHeight}"
+                                    VerticalAlignment="Center"
+                                    Kind="BriefcaseCheck"
+                                    ToolTip="Количество принятых соискателей" />
                             </Grid>
                             <Grid Grid.Column="1" Margin="5,0,5,0">
                                 <TextBlock
-                                x:Name="NumberOfAcceptedApplicantsTextBlock"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Center"
-                                FontSize="14"
-                                Text="{Binding Path=NumberOfAcceptedApplicants, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                TextAlignment="Left"
-                                TextWrapping="NoWrap" />
+                                    x:Name="NumberOfAcceptedApplicantsTextBlock"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    FontSize="14"
+                                    Text="{Binding Path=NumberOfAcceptedApplicants, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    TextAlignment="Left"
+                                    TextWrapping="NoWrap" />
                             </Grid>
                         </Grid>
                     </Grid>
                     <Grid Grid.Column="2" HorizontalAlignment="Right">
                         <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition/>
+                            <RowDefinition />
+                            <RowDefinition />
                         </Grid.RowDefinitions>
                         <Grid Grid.Row="0">
                             <Grid.ColumnDefinitions>
@@ -123,22 +139,22 @@
                             </Grid.ColumnDefinitions>
                             <Grid Grid.Column="0">
                                 <mdt:PackIcon
-                                x:Name="IconEye"
-                                Width="{Binding ElementName=NumberOfPotentialApplicantsTextBlock, Path=ActualHeight}"
-                                Height="{Binding ElementName=NumberOfPotentialApplicantsTextBlock, Path=ActualHeight}"
-                                VerticalAlignment="Center"
-                                Kind="Eye"
-                                ToolTip="Количество потенциальных соискателей" />
+                                    x:Name="IconEye"
+                                    Width="{Binding ElementName=NumberOfPotentialApplicantsTextBlock, Path=ActualHeight}"
+                                    Height="{Binding ElementName=NumberOfPotentialApplicantsTextBlock, Path=ActualHeight}"
+                                    VerticalAlignment="Center"
+                                    Kind="Eye"
+                                    ToolTip="Количество потенциальных соискателей" />
                             </Grid>
                             <Grid Grid.Column="1" Margin="5,0,5,0">
                                 <TextBlock
-                                x:Name="NumberOfPotentialApplicantsTextBlock"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Center"
-                                FontSize="14"
-                                Text="{Binding Path=NumberOfPotentialApplicants, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                TextAlignment="Left"
-                                TextWrapping="NoWrap" />
+                                    x:Name="NumberOfPotentialApplicantsTextBlock"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    FontSize="14"
+                                    Text="{Binding Path=NumberOfPotentialApplicants, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    TextAlignment="Left"
+                                    TextWrapping="NoWrap" />
                             </Grid>
                         </Grid>
                         <Grid Grid.Row="1">
@@ -148,22 +164,22 @@
                             </Grid.ColumnDefinitions>
                             <Grid Grid.Column="0">
                                 <mdt:PackIcon
-                                x:Name="IconCardAccountMail"
-                                Width="{Binding ElementName=NumberOfInterestedApplicantsTextBlock, Path=ActualHeight}"
-                                Height="{Binding ElementName=NumberOfInterestedApplicantsTextBlock, Path=ActualHeight}"
-                                VerticalAlignment="Center"
-                                Kind="CardAccountMail"
-                                ToolTip="Количество заинтересовавшихся соискателей" />
+                                    x:Name="IconCardAccountMail"
+                                    Width="{Binding ElementName=NumberOfInterestedApplicantsTextBlock, Path=ActualHeight}"
+                                    Height="{Binding ElementName=NumberOfInterestedApplicantsTextBlock, Path=ActualHeight}"
+                                    VerticalAlignment="Center"
+                                    Kind="CardAccountMail"
+                                    ToolTip="Количество заинтересовавшихся соискателей" />
                             </Grid>
                             <Grid Grid.Column="1" Margin="5,0,5,0">
                                 <TextBlock
-                                x:Name="NumberOfInterestedApplicantsTextBlock"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Center"
-                                FontSize="14"
-                                Text="{Binding Path=NumberOfInterestedApplicants, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                TextAlignment="Left"
-                                TextWrapping="NoWrap" />
+                                    x:Name="NumberOfInterestedApplicantsTextBlock"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    FontSize="14"
+                                    Text="{Binding Path=NumberOfInterestedApplicants, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    TextAlignment="Left"
+                                    TextWrapping="NoWrap" />
                             </Grid>
                         </Grid>
                     </Grid>
@@ -175,11 +191,11 @@
                         <Grid Grid.Column="0">
                             <mdt:PackIcon
                                 x:Name="IconCash"
-                                Width="{Binding ElementName=CountBranchesTextBlock, Path=ActualHeight}"
-                                Height="{Binding ElementName=CountBranchesTextBlock, Path=ActualHeight}"
+                                Width="{Binding ElementName=SalaryTextBlock, Path=ActualHeight}"
+                                Height="{Binding ElementName=SalaryTextBlock, Path=ActualHeight}"
                                 VerticalAlignment="Center"
+                                Foreground="DarkGreen"
                                 Kind="Cash"
-                                Foreground="Lime"
                                 ToolTip="Оклад" />
                         </Grid>
                         <Grid Grid.Column="1" Margin="5,0,0,0">
@@ -187,7 +203,7 @@
                                 x:Name="SalaryTextBlock"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Center"
-                                FontSize="30"
+                                FontSize="26"
                                 Text="{Binding Path=Salary, StringFormat={}{0:C}, ConverterCulture=RU, TargetNullValue=Не указана, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                 TextAlignment="Left"
                                 TextWrapping="NoWrap" />
@@ -196,6 +212,7 @@
                 </Grid>
                 <Grid Grid.Row="1" Margin="5">
                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
@@ -214,20 +231,77 @@
                             <RowDefinition />
                         </Grid.RowDefinitions>
                         <Grid Grid.Row="0">
-                            <TextBlock
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Center"
-                                FontSize="12"
-                                Text="{Binding Path=OrganizationName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                TextAlignment="Left"
-                                TextWrapping="NoWrap" />
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <mdt:PackIcon
+                                    x:Name="IconAccountTie"
+                                    Width="{Binding ElementName=OrganizationNameTextBlock, Path=ActualHeight}"
+                                    Height="{Binding ElementName=OrganizationNameTextBlock, Path=ActualHeight}"
+                                    VerticalAlignment="Center"
+                                    Kind="AccountTie"
+                                    ToolTip="Название организации" />
+                            </Grid>
+                            <Grid Grid.Column="1" Margin="5,0,5,0">
+                                <TextBlock
+                                    x:Name="OrganizationNameTextBlock"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    FontSize="12"
+                                    Text="{Binding Path=OrganizationName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    TextAlignment="Left"
+                                    TextWrapping="NoWrap" />
+                            </Grid>
                         </Grid>
                         <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <mdt:PackIcon
+                                    x:Name="IconMapMarker"
+                                    Width="{Binding ElementName=AddressBranchTextBlock, Path=ActualHeight}"
+                                    Height="{Binding ElementName=AddressBranchTextBlock, Path=ActualHeight}"
+                                    VerticalAlignment="Center"
+                                    Kind="MapMarker"
+                                    ToolTip="Адрес" />
+                            </Grid>
+                            <Grid Grid.Column="1" Margin="5,0,5,0">
+                                <TextBlock
+                                    x:Name="AddressBranchTextBlock"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    FontSize="12"
+                                    Text="{Binding Path=AddressBranch, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    TextAlignment="Left"
+                                    TextWrapping="NoWrap" />
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                    <Grid Grid.Column="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <mdt:PackIcon
+                                x:Name="IconPhoneBranch"
+                                Width="{Binding ElementName=PhoneNumberBranchTextBlock, Path=ActualHeight}"
+                                Height="{Binding ElementName=PhoneNumberBranchTextBlock, Path=ActualHeight}"
+                                VerticalAlignment="Center"
+                                Kind="Phone"
+                                ToolTip="Номер телефона" />
+                        </Grid>
+                        <Grid Grid.Column="1" Margin="5,0,5,0">
                             <TextBlock
+                                x:Name="PhoneNumberBranchTextBlock"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Center"
                                 FontSize="12"
-                                Text="{Binding Path=AddressBranch, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                Text="{Binding Path=PhoneNumberBranch, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                 TextAlignment="Left"
                                 TextWrapping="NoWrap" />
                         </Grid>
@@ -260,16 +334,32 @@
                             <Image Source="{Binding Path=EmployerPhoto, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource ArrayByteToImageSource}}" Stretch="Uniform" />
                         </Border>
                     </Grid>
-                    <Grid Grid.Column="1" Margin="5">
-                        <TextBlock
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Center"
-                            FontSize="12"
-                            Text="{Binding Path=EmployerFullName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                            TextAlignment="Left"
-                            TextWrapping="NoWrap" />
+                    <Grid Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <mdt:PackIcon
+                                x:Name="IconAccount"
+                                Width="{Binding ElementName=EmployerFullNameTextBlock, Path=ActualHeight}"
+                                Height="{Binding ElementName=EmployerFullNameTextBlock, Path=ActualHeight}"
+                                VerticalAlignment="Center"
+                                Kind="Account"
+                                ToolTip="ФИО работодателя" />
+                        </Grid>
+                        <Grid Grid.Column="1" Margin="5,0,5,0">
+                            <TextBlock
+                                x:Name="EmployerFullNameTextBlock"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                FontSize="12"
+                                Text="{Binding Path=EmployerFullName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                TextAlignment="Left"
+                                TextWrapping="NoWrap" />
+                        </Grid>
                     </Grid>
-                    <Grid Grid.Column="2" Margin="5">
+                    <Grid Grid.Column="2">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition />

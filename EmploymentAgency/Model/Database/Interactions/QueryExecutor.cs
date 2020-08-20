@@ -833,6 +833,22 @@ namespace EmploymentAgency.Model.Database.Interactions
             _context.SaveChanges();
         }
 
+        public void CompleteRemovalPreferredEmploymentTypes(int idRequest)
+        {
+            var preferredEmploymentTypes = GetPreferredEmploymentTypes(idRequest);
+
+            _context.PreferredEmploymentType.RemoveRange(preferredEmploymentTypes);
+            _context.SaveChanges();
+        }
+
+        public void CompleteRemovalPreferredSchedules(int idRequest)
+        {
+            var preferredSchedules = GetPreferredSchedules(idRequest);
+
+            _context.PreferredSchedule.RemoveRange(preferredSchedules);
+            _context.SaveChanges();
+        }
+
         public bool ContainsApplicant(int idApplicant)
         {
             return _context.Applicant.SingleOrDefault(a => a.IdApplicant == idApplicant) != null;
@@ -1291,6 +1307,11 @@ namespace EmploymentAgency.Model.Database.Interactions
             return _context.v_vacancy.Where(v => v.IdEmployer == idEmployer).AsNoTracking().Max(v => v.ClosingDate);
         }
 
+        public DateTime GetMaxDateOfRegistrationMyRequest(int idApplicant)
+        {
+            return _context.Request.Where(r => r.IdApplicant == idApplicant).AsNoTracking().Max(r => r.DateOfRegistration);
+        }
+
         public DateTime GetMaxDateOfRegistrationMyVacancy(int idEmployer)
         {
             return _context.v_vacancy.Where(v => v.IdEmployer == idEmployer).AsNoTracking().Max(v => v.DateOfRegistration);
@@ -1326,6 +1347,11 @@ namespace EmploymentAgency.Model.Database.Interactions
             return _context.v_vacancy.Where(v => v.IdEmployer == idEmployer).AsNoTracking().Min(v => v.ClosingDate);
         }
 
+        public DateTime GetMinDateOfRegistrationMyRequest(int idApplicant)
+        {
+            return _context.Request.Where(r => r.IdApplicant == idApplicant).AsNoTracking().Min(r => r.DateOfRegistration);
+        }
+
         public DateTime GetMinDateOfRegistrationMyVacancy(int idEmployer)
         {
             return _context.v_vacancy.Where(v => v.IdEmployer == idEmployer).AsNoTracking().Min(v => v.DateOfRegistration);
@@ -1354,6 +1380,18 @@ namespace EmploymentAgency.Model.Database.Interactions
         public int? GetMinSalaryMyVacancy(int idEmployer)
         {
             return _context.v_vacancy.Where(v => v.IdEmployer == idEmployer).AsNoTracking().Min(v => v.Salary);
+        }
+
+        public List<v_request> GetMyRequests(int idApplicant, int idProfessionCategory, int idProfession, int idRequestStatus, string professionName, Range<DateTime> rangeDateOfRegistration)
+        {
+            return _context.v_request.Where(r =>
+            r.IdApplicant == idApplicant &&
+            (idProfessionCategory != -1 ? r.IdProfessionCategory == idProfessionCategory : true) &&
+            (idProfession != -1 ? r.IdProfession == idProfession : true) &&
+            (idRequestStatus != -1 ? r.IdRequestStatus == idRequestStatus : true) &&
+            (professionName.Length > 0 ? r.ProfessionName.ToLower().StartsWith(professionName.ToLower()) : true) &&
+            r.DateOfRegistration >= rangeDateOfRegistration.BeginValue &&
+            r.DateOfRegistration <= rangeDateOfRegistration.EndValue).AsNoTracking().ToList();
         }
 
         public List<v_vacancy> GetMyVacancies(int idEmployer, int idProfessionCategory, int idProfession, string professionName, DateTime? beginValueClosingDate, DateTime? endValueClosingDate, DateTime beginValueDateOfRegistration, DateTime endValueDateOfRegistration, int? beginValueNumberOfAcceptedApplicants, int? endValueNumberOfAcceptedApplicants, int? beginValueNumberOfApprovedApplicants, int? endValueNumberOfApprovedApplicants, int? beginValueNumberOfInterestedApplicants, int? endValueNumberOfInterestedApplicants, int? beginValueNumberOfPotentialApplicants, int? endValueNumberOfPotentialApplicants, int? beginValueSalary, int? endValueSalary)
@@ -1416,6 +1454,16 @@ namespace EmploymentAgency.Model.Database.Interactions
             return _context.PossessionSkill.Where(p => p.IdApplicant == idApplicant).ToList();
         }
 
+        public List<PreferredEmploymentType> GetPreferredEmploymentTypes(int idRequest)
+        {
+            return _context.PreferredEmploymentType.Where(p => p.IdRequest == idRequest).ToList();
+        }
+
+        public List<PreferredSchedule> GetPreferredSchedules(int idRequest)
+        {
+            return _context.PreferredSchedule.Where(p => p.IdRequest == idRequest).ToList();
+        }
+
         public Profession GetProfession(int idProfession)
         {
             return _context.Profession.SingleOrDefault(p => p.IdProfession == idProfession);
@@ -1452,6 +1500,16 @@ namespace EmploymentAgency.Model.Database.Interactions
         public List<Profession> GetProfessions(int idProfessionCategory)
         {
             return _context.Profession.Where(p => p.IdProfessionCategory == idProfessionCategory).AsNoTracking().ToList();
+        }
+
+        public Request GetRequest(int idRequest)
+        {
+            return _context.Request.SingleOrDefault(r => r.IdRequest == idRequest);
+        }
+
+        public v_request GetRequestExtendedInformation(int idRequest)
+        {
+            return _context.v_request.SingleOrDefault(r => r.IdRequest == idRequest);
         }
 
         public RequestStatus GetRequestStatus(int idRequestStatus)
@@ -1611,6 +1669,11 @@ namespace EmploymentAgency.Model.Database.Interactions
             return user.RoleName == "Администратор" || user.RoleName == "Менеджер" || user.RoleName == "Владелец";
         }
 
+        public bool IsRequestConsidered(int idRequest)
+        {
+            return GetRequest(idRequest).DateOfConsideration != null;
+        }
+
         public bool NecessaryToSupplementTheInformation(int idUser)
         {
             var results = new List<bool>();
@@ -1731,6 +1794,14 @@ namespace EmploymentAgency.Model.Database.Interactions
             var professionCategory = GetProfessionCategory(idProfessionCategory);
 
             _context.ProfessionCategory.Remove(professionCategory);
+            _context.SaveChanges();
+        }
+
+        public void RemoveRequest(int idRequest)
+        {
+            var request = GetRequest(idRequest);
+
+            _context.Request.Remove(request);
             _context.SaveChanges();
         }
 
@@ -2087,6 +2158,18 @@ namespace EmploymentAgency.Model.Database.Interactions
             AddPossessionSkills(idApplicant, possessionSkills);
         }
 
+        public void UpdatePreferredEmploymentTypes(int idRequest, List<object> preferredEmploymentTypes)
+        {
+            CompleteRemovalPreferredEmploymentTypes(idRequest);
+            AddPreferredEmploymentTypes(idRequest, preferredEmploymentTypes);
+        }
+
+        public void UpdatePreferredSchedules(int idRequest, List<object> preferredSchedules)
+        {
+            CompleteRemovalPreferredSchedules(idRequest);
+            AddPreferredSchedules(idRequest, preferredSchedules);
+        }
+
         public bool UpdateProfession(int idProfession, string professionName)
         {
             if(!ContainsProfession(professionName))
@@ -2117,6 +2200,19 @@ namespace EmploymentAgency.Model.Database.Interactions
             }
 
             return false;
+        }
+
+        public void UpdateRequest(int idRequest, int? salary, string aboutMe, List<object> preferredEmploymentTypes, List<object> preferredSchedules)
+        {
+            var request = GetRequest(idRequest);
+
+            request.Salary = salary;
+            request.AboutMe = aboutMe;
+
+            _context.SaveChanges();
+
+            UpdatePreferredEmploymentTypes(idRequest, preferredEmploymentTypes);
+            UpdatePreferredSchedules(idRequest, preferredSchedules);
         }
 
         public bool UpdateRequestStatus(int idRequestStatus, string requestStatusName)

@@ -1,4 +1,5 @@
 ﻿using EmploymentAgency.Model.Database.Models;
+using EmploymentAgency.Model.Logic;
 using EmploymentAgency.Views.Pages;
 using System;
 using System.Collections.Generic;
@@ -35,7 +36,11 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         DateTime? GetMinClosingDateMyVacancy(int idEmployer);
 
+        DateTime GetMaxDateOfRegistrationMyRequest(int idApplicant);
+
         DateTime GetMaxDateOfRegistrationMyVacancy(int idEmployer);
+
+        DateTime GetMinDateOfRegistrationMyRequest(int idApplicant);
 
         DateTime GetMinDateOfRegistrationMyVacancy(int idEmployer);
 
@@ -71,6 +76,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         ProfessionCategory GetProfessionCategory(int idProfessionCategory);
 
+        Request GetRequest(int idRequest);
+
         RequestStatus GetRequestStatus(int idRequestStatus);
 
         Role GetRole(int idRole);
@@ -98,6 +105,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
         v_organization GetOrganizationExtendedInformation(int idOrganization);
 
         v_profession GetProfessionExtendedInformation(int idProfession);
+
+        v_request GetRequestExtendedInformation(int idRequest);
 
         v_street GetStreetExtendedInformation(int idStreet);
 
@@ -179,6 +188,10 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         List<ProfessionCategory> GetProfessionCategories(string nameProfessionCategory);
 
+        List<PreferredEmploymentType> GetPreferredEmploymentTypes(int idRequest);
+
+        List<PreferredSchedule> GetPreferredSchedules(int idRequest);
+
         List<RequestStatus> GetRequestStatuses(string requestStatusName);
 
         List<Role> GetRoles();
@@ -204,6 +217,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
         List<v_organization> GetOrganizations(int idIndustry, int idSubIndustry, string organizationName);
 
         List<v_organizationWithoutPhoto> GetOrganizationsWithoutPhoto();
+
+        List<v_request> GetMyRequests(int idApplicant, int idProfessionCategory, int idProfession, int idRequestStatus, string professionName, Range<DateTime> rangeDateOfRegistration);
 
         List<v_user> GetUsers(int idRole, string login);
 

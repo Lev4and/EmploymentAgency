@@ -141,6 +141,8 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <Grid Grid.Row="0">
                             <Grid.RowDefinitions>
@@ -191,6 +193,49 @@
                             </Grid>
                         </Grid>
                         <Grid Grid.Row="2" Margin="0,20,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <TextBlock
+                                    Text="Статус рассмотрения"
+                                    TextAlignment="Center"
+                                    TextWrapping="Wrap"/>
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <ComboBox
+                                    x:Name="RequestStatusesComboBox"
+                                    mdt:HintAssist.HelperText="Введите название статуса"
+                                    mdt:HintAssist.Hint="Название статуса"
+                                    DisplayMemberPath="RequestStatusName"
+                                    FontSize="14"
+                                    FontWeight="Medium"
+                                    IsEditable="False"
+                                    IsTextSearchEnabled="False"
+                                    ItemsSource="{Binding Path=RequestStatuses, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    SelectedValue="{Binding Path=SelectedIdRequestStatus, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource SelectedValueToNullableInt32}}"
+                                    SelectedValuePath="IdRequestStatus"
+                                    ToolTip="{Binding ElementName=RequestStatusesComboBox, Path=Text}" />
+                            </Grid>
+                        </Grid>
+                        <Grid Grid.Row="3" Margin="0,20,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <TextBlock Text="Дата публикации" TextAlignment="Center" />
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <uc:DoubleDatePicker
+                                    MinSelectedDate="{Binding Path=MinValueDateOfRegistration, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    MaxSelectedDate="{Binding Path=MaxValueDateOfRegistration, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    BeginSelectedDate="{Binding Path=BeginValueDateOfRegistration, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    EndSelectedDate="{Binding Path=EndValueDateOfRegistration, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                            </Grid>
+                        </Grid>
+                        <Grid Grid.Row="4" Margin="0,10,0,0">
                             <Button
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
@@ -215,11 +260,11 @@
             Grid.Row="1"
             Grid.Column="1"
             Margin="5">
-            <!--<uc:BlockViewItems
-                Data="{Binding Path=MyVacancies, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                SelectedValue="{Binding Path=SelectedIdVacancy, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                SelectedValuePath="IdVacancy"
-                TypeItem="BlockViewVacancy" />-->
+            <uc:BlockViewItems
+                Data="{Binding Path=MyRequests, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                SelectedValue="{Binding Path=SelectedIdRequest, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                SelectedValuePath="IdRequest"
+                TypeItem="BlockViewRequest" />
         </Grid>
     </Grid>
 </Page>

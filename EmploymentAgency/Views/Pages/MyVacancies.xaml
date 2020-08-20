@@ -217,7 +217,7 @@
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
                             <Grid Grid.Row="0">
-                                <TextBlock Text="Публикация" TextAlignment="Center" />
+                                <TextBlock Text="Дата публикации" TextAlignment="Center" />
                             </Grid>
                             <Grid Grid.Row="1">
                                 <uc:DoubleDatePicker
@@ -233,7 +233,7 @@
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
                             <Grid Grid.Row="0">
-                                <TextBlock Text="Закрытие" TextAlignment="Center" />
+                                <TextBlock Text="Дата закрытия" TextAlignment="Center" />
                             </Grid>
                             <Grid Grid.Row="1">
                                 <uc:DoubleDatePicker

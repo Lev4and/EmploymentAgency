@@ -43,7 +43,7 @@ namespace EmploymentAgency.Views.UserControls
         public static readonly DependencyProperty TypeItemProperty =
             DependencyProperty.Register("TypeItem", typeof(TypeBlockViewItem), typeof(BlockViewItems), new PropertyMetadata(null));
 
-        public enum TypeBlockViewItem { BlockViewBranch, BlockViewCity, BlockViewCountry, BlockViewOrganization, BlockViewSkill, BlockViewStreet, BlockViewVacancy }
+        public enum TypeBlockViewItem { BlockViewBranch, BlockViewCity, BlockViewCountry, BlockViewOrganization, BlockViewSkill, BlockViewStreet, BlockViewVacancy, BlockViewRequest }
 
         public ObservableCollection<object> Data
         {
@@ -79,7 +79,8 @@ namespace EmploymentAgency.Views.UserControls
                 typeof(BlockViewOrganization),
                 typeof(BlockViewSkill),
                 typeof(BlockViewStreet),
-                typeof(BlockViewVacancy)
+                typeof(BlockViewVacancy),
+                typeof(BlockViewRequest)
         };
 
         public List<BlockViewItem> Items { get; set; }

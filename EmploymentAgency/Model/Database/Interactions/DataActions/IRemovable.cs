@@ -2,10 +2,6 @@
 {
     public interface IRemovable
     {
-        void CompleteRemovalPossessionSkills(int idApplicant);
-
-        void CompleteRemovalPossessionDrivingLicenseCategories(int idApplicant);
-
         void CompleteRemovalEducationActivities(int idApplicant);
 
         void CompleteRemovalKnowledgeLanguages(int idApplicant);
@@ -13,6 +9,14 @@
         void CompleteRemovalLaborActivities(int idApplicant);
 
         void CompleteRemovalNecessarySkills(int idVacancy);
+
+        void CompleteRemovalPossessionSkills(int idApplicant);
+
+        void CompleteRemovalPossessionDrivingLicenseCategories(int idApplicant);
+
+        void CompleteRemovalPreferredEmploymentTypes(int idRequest);
+
+        void CompleteRemovalPreferredSchedules(int idRequest);
 
         void RemoveBranch(int idBranch);
 
@@ -41,6 +45,8 @@
         void RemoveProfession(int idProfession);
 
         void RemoveProfessionCategory(int idProfessionCategory);
+
+        void RemoveRequest(int idRequest);
 
         void RemoveRequestStatus(int idRequestStatus);
 

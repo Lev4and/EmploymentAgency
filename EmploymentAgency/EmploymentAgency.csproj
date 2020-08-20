@@ -361,6 +361,7 @@
     <Compile Include="ViewModels\ChangeProfessionCategoryViewModel.cs" />
     <Compile Include="ViewModels\ChangeProfessionViewModel.cs" />
     <Compile Include="ViewModels\ChangeRequestStatusViewModel.cs" />
+    <Compile Include="ViewModels\ChangeRequestViewModel.cs" />
     <Compile Include="ViewModels\ChangeRoleViewModel.cs" />
     <Compile Include="ViewModels\ChangeScheduleViewModel.cs" />
     <Compile Include="ViewModels\ChangeSkillViewModel.cs" />
@@ -545,6 +546,9 @@
     <Compile Include="Views\UserControls\BlockViewOrganization.xaml.cs">
       <DependentUpon>BlockViewOrganization.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserControls\BlockViewRequest.xaml.cs">
+      <DependentUpon>BlockViewRequest.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\BlockViewSkill.xaml.cs">
       <DependentUpon>BlockViewSkill.xaml</DependentUpon>
     </Compile>
@@ -689,6 +693,9 @@
     </Compile>
     <Compile Include="Views\Windows\ChangeProfessionCategory.xaml.cs">
       <DependentUpon>ChangeProfessionCategory.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Windows\ChangeRequest.xaml.cs">
+      <DependentUpon>ChangeRequest.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Windows\ChangeRequestStatus.xaml.cs">
       <DependentUpon>ChangeRequestStatus.xaml</DependentUpon>
@@ -957,6 +964,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\UserControls\BlockViewRequest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\UserControls\BlockViewSkill.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1146,6 +1157,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Windows\ChangeProfessionCategory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Windows\ChangeRequest.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
