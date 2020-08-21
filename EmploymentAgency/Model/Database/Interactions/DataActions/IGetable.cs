@@ -36,9 +36,13 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         int GetIdRequestStatus(string requestStatusName);
 
+        DateTime? GetMaxDateOfConsiderationRequest();
+
         DateTime? GetMaxClosingDateMyVacancy(int idEmployer);
 
         DateTime? GetMaxClosingDateVacancy();
+
+        DateTime? GetMinDateOfConsiderationRequest();
 
         DateTime? GetMinClosingDateMyVacancy(int idEmployer);
 
@@ -48,11 +52,15 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         DateTime GetMaxDateOfRegistrationMyVacancy(int idEmployer);
 
+        DateTime GetMaxDateOfRegistrationRequest();
+
         DateTime GetMaxDateOfRegistrationVacancy();
 
         DateTime GetMinDateOfRegistrationMyRequest(int idApplicant);
 
         DateTime GetMinDateOfRegistrationMyVacancy(int idEmployer);
+
+        DateTime GetMinDateOfRegistrationRequest();
 
         DateTime GetMinDateOfRegistrationVacancy();
 
@@ -176,6 +184,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         List<Skill> GetSkills(int idApplicant);
 
+        List<SuitableVacancy> GetSuitableVacancies(int idRequest);
+
         List<DrivingLicenseCategory> GetDrivingLicenseCategories(int idApplicant);
 
         List<EducationalActivity> GetEducationActivities(int idApplicant);
@@ -231,6 +241,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
         List<v_organization> GetOrganizations(int idIndustry, int idSubIndustry, string organizationName);
 
         List<v_organizationWithoutPhoto> GetOrganizationsWithoutPhoto();
+
+        List<v_request> GetRequests(int idRequestStatus, string professionName, Range<DateTime> rangeDateOfRegistration, DateTime? beginValueDateOfConsideration, DateTime? endValueDateOfConsideration);
 
         List<v_request> GetMyRequests(int idApplicant, int idProfessionCategory, int idProfession, int idRequestStatus, string professionName, Range<DateTime> rangeDateOfRegistration);
 

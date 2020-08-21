@@ -119,6 +119,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\Command.cs" />
+    <Compile Include="Converters\BackBoolToCollapsedVisibility.cs" />
     <Compile Include="Converters\BoolToBackBool.cs" />
     <Compile Include="Converters\ArrayByteToBitmapImage.cs" />
     <Compile Include="Converters\ArrayByteToImageSource.cs" />
@@ -372,6 +373,7 @@
     <Compile Include="ViewModels\ChangeUserViewModel.cs" />
     <Compile Include="ViewModels\ChangeVacancyViewModel.cs" />
     <Compile Include="ViewModels\CitiesViewModel.cs" />
+    <Compile Include="ViewModels\ConsiderRequestViewModel.cs" />
     <Compile Include="ViewModels\CountriesViewModel.cs" />
     <Compile Include="ViewModels\DrivingLicenseCategoriesViewModel.cs" />
     <Compile Include="ViewModels\EducationsViewModel.cs" />
@@ -396,6 +398,7 @@
     <Compile Include="ViewModels\ProfessionsViewModel.cs" />
     <Compile Include="ViewModels\RegistrationViewModel.cs" />
     <Compile Include="ViewModels\RequestStatusesViewModel.cs" />
+    <Compile Include="ViewModels\RequestsViewModel.cs" />
     <Compile Include="ViewModels\RolesViewModel.cs" />
     <Compile Include="ViewModels\SchedulesViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
@@ -476,6 +479,9 @@
     </Compile>
     <Compile Include="Views\Pages\Registration.xaml.cs">
       <DependentUpon>Registration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\Requests.xaml.cs">
+      <DependentUpon>Requests.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\RequestStatuses.xaml.cs">
       <DependentUpon>RequestStatuses.xaml</DependentUpon>
@@ -725,6 +731,9 @@
     <Compile Include="Views\Windows\ChangeVacancy.xaml.cs">
       <DependentUpon>ChangeVacancy.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Windows\ConsiderRequest.xaml.cs">
+      <DependentUpon>ConsiderRequest.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
@@ -860,6 +869,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Pages\Registration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\Requests.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1204,6 +1217,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Windows\ChangeVacancy.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Windows\ConsiderRequest.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

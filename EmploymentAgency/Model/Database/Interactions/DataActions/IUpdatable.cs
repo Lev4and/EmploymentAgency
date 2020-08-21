@@ -76,6 +76,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         void UpdatePreferredSchedules(int idRequest, List<object> preferredSchedules);
 
+        void UpdateStatusConsiderationRequest(int idRequest, string requestStatusName);
+
         void UpdateRequest(int idRequest, int? salary, string aboutMe, List<object> preferredEmploymentTypes, List<object> preferredSchedules);
 
         void UpdateVacancy(int idVacancy, string description, string duties, string requirements, string terms, int? salary, List<object> necessarySkills);

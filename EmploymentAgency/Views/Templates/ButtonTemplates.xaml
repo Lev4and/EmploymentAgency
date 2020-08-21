@@ -198,4 +198,24 @@
                 Kind="ContentCopy" />
         </Button>
     </ControlTemplate>
+
+    <ControlTemplate x:Key="ConsiderButtonTemplate" TargetType="Button">
+        <Button
+            x:Name="Button"
+            Width="40"
+            Height="40"
+            MaxWidth="{Binding ElementName=Button, Path=Width}"
+            MaxHeight="{Binding ElementName=Button, Path=Height}"
+            Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
+            ToolTip="Рассмотреть">
+            <mdt:PackIcon
+                Width="Auto"
+                Height="Auto"
+                MaxWidth="{Binding ElementName=Button, Path=Width}"
+                MaxHeight="{Binding ElementName=Button, Path=Height}"
+                Margin="5"
+                Foreground="Red"
+                Kind="TextBoxSearchOutline" />
+        </Button>
+    </ControlTemplate>
 </ResourceDictionary>

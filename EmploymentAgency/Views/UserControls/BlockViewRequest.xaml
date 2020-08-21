@@ -307,7 +307,7 @@
                                 Height="{Binding ElementName=RequestStatusNameTextBlock, Path=ActualHeight}"
                                 VerticalAlignment="Center"
                                 Kind="ProgressClock"
-                                ToolTip="Номер телефона" />
+                                ToolTip="Статус рассмотрения заявки" />
                         </Grid>
                         <Grid Grid.Column="1" Margin="5,0,5,0">
                             <TextBlock

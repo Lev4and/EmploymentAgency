@@ -57,8 +57,8 @@ namespace EmploymentAgency.Views.UserControls
         {
             InitializeComponent();
 
-            Text = $"{Data.GetType().GetProperty(TextPath).GetValue(Data)}";
-            Photo = (byte[])(Data.GetType().GetProperty(PhotoPath).GetValue(Data));
+            Text = TextPath.Length > 0 ? $"{Data.GetType().GetProperty(TextPath).GetValue(Data)}" : "";
+            Photo = PhotoPath.Length > 0 ? (byte[])(Data.GetType().GetProperty(PhotoPath).GetValue(Data)) : null;
         }
 
         public Chip(string textPath, string photoPath, object data)
@@ -69,8 +69,8 @@ namespace EmploymentAgency.Views.UserControls
             PhotoPath = photoPath;
             Data = data;
 
-            Text = $"{Data.GetType().GetProperty(TextPath).GetValue(Data)}";
-            Photo = (byte[])(Data.GetType().GetProperty(PhotoPath).GetValue(Data));
+            Text = TextPath.Length > 0 ? $"{Data.GetType().GetProperty(TextPath).GetValue(Data)}" : "";
+            Photo = PhotoPath.Length > 0 ? (byte[])(Data.GetType().GetProperty(PhotoPath).GetValue(Data)) : null;
         }
     }
 }

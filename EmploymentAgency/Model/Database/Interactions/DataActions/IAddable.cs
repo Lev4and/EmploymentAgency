@@ -95,6 +95,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         void AddRequest(int idApplicant, int idProfession, int idExperience, int? salary, string aboutMe, List<object> preferredEmploymentTypes, List<object> preferredSchedules);
 
+        void AddSuitableVacancy(int idRequest, int idManager, int idVacancy);
+
         void AddVacancy(int idEmployer, int idProfession, int idEmploymentType, int idSchedule, int idExperience, string description, string duties, string requirements, string terms, int? salary, List<object> necessarySkills);
     }
 }

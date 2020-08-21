@@ -41,4 +41,8 @@
     <Style x:Key="CopyButtonStyle" TargetType="Button">
         <Setter Property="Template" Value="{StaticResource CopyButtonTemplate}" />
     </Style>
+
+    <Style x:Key="ConsiderButtonStyle" TargetType="Button">
+        <Setter Property="Template" Value="{StaticResource ConsiderButtonTemplate}"/>
+    </Style>
 </ResourceDictionary>

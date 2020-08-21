@@ -1,0 +1,209 @@
+﻿<Page
+    x:Class="EmploymentAgency.Views.Pages.Requests"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:c="clr-namespace:EmploymentAgency.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:local="clr-namespace:EmploymentAgency.Views.Pages"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mdt="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:uc="clr-namespace:EmploymentAgency.Views.UserControls"
+    Title="Запросы"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    Background="{StaticResource PageBackgroundBrush}"
+    DataContext="{Binding RequestsViewModel, Source={StaticResource ViewModelLocator}}"
+    WindowTitle="Агентство трудоустройства - Запросы"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <c:SelectedValueToNullableInt32 x:Key="SelectedValueToNullableInt32" />
+    </Page.Resources>
+    <Grid>
+        <i:Interaction.Triggers>
+            <i:EventTrigger EventName="Loaded">
+                <i:InvokeCommandAction Command="{Binding Path=Loaded}" />
+            </i:EventTrigger>
+        </i:Interaction.Triggers>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid
+            Grid.Row="0"
+            Grid.Column="0"
+            Margin="5,0,5,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0" Margin="5,0,5,0">
+                <Button
+                    Width="50"
+                    Height="50"
+                    Command="{Binding Path=Consider}"
+                    Style="{StaticResource ConsiderButtonStyle}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding Path=Consider}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+            </Grid>
+        </Grid>
+        <Grid
+            Grid.Row="0"
+            Grid.Column="1"
+            Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid
+                x:Name="SearchByInputFieldGrid"
+                Grid.Column="0"
+                Margin="0,0,5,0" />
+            <Grid Grid.Column="1">
+                <Button
+                    Width="50"
+                    Height="50"
+                    Command="{Binding Path=ToFind}"
+                    Style="{StaticResource ToFindButtonStyle}"
+                    ToolTip="Найти">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding Path=ToFind}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+            </Grid>
+        </Grid>
+        <Grid
+            Grid.RowSpan="2"
+            Grid.ColumnSpan="2"
+            Width="{Binding ElementName=SearchByInputFieldGrid, Path=ActualWidth, UpdateSourceTrigger=PropertyChanged}"
+            Margin="0,0,59,0"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            Panel.ZIndex="1">
+            <uc:SearchByInputField
+                x:Name="SearchByInputField"
+                Height="Auto"
+                Data="{Binding Path=Requests, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                DisplayMemberPath="ProfessionName"
+                Hint="Название профессии"
+                SearchLine="{Binding Path=ProfessionName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+        </Grid>
+        <Grid
+            Grid.Row="1"
+            Grid.Column="0"
+            Margin="5">
+            <GroupBox
+                BorderThickness="3"
+                FontSize="24"
+                FontWeight="Medium"
+                Header="Фильтры">
+                <ScrollViewer HorizontalScrollBarVisibility="Disabled">
+                    <Grid Margin="5,0,5,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <TextBlock
+                                    Text="Статус рассмотрения"
+                                    TextAlignment="Center"
+                                    TextWrapping="Wrap"/>
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <ComboBox
+                                    x:Name="RequestStatusesComboBox"
+                                    mdt:HintAssist.HelperText="Введите название статуса"
+                                    mdt:HintAssist.Hint="Название статуса"
+                                    DisplayMemberPath="RequestStatusName"
+                                    FontSize="14"
+                                    FontWeight="Medium"
+                                    IsEditable="False"
+                                    IsTextSearchEnabled="False"
+                                    ItemsSource="{Binding Path=RequestStatuses, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    SelectedValue="{Binding Path=SelectedIdRequestStatus, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource SelectedValueToNullableInt32}}"
+                                    SelectedValuePath="IdRequestStatus"
+                                    ToolTip="{Binding ElementName=RequestStatusesComboBox, Path=Text}" />
+                            </Grid>
+                        </Grid>
+                        <Grid Grid.Row="1" Margin="0,20,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <TextBlock Text="Дата публикации" TextAlignment="Center" />
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <uc:DoubleDatePicker
+                                    BeginSelectedDate="{Binding Path=BeginValueDateOfRegistration, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    EndSelectedDate="{Binding Path=EndValueDateOfRegistration, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    MaxSelectedDate="{Binding Path=MaxValueDateOfRegistration, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    MinSelectedDate="{Binding Path=MinValueDateOfRegistration, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                            </Grid>
+                        </Grid>
+                        <Grid Grid.Row="2" Margin="0,10,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <TextBlock Text="Дата рассмотрения" TextAlignment="Center" />
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <uc:DoubleDatePicker
+                                    BeginSelectedDate="{Binding Path=BeginValueDateOfConsideration, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    EndSelectedDate="{Binding Path=EndValueDateOfConsideration, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    MaxSelectedDate="{Binding Path=MaxValueDateOfConsideration, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    MinSelectedDate="{Binding Path=MinValueDateOfConsideration, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                            </Grid>
+                        </Grid>
+                        <Grid Grid.Row="3" Margin="0,10,0,0">
+                            <Button
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                mdt:ButtonAssist.CornerRadius="0"
+                                Command="{Binding Path=ResetFilters}"
+                                Content="Сбросить фильтры"
+                                Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                                ToolTip="Сбросить фильтры">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Click">
+                                        <i:InvokeCommandAction Command="{Binding ElementName=SearchByInputField, Path=ResetFilters}" />
+                                        <i:InvokeCommandAction Command="{Binding Path=ResetFilters}" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </Button>
+                        </Grid>
+                    </Grid>
+                </ScrollViewer>
+            </GroupBox>
+        </Grid>
+        <Grid
+            Grid.Row="1"
+            Grid.Column="1"
+            Margin="5">
+            <uc:BlockViewItems
+                Data="{Binding Path=Requests, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                SelectedValue="{Binding Path=SelectedIdRequest, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                SelectedValuePath="IdRequest"
+                TypeItem="BlockViewRequest" />
+        </Grid>
+    </Grid>
+</Page>

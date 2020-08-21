@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
-using System.Security;
 
 namespace EmploymentAgency.Model.Database.Interactions
 {
@@ -689,6 +688,18 @@ namespace EmploymentAgency.Model.Database.Interactions
             return false;
         }
 
+        public void AddSuitableVacancy(int idRequest, int idManager, int idVacancy)
+        {
+            _context.SuitableVacancy.Add(new SuitableVacancy
+            {
+                IdRequest = idRequest,
+                IdManager = idManager,
+                IdVacancy = idVacancy,
+                DiscoveryDate = DateTime.Now
+            });
+            _context.SaveChanges();
+        }
+
         public bool AddUser(int idRole, string login, string password)
         {
             if(!ContainsUser(login))
@@ -1313,14 +1324,28 @@ namespace EmploymentAgency.Model.Database.Interactions
             return _context.Vacancy.Max(v => v.ClosingDate);
         }
 
+        public DateTime? GetMaxDateOfConsiderationRequest()
+        {
+            return _context.Request.Max(r => r.DateOfConsideration);
+        }
+
         public DateTime GetMaxDateOfRegistrationMyRequest(int idApplicant)
         {
-            return _context.Request.Where(r => r.IdApplicant == idApplicant).AsNoTracking().Max(r => r.DateOfRegistration);
+            var request = _context.Request.Where(r => r.IdApplicant == idApplicant).AsNoTracking();
+
+            return request.Count() > 0 ? request.Max(r => r.DateOfRegistration) : DateTime.Now;
         }
 
         public DateTime GetMaxDateOfRegistrationMyVacancy(int idEmployer)
         {
-            return _context.v_vacancy.Where(v => v.IdEmployer == idEmployer).AsNoTracking().Max(v => v.DateOfRegistration);
+            var vacancies = _context.v_vacancy.Where(v => v.IdEmployer == idEmployer).AsNoTracking();
+
+            return vacancies.Count() > 0 ? vacancies.Max(v => v.DateOfRegistration) : DateTime.Now;
+        }
+
+        public DateTime GetMaxDateOfRegistrationRequest()
+        {
+            return _context.Request.Max(r => r.DateOfRegistration);
         }
 
         public DateTime GetMaxDateOfRegistrationVacancy()
@@ -1368,14 +1393,28 @@ namespace EmploymentAgency.Model.Database.Interactions
             return _context.Vacancy.Min(v => v.ClosingDate);
         }
 
+        public DateTime? GetMinDateOfConsiderationRequest()
+        {
+            return _context.Request.Min(r => r.DateOfConsideration);
+        }
+
         public DateTime GetMinDateOfRegistrationMyRequest(int idApplicant)
         {
-            return _context.Request.Where(r => r.IdApplicant == idApplicant).AsNoTracking().Min(r => r.DateOfRegistration);
+            var requests = _context.Request.Where(r => r.IdApplicant == idApplicant).AsNoTracking();
+
+            return requests.Count() > 0 ? requests.Min(r => r.DateOfRegistration) : DateTime.Now;
         }
 
         public DateTime GetMinDateOfRegistrationMyVacancy(int idEmployer)
         {
-            return _context.v_vacancy.Where(v => v.IdEmployer == idEmployer).AsNoTracking().Min(v => v.DateOfRegistration);
+            var vacancies = _context.v_vacancy.Where(v => v.IdEmployer == idEmployer).AsNoTracking();
+
+            return vacancies.Count() > 0 ? vacancies.Min(v => v.DateOfRegistration) : DateTime.Now;
+        }
+
+        public DateTime GetMinDateOfRegistrationRequest()
+        {
+            return _context.Request.Min(r => r.DateOfRegistration);
         }
 
         public DateTime GetMinDateOfRegistrationVacancy()
@@ -1548,6 +1587,17 @@ namespace EmploymentAgency.Model.Database.Interactions
             return _context.v_request.SingleOrDefault(r => r.IdRequest == idRequest);
         }
 
+        public List<v_request> GetRequests(int idRequestStatus, string professionName, Range<DateTime> rangeDateOfRegistration, DateTime? beginValueDateOfConsideration, DateTime? endValueDateOfConsideration)
+        {
+            return _context.v_request.Where(r =>
+            (idRequestStatus != -1 ? r.IdRequestStatus == idRequestStatus : true) &&
+            (professionName.Length > 0 ? r.ProfessionName.ToLower().StartsWith(professionName.ToLower()) : true) &&
+            r.DateOfRegistration >= rangeDateOfRegistration.BeginValue &&
+            r.DateOfRegistration <= rangeDateOfRegistration.EndValue &&
+            (beginValueDateOfConsideration != null ? r.DateOfConsideration >= beginValueDateOfConsideration : true) &&
+            (endValueDateOfConsideration != null ? r.DateOfConsideration <= endValueDateOfConsideration : true)).AsNoTracking().ToList();
+        }
+
         public RequestStatus GetRequestStatus(int idRequestStatus)
         {
             return _context.RequestStatus.SingleOrDefault(r => r.IdRequestStatus == idRequestStatus);
@@ -1664,6 +1714,12 @@ namespace EmploymentAgency.Model.Database.Interactions
         public v_subIndustry GetSubIndustryExtendedInformation(int idSubIndustry)
         {
             return _context.v_subIndustry.SingleOrDefault(s => s.IdSubIndustry == idSubIndustry);
+        }
+
+        public List<SuitableVacancy> GetSuitableVacancies(int idRequest)
+        {
+            return _context.SuitableVacancy.Where(s =>
+            s.IdRequest == idRequest).AsNoTracking().ToList();
         }
 
         public User GetUser(int idUser)
@@ -2352,6 +2408,16 @@ namespace EmploymentAgency.Model.Database.Interactions
             }
 
             return false;
+        }
+
+        public void UpdateStatusConsiderationRequest(int idRequest, string requestStatusName)
+        {
+            var request = GetRequest(idRequest);
+
+            request.IdRequestStatus = GetIdRequestStatus(requestStatusName);
+            request.DateOfConsideration = DateTime.Now;
+
+            _context.SaveChanges();
         }
 
         public bool UpdateStreet(int idStreet, string streetName)

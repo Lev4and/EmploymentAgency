@@ -248,7 +248,7 @@ namespace EmploymentAgency.ViewModels
 
         public ICommand Copy => new DelegateCommand(() =>
         {
-            Clipboard.SetDataObject(Vacancies.First(v => v.GetType().GetProperty("IdVacancy").GetValue(v).ToString() == SelectedIdVacancy.ToString()));
+            Clipboard.SetDataObject(SelectedIdVacancy.ToString());
         }, () => SelectedIdVacancy != null);
 
         private void ResetToDefault()
