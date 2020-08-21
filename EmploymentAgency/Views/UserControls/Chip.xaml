@@ -1,0 +1,22 @@
+﻿<UserControl
+    x:Class="EmploymentAgency.Views.UserControls.Chip"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:c="clr-namespace:EmploymentAgency.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:EmploymentAgency.Views.UserControls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mdt="http://materialdesigninxaml.net/winfx/xaml/themes"
+    x:Name="This"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <c:ArrayByteToImageSource x:Key="ArrayByteToImageSource" />
+    </UserControl.Resources>
+    <Grid>
+        <mdt:Chip Content="{Binding ElementName=This, Path=Text, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="5">
+            <mdt:Chip.Icon>
+                <Image Source="{Binding ElementName=This, Path=Photo, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource ArrayByteToImageSource}}" Stretch="Uniform" />
+            </mdt:Chip.Icon>
+        </mdt:Chip>
+    </Grid>
+</UserControl>

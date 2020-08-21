@@ -31,6 +31,14 @@
     </Style>
 
     <Style x:Key="LockButtonStyle" TargetType="Button">
-        <Setter Property="Template" Value="{StaticResource LockButtonTemplate}"/>
+        <Setter Property="Template" Value="{StaticResource LockButtonTemplate}" />
+    </Style>
+
+    <Style x:Key="ShowButtonStyle" TargetType="Button">
+        <Setter Property="Template" Value="{StaticResource ShowButtonTemplate}" />
+    </Style>
+
+    <Style x:Key="CopyButtonStyle" TargetType="Button">
+        <Setter Property="Template" Value="{StaticResource CopyButtonTemplate}" />
     </Style>
 </ResourceDictionary>

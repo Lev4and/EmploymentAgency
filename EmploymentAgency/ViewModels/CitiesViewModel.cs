@@ -1,6 +1,5 @@
 ﻿using Converters;
 using DevExpress.Mvvm;
-using EmploymentAgency.Events;
 using EmploymentAgency.Model.Database.Interactions;
 using EmploymentAgency.Model.Database.Models;
 using EmploymentAgency.Services;

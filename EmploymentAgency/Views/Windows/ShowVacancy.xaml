@@ -1,0 +1,515 @@
+﻿<Window
+    x:Class="EmploymentAgency.Views.Windows.ShowVacancy"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:c="clr-namespace:EmploymentAgency.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:local="clr-namespace:EmploymentAgency.Views.Windows"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mdt="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:uc="clr-namespace:EmploymentAgency.Views.UserControls"
+    Title="Агентство трудоустройства - Подробности вакансии"
+    Width="800"
+    Height="450"
+    Background="{StaticResource WindowBackgroundBrush}"
+    DataContext="{Binding ShowVacancyViewModel, Source={StaticResource ViewModelLocator}}"
+    mc:Ignorable="d">
+    <Window.Resources>
+        <c:ArrayByteToImageSource x:Key="ArrayByteToImageSource" />
+        <c:SelectedValueToNullableInt32 x:Key="SelectedValueToNullableInt32" />
+    </Window.Resources>
+    <Grid>
+        <i:Interaction.Triggers>
+            <i:EventTrigger EventName="Loaded">
+                <i:InvokeCommandAction Command="{Binding Path=Loaded}" />
+            </i:EventTrigger>
+        </i:Interaction.Triggers>
+        <ScrollViewer VerticalScrollBarVisibility="Visible">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid
+                    Grid.Row="0"
+                    Grid.ColumnSpan="2"
+                    Margin="15">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Border
+                            Width="200"
+                            Height="200"
+                            BorderBrush="Black"
+                            BorderThickness="1">
+                            <Image Source="{Binding Path=OrganizationPhoto, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource ArrayByteToImageSource}}" Stretch="Uniform" />
+                        </Border>
+                    </Grid>
+                    <Grid
+                        Grid.Column="1"
+                        Margin="5,0,0,0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <mdt:PackIcon
+                                    x:Name="IconAccountTie"
+                                    Width="{Binding ElementName=OrganizationNameTextBlock, Path=ActualHeight}"
+                                    Height="{Binding ElementName=OrganizationNameTextBlock, Path=ActualHeight}"
+                                    VerticalAlignment="Center"
+                                    Kind="AccountTie"
+                                    ToolTip="Название организации" />
+                            </Grid>
+                            <Grid Grid.Column="1" Margin="5,0,0,0">
+                                <TextBlock
+                                    x:Name="OrganizationNameTextBlock"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    FontSize="20"
+                                    Text="{Binding Path=OrganizationName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    TextAlignment="Left"
+                                    TextWrapping="NoWrap" />
+                            </Grid>
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <mdt:PackIcon
+                                    x:Name="IconMapMarker"
+                                    Width="{Binding ElementName=AddressBranchTextBlock, Path=ActualHeight}"
+                                    Height="{Binding ElementName=AddressBranchTextBlock, Path=ActualHeight}"
+                                    VerticalAlignment="Center"
+                                    Kind="MapMarker"
+                                    ToolTip="Адрес" />
+                            </Grid>
+                            <Grid Grid.Column="1" Margin="5,0,0,0">
+                                <TextBlock
+                                    x:Name="AddressBranchTextBlock"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    FontSize="20"
+                                    Text="{Binding Path=AddressBranch, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    TextAlignment="Left"
+                                    TextWrapping="NoWrap" />
+                            </Grid>
+                        </Grid>
+                        <Grid Grid.Row="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <mdt:PackIcon
+                                    x:Name="IconPhoneBranch"
+                                    Width="{Binding ElementName=PhoneNumberBranchTextBlock, Path=ActualHeight}"
+                                    Height="{Binding ElementName=PhoneNumberBranchTextBlock, Path=ActualHeight}"
+                                    VerticalAlignment="Center"
+                                    Kind="Phone"
+                                    ToolTip="Номер телефона" />
+                            </Grid>
+                            <Grid Grid.Column="1" Margin="5,0,0,0">
+                                <TextBlock
+                                    x:Name="PhoneNumberBranchTextBlock"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    FontSize="20"
+                                    Text="{Binding Path=PhoneNumberBranch, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    TextAlignment="Left"
+                                    TextWrapping="NoWrap" />
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </Grid>
+                <Grid
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Margin="15"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0" Height="50">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <mdt:PackIcon
+                                x:Name="IconWrench"
+                                Width="{Binding ElementName=IconWrench, Path=Height}"
+                                Height="Auto"
+                                Kind="Wrench"
+                                ToolTip="Сфера деятельности" />
+                        </Grid>
+                        <Grid Grid.Column="1" Margin="5,0,0,0">
+                            <TextBox
+                                x:Name="NameProfessionCategoryTextBox"
+                                VerticalContentAlignment="Center"
+                                mdt:HintAssist.HelperText="Укажите сферу деятельности"
+                                mdt:HintAssist.Hint="Сфера деятельности"
+                                FontSize="20"
+                                FontWeight="Medium"
+                                IsReadOnly="True"
+                                Text="{Binding Path=NameProfessionCategory, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                ToolTip="{Binding ElementName=NameProfessionCategoryTextBox, Path=Text}" />
+                        </Grid>
+                    </Grid>
+                    <Grid
+                        Grid.Row="1"
+                        Height="50"
+                        Margin="0,20,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <mdt:PackIcon
+                                x:Name="IconAccountHardHat"
+                                Width="{Binding ElementName=IconAccountHardHat, Path=Height}"
+                                Height="Auto"
+                                Kind="AccountHardHat"
+                                ToolTip="Профессия" />
+                        </Grid>
+                        <Grid Grid.Column="1" Margin="5,0,0,0">
+                            <TextBox
+                                x:Name="ProfessionNameTextBox"
+                                VerticalContentAlignment="Center"
+                                mdt:HintAssist.HelperText="Укажите название профессии"
+                                mdt:HintAssist.Hint="Профессия"
+                                FontSize="20"
+                                FontWeight="Medium"
+                                IsReadOnly="True"
+                                Text="{Binding Path=ProfessionName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                ToolTip="{Binding ElementName=ProfessionNameTextBox, Path=Text}" />
+                        </Grid>
+                    </Grid>
+                    <Grid
+                        Grid.Row="2"
+                        Height="50"
+                        Margin="0,20,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <mdt:PackIcon
+                                x:Name="IconBriefcaseClock"
+                                Width="{Binding ElementName=IconBriefcaseClock, Path=Height}"
+                                Height="Auto"
+                                Kind="BriefcaseClock"
+                                ToolTip="Тип занятости" />
+                        </Grid>
+                        <Grid Grid.Column="1" Margin="5,0,0,0">
+                            <TextBox
+                                x:Name="EmploymentTypeNameTextBox"
+                                VerticalContentAlignment="Center"
+                                mdt:HintAssist.HelperText="Введите название типа занятости"
+                                mdt:HintAssist.Hint="Название типа занятости"
+                                FontSize="20"
+                                FontWeight="Medium"
+                                IsReadOnly="True"
+                                Text="{Binding Path=EmploymentTypeName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                ToolTip="{Binding ElementName=EmploymentTypeNameTextBox, Path=Text}" />
+                        </Grid>
+                    </Grid>
+                </Grid>
+                <Grid
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Margin="15"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0" Height="50">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <mdt:PackIcon
+                                x:Name="IconProgressClock"
+                                Width="{Binding ElementName=IconProgressClock, Path=Height}"
+                                Height="Auto"
+                                Kind="ProgressClock"
+                                ToolTip="График работы" />
+                        </Grid>
+                        <Grid Grid.Column="1" Margin="5,0,0,0">
+                            <TextBox
+                                x:Name="ScheduleNameTextBox"
+                                VerticalContentAlignment="Center"
+                                mdt:HintAssist.HelperText="Введите название графика работы"
+                                mdt:HintAssist.Hint="Название графика работы"
+                                FontSize="20"
+                                FontWeight="Medium"
+                                IsReadOnly="True"
+                                Text="{Binding Path=ScheduleName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                ToolTip="{Binding ElementName=ScheduleNameTextBox, Path=Text}" />
+                        </Grid>
+                    </Grid>
+                    <Grid
+                        Grid.Row="1"
+                        Height="50"
+                        Margin="0,20,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <mdt:PackIcon
+                                x:Name="IconHardHat"
+                                Width="{Binding ElementName=IconHardHat, Path=Height}"
+                                Height="Auto"
+                                Kind="HardHat"
+                                ToolTip="Опыт работы" />
+                        </Grid>
+                        <Grid Grid.Column="1" Margin="5,0,0,0">
+                            <TextBox
+                                x:Name="ExperienceNameTextBox"
+                                VerticalContentAlignment="Center"
+                                mdt:HintAssist.HelperText="Введите название типа опыта"
+                                mdt:HintAssist.Hint="Название опыта"
+                                FontSize="20"
+                                FontWeight="Medium"
+                                IsReadOnly="True"
+                                Text="{Binding Path=ExperienceName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                ToolTip="{Binding ElementName=ExperienceNameTextBox, Path=Text}" />
+                        </Grid>
+                    </Grid>
+                    <Grid
+                        Grid.Row="2"
+                        Height="50"
+                        Margin="0,20,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <mdt:PackIcon
+                                x:Name="IconCash"
+                                Width="{Binding ElementName=IconCash, Path=Height}"
+                                Height="Auto"
+                                Kind="Cash"
+                                ToolTip="Оклад" />
+                        </Grid>
+                        <Grid Grid.Column="1" Margin="5,0,0,0">
+                            <TextBox
+                                x:Name="SalaryTextBox"
+                                VerticalContentAlignment="Center"
+                                mdt:HintAssist.HelperText="Укажите оклад в рублях"
+                                mdt:HintAssist.Hint="Оклад"
+                                FontSize="20"
+                                FontWeight="Medium"
+                                IsReadOnly="True"
+                                Text="{Binding Path=Salary, StringFormat={}{0:C}, ConverterCulture=RU, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                TextAlignment="Right"
+                                ToolTip="{Binding ElementName=SalaryTextBox, Path=Text}" />
+                        </Grid>
+                    </Grid>
+                </Grid>
+                <Grid
+                    Grid.Row="2"
+                    Grid.ColumnSpan="2"
+                    Height="250"
+                    Margin="15,30,15,0">
+                    <GroupBox
+                        BorderThickness="3"
+                        FontSize="24"
+                        FontWeight="Medium"
+                        Header="Описание">
+                        <Grid>
+                            <TextBox
+                                AcceptsReturn="True"
+                                FontSize="14"
+                                IsReadOnly="True"
+                                Text="{Binding Path=Description, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                TextWrapping="Wrap"
+                                VerticalScrollBarVisibility="Auto" />
+                        </Grid>
+                    </GroupBox>
+                </Grid>
+                <Grid
+                    Grid.Row="3"
+                    Grid.ColumnSpan="2"
+                    Height="250"
+                    Margin="15,30,15,0">
+                    <GroupBox
+                        BorderThickness="3"
+                        FontSize="24"
+                        FontWeight="Medium"
+                        Header="Обязанности">
+                        <Grid>
+                            <TextBox
+                                AcceptsReturn="True"
+                                FontSize="14"
+                                IsReadOnly="True"
+                                Text="{Binding Path=Duties, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                TextWrapping="Wrap"
+                                VerticalScrollBarVisibility="Auto" />
+                        </Grid>
+                    </GroupBox>
+                </Grid>
+                <Grid
+                    Grid.Row="4"
+                    Grid.ColumnSpan="2"
+                    Height="250"
+                    Margin="15,30,15,0">
+                    <GroupBox
+                        BorderThickness="3"
+                        FontSize="24"
+                        FontWeight="Medium"
+                        Header="Требования">
+                        <Grid>
+                            <TextBox
+                                AcceptsReturn="True"
+                                FontSize="14"
+                                IsReadOnly="True"
+                                Text="{Binding Path=Requirements, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                TextWrapping="Wrap"
+                                VerticalScrollBarVisibility="Auto" />
+                        </Grid>
+                    </GroupBox>
+                </Grid>
+                <Grid
+                    Grid.Row="5"
+                    Grid.ColumnSpan="2"
+                    Height="250"
+                    Margin="15,30,15,0">
+                    <GroupBox
+                        BorderThickness="3"
+                        FontSize="24"
+                        FontWeight="Medium"
+                        Header="Условия">
+                        <Grid>
+                            <TextBox
+                                AcceptsReturn="True"
+                                FontSize="14"
+                                IsReadOnly="True"
+                                Text="{Binding Path=Terms, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                TextWrapping="Wrap"
+                                VerticalScrollBarVisibility="Auto" />
+                        </Grid>
+                    </GroupBox>
+                </Grid>
+                <Grid
+                    Grid.Row="6"
+                    Grid.ColumnSpan="2"
+                    Margin="15,30,15,0">
+                    <uc:BlockViewChips
+                        Data="{Binding Path=NecessarySkills, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                        PhotoPath="Photo"
+                        TextPath="SkillName" />
+                </Grid>
+                <Grid
+                    Grid.Row="7"
+                    Grid.ColumnSpan="2"
+                    Margin="15,30,15,15">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Border
+                            Width="100"
+                            Height="100"
+                            BorderBrush="Black"
+                            BorderThickness="1">
+                            <Image Source="{Binding Path=EmployerPhoto, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource ArrayByteToImageSource}}" Stretch="Uniform" />
+                        </Border>
+                    </Grid>
+                    <Grid
+                        Grid.Column="1"
+                        Margin="5,0,0,0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <mdt:PackIcon
+                                    x:Name="IconAccount"
+                                    Width="{Binding ElementName=EmployerFullNameTextBlock, Path=ActualHeight}"
+                                    Height="{Binding ElementName=EmployerFullNameTextBlock, Path=ActualHeight}"
+                                    VerticalAlignment="Center"
+                                    Kind="Account"
+                                    ToolTip="ФИО работодателя" />
+                            </Grid>
+                            <Grid Grid.Column="1" Margin="5,0,5,0">
+                                <TextBlock
+                                    x:Name="EmployerFullNameTextBlock"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    FontSize="20"
+                                    Text="{Binding Path=EmployerFullName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    TextAlignment="Left"
+                                    TextWrapping="NoWrap" />
+                            </Grid>
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <mdt:PackIcon
+                                    x:Name="IconPhone"
+                                    Width="{Binding ElementName=PhoneNumberEmployerTextBlock, Path=ActualHeight}"
+                                    Height="{Binding ElementName=PhoneNumberEmployerTextBlock, Path=ActualHeight}"
+                                    VerticalAlignment="Center"
+                                    Kind="Phone"
+                                    ToolTip="Номер телефона" />
+                            </Grid>
+                            <Grid Grid.Column="1" Margin="5,0,0,0">
+                                <TextBlock
+                                    x:Name="PhoneNumberEmployerTextBlock"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    FontSize="20"
+                                    Text="{Binding Path=PhoneNumberEmployer, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    TextAlignment="Left"
+                                    TextWrapping="NoWrap" />
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</Window>

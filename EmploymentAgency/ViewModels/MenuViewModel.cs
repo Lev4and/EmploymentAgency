@@ -144,6 +144,11 @@ namespace EmploymentAgency.ViewModels
             _menuPageService.ChangePage(new MyRequests());
         }, () => _config.RoleName == "Соискатель");
 
+        public ICommand Vacancies => new DelegateCommand(() =>
+        {
+            _menuPageService.ChangePage(new Vacancies());
+        }, () => _config.RoleName == "Менеджер");
+
         public ICommand MyVacancies => new DelegateCommand(() =>
         {
             _menuPageService.ChangePage(new MyVacancies());

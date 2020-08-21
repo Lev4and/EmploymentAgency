@@ -158,4 +158,44 @@
                 Kind="Lock" />
         </Button>
     </ControlTemplate>
+
+    <ControlTemplate x:Key="ShowButtonTemplate" TargetType="Button">
+        <Button
+            x:Name="Button"
+            Width="40"
+            Height="40"
+            MaxWidth="{Binding ElementName=Button, Path=Width}"
+            MaxHeight="{Binding ElementName=Button, Path=Height}"
+            Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
+            ToolTip="Показать">
+            <mdt:PackIcon
+                Width="Auto"
+                Height="Auto"
+                MaxWidth="{Binding ElementName=Button, Path=Width}"
+                MaxHeight="{Binding ElementName=Button, Path=Height}"
+                Margin="5"
+                Foreground="Orange"
+                Kind="Eye" />
+        </Button>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="CopyButtonTemplate" TargetType="Button">
+        <Button
+            x:Name="Button"
+            Width="40"
+            Height="40"
+            MaxWidth="{Binding ElementName=Button, Path=Width}"
+            MaxHeight="{Binding ElementName=Button, Path=Height}"
+            Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
+            ToolTip="Скопировать в буфер обмена">
+            <mdt:PackIcon
+                Width="Auto"
+                Height="Auto"
+                MaxWidth="{Binding ElementName=Button, Path=Width}"
+                MaxHeight="{Binding ElementName=Button, Path=Height}"
+                Margin="5"
+                Foreground="Lime"
+                Kind="ContentCopy" />
+        </Button>
+    </ControlTemplate>
 </ResourceDictionary>

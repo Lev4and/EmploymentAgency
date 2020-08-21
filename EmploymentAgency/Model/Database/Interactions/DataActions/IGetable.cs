@@ -18,6 +18,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         int? GetMaxSalaryMyVacancy(int idEmployer);
 
+        int? GetMaxSalaryVacancy();
+
         int? GetMinNumberOfAcceptedApplicantsMyVacancy(int idEmployer);
 
         int? GetMinNumberOfApprovedApplicantsMyVacancy(int idEmployer);
@@ -28,21 +30,31 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         int? GetMinSalaryMyVacancy(int idEmployer);
 
+        int? GetMinSalaryVacancy();
+
         int GetIdRole(string roleName);
 
         int GetIdRequestStatus(string requestStatusName);
 
         DateTime? GetMaxClosingDateMyVacancy(int idEmployer);
 
+        DateTime? GetMaxClosingDateVacancy();
+
         DateTime? GetMinClosingDateMyVacancy(int idEmployer);
+
+        DateTime? GetMinClosingDateVacancy();
 
         DateTime GetMaxDateOfRegistrationMyRequest(int idApplicant);
 
         DateTime GetMaxDateOfRegistrationMyVacancy(int idEmployer);
 
+        DateTime GetMaxDateOfRegistrationVacancy();
+
         DateTime GetMinDateOfRegistrationMyRequest(int idApplicant);
 
         DateTime GetMinDateOfRegistrationMyVacancy(int idEmployer);
+
+        DateTime GetMinDateOfRegistrationVacancy();
 
         Applicant GetApplicant(int idApplicant);
 
@@ -154,6 +166,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         List<LanguageProficiency> GetLanguageProficiencies(string languageProficiencyName);
 
+        List<NecessarySkill> GetNecessarySkills();
+
         List<NecessarySkill> GetNecessarySkills(int idVacancy);
 
         List<Schedule> GetSchedules();
@@ -221,6 +235,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
         List<v_request> GetMyRequests(int idApplicant, int idProfessionCategory, int idProfession, int idRequestStatus, string professionName, Range<DateTime> rangeDateOfRegistration);
 
         List<v_user> GetUsers(int idRole, string login);
+
+        List<v_vacancy> GetVacancies(int idProfessionCategory, int idProfession, int idCountry, int idCity, int idStreet, string professionName, List<object> selectedExperiences, List<object> selectedSchedules, List<object> selectedEmploymentTypes, List<object> selectedSkills, Range<DateTime> rangeDateOfRegistration, DateTime? beginValueClosingDate, DateTime? endValueClosingDate, int? beginValueSalary, int? endValueSalary);
 
         List<v_vacancy> GetMyVacancies(int idEmployer, int idProfessionCategory, int idProfession, string professionName, DateTime? beginValueClosingDate, DateTime? endValueClosingDate, DateTime beginValueDateOfRegistration, DateTime endValueDateOfRegistration, int? beginValueNumberOfAcceptedApplicants, int? endValueNumberOfAcceptedApplicants, int? beginValueNumberOfApprovedApplicants, int? endValueNumberOfApprovedApplicants, int? beginValueNumberOfInterestedApplicants, int? endValueNumberOfInterestedApplicants, int? beginValueNumberOfPotentialApplicants, int? endValueNumberOfPotentialApplicants, int? beginValueSalary, int? endValueSalary);
     }

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
+using System.Security;
 
 namespace EmploymentAgency.Model.Database.Interactions
 {
@@ -1307,6 +1308,11 @@ namespace EmploymentAgency.Model.Database.Interactions
             return _context.v_vacancy.Where(v => v.IdEmployer == idEmployer).AsNoTracking().Max(v => v.ClosingDate);
         }
 
+        public DateTime? GetMaxClosingDateVacancy()
+        {
+            return _context.Vacancy.Max(v => v.ClosingDate);
+        }
+
         public DateTime GetMaxDateOfRegistrationMyRequest(int idApplicant)
         {
             return _context.Request.Where(r => r.IdApplicant == idApplicant).AsNoTracking().Max(r => r.DateOfRegistration);
@@ -1315,6 +1321,11 @@ namespace EmploymentAgency.Model.Database.Interactions
         public DateTime GetMaxDateOfRegistrationMyVacancy(int idEmployer)
         {
             return _context.v_vacancy.Where(v => v.IdEmployer == idEmployer).AsNoTracking().Max(v => v.DateOfRegistration);
+        }
+
+        public DateTime GetMaxDateOfRegistrationVacancy()
+        {
+            return _context.Vacancy.Max(v => v.DateOfRegistration);
         }
 
         public int? GetMaxNumberOfAcceptedApplicantsMyVacancy(int idEmployer)
@@ -1342,9 +1353,19 @@ namespace EmploymentAgency.Model.Database.Interactions
             return _context.v_vacancy.Where(v => v.IdEmployer == idEmployer).AsNoTracking().Max(v => v.Salary);
         }
 
+        public int? GetMaxSalaryVacancy()
+        {
+            return _context.Vacancy.Max(v => v.Salary);
+        }
+
         public DateTime? GetMinClosingDateMyVacancy(int idEmployer)
         {
             return _context.v_vacancy.Where(v => v.IdEmployer == idEmployer).AsNoTracking().Min(v => v.ClosingDate);
+        }
+
+        public DateTime? GetMinClosingDateVacancy()
+        {
+            return _context.Vacancy.Min(v => v.ClosingDate);
         }
 
         public DateTime GetMinDateOfRegistrationMyRequest(int idApplicant)
@@ -1355,6 +1376,11 @@ namespace EmploymentAgency.Model.Database.Interactions
         public DateTime GetMinDateOfRegistrationMyVacancy(int idEmployer)
         {
             return _context.v_vacancy.Where(v => v.IdEmployer == idEmployer).AsNoTracking().Min(v => v.DateOfRegistration);
+        }
+
+        public DateTime GetMinDateOfRegistrationVacancy()
+        {
+            return _context.Vacancy.Min(v => v.DateOfRegistration);
         }
 
         public int? GetMinNumberOfAcceptedApplicantsMyVacancy(int idEmployer)
@@ -1380,6 +1406,11 @@ namespace EmploymentAgency.Model.Database.Interactions
         public int? GetMinSalaryMyVacancy(int idEmployer)
         {
             return _context.v_vacancy.Where(v => v.IdEmployer == idEmployer).AsNoTracking().Min(v => v.Salary);
+        }
+
+        public int? GetMinSalaryVacancy()
+        {
+            return _context.Vacancy.Min(v => v.Salary);
         }
 
         public List<v_request> GetMyRequests(int idApplicant, int idProfessionCategory, int idProfession, int idRequestStatus, string professionName, Range<DateTime> rangeDateOfRegistration)
@@ -1420,6 +1451,11 @@ namespace EmploymentAgency.Model.Database.Interactions
         public List<NecessarySkill> GetNecessarySkills(int idVacancy)
         {
             return _context.NecessarySkill.Where(n => n.IdVacancy == idVacancy).ToList();
+        }
+
+        public List<NecessarySkill> GetNecessarySkills()
+        {
+            return _context.NecessarySkill.AsNoTracking().ToList();
         }
 
         public Organization GetOrganization(int idOrganization)
@@ -1645,6 +1681,33 @@ namespace EmploymentAgency.Model.Database.Interactions
             return _context.v_user.Where(u =>
             (idRole != -1 ? u.IdRole == idRole : true) &&
             (login.Length > 0 ? u.Login.ToLower().StartsWith(login.ToLower()) : true)).OrderBy(u => u.Login).AsNoTracking().ToList();
+        }
+
+        public List<v_vacancy> GetVacancies(int idProfessionCategory, int idProfession, int idCountry, int idCity, int idStreet, string professionName, List<object> selectedExperiences, List<object> selectedSchedules, List<object> selectedEmploymentTypes, List<object> selectedSkills, Range<DateTime> rangeDateOfRegistration, DateTime? beginValueClosingDate, DateTime? endValueClosingDate, int? beginValueSalary, int? endValueSalary)
+        {
+            var necessarySkills = GetNecessarySkills();
+
+            var vacancies = _context.v_vacancy.Where(v =>
+            (idProfessionCategory != -1 ? v.IdProfessionCategory == idProfessionCategory : true) &&
+            (idProfession != -1 ? v.IdProfession == idProfession : true) &&
+            (idCountry != -1 ? v.IdCountry == idCountry : true) &&
+            (idCity != -1 ? v.IdCity == idCity : true) &&
+            (idStreet != -1 ? v.IdStreet == idStreet : true) &&
+            (professionName.Length > 0 ? v.ProfessionName.ToLower().StartsWith(professionName.ToLower()) : true) &&
+            v.DateOfRegistration >= rangeDateOfRegistration.BeginValue &&
+            v.DateOfRegistration <= rangeDateOfRegistration.EndValue &&
+            (beginValueClosingDate != null ? v.ClosingDate >= beginValueClosingDate : true) &&
+            (endValueClosingDate != null ? v.ClosingDate <= endValueClosingDate : true) &&
+            v.Salary >= beginValueSalary && 
+            v.Salary <= endValueSalary).AsNoTracking().ToList();
+
+            vacancies = vacancies.Where(v =>
+            (selectedExperiences.Count > 0 ? selectedExperiences.Any(e => Convert.ToInt32(e) == v.IdExperience) : true) &&
+            (selectedSchedules.Count > 0 ? selectedSchedules.Any(s => Convert.ToInt32(s) == v.IdSchedule) : true) &&
+            (selectedEmploymentTypes.Count > 0 ? selectedEmploymentTypes.Any(e => Convert.ToInt32(e) == v.IdEmploymentType) : true) &&
+            (selectedSkills.Count > 0 ? selectedSkills.All(s => necessarySkills.Any(n => n.IdVacancy == v.IdVacancy && n.IdSkill == Convert.ToInt32(s))) : true)).ToList();
+
+            return vacancies;
         }
 
         public Vacancy GetVacancy(int idVacancy)

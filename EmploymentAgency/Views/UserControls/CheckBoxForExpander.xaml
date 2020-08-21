@@ -14,7 +14,7 @@
                 <i:InvokeCommandAction Command="{Binding ElementName=This, Path=Loaded}" />
             </i:EventTrigger>
         </i:Interaction.Triggers>
-        <CheckBox Content="{Binding ElementName=This, Path=Text, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" IsChecked="{Binding ElementName=This, Path=IsChecked, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
-
+        <CheckBox Content="{Binding ElementName=This, Path=Text, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" IsChecked="{Binding ElementName=This, Path=IsChecked, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                  ToolTip="{Binding ElementName=This, Path=Text, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
     </Grid>
 </UserControl>

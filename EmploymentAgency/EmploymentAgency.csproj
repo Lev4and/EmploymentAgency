@@ -131,7 +131,6 @@
     <Compile Include="Converters\TextToDouble.cs" />
     <Compile Include="Converters\TextToInt32.cs" />
     <Compile Include="Converters\BoolToVisibility.cs" />
-    <Compile Include="Events\DataEventArgs.cs" />
     <Compile Include="Model\Configurations\ConfigurationDatabase.cs" />
     <Compile Include="Model\Configurations\ConfigurationUser.cs" />
     <Compile Include="Model\Database\Interactions\DataActions\IAccordanable.cs" />
@@ -400,6 +399,7 @@
     <Compile Include="ViewModels\RolesViewModel.cs" />
     <Compile Include="ViewModels\SchedulesViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
+    <Compile Include="ViewModels\ShowVacancyViewModel.cs" />
     <Compile Include="ViewModels\SkillsViewModel.cs" />
     <Compile Include="ViewModels\StreetsViewModel.cs" />
     <Compile Include="ViewModels\SubIndustriesViewModel.cs" />
@@ -407,6 +407,7 @@
     <Compile Include="ViewModels\SupplementingInformationForEmployerViewModel.cs" />
     <Compile Include="ViewModels\SupplementingInformationForManagerViewModel.cs" />
     <Compile Include="ViewModels\UsersViewModel.cs" />
+    <Compile Include="ViewModels\VacanciesViewModel.cs" />
     <Compile Include="Views\Pages\Authorization.xaml.cs">
       <DependentUpon>Authorization.xaml</DependentUpon>
     </Compile>
@@ -509,6 +510,12 @@
     <Compile Include="Views\Pages\Users.xaml.cs">
       <DependentUpon>Users.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Pages\Vacancies.xaml.cs">
+      <DependentUpon>Vacancies.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\BlockViewChips.xaml.cs">
+      <DependentUpon>BlockViewChips.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\BlockViewImage.xaml.cs">
       <DependentUpon>BlockViewImage.xaml</DependentUpon>
     </Compile>
@@ -561,6 +568,9 @@
     <Compile Include="Views\UserControls\CheckBoxForExpander.xaml.cs">
       <DependentUpon>CheckBoxForExpander.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserControls\Chip.xaml.cs">
+      <DependentUpon>Chip.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\DoubleDatePicker.xaml.cs">
       <DependentUpon>DoubleDatePicker.xaml</DependentUpon>
     </Compile>
@@ -571,12 +581,6 @@
       <DependentUpon>ExpanderWithCheckBoxes.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\ISelectable.cs" />
-    <Compile Include="Views\UserControls\PerformableComboBox.xaml.cs">
-      <DependentUpon>PerformableComboBox.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UserControls\PerformableComboBoxItem.xaml.cs">
-      <DependentUpon>PerformableComboBoxItem.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\UserControls\SearchByInputField.xaml.cs">
       <DependentUpon>SearchByInputField.xaml</DependentUpon>
     </Compile>
@@ -723,6 +727,9 @@
     </Compile>
     <Compile Include="Views\Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Windows\ShowVacancy.xaml.cs">
+      <DependentUpon>ShowVacancy.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -900,6 +907,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Pages\Vacancies.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Styles\Brushes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -917,6 +928,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\BlockViewBranch.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\BlockViewChips.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -984,6 +999,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\UserControls\Chip.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\UserControls\DoubleDatePicker.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -993,14 +1012,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\ExpanderWithCheckBoxes.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\UserControls\PerformableComboBox.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\UserControls\PerformableComboBoxItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1197,6 +1208,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Windows\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Windows\ShowVacancy.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
