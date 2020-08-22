@@ -587,6 +587,9 @@
       <DependentUpon>ExpanderWithCheckBoxes.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\ISelectable.cs" />
+    <Compile Include="Views\UserControls\MenuButton.xaml.cs">
+      <DependentUpon>MenuButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\SearchByInputField.xaml.cs">
       <DependentUpon>SearchByInputField.xaml</DependentUpon>
     </Compile>
@@ -1025,6 +1028,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\ExpanderWithCheckBoxes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\MenuButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -2,11 +2,13 @@
     x:Class="EmploymentAgency.Views.Pages.Menu"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:c="clr-namespace:EmploymentAgency.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
     xmlns:local="clr-namespace:EmploymentAgency.Views.Pages"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:mdt="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:uc="clr-namespace:EmploymentAgency.Views.UserControls"
     Title="Меню"
     d:DesignHeight="450"
     d:DesignWidth="800"
@@ -14,6 +16,10 @@
     DataContext="{Binding MenuViewModel, Source={StaticResource ViewModelLocator}}"
     WindowTitle="Агентство трудоустройства - Меню"
     mc:Ignorable="d">
+    <Page.Resources>
+        <c:BackBoolToCollapsedVisibility x:Key="BackBoolToCollapsedVisibility" />
+        <c:BoolToCollapsedVisibility x:Key="BoolToCollapsedVisibility" />
+    </Page.Resources>
     <Grid>
         <mdt:ColorZone
             Height="70"
@@ -104,518 +110,194 @@
                                         <RowDefinition Height="Auto" />
                                         <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
-                                    <Grid Grid.Row="0">
-                                        <mdt:PackIcon
-                                            Width="15"
-                                            Height="15"
-                                            Margin="10,16"
-                                            Foreground="White"
-                                            Kind="City" />
-                                        <ListBoxItem
-                                            Padding="37,14"
-                                            Content="Страны"
-                                            FontSize="15"
-                                            Foreground="White">
-                                            <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="MouseUp">
-                                                    <i:InvokeCommandAction Command="{Binding Path=Countries}" />
-                                                </i:EventTrigger>
-                                            </i:Interaction.Triggers>
-                                        </ListBoxItem>
+                                    <Grid Grid.Row="0" Visibility="{Binding ElementName=CountriesButton, Path=IsEnabled, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToCollapsedVisibility}}">
+                                        <uc:MenuButton x:Name="CountriesButton"
+                                                       HorizontalContentAlignment="Left"
+                                                       Command="{Binding Path=Countries}"
+                                                       Text="Страны"
+                                                       Kind="City"/>
                                     </Grid>
-                                    <Grid Grid.Row="1">
-                                        <mdt:PackIcon
-                                            Width="15"
-                                            Height="15"
-                                            Margin="10,16"
-                                            Foreground="White"
-                                            Kind="CityVariant" />
-                                        <ListBoxItem
-                                            Padding="37,14"
-                                            Content="Города"
-                                            FontSize="15"
-                                            Foreground="White">
-                                            <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="MouseUp">
-                                                    <i:InvokeCommandAction Command="{Binding Path=Cities}" />
-                                                </i:EventTrigger>
-                                            </i:Interaction.Triggers>
-                                        </ListBoxItem>
+                                    <Grid Grid.Row="1" Visibility="{Binding ElementName=CitiesButton, Path=IsEnabled, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToCollapsedVisibility}}">
+                                        <uc:MenuButton x:Name="CitiesButton"
+                                                       HorizontalContentAlignment="Left"
+                                                       Command="{Binding Path=Cities}"
+                                                       Text="Города"
+                                                       Kind="CityVariant"/>
                                     </Grid>
-                                    <Grid Grid.Row="2">
-                                        <mdt:PackIcon
-                                            Width="15"
-                                            Height="15"
-                                            Margin="10,16"
-                                            Foreground="White"
-                                            Kind="SignDirection" />
-                                        <ListBoxItem
-                                            Padding="37,14"
-                                            Content="Улицы"
-                                            FontSize="15"
-                                            Foreground="White">
-                                            <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="MouseUp">
-                                                    <i:InvokeCommandAction Command="{Binding Path=Streets}" />
-                                                </i:EventTrigger>
-                                            </i:Interaction.Triggers>
-                                        </ListBoxItem>
+                                    <Grid Grid.Row="2" Visibility="{Binding ElementName=StreetsButton, Path=IsEnabled, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToCollapsedVisibility}}">
+                                        <uc:MenuButton x:Name="StreetsButton"
+                                                       HorizontalContentAlignment="Left"
+                                                       Command="{Binding Path=Streets}"
+                                                       Text="Улицы"
+                                                       Kind="SignDirection"/>
                                     </Grid>
-                                    <Grid Grid.Row="3">
-                                        <mdt:PackIcon
-                                            Width="15"
-                                            Height="15"
-                                            Margin="10,16"
-                                            Foreground="White"
-                                            Kind="HammerWrench" />
-                                        <ListBoxItem
-                                            Padding="37,14"
-                                            Content="Навыки"
-                                            FontSize="15"
-                                            Foreground="White">
-                                            <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="MouseUp">
-                                                    <i:InvokeCommandAction Command="{Binding Path=Skills}" />
-                                                </i:EventTrigger>
-                                            </i:Interaction.Triggers>
-                                        </ListBoxItem>
+                                    <Grid Grid.Row="3" Visibility="{Binding ElementName=SkillsButton, Path=IsEnabled, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToCollapsedVisibility}}">
+                                        <uc:MenuButton x:Name="SkillsButton"
+                                                       HorizontalContentAlignment="Left"
+                                                       Command="{Binding Path=Skills}"
+                                                       Text="Навыки"
+                                                       Kind="HammerWrench"/>
                                     </Grid>
-                                    <Grid Grid.Row="4">
-                                        <mdt:PackIcon
-                                            Width="15"
-                                            Height="15"
-                                            Margin="10,16"
-                                            Foreground="White"
-                                            Kind="Car" />
-                                        <ListBoxItem
-                                            Padding="37,14"
-                                            Content="Категории водительских прав"
-                                            FontSize="15"
-                                            Foreground="White">
-                                            <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="MouseUp">
-                                                    <i:InvokeCommandAction Command="{Binding Path=DrivingLicenseCategories}" />
-                                                </i:EventTrigger>
-                                            </i:Interaction.Triggers>
-                                        </ListBoxItem>
+                                    <Grid Grid.Row="4" Visibility="{Binding ElementName=DrivingLicenseCategoriesButton, Path=IsEnabled, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToCollapsedVisibility}}">
+                                        <uc:MenuButton x:Name="DrivingLicenseCategoriesButton"
+                                                       HorizontalContentAlignment="Left"
+                                                       Command="{Binding Path=DrivingLicenseCategories}"
+                                                       Text="Категории водительских прав"
+                                                       Kind="Car"/>
                                     </Grid>
-                                    <Grid Grid.Row="5">
-                                        <mdt:PackIcon
-                                            Width="15"
-                                            Height="15"
-                                            Margin="10,16"
-                                            Foreground="White"
-                                            Kind="School" />
-                                        <ListBoxItem
-                                            Padding="37,14"
-                                            Content="Виды образования"
-                                            FontSize="15"
-                                            Foreground="White">
-                                            <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="MouseUp">
-                                                    <i:InvokeCommandAction Command="{Binding Path=Educations}" />
-                                                </i:EventTrigger>
-                                            </i:Interaction.Triggers>
-                                        </ListBoxItem>
+                                    <Grid Grid.Row="5" Visibility="{Binding ElementName=EducationsButton, Path=IsEnabled, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToCollapsedVisibility}}">
+                                        <uc:MenuButton x:Name="EducationsButton"
+                                                       HorizontalContentAlignment="Left"
+                                                       Command="{Binding Path=Educations}"
+                                                       Text="Виды образования"
+                                                       Kind="School"/>
                                     </Grid>
-                                    <Grid Grid.Row="6">
-                                        <mdt:PackIcon
-                                            Width="15"
-                                            Height="15"
-                                            Margin="10,16"
-                                            Foreground="White"
-                                            Kind="BriefcaseClock" />
-                                        <ListBoxItem
-                                            Padding="37,14"
-                                            Content="Типы занятости"
-                                            FontSize="15"
-                                            Foreground="White">
-                                            <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="MouseUp">
-                                                    <i:InvokeCommandAction Command="{Binding Path=EmploymentTypes}" />
-                                                </i:EventTrigger>
-                                            </i:Interaction.Triggers>
-                                        </ListBoxItem>
+                                    <Grid Grid.Row="6" Visibility="{Binding ElementName=EmploymentTypesButton, Path=IsEnabled, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToCollapsedVisibility}}">
+                                        <uc:MenuButton x:Name="EmploymentTypesButton"
+                                                       HorizontalContentAlignment="Left"
+                                                       Command="{Binding Path=EmploymentTypes}"
+                                                       Text="Типы занятости"
+                                                       Kind="BriefcaseClock"/>
                                     </Grid>
-                                    <Grid Grid.Row="7">
-                                        <mdt:PackIcon
-                                            Width="15"
-                                            Height="15"
-                                            Margin="10,16"
-                                            Foreground="White"
-                                            Kind="HardHat" />
-                                        <ListBoxItem
-                                            Padding="37,14"
-                                            Content="Опыт работы"
-                                            FontSize="15"
-                                            Foreground="White">
-                                            <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="MouseUp">
-                                                    <i:InvokeCommandAction Command="{Binding Path=Experiences}" />
-                                                </i:EventTrigger>
-                                            </i:Interaction.Triggers>
-                                        </ListBoxItem>
+                                    <Grid Grid.Row="7" Visibility="{Binding ElementName=ExperiencesButton, Path=IsEnabled, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToCollapsedVisibility}}">
+                                        <uc:MenuButton x:Name="ExperiencesButton"
+                                                       HorizontalContentAlignment="Left"
+                                                       Command="{Binding Path=Experiences}"
+                                                       Text="Опыт работы"
+                                                       Kind="HardHat"/>
                                     </Grid>
-                                    <Grid Grid.Row="8">
-                                        <mdt:PackIcon
-                                            Width="15"
-                                            Height="15"
-                                            Margin="10,16"
-                                            Foreground="White"
-                                            Kind="Translate" />
-                                        <ListBoxItem
-                                            Padding="37,14"
-                                            Content="Языки"
-                                            FontSize="15"
-                                            Foreground="White">
-                                            <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="MouseUp">
-                                                    <i:InvokeCommandAction Command="{Binding Path=Languages}" />
-                                                </i:EventTrigger>
-                                            </i:Interaction.Triggers>
-                                        </ListBoxItem>
+                                    <Grid Grid.Row="8" Visibility="{Binding ElementName=LanguagesButton, Path=IsEnabled, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToCollapsedVisibility}}">
+                                        <uc:MenuButton x:Name="LanguagesButton"
+                                                       HorizontalContentAlignment="Left"
+                                                       Command="{Binding Path=Languages}"
+                                                       Text="Языки"
+                                                       Kind="Translate"/>
                                     </Grid>
-                                    <Grid Grid.Row="9">
-                                        <mdt:PackIcon
-                                            Width="15"
-                                            Height="15"
-                                            Margin="10,16"
-                                            Foreground="White"
-                                            Kind="Translate" />
-                                        <ListBoxItem
-                                            Padding="37,14"
-                                            Content="Уровни знания языка"
-                                            FontSize="15"
-                                            Foreground="White">
-                                            <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="MouseUp">
-                                                    <i:InvokeCommandAction Command="{Binding Path=LanguageProficiencies}" />
-                                                </i:EventTrigger>
-                                            </i:Interaction.Triggers>
-                                        </ListBoxItem>
+                                    <Grid Grid.Row="9" Visibility="{Binding ElementName=LanguageProficienciesButton, Path=IsEnabled, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToCollapsedVisibility}}">
+                                        <uc:MenuButton x:Name="LanguageProficienciesButton"
+                                                       HorizontalContentAlignment="Left"
+                                                       Command="{Binding Path=LanguageProficiencies}"
+                                                       Text="Уровни знания языка"
+                                                       Kind="Translate"/>
                                     </Grid>
-                                    <Grid Grid.Row="10">
-                                        <mdt:PackIcon
-                                            Width="15"
-                                            Height="15"
-                                            Margin="10,16"
-                                            Foreground="White"
-                                            Kind="GenderMaleFemale" />
-                                        <ListBoxItem
-                                            Padding="37,14"
-                                            Content="Гендеры"
-                                            FontSize="15"
-                                            Foreground="White">
-                                            <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="MouseUp">
-                                                    <i:InvokeCommandAction Command="{Binding Path=Genders}" />
-                                                </i:EventTrigger>
-                                            </i:Interaction.Triggers>
-                                        </ListBoxItem>
+                                    <Grid Grid.Row="10" Visibility="{Binding ElementName=GendersButton, Path=IsEnabled, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToCollapsedVisibility}}">
+                                        <uc:MenuButton x:Name="GendersButton"
+                                                       HorizontalContentAlignment="Left"
+                                                       Command="{Binding Path=Genders}"
+                                                       Text="Гендеры"
+                                                       Kind="GenderMaleFemale"/>
                                     </Grid>
-                                    <Grid Grid.Row="11">
-                                        <mdt:PackIcon
-                                            Width="15"
-                                            Height="15"
-                                            Margin="10,16"
-                                            Foreground="White"
-                                            Kind="Cog" />
-                                        <ListBoxItem
-                                            Padding="37,14"
-                                            Content="Отрасли"
-                                            FontSize="15"
-                                            Foreground="White">
-                                            <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="MouseUp">
-                                                    <i:InvokeCommandAction Command="{Binding Path=Industries}" />
-                                                </i:EventTrigger>
-                                            </i:Interaction.Triggers>
-                                        </ListBoxItem>
+                                    <Grid Grid.Row="11" Visibility="{Binding ElementName=IndustriesButton, Path=IsEnabled, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToCollapsedVisibility}}">
+                                        <uc:MenuButton x:Name="IndustriesButton"
+                                                       HorizontalContentAlignment="Left"
+                                                       Command="{Binding Path=Industries}"
+                                                       Text="Отрасли"
+                                                       Kind="Cog"/>
                                     </Grid>
-                                    <Grid Grid.Row="12">
-                                        <mdt:PackIcon
-                                            Width="15"
-                                            Height="15"
-                                            Margin="10,16"
-                                            Foreground="White"
-                                            Kind="CogOutline" />
-                                        <ListBoxItem
-                                            Padding="37,14"
-                                            Content="Подотрасли"
-                                            FontSize="15"
-                                            Foreground="White">
-                                            <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="MouseUp">
-                                                    <i:InvokeCommandAction Command="{Binding Path=SubIndustries}" />
-                                                </i:EventTrigger>
-                                            </i:Interaction.Triggers>
-                                        </ListBoxItem>
+                                    <Grid Grid.Row="12" Visibility="{Binding ElementName=SubIndustriesButton, Path=IsEnabled, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToCollapsedVisibility}}">
+                                        <uc:MenuButton x:Name="SubIndustriesButton"
+                                                       HorizontalContentAlignment="Left"
+                                                       Command="{Binding Path=SubIndustries}"
+                                                       Text="Подотрасли"
+                                                       Kind="CogOutline"/>
                                     </Grid>
-                                    <Grid Grid.Row="13">
-                                        <mdt:PackIcon
-                                            Width="15"
-                                            Height="15"
-                                            Margin="10,16"
-                                            Foreground="White"
-                                            Kind="Wrench" />
-                                        <ListBoxItem
-                                            Padding="37,14"
-                                            Content="Сферы деятельности"
-                                            FontSize="15"
-                                            Foreground="White">
-                                            <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="MouseUp">
-                                                    <i:InvokeCommandAction Command="{Binding Path=ProfessionCategories}" />
-                                                </i:EventTrigger>
-                                            </i:Interaction.Triggers>
-                                        </ListBoxItem>
+                                    <Grid Grid.Row="13" Visibility="{Binding ElementName=ProfessionCategoriesButton, Path=IsEnabled, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToCollapsedVisibility}}">
+                                        <uc:MenuButton x:Name="ProfessionCategoriesButton"
+                                                       HorizontalContentAlignment="Left"
+                                                       Command="{Binding Path=ProfessionCategories}"
+                                                       Text="Сферы деятельности"
+                                                       Kind="Wrench"/>
                                     </Grid>
-                                    <Grid Grid.Row="14">
-                                        <mdt:PackIcon
-                                            Width="15"
-                                            Height="15"
-                                            Margin="10,16"
-                                            Foreground="White"
-                                            Kind="AccountHardHat" />
-                                        <ListBoxItem
-                                            Padding="37,14"
-                                            Content="Профессии"
-                                            FontSize="15"
-                                            Foreground="White">
-                                            <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="MouseUp">
-                                                    <i:InvokeCommandAction Command="{Binding Path=Professions}" />
-                                                </i:EventTrigger>
-                                            </i:Interaction.Triggers>
-                                        </ListBoxItem>
+                                    <Grid Grid.Row="14" Visibility="{Binding ElementName=ProfessionsButton, Path=IsEnabled, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToCollapsedVisibility}}">
+                                        <uc:MenuButton x:Name="ProfessionsButton"
+                                                       HorizontalContentAlignment="Left"
+                                                       Command="{Binding Path=Professions}"
+                                                       Text="Профессии"
+                                                       Kind="AccountHardHat"/>
                                     </Grid>
-                                    <Grid Grid.Row="15">
-                                        <mdt:PackIcon
-                                            Width="15"
-                                            Height="15"
-                                            Margin="10,16"
-                                            Foreground="White"
-                                            Kind="BadgeAccountAlert" />
-                                        <ListBoxItem
-                                            Padding="37,14"
-                                            Content="Статусы рассмотрения заявок"
-                                            FontSize="15"
-                                            Foreground="White">
-                                            <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="MouseUp">
-                                                    <i:InvokeCommandAction Command="{Binding Path=RequestStatuses}" />
-                                                </i:EventTrigger>
-                                            </i:Interaction.Triggers>
-                                        </ListBoxItem>
+                                    <Grid Grid.Row="15" Visibility="{Binding ElementName=RequestStatusesButton, Path=IsEnabled, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToCollapsedVisibility}}">
+                                        <uc:MenuButton x:Name="RequestStatusesButton"
+                                                       HorizontalContentAlignment="Left"
+                                                       Command="{Binding Path=RequestStatuses}"
+                                                       Text="Статусы рассмотрения заявок"
+                                                       Kind="BadgeAccountAlert"/>
                                     </Grid>
-                                    <Grid Grid.Row="16">
-                                        <mdt:PackIcon
-                                            Width="15"
-                                            Height="15"
-                                            Margin="10,16"
-                                            Foreground="White"
-                                            Kind="AccountTie" />
-                                        <ListBoxItem
-                                            Padding="37,14"
-                                            Content="Организации"
-                                            FontSize="15"
-                                            Foreground="White">
-                                            <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="MouseUp">
-                                                    <i:InvokeCommandAction Command="{Binding Path=Organizations}" />
-                                                </i:EventTrigger>
-                                            </i:Interaction.Triggers>
-                                        </ListBoxItem>
+                                    <Grid Grid.Row="16" Visibility="{Binding ElementName=OrganizationsButton, Path=IsEnabled, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToCollapsedVisibility}}">
+                                        <uc:MenuButton x:Name="OrganizationsButton"
+                                                       HorizontalContentAlignment="Left"
+                                                       Command="{Binding Path=Organizations}"
+                                                       Text="Организации"
+                                                       Kind="AccountTie"/>
                                     </Grid>
-                                    <Grid Grid.Row="17">
-                                        <mdt:PackIcon
-                                            Width="15"
-                                            Height="15"
-                                            Margin="10,16"
-                                            Foreground="White"
-                                            Kind="Store" />
-                                        <ListBoxItem
-                                            Padding="37,14"
-                                            Content="Филиалы организаций"
-                                            FontSize="15"
-                                            Foreground="White">
-                                            <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="MouseUp">
-                                                    <i:InvokeCommandAction Command="{Binding Path=Branches}" />
-                                                </i:EventTrigger>
-                                            </i:Interaction.Triggers>
-                                        </ListBoxItem>
+                                    <Grid Grid.Row="17" Visibility="{Binding ElementName=BranchesButton, Path=IsEnabled, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToCollapsedVisibility}}">
+                                        <uc:MenuButton x:Name="BranchesButton"
+                                                       HorizontalContentAlignment="Left"
+                                                       Command="{Binding Path=Branches}"
+                                                       Text="Филиалы организаций"
+                                                       Kind="Store"/>
                                     </Grid>
-                                    <Grid Grid.Row="18">
-                                        <mdt:PackIcon
-                                            Width="15"
-                                            Height="15"
-                                            Margin="10,16"
-                                            Foreground="White"
-                                            Kind="BriefcaseAccount" />
-                                        <ListBoxItem
-                                            Padding="37,14"
-                                            Content="Должности"
-                                            FontSize="15"
-                                            Foreground="White">
-                                            <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="MouseUp">
-                                                    <i:InvokeCommandAction Command="{Binding Path=Roles}" />
-                                                </i:EventTrigger>
-                                            </i:Interaction.Triggers>
-                                        </ListBoxItem>
+                                    <Grid Grid.Row="18" Visibility="{Binding ElementName=RolesButton, Path=IsEnabled, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToCollapsedVisibility}}">
+                                        <uc:MenuButton x:Name="RolesButton"
+                                                       HorizontalContentAlignment="Left"
+                                                       Command="{Binding Path=Roles}"
+                                                       Text="Должности"
+                                                       Kind="BriefcaseAccount"/>
                                     </Grid>
-                                    <Grid Grid.Row="19">
-                                        <mdt:PackIcon
-                                            Width="15"
-                                            Height="15"
-                                            Margin="10,16"
-                                            Foreground="White"
-                                            Kind="ProgressClock" />
-                                        <ListBoxItem
-                                            Padding="37,14"
-                                            Content="График работы"
-                                            FontSize="15"
-                                            Foreground="White">
-                                            <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="MouseUp">
-                                                    <i:InvokeCommandAction Command="{Binding Path=Schedules}" />
-                                                </i:EventTrigger>
-                                            </i:Interaction.Triggers>
-                                        </ListBoxItem>
+                                    <Grid Grid.Row="19" Visibility="{Binding ElementName=SchedulesButton, Path=IsEnabled, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToCollapsedVisibility}}">
+                                        <uc:MenuButton x:Name="SchedulesButton"
+                                                       HorizontalContentAlignment="Left"
+                                                       Command="{Binding Path=Schedules}"
+                                                       Text="График работы"
+                                                       Kind="ProgressClock"/>
                                     </Grid>
-                                    <Grid Grid.Row="20">
-                                        <mdt:PackIcon
-                                            Width="15"
-                                            Height="15"
-                                            Margin="10,16"
-                                            Foreground="White"
-                                            Kind="AccountGroup" />
-                                        <ListBoxItem
-                                            Padding="37,14"
-                                            Content="Пользователи"
-                                            FontSize="15"
-                                            Foreground="White">
-                                            <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="MouseUp">
-                                                    <i:InvokeCommandAction Command="{Binding Path=Users}" />
-                                                </i:EventTrigger>
-                                            </i:Interaction.Triggers>
-                                        </ListBoxItem>
+                                    <Grid Grid.Row="20" Visibility="{Binding ElementName=UsersButton, Path=IsEnabled, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToCollapsedVisibility}}">
+                                        <uc:MenuButton x:Name="UsersButton"
+                                                       HorizontalContentAlignment="Left"
+                                                       Command="{Binding Path=Users}"
+                                                       Text="Пользователи"
+                                                       Kind="AccountGroup"/>
                                     </Grid>
-                                    <Grid Grid.Row="21">
-                                        <mdt:PackIcon
-                                            Width="15"
-                                            Height="15"
-                                            Margin="10,16"
-                                            Foreground="White"
-                                            Kind="CardAccountMail" />
-                                        <ListBoxItem
-                                            Padding="37,14"
-                                            Content="Запросы"
-                                            FontSize="15"
-                                            Foreground="White">
-                                            <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="MouseUp">
-                                                    <i:InvokeCommandAction Command="{Binding Path=Requests}" />
-                                                </i:EventTrigger>
-                                            </i:Interaction.Triggers>
-                                        </ListBoxItem>
+                                    <Grid Grid.Row="21" Visibility="{Binding ElementName=RequestsButton, Path=IsEnabled, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToCollapsedVisibility}}">
+                                        <uc:MenuButton x:Name="RequestsButton"
+                                                       HorizontalContentAlignment="Left"
+                                                       Command="{Binding Path=Requests}"
+                                                       Text="Запросы"
+                                                       Kind="CardAccountMail"/>
                                     </Grid>
-                                    <Grid Grid.Row="22">
-                                        <mdt:PackIcon
-                                            Width="15"
-                                            Height="15"
-                                            Margin="10,16"
-                                            Foreground="White"
-                                            Kind="CardAccountMail" />
-                                        <ListBoxItem
-                                            Padding="37,14"
-                                            Content="Мои запросы"
-                                            FontSize="15"
-                                            Foreground="White">
-                                            <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="MouseUp">
-                                                    <i:InvokeCommandAction Command="{Binding Path=MyRequests}" />
-                                                </i:EventTrigger>
-                                            </i:Interaction.Triggers>
-                                        </ListBoxItem>
+                                    <Grid Grid.Row="22" Visibility="{Binding ElementName=MyRequestsButton, Path=IsEnabled, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToCollapsedVisibility}}">
+                                        <uc:MenuButton x:Name="MyRequestsButton"
+                                                       HorizontalContentAlignment="Left"
+                                                       Command="{Binding Path=MyRequests}"
+                                                       Text="Мои запросы"
+                                                       Kind="CardAccountMail"/>
                                     </Grid>
-                                    <Grid Grid.Row="23">
-                                        <mdt:PackIcon
-                                            Width="15"
-                                            Height="15"
-                                            Margin="10,16"
-                                            Foreground="White"
-                                            Kind="MessageProcessing" />
-                                        <ListBoxItem
-                                            Padding="37,14"
-                                            Content="Вакансии"
-                                            FontSize="15"
-                                            Foreground="White">
-                                            <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="MouseUp">
-                                                    <i:InvokeCommandAction Command="{Binding Path=Vacancies}" />
-                                                </i:EventTrigger>
-                                            </i:Interaction.Triggers>
-                                        </ListBoxItem>
+                                    <Grid Grid.Row="23" Visibility="{Binding ElementName=VacanciesButton, Path=IsEnabled, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToCollapsedVisibility}}">
+                                        <uc:MenuButton x:Name="VacanciesButton"
+                                                       HorizontalContentAlignment="Left"
+                                                       Command="{Binding Path=Vacancies}"
+                                                       Text="Вакансии"
+                                                       Kind="MessageProcessing"/>
                                     </Grid>
-                                    <Grid Grid.Row="24">
-                                        <mdt:PackIcon
-                                            Width="15"
-                                            Height="15"
-                                            Margin="10,16"
-                                            Foreground="White"
-                                            Kind="MessageProcessing" />
-                                        <ListBoxItem
-                                            Padding="37,14"
-                                            Content="Мои вакансии"
-                                            FontSize="15"
-                                            Foreground="White">
-                                            <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="MouseUp">
-                                                    <i:InvokeCommandAction Command="{Binding Path=MyVacancies}" />
-                                                </i:EventTrigger>
-                                            </i:Interaction.Triggers>
-                                        </ListBoxItem>
+                                    <Grid Grid.Row="24" Visibility="{Binding ElementName=MyVacanciesButton, Path=IsEnabled, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToCollapsedVisibility}}">
+                                        <uc:MenuButton x:Name="MyVacanciesButton"
+                                                       HorizontalContentAlignment="Left"
+                                                       Command="{Binding Path=MyVacancies}"
+                                                       Text="Мои вакансии"
+                                                       Kind="MessageProcessing"/>
                                     </Grid>
-                                    <Grid Grid.Row="25">
-                                        <mdt:PackIcon
-                                            Width="15"
-                                            Height="15"
-                                            Margin="10,16"
-                                            Foreground="White"
-                                            Kind="CardAccountDetails" />
-                                        <ListBoxItem
-                                            Padding="37,14"
-                                            Content="Информация о себе"
-                                            FontSize="15"
-                                            Foreground="White">
-                                            <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="MouseUp">
-                                                    <i:InvokeCommandAction Command="{Binding Path=PersonalInformation}" />
-                                                </i:EventTrigger>
-                                            </i:Interaction.Triggers>
-                                        </ListBoxItem>
+                                    <Grid Grid.Row="25" Visibility="{Binding ElementName=PersonalInformationButton, Path=IsEnabled, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToCollapsedVisibility}}">
+                                        <uc:MenuButton x:Name="PersonalInformationButton"
+                                                       HorizontalContentAlignment="Left"
+                                                       Command="{Binding Path=PersonalInformation}"
+                                                       Text="Информация о себе"
+                                                       Kind="CardAccountDetails"/>
                                     </Grid>
                                     <Grid Grid.Row="26">
-                                        <mdt:PackIcon
-                                            Width="15"
-                                            Height="15"
-                                            Margin="10,16"
-                                            Foreground="White"
-                                            Kind="ExitRun" />
-                                        <ListBoxItem
-                                            Padding="37,14"
-                                            Content="Выход"
-                                            FontSize="15"
-                                            Foreground="White">
-                                            <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="MouseUp">
-                                                    <i:InvokeCommandAction Command="{Binding Path=Exit}" />
-                                                </i:EventTrigger>
-                                            </i:Interaction.Triggers>
-                                        </ListBoxItem>
+                                        <uc:MenuButton x:Name="ExitButton"
+                                                       HorizontalContentAlignment="Left"
+                                                       Command="{Binding Path=Exit}"
+                                                       Text="Выход"
+                                                       Kind="ExitRun"/>
                                     </Grid>
                                 </Grid>
                             </ScrollViewer>
