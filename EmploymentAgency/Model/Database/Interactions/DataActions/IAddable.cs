@@ -13,6 +13,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         bool AddCity(int idCountry, string cityName);
 
+        bool AddContract(int idEmploymentRequest);
+
         bool AddCountry(string countryName, byte[] flag);
 
         bool AddDrivingLicenseCategory(string drivingLicenseCategoryName);
@@ -22,6 +24,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
         bool AddEducationalActivity(int idApplicant, int idEducation, string nameEducationalnstitution, string address, DateTime startDate, DateTime? endDate);
 
         bool AddEmployer(int idUser, int idBranch, string name, string surname, string patronymic, int idGender, byte[] photo, DateTime dateOfBirth, string phoneNumber);
+
+        bool AddEmploymentRequest(int idSuitableVacancy);
 
         bool AddEmploymentType(string employmentTypeName);
 
@@ -71,6 +75,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         bool AddSubIndustry(int idIndustry, string nameSubIndustry);
 
+        bool AddSuitableVacancy(int idRequest, int idManager, int idVacancy);
+
         bool AddUser(int idRole, string login, string password);
 
         bool AddUser(int idRole, string login, string password, out User user);
@@ -94,8 +100,6 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
         void AddPreferredSchedules(int idRequest, List<object> preferredSchedules);
 
         void AddRequest(int idApplicant, int idProfession, int idExperience, int? salary, string aboutMe, List<object> preferredEmploymentTypes, List<object> preferredSchedules);
-
-        void AddSuitableVacancy(int idRequest, int idManager, int idVacancy);
 
         void AddVacancy(int idEmployer, int idProfession, int idEmploymentType, int idSchedule, int idExperience, string description, string duties, string requirements, string terms, int? salary, List<object> necessarySkills);
     }

@@ -12,6 +12,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         bool ContainsCountry(string countryName);
 
+        bool ContainsContract(int idEmploymentRequest);
+
         bool ContainsDrivingLicenseCategory(string drivingLicenseCategoryName);
 
         bool ContainsEducation(string educationName);
@@ -19,6 +21,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
         bool ContainsEducationalActivity(int idApplicant, int idEducation, string nameEducationalnstitution, string address, DateTime startDate, DateTime? endDate);
 
         bool ContainsEmployer(int idEmployer);
+
+        bool ContainsEmploymentRequest(int idSuitableVacancy);
 
         bool ContainsEmploymentType(string employmentTypeName);
 
@@ -65,6 +69,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
         bool ContainsStreet(int idCity, string streetName);
 
         bool ContainsSubIndustry(int idIndustry, string nameSubIndustry);
+
+        bool ContainsSuitableVacancy(int idRequest, int idVacancy);
 
         bool ContainsUser(string login);
     }

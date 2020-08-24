@@ -56,7 +56,7 @@
                     FontWeight="Medium"
                     IsEditable="True"
                     IsTextSearchEnabled="False"
-                    ItemsSource="{Binding Path=Countries, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                    ItemsSource="{Binding Path=DisplayedCountries, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                     SelectedValue="{Binding Path=SelectedIdCountry, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource SelectedValueToNullableInt32}}"
                     SelectedValuePath="IdCountry"
                     Text="{Binding Path=CountryName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"

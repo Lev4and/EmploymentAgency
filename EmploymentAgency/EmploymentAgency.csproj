@@ -282,7 +282,13 @@
     <Compile Include="Model\Database\Models\v_city.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Database\Models\v_contract.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\Database\Models\v_employer.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Database\Models\v_employmentRequest.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Database\Models\v_manager.cs">
@@ -304,6 +310,9 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Database\Models\v_subIndustry.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Database\Models\v_suitableVacancy.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Database\Models\v_user.cs">
@@ -375,6 +384,8 @@
     <Compile Include="ViewModels\CitiesViewModel.cs" />
     <Compile Include="ViewModels\ConsiderRequestViewModel.cs" />
     <Compile Include="ViewModels\CountriesViewModel.cs" />
+    <Compile Include="ViewModels\DetailRequestViewModel.cs" />
+    <Compile Include="ViewModels\DetailVacancyViewModel.cs" />
     <Compile Include="ViewModels\DrivingLicenseCategoriesViewModel.cs" />
     <Compile Include="ViewModels\EducationsViewModel.cs" />
     <Compile Include="ViewModels\EmploymentTypesViewModel.cs" />
@@ -391,6 +402,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ViewModels\MenuViewModel.cs" />
+    <Compile Include="ViewModels\MyContractsApplicantViewModel.cs" />
+    <Compile Include="ViewModels\MyContractsEmployerViewModel.cs" />
     <Compile Include="ViewModels\MyRequestsViewModel.cs" />
     <Compile Include="ViewModels\MyVacanciesViewModel.cs" />
     <Compile Include="ViewModels\OrganizationsViewModel.cs" />
@@ -461,6 +474,12 @@
     </Compile>
     <Compile Include="Views\Pages\Menu.xaml.cs">
       <DependentUpon>Menu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\MyContractsApplicant.xaml.cs">
+      <DependentUpon>MyContractsApplicant.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\MyContractsEmployer.xaml.cs">
+      <DependentUpon>MyContractsEmployer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\MyRequests.xaml.cs">
       <DependentUpon>MyRequests.xaml</DependentUpon>
@@ -737,6 +756,12 @@
     <Compile Include="Views\Windows\ConsiderRequest.xaml.cs">
       <DependentUpon>ConsiderRequest.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Windows\DetailRequest.xaml.cs">
+      <DependentUpon>DetailRequest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Windows\DetailVacancy.xaml.cs">
+      <DependentUpon>DetailVacancy.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
@@ -848,6 +873,14 @@
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
     <Page Include="Views\Pages\Menu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\MyContractsApplicant.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\MyContractsEmployer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1228,6 +1261,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Windows\ConsiderRequest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Windows\DetailRequest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Windows\DetailVacancy.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -162,12 +162,12 @@ namespace EmploymentAgency.ViewModels
 
         private void UpdateDisplayedProfessions()
         {
-            DisplayedProfessions = new ObservableCollection<Profession>(Professions.Where(p => p.ProfessionName.ToLower().StartsWith(ProfessionName.ToLower())).ToList());
+            DisplayedProfessions = new ObservableCollection<Profession>(Professions.Where(p => p.ProfessionName.ToLower().StartsWith(ProfessionName.ToLower())).Take(20).ToList());
         }
 
         private void UpdateDisplayedProfessionCategories()
         {
-            DisplayedProfessionCategories = new ObservableCollection<ProfessionCategory>(ProfessionCategories.Where(p => p.NameProfessionCategory.ToLower().StartsWith(NameProfessionCategory.ToLower())).ToList());
+            DisplayedProfessionCategories = new ObservableCollection<ProfessionCategory>(ProfessionCategories.Where(p => p.NameProfessionCategory.ToLower().StartsWith(NameProfessionCategory.ToLower())).Take(20).ToList());
         }
     }
 }

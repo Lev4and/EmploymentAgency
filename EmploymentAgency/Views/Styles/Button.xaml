@@ -43,6 +43,14 @@
     </Style>
 
     <Style x:Key="ConsiderButtonStyle" TargetType="Button">
-        <Setter Property="Template" Value="{StaticResource ConsiderButtonTemplate}"/>
+        <Setter Property="Template" Value="{StaticResource ConsiderButtonTemplate}" />
+    </Style>
+
+    <Style x:Key="DetailsButtonStyle" TargetType="Button">
+        <Setter Property="Template" Value="{StaticResource DetailsButtonTemplate}" />
+    </Style>
+
+    <Style x:Key="BreakButtonStyle" TargetType="Button">
+        <Setter Property="Template" Value="{StaticResource BreakButtonTemplate}" />
     </Style>
 </ResourceDictionary>

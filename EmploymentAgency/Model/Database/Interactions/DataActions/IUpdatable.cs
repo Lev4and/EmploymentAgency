@@ -24,6 +24,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         bool UpdateIndustry(int idIndustry, string industryName);
 
+        bool UpdateIsEmployedApplicant(int idApplicant, bool isEmployed);
+
         bool UpdateLanguage(int idLanguage, string languageName);
 
         bool UpdateLanguageProficiency(int idLanguageProficiency, string designation, string languageProficiencyName);
@@ -59,6 +61,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
         void UpdateEducationalActivities(int idApplicant, List<EducationalActivity> educationalActivities);
 
         void UpdateEmployer(int idEmployer, int idBranch, string name, string surname, string patronymic, byte[] photo, string phoneNumber);
+
+        void UpdateEmploymentRequest(int idEmploymentRequest, bool? isSuitable);
 
         void UpdateKnowledgeLanguages(int idApplicant, List<KnowledgeLanguage> knowledgeLanguages);
 

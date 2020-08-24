@@ -146,7 +146,7 @@ namespace EmploymentAgency.Views.UserControls
 
         private bool IsInformationCorrect(object information)
         {
-            return GetTextInformation(information).ToLower().StartsWith(SearchLine.ToLower());
+            return GetTextInformation(information).ToLower().StartsWith(SearchLine.ToLower()) || GetTextInformation(information).ToLower().EndsWith(SearchLine.ToLower()) || GetTextInformation(information).ToLower().Contains(SearchLine.ToLower());
         }
 
         private bool ContainsDisplayedData(object information)
@@ -287,15 +287,18 @@ namespace EmploymentAgency.Views.UserControls
                         {
                             if(IsDrawerOpen)
                             {
-                                DeselectItems();
+                                if(index != -1)
+                                {
+                                    DeselectItems();
 
-                                var item = GetItem(index);
+                                    var item = GetItem(index);
 
-                                SearchLine = item.ResultSearch;
+                                    SearchLine = item.ResultSearch;
 
-                                item.Select.Execute(item);
+                                    item.Select.Execute(item);
 
-                                IsDrawerOpen = false;
+                                    IsDrawerOpen = false;
+                                }
                             }
                         }
                         break;

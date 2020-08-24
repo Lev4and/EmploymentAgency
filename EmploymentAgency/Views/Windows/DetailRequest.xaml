@@ -1,5 +1,5 @@
 ﻿<Window
-    x:Class="EmploymentAgency.Views.Windows.ConsiderRequest"
+    x:Class="EmploymentAgency.Views.Windows.DetailRequest"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:c="clr-namespace:EmploymentAgency.Converters"
@@ -9,11 +9,11 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:mdt="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:uc="clr-namespace:EmploymentAgency.Views.UserControls"
-    Title="Агентство трудоустройства - Рассмотрение запроса"
+    Title="Агентство трудоустройства - Детали запроса"
     Width="800"
     Height="450"
     Background="{StaticResource WindowBackgroundBrush}"
-    DataContext="{Binding ConsiderRequestViewModel, Source={StaticResource ViewModelLocator}}"
+    DataContext="{Binding DetailRequestViewModel, Source={StaticResource ViewModelLocator}}"
     mc:Ignorable="d">
     <Window.Resources>
         <c:ArrayByteToImageSource x:Key="ArrayByteToImageSource" />
@@ -485,14 +485,11 @@
                             <Grid Grid.Row="0">
                                 <ToolBarTray>
                                     <ToolBar ClipToBounds="False" Style="{DynamicResource MaterialDesignToolBar}">
-                                        <Button Command="{Binding Path=Paste}" ToolTip="Вставить">
-                                            <mdt:PackIcon Kind="ContentPaste" />
-                                        </Button>
                                         <Button Command="{Binding Path=Show}" ToolTip="Посмотреть подробности">
                                             <mdt:PackIcon Kind="Eye" />
                                         </Button>
-                                        <Button Command="{Binding Path=Remove}" ToolTip="Удалить из списка">
-                                            <mdt:PackIcon Kind="CloseCircle" />
+                                        <Button Command="{Binding Path=EmploymentRequest}" ToolTip="Отправить запрос на трудоустройство">
+                                            <mdt:PackIcon Kind="EmailPlus" />
                                         </Button>
                                     </ToolBar>
                                 </ToolBarTray>
@@ -509,44 +506,68 @@
                 </Grid>
                 <Grid
                     Grid.Row="12"
-                    Grid.Column="0"
-                    Margin="15,30,15,15"
-                    Visibility="Visible">
-                    <Grid VerticalAlignment="Bottom">
-                        <mdt:Badged
-                            Margin="0,12,0,0"
-                            HorizontalAlignment="Center"
-                            Badge="{mdt:PackIcon Kind=TextBoxSearchOutline}">
-                            <Button
-                                Height="50"
-                                mdt:ButtonAssist.CornerRadius="25"
-                                Command="{Binding Path=BeginConsider}"
-                                Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                                ToolTip="Рассмотреть">
-                                <TextBlock Text="Рассмотреть" />
-                            </Button>
-                        </mdt:Badged>
-                    </Grid>
-                </Grid>
-                <Grid
-                    Grid.Row="12"
-                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
                     Margin="15,30,15,15">
-                    <Grid VerticalAlignment="Bottom">
-                        <mdt:Badged
-                            Margin="0,12,0,0"
-                            HorizontalAlignment="Center"
-                            Badge="{mdt:PackIcon Kind=TextBoxSearchOutline}">
-                            <Button
-                                Height="50"
-                                mdt:ButtonAssist.CornerRadius="25"
-                                Command="{Binding Path=EndConsider}"
-                                Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                                ToolTip="Завершить рассмотрение">
-                                <TextBlock Text="Завершить рассмотрение" />
-                            </Button>
-                        </mdt:Badged>
-                    </Grid>
+                    <GroupBox
+                        Height="500"
+                        BorderThickness="3"
+                        FontSize="24"
+                        FontWeight="Medium"
+                        Header="Мои заявки на трудоустройство">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <ToolBarTray>
+                                    <ToolBar ClipToBounds="False" Style="{DynamicResource MaterialDesignToolBar}">
+                                        <Button Command="{Binding Path=ShowDetailVacancy}" ToolTip="Посмотреть подробности">
+                                            <mdt:PackIcon Kind="Eye" />
+                                        </Button>
+                                        <Button Command="{Binding Path=SignContract}" ToolTip="Заключить договор">
+                                            <mdt:PackIcon Kind="ClipboardText" />
+                                        </Button>
+                                    </ToolBar>
+                                </ToolBarTray>
+                            </Grid>
+                            <Grid Grid.Row="1" Margin="0,5,0,5">
+                                <DataGrid
+                                    CellStyle="{StaticResource DefaultDataGridCellStyle}"
+                                    ColumnHeaderStyle="{StaticResource DefaultDataGridColumnHeaderStyle}"
+                                    ItemsSource="{Binding Path=SentEmploymentRequests, UpdateSourceTrigger=PropertyChanged}"
+                                    SelectedValue="{Binding Path=SelectedIdEmploymentRequest, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    SelectedValuePath="IdEmploymentRequest"
+                                    Style="{StaticResource DefaultDataGridStyle}"
+                                    VerticalScrollBarVisibility="Auto">
+                                    <DataGrid.Columns>
+                                        <DataGridTemplateColumn Header="Фото">
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <Border
+                                                        Width="50"
+                                                        Height="50"
+                                                        Margin="5"
+                                                        BorderBrush="Black"
+                                                        BorderThickness="1">
+                                                        <Image Source="{Binding Path=VacancyPhoto}" Stretch="Uniform" />
+                                                    </Border>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                        <DataGridTextColumn Binding="{Binding Path=VacancyOrganizationName}" Header="Название организации" />
+                                        <DataGridTextColumn Binding="{Binding Path=BranchAddress}" Header="Адрес филиала организации" />
+                                        <DataGridTextColumn Binding="{Binding Path=VacancyProfessionName}" Header="Название профессии" />
+                                        <DataGridTextColumn Binding="{Binding Path=VacancyEmploymentTypeName}" Header="Занятость" />
+                                        <DataGridTextColumn Binding="{Binding Path=VacancyScheduleName}" Header="График работы" />
+                                        <DataGridTextColumn Binding="{Binding Path=VacancyExperienceName}" Header="Опыт работы" />
+                                        <DataGridTextColumn Binding="{Binding Path=VacancySalary, StringFormat={}{0:C}, ConverterCulture=RU}" Header="Заработная плата" />
+                                        <DataGridCheckBoxColumn Binding="{Binding Path=IsSuitable}" Header="Принят ли запрос?" />
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>
+                        </Grid>
+                    </GroupBox>
                 </Grid>
             </Grid>
         </ScrollViewer>

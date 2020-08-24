@@ -37,7 +37,10 @@ namespace EmploymentAgency.ViewModels
                 _selectedIdIndustry = value;
 
                 if (_selectedIdIndustry != null)
+                {
                     UpdateSubIndustries();
+                    UpdateDisplayedSubIndustries();
+                }
                 else
                     SubIndustries = null;
 
@@ -122,6 +125,11 @@ namespace EmploymentAgency.ViewModels
                         OrganizationName = "";
                     }
                 }
+
+                if(Industries != null)
+                {
+                    UpdateDisplayedIndustries();
+                }
             }
         }
 
@@ -141,6 +149,11 @@ namespace EmploymentAgency.ViewModels
 
                         OrganizationName = "";
                     }
+                }
+
+                if(SubIndustries != null)
+                {
+                    UpdateDisplayedSubIndustries();
                 }
             }
         }
@@ -237,7 +250,11 @@ namespace EmploymentAgency.ViewModels
 
         public ObservableCollection<Industry> Industries { get; set; }
 
+        public ObservableCollection<Industry> DisplayedIndustries { get; set; }
+
         public ObservableCollection<SubIndustry> SubIndustries { get; set; }
+
+        public ObservableCollection<SubIndustry> DisplayedSubIndustries { get; set; }
 
         public ObservableCollection<Country> Countries { get; set; }
 
@@ -355,6 +372,16 @@ namespace EmploymentAgency.ViewModels
         private void UpdateOrganizations()
         {
             Organizations = new ObservableCollection<v_organizationWithoutPhoto>(_executor.GetOrganizationsWithoutPhoto());
+        }
+
+        private void UpdateDisplayedIndustries()
+        {
+            DisplayedIndustries = new ObservableCollection<Industry>(Industries.Where(i => i.IndustryName.ToLower().StartsWith(IndustryName.ToLower())).Take(20).ToList());
+        }
+
+        private void UpdateDisplayedSubIndustries()
+        {
+            DisplayedSubIndustries = new ObservableCollection<SubIndustry>(SubIndustries.Where(s => s.NameSubIndustry.ToLower().StartsWith(NameSubIndustry.ToLower())).Take(20).ToList());
         }
 
         private void UpdateDisplayedCountries()

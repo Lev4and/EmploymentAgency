@@ -5,6 +5,7 @@ using EmploymentAgency.Model.Database.Models;
 using EmploymentAgency.Services;
 using EmploymentAgency.Views.Windows;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 
@@ -12,11 +13,35 @@ namespace EmploymentAgency.ViewModels
 {
     public class SubIndustriesViewModel : BindableBase
     {
+        private string _industryName;
+
         private QueryExecutor _executor;
 
         public int? SelectedIdIndustry { get; set; }
 
         public int? SelectedIdSubIndustry { get; set; }
+
+        public string IndustryName
+        {
+            get { return _industryName; }
+            set
+            {
+                _industryName = value;
+
+                if (_industryName != null)
+                {
+                    if (_industryName.Length == 0)
+                    {
+                        SelectedIdIndustry = null;
+                    }
+                }
+
+                if (Industries != null)
+                {
+                    UpdateDisplayedIndustries();
+                }
+            }
+        }
 
         public string NameSubIndustry { get; set; }
 
@@ -24,12 +49,17 @@ namespace EmploymentAgency.ViewModels
 
         public ObservableCollection<Industry> Industries { get; set; }
 
+        public ObservableCollection<Industry> DisplayedIndustries { get; set; }
+
         public ICommand Loaded => new DelegateCommand(() =>
         {
             _executor = new QueryExecutor();
 
+            IndustryName = "";
+
             Industries = new ObservableCollection<Industry>(_executor.GetIndustries());
 
+            UpdateDisplayedIndustries();
             ResetToDefault();
         });
 
@@ -82,6 +112,11 @@ namespace EmploymentAgency.ViewModels
             SubIndustries = new ObservableCollection<object>(CollectionConverter<v_subIndustry>.ConvertToObjectList(_executor.GetSubIndustries(
                 (SelectedIdIndustry != null ? (int)SelectedIdIndustry : -1), 
                 NameSubIndustry)));
+        }
+
+        private void UpdateDisplayedIndustries()
+        {
+            DisplayedIndustries = new ObservableCollection<Industry>(Industries.Where(i => i.IndustryName.ToLower().StartsWith(IndustryName.ToLower())).Take(20).ToList());
         }
     }
 }

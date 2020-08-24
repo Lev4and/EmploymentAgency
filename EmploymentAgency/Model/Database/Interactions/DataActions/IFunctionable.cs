@@ -2,6 +2,12 @@
 {
     public interface IFunctionable
     {
+        bool BreakContract(int idContract);
+
+        bool DoesItHaveActiveContracts(int idApplicant);
+
+        bool IsBrokeContract(int idContract);
+
         bool IsClosedVacancy(int idVacancy);
 
         bool IsRelatedToStaff(int idUser);

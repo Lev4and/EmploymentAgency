@@ -154,11 +154,12 @@
                                     DisplayMemberPath="NameProfessionCategory"
                                     FontSize="14"
                                     FontWeight="Medium"
-                                    IsEditable="False"
+                                    IsEditable="True"
                                     IsTextSearchEnabled="False"
-                                    ItemsSource="{Binding Path=ProfessionCategories, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    ItemsSource="{Binding Path=DisplayedProfessionCategories, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                     SelectedValue="{Binding Path=SelectedIdProfessionCategory, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource SelectedValueToNullableInt32}}"
                                     SelectedValuePath="IdProfessionCategory"
+                                    Text="{Binding Path=NameProfessionCategory, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                     ToolTip="{Binding ElementName=ProfessionCategoriesComboBox, Path=Text}" />
                             </Grid>
                         </Grid>
@@ -178,11 +179,12 @@
                                     DisplayMemberPath="ProfessionName"
                                     FontSize="14"
                                     FontWeight="Medium"
-                                    IsEditable="False"
+                                    IsEditable="True"
                                     IsTextSearchEnabled="False"
-                                    ItemsSource="{Binding Path=Professions, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    ItemsSource="{Binding Path=DisplayedProfessions, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                     SelectedValue="{Binding Path=SelectedIdProfession, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource SelectedValueToNullableInt32}}"
                                     SelectedValuePath="IdProfession"
+                                    Text="{Binding Path=ProfessionName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                     ToolTip="{Binding ElementName=ProfessionsComboBox, Path=Text}" />
                             </Grid>
                         </Grid>

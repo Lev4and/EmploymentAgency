@@ -56,7 +56,7 @@
                     FontWeight="Medium"
                     IsEditable="True"
                     IsTextSearchEnabled="False"
-                    ItemsSource="{Binding Path=ProfessionCategories, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                    ItemsSource="{Binding Path=DisplayedProfessionCategories, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                     SelectedValue="{Binding Path=SelectedIdProfessionCategory, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource SelectedValueToNullableInt32}}"
                     SelectedValuePath="IdProfessionCategory"
                     Text="{Binding Path=NameProfessionCategory, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"

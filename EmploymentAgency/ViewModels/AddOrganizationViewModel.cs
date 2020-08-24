@@ -2,6 +2,7 @@
 using EmploymentAgency.Model.Database.Interactions;
 using EmploymentAgency.Model.Database.Models;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 
@@ -24,7 +25,10 @@ namespace EmploymentAgency.ViewModels
                 _selectedIdIndustry = value;
 
                 if (_selectedIdIndustry != null)
+                {
                     UpdateSubIndustries();
+                    UpdateDisplayedSubIndustries();
+                }
                 else
                     SubIndustries = null;
             }
@@ -41,16 +45,20 @@ namespace EmploymentAgency.ViewModels
             {
                 _industryName = value;
 
-                if(_industryName != null)
+                if (_industryName != null)
                 {
                     if (_industryName.Length == 0)
                     {
                         SelectedIdIndustry = null;
                         SelectedIdSubIndustry = null;
 
-                        IndustryName = "";
                         NameSubIndustry = "";
                     }
+                }
+
+                if (Industries != null)
+                {
+                    UpdateDisplayedIndustries();
                 }
             }
         }
@@ -62,12 +70,17 @@ namespace EmploymentAgency.ViewModels
             {
                 _nameSubIndustry = value;
 
-                if(_nameSubIndustry != null)
+                if (_nameSubIndustry != null)
                 {
                     if (_nameSubIndustry.Length == 0)
                     {
                         SelectedIdSubIndustry = null;
                     }
+                }
+
+                if (SubIndustries != null)
+                {
+                    UpdateDisplayedSubIndustries();
                 }
             }
         }
@@ -76,7 +89,11 @@ namespace EmploymentAgency.ViewModels
 
         public ObservableCollection<Industry> Industries { get; set; }
 
+        public ObservableCollection<Industry> DisplayedIndustries { get; set; }
+
         public ObservableCollection<SubIndustry> SubIndustries { get; set; }
+
+        public ObservableCollection<SubIndustry> DisplayedSubIndustries { get; set; }
 
         public ICommand Loaded => new DelegateCommand(() =>
         {
@@ -91,9 +108,9 @@ namespace EmploymentAgency.ViewModels
 
             Photo = null;
 
-            SubIndustries = new ObservableCollection<SubIndustry>();
-
             Industries = new ObservableCollection<Industry>(_executor.GetIndustries());
+
+            UpdateDisplayedIndustries();
         });
 
         public ICommand Add => new DelegateCommand(() =>
@@ -112,6 +129,16 @@ namespace EmploymentAgency.ViewModels
         private void UpdateSubIndustries()
         {
             SubIndustries = new ObservableCollection<SubIndustry>(_executor.GetSubIndustries((int)SelectedIdIndustry));
+        }
+
+        private void UpdateDisplayedIndustries()
+        {
+            DisplayedIndustries = new ObservableCollection<Industry>(Industries.Where(i => i.IndustryName.ToLower().StartsWith(IndustryName.ToLower())).Take(20).ToList());
+        }
+
+        private void UpdateDisplayedSubIndustries()
+        {
+            DisplayedSubIndustries = new ObservableCollection<SubIndustry>(SubIndustries.Where(s => s.NameSubIndustry.ToLower().StartsWith(NameSubIndustry.ToLower())).Take(20).ToList());
         }
     }
 }

@@ -42,6 +42,7 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0" Margin="0,0,5,0">
@@ -92,6 +93,19 @@
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="Click">
                             <i:InvokeCommandAction Command="{Binding Path=CloseVacancy}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+            </Grid>
+            <Grid Grid.Column="4" Margin="5,0,5,0">
+                <Button
+                    Width="50"
+                    Height="50"
+                    Command="{Binding Path=ShowDetails}"
+                    Style="{StaticResource DetailsButtonStyle}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding Path=ShowDetails}" />
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Button>
@@ -179,11 +193,12 @@
                                     DisplayMemberPath="NameProfessionCategory"
                                     FontSize="14"
                                     FontWeight="Medium"
-                                    IsEditable="False"
+                                    IsEditable="True"
                                     IsTextSearchEnabled="False"
-                                    ItemsSource="{Binding Path=ProfessionCategories, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    ItemsSource="{Binding Path=DisplayedProfessionCategories, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                     SelectedValue="{Binding Path=SelectedIdProfessionCategory, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource SelectedValueToNullableInt32}}"
                                     SelectedValuePath="IdProfessionCategory"
+                                    Text="{Binding Path=NameProfessionCategory, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                     ToolTip="{Binding ElementName=ProfessionCategoriesComboBox, Path=Text}" />
                             </Grid>
                         </Grid>
@@ -203,11 +218,12 @@
                                     DisplayMemberPath="ProfessionName"
                                     FontSize="14"
                                     FontWeight="Medium"
-                                    IsEditable="False"
+                                    IsEditable="True"
                                     IsTextSearchEnabled="False"
-                                    ItemsSource="{Binding Path=Professions, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    ItemsSource="{Binding Path=DisplayedProfessions, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                     SelectedValue="{Binding Path=SelectedIdProfession, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource SelectedValueToNullableInt32}}"
                                     SelectedValuePath="IdProfession"
+                                    Text="{Binding Path=ProfessionName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                     ToolTip="{Binding ElementName=ProfessionsComboBox, Path=Text}" />
                             </Grid>
                         </Grid>

@@ -177,6 +177,14 @@ namespace EmploymentAgency.ViewModels.Locators
 
         public ConsiderRequestViewModel ConsiderRequestViewModel => _provider.GetRequiredService<ConsiderRequestViewModel>();
 
+        public DetailVacancyViewModel DetailVacancyViewModel => _provider.GetRequiredService<DetailVacancyViewModel>();
+
+        public DetailRequestViewModel DetailRequestViewModel => _provider.GetRequiredService<DetailRequestViewModel>();
+
+        public MyContractsApplicantViewModel MyContractsApplicantViewModel => _provider.GetRequiredService<MyContractsApplicantViewModel>();
+
+        public MyContractsEmployerViewModel MyContractsEmployerViewModel => _provider.GetRequiredService<MyContractsEmployerViewModel>();
+
         public static void Init()
         {
             var services = new ServiceCollection();
@@ -266,6 +274,10 @@ namespace EmploymentAgency.ViewModels.Locators
             services.AddTransient<ShowVacancyViewModel>();
             services.AddTransient<RequestsViewModel>();
             services.AddTransient<ConsiderRequestViewModel>();
+            services.AddTransient<DetailVacancyViewModel>();
+            services.AddTransient<DetailRequestViewModel>();
+            services.AddTransient<MyContractsApplicantViewModel>();
+            services.AddTransient<MyContractsEmployerViewModel>();
 
             services.AddSingleton<PageService>();
             services.AddSingleton<MenuPageService>();

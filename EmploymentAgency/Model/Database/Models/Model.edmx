@@ -456,6 +456,103 @@
           <Property Name="CityName" Type="nvarchar" MaxLength="255" Nullable="false" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Employment agency.dbo.v_contract" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="v_contract">
+          <Key>
+            <PropertyRef Name="IdContract" />
+            <PropertyRef Name="IdEmploymentRequest" />
+            <PropertyRef Name="IdSuitableVacancy" />
+            <PropertyRef Name="IdRequest" />
+            <PropertyRef Name="IdVacancy" />
+            <PropertyRef Name="IdEmployer" />
+            <PropertyRef Name="IdApplicant" />
+            <PropertyRef Name="ApplicantFullName" />
+            <PropertyRef Name="ApplicantIdGender" />
+            <PropertyRef Name="ApplicantGenderName" />
+            <PropertyRef Name="ApplicantIdCountry" />
+            <PropertyRef Name="ApplicantCountryName" />
+            <PropertyRef Name="ApplicantIdCity" />
+            <PropertyRef Name="ApplicantCityName" />
+            <PropertyRef Name="ApplicantIdStreet" />
+            <PropertyRef Name="ApplicantStreetName" />
+            <PropertyRef Name="ApplicantPhoneNumber" />
+            <PropertyRef Name="ApplicantIsEmployed" />
+            <PropertyRef Name="RequestIdProfession" />
+            <PropertyRef Name="RequestProfessionName" />
+            <PropertyRef Name="RequestIdExperience" />
+            <PropertyRef Name="RequestExperienceName" />
+            <PropertyRef Name="VacancyIdOrganization" />
+            <PropertyRef Name="VacancyOrganizationName" />
+            <PropertyRef Name="IdBranch" />
+            <PropertyRef Name="BranchIdCountry" />
+            <PropertyRef Name="BranchCountryName" />
+            <PropertyRef Name="BranchIdCity" />
+            <PropertyRef Name="BranchCityName" />
+            <PropertyRef Name="BranchIdStreet" />
+            <PropertyRef Name="BranchStreetName" />
+            <PropertyRef Name="BranchAddress" />
+            <PropertyRef Name="PhoneNumber" />
+            <PropertyRef Name="VacancyIdProfession" />
+            <PropertyRef Name="VacancyProfessionName" />
+            <PropertyRef Name="VacancyIdEmploymentType" />
+            <PropertyRef Name="VacancyEmploymentTypeName" />
+            <PropertyRef Name="VacancyIdSchedule" />
+            <PropertyRef Name="VacancyScheduleName" />
+            <PropertyRef Name="VacancyIdExperience" />
+            <PropertyRef Name="VacancyExperienceName" />
+            <PropertyRef Name="DateOfConclusion" />
+          </Key>
+          <Property Name="IdContract" Type="int" Nullable="false" />
+          <Property Name="IdEmploymentRequest" Type="int" Nullable="false" />
+          <Property Name="IdSuitableVacancy" Type="int" Nullable="false" />
+          <Property Name="IdRequest" Type="int" Nullable="false" />
+          <Property Name="IdVacancy" Type="int" Nullable="false" />
+          <Property Name="IdEmployer" Type="int" Nullable="false" />
+          <Property Name="IdApplicant" Type="int" Nullable="false" />
+          <Property Name="ApplicantPhoto" Type="varbinary(max)" />
+          <Property Name="ApplicantFullName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ApplicantIdGender" Type="int" Nullable="false" />
+          <Property Name="ApplicantGenderName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ApplicantAge" Type="int" />
+          <Property Name="ApplicantIdCountry" Type="int" Nullable="false" />
+          <Property Name="ApplicantCountryName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ApplicantIdCity" Type="int" Nullable="false" />
+          <Property Name="ApplicantCityName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="ApplicantIdStreet" Type="int" Nullable="false" />
+          <Property Name="ApplicantStreetName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="ApplicantAddress" Type="nvarchar(max)" />
+          <Property Name="ApplicantPhoneNumber" Type="nvarchar" MaxLength="18" Nullable="false" />
+          <Property Name="ApplicantIsEmployed" Type="bit" Nullable="false" />
+          <Property Name="RequestIdProfession" Type="int" Nullable="false" />
+          <Property Name="RequestProfessionName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="RequestIdExperience" Type="int" Nullable="false" />
+          <Property Name="RequestExperienceName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="RequestSalary" Type="int" />
+          <Property Name="VacancyIdOrganization" Type="int" Nullable="false" />
+          <Property Name="VacancyPhoto" Type="varbinary(max)" />
+          <Property Name="VacancyOrganizationName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IdBranch" Type="int" Nullable="false" />
+          <Property Name="BranchIdCountry" Type="int" Nullable="false" />
+          <Property Name="BranchCountryName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="BranchIdCity" Type="int" Nullable="false" />
+          <Property Name="BranchCityName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="BranchIdStreet" Type="int" Nullable="false" />
+          <Property Name="BranchStreetName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="BranchAddress" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="18" Nullable="false" />
+          <Property Name="VacancyIdProfession" Type="int" Nullable="false" />
+          <Property Name="VacancyProfessionName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="VacancyIdEmploymentType" Type="int" Nullable="false" />
+          <Property Name="VacancyEmploymentTypeName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="VacancyIdSchedule" Type="int" Nullable="false" />
+          <Property Name="VacancyScheduleName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="VacancyIdExperience" Type="int" Nullable="false" />
+          <Property Name="VacancyExperienceName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="VacancySalary" Type="int" />
+          <Property Name="DateOfConclusion" Type="smalldatetime" Nullable="false" />
+          <Property Name="BreakDate" Type="smalldatetime" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
 предупреждение 6002: В таблице или представлении "Employment agency.dbo.v_employer" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
         <EntityType Name="v_employer">
           <Key>
@@ -502,6 +599,97 @@
           <Property Name="StreetName" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="NameHouse" Type="nvarchar(max)" Nullable="false" />
           <Property Name="AddressOrganization" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Employment agency.dbo.v_employmentRequest" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="v_employmentRequest">
+          <Key>
+            <PropertyRef Name="IdEmploymentRequest" />
+            <PropertyRef Name="IdSuitableVacancy" />
+            <PropertyRef Name="IdRequest" />
+            <PropertyRef Name="IdVacancy" />
+            <PropertyRef Name="IdApplicant" />
+            <PropertyRef Name="ApplicantFullName" />
+            <PropertyRef Name="ApplicantIdGender" />
+            <PropertyRef Name="ApplicantGenderName" />
+            <PropertyRef Name="ApplicantIdCountry" />
+            <PropertyRef Name="ApplicantCountryName" />
+            <PropertyRef Name="ApplicantIdCity" />
+            <PropertyRef Name="ApplicantCityName" />
+            <PropertyRef Name="ApplicantIdStreet" />
+            <PropertyRef Name="ApplicantStreetName" />
+            <PropertyRef Name="ApplicantPhoneNumber" />
+            <PropertyRef Name="ApplicantIsEmployed" />
+            <PropertyRef Name="RequestIdProfession" />
+            <PropertyRef Name="RequestProfessionName" />
+            <PropertyRef Name="RequestIdExperience" />
+            <PropertyRef Name="RequestExperienceName" />
+            <PropertyRef Name="VacancyIdOrganization" />
+            <PropertyRef Name="VacancyOrganizationName" />
+            <PropertyRef Name="IdBranch" />
+            <PropertyRef Name="BranchIdCountry" />
+            <PropertyRef Name="BranchCountryName" />
+            <PropertyRef Name="BranchIdCity" />
+            <PropertyRef Name="BranchCityName" />
+            <PropertyRef Name="BranchIdStreet" />
+            <PropertyRef Name="BranchStreetName" />
+            <PropertyRef Name="BranchAddress" />
+            <PropertyRef Name="PhoneNumber" />
+            <PropertyRef Name="VacancyIdProfession" />
+            <PropertyRef Name="VacancyProfessionName" />
+            <PropertyRef Name="VacancyIdEmploymentType" />
+            <PropertyRef Name="VacancyEmploymentTypeName" />
+            <PropertyRef Name="VacancyIdSchedule" />
+            <PropertyRef Name="VacancyScheduleName" />
+            <PropertyRef Name="VacancyIdExperience" />
+            <PropertyRef Name="VacancyExperienceName" />
+          </Key>
+          <Property Name="IdEmploymentRequest" Type="int" Nullable="false" />
+          <Property Name="IdSuitableVacancy" Type="int" Nullable="false" />
+          <Property Name="IdRequest" Type="int" Nullable="false" />
+          <Property Name="IdVacancy" Type="int" Nullable="false" />
+          <Property Name="IdApplicant" Type="int" Nullable="false" />
+          <Property Name="ApplicantPhoto" Type="varbinary(max)" />
+          <Property Name="ApplicantFullName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ApplicantIdGender" Type="int" Nullable="false" />
+          <Property Name="ApplicantGenderName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ApplicantAge" Type="int" />
+          <Property Name="ApplicantIdCountry" Type="int" Nullable="false" />
+          <Property Name="ApplicantCountryName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ApplicantIdCity" Type="int" Nullable="false" />
+          <Property Name="ApplicantCityName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="ApplicantIdStreet" Type="int" Nullable="false" />
+          <Property Name="ApplicantStreetName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="ApplicantAddress" Type="nvarchar(max)" />
+          <Property Name="ApplicantPhoneNumber" Type="nvarchar" MaxLength="18" Nullable="false" />
+          <Property Name="ApplicantIsEmployed" Type="bit" Nullable="false" />
+          <Property Name="RequestIdProfession" Type="int" Nullable="false" />
+          <Property Name="RequestProfessionName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="RequestIdExperience" Type="int" Nullable="false" />
+          <Property Name="RequestExperienceName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="RequestSalary" Type="int" />
+          <Property Name="VacancyIdOrganization" Type="int" Nullable="false" />
+          <Property Name="VacancyPhoto" Type="varbinary(max)" />
+          <Property Name="VacancyOrganizationName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IdBranch" Type="int" Nullable="false" />
+          <Property Name="BranchIdCountry" Type="int" Nullable="false" />
+          <Property Name="BranchCountryName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="BranchIdCity" Type="int" Nullable="false" />
+          <Property Name="BranchCityName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="BranchIdStreet" Type="int" Nullable="false" />
+          <Property Name="BranchStreetName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="BranchAddress" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="18" Nullable="false" />
+          <Property Name="VacancyIdProfession" Type="int" Nullable="false" />
+          <Property Name="VacancyProfessionName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="VacancyIdEmploymentType" Type="int" Nullable="false" />
+          <Property Name="VacancyEmploymentTypeName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="VacancyIdSchedule" Type="int" Nullable="false" />
+          <Property Name="VacancyScheduleName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="VacancyIdExperience" Type="int" Nullable="false" />
+          <Property Name="VacancyExperienceName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="VacancySalary" Type="int" />
+          <Property Name="IsSuitable" Type="bit" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
 предупреждение 6002: В таблице или представлении "Employment agency.dbo.v_manager" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
@@ -668,6 +856,50 @@
           <Property Name="IdIndustry" Type="int" Nullable="false" />
           <Property Name="IndustryName" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="NameSubIndustry" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Employment agency.dbo.v_suitableVacancy" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="v_suitableVacancy">
+          <Key>
+            <PropertyRef Name="IdSuitableVacancy" />
+            <PropertyRef Name="IdRequest" />
+            <PropertyRef Name="IdApplicant" />
+            <PropertyRef Name="ApplicantFullName" />
+            <PropertyRef Name="IdGender" />
+            <PropertyRef Name="GenderName" />
+            <PropertyRef Name="IdCountry" />
+            <PropertyRef Name="CountryName" />
+            <PropertyRef Name="IdCity" />
+            <PropertyRef Name="CityName" />
+            <PropertyRef Name="IdStreet" />
+            <PropertyRef Name="StreetName" />
+            <PropertyRef Name="PhoneNumber" />
+            <PropertyRef Name="IdExperience" />
+            <PropertyRef Name="ExperienceName" />
+            <PropertyRef Name="IdVacancy" />
+            <PropertyRef Name="DiscoveryDate" />
+          </Key>
+          <Property Name="IdSuitableVacancy" Type="int" Nullable="false" />
+          <Property Name="IdRequest" Type="int" Nullable="false" />
+          <Property Name="IdApplicant" Type="int" Nullable="false" />
+          <Property Name="Photo" Type="varbinary(max)" />
+          <Property Name="ApplicantFullName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IdGender" Type="int" Nullable="false" />
+          <Property Name="GenderName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Age" Type="int" />
+          <Property Name="IdCountry" Type="int" Nullable="false" />
+          <Property Name="CountryName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IdCity" Type="int" Nullable="false" />
+          <Property Name="CityName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="IdStreet" Type="int" Nullable="false" />
+          <Property Name="StreetName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="ApplicantAddress" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="18" Nullable="false" />
+          <Property Name="IdExperience" Type="int" Nullable="false" />
+          <Property Name="ExperienceName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Salary" Type="int" />
+          <Property Name="IdVacancy" Type="int" Nullable="false" />
+          <Property Name="DiscoveryDate" Type="smalldatetime" Nullable="false" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
 предупреждение 6002: В таблице или представлении "Employment agency.dbo.v_user" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
@@ -1496,6 +1728,59 @@
     [v_city].[CityName] AS [CityName]
     FROM [dbo].[v_city] AS [v_city]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="v_contract" EntityType="Self.v_contract" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_contract].[IdContract] AS [IdContract], 
+    [v_contract].[IdEmploymentRequest] AS [IdEmploymentRequest], 
+    [v_contract].[IdSuitableVacancy] AS [IdSuitableVacancy], 
+    [v_contract].[IdRequest] AS [IdRequest], 
+    [v_contract].[IdVacancy] AS [IdVacancy], 
+    [v_contract].[IdEmployer] AS [IdEmployer], 
+    [v_contract].[IdApplicant] AS [IdApplicant], 
+    [v_contract].[ApplicantPhoto] AS [ApplicantPhoto], 
+    [v_contract].[ApplicantFullName] AS [ApplicantFullName], 
+    [v_contract].[ApplicantIdGender] AS [ApplicantIdGender], 
+    [v_contract].[ApplicantGenderName] AS [ApplicantGenderName], 
+    [v_contract].[ApplicantAge] AS [ApplicantAge], 
+    [v_contract].[ApplicantIdCountry] AS [ApplicantIdCountry], 
+    [v_contract].[ApplicantCountryName] AS [ApplicantCountryName], 
+    [v_contract].[ApplicantIdCity] AS [ApplicantIdCity], 
+    [v_contract].[ApplicantCityName] AS [ApplicantCityName], 
+    [v_contract].[ApplicantIdStreet] AS [ApplicantIdStreet], 
+    [v_contract].[ApplicantStreetName] AS [ApplicantStreetName], 
+    [v_contract].[ApplicantAddress] AS [ApplicantAddress], 
+    [v_contract].[ApplicantPhoneNumber] AS [ApplicantPhoneNumber], 
+    [v_contract].[ApplicantIsEmployed] AS [ApplicantIsEmployed], 
+    [v_contract].[RequestIdProfession] AS [RequestIdProfession], 
+    [v_contract].[RequestProfessionName] AS [RequestProfessionName], 
+    [v_contract].[RequestIdExperience] AS [RequestIdExperience], 
+    [v_contract].[RequestExperienceName] AS [RequestExperienceName], 
+    [v_contract].[RequestSalary] AS [RequestSalary], 
+    [v_contract].[VacancyIdOrganization] AS [VacancyIdOrganization], 
+    [v_contract].[VacancyPhoto] AS [VacancyPhoto], 
+    [v_contract].[VacancyOrganizationName] AS [VacancyOrganizationName], 
+    [v_contract].[IdBranch] AS [IdBranch], 
+    [v_contract].[BranchIdCountry] AS [BranchIdCountry], 
+    [v_contract].[BranchCountryName] AS [BranchCountryName], 
+    [v_contract].[BranchIdCity] AS [BranchIdCity], 
+    [v_contract].[BranchCityName] AS [BranchCityName], 
+    [v_contract].[BranchIdStreet] AS [BranchIdStreet], 
+    [v_contract].[BranchStreetName] AS [BranchStreetName], 
+    [v_contract].[BranchAddress] AS [BranchAddress], 
+    [v_contract].[PhoneNumber] AS [PhoneNumber], 
+    [v_contract].[VacancyIdProfession] AS [VacancyIdProfession], 
+    [v_contract].[VacancyProfessionName] AS [VacancyProfessionName], 
+    [v_contract].[VacancyIdEmploymentType] AS [VacancyIdEmploymentType], 
+    [v_contract].[VacancyEmploymentTypeName] AS [VacancyEmploymentTypeName], 
+    [v_contract].[VacancyIdSchedule] AS [VacancyIdSchedule], 
+    [v_contract].[VacancyScheduleName] AS [VacancyScheduleName], 
+    [v_contract].[VacancyIdExperience] AS [VacancyIdExperience], 
+    [v_contract].[VacancyExperienceName] AS [VacancyExperienceName], 
+    [v_contract].[VacancySalary] AS [VacancySalary], 
+    [v_contract].[DateOfConclusion] AS [DateOfConclusion], 
+    [v_contract].[BreakDate] AS [BreakDate]
+    FROM [dbo].[v_contract] AS [v_contract]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="v_employer" EntityType="Self.v_employer" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [v_employer].[IdEmployer] AS [IdEmployer], 
@@ -1521,6 +1806,56 @@
     [v_employer].[NameHouse] AS [NameHouse], 
     [v_employer].[AddressOrganization] AS [AddressOrganization]
     FROM [dbo].[v_employer] AS [v_employer]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="v_employmentRequest" EntityType="Self.v_employmentRequest" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_employmentRequest].[IdEmploymentRequest] AS [IdEmploymentRequest], 
+    [v_employmentRequest].[IdSuitableVacancy] AS [IdSuitableVacancy], 
+    [v_employmentRequest].[IdRequest] AS [IdRequest], 
+    [v_employmentRequest].[IdVacancy] AS [IdVacancy], 
+    [v_employmentRequest].[IdApplicant] AS [IdApplicant], 
+    [v_employmentRequest].[ApplicantPhoto] AS [ApplicantPhoto], 
+    [v_employmentRequest].[ApplicantFullName] AS [ApplicantFullName], 
+    [v_employmentRequest].[ApplicantIdGender] AS [ApplicantIdGender], 
+    [v_employmentRequest].[ApplicantGenderName] AS [ApplicantGenderName], 
+    [v_employmentRequest].[ApplicantAge] AS [ApplicantAge], 
+    [v_employmentRequest].[ApplicantIdCountry] AS [ApplicantIdCountry], 
+    [v_employmentRequest].[ApplicantCountryName] AS [ApplicantCountryName], 
+    [v_employmentRequest].[ApplicantIdCity] AS [ApplicantIdCity], 
+    [v_employmentRequest].[ApplicantCityName] AS [ApplicantCityName], 
+    [v_employmentRequest].[ApplicantIdStreet] AS [ApplicantIdStreet], 
+    [v_employmentRequest].[ApplicantStreetName] AS [ApplicantStreetName], 
+    [v_employmentRequest].[ApplicantAddress] AS [ApplicantAddress], 
+    [v_employmentRequest].[ApplicantPhoneNumber] AS [ApplicantPhoneNumber], 
+    [v_employmentRequest].[ApplicantIsEmployed] AS [ApplicantIsEmployed], 
+    [v_employmentRequest].[RequestIdProfession] AS [RequestIdProfession], 
+    [v_employmentRequest].[RequestProfessionName] AS [RequestProfessionName], 
+    [v_employmentRequest].[RequestIdExperience] AS [RequestIdExperience], 
+    [v_employmentRequest].[RequestExperienceName] AS [RequestExperienceName], 
+    [v_employmentRequest].[RequestSalary] AS [RequestSalary], 
+    [v_employmentRequest].[VacancyIdOrganization] AS [VacancyIdOrganization], 
+    [v_employmentRequest].[VacancyPhoto] AS [VacancyPhoto], 
+    [v_employmentRequest].[VacancyOrganizationName] AS [VacancyOrganizationName], 
+    [v_employmentRequest].[IdBranch] AS [IdBranch], 
+    [v_employmentRequest].[BranchIdCountry] AS [BranchIdCountry], 
+    [v_employmentRequest].[BranchCountryName] AS [BranchCountryName], 
+    [v_employmentRequest].[BranchIdCity] AS [BranchIdCity], 
+    [v_employmentRequest].[BranchCityName] AS [BranchCityName], 
+    [v_employmentRequest].[BranchIdStreet] AS [BranchIdStreet], 
+    [v_employmentRequest].[BranchStreetName] AS [BranchStreetName], 
+    [v_employmentRequest].[BranchAddress] AS [BranchAddress], 
+    [v_employmentRequest].[PhoneNumber] AS [PhoneNumber], 
+    [v_employmentRequest].[VacancyIdProfession] AS [VacancyIdProfession], 
+    [v_employmentRequest].[VacancyProfessionName] AS [VacancyProfessionName], 
+    [v_employmentRequest].[VacancyIdEmploymentType] AS [VacancyIdEmploymentType], 
+    [v_employmentRequest].[VacancyEmploymentTypeName] AS [VacancyEmploymentTypeName], 
+    [v_employmentRequest].[VacancyIdSchedule] AS [VacancyIdSchedule], 
+    [v_employmentRequest].[VacancyScheduleName] AS [VacancyScheduleName], 
+    [v_employmentRequest].[VacancyIdExperience] AS [VacancyIdExperience], 
+    [v_employmentRequest].[VacancyExperienceName] AS [VacancyExperienceName], 
+    [v_employmentRequest].[VacancySalary] AS [VacancySalary], 
+    [v_employmentRequest].[IsSuitable] AS [IsSuitable]
+    FROM [dbo].[v_employmentRequest] AS [v_employmentRequest]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="v_manager" EntityType="Self.v_manager" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -1617,6 +1952,31 @@
     [v_subIndustry].[IndustryName] AS [IndustryName], 
     [v_subIndustry].[NameSubIndustry] AS [NameSubIndustry]
     FROM [dbo].[v_subIndustry] AS [v_subIndustry]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="v_suitableVacancy" EntityType="Self.v_suitableVacancy" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_suitableVacancy].[IdSuitableVacancy] AS [IdSuitableVacancy], 
+    [v_suitableVacancy].[IdRequest] AS [IdRequest], 
+    [v_suitableVacancy].[IdApplicant] AS [IdApplicant], 
+    [v_suitableVacancy].[Photo] AS [Photo], 
+    [v_suitableVacancy].[ApplicantFullName] AS [ApplicantFullName], 
+    [v_suitableVacancy].[IdGender] AS [IdGender], 
+    [v_suitableVacancy].[GenderName] AS [GenderName], 
+    [v_suitableVacancy].[Age] AS [Age], 
+    [v_suitableVacancy].[IdCountry] AS [IdCountry], 
+    [v_suitableVacancy].[CountryName] AS [CountryName], 
+    [v_suitableVacancy].[IdCity] AS [IdCity], 
+    [v_suitableVacancy].[CityName] AS [CityName], 
+    [v_suitableVacancy].[IdStreet] AS [IdStreet], 
+    [v_suitableVacancy].[StreetName] AS [StreetName], 
+    [v_suitableVacancy].[ApplicantAddress] AS [ApplicantAddress], 
+    [v_suitableVacancy].[PhoneNumber] AS [PhoneNumber], 
+    [v_suitableVacancy].[IdExperience] AS [IdExperience], 
+    [v_suitableVacancy].[ExperienceName] AS [ExperienceName], 
+    [v_suitableVacancy].[Salary] AS [Salary], 
+    [v_suitableVacancy].[IdVacancy] AS [IdVacancy], 
+    [v_suitableVacancy].[DiscoveryDate] AS [DiscoveryDate]
+    FROM [dbo].[v_suitableVacancy] AS [v_suitableVacancy]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="v_user" EntityType="Self.v_user" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -3499,6 +3859,9 @@
             <End Role="SuitableVacancy" EntitySet="SuitableVacancy" />
           </AssociationSet>
           <EntitySet Name="v_request" EntityType="Model.v_request" />
+          <EntitySet Name="v_suitableVacancy" EntityType="Model.v_suitableVacancy" />
+          <EntitySet Name="v_employmentRequest" EntityType="Model.v_employmentRequest" />
+          <EntitySet Name="v_contract" EntityType="Model.v_contract" />
         </EntityContainer>
         <EntityType Name="v_request">
           <Key>
@@ -3551,6 +3914,232 @@
           <Property Name="DateOfConsideration" Type="DateTime" Precision="0" />
           <Property Name="IdRequestStatus" Type="Int32" Nullable="false" />
           <Property Name="RequestStatusName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="v_suitableVacancy">
+          <Key>
+            <PropertyRef Name="IdSuitableVacancy" />
+            <PropertyRef Name="IdRequest" />
+            <PropertyRef Name="IdApplicant" />
+            <PropertyRef Name="ApplicantFullName" />
+            <PropertyRef Name="IdGender" />
+            <PropertyRef Name="GenderName" />
+            <PropertyRef Name="IdCountry" />
+            <PropertyRef Name="CountryName" />
+            <PropertyRef Name="IdCity" />
+            <PropertyRef Name="CityName" />
+            <PropertyRef Name="IdStreet" />
+            <PropertyRef Name="StreetName" />
+            <PropertyRef Name="PhoneNumber" />
+            <PropertyRef Name="IdExperience" />
+            <PropertyRef Name="ExperienceName" />
+            <PropertyRef Name="IdVacancy" />
+            <PropertyRef Name="DiscoveryDate" />
+          </Key>
+          <Property Name="IdSuitableVacancy" Type="Int32" Nullable="false" />
+          <Property Name="IdRequest" Type="Int32" Nullable="false" />
+          <Property Name="IdApplicant" Type="Int32" Nullable="false" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="ApplicantFullName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IdGender" Type="Int32" Nullable="false" />
+          <Property Name="GenderName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Age" Type="Int32" />
+          <Property Name="IdCountry" Type="Int32" Nullable="false" />
+          <Property Name="CountryName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IdCity" Type="Int32" Nullable="false" />
+          <Property Name="CityName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IdStreet" Type="Int32" Nullable="false" />
+          <Property Name="StreetName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ApplicantAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="18" FixedLength="false" Unicode="true" />
+          <Property Name="IdExperience" Type="Int32" Nullable="false" />
+          <Property Name="ExperienceName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Salary" Type="Int32" />
+          <Property Name="IdVacancy" Type="Int32" Nullable="false" />
+          <Property Name="DiscoveryDate" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityType Name="v_employmentRequest">
+          <Key>
+            <PropertyRef Name="IdEmploymentRequest" />
+            <PropertyRef Name="IdSuitableVacancy" />
+            <PropertyRef Name="IdRequest" />
+            <PropertyRef Name="IdVacancy" />
+            <PropertyRef Name="IdApplicant" />
+            <PropertyRef Name="ApplicantFullName" />
+            <PropertyRef Name="ApplicantIdGender" />
+            <PropertyRef Name="ApplicantGenderName" />
+            <PropertyRef Name="ApplicantIdCountry" />
+            <PropertyRef Name="ApplicantCountryName" />
+            <PropertyRef Name="ApplicantIdCity" />
+            <PropertyRef Name="ApplicantCityName" />
+            <PropertyRef Name="ApplicantIdStreet" />
+            <PropertyRef Name="ApplicantStreetName" />
+            <PropertyRef Name="ApplicantPhoneNumber" />
+            <PropertyRef Name="ApplicantIsEmployed" />
+            <PropertyRef Name="RequestIdProfession" />
+            <PropertyRef Name="RequestProfessionName" />
+            <PropertyRef Name="RequestIdExperience" />
+            <PropertyRef Name="RequestExperienceName" />
+            <PropertyRef Name="VacancyIdOrganization" />
+            <PropertyRef Name="VacancyOrganizationName" />
+            <PropertyRef Name="IdBranch" />
+            <PropertyRef Name="BranchIdCountry" />
+            <PropertyRef Name="BranchCountryName" />
+            <PropertyRef Name="BranchIdCity" />
+            <PropertyRef Name="BranchCityName" />
+            <PropertyRef Name="BranchIdStreet" />
+            <PropertyRef Name="BranchStreetName" />
+            <PropertyRef Name="BranchAddress" />
+            <PropertyRef Name="PhoneNumber" />
+            <PropertyRef Name="VacancyIdProfession" />
+            <PropertyRef Name="VacancyProfessionName" />
+            <PropertyRef Name="VacancyIdEmploymentType" />
+            <PropertyRef Name="VacancyEmploymentTypeName" />
+            <PropertyRef Name="VacancyIdSchedule" />
+            <PropertyRef Name="VacancyScheduleName" />
+            <PropertyRef Name="VacancyIdExperience" />
+            <PropertyRef Name="VacancyExperienceName" />
+          </Key>
+          <Property Name="IdEmploymentRequest" Type="Int32" Nullable="false" />
+          <Property Name="IdSuitableVacancy" Type="Int32" Nullable="false" />
+          <Property Name="IdRequest" Type="Int32" Nullable="false" />
+          <Property Name="IdVacancy" Type="Int32" Nullable="false" />
+          <Property Name="IdApplicant" Type="Int32" Nullable="false" />
+          <Property Name="ApplicantPhoto" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="ApplicantFullName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ApplicantIdGender" Type="Int32" Nullable="false" />
+          <Property Name="ApplicantGenderName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ApplicantAge" Type="Int32" />
+          <Property Name="ApplicantIdCountry" Type="Int32" Nullable="false" />
+          <Property Name="ApplicantCountryName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ApplicantIdCity" Type="Int32" Nullable="false" />
+          <Property Name="ApplicantCityName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ApplicantIdStreet" Type="Int32" Nullable="false" />
+          <Property Name="ApplicantStreetName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ApplicantAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ApplicantPhoneNumber" Type="String" Nullable="false" MaxLength="18" FixedLength="false" Unicode="true" />
+          <Property Name="ApplicantIsEmployed" Type="Boolean" Nullable="false" />
+          <Property Name="RequestIdProfession" Type="Int32" Nullable="false" />
+          <Property Name="RequestProfessionName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="RequestIdExperience" Type="Int32" Nullable="false" />
+          <Property Name="RequestExperienceName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RequestSalary" Type="Int32" />
+          <Property Name="VacancyIdOrganization" Type="Int32" Nullable="false" />
+          <Property Name="VacancyPhoto" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="VacancyOrganizationName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IdBranch" Type="Int32" Nullable="false" />
+          <Property Name="BranchIdCountry" Type="Int32" Nullable="false" />
+          <Property Name="BranchCountryName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BranchIdCity" Type="Int32" Nullable="false" />
+          <Property Name="BranchCityName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="BranchIdStreet" Type="Int32" Nullable="false" />
+          <Property Name="BranchStreetName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="BranchAddress" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="18" FixedLength="false" Unicode="true" />
+          <Property Name="VacancyIdProfession" Type="Int32" Nullable="false" />
+          <Property Name="VacancyProfessionName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="VacancyIdEmploymentType" Type="Int32" Nullable="false" />
+          <Property Name="VacancyEmploymentTypeName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="VacancyIdSchedule" Type="Int32" Nullable="false" />
+          <Property Name="VacancyScheduleName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="VacancyIdExperience" Type="Int32" Nullable="false" />
+          <Property Name="VacancyExperienceName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="VacancySalary" Type="Int32" />
+          <Property Name="IsSuitable" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="v_contract">
+          <Key>
+            <PropertyRef Name="IdContract" />
+            <PropertyRef Name="IdEmploymentRequest" />
+            <PropertyRef Name="IdSuitableVacancy" />
+            <PropertyRef Name="IdRequest" />
+            <PropertyRef Name="IdVacancy" />
+            <PropertyRef Name="IdApplicant" />
+            <PropertyRef Name="ApplicantFullName" />
+            <PropertyRef Name="ApplicantIdGender" />
+            <PropertyRef Name="ApplicantGenderName" />
+            <PropertyRef Name="ApplicantIdCountry" />
+            <PropertyRef Name="ApplicantCountryName" />
+            <PropertyRef Name="ApplicantIdCity" />
+            <PropertyRef Name="ApplicantCityName" />
+            <PropertyRef Name="ApplicantIdStreet" />
+            <PropertyRef Name="ApplicantStreetName" />
+            <PropertyRef Name="ApplicantPhoneNumber" />
+            <PropertyRef Name="ApplicantIsEmployed" />
+            <PropertyRef Name="RequestIdProfession" />
+            <PropertyRef Name="RequestProfessionName" />
+            <PropertyRef Name="RequestIdExperience" />
+            <PropertyRef Name="RequestExperienceName" />
+            <PropertyRef Name="VacancyIdOrganization" />
+            <PropertyRef Name="VacancyOrganizationName" />
+            <PropertyRef Name="IdBranch" />
+            <PropertyRef Name="BranchIdCountry" />
+            <PropertyRef Name="BranchCountryName" />
+            <PropertyRef Name="BranchIdCity" />
+            <PropertyRef Name="BranchCityName" />
+            <PropertyRef Name="BranchIdStreet" />
+            <PropertyRef Name="BranchStreetName" />
+            <PropertyRef Name="BranchAddress" />
+            <PropertyRef Name="PhoneNumber" />
+            <PropertyRef Name="VacancyIdProfession" />
+            <PropertyRef Name="VacancyProfessionName" />
+            <PropertyRef Name="VacancyIdEmploymentType" />
+            <PropertyRef Name="VacancyEmploymentTypeName" />
+            <PropertyRef Name="VacancyIdSchedule" />
+            <PropertyRef Name="VacancyScheduleName" />
+            <PropertyRef Name="VacancyIdExperience" />
+            <PropertyRef Name="VacancyExperienceName" />
+            <PropertyRef Name="DateOfConclusion" />
+            <PropertyRef Name="IdEmployer" />
+          </Key>
+          <Property Name="IdContract" Type="Int32" Nullable="false" />
+          <Property Name="IdEmploymentRequest" Type="Int32" Nullable="false" />
+          <Property Name="IdSuitableVacancy" Type="Int32" Nullable="false" />
+          <Property Name="IdRequest" Type="Int32" Nullable="false" />
+          <Property Name="IdVacancy" Type="Int32" Nullable="false" />
+          <Property Name="IdApplicant" Type="Int32" Nullable="false" />
+          <Property Name="ApplicantPhoto" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="ApplicantFullName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ApplicantIdGender" Type="Int32" Nullable="false" />
+          <Property Name="ApplicantGenderName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ApplicantAge" Type="Int32" />
+          <Property Name="ApplicantIdCountry" Type="Int32" Nullable="false" />
+          <Property Name="ApplicantCountryName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ApplicantIdCity" Type="Int32" Nullable="false" />
+          <Property Name="ApplicantCityName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ApplicantIdStreet" Type="Int32" Nullable="false" />
+          <Property Name="ApplicantStreetName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ApplicantAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ApplicantPhoneNumber" Type="String" Nullable="false" MaxLength="18" FixedLength="false" Unicode="true" />
+          <Property Name="ApplicantIsEmployed" Type="Boolean" Nullable="false" />
+          <Property Name="RequestIdProfession" Type="Int32" Nullable="false" />
+          <Property Name="RequestProfessionName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="RequestIdExperience" Type="Int32" Nullable="false" />
+          <Property Name="RequestExperienceName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RequestSalary" Type="Int32" />
+          <Property Name="VacancyIdOrganization" Type="Int32" Nullable="false" />
+          <Property Name="VacancyPhoto" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="VacancyOrganizationName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IdBranch" Type="Int32" Nullable="false" />
+          <Property Name="BranchIdCountry" Type="Int32" Nullable="false" />
+          <Property Name="BranchCountryName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BranchIdCity" Type="Int32" Nullable="false" />
+          <Property Name="BranchCityName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="BranchIdStreet" Type="Int32" Nullable="false" />
+          <Property Name="BranchStreetName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="BranchAddress" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="18" FixedLength="false" Unicode="true" />
+          <Property Name="VacancyIdProfession" Type="Int32" Nullable="false" />
+          <Property Name="VacancyProfessionName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="VacancyIdEmploymentType" Type="Int32" Nullable="false" />
+          <Property Name="VacancyEmploymentTypeName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="VacancyIdSchedule" Type="Int32" Nullable="false" />
+          <Property Name="VacancyScheduleName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="VacancyIdExperience" Type="Int32" Nullable="false" />
+          <Property Name="VacancyExperienceName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="VacancySalary" Type="Int32" />
+          <Property Name="DateOfConclusion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="BreakDate" Type="DateTime" Precision="0" />
+          <Property Name="IdEmployer" Type="Int32" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -4196,6 +4785,140 @@
                 <ScalarProperty Name="Photo" ColumnName="Photo" />
                 <ScalarProperty Name="IdApplicant" ColumnName="IdApplicant" />
                 <ScalarProperty Name="IdRequest" ColumnName="IdRequest" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_suitableVacancy">
+            <EntityTypeMapping TypeName="Model.v_suitableVacancy">
+              <MappingFragment StoreEntitySet="v_suitableVacancy">
+                <ScalarProperty Name="DiscoveryDate" ColumnName="DiscoveryDate" />
+                <ScalarProperty Name="IdVacancy" ColumnName="IdVacancy" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="ExperienceName" ColumnName="ExperienceName" />
+                <ScalarProperty Name="IdExperience" ColumnName="IdExperience" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="ApplicantAddress" ColumnName="ApplicantAddress" />
+                <ScalarProperty Name="StreetName" ColumnName="StreetName" />
+                <ScalarProperty Name="IdStreet" ColumnName="IdStreet" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="IdCity" ColumnName="IdCity" />
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+                <ScalarProperty Name="IdCountry" ColumnName="IdCountry" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="GenderName" ColumnName="GenderName" />
+                <ScalarProperty Name="IdGender" ColumnName="IdGender" />
+                <ScalarProperty Name="ApplicantFullName" ColumnName="ApplicantFullName" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="IdApplicant" ColumnName="IdApplicant" />
+                <ScalarProperty Name="IdRequest" ColumnName="IdRequest" />
+                <ScalarProperty Name="IdSuitableVacancy" ColumnName="IdSuitableVacancy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_employmentRequest">
+            <EntityTypeMapping TypeName="Model.v_employmentRequest">
+              <MappingFragment StoreEntitySet="v_employmentRequest">
+                <ScalarProperty Name="IsSuitable" ColumnName="IsSuitable" />
+                <ScalarProperty Name="VacancySalary" ColumnName="VacancySalary" />
+                <ScalarProperty Name="VacancyExperienceName" ColumnName="VacancyExperienceName" />
+                <ScalarProperty Name="VacancyIdExperience" ColumnName="VacancyIdExperience" />
+                <ScalarProperty Name="VacancyScheduleName" ColumnName="VacancyScheduleName" />
+                <ScalarProperty Name="VacancyIdSchedule" ColumnName="VacancyIdSchedule" />
+                <ScalarProperty Name="VacancyEmploymentTypeName" ColumnName="VacancyEmploymentTypeName" />
+                <ScalarProperty Name="VacancyIdEmploymentType" ColumnName="VacancyIdEmploymentType" />
+                <ScalarProperty Name="VacancyProfessionName" ColumnName="VacancyProfessionName" />
+                <ScalarProperty Name="VacancyIdProfession" ColumnName="VacancyIdProfession" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="BranchAddress" ColumnName="BranchAddress" />
+                <ScalarProperty Name="BranchStreetName" ColumnName="BranchStreetName" />
+                <ScalarProperty Name="BranchIdStreet" ColumnName="BranchIdStreet" />
+                <ScalarProperty Name="BranchCityName" ColumnName="BranchCityName" />
+                <ScalarProperty Name="BranchIdCity" ColumnName="BranchIdCity" />
+                <ScalarProperty Name="BranchCountryName" ColumnName="BranchCountryName" />
+                <ScalarProperty Name="BranchIdCountry" ColumnName="BranchIdCountry" />
+                <ScalarProperty Name="IdBranch" ColumnName="IdBranch" />
+                <ScalarProperty Name="VacancyOrganizationName" ColumnName="VacancyOrganizationName" />
+                <ScalarProperty Name="VacancyPhoto" ColumnName="VacancyPhoto" />
+                <ScalarProperty Name="VacancyIdOrganization" ColumnName="VacancyIdOrganization" />
+                <ScalarProperty Name="RequestSalary" ColumnName="RequestSalary" />
+                <ScalarProperty Name="RequestExperienceName" ColumnName="RequestExperienceName" />
+                <ScalarProperty Name="RequestIdExperience" ColumnName="RequestIdExperience" />
+                <ScalarProperty Name="RequestProfessionName" ColumnName="RequestProfessionName" />
+                <ScalarProperty Name="RequestIdProfession" ColumnName="RequestIdProfession" />
+                <ScalarProperty Name="ApplicantIsEmployed" ColumnName="ApplicantIsEmployed" />
+                <ScalarProperty Name="ApplicantPhoneNumber" ColumnName="ApplicantPhoneNumber" />
+                <ScalarProperty Name="ApplicantAddress" ColumnName="ApplicantAddress" />
+                <ScalarProperty Name="ApplicantStreetName" ColumnName="ApplicantStreetName" />
+                <ScalarProperty Name="ApplicantIdStreet" ColumnName="ApplicantIdStreet" />
+                <ScalarProperty Name="ApplicantCityName" ColumnName="ApplicantCityName" />
+                <ScalarProperty Name="ApplicantIdCity" ColumnName="ApplicantIdCity" />
+                <ScalarProperty Name="ApplicantCountryName" ColumnName="ApplicantCountryName" />
+                <ScalarProperty Name="ApplicantIdCountry" ColumnName="ApplicantIdCountry" />
+                <ScalarProperty Name="ApplicantAge" ColumnName="ApplicantAge" />
+                <ScalarProperty Name="ApplicantGenderName" ColumnName="ApplicantGenderName" />
+                <ScalarProperty Name="ApplicantIdGender" ColumnName="ApplicantIdGender" />
+                <ScalarProperty Name="ApplicantFullName" ColumnName="ApplicantFullName" />
+                <ScalarProperty Name="ApplicantPhoto" ColumnName="ApplicantPhoto" />
+                <ScalarProperty Name="IdApplicant" ColumnName="IdApplicant" />
+                <ScalarProperty Name="IdVacancy" ColumnName="IdVacancy" />
+                <ScalarProperty Name="IdRequest" ColumnName="IdRequest" />
+                <ScalarProperty Name="IdSuitableVacancy" ColumnName="IdSuitableVacancy" />
+                <ScalarProperty Name="IdEmploymentRequest" ColumnName="IdEmploymentRequest" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_contract">
+            <EntityTypeMapping TypeName="Model.v_contract">
+              <MappingFragment StoreEntitySet="v_contract">
+                <ScalarProperty Name="IdEmployer" ColumnName="IdEmployer" />
+                <ScalarProperty Name="BreakDate" ColumnName="BreakDate" />
+                <ScalarProperty Name="DateOfConclusion" ColumnName="DateOfConclusion" />
+                <ScalarProperty Name="VacancySalary" ColumnName="VacancySalary" />
+                <ScalarProperty Name="VacancyExperienceName" ColumnName="VacancyExperienceName" />
+                <ScalarProperty Name="VacancyIdExperience" ColumnName="VacancyIdExperience" />
+                <ScalarProperty Name="VacancyScheduleName" ColumnName="VacancyScheduleName" />
+                <ScalarProperty Name="VacancyIdSchedule" ColumnName="VacancyIdSchedule" />
+                <ScalarProperty Name="VacancyEmploymentTypeName" ColumnName="VacancyEmploymentTypeName" />
+                <ScalarProperty Name="VacancyIdEmploymentType" ColumnName="VacancyIdEmploymentType" />
+                <ScalarProperty Name="VacancyProfessionName" ColumnName="VacancyProfessionName" />
+                <ScalarProperty Name="VacancyIdProfession" ColumnName="VacancyIdProfession" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="BranchAddress" ColumnName="BranchAddress" />
+                <ScalarProperty Name="BranchStreetName" ColumnName="BranchStreetName" />
+                <ScalarProperty Name="BranchIdStreet" ColumnName="BranchIdStreet" />
+                <ScalarProperty Name="BranchCityName" ColumnName="BranchCityName" />
+                <ScalarProperty Name="BranchIdCity" ColumnName="BranchIdCity" />
+                <ScalarProperty Name="BranchCountryName" ColumnName="BranchCountryName" />
+                <ScalarProperty Name="BranchIdCountry" ColumnName="BranchIdCountry" />
+                <ScalarProperty Name="IdBranch" ColumnName="IdBranch" />
+                <ScalarProperty Name="VacancyOrganizationName" ColumnName="VacancyOrganizationName" />
+                <ScalarProperty Name="VacancyPhoto" ColumnName="VacancyPhoto" />
+                <ScalarProperty Name="VacancyIdOrganization" ColumnName="VacancyIdOrganization" />
+                <ScalarProperty Name="RequestSalary" ColumnName="RequestSalary" />
+                <ScalarProperty Name="RequestExperienceName" ColumnName="RequestExperienceName" />
+                <ScalarProperty Name="RequestIdExperience" ColumnName="RequestIdExperience" />
+                <ScalarProperty Name="RequestProfessionName" ColumnName="RequestProfessionName" />
+                <ScalarProperty Name="RequestIdProfession" ColumnName="RequestIdProfession" />
+                <ScalarProperty Name="ApplicantIsEmployed" ColumnName="ApplicantIsEmployed" />
+                <ScalarProperty Name="ApplicantPhoneNumber" ColumnName="ApplicantPhoneNumber" />
+                <ScalarProperty Name="ApplicantAddress" ColumnName="ApplicantAddress" />
+                <ScalarProperty Name="ApplicantStreetName" ColumnName="ApplicantStreetName" />
+                <ScalarProperty Name="ApplicantIdStreet" ColumnName="ApplicantIdStreet" />
+                <ScalarProperty Name="ApplicantCityName" ColumnName="ApplicantCityName" />
+                <ScalarProperty Name="ApplicantIdCity" ColumnName="ApplicantIdCity" />
+                <ScalarProperty Name="ApplicantCountryName" ColumnName="ApplicantCountryName" />
+                <ScalarProperty Name="ApplicantIdCountry" ColumnName="ApplicantIdCountry" />
+                <ScalarProperty Name="ApplicantAge" ColumnName="ApplicantAge" />
+                <ScalarProperty Name="ApplicantGenderName" ColumnName="ApplicantGenderName" />
+                <ScalarProperty Name="ApplicantIdGender" ColumnName="ApplicantIdGender" />
+                <ScalarProperty Name="ApplicantFullName" ColumnName="ApplicantFullName" />
+                <ScalarProperty Name="ApplicantPhoto" ColumnName="ApplicantPhoto" />
+                <ScalarProperty Name="IdApplicant" ColumnName="IdApplicant" />
+                <ScalarProperty Name="IdVacancy" ColumnName="IdVacancy" />
+                <ScalarProperty Name="IdRequest" ColumnName="IdRequest" />
+                <ScalarProperty Name="IdSuitableVacancy" ColumnName="IdSuitableVacancy" />
+                <ScalarProperty Name="IdEmploymentRequest" ColumnName="IdEmploymentRequest" />
+                <ScalarProperty Name="IdContract" ColumnName="IdContract" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

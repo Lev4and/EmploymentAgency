@@ -21,6 +21,13 @@
     </Style>
 
     <Style
+        x:Key="DataGridTextColumnStyle"
+        BasedOn="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+        TargetType="TextBlock">
+        <Setter Property="mdt:BottomDashedLineAdorner.Visibility" Value="Hidden" />
+    </Style>
+
+    <Style
         x:Key="DefaultDataGridStyle"
         BasedOn="{StaticResource MaterialDesignDataGrid}"
         TargetType="DataGrid">

@@ -7,6 +7,7 @@ using EmploymentAgency.Services;
 using EmploymentAgency.Views.Windows;
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 
@@ -15,6 +16,9 @@ namespace EmploymentAgency.ViewModels
     public class MyRequestsViewModel : BindableBase
     {
         private int? _selectedIdProfessionCategory;
+
+        private string _nameProfessionCategory;
+        private string _professionName;
 
         private QueryExecutor _executor;
         private ConfigurationUser _config;
@@ -27,7 +31,10 @@ namespace EmploymentAgency.ViewModels
                 _selectedIdProfessionCategory = value;
 
                 if (_selectedIdProfessionCategory != null)
+                {
                     UpdateProfessions();
+                    UpdateDisplayedProfessions();
+                }
                 else
                     Professions = null;
             }
@@ -39,7 +46,52 @@ namespace EmploymentAgency.ViewModels
 
         public int? SelectedIdRequestStatus { get; set; }
 
-        public string ProfessionName { get; set; }
+        public string NameProfessionCategory
+        {
+            get { return _nameProfessionCategory; }
+            set
+            {
+                _nameProfessionCategory = value;
+
+                if (_nameProfessionCategory != null)
+                {
+                    if (_nameProfessionCategory.Length == 0)
+                    {
+                        SelectedIdProfessionCategory = null;
+                        SelectedIdProfession = null;
+
+                        ProfessionName = "";
+                    }
+                }
+
+                if (ProfessionCategories != null)
+                {
+                    UpdateDisplayedProfessionCategories();
+                }
+            }
+        }
+
+        public string ProfessionName
+        {
+            get { return _professionName; }
+            set
+            {
+                _professionName = value;
+
+                if (_professionName != null)
+                {
+                    if (_professionName.Length == 0)
+                    {
+                        SelectedIdProfession = null;
+                    }
+                }
+
+                if (Professions != null)
+                {
+                    UpdateDisplayedProfessions();
+                }
+            }
+        }
 
         public DateTime BeginValueDateOfRegistration { get; set; }
 
@@ -53,7 +105,11 @@ namespace EmploymentAgency.ViewModels
 
         public ObservableCollection<ProfessionCategory> ProfessionCategories { get; set; }
 
+        public ObservableCollection<ProfessionCategory> DisplayedProfessionCategories { get; set; }
+
         public ObservableCollection<Profession> Professions { get; set; }
+
+        public ObservableCollection<Profession> DisplayedProfessions { get; set; }
 
         public ObservableCollection<RequestStatus> RequestStatuses { get; set; }
 
@@ -89,6 +145,13 @@ namespace EmploymentAgency.ViewModels
             }
         }, () => SelectedIdRequest != null);
 
+        public ICommand ShowDetails => new DelegateCommand(() =>
+        {
+            DetailRequestViewModel.SelectedIdRequest = (int)SelectedIdRequest;
+
+            WindowService.ShowWindow(new DetailRequest());
+        }, () => SelectedIdRequest != null);
+
         public ICommand ToFind => new DelegateCommand(() =>
         {
             Find();
@@ -106,6 +169,7 @@ namespace EmploymentAgency.ViewModels
             SelectedIdProfessionCategory = null;
             SelectedIdProfession = null;
 
+            NameProfessionCategory = "";
             ProfessionName = "";
 
             MinValueDateOfRegistration = _executor.GetMinDateOfRegistrationMyRequest(_config.IdUser);
@@ -117,6 +181,8 @@ namespace EmploymentAgency.ViewModels
 
             ProfessionCategories = new ObservableCollection<ProfessionCategory>(_executor.GetProfessionCategories());
             RequestStatuses = new ObservableCollection<RequestStatus>(_executor.GetRequestStatuses(""));
+
+            UpdateDisplayedProfessionCategories();
 
             Find();
         }
@@ -134,6 +200,16 @@ namespace EmploymentAgency.ViewModels
         private void UpdateProfessions()
         {
             Professions = new ObservableCollection<Profession>(_executor.GetProfessions((int)SelectedIdProfessionCategory));
+        }
+
+        private void UpdateDisplayedProfessionCategories()
+        {
+            DisplayedProfessionCategories = new ObservableCollection<ProfessionCategory>(ProfessionCategories.Where(p => p.NameProfessionCategory.ToLower().StartsWith(NameProfessionCategory.ToLower())).Take(15).ToList());
+        }
+
+        private void UpdateDisplayedProfessions()
+        {
+            DisplayedProfessions = new ObservableCollection<Profession>(Professions.Where(p => p.ProfessionName.ToLower().StartsWith(ProfessionName.ToLower())).Take(15).ToList());
         }
     }
 }

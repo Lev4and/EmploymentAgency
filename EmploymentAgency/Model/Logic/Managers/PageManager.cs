@@ -20,6 +20,8 @@ namespace EmploymentAgency.Model.Logic.Managers
 
         public abstract Page GetChangeInformationPage();
 
+        public abstract Page GetMyContractsPage();
+
         public static PageManager GetPageManager(int idRole)
         {
             var roleName = Enum.GetName(typeof(RoleName), idRole);

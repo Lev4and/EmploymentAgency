@@ -154,6 +154,13 @@ namespace EmploymentAgency.ViewModels
             _menuPageService.ChangePage(new Vacancies());
         }, () => _config.RoleName == "Менеджер");
 
+        public ICommand MyContracts => new DelegateCommand(() =>
+        {
+            _executor = new QueryExecutor();
+
+            _menuPageService.ChangePage(PageManager.GetPageManager(_executor.GetIdRole(_config.RoleName)).GetMyContractsPage());
+        }, () => _config.RoleName == "Соискатель" || _config.RoleName == "Работодатель");
+
         public ICommand MyVacancies => new DelegateCommand(() =>
         {
             _menuPageService.ChangePage(new MyVacancies());

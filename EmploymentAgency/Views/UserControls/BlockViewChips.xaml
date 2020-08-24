@@ -9,8 +9,6 @@
     d:DesignWidth="800"
     mc:Ignorable="d">
     <Grid>
-        <WrapPanel x:Name="WrapPanel" Orientation="Horizontal">
-            
-        </WrapPanel>
+        <WrapPanel x:Name="WrapPanel" Orientation="Horizontal" />
     </Grid>
 </UserControl>

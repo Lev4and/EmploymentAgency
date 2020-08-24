@@ -19,5 +19,10 @@ namespace EmploymentAgency.Model.Logic.Managers.PageManagers
         {
             return new ChangeSupplementInformationForEmployer();
         }
+
+        public override Page GetMyContractsPage()
+        {
+            return new MyContractsEmployer();
+        }
     }
 }

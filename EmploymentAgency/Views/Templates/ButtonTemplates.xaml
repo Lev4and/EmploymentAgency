@@ -218,4 +218,44 @@
                 Kind="TextBoxSearchOutline" />
         </Button>
     </ControlTemplate>
+
+    <ControlTemplate x:Key="DetailsButtonTemplate" TargetType="Button">
+        <Button
+            x:Name="Button"
+            Width="40"
+            Height="40"
+            MaxWidth="{Binding ElementName=Button, Path=Width}"
+            MaxHeight="{Binding ElementName=Button, Path=Height}"
+            Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
+            ToolTip="Детали">
+            <mdt:PackIcon
+                Width="Auto"
+                Height="Auto"
+                MaxWidth="{Binding ElementName=Button, Path=Width}"
+                MaxHeight="{Binding ElementName=Button, Path=Height}"
+                Margin="5"
+                Foreground="Orange"
+                Kind="CardAccountDetails" />
+        </Button>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="BreakButtonTemplate" TargetType="Button">
+        <Button
+            x:Name="Button"
+            Width="40"
+            Height="40"
+            MaxWidth="{Binding ElementName=Button, Path=Width}"
+            MaxHeight="{Binding ElementName=Button, Path=Height}"
+            Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
+            ToolTip="Разорвать">
+            <mdt:PackIcon
+                Width="Auto"
+                Height="Auto"
+                MaxWidth="{Binding ElementName=Button, Path=Width}"
+                MaxHeight="{Binding ElementName=Button, Path=Height}"
+                Margin="5"
+                Foreground="Red"
+                Kind="TextBoxRemove" />
+        </Button>
+    </ControlTemplate>
 </ResourceDictionary>

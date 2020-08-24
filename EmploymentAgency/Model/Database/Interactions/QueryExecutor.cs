@@ -93,6 +93,26 @@ namespace EmploymentAgency.Model.Database.Interactions
             return false;
         }
 
+        public bool AddContract(int idEmploymentRequest)
+        {
+            if(!ContainsContract(idEmploymentRequest))
+            {
+                var contract = _context.Contract.Add(new Contract
+                {
+                    IdEmploymentRequest = idEmploymentRequest,
+                    DateOfConclusion = DateTime.Now,
+                    BreakDate = null
+                });
+                _context.SaveChanges();
+
+                UpdateIsEmployedApplicant(contract.EmploymentRequest.SuitableVacancy.Request.Applicant.IdApplicant, true);
+
+                return true;
+            }
+
+            return false;
+        }
+
         public bool AddCountry(string countryName, byte[] flag)
         {
             if(!ContainsCountry(countryName))
@@ -186,6 +206,23 @@ namespace EmploymentAgency.Model.Database.Interactions
                     Photo = photo,
                     DateOfBirth = dateOfBirth,
                     PhoneNumber = phoneNumber
+                });
+                _context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool AddEmploymentRequest(int idSuitableVacancy)
+        {
+            if(!ContainsEmploymentRequest(idSuitableVacancy))
+            {
+                _context.EmploymentRequest.Add(new EmploymentRequest
+                {
+                    IdSuitableVacancy = idSuitableVacancy,
+                    IsSuitable = null
                 });
                 _context.SaveChanges();
 
@@ -688,16 +725,23 @@ namespace EmploymentAgency.Model.Database.Interactions
             return false;
         }
 
-        public void AddSuitableVacancy(int idRequest, int idManager, int idVacancy)
+        public bool AddSuitableVacancy(int idRequest, int idManager, int idVacancy)
         {
-            _context.SuitableVacancy.Add(new SuitableVacancy
+            if(!ContainsSuitableVacancy(idRequest, idVacancy))
             {
-                IdRequest = idRequest,
-                IdManager = idManager,
-                IdVacancy = idVacancy,
-                DiscoveryDate = DateTime.Now
-            });
-            _context.SaveChanges();
+                _context.SuitableVacancy.Add(new SuitableVacancy
+                {
+                    IdRequest = idRequest,
+                    IdManager = idManager,
+                    IdVacancy = idVacancy,
+                    DiscoveryDate = DateTime.Now
+                });
+                _context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
         }
 
         public bool AddUser(int idRole, string login, string password)
@@ -788,6 +832,24 @@ namespace EmploymentAgency.Model.Database.Interactions
             AddNecessarySkills(vacancy.IdVacancy, necessarySkills);
         }
 
+        public bool BreakContract(int idContract)
+        {
+            if(!IsBrokeContract(idContract))
+            {
+                var contract = GetContract(idContract);
+
+                contract.BreakDate = DateTime.Now;
+
+                _context.SaveChanges();
+
+                UpdateIsEmployedApplicant(contract.EmploymentRequest.SuitableVacancy.Request.Applicant.IdApplicant, false);
+
+                return true;
+            }
+
+            return false;
+        }
+
         public void CloseVacancy(int idVacancy)
         {
             var vacancy = GetVacancy(idVacancy);
@@ -876,6 +938,11 @@ namespace EmploymentAgency.Model.Database.Interactions
             return _context.City.SingleOrDefault(c => c.IdCountry == idCountry && c.CityName == cityName) != null;
         }
 
+        public bool ContainsContract(int idEmploymentRequest)
+        {
+            return _context.Contract.SingleOrDefault(c => c.IdEmploymentRequest == idEmploymentRequest) != null;
+        }
+
         public bool ContainsCountry(string countryName)
         {
             return _context.Country.SingleOrDefault(c => c.CountryName == countryName) != null;
@@ -905,6 +972,11 @@ namespace EmploymentAgency.Model.Database.Interactions
         public bool ContainsEmployer(int idEmployer)
         {
             return _context.Employer.SingleOrDefault(e => e.IdEmployer == idEmployer) != null;
+        }
+
+        public bool ContainsEmploymentRequest(int idSuitableVacancy)
+        {
+            return _context.EmploymentRequest.SingleOrDefault(s => s.IdSuitableVacancy == idSuitableVacancy) != null;
         }
 
         public bool ContainsEmploymentType(string employmentTypeName)
@@ -1044,6 +1116,11 @@ namespace EmploymentAgency.Model.Database.Interactions
             s.NameSubIndustry == nameSubIndustry) != null;
         }
 
+        public bool ContainsSuitableVacancy(int idRequest, int idVacancy)
+        {
+            return _context.SuitableVacancy.SingleOrDefault(s => s.IdRequest == idRequest && s.IdVacancy == idVacancy) != null;
+        }
+
         public bool ContainsUser(string login)
         {
             return _context.User.SingleOrDefault(u => u.Login == login) != null;
@@ -1059,6 +1136,11 @@ namespace EmploymentAgency.Model.Database.Interactions
             user = _context.v_user.SingleOrDefault(u => u.Login == login && u.Password == password);
 
             return user != null;
+        }
+
+        public bool DoesItHaveActiveContracts(int idApplicant)
+        {
+            return _context.v_contract.Where(c => c.IdApplicant == idApplicant && c.BreakDate == null).Count() > 0;
         }
 
         public Applicant GetApplicant(int idApplicant)
@@ -1113,6 +1195,37 @@ namespace EmploymentAgency.Model.Database.Interactions
         public City GetCity(int idCity)
         {
             return _context.City.SingleOrDefault(c => c.IdCity == idCity);
+        }
+
+        public Contract GetContract(int idContract)
+        {
+            return _context.Contract.SingleOrDefault(c => c.IdContract == idContract);
+        }
+
+        public List<v_contract> GetContractsForApplicant(int idApplicant, string vacancyOrganizationName, Range<DateTime> rangeDateOfConclusion, DateTime? beginValueBreakDate, DateTime? endValueBreakDate, int? beginValueSalary, int? endValueSalary)
+        {
+            return _context.v_contract.Where(c =>
+            c.IdApplicant == idApplicant &&
+            (vacancyOrganizationName.Length > 0 ? c.VacancyOrganizationName.ToLower().StartsWith(vacancyOrganizationName.ToLower()) : true) &&
+            c.DateOfConclusion >= rangeDateOfConclusion.BeginValue &&
+            c.DateOfConclusion <= rangeDateOfConclusion.EndValue &&
+            (beginValueBreakDate != null ? c.BreakDate >= beginValueBreakDate : true) &&
+            (endValueBreakDate != null ? c.BreakDate <= endValueBreakDate : true) &&
+            (c.VacancySalary != null ? c.VacancySalary >= beginValueSalary : true) &&
+            (c.VacancySalary != null ? c.VacancySalary <= endValueSalary : true)).AsNoTracking().ToList();
+        }
+
+        public List<v_contract> GetContractsForEmployer(int idEmployer, string applicantFullName, Range<DateTime> rangeDateOfConclusion, DateTime? beginValueBreakDate, DateTime? endValueBreakDate, int? beginValueSalary, int? endValueSalary)
+        {
+            return _context.v_contract.Where(c =>
+            c.IdEmployer == idEmployer &&
+            (applicantFullName.Length > 0 ? c.ApplicantFullName.ToLower().StartsWith(applicantFullName.ToLower()) : true) &&
+            c.DateOfConclusion >= rangeDateOfConclusion.BeginValue &&
+            c.DateOfConclusion <= rangeDateOfConclusion.EndValue &&
+            (beginValueBreakDate != null ? c.BreakDate >= beginValueBreakDate : true) &&
+            (endValueBreakDate != null ? c.BreakDate <= endValueBreakDate : true) &&
+            (c.VacancySalary != null ? c.VacancySalary >= beginValueSalary : true) &&
+            (c.VacancySalary != null ? c.VacancySalary <= endValueSalary : true)).AsNoTracking().ToList();
         }
 
         public List<Country> GetCountries()
@@ -1186,6 +1299,11 @@ namespace EmploymentAgency.Model.Database.Interactions
         public v_employer GetEmployerExtendedInformation(int idEmployer)
         {
             return _context.v_employer.SingleOrDefault(e => e.IdEmployer == idEmployer);
+        }
+
+        public EmploymentRequest GetEmploymentRequest(int idEmploymentRequest)
+        {
+            return _context.EmploymentRequest.SingleOrDefault(e => e.IdEmploymentRequest == idEmploymentRequest);
         }
 
         public EmploymentType GetEmploymentType(int idEmploymentType)
@@ -1314,6 +1432,16 @@ namespace EmploymentAgency.Model.Database.Interactions
             return _context.v_manager.SingleOrDefault(m => m.IdManager == idManager);
         }
 
+        public DateTime? GetMaxBreakDateMyContractsApplicant(int idApplicant)
+        {
+            return _context.v_contract.Where(c => c.IdApplicant == idApplicant).AsNoTracking().Max(c => c.BreakDate);
+        }
+
+        public DateTime? GetMaxBreakDateMyContractsEmployer(int idEmployer)
+        {
+            return _context.v_contract.Where(c => c.IdEmployer == idEmployer).AsNoTracking().Max(c => c.BreakDate);
+        }
+
         public DateTime? GetMaxClosingDateMyVacancy(int idEmployer)
         {
             return _context.v_vacancy.Where(v => v.IdEmployer == idEmployer).AsNoTracking().Max(v => v.ClosingDate);
@@ -1322,6 +1450,20 @@ namespace EmploymentAgency.Model.Database.Interactions
         public DateTime? GetMaxClosingDateVacancy()
         {
             return _context.Vacancy.Max(v => v.ClosingDate);
+        }
+
+        public DateTime GetMaxDateOfConclusionMyContractsApplicant(int idApplicant)
+        {
+            var contracts = _context.v_contract.Where(c => c.IdApplicant == idApplicant).AsNoTracking();
+
+            return contracts.Count() > 0 ? contracts.Max(c => c.DateOfConclusion) : DateTime.Now;
+        }
+
+        public DateTime GetMaxDateOfConclusionMyContractsEmployer(int idEmployer)
+        {
+            var contract = _context.v_contract.Where(c => c.IdEmployer == idEmployer).AsNoTracking();
+
+            return contract.Count() > 0 ? contract.Max(c => c.DateOfConclusion) : DateTime.Now;
         }
 
         public DateTime? GetMaxDateOfConsiderationRequest()
@@ -1345,12 +1487,16 @@ namespace EmploymentAgency.Model.Database.Interactions
 
         public DateTime GetMaxDateOfRegistrationRequest()
         {
-            return _context.Request.Max(r => r.DateOfRegistration);
+            var requests = _context.Request.AsNoTracking();
+
+            return requests.Count() > 0 ? requests.Max(r => r.DateOfRegistration) : DateTime.Now;
         }
 
         public DateTime GetMaxDateOfRegistrationVacancy()
         {
-            return _context.Vacancy.Max(v => v.DateOfRegistration);
+            var vacancies = _context.Vacancy.AsNoTracking();
+
+            return vacancies.Count() > 0 ? vacancies.Max(v => v.DateOfRegistration) : DateTime.Now;
         }
 
         public int? GetMaxNumberOfAcceptedApplicantsMyVacancy(int idEmployer)
@@ -1373,6 +1519,16 @@ namespace EmploymentAgency.Model.Database.Interactions
             return _context.v_vacancy.Where(v => v.IdEmployer == idEmployer).AsNoTracking().Max(v => v.NumberOfPotentialApplicants);
         }
 
+        public int? GetMaxSalaryMyContractsApplicant(int idApplicant)
+        {
+            return _context.v_contract.Where(c => c.IdApplicant == idApplicant).AsNoTracking().Max(c => c.VacancySalary);
+        }
+
+        public int? GetMaxSalaryMyContractsEmployer(int idEmployer)
+        {
+            return _context.v_contract.Where(c => c.IdEmployer == idEmployer).AsNoTracking().Max(c => c.VacancySalary);
+        }
+
         public int? GetMaxSalaryMyVacancy(int idEmployer)
         {
             return _context.v_vacancy.Where(v => v.IdEmployer == idEmployer).AsNoTracking().Max(v => v.Salary);
@@ -1383,6 +1539,16 @@ namespace EmploymentAgency.Model.Database.Interactions
             return _context.Vacancy.Max(v => v.Salary);
         }
 
+        public DateTime? GetMinBreakDateMyContractsApplicant(int idApplicant)
+        {
+            return _context.v_contract.Where(c => c.IdApplicant == idApplicant).AsNoTracking().Min(c => c.BreakDate);
+        }
+
+        public DateTime? GetMinBreakDateMyContractsEmployer(int idEmployer)
+        {
+            return _context.v_contract.Where(c => c.IdEmployer == idEmployer).AsNoTracking().Min(c => c.BreakDate);
+        }
+
         public DateTime? GetMinClosingDateMyVacancy(int idEmployer)
         {
             return _context.v_vacancy.Where(v => v.IdEmployer == idEmployer).AsNoTracking().Min(v => v.ClosingDate);
@@ -1391,6 +1557,20 @@ namespace EmploymentAgency.Model.Database.Interactions
         public DateTime? GetMinClosingDateVacancy()
         {
             return _context.Vacancy.Min(v => v.ClosingDate);
+        }
+
+        public DateTime GetMinDateOfConclusionMyContractsApplicant(int idApplicant)
+        {
+            var contracts = _context.v_contract.Where(c => c.IdApplicant == idApplicant).AsNoTracking();
+
+            return contracts.Count() > 0 ? contracts.Min(c => c.DateOfConclusion) : DateTime.Now;
+        }
+
+        public DateTime GetMinDateOfConclusionMyContractsEmployer(int idEmployer)
+        {
+            var contracts = _context.v_contract.Where(c => c.IdEmployer == idEmployer).AsNoTracking();
+
+            return contracts.Count() > 0 ? contracts.Min(c => c.DateOfConclusion) : DateTime.Now;
         }
 
         public DateTime? GetMinDateOfConsiderationRequest()
@@ -1414,12 +1594,16 @@ namespace EmploymentAgency.Model.Database.Interactions
 
         public DateTime GetMinDateOfRegistrationRequest()
         {
-            return _context.Request.Min(r => r.DateOfRegistration);
+            var requests = _context.Request.AsNoTracking();
+
+            return requests.Count() > 0 ? requests.Min(r => r.DateOfRegistration) : DateTime.Now;
         }
 
         public DateTime GetMinDateOfRegistrationVacancy()
         {
-            return _context.Vacancy.Min(v => v.DateOfRegistration);
+            var vacancies = _context.Vacancy.AsNoTracking();
+
+            return vacancies.Count() > 0 ? vacancies.Min(v => v.DateOfRegistration) : DateTime.Now;
         }
 
         public int? GetMinNumberOfAcceptedApplicantsMyVacancy(int idEmployer)
@@ -1440,6 +1624,16 @@ namespace EmploymentAgency.Model.Database.Interactions
         public int? GetMinNumberOfPotentialApplicantsMyVacancy(int idEmployer)
         {
             return _context.v_vacancy.Where(v => v.IdEmployer == idEmployer).AsNoTracking().Min(v => v.NumberOfPotentialApplicants);
+        }
+
+        public int? GetMinSalaryMyContractsApplicant(int idApplicant)
+        {
+            return _context.v_contract.Where(c => c.IdApplicant == idApplicant).Min(c => c.VacancySalary);
+        }
+
+        public int? GetMinSalaryMyContractsEmployer(int idEmployer)
+        {
+            return _context.v_contract.Where(c => c.IdEmployer == idEmployer).Min(c => c.VacancySalary);
         }
 
         public int? GetMinSalaryMyVacancy(int idEmployer)
@@ -1483,8 +1677,8 @@ namespace EmploymentAgency.Model.Database.Interactions
             v.NumberOfInterestedApplicants <= endValueNumberOfInterestedApplicants &&
             v.NumberOfPotentialApplicants >= beginValueNumberOfPotentialApplicants &&
             v.NumberOfPotentialApplicants <= endValueNumberOfPotentialApplicants &&
-            v.Salary >= beginValueSalary &&
-            v.Salary <= endValueSalary).AsNoTracking().ToList();
+            (v.Salary != null ?  v.Salary >= beginValueSalary : true) &&
+            (v.Salary != null ? v.Salary <= endValueSalary : true)).AsNoTracking().ToList();
         }
 
         public List<NecessarySkill> GetNecessarySkills(int idVacancy)
@@ -1527,6 +1721,12 @@ namespace EmploymentAgency.Model.Database.Interactions
         public List<PossessionSkill> GetPossessionSkills(int idApplicant)
         {
             return _context.PossessionSkill.Where(p => p.IdApplicant == idApplicant).ToList();
+        }
+
+        public List<v_suitableVacancy> GetPotentialApplicants(int idVacancy)
+        {
+            return _context.v_suitableVacancy.Where(s =>
+            s.IdVacancy == idVacancy).AsNoTracking().ToList();
         }
 
         public List<PreferredEmploymentType> GetPreferredEmploymentTypes(int idRequest)
@@ -1575,6 +1775,12 @@ namespace EmploymentAgency.Model.Database.Interactions
         public List<Profession> GetProfessions(int idProfessionCategory)
         {
             return _context.Profession.Where(p => p.IdProfessionCategory == idProfessionCategory).AsNoTracking().ToList();
+        }
+
+        public List<v_employmentRequest> GetReceivedEmploymentRequests(int idVacancy)
+        {
+            return _context.v_employmentRequest.Where(e =>
+            e.IdVacancy == idVacancy).AsNoTracking().ToList();
         }
 
         public Request GetRequest(int idRequest)
@@ -1639,6 +1845,12 @@ namespace EmploymentAgency.Model.Database.Interactions
         public List<Schedule> GetSchedules()
         {
             return _context.Schedule.AsNoTracking().ToList();
+        }
+
+        public List<v_employmentRequest> GetSentEmploymentRequests(int idRequest)
+        {
+            return _context.v_employmentRequest.Where(e =>
+            e.IdRequest == idRequest).AsNoTracking().ToList();
         }
 
         public Skill GetSkill(int idSkill)
@@ -1754,8 +1966,8 @@ namespace EmploymentAgency.Model.Database.Interactions
             v.DateOfRegistration <= rangeDateOfRegistration.EndValue &&
             (beginValueClosingDate != null ? v.ClosingDate >= beginValueClosingDate : true) &&
             (endValueClosingDate != null ? v.ClosingDate <= endValueClosingDate : true) &&
-            v.Salary >= beginValueSalary && 
-            v.Salary <= endValueSalary).AsNoTracking().ToList();
+            (v.Salary != null ? v.Salary >= beginValueSalary : true) && 
+            (v.Salary != null ? v.Salary <= endValueSalary : true)).AsNoTracking().ToList();
 
             vacancies = vacancies.Where(v =>
             (selectedExperiences.Count > 0 ? selectedExperiences.Any(e => Convert.ToInt32(e) == v.IdExperience) : true) &&
@@ -1774,6 +1986,11 @@ namespace EmploymentAgency.Model.Database.Interactions
         public v_vacancy GetVacancyExtendedInformation(int idVacancy)
         {
             return _context.v_vacancy.SingleOrDefault(v => v.IdVacancy == idVacancy);
+        }
+
+        public bool IsBrokeContract(int idContract)
+        {
+            return GetContract(idContract).BreakDate != null;
         }
 
         public bool IsClosedVacancy(int idVacancy)
@@ -2107,6 +2324,15 @@ namespace EmploymentAgency.Model.Database.Interactions
             _context.SaveChanges();
         }
 
+        public void UpdateEmploymentRequest(int idEmploymentRequest, bool? isSuitable)
+        {
+            var employmentRequest = GetEmploymentRequest(idEmploymentRequest);
+
+            employmentRequest.IsSuitable = isSuitable;
+
+            _context.SaveChanges();
+        }
+
         public bool UpdateEmploymentType(int idEmploymentType, string employmentTypeName)
         {
             if(!ContainsEmploymentType(employmentTypeName))
@@ -2162,6 +2388,35 @@ namespace EmploymentAgency.Model.Database.Interactions
                 var industry = GetIndustry(idIndustry);
 
                 industry.IndustryName = industryName;
+
+                _context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool UpdateIsEmployedApplicant(int idApplicant, bool isEmployed)
+        {
+            if(isEmployed == false)
+            {
+                if (!DoesItHaveActiveContracts(idApplicant))
+                {
+                    var applicant = GetApplicant(idApplicant);
+
+                    applicant.IsEmployed = isEmployed;
+
+                    _context.SaveChanges();
+
+                    return true;
+                }
+            }
+            else
+            {
+                var applicant = GetApplicant(idApplicant);
+
+                applicant.IsEmployed = isEmployed;
 
                 _context.SaveChanges();
 

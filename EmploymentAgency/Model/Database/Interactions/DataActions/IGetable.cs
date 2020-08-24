@@ -20,6 +20,10 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         int? GetMaxSalaryVacancy();
 
+        int? GetMaxSalaryMyContractsEmployer(int idEmployer);
+
+        int? GetMaxSalaryMyContractsApplicant(int idApplicant);
+
         int? GetMinNumberOfAcceptedApplicantsMyVacancy(int idEmployer);
 
         int? GetMinNumberOfApprovedApplicantsMyVacancy(int idEmployer);
@@ -27,6 +31,10 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
         int? GetMinNumberOfInterestedApplicantsMyVacancy(int idEmployer);
 
         int? GetMinNumberOfPotentialApplicantsMyVacancy(int idEmployer);
+
+        int? GetMinSalaryMyContractsApplicant(int idApplicant);
+
+        int? GetMinSalaryMyContractsEmployer(int idEmployer);
 
         int? GetMinSalaryMyVacancy(int idEmployer);
 
@@ -36,17 +44,29 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         int GetIdRequestStatus(string requestStatusName);
 
+        DateTime? GetMaxBreakDateMyContractsApplicant(int idApplicant);
+
+        DateTime? GetMaxBreakDateMyContractsEmployer(int idEmployer);
+
         DateTime? GetMaxDateOfConsiderationRequest();
 
         DateTime? GetMaxClosingDateMyVacancy(int idEmployer);
 
         DateTime? GetMaxClosingDateVacancy();
 
+        DateTime? GetMinBreakDateMyContractsApplicant(int idApplicant);
+
+        DateTime? GetMinBreakDateMyContractsEmployer(int idEmployer);
+
         DateTime? GetMinDateOfConsiderationRequest();
 
         DateTime? GetMinClosingDateMyVacancy(int idEmployer);
 
         DateTime? GetMinClosingDateVacancy();
+
+        DateTime GetMaxDateOfConclusionMyContractsApplicant(int idApplicant);
+
+        DateTime GetMaxDateOfConclusionMyContractsEmployer(int idEmployer);
 
         DateTime GetMaxDateOfRegistrationMyRequest(int idApplicant);
 
@@ -55,6 +75,10 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
         DateTime GetMaxDateOfRegistrationRequest();
 
         DateTime GetMaxDateOfRegistrationVacancy();
+
+        DateTime GetMinDateOfConclusionMyContractsApplicant(int idApplicant);
+
+        DateTime GetMinDateOfConclusionMyContractsEmployer(int idEmployer);
 
         DateTime GetMinDateOfRegistrationMyRequest(int idApplicant);
 
@@ -68,6 +92,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         City GetCity(int idCity);
 
+        Contract GetContract(int idContract);
+
         Country GetCountry(int idCountry);
 
         DrivingLicenseCategory GetDrivingLicenseCategory(int idDrivingLicenseCategory);
@@ -77,6 +103,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
         Employer GetEmployer(int idEmployer);
 
         EmploymentType GetEmploymentType(int idEmploymentType);
+
+        EmploymentRequest GetEmploymentRequest(int idEmploymentRequest);
 
         Experience GetExperience(int idExperience);
 
@@ -230,11 +258,21 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         List<v_city> GetCities(int idCountry, string cityName);
 
+        List<v_contract> GetContractsForApplicant(int idApplicant, string vacancyOrganizationName, Range<DateTime> rangeDateOfConclusion, DateTime? beginValueBreakDate, DateTime? endValueBreakDate, int? beginValueSalary, int? endValueSalary);
+
+        List<v_contract> GetContractsForEmployer(int idEmployer, string applicantFullName, Range<DateTime> rangeDateOfConclusion, DateTime? beginValueBreakDate, DateTime? endValueBreakDate, int? beginValueSalary, int? endValueSalary);
+
+        List<v_employmentRequest> GetSentEmploymentRequests(int idRequest);
+
+        List<v_employmentRequest> GetReceivedEmploymentRequests(int idVacancy);
+
         List<v_street> GetStreets();
 
         List<v_street> GetStreets(int idCountry, int idCity, string streetName);
 
         List<v_subIndustry> GetSubIndustries(int idIndustry, string nameSubIndustry);
+
+        List<v_suitableVacancy> GetPotentialApplicants(int idVacancy);
 
         List<v_profession> GetProfessions(int idProfessionCategory, string professionName);
 

@@ -162,11 +162,12 @@
                                     DisplayMemberPath="IndustryName"
                                     FontSize="14"
                                     FontWeight="Medium"
-                                    IsEditable="False"
+                                    IsEditable="True"
                                     IsTextSearchEnabled="False"
-                                    ItemsSource="{Binding Path=Industries, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    ItemsSource="{Binding Path=DisplayedIndustries, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                     SelectedValue="{Binding Path=SelectedIdIndustry, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource SelectedValueToNullableInt32}}"
                                     SelectedValuePath="IdIndustry"
+                                    Text="{Binding Path=IndustryName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                     ToolTip="{Binding ElementName=IndustriesComboBox, Path=Text}" />
                             </Grid>
                         </Grid>

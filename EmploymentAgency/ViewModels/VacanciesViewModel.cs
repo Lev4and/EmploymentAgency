@@ -18,6 +18,8 @@ namespace EmploymentAgency.ViewModels
         private int? _selectedIdCountry;
         private int? _selectedIdCity;
 
+        private string _nameProfessionCategory;
+        private string _professionName;
         private string _countryName;
         private string _cityName;
         private string _streetName;
@@ -40,7 +42,10 @@ namespace EmploymentAgency.ViewModels
                 _selectedIdProfessionCategory = value;
 
                 if (_selectedIdProfessionCategory != null)
+                {
                     UpdateProfessions();
+                    UpdateDisplayedProfessions();
+                }
                 else
                     Professions = null;
             }
@@ -94,7 +99,52 @@ namespace EmploymentAgency.ViewModels
 
         public int? SelectedIdVacancy { get; set; }
 
-        public string ProfessionName { get; set; }
+        public string NameProfessionCategory
+        {
+            get { return _nameProfessionCategory; }
+            set
+            {
+                _nameProfessionCategory = value;
+
+                if(_nameProfessionCategory != null)
+                {
+                    if(_nameProfessionCategory.Length == 0)
+                    {
+                        SelectedIdProfessionCategory = null;
+                        SelectedIdProfession = null;
+
+                        ProfessionName = "";
+                    }
+                }
+
+                if(ProfessionCategories != null)
+                {
+                    UpdateDisplayedProfessionCategories();
+                }
+            }
+        }
+
+        public string ProfessionName
+        {
+            get { return _professionName; }
+            set
+            {
+                _professionName = value;
+
+                if (_professionName != null)
+                {
+                    if (_professionName.Length == 0)
+                    {
+                        SelectedIdProfession = null;
+                    }
+                }
+
+                if (Professions != null)
+                {
+                    UpdateDisplayedProfessions();
+                }
+            }
+        }
 
         public string CountryName
         {
@@ -208,7 +258,11 @@ namespace EmploymentAgency.ViewModels
 
         public ObservableCollection<ProfessionCategory> ProfessionCategories { get; set; }
 
+        public ObservableCollection<ProfessionCategory> DisplayedProfessionCategories { get; set; }
+
         public ObservableCollection<Profession> Professions { get; set; }
+
+        public ObservableCollection<Profession> DisplayedProfessions { get; set; }
 
         public ObservableCollection<Country> Countries { get; set; }
 
@@ -276,6 +330,7 @@ namespace EmploymentAgency.ViewModels
             EndValueDateOfRegistration = MaxValueDateOfRegistration;
             EndValueSalary = MaxValueSalary;
 
+            NameProfessionCategory = "";
             ProfessionName = "";
             CityName = "";
 
@@ -297,6 +352,8 @@ namespace EmploymentAgency.ViewModels
             Streets = new ObservableCollection<Street>();
 
             CountryName = "";
+
+            UpdateDisplayedProfessionCategories();
 
             Find();
         }
@@ -326,6 +383,16 @@ namespace EmploymentAgency.ViewModels
         private void UpdateStreets()
         {
             Streets = new ObservableCollection<Street>(_executor.GetStreets((int)SelectedIdCity));
+        }
+
+        private void UpdateDisplayedProfessionCategories()
+        {
+            DisplayedProfessionCategories = new ObservableCollection<ProfessionCategory>(ProfessionCategories.Where(p => p.NameProfessionCategory.ToLower().StartsWith(NameProfessionCategory.ToLower())).Take(15).ToList());
+        }
+
+        private void UpdateDisplayedProfessions()
+        {
+            DisplayedProfessions = new ObservableCollection<Profession>(Professions.Where(p => p.ProfessionName.ToLower().StartsWith(ProfessionName.ToLower())).Take(15).ToList());
         }
 
         private void UpdateDisplayedCountries()
