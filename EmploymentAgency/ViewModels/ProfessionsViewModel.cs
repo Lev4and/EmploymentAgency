@@ -2,6 +2,7 @@
 using DevExpress.Mvvm;
 using EmploymentAgency.Model.Database.Interactions;
 using EmploymentAgency.Model.Database.Models;
+using EmploymentAgency.Model.Logic;
 using EmploymentAgency.Services;
 using EmploymentAgency.Views.Windows;
 using System.Collections.ObjectModel;
@@ -121,7 +122,7 @@ namespace EmploymentAgency.ViewModels
 
         private void UpdateDisplayedProfessionCategories()
         {
-            DisplayedProfessionCategories = new ObservableCollection<ProfessionCategory>(ProfessionCategories.Where(p => p.NameProfessionCategory.ToLower().StartsWith(NameProfessionCategory.ToLower())).Take(20).ToList());
+            DisplayedProfessionCategories = new ObservableCollection<ProfessionCategory>(ProfessionCategories.Where(p => SearchAssistant.GetSearchAction(p.NameProfessionCategory, NameProfessionCategory, SearchAssistant.SearchType.AllCriteria).Invoke()).Take(15).ToList());
         }
     }
 }

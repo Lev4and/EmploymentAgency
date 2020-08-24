@@ -2,6 +2,7 @@
 using DevExpress.Mvvm;
 using EmploymentAgency.Model.Database.Interactions;
 using EmploymentAgency.Model.Database.Models;
+using EmploymentAgency.Model.Logic;
 using EmploymentAgency.Services;
 using EmploymentAgency.Views.Pages;
 using EmploymentAgency.Views.Windows;
@@ -178,12 +179,12 @@ namespace EmploymentAgency.ViewModels
 
         private void UpdateDisplayedIndustries()
         {
-            DisplayedIndustries = new ObservableCollection<Industry>(Industries.Where(i => i.IndustryName.ToLower().StartsWith(IndustryName.ToLower())).Take(20).ToList());
+            DisplayedIndustries = new ObservableCollection<Industry>(Industries.Where(i => SearchAssistant.GetSearchAction(i.IndustryName, IndustryName, SearchAssistant.SearchType.AllCriteria).Invoke()).Take(15).ToList());
         }
 
         private void UpdateDisplayedSubIndustries()
         {
-            DisplayedSubIndustries = new ObservableCollection<SubIndustry>(SubIndustries.Where(s => s.NameSubIndustry.ToLower().StartsWith(NameSubIndustry.ToLower())).Take(20).ToList());
+            DisplayedSubIndustries = new ObservableCollection<SubIndustry>(SubIndustries.Where(s => SearchAssistant.GetSearchAction(s.NameSubIndustry, NameSubIndustry, SearchAssistant.SearchType.AllCriteria).Invoke()).Take(15).ToList());
         }
     }
 }

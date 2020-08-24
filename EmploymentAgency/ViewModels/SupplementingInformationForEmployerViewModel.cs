@@ -2,6 +2,7 @@
 using EmploymentAgency.Model.Configurations;
 using EmploymentAgency.Model.Database.Interactions;
 using EmploymentAgency.Model.Database.Models;
+using EmploymentAgency.Model.Logic;
 using EmploymentAgency.Services;
 using EmploymentAgency.Views.Pages;
 using System;
@@ -183,12 +184,12 @@ namespace EmploymentAgency.ViewModels
 
         private void UpdateDisplayedBranches()
         {
-            DisplayedBranches = new ObservableCollection<v_branchSimplifiedInformation>(Branches.Where(b => b.Address.ToLower().StartsWith(Address.ToLower())).Take(15).ToList());
+            DisplayedBranches = new ObservableCollection<v_branchSimplifiedInformation>(Branches.Where(b => SearchAssistant.GetSearchAction(b.Address, Address, SearchAssistant.SearchType.AllCriteria).Invoke()).Take(15).ToList());
         }
 
         private void UpdateDisplayedOrganizations()
         {
-            DisplayedOrganizations = new ObservableCollection<v_organizationWithoutPhoto>(Organizations.Where(o => o.OrganizationName.ToLower().StartsWith(OrganizationName.ToLower())).Take(15).ToList());
+            DisplayedOrganizations = new ObservableCollection<v_organizationWithoutPhoto>(Organizations.Where(o => SearchAssistant.GetSearchAction(o.OrganizationName, OrganizationName, SearchAssistant.SearchType.AllCriteria).Invoke()).Take(15).ToList());
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using DevExpress.Mvvm;
 using EmploymentAgency.Model.Database.Interactions;
 using EmploymentAgency.Model.Database.Models;
+using EmploymentAgency.Model.Logic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
@@ -70,7 +71,7 @@ namespace EmploymentAgency.ViewModels
 
         private void UpdateDisplayedIndustries()
         {
-            DisplayedIndustries = new ObservableCollection<Industry>(Industries.Where(i => i.IndustryName.ToLower().StartsWith(IndustryName.ToLower())).Take(20).ToList());
+            DisplayedIndustries = new ObservableCollection<Industry>(Industries.Where(i => SearchAssistant.GetSearchAction(i.IndustryName, IndustryName, SearchAssistant.SearchType.AllCriteria).Invoke()).Take(15).ToList());
         }
     }
 }

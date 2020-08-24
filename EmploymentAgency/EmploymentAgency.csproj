@@ -327,6 +327,7 @@
     <Compile Include="Model\Logic\Managers\PageManagers\Employer.cs" />
     <Compile Include="Model\Logic\Managers\PageManagers\Manager.cs" />
     <Compile Include="Model\Logic\Range.cs" />
+    <Compile Include="Model\Logic\SearchAssistant.cs" />
     <Compile Include="Services\MenuPageService.cs" />
     <Compile Include="Services\PageService.cs" />
     <Compile Include="Services\WindowService.cs" />

@@ -1,6 +1,7 @@
 ﻿using DevExpress.Mvvm;
 using EmploymentAgency.Model.Database.Interactions;
 using EmploymentAgency.Model.Database.Models;
+using EmploymentAgency.Model.Logic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
@@ -135,12 +136,12 @@ namespace EmploymentAgency.ViewModels
 
         private void UpdateDisplayedCountries()
         {
-            DisplayedCountries = new ObservableCollection<Country>(Countries.Where(c => c.CountryName.ToLower().StartsWith(CountryName.ToLower())).Take(15).ToList());
+            DisplayedCountries = new ObservableCollection<Country>(Countries.Where(c => SearchAssistant.GetSearchAction(c.CountryName, CountryName, SearchAssistant.SearchType.AllCriteria).Invoke()).Take(15).ToList());
         }
 
         private void UpdateDisplayedCities()
         {
-            DisplayedCities = new ObservableCollection<City>(Cities.Where(c => c.CityName.ToLower().StartsWith(CityName.ToLower())).Take(15).ToList());
+            DisplayedCities = new ObservableCollection<City>(Cities.Where(c => SearchAssistant.GetSearchAction(c.CityName, CityName, SearchAssistant.SearchType.AllCriteria).Invoke()).Take(15).ToList());
         }
     }
 }

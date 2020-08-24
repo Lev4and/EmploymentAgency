@@ -1,5 +1,6 @@
 ﻿using DevExpress.Mvvm;
 using EmploymentAgency.Commands;
+using EmploymentAgency.Model.Logic;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -146,7 +147,7 @@ namespace EmploymentAgency.Views.UserControls
 
         private bool IsInformationCorrect(object information)
         {
-            return GetTextInformation(information).ToLower().StartsWith(SearchLine.ToLower()) || GetTextInformation(information).ToLower().EndsWith(SearchLine.ToLower()) || GetTextInformation(information).ToLower().Contains(SearchLine.ToLower());
+            return SearchAssistant.GetSearchAction(GetTextInformation(information), SearchLine, SearchAssistant.SearchType.AllCriteria).Invoke();
         }
 
         private bool ContainsDisplayedData(object information)
