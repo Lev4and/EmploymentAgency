@@ -36,7 +36,6 @@
         <Grid
             Grid.Row="0"
             Grid.Column="0"
-            HorizontalAlignment="Center"
             VerticalAlignment="Stretch">
             <Grid.RowDefinitions>
                 <RowDefinition />
@@ -46,7 +45,7 @@
             <Grid Grid.Row="0" Height="50">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="300" />
+                    <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
                     <mdt:PackIcon
@@ -76,7 +75,7 @@
             <Grid Grid.Row="1" Height="50">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="300" />
+                    <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
                     <mdt:PackIcon
@@ -106,7 +105,7 @@
             <Grid Grid.Row="2" Height="50">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="300" />
+                    <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
                     <mdt:PackIcon

@@ -5,11 +5,6 @@ namespace EmploymentAgency.Model.Logic.Managers.PageManagers
 {
     public class Manager : PageManager
     {
-        public Manager()
-        {
-
-        }
-
         public override Page GetAddInformationPage()
         {
             return new SupplementingInformationForManager();
@@ -23,6 +18,11 @@ namespace EmploymentAgency.Model.Logic.Managers.PageManagers
         public override Page GetMyContractsPage()
         {
             return null;
+        }
+
+        public override string ToString()
+        {
+            return "Менеджер";
         }
     }
 }

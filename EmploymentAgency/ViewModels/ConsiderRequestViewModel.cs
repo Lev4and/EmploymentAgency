@@ -100,8 +100,10 @@ namespace EmploymentAgency.ViewModels
 
             Vacancies = new ObservableCollection<object>();
 
-            if(IsRequestConsidered)
+            if (IsRequestConsidered)
                 Collection = new ObservableCollection<object>(GetSuitableVacancies());
+            else
+                Collection = new ObservableCollection<object>();
 
             EmploymentTypes = new ObservableCollection<EmploymentType>(_executor.GetEmploymentTypes());
             Schedules = new ObservableCollection<Schedule>(_executor.GetSchedules());
@@ -119,12 +121,18 @@ namespace EmploymentAgency.ViewModels
         public ICommand Paste => new DelegateCommand(() =>
         {
             object idVacancy = Clipboard.GetDataObject().GetData(DataFormats.Text);
-            object vacancy = _executor.GetVacancyExtendedInformation(Convert.ToInt32(idVacancy.ToString()));
 
-            if (!Vacancies.Contains(vacancy))
-                Vacancies.Add(vacancy);
+            int numberIdVacancy = 0;
 
-            Collection = new ObservableCollection<object>(Vacancies);
+            if (int.TryParse(idVacancy.ToString(), out numberIdVacancy))
+            {
+                object vacancy = _executor.GetVacancyExtendedInformation(Convert.ToInt32(idVacancy.ToString()));
+
+                if (!Vacancies.Contains(vacancy))
+                    Vacancies.Add(vacancy);
+
+                Collection = new ObservableCollection<object>(Vacancies);
+            }
         }, () => IsConsideration == true);
 
         public ICommand Show => new DelegateCommand(() =>

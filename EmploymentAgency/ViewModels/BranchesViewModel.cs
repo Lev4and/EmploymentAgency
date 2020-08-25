@@ -377,33 +377,33 @@ namespace EmploymentAgency.ViewModels
 
         private void UpdateDisplayedIndustries()
         {
-            DisplayedIndustries = new ObservableCollection<Industry>(Industries.Where(i => SearchAssistant.GetSearchAction(i.IndustryName, IndustryName, SearchAssistant.SearchType.AllCriteria).Invoke()).Take(15).ToList());
+            DisplayedIndustries = new ObservableCollection<Industry>(Industries.Where(i => SearchAssistant.GetSearchAction(i.IndustryName, IndustryName, SearchAssistant.SearchType.Contains).Invoke()).Take(15).ToList());
         }
 
         private void UpdateDisplayedSubIndustries()
         {
-            DisplayedSubIndustries = new ObservableCollection<SubIndustry>(SubIndustries.Where(s => SearchAssistant.GetSearchAction(s.NameSubIndustry, NameSubIndustry, SearchAssistant.SearchType.AllCriteria).Invoke()).Take(15).ToList());
+            DisplayedSubIndustries = new ObservableCollection<SubIndustry>(SubIndustries.Where(s => SearchAssistant.GetSearchAction(s.NameSubIndustry, NameSubIndustry, SearchAssistant.SearchType.Contains).Invoke()).Take(15).ToList());
         }
 
         private void UpdateDisplayedCountries()
         {
-            DisplayedCountries = new ObservableCollection<Country>(Countries.Where(c => SearchAssistant.GetSearchAction(c.CountryName, CountryName, SearchAssistant.SearchType.AllCriteria).Invoke()).Take(15).ToList());
+            DisplayedCountries = new ObservableCollection<Country>(Countries.Where(c => SearchAssistant.GetSearchAction(c.CountryName, CountryName, SearchAssistant.SearchType.Contains).Invoke()).Take(15).ToList());
         }
 
         private void UpdateDisplayedCities()
         {
-            DisplayedCities = new ObservableCollection<City>(Cities.Where(c => SearchAssistant.GetSearchAction(c.CityName, CityName, SearchAssistant.SearchType.AllCriteria).Invoke()).Take(15).ToList());
+            DisplayedCities = new ObservableCollection<City>(Cities.Where(c => SearchAssistant.GetSearchAction(c.CityName, CityName, SearchAssistant.SearchType.Contains).Invoke()).Take(15).ToList());
         }
 
         private void UpdateDisplayedStreets()
         {
-            DisplayedStreets = new ObservableCollection<Street>(Streets.Where(s => SearchAssistant.GetSearchAction(s.StreetName, StreetName, SearchAssistant.SearchType.AllCriteria).Invoke()).Take(15).ToList());
+            DisplayedStreets = new ObservableCollection<Street>(Streets.Where(s => SearchAssistant.GetSearchAction(s.StreetName, StreetName, SearchAssistant.SearchType.Contains).Invoke()).Take(15).ToList());
         }
 
         private void UpdateDisplayedOrganizations()
         {
             DisplayedOrganizations = new ObservableCollection<v_organizationWithoutPhoto>(Organizations.Where(o =>
-                                                                                                             SearchAssistant.GetSearchAction(o.OrganizationName, OrganizationName, SearchAssistant.SearchType.AllCriteria).Invoke() &&
+                                                                                                             SearchAssistant.GetSearchAction(o.OrganizationName, OrganizationName, SearchAssistant.SearchType.Contains).Invoke() &&
                                                                                                              (SelectedIdIndustry != null ? o.IdIndustry == (int)SelectedIdIndustry : true) &&
                                                                                                              (SelectedIdSubIndustry != null ? o.IdSubIndustry == (int)SelectedIdSubIndustry : true)).Take(15).ToList());
         }

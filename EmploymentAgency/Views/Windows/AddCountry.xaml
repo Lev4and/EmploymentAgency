@@ -30,19 +30,17 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition />
+            <ColumnDefinition Width="0.5*" />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
         <Grid
             Grid.Row="0"
             Grid.Column="0"
             Height="50"
-            Margin="5"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center">
+            Margin="5">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition />
-                <ColumnDefinition Width="220" />
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
                 <mdt:PackIcon

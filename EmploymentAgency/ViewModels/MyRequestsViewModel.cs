@@ -205,12 +205,12 @@ namespace EmploymentAgency.ViewModels
 
         private void UpdateDisplayedProfessionCategories()
         {
-            DisplayedProfessionCategories = new ObservableCollection<ProfessionCategory>(ProfessionCategories.Where(p => SearchAssistant.GetSearchAction(p.NameProfessionCategory, NameProfessionCategory, SearchAssistant.SearchType.AllCriteria).Invoke()).Take(15).ToList());
+            DisplayedProfessionCategories = new ObservableCollection<ProfessionCategory>(ProfessionCategories.Where(p => SearchAssistant.GetSearchAction(p.NameProfessionCategory, NameProfessionCategory, SearchAssistant.SearchType.Contains).Invoke()).Take(15).ToList());
         }
 
         private void UpdateDisplayedProfessions()
         {
-            DisplayedProfessions = new ObservableCollection<Profession>(Professions.Where(p => SearchAssistant.GetSearchAction(p.ProfessionName, ProfessionName, SearchAssistant.SearchType.AllCriteria).Invoke()).Take(15).ToList());
+            DisplayedProfessions = new ObservableCollection<Profession>(Professions.Where(p => SearchAssistant.GetSearchAction(p.ProfessionName, ProfessionName, SearchAssistant.SearchType.Contains).Invoke()).Take(15).ToList());
         }
     }
 }

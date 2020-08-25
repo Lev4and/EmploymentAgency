@@ -79,7 +79,7 @@ namespace EmploymentAgency.ViewModels
                         {
                             if (_executor.NecessaryToSupplementTheInformation(user.IdUser))
                             {
-                                var pageManager = PageManager.GetPageManager(_executor.GetIdRole(user.RoleName));
+                                var pageManager = PageManager.GetPageManager(user.RoleName);
 
                                 Invoke(() => _pageService.ChangePage(pageManager.GetAddInformationPage()));
                             }

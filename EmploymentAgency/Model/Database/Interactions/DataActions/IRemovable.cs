@@ -60,6 +60,8 @@
 
         void RemoveSubIndustry(int idSubIndustry);
 
+        void RemoveSuitableVacancy(int idRequest);
+
         void RemoveUser(int idUser);
 
         void RemoveVacancy(int idVacancy);

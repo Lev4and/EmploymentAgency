@@ -40,14 +40,10 @@
                 <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <Grid
-                Grid.Row="0"
-                Height="50"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center">
+            <Grid Grid.Row="0" Height="50">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="220" />
+                    <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
                     <mdt:PackIcon
@@ -74,14 +70,10 @@
                         ToolTip="{Binding ElementName=CountriesComboBox, Path=Text}" />
                 </Grid>
             </Grid>
-            <Grid
-                Grid.Row="1"
-                Height="50"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center">
+            <Grid Grid.Row="1" Height="50">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="220" />
+                    <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
                     <mdt:PackIcon
@@ -108,14 +100,10 @@
                         ToolTip="{Binding ElementName=CitiesComboBox, Path=Text}" />
                 </Grid>
             </Grid>
-            <Grid
-                Grid.Row="2"
-                Height="50"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center">
+            <Grid Grid.Row="2" Height="50">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="220" />
+                    <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
                     <mdt:PackIcon
@@ -153,14 +141,10 @@
                 <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <Grid
-                Grid.Row="0"
-                Height="50"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center">
+            <Grid Grid.Row="0" Height="50">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="220" />
+                    <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
                     <mdt:PackIcon
@@ -187,14 +171,10 @@
                         ToolTip="{Binding ElementName=OrganizationsComboBox, Path=Text}" />
                 </Grid>
             </Grid>
-            <Grid
-                Grid.Row="1"
-                Height="50"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center">
+            <Grid Grid.Row="1" Height="50">
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
                     <ColumnDefinition />
-                    <ColumnDefinition Width="220" />
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
                     <mdt:PackIcon
@@ -216,14 +196,10 @@
                         ToolTip="{Binding ElementName=NameHouseTextBox, Path=Text}" />
                 </Grid>
             </Grid>
-            <Grid
-                Grid.Row="2"
-                Height="50"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center">
+            <Grid Grid.Row="2" Height="50">
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
                     <ColumnDefinition />
-                    <ColumnDefinition Width="220" />
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
                     <mdt:PackIcon

@@ -160,12 +160,12 @@ namespace EmploymentAgency.ViewModels
 
         private void UpdateDisplayedBranches()
         {
-            DisplayedBranches = new ObservableCollection<v_branchSimplifiedInformation>(Branches.Where(b => SearchAssistant.GetSearchAction(b.Address, Address, SearchAssistant.SearchType.AllCriteria).Invoke()).Take(15).ToList());
+            DisplayedBranches = new ObservableCollection<v_branchSimplifiedInformation>(Branches.Where(b => SearchAssistant.GetSearchAction(b.Address, Address, SearchAssistant.SearchType.Contains).Invoke()).Take(15).ToList());
         }
 
         private void UpdateDisplayedOrganizations()
         {
-            DisplayedOrganizations = new ObservableCollection<v_organizationWithoutPhoto>(Organizations.Where(o => SearchAssistant.GetSearchAction(o.OrganizationName, OrganizationName, SearchAssistant.SearchType.AllCriteria).Invoke()).Take(15).ToList());
+            DisplayedOrganizations = new ObservableCollection<v_organizationWithoutPhoto>(Organizations.Where(o => SearchAssistant.GetSearchAction(o.OrganizationName, OrganizationName, SearchAssistant.SearchType.Contains).Invoke()).Take(15).ToList());
         }
     }
 }

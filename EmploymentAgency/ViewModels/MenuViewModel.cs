@@ -158,7 +158,7 @@ namespace EmploymentAgency.ViewModels
         {
             _executor = new QueryExecutor();
 
-            _menuPageService.ChangePage(PageManager.GetPageManager(_executor.GetIdRole(_config.RoleName)).GetMyContractsPage());
+            _menuPageService.ChangePage(PageManager.GetPageManager(_config.RoleName).GetMyContractsPage());
         }, () => _config.RoleName == "Соискатель" || _config.RoleName == "Работодатель");
 
         public ICommand MyVacancies => new DelegateCommand(() =>
@@ -170,7 +170,7 @@ namespace EmploymentAgency.ViewModels
         {
             _executor = new QueryExecutor();
 
-            _menuPageService.ChangePage(PageManager.GetPageManager(_executor.GetIdRole(_config.RoleName)).GetChangeInformationPage());
+            _menuPageService.ChangePage(PageManager.GetPageManager(_config.RoleName).GetChangeInformationPage());
         }, () => _config.RoleName == "Соискатель" || _config.RoleName == "Менеджер" || _config.RoleName == "Работодатель");
 
         public ICommand Exit => new DelegateCommand(() =>

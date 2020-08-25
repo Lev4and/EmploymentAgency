@@ -7,8 +7,6 @@ namespace EmploymentAgency.Model.Logic.Managers
 {
     public abstract class PageManager
     {
-        public enum RoleName { Manager = 2, Employer = 4, Applicant = 5 }
-
         public static List<Type> PageManagers = new List<Type>()
         {
             typeof(Manager),
@@ -22,11 +20,9 @@ namespace EmploymentAgency.Model.Logic.Managers
 
         public abstract Page GetMyContractsPage();
 
-        public static PageManager GetPageManager(int idRole)
+        public static PageManager GetPageManager(string roleName)
         {
-            var roleName = Enum.GetName(typeof(RoleName), idRole);
-
-            return Activator.CreateInstance(PageManagers.Find(t => t.Name == Enum.GetName(typeof(RoleName), idRole))) as PageManager;
+            return Activator.CreateInstance(PageManagers.Find(t => Activator.CreateInstance(t).ToString() == roleName)) as PageManager;
         }
     }
 }

@@ -117,7 +117,7 @@ namespace EmploymentAgency.ViewModels
 
         private void UpdateDisplayedIndustries()
         {
-            DisplayedIndustries = new ObservableCollection<Industry>(Industries.Where(i => SearchAssistant.GetSearchAction(i.IndustryName, IndustryName, SearchAssistant.SearchType.AllCriteria).Invoke()).Take(15).ToList());
+            DisplayedIndustries = new ObservableCollection<Industry>(Industries.Where(i => SearchAssistant.GetSearchAction(i.IndustryName, IndustryName, SearchAssistant.SearchType.Contains).Invoke()).Take(15).ToList());
         }
     }
 }

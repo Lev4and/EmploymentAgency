@@ -214,6 +214,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         List<SuitableVacancy> GetSuitableVacancies(int idRequest);
 
+        List<SuitableVacancy> GetSuitableVacanciesTracking(int idRequest);
+
         List<DrivingLicenseCategory> GetDrivingLicenseCategories(int idApplicant);
 
         List<EducationalActivity> GetEducationActivities(int idApplicant);
