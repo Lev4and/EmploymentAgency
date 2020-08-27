@@ -110,6 +110,7 @@
                                         <RowDefinition Height="Auto" />
                                         <RowDefinition Height="Auto" />
                                         <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
                                     <Grid Grid.Row="0" Visibility="{Binding ElementName=CountriesButton, Path=IsEnabled, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToCollapsedVisibility}}">
                                         <uc:MenuButton
@@ -279,7 +280,15 @@
                                             Kind="AccountGroup"
                                             Text="Пользователи" />
                                     </Grid>
-                                    <Grid Grid.Row="21" Visibility="{Binding ElementName=RequestsButton, Path=IsEnabled, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToCollapsedVisibility}}">
+                                    <Grid Grid.Row="21" Visibility="{Binding ElementName=StatisticsButton, Path=IsEnabled, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToCollapsedVisibility}}">
+                                        <uc:MenuButton
+                                            x:Name="StatisticsButton"
+                                            HorizontalContentAlignment="Left"
+                                            Command="{Binding Path=Statistics}"
+                                            Kind="ChartLine"
+                                            Text="Статистика" />
+                                    </Grid>
+                                    <Grid Grid.Row="22" Visibility="{Binding ElementName=RequestsButton, Path=IsEnabled, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToCollapsedVisibility}}">
                                         <uc:MenuButton
                                             x:Name="RequestsButton"
                                             HorizontalContentAlignment="Left"
@@ -287,7 +296,7 @@
                                             Kind="CardAccountMail"
                                             Text="Запросы" />
                                     </Grid>
-                                    <Grid Grid.Row="22" Visibility="{Binding ElementName=MyRequestsButton, Path=IsEnabled, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToCollapsedVisibility}}">
+                                    <Grid Grid.Row="23" Visibility="{Binding ElementName=MyRequestsButton, Path=IsEnabled, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToCollapsedVisibility}}">
                                         <uc:MenuButton
                                             x:Name="MyRequestsButton"
                                             HorizontalContentAlignment="Left"
@@ -295,7 +304,7 @@
                                             Kind="CardAccountMail"
                                             Text="Мои запросы" />
                                     </Grid>
-                                    <Grid Grid.Row="23" Visibility="{Binding ElementName=VacanciesButton, Path=IsEnabled, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToCollapsedVisibility}}">
+                                    <Grid Grid.Row="24" Visibility="{Binding ElementName=VacanciesButton, Path=IsEnabled, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToCollapsedVisibility}}">
                                         <uc:MenuButton
                                             x:Name="VacanciesButton"
                                             HorizontalContentAlignment="Left"
@@ -303,7 +312,7 @@
                                             Kind="MessageProcessing"
                                             Text="Вакансии" />
                                     </Grid>
-                                    <Grid Grid.Row="24" Visibility="{Binding ElementName=MyContractsButton, Path=IsEnabled, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToCollapsedVisibility}}">
+                                    <Grid Grid.Row="25" Visibility="{Binding ElementName=MyContractsButton, Path=IsEnabled, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToCollapsedVisibility}}">
                                         <uc:MenuButton
                                             x:Name="MyContractsButton"
                                             HorizontalContentAlignment="Left"
@@ -311,7 +320,7 @@
                                             Kind="ClipboardTextMultiple"
                                             Text="Мои договоры" />
                                     </Grid>
-                                    <Grid Grid.Row="25" Visibility="{Binding ElementName=MyVacanciesButton, Path=IsEnabled, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToCollapsedVisibility}}">
+                                    <Grid Grid.Row="26" Visibility="{Binding ElementName=MyVacanciesButton, Path=IsEnabled, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToCollapsedVisibility}}">
                                         <uc:MenuButton
                                             x:Name="MyVacanciesButton"
                                             HorizontalContentAlignment="Left"
@@ -319,7 +328,7 @@
                                             Kind="MessageProcessing"
                                             Text="Мои вакансии" />
                                     </Grid>
-                                    <Grid Grid.Row="26" Visibility="{Binding ElementName=PersonalInformationButton, Path=IsEnabled, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToCollapsedVisibility}}">
+                                    <Grid Grid.Row="27" Visibility="{Binding ElementName=PersonalInformationButton, Path=IsEnabled, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToCollapsedVisibility}}">
                                         <uc:MenuButton
                                             x:Name="PersonalInformationButton"
                                             HorizontalContentAlignment="Left"
@@ -327,7 +336,7 @@
                                             Kind="CardAccountDetails"
                                             Text="Информация о себе" />
                                     </Grid>
-                                    <Grid Grid.Row="27">
+                                    <Grid Grid.Row="28">
                                         <uc:MenuButton
                                             x:Name="ExitButton"
                                             HorizontalContentAlignment="Left"

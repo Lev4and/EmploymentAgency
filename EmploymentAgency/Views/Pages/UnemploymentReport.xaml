@@ -1,0 +1,166 @@
+﻿<Page
+    x:Class="EmploymentAgency.Views.Pages.UnemploymentReport"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:l="clr-namespace:LiveCharts;assembly=LiveCharts"
+    xmlns:local="clr-namespace:EmploymentAgency.Views.Pages"
+    xmlns:lwpf="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mdt="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:uc="clr-namespace:EmploymentAgency.Views.UserControls"
+    Title="Безработица"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    Background="{StaticResource PageBackgroundBrush}"
+    DataContext="{Binding Path=UnemploymentReportViewModel, Source={StaticResource ViewModelLocator}}"
+    WindowTitle="Агентство трудоустройства - Безработица"
+    mc:Ignorable="d">
+    <Grid>
+        <i:Interaction.Triggers>
+            <i:EventTrigger EventName="Loaded">
+                <i:InvokeCommandAction Command="{Binding Path=Loaded}" />
+            </i:EventTrigger>
+        </i:Interaction.Triggers>
+        <Grid Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0" Margin="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Margin="0,0,0,3">
+                    <lwpf:CartesianChart
+                    Background="White"
+                    Series="{Binding Path=LineSeries, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                    Zoom="X">
+                        <lwpf:CartesianChart.AxisY>
+                            <lwpf:Axis Title="Количество безработных" />
+                        </lwpf:CartesianChart.AxisY>
+                        <lwpf:CartesianChart.AxisX>
+                            <lwpf:Axis Title="Дата" Labels="{Binding Path=ArrayDates, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                        </lwpf:CartesianChart.AxisX>
+                    </lwpf:CartesianChart>
+                </Grid>
+                <Grid
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Margin="3,0,0,3">
+                    <lwpf:CartesianChart
+                    Background="White"
+                    Series="{Binding Path=ColumnSeries, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                    Zoom="X">
+                        <lwpf:CartesianChart.AxisY>
+                            <lwpf:Axis Title="Количество безработных" />
+                        </lwpf:CartesianChart.AxisY>
+                        <lwpf:CartesianChart.AxisX>
+                            <lwpf:Axis Title="Дата" Labels="{Binding Path=ArrayDates, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                        </lwpf:CartesianChart.AxisX>
+                    </lwpf:CartesianChart>
+                </Grid>
+                <Grid
+                    Grid.Row="1"
+                    Grid.ColumnSpan="2"
+                    Margin="0,3,0,0">
+                    <lwpf:PieChart
+                        Background="White"
+                        LegendLocation="None"
+                        Series="{Binding Path=PieSeries}" />
+                </Grid>
+            </Grid>
+            <Grid
+                Grid.Column="1"
+                Width="350"
+                Margin="5">
+                <GroupBox
+                    BorderThickness="3"
+                    FontSize="24"
+                    FontWeight="Medium"
+                    Header="Фильтры и действия">
+                    <ScrollViewer HorizontalScrollBarVisibility="Disabled">
+                        <Grid Margin="5,0,5,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0" Margin="0,0,0,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0">
+                                    <TextBlock Text="Дата регистрации" TextAlignment="Center" />
+                                </Grid>
+                                <Grid Grid.Row="1">
+                                    <uc:DoubleDatePicker
+                                        BeginSelectedDate="{Binding Path=BeginValueDateOfRegistrationRequest, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                        EndSelectedDate="{Binding Path=EndValueDateOfRegistrationRequest, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                        MaxSelectedDate="{Binding Path=MaxValueDateOfRegistrationRequest, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                        MinSelectedDate="{Binding Path=MinValueDateOfRegistrationRequest, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                </Grid>
+                            </Grid>
+                            <Grid Grid.Row="1" Margin="0,10,0,0">
+                                <Button
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Center"
+                                    mdt:ButtonAssist.CornerRadius="0"
+                                    Command="{Binding Path=ResetFilters}"
+                                    Content="Сбросить фильтры"
+                                    Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                                    ToolTip="Сбросить фильтры">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="Click">
+                                            <i:InvokeCommandAction Command="{Binding Path=ResetFilters}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </Button>
+                            </Grid>
+                            <Grid Grid.Row="2" Margin="0,10,0,0">
+                                <Button
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Center"
+                                    mdt:ButtonAssist.CornerRadius="0"
+                                    Command="{Binding Path=ShowCharts}"
+                                    Content="Показать диаграммы"
+                                    Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                                    ToolTip="Показать диаграммы">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="Click">
+                                            <i:InvokeCommandAction Command="{Binding Path=ShowCharts}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </Button>
+                            </Grid>
+                        </Grid>
+                    </ScrollViewer>
+                </GroupBox>
+            </Grid>
+            <Grid Grid.Column="2" Margin="5">
+                <DataGrid
+                    CellStyle="{StaticResource DefaultDataGridCellStyle}"
+                    ColumnHeaderStyle="{StaticResource DefaultDataGridColumnHeaderStyle}"
+                    ItemsSource="{Binding Path=Report, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                    Style="{StaticResource DefaultDataGridStyle}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Path=Date, StringFormat={}{0:dd-MM-yyyy}}" Header="Дата" />
+                        <DataGridTextColumn Binding="{Binding Path=Count, TargetNullValue=Неизвестно}" Header="Общее количество безработных" />
+                        <DataGridTextColumn Binding="{Binding Path=Rate, TargetNullValue=Неизвестно}" Header="Количество безработных (за день)" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

@@ -29,7 +29,7 @@
             Margin="5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition  />
+                <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
                 <mdt:PackIcon

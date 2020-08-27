@@ -188,9 +188,7 @@
                         </Grid>
                     </GroupBox>
                 </Grid>
-                <Grid
-                    Grid.Row="2"
-                    Margin="15,30,15,0">
+                <Grid Grid.Row="2" Margin="15,30,15,0">
                     <uc:ExpanderWithCheckBoxes
                         Data="{Binding Path=EmploymentTypes, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                         DisplayMemberPath="EmploymentTypeName"
@@ -198,9 +196,7 @@
                         SelectedValuePath="IdEmploymentType"
                         SelectedValues="{Binding Path=SelectedEmploymentTypes, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                 </Grid>
-                <Grid
-                    Grid.Row="3"
-                    Margin="15,30,15,0">
+                <Grid Grid.Row="3" Margin="15,30,15,0">
                     <uc:ExpanderWithCheckBoxes
                         Data="{Binding Path=Schedules, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                         DisplayMemberPath="ScheduleName"
@@ -208,9 +204,7 @@
                         SelectedValuePath="IdSchedule"
                         SelectedValues="{Binding Path=SelectedSchedules, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                 </Grid>
-                <Grid
-                    Grid.Row="4"
-                    Margin="5">
+                <Grid Grid.Row="4" Margin="5">
                     <Grid VerticalAlignment="Bottom">
                         <mdt:Badged
                             Margin="0,12,0,0"

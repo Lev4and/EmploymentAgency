@@ -273,6 +273,15 @@
     <Compile Include="Model\Database\Models\v_applicant.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Database\Models\v_averageAgeDetailedReport.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Database\Models\v_averageSalaryDetailedReport.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Database\Models\v_bestManagersDetailedReport.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\Database\Models\v_branch.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -285,10 +294,16 @@
     <Compile Include="Model\Database\Models\v_contract.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Database\Models\v_demandedProfessionsDetailedReport.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\Database\Models\v_employer.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Database\Models\v_employmentRequest.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Database\Models\v_inDemandSkillsDetailedReport.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Database\Models\v_manager.cs">
@@ -315,6 +330,9 @@
     <Compile Include="Model\Database\Models\v_suitableVacancy.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Database\Models\v_unemploymentReport.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\Database\Models\v_user.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -330,6 +348,7 @@
     <Compile Include="Model\Logic\SearchAssistant.cs" />
     <Compile Include="Services\MenuPageService.cs" />
     <Compile Include="Services\PageService.cs" />
+    <Compile Include="Services\StatisticsPageService.cs" />
     <Compile Include="Services\WindowService.cs" />
     <Compile Include="ViewModels\AddBranchViewModel.cs" />
     <Compile Include="ViewModels\AddCityViewModel.cs" />
@@ -355,6 +374,9 @@
     <Compile Include="ViewModels\AddUserViewModel.cs" />
     <Compile Include="ViewModels\AddVacancyViewModel.cs" />
     <Compile Include="ViewModels\AuthorizationViewModel.cs" />
+    <Compile Include="ViewModels\AverageAgeDetailedReportViewModel.cs" />
+    <Compile Include="ViewModels\AverageSalaryDetailedReportViewModel.cs" />
+    <Compile Include="ViewModels\BestManagersDetailedReportViewModel.cs" />
     <Compile Include="ViewModels\BranchesViewModel.cs" />
     <Compile Include="ViewModels\ChangeBranchViewModel.cs" />
     <Compile Include="ViewModels\ChangeCityViewModel.cs" />
@@ -385,6 +407,7 @@
     <Compile Include="ViewModels\CitiesViewModel.cs" />
     <Compile Include="ViewModels\ConsiderRequestViewModel.cs" />
     <Compile Include="ViewModels\CountriesViewModel.cs" />
+    <Compile Include="ViewModels\DemandedProfessionsDetailedReportViewModel.cs" />
     <Compile Include="ViewModels\DetailRequestViewModel.cs" />
     <Compile Include="ViewModels\DetailVacancyViewModel.cs" />
     <Compile Include="ViewModels\DrivingLicenseCategoriesViewModel.cs" />
@@ -392,6 +415,7 @@
     <Compile Include="ViewModels\EmploymentTypesViewModel.cs" />
     <Compile Include="ViewModels\ExperiencesViewModel.cs" />
     <Compile Include="ViewModels\GendersViewModel.cs" />
+    <Compile Include="ViewModels\InDemandSkillsDetailedReportViewModel.cs" />
     <Compile Include="ViewModels\IndustriesViewModel.cs" />
     <Compile Include="ViewModels\LanguageProficienciesViewModel.cs" />
     <Compile Include="ViewModels\LanguagesViewModel.cs" />
@@ -418,15 +442,26 @@
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\ShowVacancyViewModel.cs" />
     <Compile Include="ViewModels\SkillsViewModel.cs" />
+    <Compile Include="ViewModels\StatisticsViewModel.cs" />
     <Compile Include="ViewModels\StreetsViewModel.cs" />
     <Compile Include="ViewModels\SubIndustriesViewModel.cs" />
     <Compile Include="ViewModels\SupplementingInformationForApplicantViewModel.cs" />
     <Compile Include="ViewModels\SupplementingInformationForEmployerViewModel.cs" />
     <Compile Include="ViewModels\SupplementingInformationForManagerViewModel.cs" />
+    <Compile Include="ViewModels\UnemploymentReportViewModel.cs" />
     <Compile Include="ViewModels\UsersViewModel.cs" />
     <Compile Include="ViewModels\VacanciesViewModel.cs" />
     <Compile Include="Views\Pages\Authorization.xaml.cs">
       <DependentUpon>Authorization.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\AverageAgeDetailedReport.xaml.cs">
+      <DependentUpon>AverageAgeDetailedReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\AverageSalaryDetailedReport.xaml.cs">
+      <DependentUpon>AverageSalaryDetailedReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\BestManagersDetailedReport.xaml.cs">
+      <DependentUpon>BestManagersDetailedReport.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\Branches.xaml.cs">
       <DependentUpon>Branches.xaml</DependentUpon>
@@ -446,6 +481,9 @@
     <Compile Include="Views\Pages\Countries.xaml.cs">
       <DependentUpon>Countries.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Pages\DemandedProfessionsDetailedReport.xaml.cs">
+      <DependentUpon>DemandedProfessionsDetailedReport.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Pages\DrivingLicenseCategories.xaml.cs">
       <DependentUpon>DrivingLicenseCategories.xaml</DependentUpon>
     </Compile>
@@ -460,6 +498,9 @@
     </Compile>
     <Compile Include="Views\Pages\Genders.xaml.cs">
       <DependentUpon>Genders.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\InDemandSkillsDetailedReport.xaml.cs">
+      <DependentUpon>InDemandSkillsDetailedReport.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\Industries.xaml.cs">
       <DependentUpon>Industries.xaml</DependentUpon>
@@ -518,6 +559,9 @@
     <Compile Include="Views\Pages\Skills.xaml.cs">
       <DependentUpon>Skills.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Pages\Statistics.xaml.cs">
+      <DependentUpon>Statistics.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Pages\Streets.xaml.cs">
       <DependentUpon>Streets.xaml</DependentUpon>
     </Compile>
@@ -532,6 +576,9 @@
     </Compile>
     <Compile Include="Views\Pages\SupplementingInformationForManager.xaml.cs">
       <DependentUpon>SupplementingInformationForManager.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\UnemploymentReport.xaml.cs">
+      <DependentUpon>UnemploymentReport.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\Users.xaml.cs">
       <DependentUpon>Users.xaml</DependentUpon>
@@ -813,6 +860,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Pages\AverageAgeDetailedReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\AverageSalaryDetailedReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\BestManagersDetailedReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Pages\Branches.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -837,6 +896,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Pages\DemandedProfessionsDetailedReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Pages\DrivingLicenseCategories.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -854,6 +917,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Pages\Genders.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\InDemandSkillsDetailedReport.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -933,6 +1000,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Pages\Statistics.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Pages\Streets.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -950,6 +1021,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Pages\SupplementingInformationForManager.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\UnemploymentReport.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

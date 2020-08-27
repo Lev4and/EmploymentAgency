@@ -390,6 +390,51 @@
           <Property Name="IsEmployed" Type="bit" Nullable="false" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Employment agency.dbo.v_averageAgeDetailedReport" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="v_averageAgeDetailedReport">
+          <Key>
+            <PropertyRef Name="IdProfessionCategory" />
+            <PropertyRef Name="NameProfessionCategory" />
+            <PropertyRef Name="IdProfession" />
+            <PropertyRef Name="ProfessionName" />
+          </Key>
+          <Property Name="Date" Type="date" />
+          <Property Name="IdProfessionCategory" Type="int" Nullable="false" />
+          <Property Name="NameProfessionCategory" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="IdProfession" Type="int" Nullable="false" />
+          <Property Name="ProfessionName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="AverageAge" Type="int" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Employment agency.dbo.v_averageSalaryDetailedReport" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="v_averageSalaryDetailedReport">
+          <Key>
+            <PropertyRef Name="IdProfessionCategory" />
+            <PropertyRef Name="NameProfessionCategory" />
+            <PropertyRef Name="IdProfession" />
+            <PropertyRef Name="ProfessionName" />
+          </Key>
+          <Property Name="Date" Type="date" />
+          <Property Name="IdProfessionCategory" Type="int" Nullable="false" />
+          <Property Name="NameProfessionCategory" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="IdProfession" Type="int" Nullable="false" />
+          <Property Name="ProfessionName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="AverageSalary" Type="int" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Employment agency.dbo.v_bestManagersDetailedReport" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="v_bestManagersDetailedReport">
+          <Key>
+            <PropertyRef Name="IdManager" />
+            <PropertyRef Name="FullNameManager" />
+          </Key>
+          <Property Name="Date" Type="date" />
+          <Property Name="IdManager" Type="int" Nullable="false" />
+          <Property Name="FullNameManager" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Count" Type="int" />
+          <Property Name="Rate" Type="int" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
 предупреждение 6002: В таблице или представлении "Employment agency.dbo.v_branch" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
         <EntityType Name="v_branch">
           <Key>
@@ -553,6 +598,23 @@
           <Property Name="BreakDate" Type="smalldatetime" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Employment agency.dbo.v_demandedProfessionsDetailedReport" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="v_demandedProfessionsDetailedReport">
+          <Key>
+            <PropertyRef Name="IdProfessionCategory" />
+            <PropertyRef Name="NameProfessionCategory" />
+            <PropertyRef Name="IdProfession" />
+            <PropertyRef Name="ProfessionName" />
+          </Key>
+          <Property Name="Date" Type="date" />
+          <Property Name="IdProfessionCategory" Type="int" Nullable="false" />
+          <Property Name="NameProfessionCategory" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="IdProfession" Type="int" Nullable="false" />
+          <Property Name="ProfessionName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Count" Type="int" />
+          <Property Name="Rate" Type="int" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
 предупреждение 6002: В таблице или представлении "Employment agency.dbo.v_employer" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
         <EntityType Name="v_employer">
           <Key>
@@ -690,6 +752,19 @@
           <Property Name="VacancyExperienceName" Type="nvarchar(max)" Nullable="false" />
           <Property Name="VacancySalary" Type="int" />
           <Property Name="IsSuitable" Type="bit" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Employment agency.dbo.v_inDemandSkillsDetailedReport" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="v_inDemandSkillsDetailedReport">
+          <Key>
+            <PropertyRef Name="IdSkill" />
+            <PropertyRef Name="SkillName" />
+          </Key>
+          <Property Name="Date" Type="date" />
+          <Property Name="IdSkill" Type="int" Nullable="false" />
+          <Property Name="SkillName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Count" Type="int" />
+          <Property Name="Rate" Type="int" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
 предупреждение 6002: В таблице или представлении "Employment agency.dbo.v_manager" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
@@ -900,6 +975,17 @@
           <Property Name="Salary" Type="int" />
           <Property Name="IdVacancy" Type="int" Nullable="false" />
           <Property Name="DiscoveryDate" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Employment agency.dbo.v_unemploymentReport" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="v_unemploymentReport">
+          <Key>
+            <PropertyRef Name="Rank" />
+          </Key>
+          <Property Name="Date" Type="date" />
+          <Property Name="Count" Type="int" />
+          <Property Name="Rate" Type="int" />
+          <Property Name="Rank" Type="bigint" Nullable="false" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
 предупреждение 6002: В таблице или представлении "Employment agency.dbo.v_user" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
@@ -1691,6 +1777,35 @@
     [v_applicant].[IsEmployed] AS [IsEmployed]
     FROM [dbo].[v_applicant] AS [v_applicant]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="v_averageAgeDetailedReport" EntityType="Self.v_averageAgeDetailedReport" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_averageAgeDetailedReport].[Date] AS [Date], 
+    [v_averageAgeDetailedReport].[IdProfessionCategory] AS [IdProfessionCategory], 
+    [v_averageAgeDetailedReport].[NameProfessionCategory] AS [NameProfessionCategory], 
+    [v_averageAgeDetailedReport].[IdProfession] AS [IdProfession], 
+    [v_averageAgeDetailedReport].[ProfessionName] AS [ProfessionName], 
+    [v_averageAgeDetailedReport].[AverageAge] AS [AverageAge]
+    FROM [dbo].[v_averageAgeDetailedReport] AS [v_averageAgeDetailedReport]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="v_averageSalaryDetailedReport" EntityType="Self.v_averageSalaryDetailedReport" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_averageSalaryDetailedReport].[Date] AS [Date], 
+    [v_averageSalaryDetailedReport].[IdProfessionCategory] AS [IdProfessionCategory], 
+    [v_averageSalaryDetailedReport].[NameProfessionCategory] AS [NameProfessionCategory], 
+    [v_averageSalaryDetailedReport].[IdProfession] AS [IdProfession], 
+    [v_averageSalaryDetailedReport].[ProfessionName] AS [ProfessionName], 
+    [v_averageSalaryDetailedReport].[AverageSalary] AS [AverageSalary]
+    FROM [dbo].[v_averageSalaryDetailedReport] AS [v_averageSalaryDetailedReport]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="v_bestManagersDetailedReport" EntityType="Self.v_bestManagersDetailedReport" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_bestManagersDetailedReport].[Date] AS [Date], 
+    [v_bestManagersDetailedReport].[IdManager] AS [IdManager], 
+    [v_bestManagersDetailedReport].[FullNameManager] AS [FullNameManager], 
+    [v_bestManagersDetailedReport].[Count] AS [Count], 
+    [v_bestManagersDetailedReport].[Rate] AS [Rate]
+    FROM [dbo].[v_bestManagersDetailedReport] AS [v_bestManagersDetailedReport]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="v_branch" EntityType="Self.v_branch" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [v_branch].[IdBranch] AS [IdBranch], 
@@ -1781,6 +1896,17 @@
     [v_contract].[BreakDate] AS [BreakDate]
     FROM [dbo].[v_contract] AS [v_contract]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="v_demandedProfessionsDetailedReport" EntityType="Self.v_demandedProfessionsDetailedReport" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_demandedProfessionsDetailedReport].[Date] AS [Date], 
+    [v_demandedProfessionsDetailedReport].[IdProfessionCategory] AS [IdProfessionCategory], 
+    [v_demandedProfessionsDetailedReport].[NameProfessionCategory] AS [NameProfessionCategory], 
+    [v_demandedProfessionsDetailedReport].[IdProfession] AS [IdProfession], 
+    [v_demandedProfessionsDetailedReport].[ProfessionName] AS [ProfessionName], 
+    [v_demandedProfessionsDetailedReport].[Count] AS [Count], 
+    [v_demandedProfessionsDetailedReport].[Rate] AS [Rate]
+    FROM [dbo].[v_demandedProfessionsDetailedReport] AS [v_demandedProfessionsDetailedReport]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="v_employer" EntityType="Self.v_employer" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [v_employer].[IdEmployer] AS [IdEmployer], 
@@ -1856,6 +1982,15 @@
     [v_employmentRequest].[VacancySalary] AS [VacancySalary], 
     [v_employmentRequest].[IsSuitable] AS [IsSuitable]
     FROM [dbo].[v_employmentRequest] AS [v_employmentRequest]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="v_inDemandSkillsDetailedReport" EntityType="Self.v_inDemandSkillsDetailedReport" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_inDemandSkillsDetailedReport].[Date] AS [Date], 
+    [v_inDemandSkillsDetailedReport].[IdSkill] AS [IdSkill], 
+    [v_inDemandSkillsDetailedReport].[SkillName] AS [SkillName], 
+    [v_inDemandSkillsDetailedReport].[Count] AS [Count], 
+    [v_inDemandSkillsDetailedReport].[Rate] AS [Rate]
+    FROM [dbo].[v_inDemandSkillsDetailedReport] AS [v_inDemandSkillsDetailedReport]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="v_manager" EntityType="Self.v_manager" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -1977,6 +2112,14 @@
     [v_suitableVacancy].[IdVacancy] AS [IdVacancy], 
     [v_suitableVacancy].[DiscoveryDate] AS [DiscoveryDate]
     FROM [dbo].[v_suitableVacancy] AS [v_suitableVacancy]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="v_unemploymentReport" EntityType="Self.v_unemploymentReport" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_unemploymentReport].[Date] AS [Date], 
+    [v_unemploymentReport].[Count] AS [Count], 
+    [v_unemploymentReport].[Rate] AS [Rate], 
+    [v_unemploymentReport].[Rank] AS [Rank]
+    FROM [dbo].[v_unemploymentReport] AS [v_unemploymentReport]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="v_user" EntityType="Self.v_user" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -3862,6 +4005,12 @@
           <EntitySet Name="v_suitableVacancy" EntityType="Model.v_suitableVacancy" />
           <EntitySet Name="v_employmentRequest" EntityType="Model.v_employmentRequest" />
           <EntitySet Name="v_contract" EntityType="Model.v_contract" />
+          <EntitySet Name="v_averageAgeDetailedReport" EntityType="Model.v_averageAgeDetailedReport" />
+          <EntitySet Name="v_averageSalaryDetailedReport" EntityType="Model.v_averageSalaryDetailedReport" />
+          <EntitySet Name="v_bestManagersDetailedReport" EntityType="Model.v_bestManagersDetailedReport" />
+          <EntitySet Name="v_demandedProfessionsDetailedReport" EntityType="Model.v_demandedProfessionsDetailedReport" />
+          <EntitySet Name="v_inDemandSkillsDetailedReport" EntityType="Model.v_inDemandSkillsDetailedReport" />
+          <EntitySet Name="v_unemploymentReport" EntityType="Model.v_unemploymentReport" />
         </EntityContainer>
         <EntityType Name="v_request">
           <Key>
@@ -4140,6 +4289,80 @@
           <Property Name="DateOfConclusion" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="BreakDate" Type="DateTime" Precision="0" />
           <Property Name="IdEmployer" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="v_averageAgeDetailedReport">
+          <Key>
+            <PropertyRef Name="IdProfessionCategory" />
+            <PropertyRef Name="NameProfessionCategory" />
+            <PropertyRef Name="IdProfession" />
+            <PropertyRef Name="ProfessionName" />
+          </Key>
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="IdProfessionCategory" Type="Int32" Nullable="false" />
+          <Property Name="NameProfessionCategory" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IdProfession" Type="Int32" Nullable="false" />
+          <Property Name="ProfessionName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="AverageAge" Type="Int32" />
+        </EntityType>
+        <EntityType Name="v_averageSalaryDetailedReport">
+          <Key>
+            <PropertyRef Name="IdProfessionCategory" />
+            <PropertyRef Name="NameProfessionCategory" />
+            <PropertyRef Name="IdProfession" />
+            <PropertyRef Name="ProfessionName" />
+          </Key>
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="IdProfessionCategory" Type="Int32" Nullable="false" />
+          <Property Name="NameProfessionCategory" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IdProfession" Type="Int32" Nullable="false" />
+          <Property Name="ProfessionName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="AverageSalary" Type="Int32" />
+        </EntityType>
+        <EntityType Name="v_bestManagersDetailedReport">
+          <Key>
+            <PropertyRef Name="IdManager" />
+            <PropertyRef Name="FullNameManager" />
+          </Key>
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="IdManager" Type="Int32" Nullable="false" />
+          <Property Name="FullNameManager" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Count" Type="Int32" />
+          <Property Name="Rate" Type="Int32" />
+        </EntityType>
+        <EntityType Name="v_demandedProfessionsDetailedReport">
+          <Key>
+            <PropertyRef Name="IdProfessionCategory" />
+            <PropertyRef Name="NameProfessionCategory" />
+            <PropertyRef Name="IdProfession" />
+            <PropertyRef Name="ProfessionName" />
+          </Key>
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="IdProfessionCategory" Type="Int32" Nullable="false" />
+          <Property Name="NameProfessionCategory" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IdProfession" Type="Int32" Nullable="false" />
+          <Property Name="ProfessionName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Count" Type="Int32" />
+          <Property Name="Rate" Type="Int32" />
+        </EntityType>
+        <EntityType Name="v_inDemandSkillsDetailedReport">
+          <Key>
+            <PropertyRef Name="IdSkill" />
+            <PropertyRef Name="SkillName" />
+          </Key>
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="IdSkill" Type="Int32" Nullable="false" />
+          <Property Name="SkillName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Count" Type="Int32" />
+          <Property Name="Rate" Type="Int32" />
+        </EntityType>
+        <EntityType Name="v_unemploymentReport">
+          <Key>
+            <PropertyRef Name="Rank" />
+          </Key>
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="Count" Type="Int32" />
+          <Property Name="Rate" Type="Int32" />
+          <Property Name="Rank" Type="Int64" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -4919,6 +5142,75 @@
                 <ScalarProperty Name="IdSuitableVacancy" ColumnName="IdSuitableVacancy" />
                 <ScalarProperty Name="IdEmploymentRequest" ColumnName="IdEmploymentRequest" />
                 <ScalarProperty Name="IdContract" ColumnName="IdContract" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_averageAgeDetailedReport">
+            <EntityTypeMapping TypeName="Model.v_averageAgeDetailedReport">
+              <MappingFragment StoreEntitySet="v_averageAgeDetailedReport">
+                <ScalarProperty Name="AverageAge" ColumnName="AverageAge" />
+                <ScalarProperty Name="ProfessionName" ColumnName="ProfessionName" />
+                <ScalarProperty Name="IdProfession" ColumnName="IdProfession" />
+                <ScalarProperty Name="NameProfessionCategory" ColumnName="NameProfessionCategory" />
+                <ScalarProperty Name="IdProfessionCategory" ColumnName="IdProfessionCategory" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_averageSalaryDetailedReport">
+            <EntityTypeMapping TypeName="Model.v_averageSalaryDetailedReport">
+              <MappingFragment StoreEntitySet="v_averageSalaryDetailedReport">
+                <ScalarProperty Name="AverageSalary" ColumnName="AverageSalary" />
+                <ScalarProperty Name="ProfessionName" ColumnName="ProfessionName" />
+                <ScalarProperty Name="IdProfession" ColumnName="IdProfession" />
+                <ScalarProperty Name="NameProfessionCategory" ColumnName="NameProfessionCategory" />
+                <ScalarProperty Name="IdProfessionCategory" ColumnName="IdProfessionCategory" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_bestManagersDetailedReport">
+            <EntityTypeMapping TypeName="Model.v_bestManagersDetailedReport">
+              <MappingFragment StoreEntitySet="v_bestManagersDetailedReport">
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="FullNameManager" ColumnName="FullNameManager" />
+                <ScalarProperty Name="IdManager" ColumnName="IdManager" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_demandedProfessionsDetailedReport">
+            <EntityTypeMapping TypeName="Model.v_demandedProfessionsDetailedReport">
+              <MappingFragment StoreEntitySet="v_demandedProfessionsDetailedReport">
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="ProfessionName" ColumnName="ProfessionName" />
+                <ScalarProperty Name="IdProfession" ColumnName="IdProfession" />
+                <ScalarProperty Name="NameProfessionCategory" ColumnName="NameProfessionCategory" />
+                <ScalarProperty Name="IdProfessionCategory" ColumnName="IdProfessionCategory" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_inDemandSkillsDetailedReport">
+            <EntityTypeMapping TypeName="Model.v_inDemandSkillsDetailedReport">
+              <MappingFragment StoreEntitySet="v_inDemandSkillsDetailedReport">
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="SkillName" ColumnName="SkillName" />
+                <ScalarProperty Name="IdSkill" ColumnName="IdSkill" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_unemploymentReport">
+            <EntityTypeMapping TypeName="Model.v_unemploymentReport">
+              <MappingFragment StoreEntitySet="v_unemploymentReport">
+                <ScalarProperty Name="Rank" ColumnName="Rank" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

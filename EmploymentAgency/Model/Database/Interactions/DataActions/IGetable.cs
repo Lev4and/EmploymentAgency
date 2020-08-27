@@ -3,6 +3,7 @@ using EmploymentAgency.Model.Logic;
 using EmploymentAgency.Views.Pages;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace EmploymentAgency.Model.Database.Interactions.DataActions
 {
@@ -64,6 +65,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         DateTime? GetMinClosingDateVacancy();
 
+        DateTime GetMaxDateOfConclusionContract();
+
         DateTime GetMaxDateOfConclusionMyContractsApplicant(int idApplicant);
 
         DateTime GetMaxDateOfConclusionMyContractsEmployer(int idEmployer);
@@ -75,6 +78,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
         DateTime GetMaxDateOfRegistrationRequest();
 
         DateTime GetMaxDateOfRegistrationVacancy();
+
+        DateTime GetMinDateOfConclusionContract();
 
         DateTime GetMinDateOfConclusionMyContractsApplicant(int idApplicant);
 
@@ -164,6 +169,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         v_vacancy GetVacancyExtendedInformation(int idVacancy);
 
+        List<Applicant> GetApplicants();
+
         List<City> GetCities(int idCountry);
 
         List<Country> GetCountries();
@@ -236,6 +243,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         List<PossessionSkill> GetPossessionSkills(int idApplicant);
 
+        List<Profession> GetProfessions();
+
         List<Profession> GetProfessions(int idProfessionCategory);
 
         List<ProfessionCategory> GetProfessionCategories();
@@ -252,6 +261,12 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         List<Role> GetRoles(string roleName);
 
+        List<v_averageAgeDetailedReport> GetAverageAgeDetailedReport(Range<DateTime> rangeDateOfConclusionContract, List<object> selectedProfessionCategories, List<object> selectedProfessions);
+
+        List<v_averageSalaryDetailedReport> GetAverageSalaryDetailedReport(Range<DateTime> rangeDateOfConclusionContract, List<object> selectedProfessionCategories, List<object> selectedProfessions);
+
+        List<v_bestManagersDetailedReport> GetBestManagersDetailedReport(DateTime? beginValueDateOfConsiderationRequest, DateTime? endValueDateOfConsiderationRequest, List<object> selectedFullNameManagers);
+
         List<v_branch> GetBranches(int idIndustry, int idSubIndustry, int idCountry, int idCity, int idStreet, int idOrganization, string organizationName);
 
         List<v_branchSimplifiedInformation> GetBranches(int idOrganization);
@@ -264,9 +279,15 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
 
         List<v_contract> GetContractsForEmployer(int idEmployer, string applicantFullName, Range<DateTime> rangeDateOfConclusion, DateTime? beginValueBreakDate, DateTime? endValueBreakDate, int? beginValueSalary, int? endValueSalary);
 
+        List<v_demandedProfessionsDetailedReport> GetDemandedProfessionsDetailedReports(Range<DateTime> rangeDateOfRegistrationVacancy, List<object> selectedProfessionCategories, List<object> selectedProfessions);
+
         List<v_employmentRequest> GetSentEmploymentRequests(int idRequest);
 
         List<v_employmentRequest> GetReceivedEmploymentRequests(int idVacancy);
+
+        List<v_inDemandSkillsDetailedReport> GetInDemandSkillsDetailedReports(Range<DateTime> rangeDateOfRegistrationVacancy, List<object> selectedSkills);
+
+        List<v_manager> GetManagers();
 
         List<v_street> GetStreets();
 
@@ -285,6 +306,8 @@ namespace EmploymentAgency.Model.Database.Interactions.DataActions
         List<v_request> GetRequests(int idRequestStatus, string professionName, Range<DateTime> rangeDateOfRegistration, DateTime? beginValueDateOfConsideration, DateTime? endValueDateOfConsideration);
 
         List<v_request> GetMyRequests(int idApplicant, int idProfessionCategory, int idProfession, int idRequestStatus, string professionName, Range<DateTime> rangeDateOfRegistration);
+
+        List<v_unemploymentReport> GetUnemploymentReports(Range<DateTime> rangeDateOfRegistrationRequest);
 
         List<v_user> GetUsers(int idRole, string login);
 

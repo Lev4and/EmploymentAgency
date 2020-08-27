@@ -41,9 +41,7 @@
                 VerticalAlignment="Center">
                 <uc:BlockViewImage Image="{Binding Path=Photo, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
             </Grid>
-            <Grid
-                Grid.Column="1"
-                Height="50">
+            <Grid Grid.Column="1" Height="50">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition />

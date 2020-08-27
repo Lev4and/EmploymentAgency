@@ -1154,6 +1154,43 @@ namespace EmploymentAgency.Model.Database.Interactions
             return _context.v_applicant.SingleOrDefault(a => a.IdApplicant == idApplicant);
         }
 
+        public List<Applicant> GetApplicants()
+        {
+            return _context.Applicant.AsNoTracking().ToList();
+        }
+
+        public List<v_averageAgeDetailedReport> GetAverageAgeDetailedReport(Range<DateTime> rangeDateOfConclusionContract, List<object> selectedProfessionCategories, List<object> selectedProfessions)
+        {
+            var report = _context.v_averageAgeDetailedReport.Where(r =>
+            r.Date >= rangeDateOfConclusionContract.BeginValue &&
+            r.Date <= rangeDateOfConclusionContract.EndValue).AsNoTracking().ToList();
+
+            return report.Where(r =>
+            (selectedProfessionCategories.Count > 0 ? selectedProfessionCategories.Any(p => Convert.ToInt32(p) == r.IdProfessionCategory) : false) ||
+            (selectedProfessions.Count > 0 ? selectedProfessions.Any(p => Convert.ToInt32(p) == r.IdProfession) : false)).OrderBy(r => r.Date).ToList();
+        }
+
+        public List<v_averageSalaryDetailedReport> GetAverageSalaryDetailedReport(Range<DateTime> rangeDateOfConclusionContract, List<object> selectedProfessionCategories, List<object> selectedProfessions)
+        {
+            var report = _context.v_averageSalaryDetailedReport.Where(r =>
+            r.Date >= rangeDateOfConclusionContract.BeginValue &&
+            r.Date <= rangeDateOfConclusionContract.EndValue).AsNoTracking().ToList();
+
+            return report.Where(r =>
+            (selectedProfessionCategories.Count > 0 ? selectedProfessionCategories.Any(p => Convert.ToInt32(p) == r.IdProfessionCategory) : false) ||
+            (selectedProfessions.Count > 0 ? selectedProfessions.Any(p => Convert.ToInt32(p) == r.IdProfession) : false)).OrderBy(r => r.Date).ToList();
+        }
+
+        public List<v_bestManagersDetailedReport> GetBestManagersDetailedReport(DateTime? beginValueDateOfConsiderationRequest, DateTime? endValueDateOfConsiderationRequest, List<object> selectedFullNameManagers)
+        {
+            var report = _context.v_bestManagersDetailedReport.Where(r =>
+            (beginValueDateOfConsiderationRequest != null ? r.Date >= beginValueDateOfConsiderationRequest : true) &&
+            (endValueDateOfConsiderationRequest  != null ? r.Date <= endValueDateOfConsiderationRequest : true)).AsNoTracking().ToList();
+
+            return report.Where(r =>
+            (selectedFullNameManagers.Count > 0 ? selectedFullNameManagers.Any(f => Convert.ToInt32(f) == r.IdManager) : false)).OrderBy(r => r.Date).ToList();
+        }
+
         public v_branch GetBranch(int idBranch)
         {
             return _context.v_branch.SingleOrDefault(b => b.IdBranch == idBranch);
@@ -1243,6 +1280,17 @@ namespace EmploymentAgency.Model.Database.Interactions
         public Country GetCountry(int idCountry)
         {
             return _context.Country.SingleOrDefault(c => c.IdCountry == idCountry);
+        }
+
+        public List<v_demandedProfessionsDetailedReport> GetDemandedProfessionsDetailedReports(Range<DateTime> rangeDateOfRegistrationVacancy, List<object> selectedProfessionCategories, List<object> selectedProfessions)
+        {
+            var report = _context.v_demandedProfessionsDetailedReport.Where(r =>
+            r.Date >= rangeDateOfRegistrationVacancy.BeginValue &&
+            r.Date <= rangeDateOfRegistrationVacancy.EndValue).AsNoTracking().ToList();
+
+            return report.Where(r =>
+            (selectedProfessionCategories.Count > 0 ? selectedProfessionCategories.Any(p => Convert.ToInt32(p) == r.IdProfessionCategory) : false) ||
+            (selectedProfessions.Count > 0 ? selectedProfessions.Any(p => Convert.ToInt32(p) == r.IdProfession) : false)).OrderBy(r => r.Date).ToList();
         }
 
         public List<DrivingLicenseCategory> GetDrivingLicenseCategories()
@@ -1365,6 +1413,16 @@ namespace EmploymentAgency.Model.Database.Interactions
             return _context.Role.Single(r => r.RoleName == roleName).IdRole;
         }
 
+        public List<v_inDemandSkillsDetailedReport> GetInDemandSkillsDetailedReports(Range<DateTime> rangeDateOfRegistrationVacancy, List<object> selectedSkills)
+        {
+            var report = _context.v_inDemandSkillsDetailedReport.Where(r =>
+            r.Date >= rangeDateOfRegistrationVacancy.BeginValue &&
+            r.Date <= rangeDateOfRegistrationVacancy.EndValue).AsNoTracking().ToList();
+
+            return report.Where(r =>
+            (selectedSkills.Count > 0 ? selectedSkills.Any(s => Convert.ToInt32(s) == r.IdSkill) : false)).OrderBy(r => r.Date).ToList();
+        }
+
         public List<Industry> GetIndustries()
         {
             return _context.Industry.OrderBy(i => i.IndustryName).AsNoTracking().ToList();
@@ -1433,6 +1491,11 @@ namespace EmploymentAgency.Model.Database.Interactions
             return _context.v_manager.SingleOrDefault(m => m.IdManager == idManager);
         }
 
+        public List<v_manager> GetManagers()
+        {
+            return _context.v_manager.AsNoTracking().ToList();
+        }
+
         public DateTime? GetMaxBreakDateMyContractsApplicant(int idApplicant)
         {
             return _context.v_contract.Where(c => c.IdApplicant == idApplicant).AsNoTracking().Max(c => c.BreakDate);
@@ -1451,6 +1514,13 @@ namespace EmploymentAgency.Model.Database.Interactions
         public DateTime? GetMaxClosingDateVacancy()
         {
             return _context.Vacancy.Max(v => v.ClosingDate);
+        }
+
+        public DateTime GetMaxDateOfConclusionContract()
+        {
+            var contracts = _context.Contract.AsNoTracking();
+
+            return contracts.Count() > 0 ? contracts.Max(c => c.DateOfConclusion) : DateTime.Now;
         }
 
         public DateTime GetMaxDateOfConclusionMyContractsApplicant(int idApplicant)
@@ -1558,6 +1628,13 @@ namespace EmploymentAgency.Model.Database.Interactions
         public DateTime? GetMinClosingDateVacancy()
         {
             return _context.Vacancy.Min(v => v.ClosingDate);
+        }
+
+        public DateTime GetMinDateOfConclusionContract()
+        {
+            var contracts = _context.Contract.AsNoTracking();
+
+            return contracts.Count() > 0 ? contracts.Min(c => c.DateOfConclusion) : DateTime.Now;
         }
 
         public DateTime GetMinDateOfConclusionMyContractsApplicant(int idApplicant)
@@ -1778,6 +1855,11 @@ namespace EmploymentAgency.Model.Database.Interactions
             return _context.Profession.Where(p => p.IdProfessionCategory == idProfessionCategory).AsNoTracking().ToList();
         }
 
+        public List<Profession> GetProfessions()
+        {
+            return _context.Profession.OrderBy(p => p.ProfessionName).AsNoTracking().ToList();
+        }
+
         public List<v_employmentRequest> GetReceivedEmploymentRequests(int idVacancy)
         {
             return _context.v_employmentRequest.Where(e =>
@@ -1939,6 +2021,13 @@ namespace EmploymentAgency.Model.Database.Interactions
         {
             return _context.SuitableVacancy.Where(s =>
             s.IdRequest == idRequest).ToList();
+        }
+
+        public List<v_unemploymentReport> GetUnemploymentReports(Range<DateTime> rangeDateOfRegistrationRequest)
+        {
+            return _context.v_unemploymentReport.Where(r =>
+            r.Date >= rangeDateOfRegistrationRequest.BeginValue &&
+            r.Date <= rangeDateOfRegistrationRequest.EndValue).OrderBy(r => r.Date).AsNoTracking().ToList();
         }
 
         public User GetUser(int idUser)

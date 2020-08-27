@@ -185,6 +185,20 @@ namespace EmploymentAgency.ViewModels.Locators
 
         public MyContractsEmployerViewModel MyContractsEmployerViewModel => _provider.GetRequiredService<MyContractsEmployerViewModel>();
 
+        public StatisticsViewModel StatisticsViewModel => _provider.GetRequiredService<StatisticsViewModel>();
+
+        public AverageAgeDetailedReportViewModel AverageAgeDetailedReportViewModel => _provider.GetRequiredService<AverageAgeDetailedReportViewModel>();
+
+        public AverageSalaryDetailedReportViewModel AverageSalaryDetailedReportViewModel => _provider.GetRequiredService<AverageSalaryDetailedReportViewModel>();
+
+        public BestManagersDetailedReportViewModel BestManagersDetailedReportViewModel => _provider.GetRequiredService<BestManagersDetailedReportViewModel>();
+
+        public DemandedProfessionsDetailedReportViewModel DemandedProfessionsDetailedReportViewModel => _provider.GetRequiredService<DemandedProfessionsDetailedReportViewModel>();
+
+        public InDemandSkillsDetailedReportViewModel InDemandSkillsDetailedReportViewModel => _provider.GetRequiredService<InDemandSkillsDetailedReportViewModel>();
+        
+        public UnemploymentReportViewModel UnemploymentReportViewModel => _provider.GetRequiredService<UnemploymentReportViewModel>();
+
         public static void Init()
         {
             var services = new ServiceCollection();
@@ -278,9 +292,17 @@ namespace EmploymentAgency.ViewModels.Locators
             services.AddTransient<DetailRequestViewModel>();
             services.AddTransient<MyContractsApplicantViewModel>();
             services.AddTransient<MyContractsEmployerViewModel>();
+            services.AddTransient<StatisticsViewModel>();
+            services.AddTransient<AverageAgeDetailedReportViewModel>();
+            services.AddTransient<AverageSalaryDetailedReportViewModel>();
+            services.AddTransient<BestManagersDetailedReportViewModel>();
+            services.AddTransient<DemandedProfessionsDetailedReportViewModel>();
+            services.AddTransient<InDemandSkillsDetailedReportViewModel>();
+            services.AddTransient<UnemploymentReportViewModel>();
 
             services.AddSingleton<PageService>();
             services.AddSingleton<MenuPageService>();
+            services.AddSingleton<StatisticsPageService>();
 
             _provider = services.BuildServiceProvider();
 

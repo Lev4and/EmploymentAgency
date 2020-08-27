@@ -84,5 +84,11 @@ namespace EmploymentAgency.Model.Database.Models
         public virtual DbSet<v_suitableVacancy> v_suitableVacancy { get; set; }
         public virtual DbSet<v_employmentRequest> v_employmentRequest { get; set; }
         public virtual DbSet<v_contract> v_contract { get; set; }
+        public virtual DbSet<v_averageAgeDetailedReport> v_averageAgeDetailedReport { get; set; }
+        public virtual DbSet<v_averageSalaryDetailedReport> v_averageSalaryDetailedReport { get; set; }
+        public virtual DbSet<v_bestManagersDetailedReport> v_bestManagersDetailedReport { get; set; }
+        public virtual DbSet<v_demandedProfessionsDetailedReport> v_demandedProfessionsDetailedReport { get; set; }
+        public virtual DbSet<v_inDemandSkillsDetailedReport> v_inDemandSkillsDetailedReport { get; set; }
+        public virtual DbSet<v_unemploymentReport> v_unemploymentReport { get; set; }
     }
 }
