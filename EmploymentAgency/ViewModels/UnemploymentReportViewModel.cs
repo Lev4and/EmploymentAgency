@@ -94,8 +94,8 @@ namespace EmploymentAgency.ViewModels
             ColumnSeries = new SeriesCollection();
             PieSeries = new SeriesCollection();
 
-            LineSeries.Add(new LineSeries { Title = "Count", Values = new ChartValues<double>(GetCounts()) });
-            ColumnSeries.Add(new ColumnSeries { Title = "Rate", Values = new ChartValues<double>(GetRates()) });
+            LineSeries.Add(new LineSeries { Title = "Общее количество безработных", Values = new ChartValues<double>(GetCounts()) });
+            ColumnSeries.Add(new ColumnSeries { Title = "Количество безработных (за день)", Values = new ChartValues<double>(GetRates()) });
 
             PieSeries.Add(new PieSeries { Title = "Трудоустроенные", Values = new ChartValues<double>() { (double)Report.FirstOrDefault(r => r.Date == Report.Max(re => re.Date)).Count } });
             PieSeries.Add(new PieSeries { Title = "Нетрудоустроенные", Values = new ChartValues<double>() { (double)_executor.GetApplicants().Where(u => u.User.DateOfRegistration.Date <= Report.Max(re => re.Date)).Count() - (double)Report.FirstOrDefault(r => r.Date == Report.Max(re => re.Date)).Count } });

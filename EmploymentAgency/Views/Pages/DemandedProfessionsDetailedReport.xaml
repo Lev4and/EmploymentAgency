@@ -43,9 +43,12 @@
                     Grid.Column="0"
                     Margin="0,0,3,3">
                     <lwpf:CartesianChart
-                    Background="White"
-                    Series="{Binding Path=LineSeries, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                    Zoom="X">
+                        Background="White"
+                        Series="{Binding Path=LineSeries, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                        Zoom="X">
+                        <lwpf:CartesianChart.DataTooltip>
+                            <lwpf:DefaultTooltip SelectionMode="OnlySender"/>
+                        </lwpf:CartesianChart.DataTooltip>
                         <lwpf:CartesianChart.AxisY>
                             <lwpf:Axis Title="Количество вакансий" />
                         </lwpf:CartesianChart.AxisY>
@@ -78,9 +81,12 @@
                     Grid.Column="0"
                     Margin="0,3,3,0">
                     <lwpf:CartesianChart
-                    Background="White"
-                    Series="{Binding Path=LineSeries2, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                    Zoom="X">
+                        Background="White"
+                        Series="{Binding Path=LineSeries2, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                        Zoom="X">
+                        <lwpf:CartesianChart.DataTooltip>
+                            <lwpf:DefaultTooltip SelectionMode="OnlySender"/>
+                        </lwpf:CartesianChart.DataTooltip>
                         <lwpf:CartesianChart.AxisY>
                             <lwpf:Axis Title="Количество вакансий" />
                         </lwpf:CartesianChart.AxisY>
@@ -96,7 +102,11 @@
                     <lwpf:PieChart
                         Background="White"
                         LegendLocation="None"
-                        Series="{Binding Path=PieSeries}" />
+                        Series="{Binding Path=PieSeries}">
+                        <lwpf:PieChart.DataTooltip>
+                            <lwpf:DefaultTooltip SelectionMode="OnlySender"/>
+                        </lwpf:PieChart.DataTooltip>
+                    </lwpf:PieChart>
                 </Grid>
             </Grid>
             <Grid

@@ -46,6 +46,9 @@
                         Background="White"
                         Series="{Binding Path=LineSeries, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                         Zoom="X">
+                        <lwpf:CartesianChart.DataTooltip>
+                            <lwpf:DefaultTooltip SelectionMode="OnlySender"/>
+                        </lwpf:CartesianChart.DataTooltip>
                         <lwpf:CartesianChart.AxisY>
                             <lwpf:Axis Title="Оклад" LabelFormatter="{Binding Path=YFormatterForLineSeries}" />
                         </lwpf:CartesianChart.AxisY>
@@ -80,7 +83,11 @@
                     <lwpf:PieChart
                         Background="White"
                         LegendLocation="None"
-                        Series="{Binding Path=PieSeries}" />
+                        Series="{Binding Path=PieSeries}">
+                        <lwpf:PieChart.DataTooltip>
+                            <lwpf:DefaultTooltip SelectionMode="OnlySender"/>
+                        </lwpf:PieChart.DataTooltip>
+                    </lwpf:PieChart>
                 </Grid>
             </Grid>
             <Grid
