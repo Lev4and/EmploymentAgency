@@ -23,7 +23,7 @@
                 <i:InvokeCommandAction Command="{Binding Path=Loaded}" />
             </i:EventTrigger>
         </i:Interaction.Triggers>
-        <Grid HorizontalAlignment="Stretch">
+        <Grid HorizontalAlignment="Stretch" Margin="5">
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition />

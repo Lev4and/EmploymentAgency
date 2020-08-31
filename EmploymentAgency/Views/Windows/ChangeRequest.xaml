@@ -60,14 +60,14 @@
                         <Grid Grid.Column="1" Margin="5,0,0,0">
                             <TextBox
                                 x:Name="NameProfessionCategoryTextBox"
+                                VerticalAlignment="Center"
                                 mdt:HintAssist.HelperText="Укажите сферу деятельности"
                                 mdt:HintAssist.Hint="Сфера деятельности"
-                                IsReadOnly="True"
                                 FontSize="20"
                                 FontWeight="Medium"
+                                IsReadOnly="True"
                                 Text="{Binding Path=NameProfessionCategory, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                ToolTip="{Binding ElementName=NameProfessionCategoryTextBox, Path=Text}"
-                                VerticalAlignment="Center" />
+                                ToolTip="{Binding ElementName=NameProfessionCategoryTextBox, Path=Text}" />
                         </Grid>
                     </Grid>
                     <Grid
@@ -89,14 +89,14 @@
                         <Grid Grid.Column="1" Margin="5,0,0,0">
                             <TextBox
                                 x:Name="ProfessionNameTextBox"
+                                VerticalAlignment="Center"
                                 mdt:HintAssist.HelperText="Укажите название профессии"
                                 mdt:HintAssist.Hint="Профессия"
-                                IsReadOnly="True"
                                 FontSize="20"
                                 FontWeight="Medium"
+                                IsReadOnly="True"
                                 Text="{Binding Path=ProfessionName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                ToolTip="{Binding ElementName=ProfessionNameTextBox, Path=Text}"
-                                VerticalAlignment="Center" />
+                                ToolTip="{Binding ElementName=ProfessionNameTextBox, Path=Text}" />
                         </Grid>
                     </Grid>
                     <Grid
@@ -118,13 +118,13 @@
                         <Grid Grid.Column="1" Margin="5,0,0,0">
                             <TextBox
                                 x:Name="ExperienceNameTextBox"
+                                VerticalAlignment="Center"
                                 mdt:HintAssist.HelperText="Введите название типа опыта"
                                 mdt:HintAssist.Hint="Название опыта"
                                 FontSize="20"
                                 FontWeight="Medium"
                                 Text="{Binding Path=ExperienceName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                ToolTip="{Binding ElementName=ExperienceNameTextBox, Path=Text}"
-                                VerticalAlignment="Center" />
+                                ToolTip="{Binding ElementName=ExperienceNameTextBox, Path=Text}" />
                         </Grid>
                     </Grid>
                     <Grid
@@ -176,9 +176,7 @@
                         </Grid>
                     </GroupBox>
                 </Grid>
-                <Grid
-                    Grid.Row="2"
-                    Margin="15,30,15,0">
+                <Grid Grid.Row="2" Margin="15,30,15,0">
                     <uc:ExpanderWithCheckBoxes
                         Data="{Binding Path=EmploymentTypes, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                         DisplayMemberPath="EmploymentTypeName"
@@ -186,9 +184,7 @@
                         SelectedValuePath="IdEmploymentType"
                         SelectedValues="{Binding Path=SelectedEmploymentTypes, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                 </Grid>
-                <Grid
-                    Grid.Row="3"
-                    Margin="15,30,15,0">
+                <Grid Grid.Row="3" Margin="15,30,15,0">
                     <uc:ExpanderWithCheckBoxes
                         Data="{Binding Path=Schedules, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                         DisplayMemberPath="ScheduleName"
@@ -196,9 +192,7 @@
                         SelectedValuePath="IdSchedule"
                         SelectedValues="{Binding Path=SelectedSchedules, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                 </Grid>
-                <Grid
-                    Grid.Row="4"
-                    Margin="5">
+                <Grid Grid.Row="4" Margin="5">
                     <Grid VerticalAlignment="Bottom">
                         <mdt:Badged
                             Margin="0,12,0,0"

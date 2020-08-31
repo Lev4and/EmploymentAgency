@@ -45,6 +45,7 @@ namespace EmploymentAgency.ViewModels
             Patronymic = _manager.Patronymic;
             PhoneNumber = _manager.PhoneNumber;
             DateOfBirth = _manager.DateOfBirth;
+            Photo = _manager.Photo;
 
             Genders = new ObservableCollection<Gender>(_executor.GetGenders());
         });

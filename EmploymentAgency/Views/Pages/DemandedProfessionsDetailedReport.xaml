@@ -47,7 +47,7 @@
                         Series="{Binding Path=LineSeries, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                         Zoom="X">
                         <lwpf:CartesianChart.DataTooltip>
-                            <lwpf:DefaultTooltip SelectionMode="OnlySender"/>
+                            <lwpf:DefaultTooltip SelectionMode="OnlySender" />
                         </lwpf:CartesianChart.DataTooltip>
                         <lwpf:CartesianChart.AxisY>
                             <lwpf:Axis Title="Количество вакансий" />
@@ -85,7 +85,7 @@
                         Series="{Binding Path=LineSeries2, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                         Zoom="X">
                         <lwpf:CartesianChart.DataTooltip>
-                            <lwpf:DefaultTooltip SelectionMode="OnlySender"/>
+                            <lwpf:DefaultTooltip SelectionMode="OnlySender" />
                         </lwpf:CartesianChart.DataTooltip>
                         <lwpf:CartesianChart.AxisY>
                             <lwpf:Axis Title="Количество вакансий" />
@@ -104,7 +104,7 @@
                         LegendLocation="None"
                         Series="{Binding Path=PieSeries}">
                         <lwpf:PieChart.DataTooltip>
-                            <lwpf:DefaultTooltip SelectionMode="OnlySender"/>
+                            <lwpf:DefaultTooltip SelectionMode="OnlySender" />
                         </lwpf:PieChart.DataTooltip>
                     </lwpf:PieChart>
                 </Grid>

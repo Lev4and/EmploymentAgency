@@ -115,7 +115,7 @@
                 Height="Auto"
                 Data="{Binding Path=Industries, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                 DisplayMemberPath="IndustryName"
-                Hint="Название отрасля"
+                Hint="Название отрасли"
                 SearchLine="{Binding Path=IndustryName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
         </Grid>
         <Grid Grid.Row="1" Margin="5">
@@ -129,7 +129,7 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding Path=IndustryName}">
                         <DataGridTextColumn.Header>
-                            <TextBlock Text="Название отрасля" />
+                            <TextBlock Text="Название отрасли" />
                         </DataGridTextColumn.Header>
                     </DataGridTextColumn>
                 </DataGrid.Columns>
